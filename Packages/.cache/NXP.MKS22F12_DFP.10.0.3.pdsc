@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>MKS22F12_DFP</name>
+  <description>Device Family Pack for MKS22F12</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1" date="2018-04-04">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0" date="2018-01-19">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0" date="2017-11-17">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Device Startup</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MKS22F12" Dvendor="NXP:11">
+      <description>The KS22 MCU is based on the ARM(r) Cortex(r)-M4 core with 120MHz MCUs with FPU, offering full-speed USB 2.0 OTG, in addition to other features like USB crystal-less functionality. Devices have 128 KB and 256 KB of flash, 64 KB SRAM as well as LQFP and QFN packages. These devices offer various levels of integration, with a rich suite of analog, communication, timing and control peripherals.</description>
+      <device Dname="MKS22FN128xxx12">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dendian="Little-endian" Dclock="120000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKS22FN128xxx12_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+        <memory name="SRAM_LOWER" access="rw" start="0x1fffc000" size="0x4000"/>
+        <memory name="SRAM_UPPER" access="rw" start="0x20000000" size="0xc000" default="1"/>
+        <algorithm name="arm/MK_P128.FLM" start="0x00000000" size="0x00020000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        <debug svd="MKS22F12.xml"/>
+        <variant Dvariant="MKS22FN128VFT12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN128VFT12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN128VFT12/MKS22FN128xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKS22FN128VLH12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN128VLH12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN128VLH12/MKS22FN128xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKS22FN128VLL12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN128VLL12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN128VLL12/MKS22FN128xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKS22FN256xxx12">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dendian="Little-endian" Dclock="120000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKS22FN256xxx12_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+        <memory name="SRAM_LOWER" access="rw" start="0x1fffc000" size="0x4000"/>
+        <memory name="SRAM_UPPER" access="rw" start="0x20000000" size="0xc000" default="1"/>
+        <algorithm name="arm/MK_P256.FLM" start="0x00000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        <debug svd="MKS22F12.xml"/>
+        <variant Dvariant="MKS22FN256VFT12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN256VFT12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN256VFT12/MKS22FN256xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKS22FN256VLH12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN256VLH12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN256VLH12/MKS22FN256xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKS22FN256VLL12">
+          <compile header="fsl_device_registers.h" define="CPU_MKS22FN256VLL12"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKS22FN256VLL12/MKS22FN256xxx12_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="MKS22FN128???12" Dvendor="NXP:11"/>
+      <accept Dname="MKS22FN256???12" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="devices.MKS22F12_device.MKS22F12_device.MKS22F12_startup_driver.clock_driver.common_driver.gpio_driver.lpuart_driver.port_driver.rtc_driver.smc_driver.uart_utility.debug_console">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MKS22F12_driver.dspi">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MKS22F12_driver.lpi2c">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="lpi2c_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKS22F12_driver.lpuart">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKS22F12_driver.uart">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma_driver.flexio_i2s">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2s"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma_driver.flexio_spi">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_spi"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma_driver.flexio_uart">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_uart"/>
+    </condition>
+    <condition id="device.MKS22F12_utility.debug_console">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.dspi_driver.edma">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma_driver.flexcan">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.lpi2c">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.lpuart">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.sai">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.edma_driver.uart">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MKS22F12_device.device_device_driver.dmamux_driver.edma">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.flexio">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.common_driver.smartcard_uart">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smartcard_uart"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.common">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKS22F12_driver.flash">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+    </condition>
+    <condition id="device.MKS22F12">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.MKS22F12_platform.Include_core_cm4">
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+    </condition>
+    <condition id="devices.MKS22FN128xxx12_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+    </condition>
+    <condition id="devices.MKS22FN256xxx12_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+    </condition>
+    <condition id="devices.MKS22FN128xxx12_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN128???12"/>
+    </condition>
+    <condition id="devices.MKS22FN256xxx12_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="NXP:11" Dname="MKS22FN256???12"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="devices.MKS22F12_platform.Include_core_cm4">
+      <description></description>
+      <files>
+        <file name="arm/startup_MKS22F12.s" category="sourceAsm" condition="mdk" attr="config"/>
+        <file name="iar/startup_MKS22F12.s" category="sourceAsm" condition="iar" attr="config"/>
+        <file name="MKS22F12.h" category="header" attr="config"/>
+        <file name="MKS22F12_features.h" category="header" attr="config"/>
+        <file name="fsl_device_registers.h" category="header" attr="config"/>
+        <file name="arm/MKS22FN128xxx12_flash.scf" category="linkerScript" condition="devices.MKS22FN128xxx12_mdk" attr="config"/>
+        <file name="arm/MKS22FN128xxx12_ram.scf" category="linkerScript" condition="devices.MKS22FN128xxx12_mdk" attr="config"/>
+        <file name="arm/MKS22FN256xxx12_flash.scf" category="linkerScript" condition="devices.MKS22FN256xxx12_mdk" attr="config"/>
+        <file name="arm/MKS22FN256xxx12_ram.scf" category="linkerScript" condition="devices.MKS22FN256xxx12_mdk" attr="config"/>
+        <file name="iar/MKS22FN128xxx12_flash.icf" category="linkerScript" condition="devices.MKS22FN128xxx12_iar" attr="config"/>
+        <file name="iar/MKS22FN128xxx12_ram.icf" category="linkerScript" condition="devices.MKS22FN128xxx12_iar" attr="config"/>
+        <file name="iar/MKS22FN256xxx12_flash.icf" category="linkerScript" condition="devices.MKS22FN256xxx12_iar" attr="config"/>
+        <file name="iar/MKS22FN256xxx12_ram.icf" category="linkerScript" condition="devices.MKS22FN256xxx12_iar" attr="config"/>
+        <file name="system_MKS22F12.c" category="sourceC" attr="config"/>
+        <file name="system_MKS22F12.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="project_template" Cvariant="MKS22F12" isDefaultVariant="1" condition="devices.MKS22F12_device.MKS22F12_device.MKS22F12_startup_driver.clock_driver.common_driver.gpio_driver.lpuart_driver.port_driver.rtc_driver.smc_driver.uart_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Cversion="2.0.0" Csub="dspi_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MKS22F12_driver.dspi">
+      <description>DSPI CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_dspi_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_dspi_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Cversion="2.0.0" Csub="lpi2c_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MKS22F12_driver.lpi2c">
+      <description>LPI2C CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpi2c_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpi2c_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="2.0.0" Csub="lpuart_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKS22F12_driver.lpuart">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="2.0.0" Csub="uart_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKS22F12_driver.uart">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_uart_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_uart_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="adc" condition="device.MKS22F12_driver.common">
+      <description>ADC16 Driver</description>
+      <files>
+        <file name="drivers/fsl_adc16.c" category="sourceC"/>
+        <file name="drivers/fsl_adc16.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="clock" condition="device.MKS22F12_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file name="drivers/fsl_clock.c" category="sourceC"/>
+        <file name="drivers/fsl_clock.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="cmp" condition="device.MKS22F12_driver.common">
+      <description>CMP Driver</description>
+      <files>
+        <file name="drivers/fsl_cmp.c" category="sourceC"/>
+        <file name="drivers/fsl_cmp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="common" condition="device.MKS22F12_driver.common">
+      <description>COMMON Driver</description>
+      <files>
+        <file name="drivers/fsl_common.c" category="sourceC"/>
+        <file name="drivers/fsl_common.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="crc" condition="device.MKS22F12_driver.common">
+      <description>CRC Driver</description>
+      <files>
+        <file name="drivers/fsl_crc.c" category="sourceC"/>
+        <file name="drivers/fsl_crc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="dac" condition="device.MKS22F12_driver.common">
+      <description>DAC Driver</description>
+      <files>
+        <file name="drivers/fsl_dac.c" category="sourceC"/>
+        <file name="drivers/fsl_dac.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="dmamux" condition="device.MKS22F12_driver.common">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file name="drivers/fsl_dmamux.c" category="sourceC"/>
+        <file name="drivers/fsl_dmamux.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="dspi" condition="device.MKS22F12_driver.common">
+      <description>DSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_dspi.c" category="sourceC"/>
+        <file name="drivers/fsl_dspi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="dspi_edma" condition="device.MKS22F12_driver.dspi_driver.edma">
+      <description>DSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_dspi_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_dspi_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.2" Csub="edma" condition="device.MKS22F12_driver.common">
+      <description>EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="ewm" condition="device.MKS22F12_driver.common">
+      <description>EWM Driver</description>
+      <files>
+        <file name="drivers/fsl_ewm.c" category="sourceC"/>
+        <file name="drivers/fsl_ewm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="3.0.0" Csub="flash" condition="device.MKS22F12">
+      <description>Flash Driver</description>
+      <files>
+        <file name="drivers/fsl_flash.h" category="header"/>
+        <file name="drivers/fsl_ftfx_adapter.h" category="header"/>
+        <file name="drivers/fsl_ftfx_cache.c" category="sourceC"/>
+        <file name="drivers/fsl_ftfx_cache.h" category="header"/>
+        <file name="drivers/fsl_ftfx_controller.c" category="sourceC"/>
+        <file name="drivers/fsl_ftfx_controller.h" category="header"/>
+        <file name="drivers/fsl_ftfx_features.h" category="header"/>
+        <file name="drivers/fsl_ftfx_flash.c" category="sourceC"/>
+        <file name="drivers/fsl_ftfx_flash.h" category="header"/>
+        <file name="drivers/fsl_ftfx_flexnvm.c" category="sourceC"/>
+        <file name="drivers/fsl_ftfx_flexnvm.h" category="header"/>
+        <file name="drivers/fsl_ftfx_utilities.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="flexcan" condition="device.MKS22F12_driver.common">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file name="drivers/fsl_flexcan.c" category="sourceC"/>
+        <file name="drivers/fsl_flexcan.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="flexcan_edma" condition="device.MKS22F12_driver.edma_driver.flexcan">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file name="drivers/fsl_flexcan_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexcan_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="flexio" condition="device.MKS22F12_driver.common">
+      <description>FLEXIO Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.2" Csub="flexio_camera_edma" condition="device.MKS22F12_driver.edma">
+      <description>FLEXIO CAMERA EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_camera_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_camera_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="flexio_i2c_master" condition="device.MKS22F12_driver.flexio">
+      <description>FLEXIO I2C Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2c_master.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2c_master.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_i2s" condition="device.MKS22F12_driver.flexio">
+      <description>FLEXIO I2S Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2s.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2s.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_i2s_edma" condition="device.MKS22F12_driver.edma_driver.flexio_i2s">
+      <description>FLEXIO I2S EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2s_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2s_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.3" Csub="flexio_spi" condition="device.MKS22F12_driver.flexio">
+      <description>FLEXIO SPI Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_spi.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_spi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.3" Csub="flexio_spi_edma" condition="device.MKS22F12_driver.edma_driver.flexio_spi">
+      <description>FLEXIO SPI EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_spi_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_spi_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_uart" condition="device.MKS22F12_driver.flexio">
+      <description>FLEXIO UART Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_uart.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_uart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_uart_edma" condition="device.MKS22F12_driver.edma_driver.flexio_uart">
+      <description>FLEXIO UART EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_uart_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_uart_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.1" Csub="gpio" condition="device.MKS22F12_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file name="drivers/fsl_gpio.c" category="sourceC"/>
+        <file name="drivers/fsl_gpio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="llwu" condition="device.MKS22F12_driver.common">
+      <description>LLWU Driver</description>
+      <files>
+        <file name="drivers/fsl_llwu.c" category="sourceC"/>
+        <file name="drivers/fsl_llwu.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="i2c" condition="device.MKS22F12_driver.common">
+      <description>LPI2C Driver</description>
+      <files>
+        <file name="drivers/fsl_lpi2c.c" category="sourceC"/>
+        <file name="drivers/fsl_lpi2c.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="i2c_edma" condition="device.MKS22F12_driver.lpi2c">
+      <description>LPI2C Driver</description>
+      <files>
+        <file name="drivers/fsl_lpi2c_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_lpi2c_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="lptmr" condition="device.MKS22F12_driver.common">
+      <description>LPTMR Driver</description>
+      <files>
+        <file name="drivers/fsl_lptmr.c" category="sourceC"/>
+        <file name="drivers/fsl_lptmr.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.5" Csub="lpuart" condition="device.MKS22F12_driver.common">
+      <description>LPUART Driver</description>
+      <files>
+        <file name="drivers/fsl_lpuart.c" category="sourceC"/>
+        <file name="drivers/fsl_lpuart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.5" Csub="lpuart_edma" condition="device.MKS22F12_driver.lpuart">
+      <description>LPUART Driver</description>
+      <files>
+        <file name="drivers/fsl_lpuart_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_lpuart_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="pdb" condition="device.MKS22F12_driver.common">
+      <description>PDB Driver</description>
+      <files>
+        <file name="drivers/fsl_pdb.c" category="sourceC"/>
+        <file name="drivers/fsl_pdb.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pit" condition="device.MKS22F12_driver.common">
+      <description>PIT Driver</description>
+      <files>
+        <file name="drivers/fsl_pit.c" category="sourceC"/>
+        <file name="drivers/fsl_pit.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pmc" condition="device.MKS22F12_driver.common">
+      <description>PMC Driver</description>
+      <files>
+        <file name="drivers/fsl_pmc.c" category="sourceC"/>
+        <file name="drivers/fsl_pmc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="port" condition="device.MKS22F12_driver.common">
+      <description>PORT Driver</description>
+      <files>
+        <file name="drivers/fsl_port.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="rcm" condition="device.MKS22F12_driver.common">
+      <description>RCM Driver</description>
+      <files>
+        <file name="drivers/fsl_rcm.c" category="sourceC"/>
+        <file name="drivers/fsl_rcm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="rnga" condition="device.MKS22F12_driver.common">
+      <description>RNGA Driver</description>
+      <files>
+        <file name="drivers/fsl_rnga.c" category="sourceC"/>
+        <file name="drivers/fsl_rnga.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="rtc" condition="device.MKS22F12_driver.common">
+      <description>RTC Driver</description>
+      <files>
+        <file name="drivers/fsl_rtc.c" category="sourceC"/>
+        <file name="drivers/fsl_rtc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="sai" condition="device.MKS22F12_driver.common">
+      <description>SAI Driver</description>
+      <files>
+        <file name="drivers/fsl_sai.c" category="sourceC"/>
+        <file name="drivers/fsl_sai.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="sai_edma" condition="device.MKS22F12_driver.sai">
+      <description>SAI Driver</description>
+      <files>
+        <file name="drivers/fsl_sai_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_sai_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="sim" condition="device.MKS22F12_driver.common">
+      <description>SIM Driver</description>
+      <files>
+        <file name="drivers/fsl_sim.c" category="sourceC"/>
+        <file name="drivers/fsl_sim.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="smartcard_emvsim" condition="device.MKS22F12_driver.common">
+      <description>SMARTCARD EMVSIM Driver</description>
+      <files>
+        <file name="drivers/fsl_smartcard.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="smartcard_phy_gpio" condition="device.MKS22F12_driver.common_driver.smartcard_uart">
+      <description>SMARTCARD PHY GPIO, use only one SMARTCARD PHY in the project</description>
+      <files>
+        <file name="drivers/fsl_smartcard_phy.h" category="header"/>
+        <file name="drivers/fsl_smartcard_phy_gpio.c" category="sourceC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.0" Csub="smartcard_uart" condition="device.MKS22F12_driver.common">
+      <description>SMARTCARD UART Driver</description>
+      <files>
+        <file name="drivers/fsl_smartcard.h" category="header"/>
+        <file name="drivers/fsl_smartcard_uart.c" category="sourceC"/>
+        <file name="drivers/fsl_smartcard_uart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="smc" condition="device.MKS22F12_driver.flash">
+      <description>SMC Driver</description>
+      <files>
+        <file name="drivers/fsl_smc.c" category="sourceC"/>
+        <file name="drivers/fsl_smc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="tpm" condition="device.MKS22F12_driver.common">
+      <description>TPM Driver</description>
+      <files>
+        <file name="drivers/fsl_tpm.c" category="sourceC"/>
+        <file name="drivers/fsl_tpm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="uart" condition="device.MKS22F12_driver.common">
+      <description>UART Driver</description>
+      <files>
+        <file name="drivers/fsl_uart.c" category="sourceC"/>
+        <file name="drivers/fsl_uart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="uart_edma" condition="device.MKS22F12_driver.edma_driver.uart">
+      <description>UART Driver</description>
+      <files>
+        <file name="drivers/fsl_uart_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_uart_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="wdog" condition="device.MKS22F12_driver.common">
+      <description>WDOG Driver</description>
+      <files>
+        <file name="drivers/fsl_wdog.c" category="sourceC"/>
+        <file name="drivers/fsl_wdog.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="RTE_Device" condition="device.MKS22F12_device.device_device_driver.dmamux_driver.edma">
+      <description></description>
+      <files>
+        <file name="template/RTE_Device.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="assert" condition="device.MKS22F12_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_assert.c" category="sourceC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console" condition="device.MKS22F12">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_debug_console.c" category="sourceC"/>
+        <file name="utilities/fsl_debug_console.h" category="header"/>
+        <file name="utilities/fsl_debug_console_conf.h" category="header"/>
+        <file name="utilities/io/fsl_io.c" category="sourceC"/>
+        <file name="utilities/io/fsl_io.h" category="header"/>
+        <file name="utilities/log/fsl_log.c" category="sourceC"/>
+        <file name="utilities/log/fsl_log.h" category="header"/>
+        <file name="utilities/str/fsl_str.c" category="sourceC"/>
+        <file name="utilities/str/fsl_str.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console_swo" condition="device.MKS22F12_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/io/swo/fsl_swo.c" category="sourceC"/>
+        <file name="utilities/io/swo/fsl_swo.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="notifier" condition="device.MKS22F12_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_notifier.c" category="sourceC"/>
+        <file name="utilities/fsl_notifier.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="shell" condition="device.MKS22F12_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_shell.c" category="sourceC"/>
+        <file name="utilities/fsl_shell.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

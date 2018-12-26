@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <name>nRF_IoT_Libraries</name>
+    <description>Software modules for Nordic Semiconductor IoT SDK.</description>
+    <vendor>NordicSemiconductor</vendor>
+    <url>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_IoT_Libraries/</url>
+    <supportContact>http://www.nordicsemi.com/About-us/Contact-us</supportContact>
+
+    <releases>
+        <release version="0.8.0" date="2015-05-29">
+            This is a part of Nordic Semiconductor IoT SDK version 0.8.0.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>iot</keyword>
+    </keywords>
+
+    <boards>
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10028" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10028).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10031" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10031).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/>  
+            <feature type="Other"     n="1"              name="mbed Enabled"/>
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="USB"/>          
+        </board>
+        <board vendor="NordicSemiconductor" name="Wavetek board with nRF51822 Module"/>
+    </boards>
+
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="nRF51 Series">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAC"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+        </condition>
+
+        <condition id="nRF51 Series CMSIS Device">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+            <require condition="nRF51 Series"/>
+        </condition>
+        <condition id="ipv6_sntp">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_stack" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+
+        <condition id="ipv6_udp">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_pbuffer" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="iot_pbuffer">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="coap_resource">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="ble_ipsp">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Csub="ble_service_common" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="coap_queue">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="ble_6lowpan_Library_debug">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_context_manager" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ble_ipsp" Cgroup="BLE_Services" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Csub="ble_service_common" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+        </condition>
+        <condition id="ble_6lowpan_Library">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_context_manager" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ble_ipsp" Cgroup="BLE_Services" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Csub="ble_service_common" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+        </condition>
+
+        <condition id="coap_core">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="coap_observe">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="coap_message">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="coap_transport_ipv6">
+            <require condition="nRF51 Series CMSIS Device" />
+            <deny Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_transport_lwip" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_udp" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="coap_option">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+
+        <condition id="iot_common">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="coap_transport_lwip">
+            <require condition="nRF51 Series CMSIS Device" />
+            <deny Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_transport_ipv6" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="1.4.1-1" Cvendor="NordicSemiconductor" Csub="lwip" Cgroup="lwIP Stack" Cclass="Third Parties" />
+        </condition>
+
+        <condition id="ipv6_stack">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ble_6lowpan" Cgroup="BLE 6LoWPAN" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_pbuffer" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_context_manager" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_utils" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_udp" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_icmp6" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="ipv6_utils">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="iot_context_manager">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="ipv6_icmp6">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_pbuffer" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="iot_timer">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="coap">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_core" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_message" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_option" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_queue" Cgroup="CoAP" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="coap_resource" Cgroup="CoAP" Cclass="nRF_IoT" />
+        </condition>
+
+        <condition id="ipv6_dns6">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_common" Cgroup="Libraries" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="iot_pbuffer" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ipv6_stack" Cgroup="IPv6 Stack" Cclass="nRF_IoT" />
+        </condition>
+
+    </conditions>
+    <components>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_sntp" Cversion="0.8.0" condition="ipv6_sntp">
+  <description>Simple Network Time Protocol (SNTP)</description>
+  <files>
+    <file category="source" name="ipv6_stack\sntp_client\sntp_client.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\sntp_client\sntp_client.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\sntp_client\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_udp" Cversion="0.8.0" condition="ipv6_udp">
+  <description>User Datagram Protocol (UDP)</description>
+  <files>
+    <file category="source" name="ipv6_stack\udp\udp6.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\include\udp_api.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\udp\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="iot_pbuffer" Cversion="0.8.0" condition="iot_pbuffer">
+  <description>Packet buffer for IPv6 stack</description>
+  <files>
+    <file category="source" name="ipv6_stack\pbuffer\iot_pbuffer.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\pbuffer\iot_pbuffer.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\pbuffer\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_resource" Cversion="0.8.0" condition="coap_resource">
+  <description>Nordic's smartCoAP library - resource</description>
+  <files>
+    <file category="source" name="coap\coap_resource.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_resource.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="BLE_Services" Csub="ble_ipsp" Cversion="0.8.0" condition="ble_ipsp">
+  <description>Internet Protocol Support Profile</description>
+  <files>
+    <file category="header" name="ble_ipsp\ble_ipsp.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ble_ipsp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_queue" Cversion="0.8.0" condition="coap_queue">
+  <description>Nordic's smartCoAP library - queue</description>
+  <files>
+    <file category="source" name="coap\coap_queue.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_queue.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="BLE 6LoWPAN" Csub="ble_6lowpan" Cvariant="Library_debug" Cversion="0.8.0" condition="ble_6lowpan_Library_debug">
+  <description>6LoWPAN over BLE and Internet Protocol Support Profile library</description>
+  <files>
+    <file category="library" name="ble_6lowpan\lib\ble_6lowpan_debug.lib" />
+    <file category="header" name="ble_6lowpan\ble_6lowpan.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ble_6lowpan\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="BLE 6LoWPAN" Csub="ble_6lowpan" Cvariant="Library" Cversion="0.8.0" condition="ble_6lowpan_Library">
+  <description>6LoWPAN over BLE and Internet Protocol Support Profile library</description>
+  <files>
+    <file category="library" name="ble_6lowpan\lib\ble_6lowpan.lib" />
+    <file category="header" name="ble_6lowpan\ble_6lowpan.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ble_6lowpan\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_core" Cversion="0.8.0" condition="coap_core">
+  <description>Nordic's smartCoAP library - core functionality</description>
+  <files>
+    <file category="source" name="coap\coap.c" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_observe" Cversion="0.8.0" condition="coap_observe">
+  <description>Nordic's smartCoAP library - observe</description>
+  <files>
+    <file category="source" name="coap\coap_observe.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_observe.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_message" Cversion="0.8.0" condition="coap_message">
+  <description>Nordic's smartCoAP library - message</description>
+  <files>
+    <file category="source" name="coap\coap_message.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_message.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_transport_ipv6" Cversion="0.8.0" condition="coap_transport_ipv6">
+  <description>Nordic's smartCoAP library - IPv6 transport</description>
+  <files>
+    <file category="source" name="coap\coap_transport_ipv6.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_transport.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_option" Cversion="0.8.0" condition="coap_option">
+  <description>Nordic's smartCoAP library - option</description>
+  <files>
+    <file category="source" name="coap\coap_option.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_option.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="Libraries" Csub="iot_common" Cversion="0.8.0" condition="iot_common">
+  <description>IoT common functionality</description>
+  <files>
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap_transport_lwip" Cversion="0.8.0" condition="coap_transport_lwip">
+  <description>Nordic's smartCoAP library - lwIP transport</description>
+  <files>
+    <file category="source" name="coap\coap_transport_lwip.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="coap\coap_transport.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="coap\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_stack" Cversion="0.8.0" condition="ipv6_stack">
+  <description>Internet Protocol version 6 (IPv6)</description>
+  <files>
+    <file category="source" name="ipv6_stack\ipv6\ipv6.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\include\ipv6_api.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_utils" Cversion="0.8.0" condition="ipv6_utils">
+  <description>IoT utilities</description>
+  <files>
+    <file category="source" name="ipv6_stack\utils\ipv6_utils.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\utils\ipv6_utils.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\utils\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="Libraries" Csub="iot_context_manager" Cversion="0.8.0" condition="iot_context_manager">
+  <description>Context Manager</description>
+  <files>
+    <file category="source" name="context_manager\iot_context_manager.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="context_manager\iot_context_manager.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="context_manager\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_icmp6" Cversion="0.8.0" condition="ipv6_icmp6">
+  <description>Internet Control Message Protocol (ICMP6)</description>
+  <files>
+    <file category="source" name="ipv6_stack\icmp6\icmp6.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\include\icmp6_api.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\icmp6\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="Libraries" Csub="iot_timer" Cversion="0.8.0" condition="iot_timer">
+  <description>IoT Timer</description>
+  <files>
+    <file category="source" name="iot_timer\iot_timer.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="iot_timer\iot_timer.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="iot_timer\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="CoAP" Csub="coap" Cversion="0.8.0" condition="coap">
+  <description>Nordic's smartCoAP library</description>
+  <files>
+    <file category="include" name="coap\" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_IoT" Cgroup="IPv6 Stack" Csub="ipv6_dns6" Cversion="0.8.0" condition="ipv6_dns6">
+  <description>Domain Name System Client (DNS)</description>
+  <files>
+    <file category="source" name="ipv6_stack\dns6\dns6.c" attr="config"  version="0.8.0"/>
+    <file category="header" name="ipv6_stack\include\dns6_api.h" attr="config"  version="0.8.0"/>
+    <file category="include" name="ipv6_stack\dns6\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+    </components>
+</package>

@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K60_DFP</name>
+  <description>NXP Kinetis K60 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.5.0" date="2017-02-17">
+      Reworked K60_DFP.
+      - changed vendor to NXP.
+      - updated documentation.
+      - Updated boards description.
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+      Added SVD files from Kinetis SDK for more peripheral visibility
+      Added Board description Keil MCBTWRK60, replicated example
+    </release>
+    <release version="1.4.0" date="2015-06-03">
+      Updated MK65F18, MK66F18 device support and documentation.
+    </release>
+    <release version="1.3.0" date="2015-01-12">
+      CMSIS-Core files updated for MK65F18 and MK66F18 device support
+    </release>
+    <release version="1.2.0" date="2014-09-04">
+      CMSIS-Core files updated for MK63F12 and MK64F12 devices
+    </release>
+    <release version="1.1.0">
+      Added FRDM-K64F development board examples
+      Added TWR-K64F120M development board examples
+    </release>
+    <release version="1.0.2">
+      Added TWR-K60D100M development boards
+    </release>
+    <release version="1.0.1">
+      New devices: MK63FN1M0xxx12, MK64FN1M0xxx12, MK64FX512xxx12
+    </release>
+    <release version="1.0.0">
+      First Release version of K60 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K60</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="K60 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+
+      <description>
+The Kinetis K6x MCUs are pin-peripheral and software-compatible with many of the Kinetis K series MCU families, offering IEEE® 1588 Ethernet and full and high-speed USB 2.0 On-The-Go, including options with USB crystal-less functionality.
+Devices start from 256 KB of flash in 100 QFP packages extending up to 2 MB flash and 256 KB SRAM in a 256 MAPBGA package. These devices offer various levels of integration, with a rich suite of analog, communication, timing and control peripherals.
+Next-generation Kinetis K6x MCUs are further optimized for performance and power consumption and offer more streamlined integration for further BOM cost reductions.
+       </description>
+
+
+      <!-- ******************************  MK60DN512xxx10  ****************************** -->
+      <device Dname="MK60DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK60D10.h" define="MK60DN512xxx10"/>
+        <debug svd="SVD/MK60D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K60P144M100SF2V2RM.pdf" title="MK60 100MHz Reference Manual"/>
+        <book name="Documents/K60P144M100SF2V2.pdf"   title="MK60 100MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60DN256xxx10  ****************************** -->
+      <device Dname="MK60DN256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK60D10.h" define="MK60DN256xxx10"/>
+        <debug svd="SVD/MK60D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K60P144M100SF2V2RM.pdf" title="MK60 100MHz Reference Manual"/>
+        <book name="Documents/K60P144M100SF2V2.pdf"   title="MK60 100MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60DX256xxx10  ****************************** -->
+      <device Dname="MK60DX256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK60D10.h" define="MK60DX256xxx10"/>
+        <debug svd="SVD/MK60D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                  start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D256.FLM" start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K60P144M100SF2V2RM.pdf" title="MK60 100MHz Reference Manual"/>
+        <book name="Documents/K60P144M100SF2V2.pdf"   title="MK60 100MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60FN1M0xxx12  ****************************** -->
+      <device Dname="MK60FN1M0xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK60F12.h" define="MK60FN1M0xxx12"/>
+        <debug svd="SVD/MK60F12.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K60P144M150SF3RM.pdf" title="MK60 120/150MHz Reference Manual"/>
+        <book name="Documents/K60P144M120SF3.pdf"   title="MK60 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60FX512xxx12  ****************************** -->
+      <device Dname="MK60FX512xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK60F12.h" define="MK60FX512xxx12"/>
+        <debug svd="SVD/MK60F12.svd"/>
+        <memory id="IROM1"                   start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IROM2"                   start="0x10000000" size="0x00080000" startup="0" default="0"/>
+        <memory id="IRAM1"                   start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                   start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512X.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+        <algorithm name="Flash/MK_D512.FLM"  start="0x10000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K60P144M150SF3RM.pdf" title="MK60 120/150MHz Reference Manual"/>
+        <book name="Documents/K60P144M120SF3.pdf"   title="MK60 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60FN1M0xxx15  ****************************** -->
+      <device Dname="MK60FN1M0xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK60F15.h" define="MK60FN1M0xxx15"/>
+        <debug svd="SVD/MK60F15.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K60P144M150SF3RM.pdf" title="MK60 120/150MHz Reference Manual"/>
+        <book name="Documents/K60P144M150SF3.pdf"   title="MK60 150MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK60FX512xxx15  ****************************** -->
+      <device Dname="MK60FX512xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK60F15.h" define="MK60FX512xxx15"/>
+        <debug svd="SVD/MK60F15.svd"/>
+        <memory id="IROM1"                   start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IROM2"                   start="0x10000000" size="0x00080000" startup="0" default="0"/>
+        <memory id="IRAM1"                   start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                   start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512X.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+        <algorithm name="Flash/MK_D512.FLM"  start="0x10000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K60P144M150SF3RM.pdf" title="MK60 120/150MHz Reference Manual"/>
+        <book name="Documents/K60P144M150SF3.pdf"   title="MK60 150MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK61FN1M0xxx12  ****************************** -->
+      <device Dname="MK61FN1M0xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK61F12.h" define="MK61FN1M0xxx12"/>
+        <debug svd="SVD/MK61F12.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K61P256M150SF3RM.pdf" title="MK61 120/150 MHz Reference Manual"/>
+        <book name="Documents/K61P256M120SF3.pdf"   title="MK61 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK61FX512xxx12  ****************************** -->
+      <device Dname="MK61FX512xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK61F12.h" define="MK61FX512xxx12"/>
+        <debug svd="SVD/MK61F12.svd"/>
+        <memory id="IROM1"                   start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IROM2"                   start="0x10000000" size="0x00080000" startup="0" default="0"/>
+        <memory id="IRAM1"                   start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                   start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512X.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+        <algorithm name="Flash/MK_D512.FLM"  start="0x10000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K61P256M150SF3RM.pdf" title="MK61 120/150MHz Reference Manual"/>
+        <book name="Documents/K61P256M120SF3.pdf"   title="MK61 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK61FN1M0xxx15  ****************************** -->
+      <device Dname="MK61FN1M0xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK61F15.h" define="MK61FN1M0xxx15"/>
+        <debug svd="SVD/MK61F15.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K61P256M150SF3RM.pdf" title="MK61 120/150 MHz Reference Manual"/>
+        <book name="Documents/K61P256M150SF3.pdf"   title="MK61 150MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK61FX512xxx15  ****************************** -->
+      <device Dname="MK61FX512xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK61F15.h" define="MK61FX512xxx15"/>
+        <debug svd="SVD/MK61F15.svd"/>
+        <memory id="IROM1"                   start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IROM2"                   start="0x10000000" size="0x00080000" startup="0" default="0"/>
+        <memory id="IRAM1"                   start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                   start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512X.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+        <algorithm name="Flash/MK_D512.FLM"  start="0x10000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K61P256M150SF3RM.pdf" title="MK61 120/150 MHz Reference Manual"/>
+        <book name="Documents/K61P256M150SF3.pdf"   title="MK61 150MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK63FN1M0xxx12  ****************************** -->
+      <device Dname="MK63FN1M0xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK63F12.h" define="MK63FN1M0xxx12"/>
+        <debug svd="SVD/MK63F12.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K63P144M120SF5RM.pdf" title="MK63 120MHz Reference Manual"/>
+        <book name="Documents/K63P144M120SF5.pdf"   title="MK63 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK64FN1M0xxx12  ****************************** -->
+      <device Dname="MK64FN1M0xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK64F12.h" define="MK64FN1M0xxx12"/>
+        <debug svd="SVD/MK64F12.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+        <book name="Documents/K64P144M120SF5RM.pdf" title="MK64 120MHz Reference Manual"/>
+        <book name="Documents/K64P144M120SF5.pdf"   title="MK64 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK64FX512xxx12  ****************************** -->
+      <device Dname="MK64FX512xxx12">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/MK64F12.h" define="MK64FX512xxx12"/>
+        <debug svd="SVD/MK64F12.svd"/>
+        <memory id="IROM1"                            start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IROM2"                            start="0x10000000" size="0x00020000" startup="0" default="0"/>
+        <memory id="IRAM1"                            start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+        <memory id="IRAM2"                            start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512X.FLM"          start="0x00000000" size="0x00080000"             default="1"/>
+        <algorithm name="Flash/MKD128_4KB_SECTOR.FLM" start="0x10000000" size="0x00020000"             default="1"/>
+
+        <book name="Documents/K64P144M120SF5RM.pdf" title="MK64 120MHz Reference Manual"/>
+        <book name="Documents/K64P144M120SF5.pdf"   title="MK64 120MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK65FN2M0xxx18  ****************************** -->
+      <device Dname="MK65FN2M0xxx18">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="180000000"/>
+        <compile header="Device/Include/MK65F18.h" define="MK65FN2M0xxx18"/>
+        <debug svd="SVD/MK65F18.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00200000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P2M0.FLM" start="0x00000000" size="0x00200000"             default="1"/>
+
+        <book name="Documents/K65P169M180SF5RMV2.pdf" title="MK65 180MHz Reference Manual"/>
+        <book name="Documents/K65P169M180SF5V2.pdf"   title="MK65 180MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK65FX1M0xxx18  ****************************** -->
+      <device Dname="MK65FX1M0xxx18">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="180000000"/>
+        <compile header="Device/Include/MK65F18.h" define="MK65FX1M0xxx18"/>
+        <debug svd="SVD/MK65F18.svd"/>
+        <memory id="IROM1"                            start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IROM2"                            start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                            start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                            start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM"           start="0x00000000" size="0x00100000"             default="1"/>
+        <algorithm name="Flash/MKD256_4KB_SECTOR.FLM" start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K65P169M180SF5RMV2.pdf" title="MK65 180MHz Reference Manual"/>
+        <book name="Documents/K65P169M180SF5V2.pdf"   title="MK65 180MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK66FN2M0xxx18  ****************************** -->
+      <device Dname="MK66FN2M0xxx18">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="180000000"/>
+        <compile header="Device/Include/MK66F18.h" define="MK66FN2M0xxx18"/>
+        <debug svd="SVD/MK66F18.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00200000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P2M0.FLM" start="0x00000000" size="0x00200000"             default="1"/>
+
+        <book name="Documents/K66P144M180SF5RMV2.pdf" title="MK66 180MHz Reference Manual"/>
+        <book name="Documents/K66P144M180SF5V2.pdf"   title="MK66 180MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK66FX1M0xxx18  ****************************** -->
+      <device Dname="MK66FX1M0xxx18">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="180000000"/>
+        <compile header="Device/Include/MK66F18.h" define="MK66FX1M0xxx18"/>
+        <debug svd="SVD/MK66F18.svd"/>
+        <memory id="IROM1"                            start="0x00000000" size="0x00100000" startup="1" default="1"/>
+        <memory id="IROM2"                            start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                            start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                            start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P1M0.FLM"           start="0x00000000" size="0x00100000"             default="1"/>
+        <algorithm name="Flash/MKD256_4KB_SECTOR.FLM" start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K66P144M180SF5RMV2.pdf" title="MK66 180MHz Reference Manual"/>
+        <book name="Documents/K66P144M180SF5V2.pdf"   title="MK66 180MHz Data Sheet"/>
+      </device>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="MK60D10 CMSIS">
+      <description>NXP Kinetis K60D 100MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK60DN512xxx10"/>
+      <accept  Dname="MK60DN256xxx10"/>
+      <accept  Dname="MK60DX256xxx10"/>
+      </condition>
+    <condition id="MK60F12 CMSIS">
+      <description>NXP Kinetis K60F 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK60FN1M0xxx12"/>
+      <accept  Dname="MK60FX512xxx12"/>
+    </condition>
+    <condition id="MK61F12 CMSIS">
+      <description>NXP Kinetis K61F 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK61FN1M0xxx12"/>
+      <accept  Dname="MK61FX512xxx12"/>
+    </condition>
+    <condition id="MK60F15 CMSIS">
+      <description>NXP Kinetis K60F 150MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK60FN1M0xxx15"/>
+      <accept  Dname="MK60FX512xxx15"/>
+    </condition>
+    <condition id="MK61F15 CMSIS">
+      <description>NXP Kinetis K61F 150MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK61FN1M0xxx15"/>
+      <accept  Dname="MK61FX512xxx15"/>
+    </condition>
+    <condition id="MK63F12 CMSIS">
+      <description>NXP Kinetis K63F 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK63FN1M0xxx12"/>
+    </condition>
+    <condition id="MK64F12 CMSIS">
+      <description>NXP Kinetis K64F 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK64FN1M0xxx12"/>
+      <accept  Dname="MK64FX512xxx12"/>
+    </condition>
+    <condition id="MK65F18 CMSIS">
+      <description>NXP Kinetis K65F 180MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK65FN2M0xxx18"/>
+      <accept  Dname="MK65FX1M0xxx18"/>
+    </condition>
+    <condition id="MK66F18 CMSIS">
+      <description>NXP Kinetis K66F 180MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MK66FN2M0xxx18"/>
+      <accept  Dname="MK66FX1M0xxx18"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup MK60D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK60D10 CMSIS">
+      <description>System Startup for NXP MK60D10 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK60D10.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK60D10.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK60F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK60F12 CMSIS">
+      <description>System Startup for NXP MK60F12 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK60F12.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK60F12.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK61F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK61F12 CMSIS">
+      <description>System Startup for NXP MK61F12 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK61F12.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK61F12.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK60F15 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK60F15 CMSIS">
+      <description>System Startup for NXP MK60F15 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK60F15.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK60F15.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK61F15 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK61F15 CMSIS">
+      <description>System Startup for NXP MK61F15 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK61F15.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK61F15.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK63F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK63F12 CMSIS">
+      <description>System Startup for NXP MK63F12 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK63F12.s" attr="config" version="2.3.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK63F12.c"      attr="config" version="2.3.0"/>
+      </files>
+    </component>
+    <!-- Startup MK64F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK64F12 CMSIS">
+      <description>System Startup for NXP MK64F12 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK64F12.s" attr="config" version="2.3.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK64F12.c"      attr="config" version="2.3.0"/>
+      </files>
+    </component>
+    <!-- Startup MK65F18 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.0.0" condition="MK65F18 CMSIS">
+      <description>System Startup for NXP MK65F18 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK65F18.s" attr="config" version="3.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK65F18.c"      attr="config" version="3.0.0"/>
+        <file category="header"  name="Device/Source/system_MK65F18.h"      attr="config" version="3.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MK66F18 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.0.0" condition="MK66F18 CMSIS">
+      <description>System Startup for NXP MK66F18 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK66F18.s" attr="config" version="3.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK66F18.c"      attr="config" version="3.0.0"/>
+        <file category="header"  name="Device/Source/system_MK66F18.h"      attr="config" version="3.0.0"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <board name="FRDM-K64F" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MK64FN1M0xxx12"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MK64FX512xxx12"/>
+      <description>
+The Freedom-K64F is an ultra-low-cost development platform for Kinetis K64, K63, and K24 MCUs.
+ - Form-factor compatible with the Arduino R3 pin layout
+ - Peripherals enable rapid prototyping, including a 6-axis digital accelerometer and magnetometer to create full eCompass capabilities, a tri-colored LED and 2 user push-buttons for direct interaction, a microSD card slot, and connectivity using onboard Ethernet port and headers for use with Bluetooth® and 2.4 GHz radio add-on modules
+ - OpenSDAv2, the NXP open source hardware embedded serial and debug adapter running an open source bootloader, offers options for serial communication, flash programming, and run-control debugging
+      </description>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-k64-k63-and-k24-mcus:FRDM-K64F" title="FRDM-K64F Web Page"/>
+      <book category="setup"     name="Boards/NXP/FRDM-K64F/Documents/FRDMK64QSG.pdf"    title="Quick Start Guide"/>
+      <book category="schematic" name="Boards/NXP/FRDM-K64F/Documents/FRDM-K64F_SCH.pdf" title="FRDM-K64F Schematics"/>
+      <book category="manual"    name="Boards/NXP/FRDM-K64F/Documents/FRDMK64FUG.pdf"    title="User Manual"/>
+      <feature type="ODbg"          n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"           n="5"              name="USB Powered"/>
+      <feature type="MemCard"       n="1"              name="Micro SD Card holder"/>
+      <feature type="USB"           n="1"              name="Micro-AB USB connector"/>
+      <feature type="USB"           n="1"              name="OpenSDAv2 Micro USB connector"/>
+      <feature type="ETH"           n="1"              name="10/100 Ethernet Port"/>
+      <feature type="Button"        n="3"/>
+      <feature type="Accelerometer" n="1"              name="NXP FXOS8700CQ low-power, six-axis Xtrinsic sensor"/>
+      <feature type="DIO"           n="8"              name="nRF24L01+ Nordic 2.4G Radio module expansion pins"/>
+      <feature type="DIO"           n="4"              name="JY-MCU BT board V1.05 BT module expansion pins"/>
+      <feature type="DIO"           n="33"             name="Digital IOs"/>
+      <feature type="AIO"           n="9"              name="Analog IOs"/>
+      <feature type="LED"           n="1"              name="RGB LED"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="SDA 10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board name="TWR-K60D100M" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MK60DN512xxx10"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="K60 Series"/>
+      <description>
+The TWR-K60D100M is a development tool for the 100 MHz K60, K20, and K10 families of Kinetis microcontrollers.
+The TWR-K60D100M operates as a standalone debug tool and can also be combined and used as part of the modular Tower System development platform.
+      </description>
+      <image small="Boards/NXP/TWR-K60D100M/Documents/TWR-K60D100M_small.PNG"
+             large="Boards/NXP/TWR-K60D100M/Documents/TWR-K60D100M_large.PNG"/>
+      <book category="overview"  name="http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/k-series-performance-m4/k6x-ethernet/kinetis-k60-100-mhz-mcu-tower-system-module:TWR-K60D100M" title="TWR-K60D100M Web Page"/>
+      <book category="setup"     name="Boards/NXP/TWR-K60D100M/Documents/TWR-K60D100MQSG.pdf"  title="Quick Start Guide"/>
+      <book category="schematic" name="Boards/NXP/TWR-K60D100M/Documents/TWR-K60D100M_SCH.pdf" title="Schematic"/>
+      <book category="manual"    name="Boards/NXP/TWR-K60D100M/Documents/TWRK60D100MUM.pdf"    title="User Manual"/>
+      <feature type="ODbg"      n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Batt"      n="1"              name="Battery holder for 20mm lithium battery (e.g. 2032, 2025)"/>
+      <feature type="MemCard"   n="1"              name="SD Card holder"/>
+      <feature type="USB"       n="1"              name="High-Speed USB Mini-B Connector"/>
+      <feature type="ConnOther" n="1"              name="Touch Tower Plug-in Socket"/>
+      <feature type="ConnOther" n="1"              name="General purpose Tower Plug-in (TWRPI) socket"/>
+      <feature type="ConnOther" n="2"              name="Tower connectivity for access to USB, Ethernet, RS232/RS485, CAN, SPI, I²C, Flexbus, etc."/>
+      <feature type="Poti"      n="1"/>
+      <feature type="Button"    n="2"/>
+      <feature type="Touch"     n="4"/>
+      <feature type="Accelerometer" n="1"          name="Three axis accelerometer (MMA78451Q)"/>
+      <feature type="LED"       n="4"              name="Four user-controlled status LEDs"/>
+      <feature type="TowerFF"   n="1"/>
+    </board>
+
+    <board name="TWR-K64F120M" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MK64FN1M0xxx12"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MK64FX512xxx12"/>
+      <description>
+The NXP TWR-K64F120M is a development board for the Kinetis K24, K63 and K64 120 MHz 32-bit ARM® Cortex®-M4 MCUs.
+ - The TWR-K64F120M features the Kinetis MK64FN1M0VMD12 low-power MCU with 1 MB Flash, 256 KB SRAM, USB USB and Ethernet MAC.
+ - It operates as a standalone debug tool and can also be combined and used as part of the modular Tower System development platform
+      </description>
+      <image small="Boards/NXP/TWR-K64F120M/Documents/TWR-K64F120M_small.png"
+             large="Boards/NXP/TWR-K64F120M/Documents/TWR-K64F120M_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/products/sensors/accelerometers/3-axis-accelerometers/kinetis-k64-mcu-tower-system-module:TWR-K64F120M" title="TWR-K64F120M Web Page"/>
+      <book category="setup"     name="Boards/NXP/TWR-K64F120M/Documents/TWRK64FQSG.pdf" title="Quick Start Guide"/>
+      <feature type="ODbg"      n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Batt"      n="1"              name="Battery holder for 20mm lithium battery (e.g. 2032, 2025)"/>
+      <feature type="MemCard"   n="1"              name="SD Card holder"/>
+      <feature type="USB"       n="1"              name="Dual-role USB interface with Micro-AB USB connector"/>
+      <feature type="ConnOther" n="1"              name="General purpose Tower Plug-in (TWRPI) socket"/>
+      <feature type="ConnOther" n="2"              name="Tower connectivity for access to USB, Ethernet, RS232/RS485, CAN, SPI, I²C, Flexbus, etc."/>
+      <feature type="Poti"      n="1"/>
+      <feature type="Button"    n="2"/>
+      <feature type="Touch"     n="4"/>
+      <feature type="Accelerometer" n="1"          name="Three axis accelerometer (MMA78451Q)"/>
+      <feature type="LED"       n="4"              name="Four user-controlled status LEDs"/>
+      <feature type="TowerFF"   n="1"/>
+    </board>
+
+    <board name="TWR-K65F180M" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MK65FN2M0xxx18"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MK65FX1M0xxx18"/>
+      <description>
+The TWR-K65F180M is a development board for the Kinetis K26, K65 and K66 180 MHz 32-bit ARM® Cortex™-M4 MCUs. It features the Kinetis MK65FN2M0VMI18 low-power MCU with 2MB Flash, 256 KB SRAM, SDRAM Controller, HS USB and Ethernet MAC.
+The TWR-K65F180M operates as a standalone debug tool and can also be combined and used as part of the modular Tower System development platform.
+      </description>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/tower-development-boards/mcu-and-processor-modules/kinetis-modules/kinetis-k65-mcu-tower-system-module-for-kinetis-k26-k65-and-k66-mcus:TWR-K65F180M" title="TWR-K65F180M Web Page"/>
+      <feature type="ODbg"          n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"           n="5"              name="USB Powered"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="SDA 10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="Keil" name="MCBTWRK60" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBTWRK60=ON">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MK60DN512xxx10"/>
+      <description>Keil MCBTWRK60 Board Support</description>
+      <image small="Boards/NXP/TWR-K60D100M/Documents/mcbtwrk60_small.jpg"
+             large="Boards/NXP/TWR-K60D100M/Documents/mcbtwrk60_big.jpg"/>
+      <book category="overview"  name="http://www.keil.com/MCBTWRK60/"                                           title="MCBTWRK60 Web Page"/>
+      <book category="schematic" name="Boards/NXP/TWR-K60D100M/Documents/mcbtwrk60_k60n512_schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Boards/NXP/TWR-K60D100M/Documents/mcbtwrk60.chm"                    title="User Manual" />
+      <feature type="XTAL"      n="50000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="3"              name="Push-buttons: Reset, 2 GPIO"/>
+      <feature type="LED"       n="8"              name="LEDs: Power, TPWR, Status, Reset, 4x User"/>
+      <feature type="USB"       n="1"              name="USB Device Interface"/>
+      <feature type="USB"       n="1"              name="USB Host/OTG"/>
+      <feature type="ETH"       n="1"/>
+      <feature type="MemCard"   n="1"              name="SD Card Interface"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="RS232"     n="1"/>
+      <feature type="CAN"       n="1"/>
+      <feature type="PressSens" n="4"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="ETM Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="CustomFF"  n="90"  m="90"/>
+      <feature type="Curr"      n="280" m="300"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- FRDM-K64F Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-K64F/Blinky">
+      <description>Blinky example</description>
+      <board name="FRDM-K64F" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-K64F/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="FRDM-K64F" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TWR-K60D100M Development Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K60D100M/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-K60D100M" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- MCBTWRK60 Development Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K60D100M/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBTWRK60" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TWR-K64F120M Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K64F120M/Blinky">
+      <description>Blinky example</description>
+      <board name="TWR-K64F120M" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K64F120M/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-K64F120M" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TWR-K65F180M Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K65F180M/Blinky">
+      <description>Blinky example</description>
+      <board name="TWR-K65F180M" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-K65F180M/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-K65F180M" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

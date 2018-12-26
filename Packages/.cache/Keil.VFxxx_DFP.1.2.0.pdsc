@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>VFxxx_DFP</name>
+  <description>NXP Vybrid VFxxx Family Device Support and Examples</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"          version="5.0.1"/>
+      <package vendor="ARM"  name="AMP"            version="1.0.0"/>
+      <package vendor="Keil" name="ARM_Compiler"   version="1.3.0"/>
+      <package vendor="Keil" name="MDK-Middleware" version="7.4.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.2.0" date="2018-12-12">
+      Updated retarget_io_user.c for Arm Compiler 6 support.
+      Updated conditions for "User I/O Redirect" component.
+    </release>
+    <release version="1.1.1" date="2017-10-02">
+      Added Arm Compiler 6 examples.
+      Updated existing projects.
+    </release>
+    <release version="1.1.0" date="2017-07-13">
+      Added RPMSG-TTY examples for TWR-VF65GS10 and Colibri-VF61 boards.
+    </release>
+    <release version="1.0.0" date="2017-05-04">
+      Initial release of the device family pack for Vybrid VFxxx devices.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>Vybrid</keyword>
+    <keyword>VFxxx</keyword>   
+    <keyword>VF5xx</keyword>
+    <keyword>VF6xx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="VFxxx" Dvendor="NXP:11">
+
+      <subFamily DsubFamily="VF5xx">
+
+        <!-- ******************************  VF5xx  ******************************* -->
+
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A5"/>
+
+        <debugconfig default="swd" swj="true" clock="10000000" sdf="Debug/VF5xx.sdf"/>
+
+        <description>
+          The Vybrid VF5xx family is a single-core (ARM Cortex-A5) solution.
+          - ARM Cortex™-A5
+          - Optional 512 KB L2 cache
+          - 1.5 MB on-chip SRAM (1.0MB when L2 cache is selected)
+          - Dual USB 2.0 OTG with integrated PHY
+          - Dual Ethernet 10/100 MAC with L2 switch
+          - Digital video camera interface
+          - Dual display controllers supporting resolutions up to SVGA or one display up to XGA (1024x768)
+          - High-assurance boot with crypto acceleration
+          - 800 MHz DDR3 and LPDDR2 support with 8-bit ECC protection
+          - NAND Flash controller and dual quad-SPI with Execute-In-Place (XIP)
+          - Dual 12-bit ADC and DAC
+          - Dual SDIO
+        </description>
+        <book name="Documents/VFXXXRM.pdf" title="VFxxx Controller Reference Manual"/>
+
+        <debug Pname="Cortex-A5" __dp="0" __ap="1" address="0xC0088000"/>
+
+        <device Dname="MVF50NN15xxxx40">
+          <debug svd="SVD/MVF50NN151MK40.svd"/>
+        </device>
+        <device Dname="MVF50NN15xxxx50">
+          <debug svd="SVD/MVF50NN151MK40.svd"/>
+        </device>
+        
+        <device Dname="MVF50NS15xxxx40">
+          <debug svd="SVD/MVF50NS151MK40.svd"/>
+        </device>
+        <device Dname="MVF50NS15xxxx50">
+          <debug svd="SVD/MVF50NS151MK40.svd"/>
+        </device>
+        
+        <device Dname="MVF51NN15xxxx50">
+          <debug svd="SVD/MVF51NN151MK50.svd"/>
+        </device>
+        
+        <device Dname="MVF51NS15xxxx50">
+          <debug svd="SVD/MVF51NS151MK50.svd"/>
+        </device>
+        
+      </subFamily>
+
+      <subFamily DsubFamily="VF6xx">
+        
+        <!-- ******************************  VF6xx  ******************************* -->
+
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A5"/>
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Pname="Cortex-M4"/>
+
+        <debugconfig default="swd" swj="true" clock="10000000" sdf="Debug/VF6xx.sdf"/>
+ 
+        <description>
+          The VF6xx family is a heterogeneous dual-core solution that combines the ARM Cortex-A5 and Cortex-M4 cores.
+          - Dual heterogeneous core: ARM Cortex-A5 and Cortex-M4
+          - Optional 512 KB L2 Cache
+          - 1.5 MB on-chip SRAM (1.0 MB when L2 Cache is selected)
+          - Dual USB 2.0 OTG with integrated PHY
+          - Dual Ethernet 10/100 MAC with L2 switch
+          - Both digital and analog video camera interfaces
+          - Dual display controllers supporting resolutions up to SVGA or one display up to XGA (1024x768)
+          - High-assurance boot with crypto acceleration
+          - 800 MHz DDR3 and LPDDR2 support with 8-bit ECC protection
+          - NAND Flash controller and dual quad-SPI with Execute-In-Place (XIP)
+          - Dual 12-bit ADC and DAC
+          - Dual SDIO
+        </description>
+        <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documents/VFXXXRM.pdf" title="VFxxx Controller Reference Manual"/>
+
+        <debug   Pname="Cortex-A5" __dp="0" __ap="1" address="0xC0088000"/>
+        <debug   Pname="Cortex-M4" __dp="0" __ap="3" address="0xE000ED00"/>
+
+        <memory  Pname="Cortex-M4" id="IROM1" start="0x1F800000" size="0x00008000" startup="1" default="1"/> <!-- CM4 TCML      -->
+        <memory  Pname="Cortex-M4" id="IRAM1" start="0x3F800000" size="0x00008000" init   ="0" default="1"/> <!-- CM4 TCMU      -->
+        <memory  Pname="Cortex-M4" id="IRAM2" start="0x80800000" size="0x0F800000" init   ="0" default="0"/> <!-- CM4 DDR alias -->
+        
+        <device Dname="MVF60NN15xxxx40">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF60NN15xxxx40"/>
+          <debug   svd="SVD/MVF60NN151MK40.svd"/>
+        </device>
+        <device Dname="MVF60NN15xxxx50">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF60NN15xxxx504"/>
+          <debug   svd="SVD/MVF60NN151MK40.svd"/>
+        </device>
+        
+        <device Dname="MVF60NS15xxxx40">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF60NS15xxxx40"/>
+          <debug   svd="SVD/MVF60NS151MK40.svd"/>
+        </device>        
+        <device Dname="MVF60NS15xxxx50">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF60NS15xxxx50"/>
+          <debug   svd="SVD/MVF60NS151MK40.svd"/>
+        </device>
+        
+        <device Dname="MVF61NN15xxxx50">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF61NN15xxxx50"/>
+          <debug   svd="SVD/MVF61NN151MK50.svd"/>
+        </device>
+        
+        <device Dname="MVF61NS15xxxx50">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF61NS15xxxx50"/>
+          <debug   svd="SVD/MVF61NS151MK50.svd"/>
+        </device>
+        
+        <device Dname="MVF62NN15xxxx40">
+          <compile Pname="Cortex-M4" header="Device/Include/MVF6X.h"  define="MVF62NN15xxxx40"/>
+          <debug   svd="SVD/MVF62NN151MK40.svd"/>
+        </device>
+        
+      </subFamily>
+      
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Device + Core + CMSIS Conditions -->
+    <condition id="VF6xx M4 CMSIS">
+      <description>NXP VF6xx devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MVF6*"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="MVF60NN15">
+      <accept  Dname="MVF60NN15*"/>
+    </condition>
+    <condition id="MVF60NS15">
+      <accept  Dname="MVF60NS15*"/>
+    </condition>
+    <condition id="MVF61NN15">
+      <accept  Dname="MVF61NN15*"/>
+    </condition>
+    <condition id="MVF61NS15">
+      <accept  Dname="MVF61NS15*"/>
+    </condition>
+    <condition id="MVF62NN15">
+      <accept  Dname="MVF62NN15*"/>
+    </condition>
+    <condition id="MVF60NN15 ARMCC">
+      <accept  Dname="MVF60NN15*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="MVF60NS15 ARMCC">
+      <accept  Dname="MVF60NS15*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="MVF61NN15 ARMCC">
+      <accept  Dname="MVF61NN15*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="MVF61NS15 ARMCC">
+      <accept  Dname="MVF61NS15*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="MVF62NN15 ARMCC">
+      <accept  Dname="MVF62NN15*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="VF6xx M4 CMSIS HW">
+      <description>NXP VF6xx CM4 devices, CMSIS-CORE and HW INIT</description>
+      <require condition="VF6xx M4 CMSIS"/>
+      <require Cclass="Board Support" Cgroup="HW INIT"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="VF6xx HAL" Csub="CCM"/>
+    </condition>
+
+    <condition id="Colibri-VF61-Aster M4 HW UART">
+      <description>Colibri-VF61-Aster, M4 HW INIT and UART</description>
+      <require condition="VF6xx M4 CMSIS"/>
+      <require Cbundle="Colibri-VF61-Aster" Cclass="Board Support" Cgroup="HW INIT"/>
+      <require Cclass="Device" Cgroup="VF6xx HAL" Csub="UART"/>
+    </condition>
+  </conditions>
+  
+  <components>
+    <!-- Startup VF6xx-M4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="VF6xx M4 CMSIS">
+      <description>NXP VF6xx CM4 devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>    
+        
+        <file category="source"  name="Device/Source/ARM/startup_MVF6X.s" attr="config" version="1.0.0" condition="MVF60NN15 ARMCC"/>
+        <file category="source"  name="Device/Source/system_MVF6X.c"      attr="config" version="1.0.0" condition="MVF60NN15"      />
+        <file category="header"  name="Device/Include/system_MVF6X.h"     attr="config" version="1.0.0" condition="MVF60NN15"      />
+        
+        <file category="source"  name="Device/Source/ARM/startup_MVF6X.s" attr="config" version="1.0.0" condition="MVF60NS15 ARMCC"/>
+        <file category="source"  name="Device/Source/system_MVF6X.c"      attr="config" version="1.0.0" condition="MVF60NS15"      />
+        <file category="header"  name="Device/Include/system_MVF6X.h"     attr="config" version="1.0.0" condition="MVF60NS15"      />
+        
+        <file category="source"  name="Device/Source/ARM/startup_MVF6X.s" attr="config" version="1.0.0" condition="MVF61NN15 ARMCC"/>
+        <file category="source"  name="Device/Source/system_MVF6X.c"      attr="config" version="1.0.0" condition="MVF61NN15"      />
+        <file category="header"  name="Device/Include/system_MVF6X.h"     attr="config" version="1.0.0" condition="MVF61NN15"      />
+
+        <file category="source"  name="Device/Source/ARM/startup_MVF6X.s" attr="config" version="1.0.0" condition="MVF61NS15 ARMCC"/>
+        <file category="source"  name="Device/Source/system_MVF6X.c"      attr="config" version="1.0.0" condition="MVF61NS15"      />
+        <file category="header"  name="Device/Include/system_MVF6X.h"     attr="config" version="1.0.0" condition="MVF61NS15"      />
+
+        <file category="source"  name="Device/Source/ARM/startup_MVF6X.s" attr="config" version="1.0.0" condition="MVF62NN15 ARMCC"/>
+        <file category="source"  name="Device/Source/system_MVF6X.c"      attr="config" version="1.0.0" condition="MVF62NN15"      />
+        <file category="header"  name="Device/Include/system_MVF6X.h"     attr="config" version="1.0.0" condition="MVF62NN15"      />
+      </files>
+    </component>
+
+    <!-- Board Support -->
+    <bundle Cbundle="TWR-VF65GS10" Cclass="Board Support" Cversion="1.0.0">
+      <description>Vybrid Tower Module Board</description>
+      <doc></doc>  
+      <component Cgroup="HW INIT" condition="VF6xx M4 CMSIS HW">
+        <description>Board specific settings for hardware initialization</description>
+        <files>
+          <file category="source" name="SDK/examples/vf6xx_twr_m4/board.c"/>
+          <file category="header" name="SDK/examples/vf6xx_twr_m4/board.h"/>
+          <file category="source" name="SDK/examples/vf6xx_twr_m4/pin_mux.c"/>
+          <file category="header" name="SDK/examples/vf6xx_twr_m4/pin_mux.h"/>
+        </files>
+      </component>
+  
+      <component Cgroup="LED" Capiversion="1.00" condition="VF6xx M4 CMSIS">
+        <description>LED driver</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-VF65GS10/Common/LED_TWR-VF65GS10.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="VF6xx M4 CMSIS">
+        <description>Button driver</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-VF65GS10/Common/Buttons_TWR-VF65GS10.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="Colibri-VF61-Aster" Cclass="Board Support" Cversion="1.0.0">
+      <description>Colibri-VF61 - Aster Carrier Board</description>
+      <doc></doc>
+      <component Cgroup="HW INIT" condition="VF6xx M4 CMSIS HW">
+        <description>Board specific settings for hardware initialization</description>
+        <files>
+          <file category="source" name="SDK/examples/vf6xx_colibri_m4/board.c"/>
+          <file category="header" name="SDK/examples/vf6xx_colibri_m4/board.h"/>
+          <file category="source" name="SDK/examples/vf6xx_colibri_m4/pin_mux.c"/>
+          <file category="header" name="SDK/examples/vf6xx_colibri_m4/pin_mux.h"/>
+        </files>
+      </component>
+  
+      <component Cgroup="User I/O Redirect" condition="Colibri-VF61-Aster M4 HW UART">
+        <description>User I/O Redirect to UART</description>
+        <files>
+          <file category="header" name="Common/retarget_io_user.h"/>
+          <file category="source" name="Common/retarget_io_user.c"/>
+        </files>
+      </component>
+  
+      <component Cgroup="LED" Capiversion="1.00" condition="VF6xx M4 CMSIS">
+        <description>LED driver for Aster Carrier Board</description>
+        <files>
+          <file category="source" name="Boards/Toradex/Colibri-VF61/Common/LED_Colibri-VF61-Aster.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- VF HAL Drivers -->
+    <component Cclass="Device" Cgroup="VF6xx HAL" Csub="CCM" Cversion="1.0.0" condition="VF6xx M4 CMSIS">
+      <description>Clock Control Module</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/ccm_vf6xx.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/ccm_vf6xx.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="VF6xx HAL" Csub="SEMA4" Cversion="1.0.0" condition="VF6xx M4 CMSIS">
+      <description>Resource Domain Controller</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/sema4.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/sema4.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="VF6xx HAL" Csub="UART" Cversion="1.0.0" condition="VF6xx M4 CMSIS">
+      <description>UART Controller</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/lpuart_vf6xx.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/lpuart_vf6xx.h"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="TWR-VF65GS10" vendor="NXP" revision="Rev H" orderForm="http://www.nxp.com/about/about-nxp/technology-leadership/process-technology/thin-film-storage-tfs-with-flexmemory-technology/vybrid-controller-solutions-tower-system-module:TWR-VF65GS10?tab=Buy_Parametric_Tab">
+      <description>Vybrid Tower Module Board</description>
+      <mountedDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF61NS15xxxx50"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF6*"/>
+      <image small="Images/TWR-VF65GS10_small.jpg" large="Images/TWR-VF65GS10_large.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/about/about-nxp/technology-leadership/process-technology/thin-film-storage-tfs-with-flexmemory-technology/vybrid-controller-solutions-tower-system-module:TWR-VF65GS10" title="Overview Page"/>
+      <book category="manual"    name="Documents/TWRVF65GS10UG.pdf"    title="User Manual"/>
+      <book category="other"     name="Documents/TWRVF65GS10QSG.pdf"   title="Getting Started Guide"/>
+      <book category="schematic" name="Documents/TWR-VF65GS10_SCH.pdf" title="Schematics"/>
+      <feature type="RAM"           n="1" name="1.5MB SRAM"/>
+      <feature type="RAM"           n="1" name="1Gbit x 16bit DDR3"/>
+      <feature type="ROM"           n="1" name="2Gbit x 16bit NAND flash"/>
+      <feature type="ROM"           n="2" name="128Mbit Quad SPI flash"/>
+      <feature type="LED"           n="4" name="User LEDs"/>
+      <feature type="Button"        n="4" name="Push-buttons for user input and reset"/>
+      <feature type="MemCard"       n="1" name="Micro SD card slot"/>
+      <feature type="USB"           n="1" name="USB Host connector"/>
+      <feature type="USB"           n="1" name="USB-OTG Micro-AB connector"/>
+      <feature type="Accelerometer" n="1" name="3-axis digital accelerometer"/>
+      <feature type="Poti"          n="1" name="Analog Voltage Control for ADC Input (potentiometer)"/>
+      <feature type="ConnOther"     n="1" name="Interfaces to TWR-LCD-RGB graphical LCD module"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+
+    <board name="Colibri-VF61" vendor="Toradex" orderForm="https://www.toradex.com/computer-on-modules/colibri-arm-family/nxp-freescale-vybrid-vf6xx#buy_now">
+      <description>Colibri-VF61 Board</description>
+      <mountedDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF61NN15xxxx50"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF6*"/>
+      <image small="Images/Colibri-VF61_small.jpg" large="Images/Colibri-VF61_large.jpg"/>
+      <book category="overview"  name="http://developer.toradex.com/products/colibri-vf61" title="Overview Page"/>
+      <book category="manual"    name="Documents/colibri_arm_som_vfxx_datasheet.pdf"       title="Datasheet"/>
+      <feature type="RAM"        n="1"                name="1.0MB (512KB with ECC) On-chip SRAM"/>
+      <feature type="RAM"        n="1"                name="DDR3 256MB (16 bit mode, no ECC) or 128MB (8 bit, ECC enabled)"/>
+      <feature type="ROM"        n="1"                name="512MB NAND flash"/>
+      <feature type="MemCard"    n="1"                name="Micro SD card slot"/>
+      <feature type="ETH"        n="1" m="1000000000" name="RJ45"/>
+      <feature type="USB"        n="2"                name="USB Host connector"/>
+      <feature type="USB"        n="1"                name="USB-OTG Micro-AB connector"/>
+      <feature type="CAN"        n="2"/>
+      <feature type="I2C"        n="4"/>
+      <feature type="SPI"        n="4"/>
+      <debugInterface adapter="JTAG/SW" connector="Colibri Carrier Board: 20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="Aster Carrier Board: 10-pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board name="Colibri-VF50" vendor="Toradex" orderForm="https://www.toradex.com/computer-on-modules/colibri-arm-family/nxp-freescale-vybrid-vf5xx#buy_now">
+      <description>Colibri-VF50 Board</description>
+      <mountedDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF50NN15xxxx40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MVF5*"/>
+      <image small="Images/Colibri-VF50_small.jpg" large="Images/Colibri-VF50_large.jpg"/>
+      <book category="overview"  name="http://developer.toradex.com/products/colibri-vf50" title="Overview Page"/>
+      <book category="manual"    name="Documents/colibri_arm_som_vfxx_datasheet.pdf"       title="Datasheet"/>
+      <feature type="RAM"        n="1"                name="1.5MB (512KB with ECC) On-chip SRAM"/>
+      <feature type="RAM"        n="1"                name="DDR3 128MB (16 bit mode, no ECC) or 64MB (8 bit, ECC enabled)"/>
+      <feature type="ROM"        n="1"                name="128MB NAND flash"/>
+      <feature type="MemCard"    n="1"                name="Micro SD card slot"/>
+      <feature type="ETH"        n="1" m="1000000000" name="RJ45"/>
+      <feature type="USB"        n="2"                name="USB Host connector"/>
+      <feature type="USB"        n="1"                name="USB-OTG Micro-AB connector"/>
+      <feature type="CAN"        n="2"/>
+      <feature type="I2C"        n="4"/>
+      <feature type="SPI"        n="4"/>
+      <debugInterface adapter="JTAG/SW" connector="Colibri Carrier Board: 20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="Aster Carrier Board: 10-pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="CMSIS-RTOS Blinky M4" doc="Abstract.txt" folder="Boards/NXP/TWR-VF65GS10/Blinky_M4">
+      <description>CMSIS-RTOS based Blinky example for Cortex-M4</description>
+      <board name="TWR-VF65GS10" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 Blinky M4 AC6" doc="Abstract.txt" folder="Boards/NXP/TWR-VF65GS10/Blinky_M4_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-M4 and ARMCC6</description>
+      <board name="TWR-VF65GS10" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS" doc="Abstract.txt" folder="Boards/NXP/TWR-VF65GS10/RPMSG_TTY_CMSIS-RTOS_M4">
+      <description>CMSIS-RTOS RTX TTY example for Cortex-M4</description>
+      <board name="TWR-VF65GS10" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS2" doc="Abstract.txt" folder="Boards/NXP/TWR-VF65GS10/RPMSG_TTY_CMSIS-RTOS2_M4">
+      <description>CMSIS-RTOS2 RTX5 TTY example for Cortex-M4</description>
+      <board name="TWR-VF65GS10" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky M4" doc="Abstract.txt" folder="Boards/Toradex/Colibri-VF61/Blinky_M4">
+      <description>CMSIS-RTOS based Blinky example for Cortex-M4</description>
+      <board name="Colibri-VF61" vendor="Toradex"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 Blinky M4 AC6" doc="Abstract.txt" folder="Boards/Toradex/Colibri-VF61/Blinky_M4_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-M4 and ARMCC6</description>
+      <board name="Colibri-VF61" vendor="Toradex"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS" doc="Abstract.txt" folder="Boards/Toradex/Colibri-VF61/RPMSG_TTY_CMSIS-RTOS_M4">
+      <description>CMSIS-RTOS RTX TTY example for Cortex-M4</description>
+      <board name="Colibri-VF61" vendor="Toradex"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS2" doc="Abstract.txt" folder="Boards/Toradex/Colibri-VF61/RPMSG_TTY_CMSIS-RTOS2_M4">
+      <description>CMSIS-RTOS2 RTX5 TTY example for Cortex-M4</description>
+      <board name="Colibri-VF61" vendor="Toradex"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+  </examples>
+  
+</package>
+

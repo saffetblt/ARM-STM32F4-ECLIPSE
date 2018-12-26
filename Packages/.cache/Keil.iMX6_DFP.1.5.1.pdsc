@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>iMX6_DFP</name>
+  <description>NXP i.MX 6 Device Support and Examples</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"          version="5.1.0"/>
+      <package vendor="ARM"  name="AMP"            version="1.0.0"/>
+      <package vendor="Keil" name="ARM_Compiler"   version="1.3.0"/>
+    </packages>
+  </requirements>
+  
+  <releases>
+    <release version="1.5.1" date="2018-10-29">
+      Fixed device description of basic features.
+      Added QSPI flash algorithms.
+      Removed requirement for CMSIS-FreeRTOS pack.
+    </release>
+    <release version="1.5.0" date="2017-08-11">
+      Added CMSIS-RTOS2 RTX5 and FreeRTOS examples for Cortex-A9 processor.
+    </release>
+    <release version="1.4.0" date="2017-07-12">
+      Added support for i.MX 6SLL devices.
+      Added ARM Compiler 6 support and examples.
+      Updated RPMSG examples.
+      Updated debug description for i.MX 6SoloX:
+      - Removed unnecessary DebugPortSetup sequence
+      - Split DebugPortStart sequence into Cortex-A9 and Cortex-M4 specific sequences
+      - Restore previous Cortex-A9 debug/system power state after release of Cortex-M4 from reset
+    </release>
+    <release version="1.3.1" date="2017-04-13">
+      Added pack requirements.
+      Delisted FreeRTOS example as it requires unreleased CMSIS pack version.
+    </release>
+    <release version="1.3.0" date="2017-04-04">
+      Added Startup and System files for Cortex-A9.
+      Added FreeRTOS Blinky example for Cortex-A9.
+      Added board support for the iMX6-SoloX-COM Board.
+    </release>
+    <release version="1.2.0" date="2017-01-20">
+      Added support for i.MX 6ULL devices.
+      Added devices into i.MX 6SoloX and i.MX 6UltraLite sub-families.
+    </release>
+    <release version="1.1.1" date="2016-12-07">
+      Updated device header files' #pragma push/pop statements to support ARMClang 6.
+      Updated SDF file for iMX6SX to block reset capability.
+    </release>
+    <release version="1.1.0" date="2016-11-23">
+      Added device support for i.MX 6 UltraLite.
+      Added QSPI flash algorithms.
+      Updated SVD file iMX6SX_A9.svd to prevent SVDConv error
+    </release>
+    <release version="1.0.0">
+      Initial device support for i.MX 6 SoloX.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>iMX6</keyword>
+    <keyword>i.MX6</keyword>
+    <keyword>i.MX 6SoloX</keyword>
+    <keyword>i.MX 6UltraLite</keyword>
+    <keyword>i.MX 6ULL</keyword>
+    <keyword>i.MX 6SLL</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="i.MX 6 Series" Dvendor="NXP:11">
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>
+      <subFamily DsubFamily="i.MX 6SoloX">
+
+        <!-- ******************************  i.MX 6SoloX  ****************************** -->
+
+        <processor Dcore="Cortex-A9" DcoreVersion="r4p1" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A9" Dclock="1000000000"/>
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Pname="Cortex-M4" Dclock="227000000"/>
+
+        <debugconfig default="jtag" swj="false" sdf="Debug/MCIMX6SX-SDB.sdf"/>
+
+        <algorithm name="Flash/MCIMX6_QSPI2A_32.FLM" start="0x70000000"  size="0x02000000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+        <algorithm name="Flash/MCIMX6_QSPI2B_32.FLM" start="0x78000000"  size="0x02000000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="0"/>
+
+        <description>
+          The i.MX 6SoloX family introduces single cores running up to 1.0 GHz (Cortex-A9) and 227 MHz (Cortex-M4) with 256 KB
+          of L2 cache and 32-bit DDR3/LPDDR2 support. Integrated LVDS, FlexCAN, and PCIe Express enables the i.MX 6SoloX to be
+          a low-power and flexible platform for consumer, automotive and industrial applications that require real-time
+          responsiveness and a higher level of system integrity.
+          - Single Cortex-A9 up to 1.0 GHz
+          - Single Cortex-M4 up to 200 MHz
+          - 256 KB L2 cache, NEON, VFP, TrustZone
+          - 3D and 2D graphics
+          - 32-bit DDR3 and LPDDR2 at 400 MHz
+          - Dual Gigabit Ethernet, MAC w/ hardware, AVB support
+          - PCIe controller plus PHY
+          - LVDS controller plus PHY
+          - Analog camera interface
+          - 8-channel, 12-bit ADC
+          - MLB and FlexCAN controllers
+        </description>
+        <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documents/IMX6SXRM.pdf"                title="i.MX 6SoloX Applications Processor Reference Manual"/>
+
+        <feature type="Memory" n="32768" name="I-Cache"/>
+        <feature type="Memory" n="32768" name="D-Cache"/>
+        <feature type="Memory" n="262144" name="L2 Cache"/>
+
+        <debug   Pname="Cortex-A9" svd="SVD/iMX6SX_A9.svd"/>
+        <debug   Pname="Cortex-M4" svd="SVD/iMX6SX_M4.svd"/>
+        <compile Pname="Cortex-M4" header="Device/Include/iMX6SX_M4.h"  define="iMX6SX_M4"/>
+        <compile Pname="Cortex-A9" header="Device/Include/iMX6SX_A9.h"  define="iMX6SX_A9"/>
+        <memory  Pname="Cortex-M4" id="IROM1"  start="0x00000000"  size="0x00008000" startup="1" default="1"/>
+        <memory  Pname="Cortex-M4" id="IRAM1"  start="0x20000000"  size="0x00008000" init   ="0" default="1"/>
+
+        <debugport __dp="0">
+          <jtag tapindex="0" idcode="0x4BA00477" irlen="4"/>
+        </debugport>
+        <debugport __dp="1">
+          <jtag tapindex="1" idcode="0x4BA00477" irlen="4"/>
+        </debugport>
+        <debugport __dp="2">
+          <jtag tapindex="2" idcode="0x00000000" irlen="4"/>
+        </debugport>
+        <debugport __dp="3">
+          <jtag tapindex="3" idcode="0x0891C01D" irlen="5"/>
+        </debugport>
+
+        <debug Pname="Cortex-A9" __dp="1" __ap="0"/>
+        <debug Pname="Cortex-M4" __dp="0" __ap="0"/>
+
+        <debugvars Pname="Cortex-M4" configfile="Debug/iMX6SX_M4.dbgconf">
+          __var ReleaseM4 = 0x00000001;   // Enable &amp; Release Cortex-M4 from Reset
+        </debugvars>
+
+        <sequences>
+          <sequence name="DebugPortStartDefault_JTAG">
+            <block>
+              __var SW_DP_ABORT  = 0x0;
+              __var DP_CTRL_STAT = 0x4;
+              __var DP_SELECT    = 0x8;
+              __var powered_down = 0;
+
+              // Switch to DP Register Bank 0
+              WriteDP(DP_SELECT, 0x00000000);
+
+              // Read DP CTRL/STAT Register and check if CSYSPWRUPACK and CDBGPWRUPACK bits are set
+              powered_down = ((ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000);
+            </block>
+
+            <control if="powered_down">
+              <block>
+                // Request Debug/System Power-Up
+                WriteDP(DP_CTRL_STAT, 0x50000000);
+              </block>
+
+              <!-- Wait for Power-Up Request to be acknowledged -->
+              <control while="(ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000" timeout="1000000"/>
+
+              <block>
+                // Request Debug Reset
+                WriteDP(DP_CTRL_STAT, 0x54000000);
+              </block>
+
+              <!-- Wait for Debug Reset to be acknowledged, don't issue error on timeout to deal with improperly connected Debug Reset -->
+              <control while="(ReadDP(DP_CTRL_STAT) &amp; 0xA8000000) != 0xA8000000" timeout="300000"/>
+
+              <block>
+                // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+                // Additionally clear STICKYORUN, STICKYCMP, and STICKYERR bits by writing '1'
+                WriteDP(DP_CTRL_STAT, 0x50000F32);
+              </block>
+            </control>
+          </sequence>
+
+          <sequence name="DebugPortStart" Pname="Cortex-A9">
+            <block>
+              Sequence("DebugPortStartDefault_JTAG");     // Power Up actually requested Debug Port
+            </block>
+          </sequence>
+
+          <sequence name="DebugPortStart" Pname="Cortex-M4">
+            <block>
+              // Store information about requested Debug Port
+              __var DP_CTRL_STAT = 0x4;
+              __var dpA9Stat     = 0;
+            </block>
+
+            <control if="ReleaseM4" info="Power Up Cortex-A9 Debug Port and Release Cortex-M4">
+              <block>
+                __dp     = 1;                                          // Switch to Cortex-A9 Debug Port
+                dpA9Stat = ReadDP(DP_CTRL_STAT) &amp; 0xF0000000;      // Save Cortex-A9 Debug and System Power State
+
+                Sequence("DebugPortStartDefault_JTAG");                // Power Up Cortex-A9 Debug Port
+
+                // Bus Master Config - AIPSTZ0_MPR
+                Write32(0x0207C000, Read32(0x0207C000) | 0x77000700);  // Master 0, 1 (ARM A9 Core), 5 (ARM M4 Core)
+                Write32(0x0217C000, Read32(0x0217C000) | 0x77000700);  // Master 0, 1 (ARM A9 Core), 5 (ARM M4 Core)
+                Write32(0x0227C000, Read32(0x0227C000) | 0x77000700);  // Master 0, 1 (ARM A9 Core), 5 (ARM M4 Core)
+
+                // Enable All Clocks
+                Write32(0x020C4068, 0xFFFFFFFF);
+                Write32(0x020C406C, 0xFFFFFFFF);
+                Write32(0x020C4070, 0xFFFFFFFF);
+                Write32(0x020C4074, 0xFFFFFFFF);
+                Write32(0x020C4078, 0xFFFFFFFF);
+                Write32(0x020C407C, 0xFFFFFFFF);
+                Write32(0x020C4080, 0xFFFFFFFF);
+                Write32(0x020C4084, 0xFFFFFFFF);
+
+                // Write Code to Memory
+                Write32(0x007F8000, 0x20000000);
+                Write32(0x007F8004, 0x00000009);
+                Write32(0x007F8008, 0xE7FEE7FE);
+
+                // SRC - Release M4
+                Write32(0x020D8000, Read32(0x020D8000) | 0x50400281);  // Mask WDOGs, Enable M4, Enable warm reset
+                Write32(0x020D8000, Read32(0x020D8000) &amp; ~0x10);   // Clear non-self-clearing SW reset for  M4
+              </block>
+
+              <control if="dpA9Stat != 0xF0000000">
+                <block>
+                  WriteDP(DP_CTRL_STAT, dpA9Stat);                     // Restore previous Cortex-A9 Debug and System Power State
+                </block>
+              </control>
+
+              <block>
+                __dp = 0;                                              // Switch back to Cortex-M4 Debug Port
+              </block>
+            </control>
+
+            <block>
+              Sequence("DebugPortStartDefault_JTAG");                  // Power Up actually requested Debug Port
+            </block>
+          </sequence>
+
+          <sequence name="ResetSystem" Pname="Cortex-M4">
+            <block>
+              __var value = 0x00000000;
+
+              // Write SRC_SCR[m4p_rst|m4c_rst] (Self-Clearing M4 Core + Platform Resets)
+              value  = Read32(0x420D8000);
+              value |= 0x00001008;          // m4p_rst + m4c_rst
+              Write32(0x420D8000, value);
+            </block>
+            <control while="Read32(0x420D8000) &amp; 0x00001008" timeout="1000000" info="Wait for Self-Clearing M4 Core + Platform Resets to clear"/>
+          </sequence>
+        </sequences>
+
+        <device Dname="MCIMX6X1"> </device>
+        <device Dname="MCIMX6X2"> </device>
+        <device Dname="MCIMX6X3"> </device>
+        <device Dname="MCIMX6X4"> </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="i.MX 6UltraLite">
+
+        <!-- ******************************  i.MX 6UltraLite  ****************************** -->
+
+        <processor Dcore="Cortex-A7" DcoreVersion="r0p5" Dfpu="DP_FPU" Dmpu="MPU" Dclock="696000000"/>
+
+        <debugconfig default="jtag" swj="false" sdf="Debug/MCIMX6UL.sdf"/>
+
+        <description>
+          The i.MX 6UltraLite is a high performance, ultra-efficient processor family featuring an advanced implementation of a single
+          ARM Cortex-A7 core, which operates at speeds up to 696 MHz. The i.MX 6UltraLite applications processor includes an integrated
+          power management module that reduces the complexity of external power supply and simplifies power sequencing.
+          - Single Cortex-A7 up to 696 MHz
+          - 128 KB L2 cache
+          - Parallel LCD Display up to WXGA (1366x768)
+          - 8/10/16/24-bit Parallel Camera Sensor Interface
+          - 16-bit LP-DDR2, DDR3/DDR3L
+          - 8/16-bit Parallel NOR FLASH / PSRAM
+          - Dual-channel Quad-SPI NOR FLASH
+          - 8-bit Raw NAND FLASH with 40-bit ECC
+          - 2x MMC 4.5/SD 3.0/SDIO Port
+          - 2x USB 2.0 OTG, HS/FS, Device or Host with PHY
+          - Audio Interfaces include 3x I2S/SAI, S/PDIF Tx/Rx
+          - 2x 10/100 Ethernet with IEEE 1588
+          - 2x 12-bit ADC, up to 10 input channel total, with resistive touch controller (4-wire/5-wire)
+          - Partial PMU Integration
+          - Security Block: TRNG, Crypto Engine (AES with DPA, TDES/SHA/RSA), Tamper Monitor, Secure Boot, SIMV2/EVMSIM X 2, OTF DRAM
+          - Encryption, PCI4.0 pre-certification
+        </description>
+
+        <book name="Documents/IMX6ULRM.pdf" title="i.MX 6UltraLite Applications Processor Reference Manual"/>
+
+        <feature type="Memory" n="32768" name="I-Cache"/>
+        <feature type="Memory" n="32768" name="D-Cache"/>
+        <feature type="Memory" n="131072" name="L2 Cache"/>
+
+        <memory id="IROM1"  start="0x00000000"  size="0x00008000" startup="1" default="1"/>
+        <memory id="IRAM1"  start="0x20000000"  size="0x00008000" init   ="0" default="1"/>
+ 
+        <debug svd="SVD/iMX6UL.svd"/>
+
+        <device Dname="MCIMX6G0"> </device>
+        <device Dname="MCIMX6G1"> </device>
+        <device Dname="MCIMX6G2"> </device>
+        <device Dname="MCIMX6G3"> </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="i.MX 6ULL">
+
+        <!-- ******************************  i.MX 6ULL  ****************************** -->
+
+        <processor Dcore="Cortex-A7" DcoreVersion="r0p5" Dfpu="DP_FPU" Dmpu="MPU" Dclock="528000000"/>
+
+        <debugconfig default="jtag" swj="false" sdf="Debug/MCIMX6UL.sdf"/>
+
+        <description>
+          The i.MX 6ULL is a power efficient and cost optimized applications processor family featuring an advanced implementation
+          of a single ARM Cortex-A7 core, which operates at speeds up to 528 MHz. The i.MX 6ULL applications processor includes an
+          integrated power management module that reduces the complexity of an external power supply and simplifies power sequencing.
+          - Single Cortex-A7 up to 528 MHz
+          - 128 KB L2 cache
+          - Parallel LCD Display up to WXGA (1366x768)
+          - 8/10/16/24-bit Parallel Camera Sensor Interface
+          - Electrophoretic display controller support direct-driver for E-Ink EPD panel, with up to 2048x1536 resolution at 106 Hz
+          - 16-bit LP-DDR2, DDR3/DDR3L
+          - 8/16-bit Parallel NOR FLASH / PSRAM
+          - Dual-channel Quad-SPI NOR FLASH
+          - 8-bit Raw NAND FLASH with 40-bit ECC
+          - 2x MMC 4.5/SD 3.0/SDIO Port
+          - 2x USB 2.0 OTG, HS/FS, Device or Host with PHY
+          - Audio Interfaces include 3x I2S/SAI, S/PDIF Tx/Rx
+          - 2x 10/100 Ethernet with IEEE 1588
+          - 2x 12-bit ADC, up to 10 input channel total, with resistive touch controller (4-wire/5-wire)
+          - Partial PMU Integration
+          - Security Block: TRNG, Crypto Engine (AES with DPA, TDES/SHA/RSA), Secure Boot
+        </description>
+
+        <book name="Documents/IMX6ULLRM.pdf" title="i.MX 6ULL Applications Processor Reference Manual"/>
+
+        <feature type="Memory" n="32768" name="I-Cache"/>
+        <feature type="Memory" n="32768" name="D-Cache"/>
+        <feature type="Memory" n="131072" name="L2 Cache"/>
+
+        <memory id="IROM1"  start="0x00000000"  size="0x00008000" startup="1" default="1"/>
+        <memory id="IRAM1"  start="0x20000000"  size="0x00008000" init   ="0" default="1"/>
+
+        <device Dname="MCIMX6Y0">
+          <debug svd="SVD/MCIMX6Y0.svd"/>
+        </device>
+        <device Dname="MCIMX6Y1">
+          <debug svd="SVD/MCIMX6Y1.svd"/>
+        </device>
+        <device Dname="MCIMX6Y2">
+          <debug svd="SVD/MCIMX6Y2.svd"/>
+        </device>
+        <device Dname="MCIMX6Y7">
+          <debug svd="SVD/MCIMX6Y7.svd"/>
+        </device>
+
+      </subFamily>
+      
+      <subFamily DsubFamily="i.MX 6SLL">
+
+        <!-- ******************************  i.MX 6SLL  ****************************** -->
+
+        <processor Dcore="Cortex-A9" DcoreVersion="r4p1" Dfpu="DP_FPU" Dmpu="MPU" Dclock="1000000000"/>
+
+        <debugconfig default="jtag" swj="false" sdf="Debug/MCIMX6SLL.sdf"/>
+
+        <description>
+          The i.MX 6SLL processor represents NXP's latest achievement in integrated multimedia applications processors, which 
+          are part of a growing family of multimedia-focused products that offer high performance processing and are optimized 
+          for lowest power consumption.
+          The processor features NXP's advanced implementation of a single ARM Cortex-A9, which operates at speeds up to 1GHz. 
+          The processor provides a 32-bit DDR interface that supports LPDDR2 and LPDDR3. In addition, there are a number of 
+          other interfaces for connecting peripherals, such as WLAN, Bluetooth, GPS, hard drive, displays, and camera sensors.
+          Processor:
+          - 1x ARM Cortex-A9 up to 1 GHz (with TrustZone)
+          - 32 KByte L1 Instruction Cache
+          - 32 KByte L1 Data Cache
+          - Private Timer and Watchdog
+          - Cortex-A9 NEON MPE (Media Processing Engine) co-processor
+          Memory:
+          - 32 bit LP-DDR2
+          - 32 bit LPDDR3
+          Connectivity:
+          - 2x USB 2.0 OTG with PHY
+          - 3x eMMC 5.0/SD 3.0
+          - 3x I2S/SSI
+          - 4x SPI, 5x UART, 3x I2C
+          - S/PDIF Tx/Rx
+          Display:
+          - EPDC, color, and monochrome E-INK, up to 2332x1650 resolution and 5-bit grayscale, supporting Gen-II (REAGL/-D) Processing
+          - Single Engine
+          - 24-bit Parallel LCD Display 2D graphics processor PXP that can support CSC, dithering, rotation, resize, and overlay
+        </description>
+
+        <book name="Documents/iMX6SLL_RM_Rev_0.pdf" title="i.MX 6SLL Applications Processor Reference Manual"/>
+
+        <feature type="Memory" n="32768" name="I-Cache"/>
+        <feature type="Memory" n="32768" name="D-Cache"/>
+        <feature type="Memory" n="262144" name="L2 Cache"/>
+
+        <memory id="IROM1"  start="0x00000000"  size="0x00008000" startup="1" default="1"/>
+        <memory id="IRAM1"  start="0x20000000"  size="0x00008000" init   ="0" default="1"/>
+
+        <device Dname="MCIMX6V2">
+          <debug svd="SVD/MCIMX6V2.svd"/>
+        </device>
+
+        <device Dname="MCIMX6V7">
+          <debug svd="SVD/MCIMX6V7.svd"/>
+        </device>
+        
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="ARMCC5">
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="iMX6SX M4 CMSIS">
+      <description>NXP iMX6SX CM4 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MCIMX6X*"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+
+    <condition id="iMX6SX A9 CMSIS">
+      <description>NXP iMX6SX CA9 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="MCIMX6X*"/>
+      <require Dcore="Cortex-A9"/>
+    </condition>
+
+    <!-- Device + Core + CMSIS + HW Initialization -->
+    <condition id="iMX6SX M4 CMSIS HW">
+      <description>NXP iMX6SX CM4 devices, CMSIS-CORE and HW INIT</description>
+      <require condition="iMX6SX M4 CMSIS"/>
+      <require Cclass="Board Support" Cgroup="HW INIT"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="iMX6SX HAL" Csub="CCM"/>
+      <require Cclass="Device" Cgroup="iMX6SX HAL" Csub="RDC"/>
+      <require Cclass="Device" Cgroup="iMX6SX HAL" Csub="UART"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup iMX6SX-M4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="iMX6SX M4 CMSIS">
+      <description>NXP iMX6SX CM4 devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/AC5/startup_iMX6SX_M4.s" attr="config" version="1.0.0" condition="ARMCC5"/>
+        <file category="source"  name="Device/Source/AC6/startup_iMX6SX_M4.s" attr="config" version="1.0.0" condition="ARMCC6"/> 
+        <file category="source"  name="Device/Source/system_iMX6SX_M4.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Include/system_iMX6SX_M4.h"     attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup iMX6SX-A9 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="iMX6SX A9 CMSIS">
+      <description>NXP iMX6SX CA9 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="sourceC"      name="Device/Source/AC5/startup_iMX6SX_A9.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/Source/AC5/iMX6SX_A9.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/Source/AC6/startup_iMX6SX_A9.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/Source/AC6/iMX6SX_A9.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/Source/system_iMX6SX_A9.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/Source/mmu_iMX6SX_A9.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/Include/system_iMX6SX_A9.h"     version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/Include/mem_iMX6SX_A9.h"        version="1.0.0" attr="config"/>
+         
+      </files>
+    </component>
+
+    <!-- Board Support -->
+    <bundle Cbundle="MCIMX6SX-SABRE" Cclass="Board Support" Cversion="1.0.0">
+      <description>iMX6SX SABRE Board</description>
+      <doc></doc>
+      <component Cgroup="User I/O Redirect" condition="iMX6SX M4 CMSIS HW">
+        <description>User I/O Redirect to UART</description>
+        <files>
+          <file category="header" name="Common/retarget_io_user.h"/>
+          <file category="source" name="Common/retarget_io_user.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="HW INIT" condition="iMX6SX M4 CMSIS HW">
+        <description>Board specific settings for hardware initialization</description>
+        <files>
+          <file category="source" name="SDK/examples/imx6sx_sdb_m4/board.c"/>
+          <file category="header" name="SDK/examples/imx6sx_sdb_m4/board.h"/>
+          <file category="source" name="SDK/examples/imx6sx_sdb_m4/clock_freq.c"/>
+          <file category="header" name="SDK/examples/imx6sx_sdb_m4/clock_freq.h"/>
+          <file category="source" name="SDK/examples/imx6sx_sdb_m4/pin_mux.c"/>
+          <file category="header" name="SDK/examples/imx6sx_sdb_m4/pin_mux.h"/>
+        </files>
+      </component>
+    </bundle>
+    
+    <bundle Cbundle="iMX6-SoloX-COM" Cclass="Board Support" Cversion="1.0.0">
+      <description>iMX6 SoloX COM Board</description>
+      <doc></doc>
+      <component Cgroup="User I/O Redirect" condition="iMX6SX M4 CMSIS HW">
+        <description>User I/O Redirect to UART</description>
+        <files>
+          <file category="header" name="Common/retarget_io_user.h"/>
+          <file category="source" name="Common/retarget_io_user.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="HW INIT" condition="iMX6SX M4 CMSIS HW">
+        <description>Board specific settings for hardware initialization</description>
+        <files>
+          <file category="source" name="SDK/examples/imx6sx_com_m4/board.c"/>
+          <file category="header" name="SDK/examples/imx6sx_com_m4/board.h"/>
+          <file category="source" name="SDK/examples/imx6sx_com_m4/clock_freq.c"/>
+          <file category="header" name="SDK/examples/imx6sx_com_m4/clock_freq.h"/>
+          <file category="source" name="SDK/examples/imx6sx_com_m4/pin_mux.c"/>
+          <file category="header" name="SDK/examples/imx6sx_com_m4/pin_mux.h"/>
+        </files>
+      </component>
+    </bundle>
+    
+    <!-- iMX6SX HAL Drivers -->
+    <component Cclass="Device" Cgroup="iMX6SX HAL" Csub="UART" Cversion="1.0.0" condition="iMX6SX M4 CMSIS">
+      <description>Universal Asynchronous Receiver/Transmitter</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/uart_imx.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/uart_imx.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="iMX6SX HAL" Csub="MU" Cversion="1.0.0" condition="iMX6SX M4 CMSIS">
+      <description>Messaging Unit</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/mu_imx.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/mu_imx.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="iMX6SX HAL" Csub="CCM" Cversion="1.0.0" condition="iMX6SX M4 CMSIS">
+      <description>Clock Control Module</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/ccm_imx6sx.c"/>
+        <file category="source"  name="SDK/platform/drivers/src/ccm_analog_imx6sx.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/ccm_imx6sx.h"/>
+        <file category="header"  name="SDK/platform/drivers/inc/ccm_analog_imx6sx.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="iMX6SX HAL" Csub="RDC" Cversion="1.0.0" condition="iMX6SX M4 CMSIS">
+      <description>Resource Domain Controller</description>
+      <files>
+        <file category="source"  name="SDK/platform/drivers/src/rdc.c"/>
+        <file category="header"  name="SDK/platform/drivers/inc/rdc.h"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="MCIMX6SX-SABRE" vendor="NXP" revision="Rev. A2" orderForm="http://www.nxp.com/products/software-and-tools/hardware-development-tools/sabre-development-system/sabre-board-for-smart-devices-based-on-the-i.mx-6solox-applications-processors:RD-IMX6SX-SABRE">
+      <description>The NXP Smart Application Blueprint for Rapid Engineering (SABRE) board for smart devices introduces developers to multicore processing, low-power consumption and leading-edge multimedia and graphics applications on the i.MX 6 series applications processors.</description>
+      <mountedDevice deviceIndex="0" Dvendor="NXP:11" Dname="MCIMX6X1"/>
+      <image small="Images/MCIMX6SXSABRE_small.jpg" large="Images/MCIMX6SXSABRE_large.jpg"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector"/>
+      <book category="overview" name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/sabre-development-system/sabre-board-for-smart-devices-based-on-the-i.mx-6solox-applications-processors:RD-IMX6SX-SABRE" title="Overview Page"/>
+      <book category="overview" name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/sabre-development-system/sabre-board-for-smart-devices-based-on-the-i.mx-6solox-applications-processors:RD-IMX6SX-SABRE?tab=In-Depth_Tab" title="Getting Started Page"/>
+      <feature type="RAM" n="1" name="1GB, DDR3 SDRAM"/>
+      <feature type="MemCard" n="3" name="Full-size SD/MMC card slots"/>
+      <feature type="ETH" n="2" m="1000000000" name="RJ45"/>
+      <feature type="USB" n="1" name="USB 2.0 Host Type A connector"/>
+      <feature type="USB" n="1" name="micro USB 2.0 OTG connector"/>
+      <feature type="CAN" n="2" name="DB9 male connector"/>
+      <feature type="AIO" n="8" name="12bit ADC"/>
+      <feature type="Other" n="1" name="mPCIe socket"/>
+      <feature type="Accelerometer" n="1" name="NXP MMA8451 3-Axis Accelerometer"/>
+      <feature type="Compass" n="1" name="NXP MAG3110 3D Magnetometer"/>
+      <feature type="LineOut" n="1" name="3.5mm Stereo Headphone Jack"/>
+      <feature type="MIC" n="1" name="Microphone"/>
+      <feature type="Button" n="5" name="Push-Buttons for Power, Reset and User"/>
+      <feature type="ConnOther" n="1" name="LVDS"/>
+      <feature type="ConnOther" n="1" name="LCD Expansion Connector"/>
+      <feature type="ConnOther" n="1" name="Camera Module Connector"/>
+      <feature type="ConnOther" n="1" name="Silex Wi-Fi/BT Combo"/>
+    </board>
+    
+    <board name="iMX6-SoloX-COM" vendor="Embedded Artists" orderForm="https://www.embeddedartists.com/products/kits/imx6solox_kit.php">
+      <description>The iMX6 SoloX COM Developer's Kit contains the iMX7 Dual COM Board, the COM Adapter Board and the COM Carrier Board. </description>
+      <mountedDevice deviceIndex="0" Dvendor="NXP:11" Dname="MCIMX6X4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="MCIMX6X*"/>
+      <!--<image small="Images/iMX7DualCOM_small.jpg" large="Images/iMX7DualCOM_large.jpg"/>-->      
+      <book category="overview" name="https://www.embeddedartists.com/products/kits/imx6solox_kit.php" title="Overview Page"/>
+      <feature type="RAM" n="1" name="1GB DDR3"/>
+      <feature type="ROM" n="1" name="4GB eMMC"/>
+      <feature type="MemCard" n="1" name="Micro SD Card slot"/>
+      <feature type="ETH" n="2" m="1000000000" name="RJ45"/>
+      <feature type="USB" n="2" name="USB Host Standard-A connector"/>
+      <feature type="USB" n="1" name="USB-OTG Micro-AB connector"/>
+      <feature type="CAN" n="2"/>
+      <feature type="I2C" n="4"/>
+      <feature type="SPI" n="4"/>
+      <feature type="AIO" n="2"/>
+      <feature type="LineOut" n="1" name="Analog Audio Line out"/>
+      <feature type="Other" n="1" name="Mini PCIe socket"/>
+      <feature type="Other" n="1" name="RTC"/>     
+      <feature type="ConnOther" n="1" name="LVDS"/>
+      <feature type="ConnOther" n="1" name="Parallel 24-bit RGB display interface"/>
+      <feature type="ConnOther" n="3" name="UART FTDI compatible connector"/>
+      <feature type="ConnOther" n="1" name="XBee compatible interface connector"/>
+      <feature type="ConnOther" n="1" name="FPC connector for camera interface"/>
+      <feature type="ConnOther" n="1" name="FPC connector for JTAG adapter"/>
+      <feature type="CustomFF"  n="165" m="104"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="CMSIS-RTOS Blinky M4" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Blinky_M4">
+      <description>CMSIS-RTOS RTX Blinky example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="uv"  load="MDK/Blinky_M4.uvprojx"/>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 Blinky M4" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Blinky_M4_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+    
+    <example name="CMSIS-RTOS2 Blinky M4 AC6" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Blinky_M4_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-M4 and ARMCC6</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG PingPong BM" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG_PingPong_BM_M4">
+      <description>Bare-Metal RPMSG PingPong example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG PingPong RTX" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG_PingPong_RTX_M4">
+      <description>CMSIS-RTOS RTX RPMSG PingPong example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG_TTY_CMSIS-RTOS_M4">
+      <description>CMSIS-RTOS RTX TTY example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG TTY CMSIS-RTOS2" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG_TTY_CMSIS-RTOS2_M4">
+      <description>CMSIS-RTOS2 RTX5 TTY example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG-Lite CMSIS-RTOS" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG-Lite_CMSIS-RTOS_M4">
+      <description>CMSIS-RTOS RTX example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="RPMsg-Lite"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="RPMSG-Lite CMSIS-RTOS2" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/RPMSG-Lite_CMSIS-RTOS2_M4">
+      <description>CMSIS-RTOS2 RTX5 example for Cortex-M4</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="RPMsg-Lite"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+    
+    <example name="Linux Application TTY" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Linux_Application_TTY">
+      <description>Linux Application TTY example</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    
+    <example name="CMSIS-RTOS Blinky M4" doc="Abstract.txt" folder="Boards/Embedded Artists/iMX6-SoloX-COM/Blinky_M4">
+      <description>CMSIS-RTOS RTX Blinky example for Cortex-M4</description>
+      <board name="iMX6-SoloX-COM" vendor="Embedded Artists"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    
+    <example name="CMSIS-RTOS2 Blinky M4" doc="Abstract.txt" folder="Boards/Embedded Artists/iMX6-SoloX-COM/Blinky_M4_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-M4</description>
+      <board name="iMX6-SoloX-COM" vendor="Embedded Artists"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+    
+    <example name="RPMSG TTY CMSIS-RTOS" doc="Abstract.txt" folder="Boards/Embedded Artists/iMX6-SoloX-COM/RPMSG_TTY_CMSIS-RTOS_M4">
+      <description>CMSIS-RTOS RTX TTY example for Cortex-M4</description>
+      <board name="iMX6-SoloX-COM" vendor="Embedded Artists"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    
+    <example name="RPMSG TTY CMSIS-RTOS2" doc="Abstract.txt" folder="Boards/Embedded Artists/iMX6-SoloX-COM/RPMSG_TTY_CMSIS-RTOS2_M4">
+      <description>CMSIS-RTOS2 RTX5 TTY example for Cortex-M4</description>
+      <board name="iMX6-SoloX-COM" vendor="Embedded Artists"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="Linux Application TTY" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Linux_Application_TTY">
+      <description>Linux Application TTY example</description>
+      <board name="iMX6-SoloX-COM" vendor="Embedded Artists"/>
+      <project>
+        <environment name="ds5" load="DS-MDK/.project"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    
+    <example name="CMSIS-RTOS2 Blinky A9 FreeRTOS" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Blinky_A9_FreeRTOS">
+      <description>CMSIS-RTOS2 FreeRTOS Blinky example for Cortex-A9</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 Blinky A9 RTX5" doc="Abstract.txt" folder="Boards/NXP/MCIMX6SX-SABRE/Blinky_A9_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-A9</description>
+      <board name="MCIMX6SX-SABRE" vendor="NXP"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>
+

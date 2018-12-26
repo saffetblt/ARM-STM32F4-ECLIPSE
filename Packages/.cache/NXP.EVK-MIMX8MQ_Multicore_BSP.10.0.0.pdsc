@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>EVK-MIMX8MQ_Multicore_BSP</name>
+  <description>Board Support Pack for EVK-MIMX8MQ</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="EVK-MIMX8MQ">
+      <description>The i.MX 8MQuad family of boards provides a powerful and flexible development system for NXP(r)'s Cortex-M4 MCUs.</description>
+      <mountedDevice Dname="MIMX8MQ6xxxJZ" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.evkmimx8mq">
+      <accept Dname="MIMX8MQ6DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6xxxJZ" Dvariant="MIMX8MQ6DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6xxxHZ" Dvariant="MIMX8MQ6CVAHZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rdc"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="rpmsg_lite_pingpong_rtos_linux_remote" folder="multicore_examples/rpmsg_lite_pingpong_rtos/linux_remote" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rpmsg_lite_pingpong_rtos_linux_remote.ewp"/>
+      </project>
+      <attributes>
+        <category>multicore examples/rpmsg lite pingpong rtos/linux remote</category>
+      </attributes>
+    </example>
+    <example name="rpmsg_lite_str_echo_rtos_imxcm4" folder="multicore_examples/rpmsg_lite_str_echo_rtos" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rpmsg_lite_str_echo_rtos_imxcm4.ewp"/>
+      </project>
+      <attributes>
+        <category>multicore examples/rpmsg lite str echo rtos</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="evkmimx8mq" condition="project_template.evkmimx8mq">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/fsl_iomuxc.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

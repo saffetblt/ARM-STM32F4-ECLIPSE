@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>MCBNUC1xx_BSP</name>
+  <description>Keil MCBNUC1xx Development Board Support Package</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.1.0" date="2014-07-29">
+      First public version of MCBNUC1xx Board Support Pack including basic examples
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Nuvoton</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>NUC1</keyword>
+    <keyword>MCB</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Keil" name="MCBNUC1xx" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBNUC1xx=ON">
+      <description>Keil MCBNUC1xx Board Support</description>
+      <image small="Images\mcbnuc1xx_board_small.jpg" large="Images\mcbnuc1xx_board_big.jpg"/>
+      <book category="overview"  name="http://www.keil.com/MCBNUC1xx/" title="MCBNUC1xx Web Page"/>
+      <book category="schematic" name="Documents\mcbnuc1xx-schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents\mcbnuc1xx.chm" title="User Manual" />
+      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="NUC140VE3AN"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="NUC140VE3CN"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" DsubFamily="NUC100"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 3x GPIO, Reset"/>
+      <feature type="LED"       n="9"              name="LEDs: Power, 8x User: green"/>
+      <feature type="USB"       n="1"/>
+      <feature type="DIO"       n="76"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="CustomFF"  n="100" m="70"/>
+	  <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+    </board>
+  </boards>  
+
+  <conditions>
+    <condition id="NUC1XX CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>Nuvoton NUC1XX Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Nuvoton:18" Dname="NUC1*"/>
+    </condition>
+  </conditions>
+  
+  <components>
+    <bundle Cbundle="MCBNUC1xx" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCBNUC1xx</description>
+      <doc>Documents\mcbnuc1xx.chm</doc>
+      <component Cgroup="A/D Converter" condition="NUC1XX CMSIS Device">
+        <description>A/D Converter interface for Keil MCBNUC1xx Development Board</description>
+        <files>
+          <file category="sourceC" name="Common\ADC_MCBNUC1XX.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" condition="NUC1XX CMSIS Device">
+      <description>LED driver for Keil MCBNUC1xx Development Board</description>
+        <files>
+        <file category="sourceC" name="Common\LED_MCBNUC1XX.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <examples>
+    <example name="Blinky" doc="Abstract.txt" folder="Examples\Blinky">
+      <description>Blinky example</description>
+      <board name="MCBNUC1xx" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Examples\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBNUC1xx" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="RTX_Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+  
+</package>

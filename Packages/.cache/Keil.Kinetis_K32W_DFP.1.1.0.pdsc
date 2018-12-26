@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K32W_DFP</name>
+  <description>NXP Kinetis K32W Series Device and FRDM-K32W042 Board support</description>
+
+  <releases>
+    <release version="1.1.0" date="2018-09-27">
+      Updated device support files (SVD, header, startup).
+      Updated examples.
+    </release>
+    <release version="1.0.0" date="2017-10-12">
+      First Release version of K32W Device Family Pack.
+      Board support for NXP FRDM-K32W042 development board.
+      Known Limitation: only the Cortex-M4 processor can be used as primary processor for booting (default). Flash programming does not work via the Cortex-M0+.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K32W</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="K32W Series" Dvendor="NXP:11">
+
+      <!-- ******************************  K32W0x2S  ****************************** -->
+      <subFamily DsubFamily="K32W0x2S">
+        <processor Pname="M4"  Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU"    Dendian="Little-endian" Dclock="72000000"/>
+        <processor Pname="M0P" Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="72000000"/>
+
+        <book Pname="M4"  name="Documents/DUI0553A_cortex_m4_dgug.pdf"       title="Cortex-M4 Generic User Guide"/>
+        <book Pname="M0P" name="Documents/DUI0662A_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <!--book name="Documents/K32P176M125SF0RM.pdf" title="K32W0x2S Series Reference Manual"/-->
+
+        <description>
+The K32W0x2S is a multi-core device containing an Arm Cortex-M4 and an Arm Cortex-M0+ core.
+        </description>
+
+        <!-- ******************************  K32W022S1M2xxx  ***************************** -->
+        <device Dname="K32W022S1M2xxx">
+         <compile Pname="M4"  header="Device/Include/K32W022S1M2_cm4.h"  define="K32W022S1M2_CM4"/>
+         <debug   Pname="M4"  svd="SVD/K32W022S1M2_cm4.svd"/>
+         <memory  Pname="M4"  id="IROM1"                  start="0x00000000" size="0x00100000" default="1" startup="1"/>
+         <memory  Pname="M4"  id="IRAM2"                  start="0x08000000" size="0x00010000" default="0" init   ="0"/>
+         <memory  Pname="M4"  id="IRAM1"                  start="0x20000000" size="0x00030000" default="1" init   ="0"/>
+
+         <compile Pname="M0P" header="Device/Include/K32W022S1M2_cm0plus.h" define="K32W022S1M2_CM0PLUS"/>
+         <debug   Pname="M0P" svd="SVD/K32W022S1M2_cm0plus.svd"/>
+         <memory  Pname="M0P" id="IROM1"                  start="0x01000000" size="0x00040000" default="1" startup="1"/>
+         <memory  Pname="M0P" id="IRAM1"                  start="0x09000000" size="0x00020000" default="1" init   ="0"/>
+
+         <algorithm name="Flash/K32W0x2_P1024_4KB_SEC.FLM" start="0x00000000" size="0x00100000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+         <algorithm name="Flash/K32W0x2_P256_2KB_SEC.FLM"  start="0x01000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+
+         <!--book name="Documents/???.pdf"   title="? Data Sheet"/-->
+        </device>
+
+        <!-- ******************************  K32W032S1M2xxx  ***************************** -->
+        <device Dname="K32W032S1M2xxx">
+         <compile Pname="M4"  header="Device/Include/K32W032S1M2_cm4.h"  define="K32W032S1M2_CM4"/>
+         <debug   Pname="M4"  svd="SVD/K32W032S1M2_cm4.svd"/>
+         <memory  Pname="M4"  id="IROM1"                  start="0x00000000" size="0x00100000" default="1" startup="1"/>
+         <memory  Pname="M4"  id="IRAM2"                  start="0x08000000" size="0x00010000" default="0" init   ="0"/>
+         <memory  Pname="M4"  id="IRAM1"                  start="0x20000000" size="0x00030000" default="1" init   ="0"/>
+
+         <compile Pname="M0P" header="Device/Include/K32W032S1M2_cm0plus.h" define="K32W032S1M2_CM0PLUS"/>
+         <debug   Pname="M0P" svd="SVD/K32W032S1M2_cm0plus.svd"/>
+         <memory  Pname="M0P" id="IROM1"                  start="0x01000000" size="0x00040000" default="1" startup="1"/>
+         <memory  Pname="M0P" id="IRAM1"                  start="0x09000000" size="0x00020000" default="1" init   ="0"/>
+
+         <algorithm name="Flash/K32W0x2_P1024_4KB_SEC.FLM" start="0x00000000" size="0x00100000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+         <algorithm name="Flash/K32W0x2_P256_2KB_SEC.FLM"  start="0x01000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+
+         <!--book name="Documents/???.pdf"   title="? Data Sheet"/-->
+        </device>
+
+        <!-- ******************************  K32W042S1M2xxx  ***************************** -->
+        <device Dname="K32W042S1M2xxx">
+         <compile Pname="M4"  header="Device/Include/K32W042S1M2_cm4.h"  define="K32W042S1M2_CM4"/>
+         <debug   Pname="M4"  svd="SVD/K32W042S1M2_cm4.svd"/>
+         <memory  Pname="M4"  id="IROM1"                  start="0x00000000" size="0x00100000" default="1" startup="1"/>
+         <memory  Pname="M4"  id="IRAM2"                  start="0x08000000" size="0x00010000" default="0" init   ="0"/>
+         <memory  Pname="M4"  id="IRAM1"                  start="0x20000000" size="0x00030000" default="1" init   ="0"/>
+
+         <compile Pname="M0P" header="Device/Include/K32W042S1M2_cm0plus.h" define="K32W042S1M2_CM0PLUS"/>
+         <debug   Pname="M0P" svd="SVD/K32W042S1M2_cm0plus.svd"/>
+         <memory  Pname="M0P" id="IROM1"                  start="0x01000000" size="0x00040000" default="1" startup="1"/>
+         <memory  Pname="M0P" id="IRAM1"                  start="0x09000000" size="0x00020000" default="1" init   ="0"/>
+
+         <algorithm name="Flash/K32W0x2_P1024_4KB_SEC.FLM" start="0x00000000" size="0x00100000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+         <algorithm name="Flash/K32W0x2_P256_2KB_SEC.FLM"  start="0x01000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x2000"/>
+
+         <!--book name="Documents/???.pdf"   title="? Data Sheet"/-->
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="K32W022S1M2_M4 CMSIS">
+      <description>Kinetis K32W022S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W022S1M2xxx"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="K32W022S1M2_M0P CMSIS">
+      <description>Kinetis K32W022S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W022S1M2xxx"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+
+    <condition id="K32W032S1M2_M4 CMSIS">
+      <description>Kinetis K32W032S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W032S1M2xxx"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="K32W032S1M2_M0P CMSIS">
+      <description>Kinetis K32W032S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W032S1M2xxx"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+
+    <condition id="K32W042S1M2_M4 CMSIS">
+      <description>Kinetis K32W042S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W042S1M2xxx"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="K32W042S1M2_M0P CMSIS">
+      <description>Kinetis K32W042S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W042S1M2xxx"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="K32W042S1M2 CMSIS">
+      <description>Kinetis K32W042S1M2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="K32W042S1M2xxx"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup K32W022S1M2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W022S1M2_M4 CMSIS">
+      <description>System Startup for Kinetis K32W022S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W022S1M2_cm4.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W022S1M2_cm4.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W022S1M2_cm4.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W022S1M2_cm4.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W022S1M2xxx_cm4_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W022S1M2xxx_cm4_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W022S1M2_M0P CMSIS">
+      <description>System Startup for Kinetis K32W022S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W022S1M2_cm0plus.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W022S1M2_cm0plus.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W022S1M2_cm0plus.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W022S1M2_cm0plus.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W022S1M2xxx_cm0plus_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W022S1M2xxx_cm0plus_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+
+    <!-- Startup K32W032S1M2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W032S1M2_M4 CMSIS">
+      <description>System Startup for Kinetis K32W0332S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W032S1M2_cm4.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W032S1M2_cm4.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W032S1M2_cm4.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W032S1M2_cm4.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm4_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm4_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W032S1M2_M0P CMSIS">
+      <description>System Startup for Kinetis K32W032S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W032S1M2_cm0plus.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W032S1M2_cm0plus.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W032S1M2_cm0plus.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W032S1M2_cm0plus.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm0plus_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm0plus_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+
+    <!-- Startup K32W042S1M2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W042S1M2_M4 CMSIS">
+      <description>System Startup for Kinetis K32W0432S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W042S1M2_cm4.s"    attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W042S1M2_cm4.S"    attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W042S1M2_cm4.c"         attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W042S1M2_cm4.h"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W042S1M2xxx_cm4_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W042S1M2xxx_cm4_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K32W042S1M2_M0P CMSIS">
+      <description>System Startup for Kinetis K32W042S1M2 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_K32W042S1M2_cm0plus.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_K32W042S1M2_cm0plus.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/system_K32W042S1M2_cm0plus.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_K32W042S1M2_cm0plus.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm0plus_flash.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/K32W032S1M2xxx_cm0plus_ram.ld"   attr="config" version="1.0.0" condition="GCC"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="FRDM-K32W042" Cclass="Board Support" Cversion="1.0.0">
+      <description>FRDM-K32W042 Board Support</description>
+      <doc></doc>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="K32W042S1M2 CMSIS">
+      <description>Button driver for NXP FRDM-K32W042 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/FRDM-K32W042/Common/Buttons_FRDM-K32W042.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.00" condition="K32W042S1M2 CMSIS">
+      <description>LED driver for NXP FRDM-K32W042 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/FRDM-K32W042/Common/LED_FRDM-K32W042.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board name="FRDM-K32W042" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="K32W042S1M2xxx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="K32W0x2S"/>
+      <!--image small="Boards/NXP/FRDM-K32W042/Documents/FRDM-KW36Z_small.png"
+             large="Boards/NXP/FRDM-K32W042/Documents/FRDM-KW36Z_large.png"/-->
+      <description>
+        The FRDM-K32W042 is a development board for the K32W042 MCUs.
+      </description>
+      <!--book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-k64-k63-and-k24-mcus:FRDM-K64F" title="FRDM-K64F Web Page"/-->
+      <!--book category="setup"     name="Boards/NXP/FRDM-K32W042/Documents/xx.pdf" title="Quick Start Guide"/-->
+      <!--book category="schematic" name="Boards/NXP/FRDM-K32W042/Documents/xx.pdf" title="FRDM-K64F Schematics"/-->
+      <!--book category="manual"    name="Boards/NXP/FRDM-K32W042/Documents/xx.pdf" title="User Manual"/-->
+      <feature type="ODbg"          n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"           n="5"              name="USB Powered"/>
+      <feature type="Button"        n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="LED"           n="1"              name="RGB LED"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="SDA 10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- FRDM-K32W042 Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-K32W042/RTX5_Blinky/">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="FRDM-K32W042" vendor="NXP" Dvendor="NXP:11" Dname="K32W042S1M2xxx"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DualCore Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-K32W042/DualCore" version="1.0.0">
+      <description>DualCore Blinky example</description>
+      <board name="FRDM-K32W042" vendor="NXP" Dvendor="NXP:11" Dname="K32W042S1M2xxx"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

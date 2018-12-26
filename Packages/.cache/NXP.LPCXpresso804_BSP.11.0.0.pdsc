@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso804_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Board Support Pack for LPCXPRESSO804</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="LPCXpresso804">
+      <description>The LPCXpresso804 is an development platform for LPC804 MCUs</description>
+      <mountedDevice Dname="LPC804" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="device.LPC804_AND_component.miniusart_adapter_AND_device.LPC804_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_AND_driver.lpc_iocon_lite_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.rom_api_AND_driver.swm_AND_driver.swm_AND_utility.debug_console_lite">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC804_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description>The Hello World demo application provides a sanity check for the new SDK build environments and board bring up. The HelloWorld demo prints the "Hello World" string to the terminal using the SDK UART drivers. The purpose of this demo is toshow how to use the UART, and to provide a simple project for debugging and further development.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/hello_world.uvprojx"/>
+        <environment name="iar" load="iar/hello_world.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_polling_example" folder="driver_examples/usart/polling" doc="readme.txt">
+      <description>The uart_polling example shows how to use uart driver in polling way:In this example, one uart instance connect to PC, the board will send back all characters that PCsend to the board. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_polling_example.uvprojx"/>
+        <environment name="iar" load="iar/usart_polling_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_terminal" folder="driver_examples/usart/terminal" doc="readme.txt">
+      <description>This example demonstrate configuration and use of the USART module in interrupt-driven /nasynchronous mode on communication with a terminal emulator calling the USART /ntransactional APIs. USART will echo back every character to terminal emulator, and send/nback all received characters once users press [Enter] key./n</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_terminal.uvprojx"/>
+        <environment name="iar" load="iar/usart_terminal.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_transfer_interrupt" folder="driver_examples/usart/transfer_interrupt" doc="readme.txt">
+      <description>usart_transfer_interrupt</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_transfer_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/usart_transfer_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_transfer_ring_buffer" folder="driver_examples/usart/transfer_ring_buffer" doc="readme.txt">
+      <description>The usart_interrupt_rb_transfer example shows how to use usart driver in interrupt way withRX ring buffer enabled.In this example, one uart instance connect to PC through, the board will send back all charactersthat PC send to the board.Note: The example echo every 8 characters.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_transfer_ring_buffer.uvprojx"/>
+        <environment name="iar" load="iar/usart_transfer_ring_buffer.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_transfer_sync_b2b_master" folder="driver_examples/usart/transfer_sync_b2b/master" doc="readme.txt">
+      <description>The usart_interrupt_sync_transfer example shows how to use usart API in synchronous mode:In this example, one usart instance will be selected as master ,and another as slave. The master will send data to slave in polling way, and slave will receive data in nonblocking way.After all data has been received by slave, info will be printed by debug console. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_transfer_sync_b2b_master.uvprojx"/>
+        <environment name="iar" load="iar/usart_transfer_sync_b2b_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usart_transfer_sync_b2b_slave" folder="driver_examples/usart/transfer_sync_b2b/slave" doc="readme.txt">
+      <description>The usart_interrupt_sync_transfer example shows how to use usart API in synchronous mode:In this example, one usart instance will be selected as master ,and another as slave. The master will send data to slave in polling way, and slave will receive data in nonblocking way.After all data has been received by slave, info will be printed by debug console. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usart_transfer_sync_b2b_slave.uvprojx"/>
+        <environment name="iar" load="iar/usart_transfer_sync_b2b_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_adc_basic" folder="driver_examples/adc/lpc_adc_basic" doc="readme.txt">
+      <description>The lpc_adc_basic example shows how to use LPC ADC driver in the simplest way.In this example, the internal temperature sensor is used to created the input analog signal. When user type in any key from the keyboard, the software trigger API is called to start the conversion. Then it polls the conversion sequence A's flag till the conversion is completed. When the conversion is completed, just print the conversion result to terminal.Project Information1.what are ADC conversion sequences?  A conversion sequence is a single pass through a series of A/D conversions performed on a selected set of  A/D channels. Software can set-up two independent conversion sequences, either of which can be triggered   by software or by a transition on one of the hardware triggers. Each sequence can be triggered by a different   hardware trigger. One of these conversion sequences is referred to as the A sequence and the other as the B  sequence. It is not necessary to employ both sequences. An optional single-step mode allows advancing through  the channels of a sequence one at a time on each successive occurrence of a trigger. The user can select whether  a trigger on the B sequence can interrupt an already-in-progress A sequence. The B sequence, however, can never be  interrupted by an A trigger.  2. How to use software-triggered conversion?   There are two ways that software can trigger a conversion sequence:      1. Start Bit: The first way to software-trigger an sequence is by setting the START bit in         the corresponding SEQn_CTRL register. The response to this is identical to         occurrence of a hardware trigger on that sequence. Specifically, one cycle of         conversions through that conversion sequence will be immediately triggered except         as indicated above. (In this example, we use this way.)      2. Burst Mode: The other way to initiate conversions is to set the BURST bit in the         SEQn_CTRL register. As long as this bit is 1 the designated conversion sequence will         be continuously and repetitively cycled through. Any new software or hardware trigger         on this sequence will be ignored.  Program Flow1.This example demonstrates how to configure the A sequences with polling, assigning one channel with software  trigger, you can configure channel via "DEMO_ADC_SAMPLE_CHANNEL_NUMBER".  2.Before configuration of the ADC begins, the ADC is put through a self-calibration cycle.    3.After ADC channels are assigned to each of the sequences, the software trigger is chosen. Setting   SEQA_CTRL_START to '1' will trigger sequence A.  4.After ADC channels are assigned to each of the sequences, if the user enters any key via terminal, software trigger will start. 5.Read the corresponding DATAVALID field with polling to judge whether the conversion completes and the result is ready.  If the result is ready, the example will printf result information to terminal.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_adc_basic.uvprojx"/>
+        <environment name="iar" load="iar/lpc_adc_basic.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_adc_interrupt" folder="driver_examples/adc/lpc_adc_interrupt" doc="readme.txt">
+      <description>The lpc_adc_interrupt example shows how to use interrupt with LPC ADC driver.In this example, the internal temperature sensor is used to created the input analog signal. When user type in any key from the keyboard, the software trigger API is called to start the conversion. Then it polls the flag variable which would be asserted when the conversion completed ISR is executed. Then just print the conversion result to terminal.Project Information1.what are ADC conversion sequences?  A conversion sequence is a single pass through a series of A/D conversions performed on a selected set of  A/D channels. Software can set-up two independent conversion sequences, either of which can be triggered   by software or by a transition on one of the hardware triggers. Each sequence can be triggered by a different   hardware trigger. One of these conversion sequences is referred to as the A sequence and the other as the B  sequence. It is not necessary to employ both sequences. An optional single-step mode allows advancing through  the channels of a sequence one at a time on each successive occurrence of a trigger. The user can select whether  a trigger on the B sequence can interrupt an already-in-progress A sequence. The B sequence, however, can never be  interrupted by an A trigger.  2. How to use software-triggered conversion?   There are two ways that software can trigger a conversion sequence:      1. Start Bit: The first way to software-trigger an sequence is by setting the START bit in         the corresponding SEQn_CTRL register. The response to this is identical to         occurrence of a hardware trigger on that sequence. Specifically, one cycle of         conversions through that conversion sequence will be immediately triggered except         as indicated above. (In this example, we use this way.)      2. Burst Mode: The other way to initiate conversions is to set the BURST bit in the         SEQn_CTRL register. As long as this bit is 1 the designated conversion sequence will         be continuously and repetitively cycled through. Any new software or hardware trigger         on this sequence will be ignored.          3. What kinds of interrupt do ADC have?   There are four interrupts that can be generated by the ADC:     • Conversion-Complete or Sequence-Complete interrupts for sequences A and B     • Threshold-Compare Out-of-Range Interrupt     • Data Overrun Interrupt   Any of these interrupt requests may be individually enabled or disabled in the INTEN register.  Program Flow1.This example demonstrates how to configure the A sequences with interrupt, assigning one channel with software  trigger, you can configure channel via "DEMO_ADC_SAMPLE_CHANNEL_NUMBER".  2.Before configuration of the ADC begins, the ADC is put through a self-calibration cycle.  3.Enable the Conversion-Complete or Sequence-Complete interrupt for sequences A.  4.After ADC channels are assigned to each of the sequences, if the user enters any key via terminal, software trigger will start.    5.When the conversion completes, the interrupt would be triggered. The ISR will print conversion result to terminal.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_adc_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/lpc_adc_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_adc_burst" folder="driver_examples/adc/lpc_adc_burst" doc="readme.txt">
+      <description>The lpc_adc_burst example shows how to use LPC ADC driver with the burst mode.In this example, the internal temperature sensor is used to created the input analog signal.When user type in any key from the keyboard, the burst mode is enabled. Then the conversion sequence A would be started automatically, till the burst would be disabled in conversion completed ISR. Project Information1.what are ADC conversion sequences?  A conversion sequence is a single pass through a series of A/D conversions performed on a selected set of  A/D channels. Software can set-up two independent conversion sequences, either of which can be triggered   by software or by a transition on one of the hardware triggers. Each sequence can be triggered by a different   hardware trigger. One of these conversion sequences is referred to as the A sequence and the other as the B  sequence. It is not necessary to employ both sequences. An optional single-step mode allows advancing through  the channels of a sequence one at a time on each successive occurrence of a trigger. The user can select whether  a trigger on the B sequence can interrupt an already-in-progress A sequence. The B sequence, however, can never be  interrupted by an A trigger.  2. How to use software-triggered conversion?   There are two ways that software can trigger a conversion sequence:      1. Start Bit: The first way to software-trigger an sequence is by setting the START bit in         the corresponding SEQn_CTRL register. The response to this is identical to         occurrence of a hardware trigger on that sequence. Specifically, one cycle of         conversions through that conversion sequence will be immediately triggered except         as indicated above.       2. Burst Mode: The other way to initiate conversions is to set the BURST bit in the         SEQn_CTRL register. As long as this bit is 1 the designated conversion sequence will         be continuously and repetitively cycled through. Any new software or hardware trigger         on this sequence will be ignored. (In this example, we use this way.)         3. What kinds of interrupt do ADC have?   There are four interrupts that can be generated by the ADC:     • Conversion-Complete or Sequence-Complete interrupts for sequences A and B     • Threshold-Compare Out-of-Range Interrupt     • Data Overrun Interrupt   Any of these interrupt requests may be individually enabled or disabled in the INTEN register.  Program Flow1.This example demonstrates how to configure the A sequences with burst mode, you can configure channel via   "DEMO_ADC_SAMPLE_CHANNEL_NUMBER".  2.Before configuration of the ADC begins, the ADC is put through a self-calibration cycle.  3.Enable the Conversion-Complete or Sequence-Complete interrupt for sequences A.  4.After ADC channels are assigned to each of the sequences, if the user enters any key via terminal, burst mode will start.    5.When the first conversion completes, the interrupt would be triggered. The ISR will stop the burst mode and print conversion result   to terminal.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_adc_burst.uvprojx"/>
+        <environment name="iar" load="iar/lpc_adc_burst.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_dac_basic" folder="driver_examples/dac/lpc_dac_basic" doc="readme.txt">
+      <description>The dac_basic example shows how to use DAC module simply as the general DAC converter.When the DAC's double-buffer feature is not enabled, the CR register is used as the DAC output data register directly.The converter would always output the value of the CR register. In this example, it gets the value from terminal,outputs the DAC output voltage through DAC output pin.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_dac_basic.uvprojx"/>
+        <environment name="iar" load="iar/lpc_dac_basic.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_dac_interrupt" folder="driver_examples/dac/lpc_dac_interrupt" doc="readme.txt">
+      <description>The dac_interrupt example shows how to use DAC with interrupts and produce an arbitrary, user-defined waveform ofselectable frequency.The output can be observed with an oscilloscope. When the DAC's double-buffer feature is enabled, any write to the CR register will only load the pre-buffer, whichshares its register address with the CR register. The CR itself will be loaded from the pre-buffer whenever the counter reaches zero and the interrupt would occur. At the same time the counter is reloaded with the COUNTVALregister value. In the DAC ISR, user-defined waveform array would be transfered to pre-buffer in order.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_dac_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/lpc_dac_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_master" folder="driver_examples/spi/interrupt/master" doc="readme.txt">
+      <description>The spi_interrupt_master example shows how to use spi functional API to do interrupt transfer as a master:In this example, the spi instance as master. Master sends a piece of data to slave, receive data from slave,and check if the data master received is correct. This example needs to work with spi_interrupt_slave example. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_slave" folder="driver_examples/spi/interrupt/slave" doc="readme.txt">
+      <description>The spi_interrupt_slave example shows how to use spi driver as slave to receive data from master.In this example, one spi instance as slave and another spi instance on other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from master is correct. This example should work with spi_interrupt_master example. And this example should start first. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_transfer_interrupt_master" folder="driver_examples/spi/transfer_interrupt/master" doc="readme.txt">
+      <description>The spi_interrupt_transfer_master example shows how to use spi driver as master to do board to boardtransfer in interrupt way:In this example, one spi instance as master and another spi instance on othere board as slave. Mastersends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct. This example need to work with spi_interrupt_transfer_slave example. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_transfer_interrupt_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_transfer_interrupt_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_transfer_interrupt_slave" folder="driver_examples/spi/transfer_interrupt/slave" doc="readme.txt">
+      <description>The spi_interrupt_transfer_slave example shows how to use spi driver as slave to receive data from master.In this example, one spi instance as slave and another spi instance on other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from master is correct. This example should work with spi_interrupt_transfer_master example. And this example should start first. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_transfer_interrupt_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_transfer_interrupt_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_polling_master" folder="driver_examples/spi/polling/master" doc="readme.txt">
+      <description>The spi_polling_transfer_master example shows how to use spi driver as master to do board to boardtransfer with polling:In this example, one spi instance as master and another spi instance on othere board as slave. Mastersends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct. This example need to work with spi_polling_transfer_slave example. </description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_polling_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_polling_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_polling_slave" folder="driver_examples/spi/polling/slave" doc="readme.txt">
+      <description>The spi_polling_transfer_slave example shows how to use spi driver as slave to receive data from master.In this example, one spi instance as slave and another spi instance on other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from master is correct. This example should work with spi_polling_transfer_master example. And this example should start first.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_polling_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_polling_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="led_blinky" folder="demo_apps/led_blinky" doc="readme.txt">
+      <description>The LED Blinky demo application provides a sanity check for the new SDK build environments and board bring up. The LED Blinky demo uses the systick interrupt to realize the function of timing delay. The example takes turns to shine the LED. The purpose of this demo is to provide a simple project for debugging and further development.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/led_blinky.uvprojx"/>
+        <environment name="iar" load="iar/led_blinky.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="acomp_basic" folder="driver_examples/acomp/acomp_basic" doc="readme.txt">
+      <description>The ACOMP Basic Example shows the simplest way to use ACOMP driver and help user with a quick start.In this example, user should indicate an input channel to capture a voltage signal (can be controlled by user) as the ACOMP's negative channel input. On the postive side, the internal voltage ladder is used to generate the fixed voltage abouthalf value of reference voltage.When running the project, change the input voltage of user-defined channel, then the comparator's output would changebetween logic one and zero when the user's voltage crosses the internal ladder's output. The endless loop in main() functionwould detect the logic value of comparator's output, and change the LED. The LED would be turned on when the compareoutput is logic one, or turned off when zero.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/acomp_basic.uvprojx"/>
+        <environment name="iar" load="iar/acomp_basic.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="acomp_interrupt" folder="driver_examples/acomp/acomp_interrupt" doc="readme.txt">
+      <description>The ACOMP Interrupt Example shows how to use interrupt with ACOMP driver.In this example, user should indicate an input channel to capture a voltage signal (can be controlled by user) as the ACOMP's negative channel input. On the postive side, the internal voltage ladder is used to generate the fixed voltage abouthalf value of reference voltage.When running the project, change the input voltage of user-defined channel, then the comparator's output would changebetween logic one and zero when the user-defined channel's voltage crosses the internal ladder's output. The change ofcomparator's output would generate the falling and rising edge events with their interrupts enabled. When any ACOMP interrupt happens, the ACOMP's ISR would turn on/off the LED light.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/acomp_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/acomp_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_interrupt_b2b_transfer_master" folder="driver_examples/i2c/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description>The i2c_interrupt_b2b_transfer_master example shows how to use i2c driver as master to do board to board transfer with interrupt:In this example, one i2c instance as master and another i2c instance on the other board as slave. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_interrupt_b2b_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_interrupt_b2b_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_interrupt_b2b_transfer_slave" folder="driver_examples/i2c/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description>The i2c_interrupt_b2b_transfer_slave example shows how to use i2c driver as slave to do board to board transfer with interrupt:In this example, one i2c instance as slave and another i2c instance on the other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_interrupt_b2b_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_interrupt_b2b_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_polling_b2b_transfer_master" folder="driver_examples/i2c/polling_b2b_transfer/master" doc="readme.txt">
+      <description>The i2c_polling_b2b_transfer_master example shows how to use i2c driver as master to do board to board transfer using polling method:In this example, one i2c instance as master and another i2c instance on the other board as slave. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_polling_b2b_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_polling_b2b_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_polling_b2b_transfer_slave" folder="driver_examples/i2c/polling_b2b_transfer/slave" doc="readme.txt">
+      <description>The i2c_polling_b2b_transfer_slave example shows how to use i2c driver as slave to do board to board transfer with a polling master:In this example, one i2c instance as slave and another i2c instance on the other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_polling_b2b_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_polling_b2b_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="capt_basic" folder="driver_examples/capt/capt_basic" doc="readme.txt">
+      <description>The CAPT Basic Example shows the simplest way(YH port pin measurement) to use CAPT driver and help user with a quick start.In this example, user should indicate  the set of X pins to use by writing to the XPINSEL field in thecontrol register. The CAPT work in YH port pin measurement menthod. In Measure Voltage state, the modulesamples the YH port pin (which is in input mode). Until the voltage on the pad increases above the VIH (HIGH-level input voltage) of the pad, the module will sample ‘0’, above VIH it will sample ‘1’ (that is,the YH port pin has “triggered”). Then we would handle the CAPT ISR for triggered events or no-triggered events.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/capt_basic.uvprojx"/>
+        <environment name="iar" load="iar/capt_basic.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="capt_acomp" folder="driver_examples/capt/capt_acomp" doc="readme.txt">
+      <description>The CAPT ACOMP Example shows the Analog comparator measurement way to use CAPT driver and help user with a quick start.In this example, user should indicate  the set of X pins to use by writing to the XPINSEL field in thecontrol register. The CAPT work in Analog comparator measurement menthod. In Measure Voltage state, the module samples the analog comparator output, which is connected internally to the module. The analogcomparator must be enabled and properly configured, and one of the comparator analog inputs must be enabledand connected to the YH port pin. On some devices the YH port pin and an analog comparator input may sharea pad or pin. Otherwise, the YH port pin and the analog comparator input pin must be connected externally (wire-OR’d).Until the voltage on the analog comparator input increases above the configured threshold of the comparator, the module will sample ‘0’, above that it will sample ‘1’ (that is, the analog comparator has “triggered”.Then we would handle the CAPT ISR for triggered events or no-triggered events.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/capt_acomp.uvprojx"/>
+        <environment name="iar" load="iar/capt_acomp.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="crc" folder="driver_examples/crc" doc="readme.txt">
+      <description>The CRC Example project is a demonstration program that uses the KSDK software to generate checksumsfor an ASCII string. Several CRC protocols are implemented using the CRC driver API.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/crc.uvprojx"/>
+        <environment name="iar" load="iar/crc.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_pwm_example" folder="driver_examples/ctimer/simple_pwm" doc="readme.txt">
+      <description>The CTimer Example project is to demonstrate usage of the KSDK ctimer driver.In this example, CTimer is used to generate a PWM signal.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_pwm_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_pwm_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_pwm_interrupt_example" folder="driver_examples/ctimer/simple_pwm_interrupt" doc="readme.txt">
+      <description>The Simple PWM Interrupt project is to demonstrate usage of the SDK CTimer driver as a PWM with interrupt callback functionsIn this example an IO pin connected to the LED is used as a PWM output line to generate a PWM signal.With an interrupt callback the PWM duty cycle is changed frequently in such a way that the LED brightness can be varied.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_pwm_interrupt_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_pwm_interrupt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_match_example" folder="driver_examples/ctimer/simple_match" doc="readme.txt">
+      <description>The CTimer Example project is to demonstrate usage of the KSDK ctimer driver.In this example, the match feature of the CTimer is used to toggle the output level.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_match_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_match_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_match_interrupt_example" folder="driver_examples/ctimer/simple_match_interrupt" doc="readme.txt">
+      <description>The Simple Match Interrupt project is to demonstrate usage of the SDK CTimer driver with interrupt callback functionsIn this example the upon match and IO pin connected to the LED is toggled and the timer is reset, so it would generate a square wave.With an interrupt callback the match value is changed frequently in such a way that the frequency of the output square wave is increased gradually.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_match_interrupt_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_match_interrupt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mrt_example" folder="driver_examples/mrt" doc="readme.txt">
+      <description>The MRT project is a simple demonstration program of the SDK MRT driver. It sets up the MRThardware block to trigger a periodic interrupt after every 250 milliseconds. When the PIT interrupt is triggereda message a printed on the UART terminal and an LED is toggled on the board.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mrt_example.uvprojx"/>
+        <environment name="iar" load="iar/mrt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pint_pin_interrupt" folder="driver_examples/pint/pin_interrupt" doc="readme.txt">
+      <description>This example shows how to use SDK drivers to use the Pin interrupt &amp; pattern match peripheral.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pint_pin_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/pint_pin_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pint_pattern_match" folder="driver_examples/pint/pattern_match" doc="readme.txt">
+      <description>This example shows how to use SDK drivers to use the Pin interrupt &amp; pattern match peripheral.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pint_pattern_match.uvprojx"/>
+        <environment name="iar" load="iar/pint_pattern_match.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="wwdt_example" folder="driver_examples/wwdt" doc="readme.txt">
+      <description>The WDOG Example project is to demonstrate usage of the KSDK wdog driver.In this example,quick test is first implemented to test the wdog.And then after 5 times of refreshing the watchdog, a timeout reset is generated.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/wwdt_example.uvprojx"/>
+        <environment name="iar" load="iar/wwdt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="gpio_led_output" folder="driver_examples/gpio/led_output" doc="readme.txt">
+      <description>The GPIO Example project is a demonstration program that uses the KSDK software to manipulate the general-purposeoutputs. The example use LEDs and buttons to demonstrates GPIO API for port and pin manipulation (init, set,clear, and toggle).</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/gpio_led_output.uvprojx"/>
+        <environment name="iar" load="iar/gpio_led_output.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="wkt_example" folder="driver_examples/wkt" doc="readme.txt">
+      <description>The WKT project is a simple demonstration program of the SDK WKT driver. It sets up the WKT hardware block to trigger a periodic interrupt after loading a counter value and counting down to 0. When the WKT interrupt is triggered a message printed on the UART terminal and the LED is toggled on the board.Depending on the clock source, the WKT can be used for waking up the part from any low power mode or for general-purposetiming.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/wkt_example.uvprojx"/>
+        <environment name="iar" load="iar/wkt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="plu_example" folder="driver_examples/plu" doc="readme.txt">
+      <description>The PLU project is a simple demonstration program of the SDK PLU driver. In this example, a number of switches are used act as PLU inputs and LEDs are used to monitor the PLU outputs to demonstrate the configuration and use of the Programmable Logic Unit (PLU).</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/plu_example.uvprojx"/>
+        <environment name="iar" load="iar/plu_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="power_mode_switch_lpc" folder="demo_apps/power_mode_switch_lpc" doc="readme.txt">
+      <description>The power_mode_switch application shows the usage of normal power mode control APIs for entering the three kinds oflow power mode: Sleep mode, Deep Sleep mode and Power Down mode, deep power down mode. When the application runs to each low powermode, the device would cut off the power for specific modules to save energy. The device can be also waken up by prepared wakeup source from external event. Tips: This demo is to show how the various power mode can switch to each other. However, in actual low power use case, to save energy and reduce the consumption even more, many things can be done including: - Disable the clock for unnecessary module during low power mode. That means, programmer can disable the clocks before entering the low power mode and re-enable them after exiting the low power mode when necessary. - Disable the function for unnecessary part of a module when other part would keep working in low power mode. At the most time, more powerful function means more power consumption. For example, disable the digital function for the unnecessary pin mux, and so on. - Set the proper pin state (direction and logic level) according to the actual application hardware. Otherwise, the pin cirrent would be activied unexpectedly waste some energy. - Other low power consideration based on the actual application hardware. - In order to meet typedef power consumption of DateSheet manual, Please configure MCU under the following conditions.     • Configure all pins as GPIO with pull-up resistor disabled in the IOCON block.     • Configure GPIO pins as outputs using the GPIO DIR register.     • Write 1 to the GPIO CLR register to drive the outputs LOW.     • All peripherals disabled.</description>
+      <board name="LPCXpresso804" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/power_mode_switch_lpc.uvprojx"/>
+        <environment name="iar" load="iar/power_mode_switch_lpc.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="lpcxpresso804" Cversion="1.0.0" condition="device.LPC804_AND_component.miniusart_adapter_AND_device.LPC804_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_AND_driver.lpc_iocon_lite_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.rom_api_AND_driver.swm_AND_driver.swm_AND_utility.debug_console_lite">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+  </components>
+</package>

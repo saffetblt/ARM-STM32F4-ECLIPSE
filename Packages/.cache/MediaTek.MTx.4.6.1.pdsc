@@ -1,0 +1,1855 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>MediaTek</vendor>
+  <name>MTx</name>
+  <description>MediaTek ARM Cortex-M4 Device Family Pack</description>
+  <url>http://download.labs.mediatek.com</url>
+  <license>tools\keil\EULA_for_Keil\mediaTek-License.txt</license>
+  <supportContact></supportContact>
+
+  
+  <releases>
+    <release version="4.6.1" date="2017-11-15">
+      Software features and optimization
+	  [MT7682, MT7686] Added iot_sdk_demo IAR project support.
+	  Bug fixes
+	  [MT7682, MT7686, MT76x7] Fixed WPA2 KRACK vulnerability issue.
+	  [MT7682, MT7686, MT76x7] Cannot connect to WEP Wi-Fi access point by Smart Connection.
+	  [MT7682, MT7686] Fixed Wi-Fi repeater mode not working issue.
+	  [MT2523x, MT2533D] Sometimes A2DP music is not smooth with SBC codec.
+	  [MT2523x, MT2533D] Sometimes the system crashes when playing music and the system runs out of memory.
+	  [headset_ref_design] Local music sometimes stops playing after making a voice call.
+	</release>
+    <release version="4.6.0" date="2017-09-20">
+	  [MT25x3] Added support for A2DP source of Bluetooth EDR. 
+	  [MT25x3] Added support for Bluetooth LE multi-link concurrent operation (1 slave and 4 master Bluetooth LE links).
+      [inear_noodles_headset_ref_design] Cannot power on the device after it’s powered off by unplugging the USB charger.
+      [inear_noodles_headset_ref_design] Local music sometimes stops playing after switching to the next song.
+      [inear_noodles_headset_ref_design] Local music volume is too high.
+      [cord_free_headset_ref_design] Local music stops playing on a slave headset after disconnecting from Bluetooth on a smartphone.
+      [bioband_ref_design] HRV cannot function properly, after executing the blood pressure unit.
+ 	</release>
+    <release version="4.5.1" date="2017-08-07">
+      [MT2523x, MT2533D] Sometimes the HFP voice is not smooth when transmitting BLE data at the same time.
+      [inear_noodles_headset_ref_design] A2DP music sometimes doesn't resume after ending a voice call.
+      [inear_noodles_headset_ref_design] Cannot play A2DP music after redialing a voice call several times.
+      [inear_noodles_headset_ref_design] DUT crash occurs after plugging in a USB cable to power on the device.
+      [inear_noodles_headset_ref_design] LED indication of Bluetooth connection and A2DP music playback didn't respond timely.
+      [inear_noodles_headset_ref_design] Local MP3 playback didn't resume after receiving a key tone from smartphone.
+      [inear_noodles_headset_ref_design] No "Connected" voice prompt sound while powering on the device by USB.
+      [MT25x3] Local MP3 playback sometimes doesn't resume after rejecting a voice call.
+      [MT25x3] Power consumption of A2DP playback and MP3 local playback is too high.
+      [MT25x3] System cannot reboot successfully when FOTA package size is over 650KB during FOTA process.
+      [headset_ref_design] Smartphone APK can’t indicate "Update success" sometimes after completing FOTA process.
+    </release>
+    <release version="4.5.0" date="2017-06-30">
+      [MT2523 + MT5932] Added a reference design to provide Wi-Fi connectivity on LinkIt 2523 HDK with MT5932 HDK.
+      [MT25x3] Added support for Audio/Video Remote Control Profile (AVRCP) 1.6 of Bluetooth EDR.
+      [MT25x3] Added support for stereo with two headsets through A2DP and playing from local MP3 file (Advanced Wireless Stereo, AWS).
+	</release>
+	<release version="4.3.1" date="2017-06-15">
+	  [MT25x3] Sliding the touch panel for over 20 minutes might stall the system. 
+	  [MT25x3] Playing music with A2DP over 30 minutes results in system crash.
+	</release>
+	<release version="4.3.0" date="2017-05-05">
+	  [MT25x3] Added new features.
+	  Added a migration guide to migrate applications form SDK v4.2.x to SDK v4.3.0
+	</release>
+	<release version="4.2.2" date="2017-04-15">
+	  [MT2523] Fixed the issue that the charging current might be up to 500mA for around 500ms after waking up from sleep mode.
+	  [MT2523] Improved the transmission power and receiving sensitivity for Bluetooth Enhanced Data Rate (EDR) and with Low Energy (LE).
+	  [MT2523] Fixed the issue that software initialization fails on µVision® IDE, due to improper initialization of variables with 0s.
+	  [MT2523, MT2511] Fixed the issue that heart rate measurement might be inaccurate for a short period after a prolonged use (6 to 8 hours).
+    </release>
+	<release version="4.2.1" date="2017-03-06">
+	   Fixed the issue that in-target-reset (reset Cortex-M4 only) fails in debugging mode.
+	   Fixed the issue of failing in Wi-Fi initialization.
+    </release>
+    <release version="4.2.0" date="2017-01-13">
+       Add the document list supported by chipset.
+       Update the new feature, bug fix and known issue of SDK 4.2.0.
+    </release>
+    <release version="4.1.0" date="2016-10-30">
+       Add the document list supported by chipset.
+       Update the new feature, bug fix and known issue of SDK 4.1.0.
+    </release>
+    <release version="4.0.0" date="2016-08-30">
+       Support new Bluetooth stack on MT2523.
+       Update the new feature, bug fix and known issue of SDK 4.0.0.
+    </release>
+    <release version="3.3.2" date="2016-07-30">
+       Fixed the Wi-Fi throughput drop when the external interrupt has not been received for more than 30 seconds.
+	   Fixed the Wi-Fi throughput drop in the mid-range signal strength (the RSSI is between -60 to -80dbm), improved the connection stability and ping in long-range (the RSSI is less than -80dbm). 
+    </release>
+    <release version="3.3.1" date="2016-07-02">
+      Support LCM with DBI and DSI interfaces in the same firmware. Provide an auto-detection mechanism to select RM69032 (DSI) or ST7789H2 (DBI) LCM.
+	  Support 2D graphics drawing with HAL G2D API.
+	  Support setting Bluetooth radio transmission power.
+	  Support Wi-Fi 5G AP/STA (excluding DFS).
+	  Support Wi-Fi repeater mode.
+	  Provide easy-to-use Wi-Fi initialization API to address the requirement of reading implicit configurations from NVDM.
+	  Support auto-detection of AP's authentication mode and encryption type.
+    </release>
+    <release version="3.2.0" date="2016-04-27">
+      MT2523x HAL bugs fix
+    </release>
+    <release version="3.1.0" date="2016-03-31">
+      Add MT2523x chip for Keil support
+    </release>
+	<release version="3.0.0" date="2016-03-17">
+      MT7687F chip for Keil support
+	  include Free-RTOS 
+	  Wi-Fi 
+	  Internet protocol 
+	  HAL modules
+    </release>
+  </releases>
+  
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>MTK</keyword>
+    <keyword>MediaTek</keyword>
+    <keyword>MT7687F</keyword>
+	<keyword>MT2523x</keyword>
+  </keywords>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+  <family Dfamily="MT76x7 Series" Dvendor="MediaTek:129">
+    <processor Dcore="Cortex-M4" DcoreVersion="r2p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+	  <compile header="driver/CMSIS/Device/MTK/mt7687/Include/mt7687.h"/>
+      <!-- <book      name="doc/SDK on MT7687F API Reference Manual.html"    title="SDK on MT7687F API Reference Manual"/> -->
+      <sequences>
+        <!-- Override for Pre-Defined DebugCoreStart Sequence -->
+        <sequence name="DebugCoreStart">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var flag = 0;
+            Write32(DHCSR_Addr, 0xA05F0001);
+            flag = Read32(0x20000000);
+		  </block>
+          <control if="flag != 0x76877697">
+		  <block>
+				Write32(0x8300F050, 0x76371688);
+				Write32(0x8300F050, 0x76371688);
+				Write32(0x8300F050, 0x76371688);
+				Write32(0x20000000, 0x76877697);
+             </block>
+          </control>
+		  <block>
+            Write32(0x83080030, 0x2200);
+          </block>
+        </sequence>
+      </sequences>
+      <description>
+        MT7687 product family is highly integrated single chip which features an application processor, a low power 1x1 Wi-Fi subsystem and a Power Management Unit.
+      </description>
+     <!-- ************************  MT7687F  **************************** -->
+      <subFamily DsubFamily="MT7687F Series">
+        <processor  Dclock="192000000"/>
+		<!-- *************************  Device 'MT7687F'  ***************************** -->
+		<device Dname="MT7687F">
+			<memory id="IROM1"                         start="0x10000000" size="0x00200000" startup="1" default="1"/>
+			<memory id="IRAM1"                         start="0x20000000" size="0x00040000" init="0"    default="1"/>
+			<memory id="IRAM2"                         start="0x00100000" size="0x00010000" init="0"    default="0"/>				   
+			<algorithm name="tools/keil/mt7687/7687_32M_MXIC.FLM" start="0x10000000" size="0x00400000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+		</device>				      
+      </subFamily>
+    </family>
+	<family Dfamily="MT25x3 Series" Dvendor="MediaTek:129">
+	<processor Dcore="Cortex-M4" DcoreVersion="r2p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+	  <compile header="driver/CMSIS/Device/MTK/mt2523/Include/mt2523.h"/>	 
+      <description>
+        The MT2523 HDK is a fully functional demonstration board for IoT and Wearables applications powered by MediaTek MT2523G, an ARM Cortex-M4 core-based microcontroller unit (MCU). It enables rich connectivity features, communication with cloud services and real-time control.
+      </description>	   
+     <!-- ************************  MT2523x  **************************** -->
+      <subFamily DsubFamily="MT2523 Series">
+        <processor  Dclock="208000000"/>        
+		<!-- *************************  Device 'Larkspur2523'  ***************************** -->
+		<device Dname="MT2523x">
+			<memory id="IROM1"                         start="0x08000000" size="0x00400000" startup="1" default="1"/>
+			<memory id="IRAM1"                         start="0x00000000" size="0x00400000" init="0"    default="1"/>
+			<memory id="IRAM2"                         start="0x04008000" size="0x00020000" init="0"    default="0"/>	
+			<algorithm name="tools/keil/mt2523/2523_32M_MXIC.FLM" start="0x08000000" size="0x00400000" RAMstart="0x04008000" RAMsize="0x00001000" default="1"/>						  
+		</device>						
+      </subFamily>
+    </family>
+  </devices>
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+     <condition id="MT7687F ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	<!-- defines the condition with ID "No MediaTek" -->
+    <condition id="No MediaTek">
+      <description>device from MTK and name starts with MT7687F</description>
+	  <!-- device name must not start with MT7687F and be from vendor Generic-->
+      <deny Dname="MT7687F"/>	               
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL UART">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL GPIO">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL EINT">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>        
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL GPT">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL FLASH">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>        
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL GDMA">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>         
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL PWM">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL WDT">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>          
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL CACHE">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>             
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL GPC">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>          
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL TRNG">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>          
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL SPI MASTER">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL I2S">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>        
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL RTC">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL I2C MASTER">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL ADC">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>       
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL IRDA">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>        
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>        
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL Crypto">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+	  <require Tcompiler="ARMCC"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/>          
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0"/> 
+    </condition>
+    
+    <condition id="MT7687F CMSIS-CORE HAL COMMON">
+      <description>CMSIS-CORE and PDMA HAL driver</description>
+	  <accept Dvendor="MediaTek:129" Dname="MT7687F"/>
+      
+      <require Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0"/>   
+      <require Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0"/>  
+      <require Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0"/>    
+    </condition>
+    
+	
+<!-- FreeRTOS -->
+	<condition id="MT7687F FreeRTOS">
+      <description>MT7687F FreeRTOS condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+	</condition>
+<!-- System startup -->
+	<condition id="MT7687F Startup">
+	  <description>MT7687F Startup condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+	</condition>
+<!-- TCP/IP Internet protocol new add -->
+    <!-- SNTP condition-->
+    <condition id="sntp condition">
+      <description>sntp condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+    </condition>
+    <!-- Dhcpd condition-->
+    <condition id="dhcpd condition">
+      <description>dhcpd condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+    </condition>
+    <!-- HTTP client -->
+    <condition id="http client condition">
+      <description>http client condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+      <accept Cclass="Network" Cgroup="Application" Csub="mbedTLS"/>
+    </condition>
+    <!-- Mqtt condition-->
+    <condition id="mqtt condition">
+      <description>mqtt condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+      <accept Cclass="Network" Cgroup="Application" Csub="mbedTLS"/>
+    </condition>
+    <!-- http2 client condition-->
+    <condition id="http2 client condition">
+      <description>http2 client condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="Application" Csub="mbedTLS"/>
+      <accept Cclass="Network" Cgroup="Application" Csub="Http Client"/>
+    </condition>
+    <!-- iperf condition-->
+    <condition id="iperf condition">
+      <description>iperf condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+    </condition>
+    <!-- httpd condition-->
+    <condition id="httpd condition">
+      <description>httpd condition</description>
+      <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+      <require Cclass="Network" Cgroup="TCPIP Stack" Csub="lwip"/>
+    </condition>
+	
+  <!-- Wi-Fi part -->
+  <condition id="MT7687F">
+    <description>show for MT7687F only</description>
+    <require Dvendor="MediaTek:129" Dname="MT7687F"/>
+  </condition>
+  
+
+	
+  <!-- 2523 condition -->
+    <condition id="MT2523x CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>MediaTek MT2523x devices and CMSIS-CORE</description>
+      
+      <require Dvendor="MediaTek:129" Dname="MT2523x"/>      
+    </condition>
+	
+    <condition id="MT2523x ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>   
+	
+<!-- FreeRTOS -->
+	<condition id="MT2523x FreeRTOS">
+      <description>MT2523x FreeRTOS condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+	</condition>
+<!-- System startup -->
+	<condition id="MT2523x Startup">
+	  <description>MT2523x Startup condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+
+	</condition>
+<!-- HAL -->  
+
+    <condition id="MT2523x COMMON">
+	  <description>MT2523x COMMON condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition> 
+    
+    <condition id="MT2523x UART I2C SPI">
+	  <description>MT2523x UART I2C SPI condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x ADC">
+	  <description>MT2523x ADC condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x DAC">
+	  <description>MT2523x DAC condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x I2S">
+	  <description>MT2523x I2S condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="AUDIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x RTC">
+	  <description>MT2523x RTC condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x GPT GDMA">
+	  <description>MT2523x GPT GDMA condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x FLASH">
+	  <description>MT2523x FLASH condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>   
+
+    <condition id="MT2523x PWM">
+	  <description>MT2523x PWM condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>  
+    
+    <condition id="MT2523x WDT">
+	  <description>MT2523x WDT condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>  
+    
+    <condition id="MT2523x KEYPAD">
+	  <description>MT2523x KEYPAD condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition> 
+
+    <condition id="MT2523x SD SDIO">
+	  <description>MT2523x SD/SDIO condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+	  <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>     
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT"/> 
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>    
+    
+    <condition id="MT2523x AUDIO">
+	  <description>MT2523x AUDIO condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>    
+
+    <condition id="MT2523x ISINK">
+	  <description>MT2523x ISINK condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>    
+
+    <condition id="MT2523x CHARGING">
+	  <description>MT2523x CHARGING condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="PMU"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="ADC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>   
+
+    <condition id="MT2523x ACCDET">
+	  <description>MT2523x ACCDET condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="NVIC"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="EINT"/>      
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition> 
+    
+    <condition id="MT2523x TRNG">
+	  <description>MT2523x TRNG condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>
+	  
+	  
+      <require Cclass="Device" Cgroup="HAL" Csub="CLOCK"/>            
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>    
+    
+    <condition id="MT2523x CLOCK">
+	  <description>MT2523x CLOCK condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+      <require Cclass="Device" Cgroup="HAL" Csub="GPT"/>            
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>
+    
+    <condition id="MT2523x PMU">
+	  <description>MT2523x PMU condition</description>
+	  <require Dvendor="MediaTek:129" Dname="MT2523x"/>	  
+      <require Cclass="Device" Cgroup="HAL" Csub="KEYPAD"/>            
+      <require Cclass="Device" Cgroup="HAL" Csub="ISINK"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="CHARGING"/>
+      <require Cclass="Device" Cgroup="HAL" Csub="COMMON"/>
+	</condition>   
+</conditions>
+
+  
+<!-- component section (optional for all Software Packs)-->
+
+<components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.6.0" condition="MT7687F Startup">
+       <description>System Startup for MTK MT7687F</description>
+         <files>
+            <!-- system files -->
+            <file category="header" name="driver/CMSIS/Device/MTK/mt7687/Include/system_mt7687.h" version="4.3.0"/>			
+			<file category="source" name="driver/CMSIS/Device/MTK/mt7687/Source/system_mt7687.c" attr="config" version="4.3.0"/>
+			<file category="source" name="driver/CMSIS/Device/MTK/mt7687/Source/MDK-ARM/startup_mt7687.s" attr="config" version="4.3.0" condition="MT7687F ARM"/>
+			<file category="include" name="driver/chip/mt7687/inc/"/>
+		 </files>
+    </component>
+	 
+   <component Cclass="Device" Cgroup="RTOS" Csub="Free RTOS" Cversion="4.6.0" condition="MT7687F FreeRTOS">
+	 <description>MediaTek RTOS for MT7687F</description>
+	 <files>
+         <file category="include" name="kernel/rtos/FreeRTOS/Source/include/"/>		 		 
+		 <file category="header" name="kernel/rtos/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h"/>
+         <file category="source" name="kernel/rtos/FreeRTOS/Source/portable/MemMang/heap_4.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/croutine.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/event_groups.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/list.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/queue.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/tasks.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/timers.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c"/>
+     </files>
+    </component>
+	
+<!-- HAL Components -->
+	<component Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL COMMON">
+      <description>COMMON for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal.h"/>
+       <file category="header" name="driver/chip/inc/hal_define.h"/>
+       <file category="header" name="driver/chip/mt7687/inc/hal_platform.h"/>
+       <file category="header" name="driver/chip/mt7687/inc/hal_log.h"/>
+       <file category="header" name="driver/chip/mt7687/inc/type_def.h"/>  
+       <file category="source" name="driver/chip/mt7687/src/hal_log.c"/>       
+      </files>
+    </component>
+    
+	<component Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL UART">
+      <description>UART for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_uart.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/uart.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/uart_hw.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_uart.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/uart.c"/>
+      </files>
+    </component>	
+	
+	<component Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL GPIO">
+      <description>GPIO for MediaTek MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_gpio.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_gpio.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_gpio.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/low_hal_gpio.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/hal_gpio_7687.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/pinmux.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/hal_pinmux.c"/>
+      </files>
+    </component>
+	
+	<component Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL EINT">
+      <description>EINT HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_eint.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_eint.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL GPT">
+      <description>GPT HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_gpt.h"/>
+        <file category="header" name="driver/chip/mt7687/inc/timer.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/gpt.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_gpt.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/gpt.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/timer.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL FLASH">
+      <description>FLASH HAL for MTK MT7687F</description>
+      <files>
+      	<file category="header" name="driver/chip/inc/hal_flash.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_flash.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL GDMA">
+      <description>GDMA HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_gdma.h"/>
+        <file category="header" name="driver/chip/mt7687/inc/dma_sw.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/dma_hw.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_gdma.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/dma.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL PWM">
+      <description>PWM HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_pwm.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/pwm.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_pwm.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_pwm.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/pwm.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/low_hal_pwm.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL WDT">
+      <description>WDT HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_wdt.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_wdt.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_wdt.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/low_hal_wdt.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL CACHE">
+      <description>CACHE HAL for MTK MT7687F</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_cache.h"/>
+        <file category="header" name="driver/chip/mt7687/inc/hal_cache_hw.h"/>
+        <file category="header" name="driver/chip/mt7687/inc/hal_cache_internal.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_cache.c"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_cache_internal.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="GPC" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL GPC">
+      <description>GPC HAL for MTK MT7687F</description>
+      <files>       
+        <file category="header" name="driver/chip/inc/hal_gpc.h"/>
+        <file category="header" name="driver/chip/mt7687/src/common/include/hal_pcnt.h"/>
+        <file category="source" name="driver/chip/mt7687/src/common/hal_gpc.c"/>
+        <file category="source" name="driver/chip/mt7687/src/common/hal_pcnt.c"/>
+      </files>
+    </component>
+    
+     <component Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL TRNG">
+      <description>TRNG for MTK MT7687F</description>
+      <files>
+      	<file category="header" name="driver/chip/inc/hal_trng.h"/>
+		<file category="source" name="driver/chip/mt7687/src/common/hal_trng.c"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL SPI MASTER">
+      <description>SPI MASTER for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_spi_master.h"/>
+       <file category="header" name="driver/chip/mt7687/inc/spim.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/hal_spim.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_spi_master.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/hal_spim.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/spim.c"/>
+      </files>
+    </component>	    
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL I2S">
+      <description>I2S for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_i2s.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/hal_i2s_internal.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_i2s.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/hal_i2s_internal.c"/>
+      </files>
+    </component>	
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL RTC">
+      <description>RTC for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_rtc.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_rtc.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_rtc.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/low_hal_rtc.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL I2C MASTER">
+      <description>I2C MASTER for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_i2c_master.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/hal_I2C.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/i2c.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_i2c_master.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/hal_I2C.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/i2c.c"/>
+      </files>
+    </component>    
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL ADC">
+      <description>ADC for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_adc.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_adc.c"/>
+      </files>
+    </component>    
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="IRDA" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL IRDA">
+      <description>IRDA for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_irrx.h"/>
+       <file category="header" name="driver/chip/inc/hal_irtx.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_irtx.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/ir_tx.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/low_hal_irrx.h"/>
+       <file category="source" name="driver/chip/mt7687/src/hal_irtx.c"/>
+       <file category="source" name="driver/chip/mt7687/src/common/hal_irrx.c "/>
+       <file category="source" name="driver/chip/mt7687/src/common/low_hal_irrx.c "/>
+       <file category="source" name="driver/chip/mt7687/src/common/ir_tx.c "/>
+       <file category="source" name="driver/chip/mt7687/src/hal_irtx.c"/>
+      </files>
+    </component>   
+
+    <component Cclass="Device" Cgroup="HAL" Csub="Crypto" Cversion="4.6.0" condition="MT7687F CMSIS-CORE HAL Crypto">
+      <description>Crypto for MediaTek MT7687F</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_aes.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/crypt_aes.h"/> 
+       <file category="header" name="driver/chip/inc/hal_des.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/crypt_des.h"/>
+	   <file category="header" name="driver/chip/inc/hal_md5.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/crypt_md5.h"/>
+	   <file category="header" name="driver/chip/inc/hal_sha.h"/>
+       <file category="header" name="driver/chip/mt7687/src/common/include/crypt_sha.h"/>
+      </files>
+    </component>
+	
+<!-- Internet protocol -->	
+   <bundle Cbundle="MediaTek Network" Cclass="Network" Cversion="4.6.0">
+    <description>MediaTek Network Stack</description>
+    <doc>Docs/README.txt</doc>
+
+
+    <!-- TCP/IP Internet protocol new add  -->
+    <component Cgroup="TCPIP Stack" Csub="lwip" condition="MT7687F">
+      <description>LwIP TCPIP Stack</description>
+      <files>		
+        <file category="include" name="middleware/third_party/lwip/src/include/"/>
+        <file category="source" name="middleware/third_party/lwip/src/core"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="mbedTLS" condition="MT7687F">
+      <description>mbedTLS for MT7687F</description>
+      <files>		
+        <file category="source" name="middleware/third_party/mbedtls/port/porting_layer.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/aes.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/aesni.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/arc4.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/asn1parse.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/asn1write.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/base64.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/bignum.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/blowfish.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/camellia.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ccm.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/certs.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/cipher.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/cipher_wrap.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ctr_drbg.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/debug.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/des.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/dhm.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ecdh.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ecdsa.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ecp.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ecp_curves.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/entropy.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/entropy_poll.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/error.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/gcm.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/havege.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/hmac_drbg.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/md.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/md_wrap.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/md2.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/md4.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/md5.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/memory_buffer_alloc.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/net_sockets.c"/>
+		<file category="source" name="middleware/third_party/mbedtls/library/cmac.c"/>
+		<file category="source" name="middleware/third_party/mbedtls/library/ecjpake.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/oid.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/padlock.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pem.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pk.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pk_wrap.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pkcs5.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pkcs11.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pkcs12.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pkparse.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/pkwrite.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/platform.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ripemd160.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/rsa.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/sha1.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/sha256.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/sha512.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_cache.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_ciphersuites.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_cli.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_cookie.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_srv.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_ticket.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/ssl_tls.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/threading.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/timing.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/version.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/version_features.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509_create.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509_crl.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509_crt.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509_csr.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509write_crt.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/x509write_csr.c"/>
+        <file category="source" name="middleware/third_party/mbedtls/library/xtea.c"/>
+      </files>
+   </component>	
+   
+   <component Cgroup="Application" Csub="cJSON" condition="MT7687F">
+      <description>cJSON for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/cjson/inc/cJSON.h"/>
+        <file category="header" name="middleware/third_party/cjson/inc/cJSON_internal.h"/>
+        <file category="source" name="middleware/third_party/cjson/src/cJSON_internal.c"/>
+        <file category="source" name="middleware/third_party/cjson/src/cJSON.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="SNTP"  condition="sntp condition">
+      <description>SNTP for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/sntp/inc/sntp.h"/>
+        <file category="source" name="middleware/third_party/sntp/src/sntp.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Dhcpd"  condition="dhcpd condition">
+      <description>Dhcpd for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/MTK/dhcpd/inc/dhcpd.h"/>
+        <file category="source" name="middleware/MTK/dhcpd/src/dhcpd.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Http Client" condition="http client condition">
+      <description>HTTP Client for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/httpclient/inc/httpclient.h"/>
+        <file category="source" name="middleware/third_party/httpclient/src/httpclient.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Mqtt" condition="mqtt condition">
+      <description>Mqtt for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/mqtt/MQTTClient-C/src/MQTTClient.h"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTClient-C/src/MQTTClient.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTClient-C/src/mediatek/MQTTMediatek.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTConnectClient.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTConnectServer.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTDeserializePublish.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTFormat.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTPacket.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTSerializePublish.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTSubscribeClient.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTSubscribeServer.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTUnsubscribeClient.c"/>
+        <file category="source" name="middleware/third_party/mqtt/MQTTPacket/src/MQTTUnsubscribeServer.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Http2 Client" condition="http2 client condition">
+      <description>Http2 Client for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/nghttp2/lib/includes/nghttp2/nghttp2.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/includes/nghttp2/nghttp2ver.h"/>	
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_buf.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_callbacks.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_frame.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_hd.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_hd_huffman.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_helper.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_http.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_int.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_map.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_mem.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_net.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_npn.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_option.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_outbound_item.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_pq.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_priority_spec.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_queue.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_session.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_stream.h"/>
+        <file category="header" name="middleware/third_party/nghttp2/lib/nghttp2_submit.h"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_buf.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_callbacks.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_frame.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_hd.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_hd_huffman.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_hd_huffman_data.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_helper.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_http.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_map.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_mem.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_net.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_npn.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_option.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_outbound_item.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_pq.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_priority_spec.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_queue.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_session.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_stream.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_submit.c"/>
+        <file category="source" name="middleware/third_party/nghttp2/lib/nghttp2_version.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Mini-XML" condition="MT7687F">
+      <description>Mini-XML for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/xml/inc/xml/config.h"/>
+        <file category="header" name="middleware/third_party/xml/inc/mxml.h"/>
+        <file category="header" name="middleware/third_party/xml/inc/mxml-private.h"/>
+        <file category="source" name="driver/chip/mt7687/src/hal_flash.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-attr.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-entity.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-file.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-get.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-index.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-node.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-private.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-search.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-set.c"/>
+        <file category="source" name="middleware/third_party/xml/src/mxml-string.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Iperf" condition="iperf condition">
+      <description>Iperf for MT7687F</description>
+      <files>		
+        <file category="source" name="driver/chip/mt7687/src/hal_flash.c"/>
+      </files>
+   </component>
+   
+   <component Cgroup="Application" Csub="Httpd" condition="httpd condition">
+      <description>Httpd for MT7687F</description>
+      <files>		
+        <file category="header" name="middleware/third_party/httpd/inc/auth_check.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/axhttp.h"/>        
+	    <file category="header" name="middleware/third_party/httpd/inc/base64.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/cgi.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/cgi_api.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/httpd.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/httpd_iprot.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/os_port.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/web_config.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/webdata_bin.h"/>
+        <file category="header" name="middleware/third_party/httpd/inc/web_proc.h"/>
+        <file category="source" name="middleware/third_party/httpd/src/auth_check.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/axhttpd.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/base64.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/cgi.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/cgi_api.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/httpd_api.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/os_port.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/proc.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/tdate_parse.c"/>
+        <file category="source" name="middleware/third_party/httpd/src/web_proc.c"/>
+      </files>
+   </component>
+  
+  </bundle>
+  
+ <!-- Wi-Fi -->
+   <component Cclass="Wi-Fi" Cgroup="feature" Csub="Smart connection" Cversion="4.6.0"  condition="MT7687F ARM">
+      <description>Wi-Fi smart connection for MTK MT7687F</description>
+      <files>
+		    <file category="source" name="middleware/MTK/smtcn/src/elian.c"/>
+		    <file category="source" name="middleware/MTK/smtcn/src/smt_conn.c"/>
+		 </files>
+   </component>
+   
+<!--Wi-Fi End-->
+	
+	
+   <component Cclass="MyClass" Cgroup="MyGroup" Csub="MySubGroup" Cversion="4.6.0" condition="No MediaTek">
+	<description>MyClass Hide for MT7687F</description>
+	  <files>
+        <file category="source" name="driver/chip/mt7687/src/hal_flash.c"/>
+      </files>
+   </component> 
+
+   <!-- 2523 component -->
+   <component Cclass="Device" Cgroup="Startup" Cversion="4.6.0" condition="MT2523x Startup">
+      <description>System Startup for MediaTek MT2523x</description>
+      <files>    
+		<file category="header" name="driver/CMSIS/Device/MTK/mt2523/Include/system_mt2523.h" version="4.6.0"/>			
+		<file category="source" name="driver/CMSIS/Device/MTK/mt2523/Source/system_mt2523.c" attr="config" version="4.6.0"/>
+		<file category="source" name="driver/CMSIS/Device/MTK/mt2523/Source/MDK-ARM/startup_mt2523.s" attr="config" version="4.6.0" condition="MT2523x ARM"/>
+		<file category="include" name="driver/chip/mt2523/inc/"/>
+	  </files>
+    </component>
+	
+   <component Cclass="Device" Cgroup="RTOS" Csub="Free RTOS" Cversion="4.6.0" condition="MT2523x FreeRTOS">
+	 <description>Mediatek RTOS for MT2523x</description>
+	 <files>
+		 <file category="include" name="kernel/rtos/FreeRTOS/Source/include/"/>
+		 <file category="header" name="kernel/rtos/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/portable/MemMang/heap_4.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/croutine.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/event_groups.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/list.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/queue.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/tasks.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/timers.c"/>
+		 <file category="source" name="kernel/rtos/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c"/>
+     </files>
+    </component>
+	
+<!-- HAL Components -->
+	<component Cclass="Device" Cgroup="HAL" Csub="COMMON" Cversion="4.6.0" condition="MT2523x CMSIS-CORE">
+      <description>COMMON for MyVendor MT2523x</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal.h"/>
+       <file category="header" name="driver/chip/inc/hal_define.h"/>
+       <file category="header" name="driver/chip/mt2523/inc/hal_platform.h"/>
+       <file category="header" name="driver/chip/mt2523/inc/hal_log.h"/>
+       <file category="source" name="driver/chip/mt2523/src/hal_log.c"/>
+      </files>
+    </component>
+    
+	<component Cclass="Device" Cgroup="HAL" Csub="UART" Cversion="4.6.0" condition="MT2523x UART I2C SPI">
+      <description>UART for MyVendor MT2523x</description>
+      <files>
+       <file category="header" name="driver/chip/inc/hal_uart.h"/>
+       <file category="header" name="driver/chip/mt2523/inc/hal_uart_internal.h"/>
+       <file category="header" name="driver/chip/mt2523/inc/hal_uart_internal_platform.h"/>
+       <file category="source" name="driver/chip/mt2523/src/hal_uart.c"/>
+       <file category="source" name="driver/chip/mt2523/src/hal_uart_internal.c"/>
+       <file category="source" name="driver/chip/mt2523/src/hal_uart_internal_platform.c"/>
+      </files>
+    </component>	
+	
+	<component Cclass="Device" Cgroup="HAL" Csub="I2C MASTER" Cversion="4.6.0" condition="MT2523x UART I2C SPI">
+      <description>I2C MASTER for MyVendor MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_i2c_master.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_i2c_master_internal.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_i2c_master.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_i2c_master_internal.c"/>
+      </files>
+    </component>
+	
+	<component Cclass="Device" Cgroup="HAL" Csub="GPIO" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>GPIO HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_gpio.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_gpio.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="ADC" Cversion="4.6.0" condition="MT2523x ADC">
+      <description>ADC HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_adc.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_adc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="HAL" Csub="DAC" Cversion="4.6.0" condition="MT2523x DAC">
+      <description>DAC HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_dac.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_dac.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="FLASH" Cversion="4.6.0" condition="MT2523x FLASH">
+      <description>FLASH HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_cfi.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_cfi_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_config.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_defs.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_id.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_init.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_sfi_config.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_combo_sfi_defs.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_custom.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_custom_memorydevice.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_custom_sfi.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_custom_sfi_clock.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_disk.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_disk_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_drvflash.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_fs_type.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_general_types.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_kal_public_defs.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_mtd.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_mtd_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_mtd_sf_dal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_mtd_sf_ut.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_mtd_ut.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_nor_profile.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_opt.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_opt_gen.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_sf.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_sfi_hw.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_flash_sfi_release.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_cfi.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_combo_init.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_combo_nor.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_custom.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_custom_sfi.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_disk.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_mtd.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_mtd_common.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_flash_mtd_dal.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="I2S" Cversion="4.6.0" condition="MT2523x I2S">
+      <description>I2S HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_i2s.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_i2s_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_i2s_internal_pcm_route.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_i2s.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_i2s_internal.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_i2s_internal_pcm_route.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_internal_afe.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_fw_interface.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_internal_service.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="SPI MASTER" Cversion="4.6.0" condition="MT2523x UART I2C SPI">
+      <description>SPI MASTER HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_spi_master.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_spi_master_internal.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_spi_master.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_spi_master_internal.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="SPI SLAVE" Cversion="4.6.0" condition="MT2523x UART I2C SPI">
+      <description>SPI SLAVE HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_spi_slave.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_spi_slave_internal.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_spi_slave.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_spi_slave_internal.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="RTC" Cversion="4.6.0" condition="MT2523x RTC">
+      <description>RTC HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_rtc.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_rtc_internal.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_rtc.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="EINT" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>EINT HAL for MediaTek MT2523x</description>
+      <files>       
+        <file category="header" name="driver/chip/inc/hal_eint.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_eint_internal.h"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_eint.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_eint_internal.c"/>
+      </files>
+    </component>
+    
+     <component Cclass="Device" Cgroup="HAL" Csub="GPT" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>GPT HAL for MediaTek MT2523x</description>
+      <files>
+      	<file category="header" name="driver/chip/inc/hal_gpt.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_gpt_internal.h"/>       
+      	<file category="source" name="driver/chip/mt2523/src/hal_gpt.c"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_gpt_internal.c"/>
+     </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="GDMA" Cversion="4.6.0" condition="MT2523x GPT GDMA">
+      <description>GDMA HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_gdma.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_gdma_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_pdma_internal.h"/>
+		<!-- <file category="source" name="driver/chip/mt2523/inc/hal_gdma.c"/> -->
+        <file category="source" name="driver/chip/mt2523/src/hal_gdma_internal.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_pdma_internal.c"/>
+     </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="PWM" Cversion="4.6.0" condition="MT2523x PWM">
+      <description>PWM HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_pwm.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_pwm.c"/>
+     </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="WDT" Cversion="4.6.0" condition="MT2523x WDT">
+      <description>WDT HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_wdt.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_wdt_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_wdt_retention.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_wdt.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_wdt_internal.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_wdt_retention.c"/>
+     </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="KEYPAD" Cversion="4.6.0" condition="MT2523x KEYPAD">
+      <description>KEYPAD HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_keypad.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_keypad_powerkey_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_keypad_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_keypad.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_keypad_internal.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_keypad_powerkey_internal.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="HAL" Csub="SD" Cversion="4.6.0" condition="MT2523x SD SDIO">
+      <description>SD HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_sd.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sd_internal.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sd_define.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_msdc.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_msdc.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_sd.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_sd_internal.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="HAL" Csub="SDIO" Cversion="4.6.0" condition="MT2523x SD SDIO">
+      <description>SDIO HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_sdio.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_msdc.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sdio_define.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sd_define.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_msdc.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_sdio.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_sdio_internal.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="HAL" Csub="CACHE" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>CACHE HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_cache.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_cache_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_cache.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_cache_internal.c"/>
+     </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="HAL" Csub="MPU" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>MPU HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_mpu.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_mpu_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_mpu.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_mpu_internal.c"/>
+     </files>
+    </component>
+
+
+    <component Cclass="Device" Cgroup="HAL" Csub="AUDIO" Cversion="4.6.0" condition="MT2523x AUDIO">
+      <description>AUDIO HAL for MediaTek MT2523x</description>
+      <files>
+		<file category="source" name="driver/chip/mt2523/src/hal_audio.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_internal_pcm.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_internal_afe.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_fw_interface.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_low_power.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_audio_internal_service.c"/>
+     </files>
+    </component>    
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="ISINK" Cversion="4.6.0" condition="MT2523x ISINK">
+      <description>ISINK HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_isink.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_isink_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_isink.c"/>
+     </files>
+    </component>  
+    
+    <component Cclass="Device" Cgroup="HAL" Csub="PMU" Cversion="4.6.0" condition="MT2523x PMU">
+      <description>PMU HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/mt2523/inc/hal_pmu.h"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="CHARGING" Cversion="4.6.0" condition="MT2523x CHARGING">
+      <description>CHARGING HAL for MediaTek MT2523x</description>
+      <files>
+		<file category="source" name="driver/chip/mt2523/src/hal_charger.c"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="ACCDET" Cversion="4.6.0" condition="MT2523x ACCDET">
+      <description>ACCDET HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_accdet.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_accdet_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_accdet.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_accdet_internal.c"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="SLEEP" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>SLEEP HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/mt2523/inc/hal_cm4_topsm.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sys_topsm.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_dsp_topsm.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sleep_driver.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_sleep_manager_platform.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_dcxo.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_bsi.h"/>		                                
+        <file category="source" name="driver/chip/mt2523/src/hal_dcxo.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_bsi.c"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="TRNG" Cversion="4.6.0" condition="MT2523x TRNG">
+      <description>TRNG HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_trng.h"/>
+        <file category="header" name="driver/chip/mt2523/inc/hal_trng_internal.h"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="NVIC" Cversion="4.6.0" condition="MT2523x COMMON">
+      <description>NVIC HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/mt2523/inc/hal_nvic_internal.h"/>
+		<file category="source" name="driver/chip/mt2523/src/hal_nvic.c"/>
+        <file category="source" name="driver/chip/mt2523/src/hal_nvic_internal.c"/>
+     </files>
+    </component>  
+
+    <component Cclass="Device" Cgroup="HAL" Csub="CLOCK" Cversion="4.6.0" condition="MT2523x CLOCK">
+      <description>CLOCK HAL for MediaTek MT2523x</description>
+      <files>
+        <file category="header" name="driver/chip/inc/hal_clock.h"/>        
+     </files>
+    </component>  
+   
+</components>
+
+  
+<boards>
+  <board vendor="MediaTek" name="LinkIt 7687 development board" revision="Rev.1" salesContact="http://download.labs.mediatek.com" orderForm="http://download.labs.mediatek.com">
+    <description>Development board for MT7687F Devices</description>
+    <mountedDevice    deviceIndex="0" Dvendor="MediaTek:129" Dname="MT7687F"/> 
+  </board>
+  
+  <board vendor="MediaTek" name="LinkIt 2523 development board" revision="Rev.1" salesContact="http://download.labs.mediatek.com" orderForm="http://download.labs.mediatek.com">
+    <description>Development board for 2523 Devices</description>
+    <mountedDevice    deviceIndex="0" Dvendor="MediaTek:129" Dname="MT2523x"/>
+  </board>
+  
+</boards>
+
+<examples>
+    <example name="free rtos example" doc="Abstract.txt" folder="tools/keil/mt7687/rtos">
+      <description>MT7687F free rtos example</description>
+      <board name="LinkIt 7687 development board" vendor="MediaTek"/>
+      <project>
+        <environment name="uv" load="freertos.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="Device" Cgroup="RTOS" Csub="Free RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+	<example name="free rtos example" doc="Abstract.txt" folder="tools/keil/mt2523/rtos">
+      <description>MT2523x free rtos example</description>
+      <board name="LinkIt 2523 development board" vendor="MediaTek"/>
+      <project>
+        <environment name="uv" load="freertos.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+		<component Cclass="Device" Cgroup="RTOS" Csub="Free RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+</examples>
+
+
+</package>

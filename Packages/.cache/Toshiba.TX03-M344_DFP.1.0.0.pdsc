@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/micro/device-family-Pack/</url>
+  <name>TX03-M344_DFP</name>
+  <description>Toshiba TX03 Series TMPM344x Device Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2018-07-23">
+      First Release version of TX03 Series TMPM344x Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3</keyword>
+    <keyword>TX03</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TX03 Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <description>
+The TX03 microcontroller series embeds an ARM Cortex-M3 core, which provides high code density and fast interrupt response times required for real-time applications.
+The TX03 Series also incorporates a Toshiba-proprietary NANO FLASH™ memory featuring high capacity and low power consumption.
+      </description>
+
+      <!-- ************************  Subfamily 'M344'  **************************** -->
+      <subFamily DsubFamily="M344">
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'TMPM344F10XBG'  ***************************** -->
+        <device Dname="TMPM344F10XBG">
+          <processor Dclock="55000000"/>
+          <compile header="Device/Include/TMPM344.h"/>
+          <debug svd="SVD/M344.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM344_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="DMA"           n="6"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="6"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="16"      m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="3"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="4"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="162"                           name="VFBGA162 7x7x0.5"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM344FDXBG'  ***************************** -->
+        <device Dname="TMPM344FDXBG">
+          <processor Dclock="55000000"/>
+          <compile header="Device/Include/TMPM344.h"/>
+          <debug svd="SVD/M344.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM344_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="DMA"           n="6"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="6"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="16"      m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="3"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="4"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="162"                           name="VFBGA162 7x7x0.5"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+
+    <condition id="TMPM344 CMSIS">
+      <description>Toshiba TMPM344 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM344*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup TMPM344 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM344 CMSIS">
+      <description>System Startup for Toshiba TMPM344 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM344.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM344.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

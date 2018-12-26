@@ -1,0 +1,1896 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>AnalogDevices</vendor>
+   <name>ADuCM320_DFP</name>
+   <description>Analog Devices ADuCM320 Device Support and Examples</description>
+   <url>http://www.analog.com/media/en/engineering-tools/design-tools</url>
+   <supportContact>http://www.analog.com/en/content/technical_support_page/fca.html</supportContact>
+   <license>License\License.txt</license>  
+
+   <releases>
+      <release version="1.1.0">
+      Added ADuCM320i device
+      Added ADuCM322 device
+      Changed folder structure
+      Added ADuCM322 low level peripheral libraries
+      </release>
+      <release version="1.0.3">
+      Fixed errors due to new ADI website
+      Added low level peripheral libraries
+      Updated device header file and SVD
+      </release>
+      <release version="1.0.1">
+      Made pack compliant to Pack schema 1.3 
+      Added RTX example
+      Fixed Flashloader Sector Erase
+      </release>
+      <release version="1.0.0">
+      Initial Release
+      </release>
+   </releases>
+
+   <keywords>
+      <!-- keywords for indexing -->
+      <keyword>Analog Devices</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Analog Devices</keyword>
+      <keyword>ADuCM320</keyword>
+   </keywords>
+   <devices>
+      <family Dfamily="ADuCM32x Series" Dvendor="Analog Devices:1">
+
+      <!-- ******************************  ADuCM320  ****************************** -->
+      <device Dname="ADuCM320">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <book    name="Documentation\DUI0552A_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+
+        <debug      svd="SVD\ADuCM320.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="1"   default="1"/>
+        <algorithm  name="Flash\ADUCM320.FLM"  start="0x00000000"  size="0x40000"  RAMstart="0x20000000"  RAMsize="0x0800"  default="1"/>
+        <book    name="Documentation\ADuCM320\User Guide\UG-498.pdf"          title="ADuCM320 Hardware Reference Manual"/>
+        <book    name="Documentation\ADuCM320\Datasheet\ADuCM320.pdf"                   title="ADuCM320 Data Sheet"/>
+        <book    name="Documentation\Technotes\AN-1310.pdf"         title="ADuCM320 Flash Programming via MDIO"/>
+        <book    name="Documentation\Technotes\AN-1322.pdf"         title="ADuCM320 Code Execution Speed"/>
+        <description>
+The ADuCM320 is a Precision Analog Microcontroller, 14-Bit Analog I/O with MDIO interface, ARM Cortex M3
+Typical applications include Optical networking – 10G, 40G and 100G modules, Industrial control and automation systems,
+Smart sensors, precision instrumentation and Base station systems.
+        </description>
+        <feature type="ADC"           n="16"      m="14"    name="Multichannel, 14-bit 1MSPS ADC"/>
+        <feature type="DAC"           n="8"       m="12"/>
+        <feature type="AnalogOther"   n="4"       name="0 mA to 150 mA IDACs"/>
+        <feature type="Other"         n="1"       name="MDIO slave up to 4 MHz"/>
+        <feature type="PLL"           n="1"       name="80 MHz PLL with programmable divider"/>
+        <feature type="IntRC"         n="16000000" m="16000000"      name="Internal oscillator with +/-3% accuracy"/>
+        <feature type="XTAL"          n="16000000" m="16000000"      name="External Crystal Oscillator"/>
+        <feature type="Memory"        n="262144"  name="256kB Flash memory"/>
+        <feature type="Memory"        n="32768"   name="8kB SRAM"/>
+        <feature type="SPI"           n="2"       m="40000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="PWM"           n="6"       m="16"/>
+        <feature type="UART"          n="1"       m="500000"/>
+        <feature type="IOs"           n="40"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="WDT"           n="1"       name="16 bit Watchdog timer"/>
+        <feature type="TimerOther"    n="1"       name="32 bit Wake-up timer"/>
+        <feature type="DMA"           n="14"     />        
+        <feature type="NVIC"          n="54"     />        
+        <feature type="TempSens"      n="1"     />        
+        <feature type="Temp"          n="-40"     m="80"/>
+        <feature type="VCC"           n="2.9"    m="3.60"/>
+        <feature type="BGA"           n="96"/>
+        <compile header="ADuCM320\common\ADuCM320.h"  define="ADuCM320"/>
+      </device>
+      <device Dname="ADuCM320i">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <book    name="Documentation\DUI0552A_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+
+        <debug      svd="SVD\ADuCM320i.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="1"   default="1"/>
+        <algorithm  name="Flash\ADUCM320.FLM"  start="0x00000000"  size="0x40000"  RAMstart="0x20000000"  RAMsize="0x0800"  default="1"/>
+        <book    name="Documentation\ADuCM320i\User Guide\UG-868.pdf"          title="ADuCM320i Hardware Reference Manual"/>
+        <book    name="Documentation\ADuCM320i\Datasheet\ADuCM320i.pdf"                   title="ADuCM320i Data Sheet"/>
+        <book    name="Documentation\Technotes\AN-806.pdf"          title="Flash Programming via I2C—Protocol Type 5"/>
+        <book    name="Documentation\Technotes\AN-1322.pdf"         title="ADuCM320 Code Execution Speed"/>
+        <description>
+The ADuCM320i is a Precision Analog Microcontroller, 14-Bit Analog I/O with MDIO interface, ARM Cortex M3
+Typical applications include Optical networking – 10G, 40G and 100G modules, Industrial control and automation systems,
+Smart sensors, precision instrumentation and Base station systems.
+        </description>
+        <feature type="ADC"           n="16"      m="14"    name="Multichannel, 14-bit 1MSPS ADC"/>
+        <feature type="DAC"           n="8"       m="12"/>
+        <feature type="AnalogOther"   n="4"       name="0 mA to 150 mA IDACs"/>
+        <feature type="Other"         n="1"       name="MDIO slave up to 4 MHz"/>
+        <feature type="PLL"           n="1"       name="80 MHz PLL with programmable divider"/>
+        <feature type="IntRC"         n="16000000" m="16000000"      name="Internal oscillator with +/-3% accuracy"/>
+        <feature type="XTAL"          n="16000000" m="16000000"      name="External Crystal Oscillator"/>
+        <feature type="Memory"        n="262144"  name="256kB Flash memory"/>
+        <feature type="Memory"        n="32768"   name="8kB SRAM"/>
+        <feature type="SPI"           n="2"       m="40000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="PWM"           n="6"       m="16"/>
+        <feature type="UART"          n="1"       m="500000"/>
+        <feature type="IOs"           n="40"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="WDT"           n="1"       name="16 bit Watchdog timer"/>
+        <feature type="TimerOther"    n="1"       name="32 bit Wake-up timer"/>
+        <feature type="DMA"           n="14"     />        
+        <feature type="NVIC"          n="54"     />        
+        <feature type="TempSens"      n="1"     />        
+        <feature type="Temp"          n="-40"     m="80"/>
+        <feature type="VCC"           n="2.9"    m="3.60"/>
+        <feature type="BGA"           n="96"/>
+        <compile header="ADuCM320i\common\ADuCM320i.h"  define="ADuCM320i"/>
+      </device> 
+      <device Dname="ADuCM322">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <book    name="Documentation\DUI0552A_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+
+        <debug      svd="SVD\ADuCM322.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="1"   default="1"/>
+        <algorithm  name="Flash\ADUCM320.FLM"  start="0x00000000"  size="0x40000"  RAMstart="0x20000000"  RAMsize="0x0800"  default="1"/>
+        <book    name="Documentation\ADuCM322\User Guide\UG-868.pdf"          title="ADuCM322 Hardware Reference Manual"/>
+        <book    name="Documentation\ADuCM322\Datasheet\ADuCM322.pdf"                   title="ADuCM322 Data Sheet"/>
+        <book    name="Documentation\Technotes\AN-806.pdf"          title="Flash Programming via I2C—Protocol Type 5"/>
+        <book    name="Documentation\Technotes\AN-1310.pdf"         title="ADuCM320 Flash Programming via MDIO"/>
+        <book    name="Documentation\Technotes\AN-1322.pdf"         title="ADuCM320 Code Execution Speed"/>
+        <description>
+The ADuCM322 is a Precision Analog Microcontroller, 14-Bit Analog I/O with MDIO interface, ARM Cortex M3
+Typical applications include Optical networking – 10G, 40G and 100G modules, Industrial control and automation systems,
+Smart sensors, precision instrumentation and Base station systems.
+        </description>
+        <feature type="ADC"           n="16"      m="14"    name="Multichannel, 14-bit 1MSPS ADC"/>
+        <feature type="DAC"           n="8"       m="12"/>
+        <feature type="Other"         n="1"       name="MDIO slave up to 4 MHz"/>
+        <feature type="PLL"           n="1"       name="80 MHz PLL with programmable divider"/>
+        <feature type="IntRC"         n="16000000" m="16000000"      name="Internal oscillator with +/-3% accuracy"/>
+        <feature type="XTAL"          n="16000000" m="16000000"      name="External Crystal Oscillator"/>
+        <feature type="Memory"        n="262144"  name="256kB Flash memory"/>
+        <feature type="Memory"        n="32768"   name="8kB SRAM"/>
+        <feature type="SPI"           n="2"       m="40000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="PWM"           n="6"       m="16"/>
+        <feature type="UART"          n="1"       m="500000"/>
+        <feature type="IOs"           n="40"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="WDT"           n="1"       name="16 bit Watchdog timer"/>
+        <feature type="TimerOther"    n="1"       name="32 bit Wake-up timer"/>
+        <feature type="DMA"           n="14"     />        
+        <feature type="NVIC"          n="54"     />        
+        <feature type="TempSens"      n="1"     />        
+        <feature type="Temp"          n="-40"     m="80"/>
+        <feature type="VCC"           n="2.9"    m="3.60"/>
+        <feature type="BGA"           n="96"/>
+        <compile header="ADuCM322\common\ADuCM322.h"  define="ADuCM322"/>
+      </device>  
+      <device Dname="ADuCM322i">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <book    name="Documentation\DUI0552A_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+
+        <debug      svd="SVD\ADuCM322.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="1"   default="1"/>
+        <algorithm  name="Flash\ADUCM320.FLM"  start="0x00000000"  size="0x40000"  RAMstart="0x20000000"  RAMsize="0x0800"  default="1"/>
+        <book    name="Documentation\ADuCM322\User Guide\UG-868.pdf"          title="ADuCM320 Hardware Reference Manual"/>
+        <book    name="Documentation\ADuCM322\Datasheet\ADuCM322.pdf"                   title="ADuCM322 Data Sheet"/>
+        <book    name="Documentation\Technotes\AN-1310.pdf"         title="ADuCM320 Flash Programming via MDIO"/>
+        <book    name="Documentation\Technotes\AN-1322.pdf"         title="ADuCM320 Code Execution Speed"/>
+        <description>
+The ADuCM322i is a Precision Analog Microcontroller, 14-Bit Analog I/O with MDIO interface, ARM Cortex M3
+Typical applications include Optical networking – 10G, 40G and 100G modules, Industrial control and automation systems,
+Smart sensors, precision instrumentation and Base station systems.
+        </description>
+        <feature type="ADC"           n="16"      m="14"    name="Multichannel, 14-bit 1MSPS ADC"/>
+        <feature type="DAC"           n="8"       m="12"/>
+        <feature type="Other"         n="1"       name="MDIO slave up to 4 MHz"/>
+        <feature type="PLL"           n="1"       name="80 MHz PLL with programmable divider"/>
+        <feature type="IntRC"         n="16000000" m="16000000"      name="Internal oscillator with +/-3% accuracy"/>
+        <feature type="XTAL"          n="16000000" m="16000000"      name="External Crystal Oscillator"/>
+        <feature type="Memory"        n="262144"  name="256kB Flash memory"/>
+        <feature type="Memory"        n="32768"   name="8kB SRAM"/>
+        <feature type="SPI"           n="2"       m="40000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="PWM"           n="6"       m="16"/>
+        <feature type="UART"          n="1"       m="500000"/>
+        <feature type="IOs"           n="40"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="WDT"           n="1"       name="16 bit Watchdog timer"/>
+        <feature type="TimerOther"    n="1"       name="32 bit Wake-up timer"/>
+        <feature type="DMA"           n="14"     />        
+        <feature type="NVIC"          n="54"     />        
+        <feature type="TempSens"      n="1"     />        
+        <feature type="Temp"          n="-40"     m="80"/>
+        <feature type="VCC"           n="2.9"    m="3.60"/>
+        <feature type="BGA"           n="96"/>
+        <compile header="ADuCM322\common\ADuCM322.h"  define="ADuCM322"/>
+      </device>      
+      
+    </family>
+  </devices>
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+   <boards>
+      <board vendor="Analog Devices" name="EVAL-ADuCM320EBZ" revision="Rev. D" orderForm="http://www.analog.com/en/evaluation/eval-aducm320/eb.html">
+      <description>Analog Devices ADuCM320 Evaluation Kit</description>
+      <image small="Images\EVAL-ADuCM320EBZ_small.jpg" large="Images\EVAL-ADuCM320EBZ.jpg"/>
+      <book category="setup"         name="Documentation\ADuCM320\User Guide\UG-692.pdf" title="Get Started Guide"/>
+      <book category="schematic"     name="Documentation\ADuCM320\Evaluation Board\EVAL-ADuCM320EBZ RevD LAYERS.pdf"   title="Layout"/>
+      <book category="schematic"     name="Documentation\ADuCM320\Evaluation Board\EVAL-ADuCM320EBZ RevD SCH.pdf"      title="Schematic"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM320"/>
+      <debugInterface adapter="J-Link Lite ADI" connector="Mini-USB"/>
+      <feature type="PWR"       n="4" m="5.5"      name="POWER Connector J1 for external supply"/>
+      <feature type="PWR"       n="2.5"            name="POWER Connector J11 for external supply"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="USB"       n="1"              name="Mini-USB connector for UART"/>
+      <feature type="RS232"     n="1"              name="TTL level UART connector"/>      
+      <feature type="DIO"       n="29"             />
+      <feature type="AIO"       n="16"             name="Analog inputs to ADC"/>
+      <feature type="AIO"       n="8"              name="VDAC Outputs"/>
+      <feature type="AIO"       n="4"              name="IDAC Outputs"/>
+      <feature type="Button"    n="3"              name="Push-Buttons: external IRQ, Reset and Serial download"/>
+      <feature type="LED"       n="1"              name="User LED"/>
+      </board>
+      
+      <board vendor="Analog Devices" name="EVAL-ADuCM320iQSPZ" revision="Rev. A" orderForm="http://www.analog.com/en/evaluation/eval-aducm320/eb.html">
+      <description>Analog Devices ADuCM320i Evaluation Kit</description>
+      <image small="Images\EVAL-ADuCM320iQSPZ_small.jpg" large="Images\EVAL-ADuCM320iQSPZ.jpg"/>
+      <book category="setup"         name="Documentation\ADuCM320i\User Guide\UG-692.pdf" title="Get Started Guide"/>
+      <book category="schematic"     name="Documentation\ADuCM320i\Evaluation Board\EVAL-ADuCM320iQSPZ RevA LAYERS.pdf"   title="Layout"/>
+      <book category="schematic"     name="Documentation\ADuCM320i\Evaluation Board\EVAL-ADuCM320iQSPZ RevA SCH.pdf"      title="Schematic"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM320i"/>
+      <debugInterface adapter="J-Link Lite ADI" connector="Mini-USB"/>
+      <feature type="PWR"       n="4" m="5.5"      name="POWER Connector J1 for external supply"/>
+      <feature type="PWR"       n="2.5"            name="POWER Connector J11 for external supply"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="USB"       n="1"              name="Mini-USB connector for UART"/>
+      <feature type="RS232"     n="1"              name="TTL level UART connector"/>      
+      <feature type="DIO"       n="29"             />
+      <feature type="AIO"       n="16"             name="Analog inputs to ADC"/>
+      <feature type="AIO"       n="8"              name="VDAC Outputs"/>
+      <feature type="AIO"       n="4"              name="IDAC Outputs"/>
+      <feature type="Button"    n="3"              name="Push-Buttons: external IRQ, Reset and Serial download"/>
+      <feature type="LED"       n="1"              name="User LED"/>
+      </board>
+            
+      <board vendor="Analog Devices" name="EVAL-ADuCM322EBZ" revision="Rev. A" orderForm="http://www.analog.com/en/evaluation/eval-aducm322/eb.html">
+      <description>Analog Devices ADuCM322 Evaluation Kit</description>
+      <image small="Images\EVAL-ADuCM322EBZ_small.jpg" large="Images\EVAL-ADuCM322EBZ.jpg"/>
+      <book category="setup"         name="Documentation\ADuCM322\Evaluation Board\UG-910.pdf" title="Get Started Guide"/>
+      <book category="schematic"     name="Documentation\ADuCM322\Evaluation Board\EVAL-ADuCM322EBZ RevA LAYERS.pdf"   title="Layout"/>
+      <book category="schematic"     name="Documentation\ADuCM322\Evaluation Board\EVAL-ADuCM322EBZ RevA SCH.pdf"      title="Schematic"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM322"/>
+      <debugInterface adapter="J-Link Lite ADI" connector="Mini-USB"/>
+      <feature type="PWR"       n="5" m="5.5"      name="POWER Connector J5 for external supply"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="USB"       n="1"              name="Mini-USB connector for UART"/>
+      <feature type="RS232"     n="1"              name="TTL level UART connector"/>      
+      <feature type="DIO"       n="29"             />
+      <feature type="AIO"       n="16"             name="Analog inputs to ADC"/>
+      <feature type="AIO"       n="8"              name="VDAC Outputs"/>
+      <feature type="Button"    n="3"              name="Push-Buttons: external IRQ, Reset and Serial download"/>
+      <feature type="LED"       n="1"              name="User LED"/>
+      </board>
+   </boards>
+   <!-- examples section (optional for all Software Packs)-->
+
+   <examples>
+    <example name="ADC" doc="Abstract.txt" folder="ADuCM322\examples\ADC">
+      <description>ADC example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+     <example name="ADC" doc="Abstract.txt" folder="ADuCM320\examples\ADC">
+      <description>ADC example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+     <example name="ADC" doc="Abstract.txt" folder="ADuCM320i\examples\ADC">
+      <description>ADC example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC_DMA" doc="Abstract.txt" folder="ADuCM322\examples\ADC_DMA">
+      <description>ADC DMA example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC_DMA" doc="Abstract.txt" folder="ADuCM320\examples\ADC_DMA">
+      <description>ADC DMA example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC_DMA" doc="Abstract.txt" folder="ADuCM320i\examples\ADC_DMA">
+      <description>ADC DMA example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC DMA SEQ" doc="Abstract.txt" folder="ADuCM322\examples\ADC_DMA_SEQ">
+      <description>ADC DMA Sequencer example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_DMA.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+   
+    <example name="ADC DMA SEQ" doc="Abstract.txt" folder="ADuCM320\examples\ADC_DMA_SEQ">
+      <description>ADC DMA Sequencer example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_DMA.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC DMA SEQ" doc="Abstract.txt" folder="ADuCM320i\examples\ADC_DMA_SEQ">
+      <description>ADC DMA Sequencer example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_DMA.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ADC Sequencer" doc="Abstract.txt" folder="ADuCM322\examples\ADC_Sequencer">
+      <description>ADC Sequencer example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_Sequencer.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+     <example name="ADC Sequencer" doc="Abstract.txt" folder="ADuCM320\examples\ADC_Sequencer">
+      <description>ADC Sequencer example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_Sequencer.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+      <example name="ADC Sequencer" doc="Abstract.txt" folder="ADuCM320i\examples\ADC_Sequencer">
+      <description>ADC Sequencer example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ADC_Sequencer.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Cache" doc="Abstract.txt" folder="ADuCM322\examples\Cache">
+      <description>Cache example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Cache.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+
+    <example name="CMP" doc="Abstract.txt" folder="ADuCM322\examples\CMP">
+      <description>Comparator example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="CMP.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+     <example name="CMP" doc="Abstract.txt" folder="ADuCM320\examples\CMP">
+      <description>Comparator example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="CMP.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+     <example name="CMP" doc="Abstract.txt" folder="ADuCM320i\examples\CMP">
+      <description>Comparator example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="CMP.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Crc" doc="Abstract.txt" folder="ADuCM322\examples\Crc">
+      <description>Crc example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Crc.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Crc" doc="Abstract.txt" folder="ADuCM320\examples\Crc">
+      <description>Crc example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Crc.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Crc" doc="Abstract.txt" folder="ADuCM320i\examples\Crc">
+      <description>Crc example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Crc.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="DIO" doc="Abstract.txt" folder="ADuCM322\examples\DIO">
+      <description>Digital IO example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="DIO.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="DIO" doc="Abstract.txt" folder="ADuCM320\examples\DIO">
+      <description>Digital IO example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="DIO.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="DIO" doc="Abstract.txt" folder="ADuCM320i\examples\DIO">
+      <description>Digital IO example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="DIO.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Flash" doc="Abstract.txt" folder="ADuCM322\examples\Flash">
+      <description>Flash example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Flash.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Flash" doc="Abstract.txt" folder="ADuCM320\examples\Flash">
+      <description>Flash example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Flash.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="Flash" doc="Abstract.txt" folder="ADuCM320i\examples\Flash">
+      <description>Flash example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="Flash.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashDma" doc="Abstract.txt" folder="ADuCM322\examples\FlashDma">
+      <description>Flash Dma example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashDma" doc="Abstract.txt" folder="ADuCM320\examples\FlashDma">
+      <description>Flash Dma example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashDma" doc="Abstract.txt" folder="ADuCM320i\examples\FlashDma">
+      <description>Flash Dma example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashPingPongDMA" doc="Abstract.txt" folder="ADuCM322\examples\FlashPingPongDMA">
+      <description>Flash Ping Pong Dma example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashPingPongDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashPingPongDMA" doc="Abstract.txt" folder="ADuCM320\examples\FlashPingPongDMA">
+      <description>Flash Ping Pong Dma example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashPingPongDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="FlashPingPongDMA" doc="Abstract.txt" folder="ADuCM320i\examples\FlashPingPongDMA">
+      <description>Flash Ping Pong Dma example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="FlashPingPongDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="GPT" doc="Abstract.txt" folder="ADuCM322\examples\GPT">
+      <description>General Purpose Timer example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="GPT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="GPT" doc="Abstract.txt" folder="ADuCM320\examples\GPT">
+      <description>General Purpose Timer example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="GPT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="GPT" doc="Abstract.txt" folder="ADuCM320i\examples\GPT">
+      <description>General Purpose Timer example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="GPT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CBasic_Master" doc="Abstract.txt" folder="ADuCM322\examples\I2CBasic_Master">
+      <description>I2C Basic Master example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CBasic_Master" doc="Abstract.txt" folder="ADuCM320\examples\I2CBasic_Master">
+      <description>I2C Basic Master example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CBasic_Master" doc="Abstract.txt" folder="ADuCM320i\examples\I2CBasic_Master">
+      <description>I2C Basic Master example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>    
+    
+    <example name="I2CBasic_Slave" doc="Abstract.txt" folder="ADuCM322\examples\I2CBasic_Slave">
+      <description>I2C Basic Slave example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CBasic_Slave" doc="Abstract.txt" folder="ADuCM320\examples\I2CBasic_Slave">
+      <description>I2C Basic Slave example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CBasic_Slave" doc="Abstract.txt" folder="ADuCM320i\examples\I2CBasic_Slave">
+      <description>I2C Basic Slave example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CBasic_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CMasterDma" doc="Abstract.txt" folder="ADuCM322\examples\I2CMasterDma">
+      <description>I2C Master DMA example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CMasterDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CMasterDma" doc="Abstract.txt" folder="ADuCM320\examples\I2CMasterDma">
+      <description>I2C Master DMA example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CMasterDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CMasterDma" doc="Abstract.txt" folder="ADuCM320i\examples\I2CMasterDma">
+      <description>I2C Master DMA example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CMasterDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CSlaveDma" doc="Abstract.txt" folder="ADuCM322\examples\I2CSlaveDma">
+      <description>I2C Slave DMA example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CSlaveDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CSlaveDma" doc="Abstract.txt" folder="ADuCM320\examples\I2CSlaveDma">
+      <description>I2C Slave DMA example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CSlaveDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="I2CSlaveDma" doc="Abstract.txt" folder="ADuCM320i\examples\I2CSlaveDma">
+      <description>I2C Slave DMA example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="I2CSlaveDma.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="MDIO" doc="Abstract.txt" folder="ADuCM322\examples\Mdio_Int">
+      <description>MDIO Interrupt example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="MDIO.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+ 
+    <example name="MdioEprom" doc="Abstract.txt" folder="ADuCM322\examples\MdioEprom">
+      <description>MdioEprom example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="MdioEprom.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+
+    <example name="NVIC_Demo" doc="Abstract.txt" folder="ADuCM322\examples\NVIC_Demo">
+      <description>NVIC_Demo example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="NVIC_Demo.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="NVIC_Demo" doc="Abstract.txt" folder="ADuCM320\examples\NVIC_Demo">
+      <description>NVIC_Demo example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="NVIC_Demo.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="NVIC_Demo" doc="Abstract.txt" folder="ADuCM320i\examples\NVIC_Demo">
+      <description>NVIC_Demo example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="NVIC_Demo.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="PWM" doc="Abstract.txt" folder="ADuCM322\examples\PWM">
+      <description>PWM example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="PWM.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="PWM" doc="Abstract.txt" folder="ADuCM320\examples\PWM">
+      <description>PWM example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="PWM.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="PWM" doc="Abstract.txt" folder="ADuCM320i\examples\PWM">
+      <description>PWM example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="PWM.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ResetMaintain" doc="Abstract.txt" folder="ADuCM322\examples\SoftResetMaintain">
+      <description>VDACs and GPIOs retain state after reset example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ResetMaintain.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ResetMaintain" doc="Abstract.txt" folder="ADuCM320\examples\SoftResetMaintain">
+      <description>VDACs and GPIOs retain state after reset example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ResetMaintain.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="ResetMaintain" doc="Abstract.txt" folder="ADuCM320i\examples\SoftResetMaintain">
+      <description>VDACs and GPIOs retain state after reset example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="ResetMaintain.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master" doc="Abstract.txt" folder="ADuCM322\examples\SPI_Master">
+      <description>SPI_Master example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master" doc="Abstract.txt" folder="ADuCM320\examples\SPI_Master">
+      <description>SPI_Master example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master" doc="Abstract.txt" folder="ADuCM320i\examples\SPI_Master">
+      <description>SPI_Master example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master_Read" doc="Abstract.txt" folder="ADuCM322\examples\SPI_Master_Read">
+      <description>SPI Master Read example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master_Read.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master_Read" doc="Abstract.txt" folder="ADuCM320\examples\SPI_Master_Read">
+      <description>SPI Master Read example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master_Read.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Master_Read" doc="Abstract.txt" folder="ADuCM320i\examples\SPI_Master_Read">
+      <description>SPI Master Read example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Master_Read.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Slave" doc="Abstract.txt" folder="ADuCM322\examples\SPI_Slave">
+      <description>SPI Slave example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Slave" doc="Abstract.txt" folder="ADuCM320\examples\SPI_Slave">
+      <description>SPI Slave example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_Slave" doc="Abstract.txt" folder="ADuCM320i\examples\SPI_Slave">
+      <description>SPI Slave example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Master" doc="Abstract.txt" folder="ADuCM322\examples\SPIDMA_Master">
+      <description>SPI DMA Master example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Master" doc="Abstract.txt" folder="ADuCM320\examples\SPIDMA_Master">
+      <description>SPI DMA Master example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Master" doc="Abstract.txt" folder="ADuCM320i\examples\SPIDMA_Master">
+      <description>SPI DMA Master example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Master.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Slave" doc="Abstract.txt" folder="ADuCM322\examples\SPIDMA_Slave">
+      <description>SPI DMA Slave example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Slave" doc="Abstract.txt" folder="ADuCM320\examples\SPIDMA_Slave">
+      <description>SPI DMA Slave example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="SPI_DMA_Slave" doc="Abstract.txt" folder="ADuCM320i\examples\SPIDMA_Slave">
+      <description>SPI DMA Slave example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="SPI_DMA_Slave.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UART" doc="Abstract.txt" folder="ADuCM322\examples\UART">
+      <description>UART example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UART" doc="Abstract.txt" folder="ADuCM320\examples\UART">
+      <description>UART example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UART" doc="Abstract.txt" folder="ADuCM320i\examples\UART">
+      <description>UART example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UartDma" doc="Abstract.txt" folder="ADuCM322\examples\UartDma">
+      <description>UartDma example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART_DMA_Tx.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UartDma" doc="Abstract.txt" folder="ADuCM320\examples\UartDma">
+      <description>UartDma example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART_DMA_Tx.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="UartDma" doc="Abstract.txt" folder="ADuCM320i\examples\UartDma">
+      <description>UartDma example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="UART_DMA_Tx.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="VDAC" doc="Abstract.txt" folder="ADuCM322\examples\VDAC">
+      <description>VDAC example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="VDAC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="VDAC" doc="Abstract.txt" folder="ADuCM320\examples\VDAC">
+      <description>VDAC example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="VDAC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="VDAC" doc="Abstract.txt" folder="ADuCM320i\examples\VDAC">
+      <description>VDAC example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="VDAC.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WDT" doc="Abstract.txt" folder="ADuCM322\examples\WDT">
+      <description>Watchdog timer example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WDT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WDT" doc="Abstract.txt" folder="ADuCM320\examples\WDT">
+      <description>Watchdog timer example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WDT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WDT" doc="Abstract.txt" folder="ADuCM320i\examples\WDT">
+      <description>Watchdog timer example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WDT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WUT" doc="Abstract.txt" folder="ADuCM322\examples\WUT">
+      <description>Wakeup timer example</description> 
+      <board name="EVAL-ADuCM322EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WUT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WUT" doc="Abstract.txt" folder="ADuCM320\examples\WUT">
+      <description>Wakeup timer example</description> 
+      <board name="EVAL-ADuCM320EBZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WUT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+    <example name="WUT" doc="Abstract.txt" folder="ADuCM320i\examples\WUT">
+      <description>Wakeup timer example</description> 
+      <board name="EVAL-ADuCM320iQSPZ" vendor="Analog Devices" /> 
+      <project>
+        <environment name="uv" load="WUT.uvprojx" /> 
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" /> 
+        <component Cclass="Device" Cgroup="Startup" /> 
+        <category>Getting Started</category> 
+      </attributes>
+    </example>
+    
+  </examples>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <conditions>
+      <condition id="ADuCM320">
+         <description>ADuCM320 device</description>
+         <require Dvendor="Analog Devices:1"/>
+         <require Dname="ADuCM320"/>
+      </condition>
+    <condition id="ADuCM320 CMSIS Device">
+      <description>ADuCM320 CMSIS Device</description>
+      <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+      <require condition="ADuCM320"/>
+    </condition>
+    <condition id="ADuCM320 Library">
+      <description>Low Level Peripheral Libraries for ADuCM320</description>
+      <require condition="ADuCM320"/>
+    </condition>
+    <condition id="ADuCM320i">
+      <description>ADuCM320i device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <require Dname="ADuCM320i"/>
+    </condition>
+    <condition id="ADuCM320i CMSIS Device">
+      <description>ADuCM320i CMSIS Device</description>
+      <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+      <require condition="ADuCM320i"/>
+    </condition>
+    <condition id="ADuCM320i Library">
+      <description>Low Level Peripheral Libraries for ADuCM320i</description>
+      <require condition="ADuCM320i"/>
+    </condition>
+    <condition id="ADuCM322">
+      <description>ADuCM322 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <require Dname="ADuCM322"/>
+    </condition>
+    <condition id="ADuCM322 CMSIS Device">
+      <description>ADuCM322 CMSIS Device</description>
+      <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+      <require condition="ADuCM322"/>
+    </condition>
+    <condition id="ADuCM322 Library">
+      <description>Low Level Peripheral Libraries for ADuCM322</description>
+      <accept condition="ADuCM322"/>
+      <accept condition="ADuCM322i"/>
+    </condition>
+    <condition id="ADuCM322i">
+      <description>ADuCM322i device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <require Dname="ADuCM322i"/>
+    </condition>
+    <condition id="ADuCM322i CMSIS Device">
+      <description>ADuCM322i CMSIS Device</description>
+      <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+      <require condition="ADuCM322i"/>
+    </condition>
+    <condition id="ADuCM32x_ARM">
+      <description>ADuCM32x device</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="ADuCM32x_IAR">
+      <description>ADuCM32x device</description>
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions> 
+  
+   <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" Cvendor="Analog Devices" condition="ADuCM320 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for ADuCM320</description>
+
+      <files>
+        <!-- additional include path -->
+				<file category="include" name="ADuCM320\common\"/>
+
+        <!-- startup files -->
+        <file category="source" name="ADuCM320\common\ARM\startup_ADuCM320.s" version="0.3.0" attr="config" condition="ADuCM32x_ARM"/>
+        <file category="source" name="ADuCM320\common\IAR\startup_ADuCM320.s" version="0.2.0" attr="config" condition="ADuCM32x_IAR"/>
+        
+        <!-- system files -->
+        <file category="source" name="ADuCM320\common\system_ADUCM320.c" version="0.1.0" attr="config"  />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" Cvendor="Analog Devices" condition="ADuCM320i CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for ADuCM320i</description>
+
+      <files>
+        <!-- additional include path -->
+				<file category="include" name="ADuCM320i\common\"/>
+
+        <!-- startup files -->
+        <file category="source" name="ADuCM320i\common\ARM\startup_ADuCM320i.s" version="0.1.0" attr="config" condition="ADuCM32x_ARM"/>
+        <file category="source" name="ADuCM320i\common\IAR\startup_ADuCM320i.s" version="0.1.0" attr="config" condition="ADuCM32x_IAR"/>
+        
+        <!-- system files -->
+        <file category="source" name="ADuCM320i\common\system_ADUCM320I.c" version="0.1.0" attr="config"  />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" Cvendor="Analog Devices" condition="ADuCM322 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for ADuCM322</description>
+
+      <files>
+        <!-- additional include path -->
+				<file category="include" name="ADuCM322\common\"/>
+
+        <!-- startup files -->
+        <file category="source" name="ADuCM322\common\ARM\startup_ADuCM322.s" version="0.1.0" attr="config" condition="ADuCM32x_ARM"/>
+        <file category="source" name="ADuCM322\common\IAR\startup_ADuCM322.s" version="0.1.0" attr="config" condition="ADuCM32x_IAR"/>
+        
+        <!-- system files -->
+        <file category="source" name="ADuCM322\common\system_ADUCM322.c" version="0.1.0" attr="config"  />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" Cvendor="Analog Devices" condition="ADuCM322i CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for ADuCM322i</description>
+
+      <files>
+        <!-- additional include path -->
+				<file category="include" name="ADuCM322\common\"/>
+
+        <!-- startup files -->
+        <file category="source" name="ADuCM322\common\ARM\startup_ADuCM322.s" version="0.1.0" attr="config" condition="ADuCM32x_ARM"/>
+        <file category="source" name="ADuCM322\common\IAR\startup_ADuCM322.s" version="0.1.0" attr="config" condition="ADuCM32x_IAR"/>
+        
+        <!-- system files -->
+        <file category="source" name="ADuCM322\common\system_ADUCM322.c" version="0.1.0" attr="config"  />
+      </files>
+    </component>
+    
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="ADC" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>ADC low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\AdcLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM320\common\AdcLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="CMP" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Comparator low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\CmpLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\CmpLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DAC" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>DAC low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\DacLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM320\common\DacLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DIO" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Digital Input Output low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\DioLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\DioLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DMA" Cversion="1.1.0" condition="ADuCM320 Library">
+         <description>DMA low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\DmaLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\DmaLib.c" version="1.1.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="FEE" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Flash low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\FeeLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\FeeLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="GPT" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>General Purpose Timer low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\GptLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\GptLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="I2C" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>I2C low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\I2cLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM320\common\I2cLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="IDAC" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Idac low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\IDacLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\IDacLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="INT" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Interrupts low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\IntLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\IntLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="MDIO" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>MDIO low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\MdLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\MdLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PWM" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>PWM low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\PwmLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\PwmLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="SPI" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>SPI low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\SpiLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\SpiLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="UART" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>UART low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\UrtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\UrtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WDT" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Watchdog Timer low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\WdtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\WdtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WUT" Cversion="1.0.0" condition="ADuCM320 Library">
+         <description>Wake up Timer low level library for ADuCM320</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320\common\WutLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320\common\WutLib.c" version="1.0.1"/>
+         </files>
+      </component>
+    
+    
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="ADC" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>ADC low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\AdcLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM320i\common\AdcLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="CMP" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Comparator low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\CmpLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\CmpLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DAC" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>DAC low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\DacLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM320i\common\DacLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DIO" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Digital Input Output low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\DioLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\DioLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DMA" Cversion="1.1.0" condition="ADuCM320i Library">
+         <description>DMA low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\DmaLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\DmaLib.c" version="1.1.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="FEE" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Flash low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\FeeLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\FeeLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="GPT" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>General Purpose Timer low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\GptLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\GptLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="I2C" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>I2C low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\I2cLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\I2cLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="IDAC" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Idac low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\IDacLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\IDacLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="INT" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Interrupts low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\IntLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\IntLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="MDIO" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>MDIO low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\MdLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\MdLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PWM" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>PWM low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\PwmLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\PwmLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="SPI" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>SPI low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\SpiLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\SpiLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="UART" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>UART low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\UrtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\UrtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WDT" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Watchdog Timer low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\WdtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\WdtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WUT" Cversion="1.0.0" condition="ADuCM320i Library">
+         <description>Wake up Timer low level library for ADuCM320i</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM320i\common\WutLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM320i\common\WutLib.c" version="1.0.1"/>
+         </files>
+      </component>
+        
+        
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="ADC" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>ADC low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\AdcLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM322\common\AdcLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="CMP" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Comparator low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\CmpLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\CmpLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DAC" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>DAC low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\DacLib.h" version="1.0.2"/>
+            <file category="source" attr="config" name="ADuCM322\common\DacLib.c" version="1.0.2"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DIO" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Digital Input Output low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\DioLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\DioLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DMA" Cversion="1.1.0" condition="ADuCM322 Library">
+         <description>DMA low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\DmaLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\DmaLib.c" version="1.1.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="FEE" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Flash low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\FeeLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\FeeLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="GPT" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>General Purpose Timer low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\GptLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\GptLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="I2C" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>I2C low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\I2cLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\I2cLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="INT" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Interrupts low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\IntLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\IntLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="MDIO" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>MDIO low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\MdLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\MdLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PWM" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>PWM low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\PwmLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\PwmLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="SPI" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>SPI low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\SpiLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\SpiLib.c" version="1.0.1"/>
+         </files>
+         </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="UART" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>UART low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\UrtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\UrtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WDT" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Watchdog Timer low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\WdtLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\WdtLib.c" version="1.0.1"/>
+         </files>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WUT" Cversion="1.0.0" condition="ADuCM322 Library">
+         <description>Wake up Timer low level library for ADuCM322</description>
+         <files>
+            <file category="header" attr="config" name="ADuCM322\common\WutLib.h" version="1.0.1"/>
+            <file category="source" attr="config" name="ADuCM322\common\WutLib.c" version="1.0.1"/>
+         </files>
+      </component>         
+   </components>
+</package>

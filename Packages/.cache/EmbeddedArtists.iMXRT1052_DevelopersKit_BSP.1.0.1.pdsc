@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>EmbeddedArtists</vendor>
+  <name>iMXRT1052_DevelopersKit_BSP</name>
+  <description>Embedded Artists iMXRT1052 Developers Kit Board Support Pack</description>
+  <url>http://imx.embeddedartists.com/keil/pack/</url>
+  <license>Licenses.txt</license>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"                  version="5.1.0:5.99.0"/>
+      <package vendor="Keil" name="ARM_Compiler"           version="1.3.0:1.99.0"/>
+      <package vendor="NXP"  name="MIMXRT1052_DFP"         version="10.0.4"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.1" date="2018-10-09">Updated product images. No software changed</release>
+    <release version="1.0.0" date="2018-09-04">Initial Release of iMXRT1052 Developers Kit Board Support Pack. Based on MCUXpresso SDK 2.4.2</release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Embedded Artists</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>iMXRT1052</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Embedded Artists" name="EA iMXRT1052 Developers Kit" revision="Ver 1.0" salesContact="http://www.embeddedartists.com/contact" orderForm="http://www.embeddedartists.com/products/kits/imxrt1052_kit.php">
+      <description>Embedded Artists iMX RT1052 Developer's Kit</description>
+      <image small="documents/kit_imxrt1052_small.png"
+             large="documents/kit_imxrt1052_large.png" public="true"/>
+      <book category="overview"  name="http://www.embeddedartists.com/products/kits/imxrt1052_kit.php" title="iMX RT1052 Developer's Kit Web Page"/>
+      <!--book category="manual" name="Documents/IMXRT1052_OEM_Board_Datasheet.pdf"   title="Data Sheet"/-->
+      <!--book category="manual" name="Documents/IMXRT1052_OEM_Board_Users_Guide.pdf" title="User Manual"/-->
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MIMXRT1052xxxxB"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="i.MX RT1050"/>
+      <feature type="XTAL"            n="24000000"/>
+      <feature type="PWR"             n="5"              name="5V DC supply voltage, either via micro-AB USB connector or 2.1mm power jack connector"/>
+      <feature type="MemCard"         n="1"              name="SD memory card connector"/>
+      <feature type="USB"             n="1"              name="USB OTG interface with ESD protection"/>
+      <feature type="USB"             n="1"              name="USB Host interface with ESD protection"/>
+      <feature type="CAN"             n="1"              name="CAN transceiver with ESD protection and termination"/>
+      <feature type="RS232"           n="1"              name="UART-to-USB FTDI bridge for UART interface with ESD protection"/>
+      <feature type="ETH"             n="1"              name="10/100 Mbps Ethernet RJ45 connector"/>
+      <feature type="GLCD"            n="1"  m="480.272" name="4.3 inch 480x272px LCD"/>
+      <feature type="Button"          n="4"              name="Push-Buttons: Reset, Wakeup, On/Off, ISP enable"/>
+      <feature type="LED"             n="2"              name="Power, User"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.imxrt1052devkit">
+      <accept Dname="MIMXRT1052CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052xxxxB" Dvariant="MIMXRT1052CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052xxxxB" Dvariant="MIMXRT1052CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052xxxxB" Dvariant="MIMXRT1052DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052xxxxB" Dvariant="MIMXRT1052DVJ6B" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iomuxc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <!--<require Cclass="Device" Cgroup="SDK Drivers" Csub="xip"/>-->
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+
+  <examples>
+    <example name="Hello World" folder="examples/hello_world" doc="readme.txt">
+      <description>The Hello World demo application provides a sanity check for the new SDK build environments and board bring up. The HelloWorld demo prints the "Hello World" string to the terminal using the SDK UART drivers. The purpose of this demo is toshow how to use the UART, and to provide a simple project for debugging and further development.</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="hello_world.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <category>examples/hello world</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="readme.txt" folder="examples/blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTOS2</category>
+        <category>examples/blinky</category>
+      </attributes>
+    </example>
+
+    <example name="LPUART eDMA transfer" doc="readme.txt" folder="examples/lpuart_edma_transfer">
+      <description>LPUART eDMA transfer example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="cmsis_lpuart_edma_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS Driver" Cgroup="USART"/>
+        <category>Getting Started</category>
+        <category>CMSIS Driver</category>
+        <category>examples/lpuart_edma_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="LPUART interrupt transfer" doc="readme.txt" folder="examples/lpuart_interrupt_transfer">
+      <description>LPUART interrupt transfer example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="cmsis_lpuart_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS Driver" Cgroup="USART"/>
+        <category>Getting Started</category>
+        <category>CMSIS Driver</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="eLCDIF LUT" doc="readme.txt" folder="examples/elcdif_lut">
+      <description>eLCDIF LUT example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="elcdif_lut.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="eLCDIF RGB" doc="readme.txt" folder="examples/elcdif_rgb">
+      <description>eLCDIF RGB example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="elcdif_rgb.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="GPIO input interrupt" doc="readme.txt" folder="examples/gpio_input_interrupt">
+      <description>GPIO input interrupt example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="gpio_input_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="GPIO LED output" doc="readme.txt" folder="examples/gpio_led_output">
+      <description>GPIO LED output example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="gpio_led_output.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="QTMR timer" doc="readme.txt" folder="examples/qtmr">
+      <description>QTMR timer example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="qtmr.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+
+    <example name="WDOG" doc="readme.txt" folder="examples/wdog">
+      <description>WDOG example</description>
+      <board name="EA iMXRT1052 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="wdog.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK Drivers"/>
+        <category>Getting Started</category>
+        <category>SDK Drivers</category>
+        <category>examples/lpuart_interrupt_transfer</category>
+      </attributes>
+    </example>
+  </examples>
+
+  <components>
+    <bundle Cbundle="Embedded Artists developer's kit" Cclass="Board Support" Cversion="1.0.1">
+      <description>This is the bundle for the EA iMX RT1052 Developer's Kit.</description>
+      <doc></doc>
+      <component Cgroup="Drivers" Csub="Adesto EcoXiP flash (ATXP032)" condition="project_template.imxrt1052devkit">
+        <description>Adesto EcoXiP flash (ATXP032)</description>
+        <RTE_Components_h>
+#define XIP_BOOT_HEADER_DCD_ENABLE 1 
+#define XIP_EXTERNAL_FLASH 1 
+#define XIP_BOOT_HEADER_ENABLE 1 
+  		</RTE_Components_h>
+        <files>
+          <file name="xip/imxrt1052_flexspi_nor_config.c" category="sourceC"/>
+          <file name="xip/imxrt1052_flexspi_nor_config.h" category="header"/>
+          <file name="xip/imxrt1052_sdram_ini_dcd.c" category="sourceC"/>
+          <file name="xip/imxrt1052_sdram_ini_dcd.h" category="header"/>
+          <file name="xip/fsl_flexspi_nor_boot.c" category="sourceC"/>
+          <file name="xip/fsl_flexspi_nor_boot.h" category="header"/>
+        </files>
+      </component>
+
+      <component Cgroup="Drivers" Csub="wdog" condition="project_template.imxrt1052devkit">
+        <description>Watchdog Driver</description>
+        <files>
+          <file name="patched_drivers/fsl_wdog.c" category="sourceC"/>
+          <file name="patched_drivers/fsl_wdog.h" category="header"/>
+        </files>
+      </component>
+
+      <component Cgroup="Project Template" Csub="project_template" condition="project_template.imxrt1052devkit">
+        <description></description>
+        <files>
+          <file name="project_template/board.c" category="sourceC" attr="config" version="1.0.0"/>
+          <file name="project_template/board.h" category="header" attr="config" version="1.0.0"/>
+          <file name="project_template/clock_config.c" category="sourceC" attr="config" version="1.0.0"/>
+          <file name="project_template/clock_config.h" category="header" attr="config" version="1.0.0"/>
+          <file name="project_template/peripherals.c" category="sourceC" attr="config" version="1.0.0"/>
+          <file name="project_template/peripherals.h" category="header" attr="config" version="1.0.0"/>
+          <file name="project_template/pin_mux.c" category="sourceC" attr="config" version="1.0.0"/>
+          <file name="project_template/pin_mux.h" category="header" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

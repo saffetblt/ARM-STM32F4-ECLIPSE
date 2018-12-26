@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/bluetooth-publishing-program/</url>
+  <name>TC35678_ROM002</name>
+  <description>Toshiba TC35678/679 ROM002 Device Support</description>
+
+  <releases>
+    <release version="0.0.2">
+      Updated processor settings.
+    </release>
+    <release version="0.0.1">
+      Initial Release of TOSHIBA TC35678/679 ROM002 Series Device Family Pack.
+    </release>
+  </releases>
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.rtf</license>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>TOSHIBA</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package TOSHIBA</keyword>
+    <keyword>TC35678</keyword>
+    <keyword>TC35679</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TC356789_ROM002" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="26000000"/>
+      <description>TOSHIBA TC35678/679 ROM002 supports BLE V4.2 with ultra low power consumption.</description>
+      <feature type="UART"          n="2"/>
+      <feature type="I2C"           n="1"/>
+      <feature type="SPI"           n="1"/>
+      <feature type="ADC"           n="1"       m="5"/>
+      <!-- *************************  Device 'TC35678_ROM002'  ***************************** -->
+      <device Dname="TC35678FSG-002">
+        <description>TC35678_ROM002 supports BLE V4.2 and has built-in NVM. 40pin QFN Package</description>
+        <compile header="Device/Include/TC35678.h" define="TC35678"/>
+        <debug svd="SVD/TC35678.svd"/>
+        <memory id="IRAM1" start="0x80C000" size="0x8C00" default="1"/>
+        <memory id="IRAM2" start="0x824000" size="0xC000" default="1"/>
+        <algorithm name="Flash/TC35678-002_NVM.FLM" start="0x00000000"  size="0x00040000"   default="1"/>
+      </device>
+      <device Dname="TC35678FXG-002">
+        <description>TC35678_ROM002 supports BLE V4.2 and has built-in NVM. 60pin QFN Package</description>
+        <compile header="Device/Include/TC35678.h" define="TC35678"/>
+        <debug svd="SVD/TC35678.svd"/>
+        <memory id="IRAM1" start="0x80C000" size="0x8C00" default="1"/>
+        <memory id="IRAM2" start="0x824000" size="0xC000" default="1"/>
+        <algorithm name="Flash/TC35678-002_NVM.FLM" start="0x00000000"  size="0x00040000"   default="1"/>
+      </device>
+      <!-- *************************  Device 'TC35679_ROM002'  ***************************** -->
+      <device Dname="TC35679FSG-002">
+        <description>TC35679_ROM002 supports BLE V4.2. 40pin QFN Package</description>
+        <compile header="Device/Include/TC35678.h" define="TC35679"/>
+        <debug svd="SVD/TC35678.svd"/>
+        <memory id="IRAM1" start="0x80C000" size="0x8C00" default="1"/>
+        <memory id="IRAM2" start="0x824000" size="0xC000" default="1"/>
+      </device>
+      <device Dname="TC35679IFTG-002">
+        <description>TC35679_ROM002 supports BLE V4.2. 40pin QFN Package</description>
+        <compile header="Device/Include/TC35678.h" define="TC35679"/>
+        <debug svd="SVD/TC35678.svd"/>
+        <memory id="IRAM1" start="0x80C000" size="0x8C00" default="1"/>
+        <memory id="IRAM2" start="0x824000" size="0xC000" default="1"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="TC356789_ROM002">
+      <!-- condition selecting devices -->
+      <require Dvendor="Toshiba:92"/>
+      <require Dfamily="TC356789_ROM002"/>
+    </condition>
+    <condition id="Compiler ARM">
+      <!-- condition selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.0.1" condition="TC356789_ROM002">
+      <description>System Startup for TC35678/TC35679 ROM002</description>
+      <files>
+        <file category="header" name="Device/Include/TC35678.h"/>
+        <file category="source" name="Device/Source/startup_TC35678.s" attr="config" version="0.0.1" condition="Compiler ARM"/>
+        <file category="source" name="Device/Source/system_TC35678.c"  attr="config" version="0.0.1"/>
+      </files>
+    </component>
+  </components>
+</package>

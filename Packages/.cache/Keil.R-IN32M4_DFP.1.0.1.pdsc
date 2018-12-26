@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>R-IN32M4_DFP</name>
+  <description>Renesas R-IN32M4 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.0.1" date="2017-02-13">
+      Updated web link to Tessera TS-R-IN32M4-CL2 Board Documentation V1.2 
+    </release>
+    <release version="1.0.0" date="2016-06-10">
+      First Release version of R-IN32M4 Device Family Pack.
+      Changes made to the pack provided by Renesas.
+       - Corrected endianess.
+       - Corrected SVD file.
+       - Updated file system_RIN32M4.c.
+       - Updated examples
+       - Moved board documentation to folder boards.
+       - Replaced backslash with forward slash.
+       - Removed PackCheck warnings.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Renesas</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Renesas</keyword>
+    <keyword>R-IN32M4</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="R-IN32M4 Series" Dvendor="Renesas:117">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+      <algorithm name="Flash/R-IN32M4_MX25L6433F.FLM" start="0x02000000"  size="0x00800000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <algorithm name="Flash/R-IN32M4_S29GL128S.FLM"  start="0x10000000"  size="0x01000000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf"                                 title="Cortex-M4 Generic User Guide"/>
+      <book name="http://am.renesas.com/products/soc/fa_lsi/r-in32m4/peer/documents.jsp" title="R-IN32M4 Documents"/>
+
+      <description>
+The R-IN32M4-CL2 contains built-in Gigabit PHY in addition to
+our featured R-IN engine available in the series family,
+providing the optimal solution to bring high performanc
+CC-Link IE Field network protocol to industrial equipments.
+
+With the embedded Gigabit ethernet PHY in R-IN32M4, circuit design
+are made extremely easy since no Gigabit PHY related analog design
+is required, which can be quite troublesome in
+conventional hardware approach.
+Furthermore, with the addition of FPU, 8 channel of 10bit ADC and
+16 channels of 16bit timers embedded to the CPU core,
+R-IN32M4 has greatly extended the family’s application.
+Not only remote IO applications where the R-IN32M series exceeded,
+the new R-IN32M4 performs well in motor and sensor control,
+and even industrial network gateway applications.
+      </description>
+
+      <feature type="CoreOther"   n="1"                    name="Real-Time OS Accelerator (Hardware Real-Time OS, HW-RTOS)"/>
+      <feature type="DMA"         n="5"                    name="DMA"/>
+      <feature type="CoreOther"   n="3"                    name="Boot Options (Serial Flash ROM, Ext. Memory, Ext. MPU)"/>
+      <feature type="ExtBus"      n="16"                   name="16-bit or 32-bit Bus Interface"/>
+      <feature type="ExtInt"      n="29"/>
+      <feature type="IOs"         n="96"                   name="CMOS I/O"/>
+      <feature type="Timer"       n="4"     m="32"         name="Timer Array"/>
+      <feature type="TimerOther"  n="1"                    name="Internal Timer of Hardware RTOS"/>
+      <feature type="WDT"         n="1"                    name="Windowed Watchdog Timer"/>
+      <feature type="UART"        n="2"     m="12500000"   name="Asynchronous Serial Interface"/>
+      <feature type="I2C"         n="2"                    name="I2C Bus"/>
+      <feature type="CAN"         n="2"                    name="CAN Controller (ISO 11898)"/>
+      <feature type="ComOther"    n="2"                    name="Clocked Serial Interface"/>
+      <feature type="ComOther"    n="1"                    name="CC-Link"/>
+      <feature type="PLL"         n="1"                    name="Internal PLL"/>
+      <feature type="VCC"         n="3.0"   m="3.6"        name="Power Supply Voltage"/>
+      <feature type="Temp"        n="-40"   m="85"         name="Operating Temperature Range"/>
+      <feature type="BGA"         n="324"                  name="Plastic Ball Grid Array"/>
+
+      <!-- *************************  Device 'R-IN32M4-CL2'  ***************************** -->
+      <device Dname="R-IN32M4-CL2">
+        <compile header="Device/Include/RIN32M4.h"  define="RIN32M4_CL2"/>
+        <debug      svd="SVD/RIN32M4_CL2.svd"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x80000"     init   ="0"   default="1"/>
+
+        <feature type="ComOther"    n="1"                    name="10/100/1000Mbps Ether MAC"/>
+        <feature type="ComOther"    n="1"                    name="CC-Link IE Field (Intelligent device station)"/>
+      </device>
+
+    </family>
+
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependency rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="R-IN32M4 Device">
+      <description>Renesas R-IN32M4 devices</description>
+      <require Dvendor="Renesas:117"  Dname="R-IN32M4*"/>
+    </condition>
+
+    <condition id="R-IN32M4 CMSIS Device">
+      <description>Renesas R-IN32M4 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="R-IN32M4 Device"/>
+    </condition>
+
+    <condition id="R-IN32M4 Driver IIC">
+      <description>Renesas R-IN32M4 Driver with IIC</description>
+      <require condition="R-IN32M4 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="IIC"/>
+    </condition>
+
+    <condition id="R-IN32M4 Driver SROMC">
+      <description>Renesas R-IN32M4 Driver with SROMC</description>
+      <require condition="R-IN32M4 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="SROMC"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- START: Renesas R-IN32M4 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>System Startup for Renesas R-IN32M4 device series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+
+      <files>
+        <!-- header path -->
+        <file category="include" name="Device/Include/" />
+
+        <!-- startup/system files -->
+        <file category="source"       name="Device/Source/ARM/startup_RIN32M4.c"  attr="config" version="1.0.0"    condition="Compiler ARM" />
+        <file category="source"       name="Device/Source/system_RIN32M4.c"       attr="config" version="1.0.0"                            />
+        <!-- After pack.xsd v1.3 is released change "doc" to "LinkerScript" -->
+        <file category="linkerScript" name="Device/Source/ARM/boot_extMem.sct"    attr="template"  condition="Compiler ARM"  select="Ext. Memory Boot Scatter File Template"  />
+        <file category="linkerScript" name="Device/Source/ARM/boot_extSPI.sct"    attr="template"  condition="Compiler ARM"  select="Ext. Serial Flash Boot Scatter File Template" />
+        <file category="linkerScript" name="Device/Source/ARM/boot_intRAM.sct"    attr="template"  condition="Compiler ARM"  select="Int. RAM Boot Scatter File Template"/>
+     </files>
+    </component>
+    <!-- END: Renesas R-IN32M4 Startup -->
+
+    <!-- START: Renesas R-IN32M4 Drivers -->
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="ADC" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>A/D Converter driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/adc/adc.h"/>
+        <file category="source"  name="Device/Driver/Source/adc/adc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="CSI" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Clocked Serial Interface (CSIH) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/csi/csi.h"/>
+        <file category="source"  name="Device/Driver/Source/csi/csi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="DMAC" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>DMA Controller (DMAC) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/dmac/dmac.h"/>
+        <file category="source"  name="Device/Driver/Source/dmac/dmac.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="IIC" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>I2C Bus Controller (I2CB) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/iic/iic.h"/>
+        <file category="source"  name="Device/Driver/Source/iic/iic.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="SROMC" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Serial Flash ROM Controller (SROMC) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/sromc/sromc.h"/>
+        <file category="source"  name="Device/Driver/Source/sromc/sromc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="TAUD" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>16-bit Timer Array Unit (TAUD) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/taud/taud.h"/>
+        <file category="source"  name="Device/Driver/Source/taud/taud.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="TIMER" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>32-bit Timer Array Unit (TAUJ2) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/timer/timer.h"/>
+        <file category="source"  name="Device/Driver/Source/timer/timer.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="UART" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Asynchronous Serial Interface (UARTJn) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/uart/uart.h"/>
+        <file category="source"  name="Device/Driver/Source/uart/uart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Drivers" Csub="WDT" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Window Watchdog Timer (WDTA) driver for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/wdt/wdt.h"/>
+        <file category="source"  name="Device/Driver/Source/wdt/wdt.c"/>
+      </files>
+    </component>
+    <!-- END: Renesas R-IN32M4 Drivers -->
+
+    <!-- START: Renesas R-IN32M4 Middlewares -->
+    <component Cclass="Device" Cgroup="R-IN32M4 Middlewares" Csub="Flash" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Flash middleware for R-IN32M4</description>
+      <files>
+        <file category="include" name="Middleware/Include/"/>
+        <file category="header"  name="Middleware/Include/flash/flash.h"/>
+        <file category="source"  name="Middleware/Source/flash/flash.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M4 Middlewares" Csub="Sflash" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Serial Flash middleware for R-IN32M4</description>
+      <files>
+        <file category="include" name="Middleware/Include/"/>
+        <file category="header"  name="Middleware/Include/sflash/sflash.h"/>
+        <file category="source"  name="Middleware/Source/sflash/sflash.c"/>
+      </files>
+    </component>
+    <!-- END: Renesas R-IN32M4 Middlewares -->
+
+    <!-- START: Renesas R-IN32M4 GbEthPHY -->
+    <component Cclass="Device" Cgroup="R-IN32M4 GbEthPHY" Csub="Library" Cversion="1.0.0" condition="R-IN32M4 CMSIS Device">
+      <description>Gigabit Ethernet PHy Library for R-IN32M4</description>
+      <files>
+        <file category="include" name="Device/GbEthPHY/Include/"/>
+        <file category="library" name="Device/GbEthPHY/Library/libEtherPHY.lib" condition="Compiler ARM"/>
+        <file category="header"  name="Device/GbEthPHY/Include/ether_phy_init.h"   attr="template"  select="GbEthPHY header files"/>
+      </files>
+    </component>
+    <!-- END: Renesas R-IN32M4 GbEthPHY -->
+
+  </components>
+
+  <boards>
+    <board vendor="Tessera" name="TS-R-IN32M4-CL2" revision="Ver 1.0" salesContact="http://am.renesas.com/contact/" orderForm="https://www.buyrenesas.com/">
+      <description>R-IN32M4-CL2 Evaluation Board</description>
+      <image small="Boards/Tessera/TS-R-IN32M4-CL2/Documents/TS-R-IN32M4-CL2_small.jpg"
+             large="Boards/Tessera/TS-R-IN32M4-CL2/Documents/TS-R-IN32M4-CL2_large.jpg"/>
+      <book category="manual" name="http://www.tessera.co.jp/Download/TS-R-IN32M4-CL2_UM_E_WEB_v1-2.pdf" title="User's Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Renesas:117" Dname="R-IN32M4-CL2"/>
+
+      <feature type="ROM"             n="1"              name="Flash Memory (Serial), 64Mbit"/>
+      <feature type="ROM"             n="1"              name="Flash Memory (Parallel), 128Mbit (8M x 16bit)"/>
+      <feature type="I2C"             n="2"              name="I2C Connctor, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="CAN"             n="1"              name="CAN Connector, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="UART (USB) Connector, USB mini-B"/>
+      <feature type="ETH"             n="2"              name="CC-Link IE (Giga-Ethernet) Connector, RJ-45"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link Connector, 5-pin power clamp, board mount header"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link IE Monitor Connector, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link Monitor Connector, 7x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="ext. Memory / MCU Connector, 50x2 Pin Header 0.6 mm Pitch"/>
+      <feature type="CoreOther"       n="1"              name="Power Connector, 2x1 Pin Header 2.54 mm Pitch"/>
+      <feature type="PWR"             n="5"              name="DC Power Jack"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- TS-R-IN32M4-CL2 -->
+    <example name="OS-less Sample" doc="Abstract.txt" folder="Boards/Tessera/TS-R-IN32M4-CL2/osless_sample">
+      <description>OS-less Sample example</description>
+      <board name="TS-R-IN32M4-CL2" vendor="Tessera"/>
+      <project>
+        <environment name="uv" load="osless_sample.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Interval Timer Sample" doc="Abstract.txt" folder="Boards/Tessera/TS-R-IN32M4-CL2/interval_timer">
+      <description>Interval Timer Sample example</description>
+      <board name="TS-R-IN32M4-CL2" vendor="Tessera"/>
+      <project>
+        <environment name="uv" load="interval_timer.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMA5_DFP</name>
+  <description>Microchip SAMA5 Family Device Support and Examples</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"                  version="5.1.0"/>
+      <package vendor="Keil" name="MDK-Middleware"         version="7.4.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.1.1" date="2018-05-07">
+      Updated device vendor from Atmel to Microchip.
+      Updated system file with corrected SystemCoreClock initial value to value set by SystemInit function
+    </release>
+    <release version="1.1.0" date="2017-08-11">
+      Added CMSIS-RTOS2 RTX5 examples for Cortex-A5 processor.
+    </release>
+    <release version="1.0.0" date="2017-07-21">
+      Initial release of the device family pack for Atmel SAMA5 devices.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Microchip</keyword>
+    <keyword>SAMA5</keyword>
+    <keyword>SAMA5D2</keyword>
+    <keyword>SAMA5D3</keyword>
+    <keyword>SAMA5D4</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAMA5" Dvendor="Microchip:3">
+
+      <subFamily DsubFamily="SAMA5D2">
+
+        <!-- ******************************  SAMA5D2  ******************************* -->
+
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU"/>
+        <debugconfig default="swd" swj="true" clock="10000000" sdf="Debug/SAMA5D2.sdf"/>
+
+        <description>
+          The Microchip SMART SAMA5D2 series is a high-performance, ultra-low-power ARM Cortex-A5 processor based MPU. 
+          The Cortex A5 processor runs up to 500MHz and features the ARM NEON SIMD engine a 128kB L2 cache and a floating point unit. 
+          It supports multiple memories, including latest-generation technologies such as DDR3, LPDDR3, and QSPI Flash. 
+          It integrates powerful peripherals for connectivity (EMAC, USB, dual CAN, up to 10 UARTs, etc.) and user interface 
+          applications (TFT LCD controller, touch controller, class D amplifier, audio PLL, CMOS sensor interface, etc.). 
+          The devices offer advanced security functions to protect customer code and secure external data transfers. 
+          These include ARM TrustZone, tamper detection, secure data storage, hardware encryption engines including private keys, 
+          on-the-fly decryption of code stored in external DDR or QSPI memory and a secure boot loader. 
+          The devices comes with a free Microchip Linux distribution.
+        </description>
+        <book name="http://www.atmel.com/Images/Atmel-11267-32-bit-Cortex-A5-Microcontroller-SAMA5D2_Datasheet.pdf" title="SAMA5D2 Datasheet"/>
+        <book name="http://www.atmel.com/Images/Atmel-44056-32-bit-Cortex-A5-Microcontroller-SAMA5D2_Errata.pdf"    title="SAMA5D2 Errata for Engineering Samples"/>
+
+        <debug __dp="0" __ap="0" address="0x80030000"/>
+
+        <compile header="Device/Include/SAMA5D2.h"/>
+        
+        <device Dname="ATSAMA5D21">
+          <compile define="SAMA5D21"/>
+          <debug svd="SVD/ATSAMA5D21.svd"/>
+        </device>
+        <device Dname="ATSAMA5D22">
+          <compile define="SAMA5D22"/>
+          <debug svd="SVD/ATSAMA5D22.svd"/>
+        </device>
+        <device Dname="ATSAMA5D23">
+          <compile define="SAMA5D23"/>
+          <debug svd="SVD/ATSAMA5D23.svd"/>
+        </device>
+        <device Dname="ATSAMA5D24">
+          <compile define="SAMA5D24"/>
+          <debug svd="SVD/ATSAMA5D24.svd"/>
+        </device>
+        <device Dname="ATSAMA5D26">
+          <compile define="SAMA5D26"/>
+          <debug svd="SVD/ATSAMA5D26.svd"/>
+        </device>
+        <device Dname="ATSAMA5D27">
+          <compile define="SAMA5D27"/>
+          <debug svd="SVD/ATSAMA5D27.svd"/>
+        </device>
+        <device Dname="ATSAMA5D28">
+          <compile define="SAMA5D28"/>
+          <debug svd="SVD/ATSAMA5D28.svd"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="SAMA5D3">
+
+        <!-- ******************************  SAMA5D3  ******************************* -->
+
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A5"/>
+
+        <description>
+          Operating at 850DMIPS at under 150mW, the Microchip SMART SAMA5D3 MPU is ideal for any high-performance,
+          low-power and cost-sensitive industrial application. Think of it for control panels, smart grid devices and bar code scanners
+          anything that needs high levels of connectivity, enhanced user interfaces, robust security or is battery powered.
+          The SAMA5D3 is also an ideal fit for wearable computing and mobile applications where low power and a small footprint are critical.
+          The SAMA5D3 series includes devices supporting a -40/+105°C temperature range as well as 12x12mm BGA324 package (in 0.5mm pitch).
+        </description>
+        <book name="http://www.atmel.com/Images/Atmel-11121-32-bit-Cortex-A5-Microcontroller-SAMA5D3_Datasheet.pdf" title="SAMA5D3 Datasheet"/>
+
+        <device Dname="ATSAMA5D31">
+          <compile define="SAMA5D31"/>
+          <debug svd="SVD/ATSAMA5D31.svd"/>
+        </device>
+        <device Dname="ATSAMA5D33">
+          <compile define="SAMA5D33"/>
+          <debug svd="SVD/ATSAMA5D33.svd"/>
+        </device>
+        <device Dname="ATSAMA5D34">
+          <compile define="SAMA5D34"/>
+          <debug svd="SVD/ATSAMA5D34.svd"/>
+        </device>
+        <device Dname="ATSAMA5D35">
+          <compile define="SAMA5D35"/>
+          <debug svd="SVD/ATSAMA5D35.svd"/>
+        </device>
+        <device Dname="ATSAMA5D36">
+          <compile define="SAMA5D36"/>
+          <!--debug svd="SVD/ATSAMA5D36.svd"/-->
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="SAMA5D4">
+
+        <!-- ******************************  SAMA5D4  ******************************* -->
+
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU" Pname="Cortex-A5"/>
+
+        <description>
+          The Microchip SMART SAMA5D4 MPU is ideal for any high-performance, secure, and cost-sensitive industrial application. 
+          High-speed computing needs are supported by ARM Neon and a 128kB L2 cache that increases the overall system performance. 
+          The SAMA5D4 is an ideal fit for low-cost user interface applications that require video playback. 
+          The high-grade security features allow you to protect any system against counterfeiting and software theft, 
+          while also enabling you to securely store and transfer data.
+        </description>
+        <book name="http://www.atmel.com/Images/Atmel-11238-32-bit-Cortex-A5-Microcontroller-SAMA5D4_Datasheet.pdf" title="SAMA5D4 Datasheet"/>
+
+        <device Dname="ATSAMA5D41">
+          <compile define="SAMA5D41"/>
+          <debug svd="SVD/ATSAMA5D41.svd"/>
+        </device>
+        <device Dname="ATSAMA5D42">
+          <compile define="SAMA5D42"/>
+          <debug svd="SVD/ATSAMA5D42.svd"/>
+        </device>
+        <device Dname="ATSAMA5D43">
+          <compile define="SAMA5D43"/>
+          <debug svd="SVD/ATSAMA5D43.svd"/>
+        </device>
+        <device Dname="ATSAMA5D44">
+          <compile define="SAMA5D44"/>
+          <debug svd="SVD/ATSAMA5D44.svd"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="ARMCC5">
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+
+    <!-- Device + Core + CMSIS Conditions -->
+    <condition id="SAMA5D2 CMSIS">
+      <description>Microchip SAMA5D2 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAMA5D2*"/>
+      <require Dcore="Cortex-A5"/>
+    </condition>
+
+    <!-- Device + Core + CMSIS Conditions + Startup -->
+    <condition id="SAMA5D2 CMSIS Startup">
+      <description>Microchip SAMA5D2 devices, CMSIS-CORE, Startup</description>
+      <require condition="SAMA5D2 CMSIS"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+
+    <!-- Device + Core + CMSIS Conditions + Startup + Board HW Init -->
+    <condition id="SAMA5D2 CMSIS Startup HW">
+      <description>Microchip SAMA5D2 devices, CMSIS-CORE, Device Framework, Startup, Board HW Init</description>
+      <require condition="SAMA5D2 CMSIS Startup"/>
+      <require Cclass="Board Support" Cgroup="HW INIT"/>
+    </condition>
+
+    <!-- OS Tick -->
+    <condition id="SAMA5D2 OS Tick">
+      <description>Components required for OS Tick</description>
+      <require condition="SAMA5D2 CMSIS"/>
+      <require Cclass="Device" Cgroup="IRQ Controller"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup SAMA5D2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMA5D2 CMSIS">
+      <description>Microchip SAMA5D2 devices</description>
+      <files>
+        <file category="include"      name="SDK/target/sama5d2/"/>
+        <file category="sourceC"      name="Device/Source/AC5/startup_SAMA5D2.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/Source/AC5/SAMA5D2.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/Source/AC6/startup_SAMA5D2.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/Source/AC6/SAMA5D2.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/Source/system_SAMA5D2.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/Source/mmu_SAMA5D2.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/Include/system_SAMA5D2.h"     version="1.0.0" attr="config"/>        
+        <file category="header"       name="Device/Include/mem_SAMA5D2.h"        version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- IRQ Controller -->
+    <component Cclass="Device" Cgroup="IRQ Controller" Csub="Atmel AIC" Capiversion="1.0.0" Cversion="1.0.0" condition="SAMA5D2 CMSIS">
+      <description>IRQ Controller implementation using Microchip AIC</description>
+      <files>
+        <file category="sourceC" name="Device/Source/irq_ctrl_aic.c"/>
+      </files>
+    </component>
+
+    <!-- OS Tick -->
+    <component Cclass="Device" Cgroup="OS Tick" Csub="Atmel PIT" Capiversion="1.0.0" Cversion="1.0.0" condition="SAMA5D2 OS Tick">
+      <description>OS Tick implementation using Microchip Periodic Interval Timer</description>
+      <files>
+        <file category="sourceC" name="Device/Source/os_tick_pit.c"/>
+      </files>
+    </component>
+
+    <!-- Board Support SAMA5D2 -->
+    <bundle Cbundle="SAMA5D2-XULT" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMA5D2 Xplained Ultra Board Support</description>
+      <doc></doc>
+      
+      <!-- SAMA5D2 HW INIT -->
+      <component Cgroup="HW INIT" condition="SAMA5D2 CMSIS Startup">
+        <description>Board specific settings for hardware initialization</description>
+        
+        <!-- From Microchip SAMA5D2 Software Package: common library definitions, includes and sources -->        
+        <RTE_Components_h>
+  /* Microchip SAMA5D2 Software Package definitions */
+  #define TRACE_LEVEL 0
+
+  #define CONFIG_ARCH_ARM
+  #define CONFIG_ARCH_ARMV7A
+  #define CONFIG_CORE_CORTEXA5
+  #define CONFIG_SOC_SAMA5D2
+              
+  #define CONFIG_HAVE_FLEXCOM
+  #define CONFIG_HAVE_I2C_BUS
+  #define CONFIG_HAVE_PMC_AUDIO_CLOCK
+  #define CONFIG_HAVE_PMC_FAST_STARTUP
+  #define CONFIG_HAVE_PMC_GENERATED_CLOCKS
+  #define CONFIG_HAVE_PMC_PLLADIV2
+  #define CONFIG_HAVE_PMC_H32MXDIV
+  #define CONFIG_HAVE_PMC_UPLL_BIAS
+  #define CONFIG_HAVE_TWI
+  #define CONFIG_HAVE_TWI_FIFO
+  #define CONFIG_HAVE_XDMAC
+  #define CONFIG_HAVE_XDMAC_DATA_WIDTH_DWORD
+
+  #define CONFIG_BOARD_SAMA5D2_XPLAINED
+  #define CONFIG_HAVE_LED
+  #define CONFIG_HAVE_PMIC_ACT8945A
+        </RTE_Components_h>
+        
+        <files>
+          <!-- SAMA5D2-XULT board -->
+          <file category="source"  name="Boards/Atmel/SAMA5D2-XULT/Common/Board_SAMA5D2-XULT.c" attr="config" version="1.0.0"/>
+          
+          <!-- SDK sources -->
+          <file category="include" name="SDK/arch/"/>
+          <file category="include" name="SDK/drivers/"/>
+          <file category="include" name="SDK/target/common/"/>       
+          <file category="include" name="SDK/utils/"/>        
+          <file category="source"  name="SDK/arch/arm/mutex.c"/> 
+          <file category="source"  name="SDK/drivers/dma/dma.c"/>
+          <file category="source"  name="SDK/drivers/dma/xdmac.c"/>
+          <file category="source"  name="SDK/drivers/dma/dma_xdmac.c"/>
+          <file category="source"  name="SDK/drivers/gpio/pio4.c"/>        
+          <file category="source"  name="SDK/drivers/irq/irq.c"/>
+          <file category="source"  name="SDK/drivers/i2c/twi.c"/>
+          <file category="source"  name="SDK/drivers/i2c/twid.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/bus.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/flexcom.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/matrix.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/pmc.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/slowclock_sckc.c"/>  
+          <file category="source"  name="SDK/drivers/peripherals/tc.c"/>
+          <file category="source"  name="SDK/drivers/peripherals/tcd.c"/>
+          <file category="source"  name="SDK/drivers/power/act8945a.c"/>
+          <file category="source"  name="SDK/target/common/chip_common.c"/>
+          <file category="source"  name="SDK/target/common/board_twi.c"/>
+          <file category="source"  name="SDK/target/common/board_timer.c"/>
+          <file category="source"  name="SDK/target/sama5d2/chip.c"/>
+          <file category="source"  name="SDK/target/sama5d2/board_support.c"/>
+          <file category="source"  name="SDK/utils/callback.c"/>    
+          <file category="source"  name="SDK/utils/timer.c"/>
+          
+          <!-- Template -->
+          <file category="source"  name="Template/main.c" attr="template" version="1.0.0" select="SAMA5D2 'main' function"/>
+        
+        </files>
+      </component>
+
+      <!-- LED (API) -->
+      <component Cgroup="LED" Capiversion="1.00" condition="SAMA5D2 CMSIS Startup HW">
+        <description>LED</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMA5D2-XULT/Common/LED_SAMA5D2-XULT.c"/>
+          <file category="source" name="SDK/drivers/led/led.c"/>
+        </files>
+      </component>
+
+      <!-- Buttons (API) -->
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAMA5D2 CMSIS Startup HW">
+        <description>LED</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMA5D2-XULT/Common/Buttons_SAMA5D2-XULT.c"/>
+        </files>
+      </component>
+    </bundle>
+    
+  </components>
+
+  <boards>
+    <!-- Board Description SAMA5D2 -->
+    <board name="SAMA5D2-XULT" vendor="Atmel" revision="Rev B" orderForm="https://www.microchipdirect.com/ProductDetails.aspx?Category=ATSAMA5D2-XULT">
+      <description>Evaluation board for SAMA5D2 series of microprocessors</description>
+      <mountedDevice deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMA5D27"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMA5D2*"/>
+      <image small="Images/ATSAMA5D2-XULT_small.jpg" large="Images/ATSAMA5D2-XULT_large.jpg"/>
+      <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch)"/>
+      <book category="overview"  name="http://www.atmel.com/tools/ATSAMA5D2-XULT.aspx?tab=overview"                                                         title="SAMA5D2 Xplained Ultra Overview Page"/>
+      <book category="manual"    name="http://www.atmel.com/Images/Atmel-44028-32-bit-Cortex-A5-Microprocessor-SAMA5D2-Xplained-Ultra_User-Guide.pdf" title="SAMA5D2 Xplained Ultra User Guide"/>
+      <book category="schematic" name="http://www.atmel.com/images/ATSAMA5D2-XULT__KitsFiles.zip"                                                           title="SAMA5D2 Xplained Design and Manufacturing Files "/>
+      <feature type="PWR"        n="5"                         name="USB Powered"/>
+      <feature type="XTAL"       n="12000000"/>                
+      <feature type="RAM"        n="2"                         name="256MB DDR3L"/>
+      <feature type="ROM"        n="1"                         name="4GB eMMC NAND Flash"/>
+      <feature type="Memory"     n="1"                         name="EEPROM SPI"/>
+      <feature type="Memory"     n="1"                         name="Flash QSPI"/>
+      <feature type="MemCard"    n="1"                         name="4-bit SD card connector"/>
+      <feature type="ETH"        n="1"           m="100000000" name="RJ45"/>
+      <feature type="USB"        n="1"                         name="USB Host connector"/>
+      <feature type="USB"        n="1"                         name="Micro USB device connector"/>
+      <feature type="Button"     n="3"                         name="Push-Buttons for Wake up, Reset and User"/>
+      <feature type="LED"        n="1"                         name="RBG LED for User"/>
+      <feature type="ConnOther"  n="1"                         name="Arduino R3 compatible set of connectors"/>
+      <feature type="ConnOther"  n="1"                         name="XPRO set of connectors"/>
+      <feature type="ConnOther"  n="1"                         name="LCD interface connector"/>
+      <feature type="ConnOther"  n="1"                         name="Image Sensor ISC interface"/>
+      <feature type="CustomFF"   n="135"         m="88"        name="Custom Formfactor"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Native Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAMA5D2-XULT/Blinky">
+      <description>Native Blinky example</description>
+      <board name="SAMA5D2-XULT" vendor="Atmel"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    
+    <example name="Native Blinky AC6" doc="Abstract.txt" folder="Boards/Atmel/SAMA5D2-XULT/Blinky_AC6">
+      <description>Native Blinky example for ARMCC6</description>
+      <board name="SAMA5D2-XULT" vendor="Atmel"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky RTX5" doc="Abstract.txt" folder="Boards/Atmel/SAMA5D2-XULT/Blinky_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example</description>
+      <board name="SAMA5D2-XULT" vendor="Atmel"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky RTX5 AC6" doc="Abstract.txt" folder="Boards/Atmel/SAMA5D2-XULT/Blinky_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for ARMCC6</description>
+      <board name="SAMA5D2-XULT" vendor="Atmel"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>
+

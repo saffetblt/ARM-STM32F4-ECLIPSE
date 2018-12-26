@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMD21_DFP</name>
+  <description>Microchip SAM D21 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.3.0" date="2018-05-07">
+      Updated device vendor from Microchip to Microchip
+      Added SAMD21-XPRO board support.
+      Split device support into SAMD21A, SAMD21B (according Microchip).
+      Added SAMD21xL device support.
+      Reworked Flash Algorithm.
+      Added EEPROM Flash Algorithm.
+      Updated documentation.
+    </release>
+    <release version="1.2.0" date="2015-10-09">
+      Updated device condition to be more specific to avoid conflict with names of other devices.
+    </release>
+    <release version="1.1.0" date="2015-04-15">
+      Added SAMD21E15BU, SAMD21E16BU device support.
+    </release>
+    <release version="1.0.0">
+      First Release version of SAMD21 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAM D</keyword>
+    <keyword>SAM D21</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM D Series" Dvendor="Microchip:3">
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The Microchip | SMART SAM D ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+The Microchip | SMART SAM D gives you a truly differentiated general-purpose microcontroller that is ideal for many low-power, cost-sensitive industrial and consumer applications.
+      </description>
+
+      <!-- ************************  Subfamily 'SAM D21'  **************************** -->
+      <subFamily DsubFamily="SAM D21">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dmpu="NO_MPU" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="48000000"/>
+
+        <book name="Documents/Atmel-42181-SAM-D21_Datasheet.pdf" title="SAM D21 Datasheet"/>
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with low power consumption make the Microchip SAM D21 ARM Cortex-M0+ based microcontroller series
+ideal for a wide range of home automation, consumer, metering and industrial applications.
+The SAM D21 is designed for simple and intuitive migration between SAM D devices with identical peripheral modules, compatible code and a linear address map.
+        </description>
+
+        <feature type="CoreOther"     n="12"                          name="Event System"/>
+        <feature type="Touch"         n="1"                           name="Capacitive Touch Inputs"/>
+        <feature type="AnalogOther"   n="2"                           name="Analog Comparator"/>
+        <feature type="DAC"           n="1"       m="10"              name="DAC"/>
+        <feature type="RTC"           n="32768"                       name="RTC"/>
+        <feature type="WDT"           n="1"                           name="Watchdog"/>
+        <feature type="DMA"           n="12"                          name="DMA channel"/>
+        <feature type="ComOther"      n="1"                           name="USB (host/device)"/>
+        <feature type="I2S"           n="1"                           name="Inter-IC Sound"/>
+        <feature type="ExtInt"        n="16"                          name="External Interrupts"/>
+        <feature type="Temp"          n="-40"     m="85"              name="Operating Temperature Range"/>
+        <feature type="VCC"           n="1.62"    m="3.63"/>
+
+        <!-- *************************  Device 'ATSAMD21E15A'  **************************** -->
+        <device Dname="ATSAMD21E15A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21E15A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21E15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E15B'  **************************** -->
+        <device Dname="ATSAMD21E15B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E15B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E15B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1" init   ="0"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E15BU'  *************************** -->
+        <device Dname="ATSAMD21E15BU">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E15BU__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E15BU.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1" init   ="0"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E15L'  *************************** -->
+        <device Dname="ATSAMD21E15L">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E15L__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E15L.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E16A'  **************************** -->
+        <device Dname="ATSAMD21E16A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21E16A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21E16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E16B'  **************************** -->
+        <device Dname="ATSAMD21E16B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E16B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E16B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E16BU'  *************************** -->
+        <device Dname="ATSAMD21E16BU">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E16BU__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E16BU.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E16L'  *************************** -->
+        <device Dname="ATSAMD21E16L">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21E16L__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21E16L.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E17A'  **************************** -->
+        <device Dname="ATSAMD21E17A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21E17A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21E17A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21E18A'  **************************** -->
+        <device Dname="ATSAMD21E18A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21E18A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21E18A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="26"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+          <feature type="BGA"           n="32"                          name="UFBGA Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G15A'  **************************** -->
+        <device Dname="ATSAMD21G15A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G15A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G15B'  **************************** -->
+        <device Dname="ATSAMD21G15B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21G15B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21G15B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1" init   ="0"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G15L'  **************************** -->
+        <device Dname="ATSAMD21G15L">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21G15L__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21G15L.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1" init   ="0"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G16A'  **************************** -->
+        <device Dname="ATSAMD21G16A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G16A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G16B'  **************************** -->
+        <device Dname="ATSAMD21G16B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21G16B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21G16B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G16L'  **************************** -->
+        <device Dname="ATSAMD21G16L">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21G16L__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21G16L.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="Timer"         n="6"        m="32"             name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G17A'  **************************** -->
+        <device Dname="ATSAMD21G17A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G17A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G17A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G17AU'  *************************** -->
+        <device Dname="ATSAMD21G17AU">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G17AU__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G17AU.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G18A'  **************************** -->
+        <device Dname="ATSAMD21G18A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G18A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G18A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21G18AU'  *************************** -->
+        <device Dname="ATSAMD21G18AU">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21G18AU__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21G18AU.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="38"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="6"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+          <feature type="CSP"           n="48"                          name="WLCSP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J15A'  **************************** -->
+        <device Dname="ATSAMD21J15A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21J15A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21J15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J15B'  **************************** -->
+        <device Dname="ATSAMD21J15B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21J15B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21J15B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000400"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00001000" default="1" init   ="0"/>
+          <algorithm name="Flash/ATSAMD21_32.FLM"         start="0x00000000" size="0x00008000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_32_EEPROM.FLM"  start="0x00400000" size="0x00000400" default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J16A'  **************************** -->
+        <device Dname="ATSAMD21J16A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21J16A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21J16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J16B'  **************************** -->
+        <device Dname="ATSAMD21J16B">
+          <compile header="Device/SAMD21B/Include/samd21.h" define="__SAMD21J16B__"/>
+          <debug svd="SVD/SAMD21B/ATSAMD21J16B.svd"/>
+          <memory id="IROM1"                              start="0x00000000" size="0x00010000" default="1" startup="1"/>
+          <memory id="IROM2"                              start="0x00400000" size="0x00000800"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00002000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64.FLM"         start="0x00000000" size="0x00010000" default="1"/>
+          <algorithm name="Flash/ATSAMD21_64_EEPROM.FLM"  start="0x00400000" size="0x00000800" default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J17A'  **************************** -->
+        <device Dname="ATSAMD21J17A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21J17A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21J17A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD21J18A'  **************************** -->
+        <device Dname="ATSAMD21J18A">
+          <compile header="Device/SAMD21A/Include/samd21.h" define="__SAMD21J18A__"/>
+          <debug svd="SVD/SAMD21A/ATSAMD21J18A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMD21_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="52"                          name="Inputs/Outputs"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"              name="ADC"/>
+          <feature type="Timer"         n="8"       m="32"              name="Timer/Counter Module"/>
+          <feature type="QFN"           n="64"                          name="QFN Package"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMD21xA CMSIS">
+      <description>Microchip SAM D21 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMD21[EGJ]1[5678][A]*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="SAMD21xB CMSIS">
+      <description>Microchip SAM D21 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMD21[EGJ]1[5678][BL]*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAMD21 CMSIS">
+      <description>Microchip SAM D21 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMD21*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup SAMD21xA -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAMD21xA CMSIS">
+      <description>System Startup for Microchip SAM D21 Devices</description>
+      <files>
+        <file category="include"   name="Device/SAMD21A/Include/"/>
+        <file category="source"    name="Device/SAMD21A/Source/ARM/startup_SAMD21.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device/SAMD21A/Source/system_samd21.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAMD21xB -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAMD21xB CMSIS">
+      <description>System Startup for Microchip SAM D21 Devices</description>
+      <files>
+        <file category="include"   name="Device/SAMD21B/Include/"/>
+        <file category="source"    name="Device/SAMD21B/Source/ARM/startup_SAMD21.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device/SAMD21B/Source/system_samd21.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAMD21-XPRO Board Support -->
+    <bundle Cbundle="SAMD21-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMD21-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAMD21 CMSIS">
+      <description>LED driver for Microchip SAMD21-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMD21-XPRO/Common/LED_SAMD21-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAMD21 CMSIS">
+      <description>Button driver for Microchip SAMD21-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMD21-XPRO/Common/Buttons_SAMD21-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAMD21-XPRO" revision="Rev.5" salesContact="http://www.atmel.com/buy/contact_us.aspx?contactType=Sales%20Representative" orderForm="http://store.atmel.com/product.ashx?sku=ATSAMD20-XPRO&amp;tool_id=">
+      <description>Atmel SAM D21 Xplained Pro Evaluation Kit</description>
+      <image small="Boards/Atmel/SAMD21-XPRO/Documents/SAMD21-XPRO_small.jpg"
+             large="Boards/Atmel/SAMD21-XPRO/Documents/SAMD21-XPRO_large.jpg"/>
+      <book category="overview"  name="http://www.atmel.com/tools/ATSAMD21-XPRO.aspx" title="SAM D21 Xplained Pro Evaluation Kit Web Page"/>
+      <book category="manual"    name="Boards/Atmel/SAMD21-XPRO/Documents/Atmel-42220-SAMD21-Xplained-Pro_User-Guide.pdf" title="User Guide"/>
+      <book category="other"     name="Boards/Atmel/SAMD21-XPRO/Documents/Atmel-42220-SAMD21-Xplained-Pro_User-Guide.zip" title="Schematics and Gerber files"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMD21J18A"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dfamily="SAM D21"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="LED"       n="1"              name="Yellow User LED"/>
+	    <feature type="USB"       n="1"              name="Target USB"/>
+	    <feature type="CustomFF"  n="60" m="100"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMD21-XPRO Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAMD21-XPRO/RTX5_Blinky">
+      <description>CMSIS-RTOS2 based Blinky example</description>
+      <board name="SAMD21-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

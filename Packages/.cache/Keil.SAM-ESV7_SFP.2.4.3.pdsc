@@ -1,0 +1,1511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAM-ESV7_SFP</name>
+  <description>Microchip SAM V71, V70, E70, S70 Software Foundation (HAL, Driver, BSP)</description>
+
+  <releases>
+    <release version="2.4.3" date="2018-10-09">
+      Updated CMSIS Driver:
+      - Corrected USART1 device driver capabilities
+    </release>
+    <release version="2.4.2" date="2018-05-07">
+      Update device vendor from Atmel to Microchip.
+      Updated PLL frequency to avoid exceeding the maximum value defined in the datasheet 
+      CMSIS Driver:
+      - CAN:
+      -- Corrected Control function if ARM_CAN_SET_FD_MODE requested while CAN controller is in INIT state
+      -- Corrected abort message send functionality
+      -- Corrected Transceiver Delay Compensation functionality
+      -- Updated for Q21B chip revision using different header
+      -- Corrected SetBitrate function
+      - USB Device:
+      -- Corrected IRQ routine to process also last endpoint (number 9)
+      Board Examples:
+      - Updated USB Host examples thread stack settings
+      - Updated SAMV71-XULTRA SMTP_Client_RevB examples removing invalid user command from SAMV71B Flash ULINK Pro target.
+    </release>
+    <release version="2.4.1">
+      Updated device support:
+      - Updated system file with corrected SystemCoreClock initial value to value set by SystemInit function
+    </release>
+    <release version="2.4.0" date="2017-10-02">
+      Added support for revision B devices.
+      CMSIS Driver:
+      - USB Device:
+      -- Added warning if DMA is used (USB data needs to be in non-cacheable or shareable or write-through policy enabled RAM)
+      -- Corrected configuration for Isochronous Endpoint
+      - CAN:
+      -- Added support for chip revision D/E
+      -- Added capability to use non-ISO CAN FD mode (only chip revisions D/E/...)
+      -- CAN clock changed to use UPLL as suggested in documentation (UPLL/6 = 80 MHz)
+      -- Corrected ObjectSetFilter function for filter removal
+      -- Corrected standard ID handling (now supports 11 bits of ID, was 10)
+    </release>
+    <release version="2.3.3" date="2017-01-24">
+      CMSIS Driver:
+      - CAN:
+      -- Corrected CAN0 configuration structure
+    </release>
+    <release version="2.3.2" date="2016-12-16">
+      Corrected RTE_Device.h definitions for I2C2 and USART2 ports.
+      Updated USB Device CDC ACM VirtualCOM example (corrected initial UART receive size)
+      CMSIS Driver:
+      - CAN: 
+      -- Added Rx/Tx FIFO support (enable mask and range filtering)
+      -- Corrected transmit and receive for relative object index different than 0
+      - USB Device:
+      -- Enabled multiple bank usage for improved performance
+      -- Enabled DMA usage for improved performance
+      -- Corrected OUT reception in full-speed mode
+      -- Added delay for stalling as otherwise it can stall already active transfer
+      -- All endless loops changed to end with timeout
+      -- Corrected suspend/resume signaling
+    </release>
+    <release version="2.3.1" date="2016-04-26">
+      Corrected CapiVersion attribute of all CMSIS Driver components to reflect the implemented API version
+    </release>
+    <release version="2.3.0" date="2016-04-14">
+      Requires the Device Family Packs: Keil.SAM-V_DFP Ver. 2.3.0, Keil.SAM-E_DFP Ver. 2.1.0 or Keil.SAM-S_DFP Ver. 2.1.0
+      Contains SAMV71 Chip Library components based on SAMV71 Xplained Ultra Software Package Version 1.5
+      Board Support:
+      - Added SAME70 Xplained board support
+      CMSIS Driver:
+      - added support for CAN
+      - updated USB Device:
+      -- new driver implementation without Atmel USBD_HAL nor DMA support
+      - updated USB Host
+      -- removed interrupt priority handling
+      Examples:
+      - added MDK-Middleware examples for SAME70 Xplained board
+      - extended MDK-Middleware examples for SAMV71 Xplained Ultra board:
+      -- CAN and CAN FD, USB Device CDC NCM (Network Control Model), Network Dual Stack (IPv4/IPv6)
+    </release>
+    <release version="2.2.0" date="2015-10-09">
+      Requires the Device Family Packs: Keil.SAM-V_DFP Ver. 2.2.0, Keil.SAM-E_DFP Ver. 2.0.0 or Keil.SAM-S_DFP Ver. 2.0.0
+      Added Documentation about using Chip Library with MDK-5
+      CMSIS Driver: USART, I2C, USB Host and Device, MCI, Ethernet, SPI
+      Device Configuration: using classic framework component
+      Contains SAMV71 Chip Library components based on SAMV71 Xplained Ultra Software Package Version 1.4
+      MDK-Middleware examples for SAMV71 Xplained Ultra development board
+      Note: there are known deficiencies in the USB drivers to be fixed in the next release.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAMV71</keyword>
+    <keyword>SAMV70</keyword>
+    <keyword>SAME70</keyword>
+    <keyword>SAMS70</keyword>
+  </keywords>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="SAME70">
+      <description>Microchip SAME70 devices</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAME70*"/>
+    </condition>
+
+    <condition id="SAMS70">
+      <description>Microchip SAMS70 devices</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMS70*"/>
+    </condition>
+
+    <condition id="SAMV70">
+      <description>Microchip SAMV70 devices</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMV70*"/>
+    </condition>
+
+    <condition id="SAMV71">
+      <description>Microchip SAMV71 devices</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMV71*"/>
+    </condition>
+
+    <!-- Framework Conditions -->
+    <condition id="SAM-ESV7 Framework Classic">
+      <description>Microchip SAM-ESV7 Framework</description>
+      <accept condition="SAME70"/>
+      <accept condition="SAMS70"/>
+      <accept condition="SAMV70"/>
+      <accept condition="SAMV71"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Framework"/>
+    </condition>
+  
+    <!-- Device Driver Conditions -->
+    <condition id="SAM-ESV7 Startup">
+      <description>Microchip SAM-ESV7 Startup</description>
+      <require condition="SAM-ESV7 Framework Classic"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="SAM-ESV7 PMC">
+      <description>Microchip SAM-ESV7 and PMC Driver</description>
+      <require condition="SAM-ESV7 Startup"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PMC"/>
+    </condition>
+    <condition id="SAM-ESV7 PIO PMC">
+      <description>Microchip SAM-ESV7 devices and PIO PMC Driver</description>
+      <require condition="SAM-ESV7 PMC"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PIO"/>
+    </condition>
+    <condition id="SAM-ESV7 XDMAC PMC">
+      <description>Microchip SAM-ESV7 devices and XDMAC PIO PMC Driver</description>
+      <require condition="SAM-ESV7 PMC"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="XDMAC"/>    
+    </condition>
+    <condition id="SAM-ESV7 XDMAC PIO PMC">
+      <description>Microchip SAM-ESV7 devices and XDMAC PIO PMC Driver</description>
+      <require condition="SAM-ESV7 PIO PMC"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="XDMAC"/>    
+    </condition>
+    
+    <!-- Board Support Conditions -->
+    <condition id="SAMV71 PIO PMC">
+      <description>Microchip SAMV71 devices and PIO PMC Driver</description>
+      <require condition="SAMV71"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PIO"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PMC"/>
+    </condition>
+    
+    <condition id="SAME70 PIO PMC">
+      <description>Microchip SAME70 devices and PIO PMC Driver</description>
+      <require condition="SAME70"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PIO"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PMC"/>
+    </condition>
+    
+    <!-- CMSIS Driver Conditions -->
+    <condition id="SAM-ESV7 CMSIS Driver SPI">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="SAM-ESV7 XDMAC PIO PMC"/>
+    </condition>
+    <condition id="SAM-ESV7 CMSIS Driver I2C">
+      <description>Requirement for CMSIS I2C Driver</description>
+      <require condition="SAM-ESV7 XDMAC PIO PMC"/>
+    </condition>
+    <condition id="SAM-ESV7 CMSIS Driver USART">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="SAM-ESV7 XDMAC PIO PMC"/>
+    </condition>
+    <condition id="SAM-ESV7 CMSIS Driver Ethernet MAC">
+      <description>Requirement for CMSIS Ethernet MAC</description>
+      <require condition="SAM-ESV7 PIO PMC"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="GMAC"/>
+    </condition>
+    <condition id="SAM-ESV7 CMSIS Driver MCI">
+      <description>Requirement for CMSIS MCI Driver</description>
+      <require condition="SAM-ESV7 XDMAC PIO PMC"/>
+      <require Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="HSMCI"/>
+    </condition>  
+    <condition id="SAM-ESV7 CMSIS Driver USBD">
+      <description>Requirement for CMSIS USB Device Driver</description>
+      <require condition="SAM-ESV7 PMC"/>  
+    </condition>
+    <condition id="SAM-ESV7 CMSIS Driver USBH">
+      <description>Requirement for CMSIS USB Host Driver</description>   
+      <require condition="SAM-ESV7 PIO PMC"/>   
+    </condition>
+      <condition id="SAM-ESV7 CMSIS Driver CAN">
+      <description>Requirement for CMSIS CAN</description>   
+      <require condition="SAM-ESV7 PIO PMC"/>   
+    </condition>
+  
+  </conditions>
+
+  <!-- Taxonomy -->
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SAM-ESV7 Chip Library" doc="Documents/SAM-ESV7_Software_Package/html/libchip_page.html">SAM-ESV7 Chip Library - HAL Drivers</description>
+  </taxonomy>
+
+  <!-- APIs -->
+  <apis>
+    <api Cclass="Device" Cgroup="SAM-ESV7 Framework" exclusive="1">
+      <description>SAM-ESV7 Framework</description>
+      <files>
+        <file category="doc" name="Documents/html/index.html"/>
+      </files>
+    </api>
+  </apis>
+
+  <!-- Components -->
+  <components>
+    
+    <!-- SAM-ESV7 Framework Classic -->
+    <component Cclass="Device" Cgroup="SAM-ESV7 Framework" Csub="Classic" Capiversion="1.0.0" Cversion="1.0.0" condition="SAM-ESV7 Framework Classic">
+      <description>Configuration via RTE_Device.h</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_FRAMEWORK_CLASSIC
+      </RTE_Components_h>
+      <files>
+        <file category="header"    name="RTE_Driver/Config/RTE_Device.h" attr="config" version="1.4.0"/>
+        <file category="include"   name="Libraries/libchip/"/>
+        <file category="include"   name="Libraries/libchip/include/"/>
+      </files>
+    </component>
+
+    <!-- SAMV71-XULTRA Board Support -->
+    <bundle Cbundle="SAMV71-XULTRA" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMV71-XULTRA Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAMV71 PIO PMC">
+      <description>LED driver for Microchip SAMV71-XULTRA Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMV71-XULTRA/Common/LED_SAMV71-XULTRA.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAMV71 PIO PMC">
+      <description>Button driver for Microchip SAMV71-XULTRA Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMV71-XULTRA/Common/Buttons_SAMV71-XULTRA.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAME70-XPLD Board Support -->
+    <bundle Cbundle="SAME70-XPLD" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAME70-XPLD Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAME70 PIO PMC">
+      <description>LED driver for Microchip SAME70-XPLD Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAME70-XPLD/Common/LED_SAME70-XPLD.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAME70 PIO PMC">
+      <description>Button driver for Microchip SAME70-XPLD Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAME70-XPLD/Common/Buttons_SAME70-XPLD.c"/>
+        </files>
+      </component>
+    </bundle>
+   
+    <!-- SAM-ESV7 Chip Library -->        
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="ACC" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Analog Comparator Controller (ACC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_ACC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/acc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__acc__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="AES" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Advanced Encryption Standard (AES)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_AES
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/aes.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__aes__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="AFEC" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Analog Front-End Controller (AFEC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_AES
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/afec.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group___a_f_e_c__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="DAC" Cversion="1.0.0" condition="SAM-ESV7 XDMAC PMC">
+      <description>Digital to Analog Converter (DAC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_DAC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/dac_dma.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__dacc__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="EEFC" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Enhanced Embedded Flash Controller (EEFC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_EEFC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/efc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__efc__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="GMAC" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Ethernet MAC (GMAC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_GMAC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/gmac.c"/>
+        <file category="source" name="Libraries/libchip/source/gmacd.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__gmac__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="HSMCI" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>High Speed Multimedia Card Interface (HSMCI)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_HSMCI
+      </RTE_Components_h>  
+      <files>
+        <file category="include" name="Libraries/libstoragemedia/include/sdmmc/"/>        
+        <file category="source" name="Libraries/libchip/source/hsmci.c"/>
+        <file category="source" name="Libraries/libchip/source/mcid_dma.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__hsmci__module.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="ICM" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Integrity Check Monitor (ICM)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_ICM
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/icm.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__icm__module.html"/>
+      </files>
+    </component>
+ 
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="MLB" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>MediaLB (MLB)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_MLB
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/mediaLB.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__media_l_b.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="MPU" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Memory Protection Unit (MPU)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_MPU
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/mpu.c"/>      
+        <file category="source" name="Libraries/libchip/source/setup_mpu.c" attr="config" version="1.1.0"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PIO" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Parallel Input/Output Controller (PIO)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_PIO
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/pio.c"/>      
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PMC" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Power Management Controller (PMC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_PMC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/pmc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__pmc__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="PWMC" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Pulse Width Modulation Controller (PWMC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_PWMC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/pwmc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__pwm__module.html"/>
+      </files>
+    </component>
+    
+   <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="QSPI" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Quad Serial Peripheral Interface (QSPI)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_QSPI
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/qspi.c"/>      
+      </files>
+    </component>
+ 
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="RSTC" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Reset Controller (RSTC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_RSTC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/rstc.c"/>      
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="RTC" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Real-Time Clock (RTC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_RTC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/rtc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__rtc__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="RTT" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Real-Time Timer (RTT)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_RTT
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/rtt.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__rtt__module.html"/>
+      </files>
+    </component>
+ 
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="SDRAMC" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>SDRAM Controller (SDRAMC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_SDRAMC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/sdramc.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__sdram__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="SPI" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Serial Peripheral Interface (SPI)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_SPI
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/spi.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__spi__module.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="SUPC" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Supply Controller (SUPC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_SUPC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/supc.c"/>      
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="TRNG" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>True Random Number Generator (TRNG)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_TRNG
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/trng.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__rtng__module.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="TWI" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Two-Wire Interface (TWI)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_TWI
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/twi.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__twi__module.html"/>
+      </files>
+    </component>    
+  
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="UART" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Universal Asynchronous Receiver Transmitter (UART)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_UART
+      </RTE_Components_h>  
+      <files>     
+        <file category="source" name="Libraries/libchip/source/uart.c"/>
+      </files>
+    </component>    
+
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="USART" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>Universal Synchronous Asynchronous Receiver Transceiver (USART)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_USART
+      </RTE_Components_h>  
+      <files>     
+        <file category="source" name="Libraries/libchip/source/usart.c"/>
+      </files>
+    </component>  
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="USBD" Cversion="1.0.0" condition="SAM-ESV7 PMC">
+      <description>USB Device Hardware Abstraction Layer (USBD_HAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_USBD
+      </RTE_Components_h>  
+      <files>
+
+        <file category="include" name="Libraries/libusb/include/"/>        
+        <file category="source" name="Libraries/libusb/common/core/USBD_HAL.c"/>
+      </files>
+    </component>
+ 
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="WDT" Cversion="1.0.0" condition="SAM-ESV7 Startup">
+      <description>Watchdog Timer (WDT)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_WDT
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/wdt.c"/>
+        <file category="doc" name="Documents/SAM-ESV7_Software_Package/html/group__wdt__module.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="SAM-ESV7 Chip Library" Csub="XDMAC" Cversion="1.0.0" condition="SAM-ESV7 XDMAC PMC">
+      <description>Extensible Direct Memory Access Controller (XDMAC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SAM_ESV7_XDMAC
+      </RTE_Components_h>  
+      <files>
+        <file category="source" name="Libraries/libchip/source/xdmac.c"/>
+        <file category="source" name="Libraries/libchip/source/xdmad.c"/>
+        <file category="source" name="Libraries/libchip/source/xdma_hardware_interface.c"/>
+      </files>
+    </component>
+    
+
+    <!-- CMSIS Peripherals Drivers -->
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.1" Cversion="1.0" condition="SAM-ESV7 CMSIS Driver SPI">
+      <description>SPI Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_SAM-ESV7.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2" Cversion="1.0" condition="SAM-ESV7 CMSIS Driver I2C">
+      <description>I2C Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_SAM-ESV7.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1" Cversion="1.0" condition="SAM-ESV7 CMSIS Driver USART">
+      <description>USART Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USART_SAM-ESV7.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Capiversion="2.1" Cversion="1.0" condition="SAM-ESV7 CMSIS Driver Ethernet MAC">
+      <description>Ethernet MAC Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_Ethernet_MAC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/GMAC_SAM-ESV7.c"/>
+      </files>
+    </component>
+     
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.2" Cversion="1.0" condition="SAM-ESV7 CMSIS Driver MCI">
+      <description>MCI Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_MCI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/MCI_SAM-ESV7.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1" Cversion="1.5.0" condition="SAM-ESV7 CMSIS Driver USBD">
+      <description>USB Device Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD_SAM-ESV7.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Capiversion="2.1" Cversion="1.1" condition="SAM-ESV7 CMSIS Driver USBH">
+      <description>USB Host Driver for SAM-ESV7</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBH
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="Libraries/libusb/include/"/>
+        <file category="source" name="RTE_Driver/USBH_SAM-ESV7.c"/>
+      </files>
+    </component>    
+
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.0" Cversion="1.11" condition="SAM-ESV7 CMSIS Driver CAN">
+      <description>CAN Driver for SAM-ESV7</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN0                /* Driver CAN0 */
+        #define RTE_Drivers_CAN1                /* Driver CAN1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/CAN_SAM-ESV7.c"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAMV71-XULTRA" revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://www.atmel.com/tools/atsamv71-xult.aspx#buy">
+      <description>Microchip SAMV71 Xplained Ultra Evaluation Kit (ATSAMV71-XULTRA)</description>
+      <image small="Boards/Atmel/SAMV71-XULTRA/Documents/SAMV71_Xplained_Ultra_small.png" large="Boards/Atmel/SAMV71-XULTRA/Documents/SAMV71_Xplained_Ultra.png"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMV71Q21"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAME70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMS70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMV70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMV71"/>
+      <book category="overview"  name="http://www.atmel.com/tools/ATSAMV71-XULT.aspx" title="SAMV71 Xplained Ultra Web Page"/>      
+      <book category="setup"     name="Boards/Atmel/SAMV71-XULTRA/Documents/SAMV71_XUltra_QSG.pdf" title="Quick Start Guide"/>
+      <book category="setup"     name="Boards/Atmel/SAMV71-XULTRA/Documents/Atmel_Blinky_Lab.pdf" title="Blinky Lab"/>
+      <book category="schematic" name="Boards/Atmel/SAMV71-XULTRA/Documents/SAM_V71_Xplained_Ultra_design_documentation_release_rev8.pdf" title="Schematics"/>
+      <book category="manual"    name="Boards/Atmel/SAMV71-XULTRA/Documents/Atmel-42408-SAMV71-Xplained-Ultra_User-Guide.pdf" title="User Manual"/>
+      <book category="other"     name="Boards/Atmel/SAMV71-XULTRA/Documents/Gerber.zip" title="Gerber Files"/>
+      <book category="other"     name="Boards/Atmel/SAMV71-XULTRA/Documents/Bill of Materials Fitted- SAM V71 Xplained Ultra_release_rev3.zip" title="Bill of Materials"/>
+      <feature type="ODbg"            n="1"              name="On-board CMSIS-DAP Debugger"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="PWR"             n="5"  m="14"      name="External Supply"/>
+      <feature type="RAM"             n="1"              name="2 MByte SDRAM"/>
+      <feature type="ROM"             n="1"              name="2 MByte QSPI Flash"/>
+      <feature type="Memory"          n="1"              name="256 kByte I2C EEPROM"/>
+      <feature type="USB"             n="1"              name="USB 2.0 High Speed, Host/Device"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="CAN"             n="1"              name="MCAN according to ISO11898-1"/>         
+      <feature type="LineIn"          n="1"              name="Stereo audio codec with Microphone jack"/>
+      <feature type="LineOut"         n="1"              name="Stereo audio codec with Headphone jack"/>
+      <feature type="MemCard"         n="1"              name="SD Card connector with SDIO support"/>      
+      <feature type="ConnOther"       n="1"              name="Camera interface connector"/>
+      <feature type="ConnOther"       n="1"              name="MediaLB connector"/>
+      <feature type="ConnOther"       n="1"              name="LCD header"/>
+      <feature type="ConnOther"       n="2"              name="Extension headers"/>
+      <feature type="ConnOther"       n="1"              name="Arduino due compatible shield connectors"/>  
+      <feature type="Button"          n="4"              name="Push-Buttons for Power, Reset and User"/>
+      <feature type="LED"             n="4"              name="LEDs for Power, Status and User"/>
+      <feature type="Other"           n="1"              name="Supercap backup"/>
+      <feature type="CustomFF"        n="94" m="140"     name="SAMV71 Xplained Ultra Formfactor"/>
+      <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="Atmel" name="SAME70-XPLD" revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://www.atmel.com/tools/ATSAME70-XPLD.aspx#buy">
+      <description>Microchip SAME70 Xplained Evaluation Kit (ATSAME70-XPLD)</description>
+      <image small="Boards/Atmel/SAME70-XPLD/Documents/SAME70_Xplained_small.png" large="Boards/Atmel/SAME70-XPLD/Documents/SAME70_Xplained.png"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAME70Q21"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAME70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMS70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMV70"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMV71"/>
+      <book category="overview"  name="http://www.atmel.com/tools/ATSAME70-XPLD.aspx" title="SAME70 Xplained Web Page"/>
+      <book category="setup"     name="Boards/Atmel/SAME70-XPLD/Documents/SAME70_X_QSG.pdf" title="Quick Start Guide"/>
+      <book category="schematic" name="Boards/Atmel/SAME70-XPLD/Documents/same70-xpld.pdf" title="Schematics"/>
+      <book category="manual"    name="Boards/Atmel/SAME70-XPLD/Documents/Atmel-44050-Cortex-M7-Microcontroller-SAM-E70-XPLD-Xplained_User-guide.pdf" title="User Manual"/>
+      <book category="other"     name="Boards/Atmel/SAME70-XPLD/Documents/SAME70-XPLD_GERBER_A.zip" title="Gerber Files"/>
+      <book category="other"     name="Boards/Atmel/SAME70-XPLD/Documents/SAME70-XPLD BOM RevA.zip" title="Bill of Materials"/>
+      <feature type="ODbg"            n="1"              name="On-board CMSIS-DAP Debugger"/>
+      <feature type="XTAL"            n="12000000"       name="Crystal Oscillator"/>
+      <feature type="XTAL"            n="32768"          name="Crystal Oscillator (not populated)"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="RAM"             n="1"              name="2 MByte SDRAM"/>
+      <feature type="Memory"          n="1"              name="256 kByte I2C EEPROM"/>
+      <feature type="USB"             n="1"              name="USB 2.0 High Speed, Host/Device"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="MemCard"         n="1"              name="SD Card connector with SDIO support"/>
+      <feature type="ConnOther"       n="1"              name="Camera extension header for connection with ISI Modules (not populated)"/>
+      <feature type="ConnOther"       n="1"              name="Arduino R3 compatible set of headers (not populated)"/>
+      <feature type="ConnOther"       n="2"              name="Expansion connectors (GPIO,TWI, SPI, USART, UART and Audio interfaces)"/>
+      <feature type="Button"          n="2"              name="Push-Buttons for Reset and User"/>
+      <feature type="LED"             n="1"              name="LED for User"/>
+      <feature type="CustomFF"        n="83.5" m="105"   name="SAME70 Xplained Formfactor"/>
+      <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector - not populated)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMV71-XULTRA Board - Blinky -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Blinky" version="1.0.0">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - CAN -->
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/CAN/CAN">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - CAN FD -->
+    <example name="CAN FD" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/CAN/CAN_FD">
+      <description>CAN FD example that sends and receives data messages</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CAN_FD.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - Telnet Server -->
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+ 
+    <!-- SAMV71-XULTRA Board - Telnet Server IPv4/IPv6-->
+    <example name="Telnet Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+ 
+     <!-- SAMV71-XULTRA Board - Telnet Server for Rev. B Devices -->
+    <example name="Telnet Server Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/Telnet_Server_RevB" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+ 
+    <!-- SAMV71-XULTRA Board - Telnet Server IPv4/IPv6 for Rev. B Devices -->
+    <example name="Telnet Server IPv4/IPv6 Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/Telnet_Server_RevB" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - HTTP Upload -->
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - HTTP Upload IPv4/IPv6 -->
+    <example name="HTTP Upload IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+    
+    <!-- SAMV71-XULTRA Board - HTTP Upload for Rev. B Devices -->
+    <example name="HTTP Upload Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/HTTP_Upload_RevB" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - HTTP Upload IPv4/IPv6 for Rev. B Devices -->
+    <example name="HTTP Upload IPv4/IPv6 Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/HTTP_Upload_RevB" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - HTTP Server -->
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+         
+    <!-- SAMV71-XULTRA Board - HTTP Server IPv4/IPv6-->
+    <example name="HTTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - HTTP Server for Rev. B Devices -->
+    <example name="HTTP Server Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/HTTP_Server_RevB" version="1.0.0">
+      <description>Compact Web Server with CGI interface for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+         
+    <!-- SAMV71-XULTRA Board - HTTP Server IPv4/IPv6 for Rev. B Devices -->
+    <example name="HTTP Server IPv4/IPv6 Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/HTTP_Server_RevB" version="1.0.0">
+      <description>Compact Web Server with CGI interface for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+         
+    <!-- SAMV71-XULTRA Board - FTP Server --> 
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+ 
+    <!-- SAMV71-XULTRA Board - FTP Server IPv4/IPv6 -->
+    <example name="FTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+ 
+     <!-- SAMV71-XULTRA Board - FTP Server  for Rev. B Devices --> 
+    <example name="FTP Server Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/FTP_Server_RevB" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+ 
+    <!-- SAMV71-XULTRA Board - FTP Server IPv4/IPv6 for Rev. B Devices -->
+    <example name="FTP Server IPv4/IPv6 Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/FTP_Server_RevB" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SMTP Client -->
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SMTP Client IPv4/IPv6 -->
+    <example name="SMTP Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SMTP Client for Rev. B Devices -->
+    <example name="SMTP Client Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/SMTP_Client_RevB" version="1.0.0">
+      <description>Example showing how to compose and send emails for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SMTP Client IPv4/IPv6 for Rev. B Devices -->
+    <example name="SMTP Client IPv4/IPv6 Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/NetworkDS/SMTP_Client_RevB" version="1.0.0">
+      <description>Example showing how to compose and send emails for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SNMP Agent -->
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/SNMP_Agent" version="1.0.0">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - SNMP Agent for Rev. B Devices -->
+    <example name="SNMP Agent Rev. B" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/Network/SNMP_Agent_RevB" version="1.0.0">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP) for Rev. B Devices</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+    
+    <!-- SAMV71-XULTRA Board - File System Demo -->
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - USB Device - HID -->
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+    
+    <!-- SAMV71-XULTRA Board - USB Device - Mass Storage -->
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card as storage media</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - USB Device - CDC NCM -->
+    <example name="USB Network Control Model Device" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Device/CDC_NCM" version="1.0.0">
+      <description>USB Network Control Model Device</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CDC_NCM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - USB Device - Virtual COM -->
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Bridge between PC USB Virtual COM Port and UART port</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Virtual COM</keyword>
+      </attributes>
+    </example>
+    
+    <!-- SAMV71-XULTRA Board - USB Host - Mass Storage -->
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format the storage device</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Mass Storage</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAMV71-XULTRA Board - USB Host - Keyboard -->
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/Atmel/SAMV71-XULTRA/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>USB Host example using HID Keyboard as input device</description>
+      <board name="SAMV71-XULTRA" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - Blinky -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Blinky" version="1.0.0">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - CAN -->
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/CAN/CAN">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - CAN FD -->
+    <example name="CAN FD" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/CAN/CAN_FD">
+      <description>CAN FD example that sends and receives data messages</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CAN_FD.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - Telnet Server -->
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/Network/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+<!-- SAME70-XPLD Board - Telnet Server IPv4/IPv6-->
+    <example name="Telnet Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/NetworkDS/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - HTTP Server -->
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/Network/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - HTTP Server IPv4/IPv6-->
+    <example name="HTTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/NetworkDS/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - HTTP Upload -->
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - HTTP Upload IPv4/IPv6 -->
+    <example name="HTTP Upload IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/NetworkDS/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - FTP Server -->
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - FTP Server IPv4/IPv6 -->
+    <example name="FTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/NetworkDS/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - SMTP Client -->
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/Network/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - SMTP Client IPv4/IPv6 -->
+    <example name="SMTP Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/NetworkDS/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - File System Demo -->
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - USB Device - HID -->
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - USB Device - Mass Storage -->
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card as storage media</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - USB Device - CDC NCM -->
+    <example name="USB Network Control Model Device" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/USB/Device/CDC_NCM" version="1.0.0">
+      <description>USB Network Control Model Device</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="CDC_NCM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAME70-XPLD Board - USB Device - Virtual COM -->
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Atmel/SAME70-XPLD/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Bridge between PC USB Virtual COM Port and UART port</description>
+      <board name="SAME70-XPLD" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Virtual COM</keyword>
+      </attributes>
+    </example>
+    
+  </examples>
+
+</package>

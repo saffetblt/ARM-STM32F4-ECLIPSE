@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>MIMX8MQ7_DFP</name>
+  <description>Device Family Pack for MIMX8MQ7</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Device Startup</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MIMX8MQ7" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="true" sdf="debug/iMX8MQ.sdf"/>
+      <description>The MIMX8MQ7 are ARM Cortex-M4 and Cortex-A53 based microcontrollers for embedded applications.</description>
+      <device Dname="MIMX8MQ7xxxHZ">
+        <processor Dcore="Cortex-M4" Dfpu="1" Dendian="Little-endian" Dclock="266000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MIMX8MQ7xxxHZ_cm4_ram.icf"/>
+        </environment>
+        <memory name="QSPI_FLASH" access="rw" start="0xc0000000" size="0x10000000" startup="1" default="1"/>
+        <memory name="SRAM_LOWER" access="rw" start="0x1ffe0000" size="0x020000" default="1"/>
+        <memory name="SRAM_UPPER" access="rw" start="0x20000000" size="0x020000"/>
+        <debug svd="MIMX8MQ7.xml" Pname="cm4"/>
+        <variant Dvariant="MIMX8MQ7CVAHZ">
+          <compile header="fsl_device_registers.h" define="CPU_MIMX8MQ7CVAHZ"/>
+        </variant>
+      </device>
+      <device Dname="MIMX8MQ7xxxJZ">
+        <processor Dcore="Cortex-M4" Dfpu="1" Dendian="Little-endian" Dclock="266000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MIMX8MQ7xxxJZ_cm4_ram.icf"/>
+        </environment>
+        <memory name="QSPI_FLASH" access="rw" start="0xc0000000" size="0x10000000" startup="1" default="1"/>
+        <memory name="SRAM_LOWER" access="rw" start="0x1ffe0000" size="0x020000" default="1"/>
+        <memory name="SRAM_UPPER" access="rw" start="0x20000000" size="0x020000"/>
+        <debug svd="MIMX8MQ7.xml" Pname="cm4"/>
+        <variant Dvariant="MIMX8MQ7DVAJZ">
+          <compile header="fsl_device_registers.h" define="CPU_MIMX8MQ7DVAJZ"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="MIMX8MQ7???HZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7???JZ" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MIMX8MQ7_driver.ecspi">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="ecspi_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ecspi"/>
+    </condition>
+    <condition id="devices.MIMX8MQ7_device.MIMX8MQ7_device.MIMX8MQ7_startup_driver.clock_driver.common_driver.iuart_driver.rdc_utility.debug_console">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rdc"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="middleware.freertos_device.MIMX8MQ7_driver.ecspi">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="freertos"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="template_application.freertos"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ecspi"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MIMX8MQ7_driver.ii2c">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MIMX8MQ7_driver.iuart">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+    </condition>
+    <condition id="middleware.freertos_device.MIMX8MQ7_driver.ii2c">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="freertos"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="template_application.freertos"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="middleware.freertos_device.MIMX8MQ7_driver.iuart">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="freertos"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="template_application.freertos"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+    </condition>
+    <condition id="devices.MIMX8MQ7_driver.common">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MIMX8MQ7_utility.debug_console">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MIMX8MQ7">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.MIMX8MQ7_platform.Include_core_cm4">
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+    </condition>
+    <condition id="devices.MIMX8MQ7xxxHZ_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dname="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxHZ" Dvariant="MIMX8MQ7CVAHZ" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="devices.MIMX8MQ7xxxJZ_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dname="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ7xxxJZ" Dvariant="MIMX8MQ7DVAJZ" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="devices.MIMX8MQ7_platform.Include_core_cm4">
+      <description></description>
+      <files>
+        <file name="iar/startup_MIMX8MQ7_cm4.s" category="sourceAsm" condition="iar" attr="config"/>
+        <file name="MIMX8MQ7_cm4.h" category="header" attr="config"/>
+        <file name="MIMX8MQ7_cm4_features.h" category="header" attr="config"/>
+        <file name="fsl_device_registers.h" category="header" attr="config"/>
+        <file name="iar/MIMX8MQ7xxxHZ_cm4_ddr_ram.icf" category="linkerScript" condition="devices.MIMX8MQ7xxxHZ_iar" attr="config"/>
+        <file name="iar/MIMX8MQ7xxxHZ_cm4_ram.icf" category="linkerScript" condition="devices.MIMX8MQ7xxxHZ_iar" attr="config"/>
+        <file name="iar/MIMX8MQ7xxxJZ_cm4_ddr_ram.icf" category="linkerScript" condition="devices.MIMX8MQ7xxxJZ_iar" attr="config"/>
+        <file name="iar/MIMX8MQ7xxxJZ_cm4_ram.icf" category="linkerScript" condition="devices.MIMX8MQ7xxxJZ_iar" attr="config"/>
+        <file name="system_MIMX8MQ7_cm4.c" category="sourceC" attr="config"/>
+        <file name="system_MIMX8MQ7_cm4.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="project_template" Cvariant="MIMX8MQ7" isDefaultVariant="1" condition="devices.MIMX8MQ7_device.MIMX8MQ7_device.MIMX8MQ7_startup_driver.clock_driver.common_driver.iuart_driver.rdc_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/fsl_iomuxc.h" category="header"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Cversion="2.0.0" Csub="ecspi_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MIMX8MQ7_driver.ecspi">
+      <description>ECSPI CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_ecspi_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_ecspi_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Cversion="2.0.0" Csub="i2c_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MIMX8MQ7_driver.ii2c">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_i2c_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_i2c_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="2.0.0" Csub="uart_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MIMX8MQ7_driver.iuart">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_uart_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_uart_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="clock" condition="devices.MIMX8MQ7_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file name="drivers/fsl_clock.c" category="sourceC"/>
+        <file name="drivers/fsl_clock.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="common" condition="devices.MIMX8MQ7_driver.common">
+      <description>COMMON Driver</description>
+      <files>
+        <file name="drivers/fsl_common.c" category="sourceC"/>
+        <file name="drivers/fsl_common.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="ecspi" condition="devices.MIMX8MQ7_driver.common">
+      <description>ECSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_ecspi.c" category="sourceC"/>
+        <file name="drivers/fsl_ecspi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="ecspi_freertos" condition="middleware.freertos_device.MIMX8MQ7_driver.ecspi">
+      <description>ECSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_ecspi_freertos.c" category="sourceC"/>
+        <file name="drivers/fsl_ecspi_freertos.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="gpt" condition="device.MIMX8MQ7">
+      <description>GPT Driver</description>
+      <files>
+        <file name="drivers/fsl_gpt.c" category="sourceC"/>
+        <file name="drivers/fsl_gpt.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="gpio" condition="device.MIMX8MQ7">
+      <description>GPIO Driver</description>
+      <files>
+        <file name="drivers/fsl_gpio.c" category="sourceC"/>
+        <file name="drivers/fsl_gpio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="i2c" condition="device.MIMX8MQ7">
+      <description>I2C Driver</description>
+      <files>
+        <file name="drivers/fsl_i2c.c" category="sourceC"/>
+        <file name="drivers/fsl_i2c.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="i2c_freertos" condition="middleware.freertos_device.MIMX8MQ7_driver.ii2c">
+      <description>I2C Driver</description>
+      <files>
+        <file name="drivers/fsl_i2c_freertos.c" category="sourceC"/>
+        <file name="drivers/fsl_i2c_freertos.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="iomuxc" condition="devices.MIMX8MQ7_driver.common">
+      <description>IOMUXC Driver</description>
+      <files>
+        <file name="drivers/fsl_iomuxc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="ipwm" condition="device.MIMX8MQ7">
+      <description>PWM Driver</description>
+      <files>
+        <file name="drivers/fsl_pwm.c" category="sourceC"/>
+        <file name="drivers/fsl_pwm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="iuart" condition="device.MIMX8MQ7">
+      <description>IUART Driver</description>
+      <files>
+        <file name="drivers/fsl_uart.c" category="sourceC"/>
+        <file name="drivers/fsl_uart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="iuart_freertos" condition="middleware.freertos_device.MIMX8MQ7_driver.iuart">
+      <description>IUART Freertos Driver</description>
+      <files>
+        <file name="drivers/fsl_uart_freertos.c" category="sourceC"/>
+        <file name="drivers/fsl_uart_freertos.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="mu" condition="devices.MIMX8MQ7_driver.common">
+      <description>MU Driver</description>
+      <files>
+        <file name="drivers/fsl_mu.c" category="sourceC"/>
+        <file name="drivers/fsl_mu.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="qspi" condition="devices.MIMX8MQ7_driver.common">
+      <description>QSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_qspi.c" category="sourceC"/>
+        <file name="drivers/fsl_qspi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="rdc" condition="devices.MIMX8MQ7_driver.common">
+      <description>RDC Driver</description>
+      <files>
+        <file name="drivers/fsl_rdc.c" category="sourceC"/>
+        <file name="drivers/fsl_rdc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="rdc_sema42" condition="device.MIMX8MQ7">
+      <description>RDC SEMA42 Driver</description>
+      <files>
+        <file name="drivers/fsl_rdc_sema42.c" category="sourceC"/>
+        <file name="drivers/fsl_rdc_sema42.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="sai" condition="devices.MIMX8MQ7_driver.common">
+      <description>SAI Driver</description>
+      <files>
+        <file name="drivers/fsl_sai.c" category="sourceC"/>
+        <file name="drivers/fsl_sai.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="sema4" condition="devices.MIMX8MQ7_driver.common">
+      <description>SEMA4 Driver</description>
+      <files>
+        <file name="drivers/fsl_sema4.c" category="sourceC"/>
+        <file name="drivers/fsl_sema4.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="tmu" condition="devices.MIMX8MQ7_driver.common">
+      <description>TMU Driver</description>
+      <files>
+        <file name="drivers/fsl_tmu.c" category="sourceC"/>
+        <file name="drivers/fsl_tmu.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="wdog" condition="devices.MIMX8MQ7_driver.common">
+      <description>wdog01 Driver</description>
+      <files>
+        <file name="drivers/fsl_wdog.c" category="sourceC"/>
+        <file name="drivers/fsl_wdog.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="RTE_Device" condition="device.MIMX8MQ7">
+      <description></description>
+      <files>
+        <file name="template/RTE_Device.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="assert" condition="device.MIMX8MQ7_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_assert.c" category="sourceC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console" condition="device.MIMX8MQ7">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_debug_console.c" category="sourceC"/>
+        <file name="utilities/fsl_debug_console.h" category="header"/>
+        <file name="utilities/fsl_debug_console_conf.h" category="header"/>
+        <file name="utilities/io/fsl_io.c" category="sourceC"/>
+        <file name="utilities/io/fsl_io.h" category="header"/>
+        <file name="utilities/log/fsl_log.c" category="sourceC"/>
+        <file name="utilities/log/fsl_log.h" category="header"/>
+        <file name="utilities/str/fsl_str.c" category="sourceC"/>
+        <file name="utilities/str/fsl_str.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

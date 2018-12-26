@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MKE02Z4_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MKE02Z4</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MKE02Z4" Dvendor="NXP:11">
+      <description>The Kinetis E series MCU portfolio maintain high-reliability and robustness in harsh electrical noise environments based on the ARM® Cortex®-M0+ core.</description>
+      <device Dname="MKE02Z16xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="40000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKE02Z16xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x4000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1ffffe00" size="0x0800" access="rw" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_P16KB.FLM" start="0x00000000" size="0x00004000" RAMstart="0x1ffffe00" RAMsize="0x00000800" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1ffffe00" RAMsize="0x00000800" default="1"/>
+        <debug svd="MKE02Z4.xml"/>
+        <variant Dvariant="MKE02Z16VFM4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z16VFM4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z16VFM4/MKE02Z16xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z16VLC4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z16VLC4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z16VLC4/MKE02Z16xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z16VLD4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z16VLD4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z16VLD4/MKE02Z16xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKE02Z32xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="40000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKE02Z32xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x8000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1ffffc00" size="0x1000" access="rw" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_P32KB.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1ffffc00" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1ffffc00" RAMsize="0x00001000" default="1"/>
+        <debug svd="MKE02Z4.xml"/>
+        <variant Dvariant="MKE02Z32VFM4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z32VFM4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z32VFM4/MKE02Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z32VLC4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z32VLC4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z32VLC4/MKE02Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z32VLD4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z32VLD4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z32VLD4/MKE02Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z32VLH4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z32VLH4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z32VLH4/MKE02Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z32VQH4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z32VQH4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z32VQH4/MKE02Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKE02Z64xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="40000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKE02Z64xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x010000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1ffffc00" size="0x1000" access="rw" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_P64KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1ffffc00" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1ffffc00" RAMsize="0x00001000" default="1"/>
+        <debug svd="MKE02Z4.xml"/>
+        <variant Dvariant="MKE02Z64VFM4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z64VFM4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z64VFM4/MKE02Z64xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z64VLC4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z64VLC4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z64VLC4/MKE02Z64xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z64VLD4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z64VLD4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z64VLD4/MKE02Z64xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z64VLH4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z64VLH4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z64VLH4/MKE02Z64xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKE02Z64VQH4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE02Z64VQH4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKE02Z64VQH4/MKE02Z64xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.MKE02Z4">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_utility.debug_console">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.spi">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_driver.common">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_component.lists_AND_utility.debug_console">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_driver.uart">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_component.serial_manager_AND_driver.common">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_device.MKE02Z4_CMSIS_AND_driver.clock">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MKE02Z4_startup"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MKE02Z4_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_1_AND_driver.port_ke02_AND_driver.uart_AND_utility.debug_console">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MKE02Z4_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+    </condition>
+    <condition id="device.MKE02Z4_AND_CMSIS_Include_core_cm0plus">
+      <accept Dname="MKE02Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z64???4" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MKE02Z4">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.MKE02Z4_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cversion="2.0.1" condition="device.MKE02Z4_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_uart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_uart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="spi_cmsis" Cversion="2.0.0" condition="device.MKE02Z4_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.spi">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_spi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_spi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.0.4" condition="device.MKE02Z4_AND_driver.common">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_spi.h"/>
+        <file category="sourceC" name="drivers/fsl_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.MKE02Z4_AND_component.lists_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="device.MKE02Z4_AND_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/uart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MKE02Z4">
+      <description/>
+      <files>
+        <file category="header" name="components/lists/generic_list.h"/>
+        <file category="sourceC" name="components/lists/generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.0" condition="device.MKE02Z4">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_manager.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.MKE02Z4_AND_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.MKE02Z4_AND_component.serial_manager_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.0.2" condition="device.MKE02Z4_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="2.0.0" condition="device.MKE02Z4">
+      <description>Flash Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flash.c"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>WDOG Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog8.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog8.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm" Cversion="2.0.2" condition="device.MKE02Z4_AND_driver.common">
+      <description>TPM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_tpm.c"/>
+        <file category="header" name="drivers/fsl_tpm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.1.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>FTM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.1" condition="device.MKE02Z4_AND_driver.common">
+      <description>PIT Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pit.c"/>
+        <file category="header" name="drivers/fsl_pit.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>RTC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="irq" Cversion="2.0.1" condition="device.MKE02Z4_AND_driver.common">
+      <description>IRQ Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_irq.c"/>
+        <file category="header" name="drivers/fsl_irq.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="acmp" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>ACMP Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_acmp.c"/>
+        <file category="header" name="drivers/fsl_acmp.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="kbi" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>KBI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_kbi.h"/>
+        <file category="sourceC" name="drivers/fsl_kbi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.6" condition="device.MKE02Z4_AND_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.1.6" condition="device.MKE02Z4_AND_driver.common">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart.h"/>
+        <file category="sourceC" name="drivers/fsl_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.0.1" condition="device.MKE02Z4_AND_driver.common">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+        <file category="sourceC" name="drivers/fsl_port.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.0.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>ADC12 Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc.c"/>
+        <file category="header" name="drivers/fsl_adc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.MKE02Z4_AND_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.MKE02Z4_AND_device.MKE02Z4_CMSIS_AND_driver.clock">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MKE02Z4" Cversion="1.0.0" condition="device.MKE02Z4_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MKE02Z4_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_1_AND_driver.port_ke02_AND_driver.uart_AND_utility.debug_console" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="MKE02Z4_startup" Cversion="1.0.0" condition="device.MKE02Z4_AND_CMSIS_Include_core_cm0plus">
+      <description/>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_MKE02Z4.s"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_MKE02Z4.s"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z16xxx4_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z16xxx4_ram.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z32xxx4_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z32xxx4_ram.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z64xxx4_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE02Z64xxx4_ram.scf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z16xxx4_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z16xxx4_ram.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z32xxx4_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z32xxx4_ram.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z64xxx4_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE02Z64xxx4_ram.icf"/>
+        <file category="header" attr="config" name="fsl_device_registers.h"/>
+        <file category="header" attr="config" name="MKE02Z4.h"/>
+        <file category="header" attr="config" name="MKE02Z4_features.h"/>
+        <file category="sourceC" attr="config" name="system_MKE02Z4.c"/>
+        <file category="header" attr="config" name="system_MKE02Z4.h"/>
+      </files>
+    </component>
+  </components>
+</package>

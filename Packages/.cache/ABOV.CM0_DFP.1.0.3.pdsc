@@ -1,0 +1,2707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ABOV</vendor>
+  <name>CM0_DFP</name>
+  <description>ABOV Semiconductor CM0 Device Support, Drivers and Examples</description>
+  <url>http://www.abov.co.kr/data/mds/PACK/</url>
+  <supportContact>seungduk.ha@abov.co.kr</supportContact>
+  <releases>
+    <release version="1.0.3" date="2018-11-28">
+            - Bug Fixed : A31G313, A31G314, A31G316
+               : LCD init bug fixed
+               : Timer Typo fixed
+               : Timer enumerator overlab bug fixed
+    </release>
+    <release version="1.0.2" date="2018-07-16">
+            - Added device : A31G313, A31G314, A31G316
+    </release>
+    <release version="1.0.1" date="2018-06-14">
+            - Added device : A31G123, A31G122, A31G112, A31G111
+    </release>
+    <release version="1.0.0" date="2016-06-17">
+       First Release version of ABOV CM0 Device Family Pack.
+            - Added device : AC30M1464, AC30M1364, AC30M1432, AC30M1332
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ABOV</keyword>
+    <keyword>AC3</keyword>
+    <keyword>A31G</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="AC30 Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV A31 device family contains an ARM Cortex-M0 processor with a versatile set of on-chip peripherals
+          </description>
+      <!-- Subfamily : AC30M1x64 *********************************************************-->
+      <subFamily DsubFamily="AC30M1x64">
+        <processor Dclock="40000000" />
+        <compile header="AC30M1x64/Core/include/AC30M1x64.h" />
+        <debug svd="AC30M1x64/SVD/AC30M1x64.svd" />
+        <feature type="Temp" n="-40" m="105" />
+        <feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+        <feature type="Timer" n="4" m="16" name="Timer" />
+        <feature type="UART" n="2" name="UART" />
+        <feature type="SPI" n="1" name="SPI" />
+        <feature type="I2C" n="1" name="I2C" />
+        <feature type="PWM" n="1" m="16" name="PWM" />
+        <feature type="Other" n="1" m="32" name="FRT" />
+        <!-- Device : AC30M1464 -->
+        <device Dname="AC30M1464">
+          <description>Package type 48LQFP</description>
+          <algorithm name="AC30M1x64/Flashloader/AC30M1x64_64.FLM" start="0x00000000" size="0x10000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+          <feature type="IOs" n="44" name="Inputs/Outputs" />
+          <feature type="ADC" n="1" m="12" name="ADC" />
+          <feature type="QFP" n="48" name="LQFP" />
+        </device>
+        <!-- Device : AC30M1364 -->
+        <device Dname="AC30M1364">
+          <description>Package type 32LQFP, 32QFN</description>
+          <algorithm name="AC30M1x64/Flashloader/AC30M1x64_64.FLM" start="0x00000000" size="0x10000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+          <feature type="IOs" n="28" name="Inputs/Outputs" />
+          <feature type="ADC" n="1" m="8" name="ADC" />
+          <feature type="QFP" n="32" name="LQFP" />
+          <feature type="QFN" n="32" name="QFN" />
+        </device>
+        <!-- Device : AC30M1432 -->
+        <device Dname="AC30M1432">
+          <description>Package type 48LQFP</description>
+          <algorithm name="AC30M1x64/Flashloader/AC30M1x64_64.FLM" start="0x00000000" size="0x8000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+          <feature type="IOs" n="44" name="Inputs/Outputs" />
+          <feature type="ADC" n="1" m="12" name="ADC" />
+          <feature type="QFP" n="48" name="LQFP" />
+        </device>
+        <!-- Device : AC30M1332 -->
+        <device Dname="AC30M1332">
+          <description>Package type 32LQFP, 32QFN</description>
+          <algorithm name="AC30M1x64/Flashloader/AC30M1x64_64.FLM" start="0x00000000" size="0x8000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+          <feature type="IOs" n="28" name="Inputs/Outputs" />
+          <feature type="ADC" n="1" m="8" name="ADC" />
+          <feature type="QFP" n="32" name="LQFP" />
+          <feature type="QFN" n="32" name="QFN" />
+        </device>
+      </subFamily>
+    </family>
+    <family Dfamily="A31G Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV A31G series device family contains an ARM Cortex-M0 processor with a versatile set of on-chip peripherals
+          </description>
+      <!-- Subfamily : A31G12x *********************************************************-->
+      <subFamily DsubFamily="A31G12x">
+        <processor Dclock="40000000" />
+        <compile header="A31G12x/Core/include/A31G12x_series.h" />
+        <debug svd="A31G12x/SVD/A31G12x_series.svd" />
+        <algorithm name="A31G12x\Flashloader\A31G12x_series_FLASH.FLM" start="0x00000000" size="0x10000" default="1" />
+        <algorithm name="A31G12x\Flashloader\A31G12x_series_CFG.FLM" start="0x1FFFF200" size="0x600" default="1" />
+        <feature type="VCC" n="1.8" m="5.5" />
+        <feature type="Temp" n="-40" m="85" />
+        <memory id="IRAM1" start="0x20000000" size="0x1800" init="0" default="1" />
+        <feature type="WDT" n="1" m="40" name="Watchdog Timer" />
+        <!-- Device : A31G123 -->
+        <device Dname="A31G123">
+          <description>Package type 80,64,48LQFP,44MQFP</description>
+          <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+        </device>
+        <!-- Device : A31G122 -->
+        <device Dname="A31G122">
+          <description>Package type 80,64LQFP</description>
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+        </device>
+      </subFamily>
+      <!-- Subfamily : A31G11x *********************************************************-->
+      <subFamily DsubFamily="A31G11x">
+        <processor Dclock="40000000" />
+        <compile header="A31G11x/Core/include/A31G11x_series.h" />
+        <debug svd="A31G11x/SVD/A31G11x_series.svd" />
+        <algorithm name="A31G11x\Flashloader\A31G11x_series_FLASH.FLM" start="0x00000000" size="0x8000" default="1" />
+        <algorithm name="A31G11x\Flashloader\A31G11x_series_CFG.FLM" start="0x1FFFF200" size="0x600" default="1" />
+        <feature type="VCC" n="1.8" m="5.5" />
+        <feature type="Temp" n="-40" m="105" />
+        <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+        <feature type="WDT" n="1" m="40" name="Watchdog Timer" />
+        <!-- Device : A31G112 -->
+        <device Dname="A31G112">
+          <description>Package type 48,32LQFP,44MQFP,32QFN,28TSSOP,24QFN</description>
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+        </device>
+        <!-- Device : A31G111 -->
+        <device Dname="A31G111">
+          <description>Package type 32LQFP,32QFN,28TSSOP,24QFN</description>
+          <memory id="IROM1" start="0x00000000" size="0x4000" startup="1" default="1" />
+        </device>
+      </subFamily>
+      <!-- Subfamily : A31G31x *********************************************************-->
+      <subFamily DsubFamily="A31G31x">
+        <processor Dclock="48000000" />
+        <compile header="A31G31x/Core/include/A31G31x.h" />
+        <debug svd="A31G31x/SVD/A31G31x.svd" />
+        <feature type="VCC" n="1.8" m="5.5" />
+        <feature type="Temp" n="-40" m="85" />
+        <memory id="IRAM1" start="0x20000000" size="0x4000" init="0" default="1" />
+        <!-- Device : A31G313-->
+        <device Dname="A31G313">
+          <description>Package type 64 LQFP 12/10, 48 LQFP, 48 QFN, 44 LQFP</description>
+          <algorithm name="A31G31x\Flashloader\A31G313_64.FLM" start="0x00000000" size="0x10000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+        </device>
+        <!-- Device : A31G314-->
+        <device Dname="A31G314">
+          <description>Package type 80 LQFP 14/12, 64 LQFP 12/10, 48 LQFP, 48 QFN, 44 LQFP</description>
+          <algorithm name="A31G31x\Flashloader\A31G314_128.FLM" start="0x00000000" size="0x20000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1" />
+        </device>
+        <!-- Device : A31G316-->
+        <device Dname="A31G316">
+          <description>Package type 80 LQFP 14/12, 64 LQFP 12/10</description>
+          <algorithm name="A31G31x\Flashloader\A31G316_256.FLM" start="0x00000000" size="0x40000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x40000" startup="1" default="1" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+    <!-- condition : AC30M1464/1364/1432/1332 ********************************************************-->
+    <condition id="AC30M1x64 CMSIS">
+      <description>AC30M1464/1364/1432/1332  device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="AC30M1464" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="AC30M1364" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="AC30M1432" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="AC30M1332" />
+    </condition>
+    <!-- condition : A31G123/122 ********************************************************-->
+    <condition id="A31G12x CMSIS">
+      <description>A31G123/122  device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G123" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G122" />
+    </condition>
+    <!-- condition : A31G112/111 ********************************************************-->
+    <condition id="A31G11x CMSIS">
+      <description>A31G112/111  device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G112" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G111" />
+    </condition>
+    <!-- condition : A31G313/314/316 ********************************************************-->
+    <condition id="A31G31x CMSIS">
+      <description>A31G313/314/316  device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G313" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G314" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G316" />
+    </condition>
+  </conditions>
+  <components>
+    <!-- component : AC30M1464/1364/1432/1332 ********************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>System Startup for ABOV AC30M1464/1364/1432/1332 devices</description>
+      <files>
+        <file category="include" name="AC30M1x64/Core/include/" />
+        <file category="include" name="AC30M1x64/Drivers/include/" />
+        <file category="header" version="1.0.0" name="AC30M1x64/Core/include/AC30M1x64.h" attr="config" />
+        <file category="source" version="1.0.0" name="AC30M1x64/Core/source/ARM/startup_AC30M1x64.s" attr="config" />
+        <file category="source" version="1.0.0" name="AC30M1x64/Core/source/system_AC30M1x64.c" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 debug framework</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/slib.h" />
+        <file category="header" name="AC30M1x64/Drivers/include/debug_frmwrk.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/slib.c" />
+        <file category="source" name="AC30M1x64/Drivers/source/debug_frmwrk.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 ADC control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_adc.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FRT" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 FRT control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_frt.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_frt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="GPIO" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 GPIO control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_gpio.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_gpio.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 I2C control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_i2c.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="MPWM" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 MPWM control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_mpwm.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_mpwm.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PCU" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 PCU control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_pcu.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Power" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 Power control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_pwr.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_pwr.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SCU" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 SCU control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_scu.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_scu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 SPI control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_spi.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_spi.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Timer" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 Timer control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_timer.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_timer.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 UART control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_uart.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_uart.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="1.0.0" condition="AC30M1x64 CMSIS">
+      <description>AC30M1x64 WDT control</description>
+      <files>
+        <file category="header" name="AC30M1x64/Drivers/include/ac30m1x64_wdt.h" />
+        <file category="source" name="AC30M1x64/Drivers/source/ac30m1x64_wdt.c" />
+      </files>
+    </component>
+    <!-- component : A31G123/122 ********************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>System Startup for ABOV A31G123/122 devices</description>
+      <files>
+        <file category="include" name="A31G12x/Core/include/" />
+        <file category="include" name="A31G12x/Drivers/include/" />
+        <file category="header" version="1.0.0" name="A31G12x/Core/include/A31G12x_series.h" attr="config" />
+        <file category="header" version="1.0.0" name="A31G12x/Core/include/system_A31G12x_series.h" attr="config" />
+        <file category="source" version="1.0.0" name="A31G12x/Core/source/ARM/startup_A31G12x_series.s" attr="config" />
+        <file category="source" version="1.0.0" name="A31G12x/Core/source/system_A31G12x_series.c" attr="config" />
+        <file category="source" version="1.0.0" name="A31G12x/Option/option.s" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x debug framework</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/aa_types.h" />
+        <file category="header" name="A31G12x/Drivers/include/slib.h" />
+        <file category="header" name="A31G12x/Drivers/include/debug_frmwrk.h" />
+        <file category="source" name="A31G12x/Drivers/source/slib.c" />
+        <file category="source" name="A31G12x/Drivers/source/debug_frmwrk.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="adc" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x adc control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_adc.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="crc" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x crc control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_crc.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_crc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="fmc" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x fmc control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_fmc.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_fmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="i2cn" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x i2cn control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/def.h" />
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_i2cn.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_i2cn.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="int" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x interrupt control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_int.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_int.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="lcd" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x lcd control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_lcd.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_lcd.c" />
+        <file category="source" name="A31G12x/Examples/LCD/LCD_test/lcd.c" />
+        <file category="source" name="A31G12x/Examples/LCD/LCD_test/lcd_8D3B.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pcu" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x pcu control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_pcu.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pwr" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x pwr control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_pwr.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_pwr.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scucc" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x scucc control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_scucc.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_scucc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scucg" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x scucg control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_scucg.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_scucg.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="sculv" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x sculv control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_sculv.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_sculv.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer1n" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x timer1n control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_timer1n.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_timer1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer2n" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x timer2n control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_timer2n.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_timer2n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer30" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x timer30 control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_wtidkey.h" />
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_timer30.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_timer30.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="uartn" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x uartn control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_uartn.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_uartn.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="usart1n" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x usart1n control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_usart1n.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_usart1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wdt" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x wdt control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_wdt.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wt" Cversion="1.0.0" condition="A31G12x CMSIS">
+      <description>A31G12x wt control</description>
+      <files>
+        <file category="header" name="A31G12x/Drivers/include/A31G12x_wt.h" />
+        <file category="source" name="A31G12x/Drivers/source/A31G12x_wt.c" />
+      </files>
+    </component>
+    <!-- component : A31G112/111 ********************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>System Startup for ABOV A31G112/111 devices</description>
+      <files>
+        <file category="include" name="A31G11x/Core/include/" />
+        <file category="include" name="A31G11x/Drivers/include/" />
+        <file category="header" version="1.0.0" name="A31G11x/Core/include/A31G11x_series.h" attr="config" />
+        <file category="header" version="1.0.0" name="A31G11x/Core/include/system_A31G11x_series.h" attr="config" />
+        <file category="source" version="1.0.0" name="A31G11x/Core/source/ARM/startup_A31G11x_series_CM0P.s" attr="config" />
+        <file category="source" version="1.0.0" name="A31G11x/Core/source/system_A31G11x_series.c" attr="config" />
+        <file category="source" version="1.0.0" name="A31G11x/Option/option.s" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x debug framework</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/aa_types.h" />
+        <file category="header" name="A31G11x/Drivers/include/slib.h" />
+        <file category="header" name="A31G11x/Drivers/include/debug_frmwrk.h" />
+        <file category="source" name="A31G11x/Drivers/source/slib.c" />
+        <file category="source" name="A31G11x/Drivers/source/debug_frmwrk.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="adc" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x adc control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_adc.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="crc" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x crc control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_crc.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_crc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="fmc" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x fmc control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_fmc.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_fmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="i2cn" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x i2cn control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/def.h" />
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_i2cn.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_i2cn.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="int" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x interrupt control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_int.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_int.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="lcd" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x lcd control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_lcd.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_lcd.c" />
+        <file category="source" name="A31G11x/Examples/LCD/LCD_test/lcd.c" />
+        <file category="source" name="A31G11x/Examples/LCD/LCD_test/lcd_8D3B.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pcu" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x pcu control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_pcu.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pwr" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x pwr control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_pwr.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_pwr.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scucc" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x scucc control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_scucc.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_scucc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scucg" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x scucg control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_scucg.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_scucg.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="sculv" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x sculv control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_sculv.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_sculv.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer1n" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x timer1n control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_timer1n.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_timer1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer2n" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x timer2n control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_timer2n.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_timer2n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer30" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x timer30 control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_wtidkey.h" />
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_timer30.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_timer30.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="uartn" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x uartn control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_uartn.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_uartn.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="usart1n" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x usart1n control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_usart1n.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_usart1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wdt" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x wdt control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_wdt.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wt" Cversion="1.0.0" condition="A31G11x CMSIS">
+      <description>A31G11x wt control</description>
+      <files>
+        <file category="header" name="A31G11x/Drivers/include/A31G11x_wt.h" />
+        <file category="source" name="A31G11x/Drivers/source/A31G11x_wt.c" />
+      </files>
+    </component>
+    <!-- component : A31G313/314/316 ********************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>System Startup for ABOV A31G313/314/316 devices</description>
+      <files>
+        <file category="include" name="A31G31x/Core/include/" />
+        <file category="include" name="A31G31x/Drivers/include/" />
+        <file category="header" version="1.0.0" name="A31G31x/Core/include/A31G31x.h" attr="config" />
+        <file category="header" version="1.0.0" name="A31G31x/Core/include/system_A31G31x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A31G31x/Core/source/ARM/startup_A31G31x.s" attr="config" />
+        <file category="source" version="1.0.0" name="A31G31x/Core/source/system_A31G31x.c" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x debug framework</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/aa_types.h" />
+        <file category="header" name="A31G31x/Drivers/include/slib.h" />
+        <file category="header" name="A31G31x/Drivers/include/debug_frmwrk.h" />
+        <file category="source" name="A31G31x/Drivers/source/slib.c" />
+        <file category="source" name="A31G31x/Drivers/source/debug_frmwrk.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="adc" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x adc control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_adc.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="cmp" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x comparator control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_comp.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_comp.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="crc" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x crc control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_crc.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_crc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="dac" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x dac control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_dac.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_dac.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="dmac" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x dmac control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_dmac.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_dmac.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="i2c" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x i2c control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_i2c.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="lcd" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x lcd control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_lcd.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_lcd.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pcu" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x pcu control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_pcu.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pwr" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x pwr control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_pwr.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_pwr.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scu" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x scu control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_scu.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_scu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer1n" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x 16-bit timer control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_timer1n.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_timer1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer2n" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x 32-bit timer control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_timer2n.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_timer2n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer3n" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x 6-ch PWM timer control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_timer30.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_timer30.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="uart" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x uart control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_uartn.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_uartn.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="usart" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x usart control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_usart1n.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_usart1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wdt" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x watch dog timer control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_wdt.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wt" Cversion="1.0.0" condition="A31G31x CMSIS">
+      <description>A31G31x watch timer control</description>
+      <files>
+        <file category="header" name="A31G31x/Drivers/include/A31G31x_wt.h" />
+        <file category="source" name="A31G31x/Drivers/source/A31G31x_wt.c" />
+      </files>
+    </component>
+  </components>
+  <boards>
+    <!-- board : AC30M1464 ************************************************************-->
+    <board vendor="ABOV" name="AC30M1464 MINI B/D" revision="V0.2">
+      <description>ABOV AC30M1464 mini board</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="AC30M1464" />
+      <feature type="XTAL" n="8000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Push-buttons: User and Reset" />
+      <feature type="LED" n="3" name="LEDs: Power, Two user" />
+    </board>
+    <!-- board : A31G123 ************************************************************-->
+    <board vendor="ABOV" name="A31G123 MINI B/D" revision="V0.0">
+      <description>ABOV A31G123 mini board</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G12x" />
+      <feature type="XTAL" n="12000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Push-buttons: User and Reset" />
+      <feature type="LED" n="3" name="LEDs: Power, Two user" />
+    </board>
+    <!-- board : A31G112 ************************************************************-->
+    <board vendor="ABOV" name="A31G112 MINI B/D" revision="V0.0">
+      <description>ABOV A31G112 mini board</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G11x" />
+      <feature type="XTAL" n="12000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Push-buttons: User and Reset" />
+      <feature type="LED" n="3" name="LEDs: Power, Two user" />
+    </board>
+    <!-- board : A31G314 ************************************************************-->
+    <board vendor="ABOV" name="A31G314 Starter Kit" revision="V1.1">
+      <description>ABOV A31G314 Starter Kit</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G314" />
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G313" />
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G316" />
+      <feature type="XTAL" n="12000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Push-buttons: User and Reset" />
+      <feature type="LED" n="9" name="LEDs: Power, Six user, Uart Tx/Rx" />
+    </board>
+  </boards>
+  <examples>
+    <!-- example : AC30M1464/1364/1432/1332 **********************************************************-->
+    <example name="ABOV ADC burst" doc="Abstract.txt" folder="AC30M1x64/Examples/ADC/Adc_Burst">
+      <description>ADC burst example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Burst.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC interrupt" doc="Abstract.txt" folder="AC30M1x64/Examples/ADC/Adc_Interrupt">
+      <description>ADC interrupt example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC polling" doc="Abstract.txt" folder="AC30M1x64/Examples/ADC/Adc_Polling">
+      <description>ADC polling example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC sequence" doc="Abstract.txt" folder="AC30M1x64/Examples/ADC/Adc_Seq">
+      <description>ADC sequence example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Seq.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Clock Change" doc="Abstract.txt" folder="AC30M1x64/Examples/ClkChange/ClkChange_test">
+      <description>Clock Change example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ClkChange_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DIV" doc="Abstract.txt" folder="AC30M1x64/Examples/DIV64/DIV64_test">
+      <description>Privilege example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/div64_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Flash memory control" doc="Abstract.txt" folder="AC30M1x64/Examples/FMC/FMC_WriteErase">
+      <description>Flash memory write/erase example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Flash memory control" doc="Abstract.txt" folder="AC30M1x64/Examples/FMC/FMC_WriteErase">
+      <description>Flash memory write/erase example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FRT" doc="Abstract.txt" folder="AC30M1x64/Examples/FRT/Frt_test">
+      <description>Free Run Timer example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Frt_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Ext. INT." doc="Abstract.txt" folder="AC30M1x64/Examples/GPIO/Gpio_ExtInt">
+      <description>GPIO external interrupt example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_ExtInt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO input" doc="Abstract.txt" folder="AC30M1x64/Examples/GPIO/Gpio_Input">
+      <description>GPIO input example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_Input.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO LED blinky" doc="Abstract.txt" folder="AC30M1x64/Examples/GPIO/Gpio_LedBlinky">
+      <description>GPIO LED blinky example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C" doc="Abstract.txt" folder="AC30M1x64/Examples/I2C/I2c_MasterSlave">
+      <description>I2C example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2c_MasterSlave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV MPWM" doc="Abstract.txt" folder="AC30M1x64/Examples/MPWM/Mpwm_Test">
+      <description>MPWM example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Mpwm_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVD" doc="Abstract.txt" folder="AC30M1x64/Examples/PWR/LVD">
+      <description>Low Voltage detector (LVD) example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LVD.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Power down mode" doc="Abstract.txt" folder="AC30M1x64/Examples/PWR/Pwr_PowerDown">
+      <description>Power down mode example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Pwr_PowerDown.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV sleep mode" doc="Abstract.txt" folder="AC30M1x64/Examples/PWR/Pwr_Sleep">
+      <description>Sleep mode example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Pwr_Sleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI master" doc="Abstract.txt" folder="AC30M1x64/Examples/SPI/Spi_Master">
+      <description>SPI master example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Spi_Master.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI slave" doc="Abstract.txt" folder="AC30M1x64/Examples/SPI/Spi_Slave">
+      <description>SPI slave example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Spi_Slave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV timer capture" doc="Abstract.txt" folder="AC30M1x64/Examples/TIMER/Timer_Capture">
+      <description>Timer capture example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV timer INT." doc="Abstract.txt" folder="AC30M1x64/Examples/TIMER/Timer_MatchInterrupt">
+      <description>Timer interrupt example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV timer polling" doc="Abstract.txt" folder="AC30M1x64/Examples/TIMER/Timer_MatchPolling">
+      <description>Timer polling example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV timer one shot" doc="Abstract.txt" folder="AC30M1x64/Examples/TIMER/Timer_OneShot">
+      <description>Timer one shot example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV timer PWM" doc="Abstract.txt" folder="AC30M1x64/Examples/TIMER/Timer_PWM">
+      <description>Timer PWM example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART INT." doc="Abstract.txt" folder="AC30M1x64/Examples/UART/Uart_Interrupt">
+      <description>UART interrupt example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART polling" doc="Abstract.txt" folder="AC30M1x64/Examples/UART/Uart_Polling">
+      <description>UART polling example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT INT." doc="Abstract.txt" folder="AC30M1x64/Examples/WDT/Wdt_Interrupt">
+      <description>WDT interrupt example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT reset" doc="Abstract.txt" folder="AC30M1x64/Examples/WDT/Wdt_Reset">
+      <description>WDT reset example (AC30M1464/1364/1432/1332)</description>
+      <board name="AC30M1464 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Reset.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- example : A31G123/122 **********************************************************-->
+    <example name="ABOV ADC Interrupt" doc="Abstract.txt" folder="A31G12x/Examples/ADC/Adc_Interrupt">
+      <description>ADC Interrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Polling" doc="Abstract.txt" folder="A31G12x/Examples/ADC/Adc_Polling">
+      <description>ADC Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CCITT" doc="Abstract.txt" folder="A31G12x/Examples/CRC/CRC_CCITT">
+      <description>CRC CCITT example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CCITT.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC Checkhsum" doc="Abstract.txt" folder="A31G12x/Examples/CRC/CRC_Checksum">
+      <description>CRC Checksum example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_Checksum.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CRC16" doc="Abstract.txt" folder="A31G12x/Examples/CRC/CRC_CRC16">
+      <description>CRC CRC16 example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CRC16.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FMC Flash" doc="Abstract.txt" folder="A31G12x/Examples/FMC/FMC_Flash">
+      <description>FMC Flash example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_Flash.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FND Display" doc="Abstract.txt" folder="A31G12x/Examples/FND_DEMO/GPIO_FND_Display">
+      <description>GPIO FND Display example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_FND_Display.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LED Display" doc="Abstract.txt" folder="A31G12x/Examples/FND_DEMO/GPIO_LED_Display">
+      <description>GPIO LED Display example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_LED_Display.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO ExtInt" doc="Abstract.txt" folder="A31G12x/Examples/GPIO/Gpio_ExtInt">
+      <description>GPIO Ext Int example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_ExtInt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Input" doc="Abstract.txt" folder="A31G12x/Examples/GPIO/Gpio_Input">
+      <description>GPIO Input example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_Inpnt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO LedBlinky" doc="Abstract.txt" folder="A31G12x/Examples/GPIO/Gpio_LedBlinky">
+      <description>GPIO LedBlinky example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C" doc="Abstract.txt" folder="A31G12x/Examples/I2C/I2C_MasterSlave">
+      <description>I2C MasterSlave example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_MasterSlave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LCD" doc="Abstract.txt" folder="A31G12x/Examples/LCD/LCD_test">
+      <description>LCD test example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LCD_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DeepSleep" doc="Abstract.txt" folder="A31G12x/Examples/PWR/DeepSleep">
+      <description>DeepSleep example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DeepSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVI" doc="Abstract.txt" folder="A31G12x/Examples/PWR/LVI">
+      <description>LVI example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LVI.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Sleep" doc="Abstract.txt" folder="A31G12x/Examples/PWR/Sleep">
+      <description>Sleep example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Sleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer Capture" doc="Abstract.txt" folder="A31G12x/Examples/TIMER1n/Timer_Capture">
+      <description>Timer Capture example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer MatchInterrupt" doc="Abstract.txt" folder="A31G12x/Examples/TIMER1n/Timer_MatchInterrupt">
+      <description>Timer MatchInterrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer MatchPolling" doc="Abstract.txt" folder="A31G12x/Examples/TIMER1n/Timer_MatchPolling">
+      <description>Timer MatchPolling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer OneShot" doc="Abstract.txt" folder="A31G12x/Examples/TIMER1n/Timer_OneShot">
+      <description>Timer OneShot example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer PWM" doc="Abstract.txt" folder="A31G12x/Examples/TIMER1n/Timer_PWM">
+      <description>Timer PWM example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n Capture" doc="Abstract.txt" folder="A31G12x/Examples/TIMER2n/TIMER2n_Capture">
+      <description>TIMER2n Capture example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n MatchInterrupt" doc="Abstract.txt" folder="A31G12x/Examples/TIMER2n/TIMER2n_MatchInterrupt">
+      <description>TIMER2n MatchInterrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n MatchPolling" doc="Abstract.txt" folder="A31G12x/Examples/TIMER2n/TIMER2n_MatchPolling">
+      <description>TIMER2n MatchPolling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n OneShot" doc="Abstract.txt" folder="A31G12x/Examples/TIMER2n/TIMER2n_OneShot">
+      <description>TIMER2n OneShot example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n PWM" doc="Abstract.txt" folder="A31G12x/Examples/TIMER2n/TIMER2n_PWM">
+      <description>TIMER2n PWM example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER30 PWM" doc="Abstract.txt" folder="A31G12x/Examples/TIMER30/TIMER30_PWM">
+      <description>TIMER30 PWM example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER30_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Uart Interrupt" doc="Abstract.txt" folder="A31G12x/Examples/UART/Uart_Interrupt">
+      <description>Uart Interrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Uart Polling" doc="Abstract.txt" folder="A31G12x/Examples/UART/Uart_Polling">
+      <description>Uart Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart SPI Interrupt" doc="Abstract.txt" folder="A31G12x/Examples/USART/SPI_Interrupt">
+      <description>SPI Interrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart SPI Polling" doc="Abstract.txt" folder="A31G12x/Examples/USART/SPI_Polling">
+      <description>SPI Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Interrupt" doc="Abstract.txt" folder="A31G12x/Examples/USART/Uart_Interrupt">
+      <description>Uart Interrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Polling" doc="Abstract.txt" folder="A31G12x/Examples/USART/Uart_Polling">
+      <description>Uart Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Polling" doc="Abstract.txt" folder="A31G12x/Examples/USART/Uart_Polling">
+      <description>Uart Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Usrt Polling" doc="Abstract.txt" folder="A31G12x/Examples/USART/Usrt_Polling">
+      <description>Usrt Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Usrt Polling" doc="Abstract.txt" folder="A31G12x/Examples/USART/Usrt_Polling">
+      <description>Usrt Polling example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Wdt Interrupt" doc="Abstract.txt" folder="A31G12x/Examples/WDT/Wdt_Interrupt">
+      <description>Wdt Interrupt example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Wdt Reset" doc="Abstract.txt" folder="A31G12x/Examples/WDT/Wdt_Reset">
+      <description>Wdt Reset example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Reset.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WT test" doc="Abstract.txt" folder="A31G12x/Examples/WT/Wt_test">
+      <description>Wt test example (A31G123/122)</description>
+      <board name="A31G123 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wt_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- example : A31G112/111 **********************************************************-->
+    <example name="ABOV ADC Interrupt" doc="Abstract.txt" folder="A31G11x/Examples/ADC/Adc_Interrupt">
+      <description>ADC Interrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Polling" doc="Abstract.txt" folder="A31G11x/Examples/ADC/Adc_Polling">
+      <description>ADC Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CCITT" doc="Abstract.txt" folder="A31G11x/Examples/CRC/CRC_CCITT">
+      <description>CRC CCITT example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CCITT.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC Checkhsum" doc="Abstract.txt" folder="A31G11x/Examples/CRC/CRC_Checksum">
+      <description>CRC Checksum example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_Checksum.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CRC16" doc="Abstract.txt" folder="A31G11x/Examples/CRC/CRC_CRC16">
+      <description>CRC CRC16 example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CRC16.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FMC Flash" doc="Abstract.txt" folder="A31G11x/Examples/FMC/FMC_Flash">
+      <description>FMC Flash example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_Flash.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FND Display" doc="Abstract.txt" folder="A31G11x/Examples/FND_DEMO/GPIO_FND_Display">
+      <description>GPIO FND Display example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_FND_Display.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LED Display" doc="Abstract.txt" folder="A31G11x/Examples/FND_DEMO/GPIO_LED_Display">
+      <description>GPIO LED Display example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_LED_Display.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO ExtInt" doc="Abstract.txt" folder="A31G11x/Examples/GPIO/Gpio_ExtInt">
+      <description>GPIO ExtInt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_ExtInt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Input" doc="Abstract.txt" folder="A31G11x/Examples/GPIO/Gpio_Input">
+      <description>GPIO Input example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_Input.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO LedBlinky" doc="Abstract.txt" folder="A31G11x/Examples/GPIO/Gpio_LedBlinky">
+      <description>GPIO LedBlinky example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C" doc="Abstract.txt" folder="A31G11x/Examples/I2C/I2C_MasterSlave">
+      <description>I2C MasterSlave example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_MasterSlave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LCD" doc="Abstract.txt" folder="A31G11x/Examples/LCD/LCD_test">
+      <description>LCD test example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LCD_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DeepSleep" doc="Abstract.txt" folder="A31G11x/Examples/PWR/DeepSleep">
+      <description>DeepSleep example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DeepSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVI" doc="Abstract.txt" folder="A31G11x/Examples/PWR/LVI">
+      <description>LVI example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LVI.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Sleep" doc="Abstract.txt" folder="A31G11x/Examples/PWR/Sleep">
+      <description>Sleep example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Sleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer Capture" doc="Abstract.txt" folder="A31G11x/Examples/TIMER1n/Timer_Capture">
+      <description>Timer Capture example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer MatchInterrupt" doc="Abstract.txt" folder="A31G11x/Examples/TIMER1n/Timer_MatchInterrupt">
+      <description>Timer MatchInterrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer MatchPolling" doc="Abstract.txt" folder="A31G11x/Examples/TIMER1n/Timer_MatchPolling">
+      <description>Timer MatchPolling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer OneShot" doc="Abstract.txt" folder="A31G11x/Examples/TIMER1n/Timer_OneShot">
+      <description>Timer OneShot example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Timer PWM" doc="Abstract.txt" folder="A31G11x/Examples/TIMER1n/Timer_PWM">
+      <description>Timer PWM example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n Capture" doc="Abstract.txt" folder="A31G11x/Examples/TIMER2n/TIMER2n_Capture">
+      <description>TIMER2n Capture example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n MatchInterrupt" doc="Abstract.txt" folder="A31G11x/Examples/TIMER2n/TIMER2n_MatchInterrupt">
+      <description>TIMER2n MatchInterrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n MatchPolling" doc="Abstract.txt" folder="A31G11x/Examples/TIMER2n/TIMER2n_MatchPolling">
+      <description>TIMER2n MatchPolling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n OneShot" doc="Abstract.txt" folder="A31G11x/Examples/TIMER2n/TIMER2n_OneShot">
+      <description>TIMER2n OneShot example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n PWM" doc="Abstract.txt" folder="A31G11x/Examples/TIMER2n/TIMER2n_PWM">
+      <description>TIMER2n PWM example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER30 PWM" doc="Abstract.txt" folder="A31G11x/Examples/TIMER30/TIMER30_PWM">
+      <description>TIMER30 PWM example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER30_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Uart Interrupt" doc="Abstract.txt" folder="A31G11x/Examples/UART/Uart_Interrupt">
+      <description>Uart Interrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Uart Polling" doc="Abstract.txt" folder="A31G11x/Examples/UART/Uart_Polling">
+      <description>Uart Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart SPI Interrupt" doc="Abstract.txt" folder="A31G11x/Examples/USART/SPI_Interrupt">
+      <description>SPI Interrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart SPI Polling" doc="Abstract.txt" folder="A31G11x/Examples/USART/SPI_Polling">
+      <description>SPI Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Interrupt" doc="Abstract.txt" folder="A31G11x/Examples/USART/Uart_Interrupt">
+      <description>Uart Interrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Polling" doc="Abstract.txt" folder="A31G11x/Examples/USART/Uart_Polling">
+      <description>Uart Polling example (A31G112/11)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Uart Polling" doc="Abstract.txt" folder="A31G11x/Examples/USART/Uart_Polling">
+      <description>Uart Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Usrt Polling" doc="Abstract.txt" folder="A31G11x/Examples/USART/Usrt_Polling">
+      <description>Usrt Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Usart Usrt Polling" doc="Abstract.txt" folder="A31G11x/Examples/USART/Usrt_Polling">
+      <description>Usrt Polling example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Wdt Interrupt" doc="Abstract.txt" folder="A31G11x/Examples/WDT/Wdt_Interrupt">
+      <description>Wdt Interrupt example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Wdt Reset" doc="Abstract.txt" folder="A31G11x/Examples/WDT/Wdt_Reset">
+      <description>Wdt Reset example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Reset.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WT test" doc="Abstract.txt" folder="A31G11x/Examples/WT/Wt_test">
+      <description>Wt test example (A31G112/111)</description>
+      <board name="A31G112 MINI B/D" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wt_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- example : A31G313/314/316 **********************************************************-->
+    <example name="ABOV ADC Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/ADC/Adc_Interrupt">
+      <description>ADC Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Polling" doc="Abstract.txt" folder="A31G31x/Examples/ADC/Adc_Polling">
+      <description>ADC Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Timer Trigger" doc="Abstract.txt" folder="A31G31x/Examples/ADC/Adc_TimerTrigger">
+      <description>ADC Timer trigger example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Adc_TimerTrigger.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Clock" doc="Abstract.txt" folder="A31G31x/Examples/ClkChange/ClkChange_test">
+      <description>Clock Change example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ClkChange_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CMP Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/CMP/CMP_interrupt">
+      <description>Comparator Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CMP Polling" doc="Abstract.txt" folder="A31G31x/Examples/CMP/CMP_polling">
+      <description>Comparator Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CCITT" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_CCITT">
+      <description>CRC CCITT example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CCITT.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CCITT DMA RAM" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_CCITT_DMA_RAM">
+      <description>CRC CCITT DMA RAM example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CCITT_DMA_RAM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC Checksum" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_Checksum">
+      <description>CRC Checksum example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_Checksum.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC Checksum DMA RAM" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_Checksum_DMA_RAM">
+      <description>CRC Checksum DMA RAM example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_Checksum_DMA_RAM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CRC16" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_CRC16">
+      <description>CRC CRC16 example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CRC16.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC CRC16 DMA RAM" doc="Abstract.txt" folder="A31G31x/Examples/CRC/CRC_CRC16_DMA_RAM">
+      <description>CRC CRC16 DMA RAM example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_CRC16_DMA_RAM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DAC Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/DAC/DAC_interrupt">
+      <description>DAC Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DAC Polling" doc="Abstract.txt" folder="A31G31x/Examples/DAC/DAC_polling">
+      <description>DAC Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DAC Timer Trigger" doc="Abstract.txt" folder="A31G31x/Examples/DAC/DAC_TimerTrigger">
+      <description>DAC Timer Trigger example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_timer_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FMC Erase Write" doc="Abstract.txt" folder="A31G31x/Examples/FMC/FMC_WriteErase">
+      <description>FMC Erase Write example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FMC Erase Write (Self PGM)" doc="Abstract.txt" folder="A31G31x/Examples/FMC/FMC_WriteErase_selfPGM">
+      <description>FMC Erase Write (Self PGM) example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FMC Erase Write (in RAM)" doc="Abstract.txt" folder="A31G31x/Examples/FMC/FMC_WriteErase2_lock_inRAM">
+      <description>FMC Erase Write (in RAM) example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/FMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO External Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/GPIO/Gpio_ExtInt">
+      <description>GPIO External Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_ExtInt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Input" doc="Abstract.txt" folder="A31G31x/Examples/GPIO/Gpio_Input">
+      <description>GPIO Input example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_Input.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO LED Blinky" doc="Abstract.txt" folder="A31G31x/Examples/GPIO/Gpio_LedBlinky">
+      <description>GPIO LED Blinky example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C" doc="Abstract.txt" folder="A31G31x/Examples/I2C/I2C_MasterSlave">
+      <description>I2C example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_MasterSlave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LCD" doc="Abstract.txt" folder="A31G31x/Examples/LCD/LCD_test">
+      <description>LCD example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LCD_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PWR LVI" doc="Abstract.txt" folder="A31G31x/Examples/PWR/LVI">
+      <description>PWR LVI example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LVI.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PWR Deep Sleep" doc="Abstract.txt" folder="A31G31x/Examples/PWR/PWR_DeepSleep">
+      <description>PWR Deep Sleep example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/PWR_DeepSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PWR Sleep" doc="Abstract.txt" folder="A31G31x/Examples/PWR/PWR_Sleep">
+      <description>PWR Sleep example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/PWR_Sleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER1n Capture" doc="Abstract.txt" folder="A31G31x/Examples/TIMER1n/Timer_Capture">
+      <description>TIMER1n Capture example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER1n Match Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/TIMER1n/Timer_MatchInterrupt">
+      <description>TIMER1n Match Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER1n Match Polling" doc="Abstract.txt" folder="A31G31x/Examples/TIMER1n/Timer_MatchPolling">
+      <description>TIMER1n Match Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER1n One Shot" doc="Abstract.txt" folder="A31G31x/Examples/TIMER1n/Timer_OneShot">
+      <description>TIMER1n One Shot example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER1n PWM" doc="Abstract.txt" folder="A31G31x/Examples/TIMER1n/Timer_PWM">
+      <description>TIMER1n PWM example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Timer_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n Capture" doc="Abstract.txt" folder="A31G31x/Examples/TIMER2n/TIMER2n_Capture">
+      <description>TIMER2n Capture example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n Match Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/TIMER2n/TIMER2n_MatchInterrupt">
+      <description>TIMER2n Match Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n Match Polling" doc="Abstract.txt" folder="A31G31x/Examples/TIMER2n/TIMER2n_MatchPolling">
+      <description>TIMER2n Match Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n One Shot" doc="Abstract.txt" folder="A31G31x/Examples/TIMER2n/TIMER2n_OneShot">
+      <description>TIMER2n One Shot example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER2n PWM" doc="Abstract.txt" folder="A31G31x/Examples/TIMER2n/TIMER2n_PWM">
+      <description>TIMER2n PWM example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER30" doc="Abstract.txt" folder="A31G31x/Examples/TIMER30/TIMER30_PWM">
+      <description>TIMER30 example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER30_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/UART/Uart_Interrupt">
+      <description>UART Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Interrupt Tx" doc="Abstract.txt" folder="A31G31x/Examples/UART/Uart_Interrupt_Tx">
+      <description>UART Interrupt Tx example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt_Tx.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Polling" doc="Abstract.txt" folder="A31G31x/Examples/UART/Uart_Polling">
+      <description>UART Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Polling DMA" doc="Abstract.txt" folder="A31G31x/Examples/UART/Uart_Polling_dma">
+      <description>UART Polling DMA example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART SPI Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/USART/SPI_Interrupt">
+      <description>USART SPI Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART SPI Polling" doc="Abstract.txt" folder="A31G31x/Examples/USART/SPI_Polling">
+      <description>USART SPI Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART UART Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/USART/Uart_Interrupt">
+      <description>USART UART Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART UART Polling" doc="Abstract.txt" folder="A31G31x/Examples/USART/Uart_Polling">
+      <description>USART UART Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Uart_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART USRT Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/USART/Usrt_Interrupt">
+      <description>USART USRT Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USART USRT Polling" doc="Abstract.txt" folder="A31G31x/Examples/USART/Usrt_Polling">
+      <description>USART USRT Polling example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Usrt_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USB HID" doc="Abstract.txt" folder="A31G31x/Examples/USB/HID_VolumeControl">
+      <description>USB HID example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/USB_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV USB VCP" doc="Abstract.txt" folder="A31G31x/Examples/USB/VCP_test">
+      <description>USB VCP example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/USB_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT Interrupt" doc="Abstract.txt" folder="A31G31x/Examples/WDT/Wdt_Interrupt">
+      <description>WDT Interrupt example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT Reset" doc="Abstract.txt" folder="A31G31x/Examples/WDT/Wdt_Reset">
+      <description>WDT Reset example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wdt_Reset.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WT" doc="Abstract.txt" folder="A31G31x/Examples/WT/Wt_test">
+      <description>WT example (A31G313/314/316)</description>
+      <board name="A31G314 Starter Kit" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Wt_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

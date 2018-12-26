@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>STM32G0xx_DFP</name>
+  <description>STMicroelectronics STM32G0 Series Device Support</description>
+  <url>http://www.keil.com/pack</url>
+
+  <releases>
+    <release version="1.0.0" date="2018-12-04">
+      Initial version of STM32G0 Device Family Pack for use with:
+      - STM32CubeMX 5.0
+      - STM32Cube G0 Firmware Package V1.0.0
+    </release>
+  </releases>
+
+  <keywords> <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>STM32G0</keyword>
+    <keyword>STM32G0xx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="STM32G0 Series" Dvendor="STMicroelectronics:13">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="64000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian"/>
+      <book name="Documentation/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The STM32G0 mainstream microcontrollers are based on high-performance Arm Cortex-M0+ 32-bit RISC core operating at up to 64 MHz frequency.
+Offering a high level of integration, they are suitable for a wide range of applications in consumer, industrial and appliance domains and ready for the Internet of Things (IoT) solutions.
+- Up to 128 Kbytes of Flash memory
+– 36 Kbytes of SRAM (32 Kbytes with HW parity check)
+- CRC calculation unit
+- Up to 60 fast I/Os
+- 7-channel DMA controller with flexible mapping
+- 14 timers (two 112 MHz capable): 16-bit for advanced motor control, one 32-bit and five 16-bit general-purpose, two basic 16-bit, two lowpower 16-bit, two watchdogs, SysTick timer
+- Calendar RTC with alarm and periodic wakeup from Stop/Standby
+- 96-bit unique ID
+      </description>
+
+      <!-- ************************  Subfamily 'STM32G070'  **************************** -->
+      <subFamily DsubFamily="STM32G070">
+        <compile header="Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0xx.h" define="STM32G070xx"/>
+        <debug svd="CMSIS/SVD/STM32G07x.svd"/>
+        <!--book name="Documentation/xx.pdf" title="xx Reference Manual"/-->
+        <book name="Documentation/DM00542744.pdf" title="STM32G070CB/KB/RB Data Sheet"/>
+
+        <!-- *************************  Device 'STM32G070RB'  ***************************** -->
+        <device Dname="STM32G070RB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G070RBTx"> <feature type="QFP" n="64"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G070CB'  ***************************** -->
+        <device Dname="STM32G070CB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G070CBTx"> <feature type="QFP" n="48"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G070KB'  ***************************** -->
+        <device Dname="STM32G070KB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G070KBTx"> <feature type="QFP" n="32"/> </variant>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32G071'  **************************** -->
+      <subFamily DsubFamily="STM32G071">
+        <compile header="Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0xx.h" define="STM32G071xx"/>
+        <debug svd="CMSIS/SVD/STM32G07x.svd"/>
+        <!--book name="Documentation/xx.pdf" title="xx Reference Manual"/-->
+        <book name="Documentation/DM00412180.pdf" title="STM32G071x8/xB Data Sheet"/>
+
+        <!-- *************************  Device 'STM32G071RB'  ***************************** -->
+        <device Dname="STM32G071RB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G071RBTx"> <feature type="QFP" n="64"/> </variant>
+          <variant Dvariant="STM32G071RBUx"> <feature type="QFP" n="64"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071CB'  ***************************** -->
+        <device Dname="STM32G071CB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G071CBTx"> <feature type="QFP" n="48"/> </variant>
+          <variant Dvariant="STM32G071CBUx"> <feature type="QFP" n="48"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071KB'  ***************************** -->
+        <device Dname="STM32G071KB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G071KBTx">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071KBUx">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071KBTxN"> <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071KBUxN"> <feature type="QFP" n="32"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071GB'  ***************************** -->
+        <device Dname="STM32G071GB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G071GBUx">  <feature type="QFP" n="28"/> </variant>
+          <variant Dvariant="STM32G071GBUxN"> <feature type="QFP" n="28"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071EB'  ***************************** -->
+        <device Dname="STM32G071EB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G071EBYx"> <feature type="CSP" n="25"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071R8'  ***************************** -->
+        <device Dname="STM32G071R8">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_64.FLM"  start="0x08000000" size="0x00010000"             default="1"/>
+          <variant Dvariant="STM32G071R8Tx"> <feature type="QFP" n="64"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071C8'  ***************************** -->
+        <device Dname="STM32G071C8">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_64.FLM"  start="0x08000000" size="0x00010000"             default="1"/>
+          <variant Dvariant="STM32G071C8Tx"> <feature type="QFP" n="48"/> </variant>
+          <variant Dvariant="STM32G071C8Ux"> <feature type="QFP" n="48"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071K8'  ***************************** -->
+        <device Dname="STM32G071K8">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_64.FLM"  start="0x08000000" size="0x00010000"             default="1"/>
+          <variant Dvariant="STM32G071K8Tx">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071K8Ux">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071K8TxN"> <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G071K8UxN"> <feature type="QFP" n="32"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G071G8'  ***************************** -->
+        <device Dname="STM32G071G8">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_64.FLM"  start="0x08000000" size="0x00010000"             default="1"/>
+          <variant Dvariant="STM32G071G8Ux">  <feature type="QFP" n="28"/> </variant>
+          <variant Dvariant="STM32G071G8UxN"> <feature type="QFP" n="28"/> </variant>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32G081'  **************************** -->
+      <subFamily DsubFamily="STM32G081">
+        <compile header="Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0xx.h" define="STM32G081xx"/>
+        <debug svd="CMSIS/SVD/STM32G07x.svd"/>
+        <!--book name="Documentation/xx.pdf" title="xx Reference Manual"/-->
+        <book name="Documentation/DM00412176.pdf" title="STM32G081xB Data Sheet"/>
+
+        <!-- *************************  Device 'STM32G081RB'  ***************************** -->
+        <device Dname="STM32G081RB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G081RBTx"> <feature type="QFP" n="64"/> </variant>
+          <variant Dvariant="STM32G081RBIx"> <feature type="BGA" n="64"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G081CB'  ***************************** -->
+        <device Dname="STM32G081CB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G081CBTx"> <feature type="QFP" n="48"/> </variant>
+          <variant Dvariant="STM32G081CBUx"> <feature type="QFP" n="48"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G081KB'  ***************************** -->
+        <device Dname="STM32G081KB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G081KBTx">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G081KBUx">  <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G081KBTxN"> <feature type="QFP" n="32"/> </variant>
+          <variant Dvariant="STM32G081KBUxN"> <feature type="QFP" n="32"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G081GB'  ***************************** -->
+        <device Dname="STM32G081GB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G081GBUx">  <feature type="QFP" n="28"/> </variant>
+          <variant Dvariant="STM32G081GBUxN"> <feature type="QFP" n="28"/> </variant>
+        </device>
+
+        <!-- *************************  Device 'STM32G081EB'  ***************************** -->
+        <device Dname="STM32G081EB">
+          <memory id="IROM1"                              start="0x08000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                              start="0x20000000" size="0x00008000" init="0"    default="1"/>
+          <algorithm name="CMSIS/Flash/STM32G0xx_128.FLM" start="0x08000000" size="0x00020000"             default="1"/>
+          <variant Dvariant="STM32G081EBYx"> <feature type="CSP" n="25"/> </variant>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="STM32G0">
+      <description>STMicroelectronics STM32G0 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32G0*"/>
+    </condition>
+
+    <condition id="STM32G070">
+      <description>STMicroelectronics STM32G070 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32G070*"/>
+    </condition>
+    <condition id="STM32G071">
+      <description>STMicroelectronics STM32G071 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32G071*"/>
+    </condition>
+    <condition id="STM32G081">
+      <description>STMicroelectronics STM32G081 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32G081*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="STM32G0 CMSIS">
+      <description>STMicroelectronics STM32G0 Device and CMSIS-CORE</description>
+      <require condition="STM32G0"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (ARMCC) -->
+    <condition id="STM32G070 ARMCC" >
+      <description>STMicroelectronics STM32G070 Devices and ARMCC Compiler</description>
+      <require condition="STM32G070"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32G071 ARMCC" >
+      <description>STMicroelectronics STM32G071 Devices and ARMCC Compiler</description>
+      <require condition="STM32G071"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32G081 ARMCC" >
+      <description>STMicroelectronics STM32G081 Devices and ARMCC Compiler</description>
+      <require condition="STM32G081"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (GCC) -->
+    <condition id="STM32G070 GCC" >
+      <description>STMicroelectronics STM32G070 Devices and GCC Compiler</description>
+      <require condition="STM32G070"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32G071 GCC" >
+      <description>STMicroelectronics STM32G071 Devices and GCC Compiler</description>
+      <require condition="STM32G071"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32G081 GCC" >
+      <description>STMicroelectronics STM32G081 Devices and GCC Compiler</description>
+      <require condition="STM32G081"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (IAR) -->
+    <condition id="STM32G070 IAR" >
+      <description>STMicroelectronics STM32G070 Devices and IAR Compiler</description>
+      <require condition="STM32G070"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32G071 IAR" >
+      <description>STMicroelectronics STM32G071 Devices and IAR Compiler</description>
+      <require condition="STM32G071"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32G081 IAR" >
+      <description>STMicroelectronics STM32G081 Devices and IAR Compiler</description>
+      <require condition="STM32G081"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="STM32G0 CMSIS">
+      <description>System Startup for STMicroelectronics STM32G0 Series</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STARTUP_STM32G0XX    /* Device Startup for STM32G0 */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Drivers/CMSIS/Device/ST/STM32G0xx/Include/"/>
+
+        <!-- Flash Option Bytes templates -->
+        <!--file category="source" condition="STM32G0 ARMCC" name="MDK/Device/Source/ARM/STM32G0xx_OPT.s" attr="template" select="Flash Option Bytes"/-->
+        <!--file category="source" condition="STM32G0 ARMCC" name="MDK/Device/Source/ARM/STM32G0xx_OTP.s" attr="template" select="Flash One-Time programmable Bytes"/-->
+
+        <!-- common device header file -->
+        <file category="header" name="Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0xx.h"/>
+
+        <!-- startup files -->
+        <!-- ARM Compiler Toolchain -->
+        <file category="source" condition="STM32G070 ARMCC" name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/arm/startup_stm32g070xx.s" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G071 ARMCC" name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/arm/startup_stm32g071xx.s" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G081 ARMCC" name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/arm/startup_stm32g081xx.s" attr="config" version="1.0.0"/>
+
+        <!-- GCC Toolchain -->
+        <file category="source" condition="STM32G070 GCC"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/gcc/startup_stm32g070xx.S" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G071 GCC"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/gcc/startup_stm32g071xx.S" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G081 GCC"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/gcc/startup_stm32g081xx.S" attr="config" version="1.0.0"/>
+
+        <!-- IAR Toolchain -->
+        <file category="source" condition="STM32G070 IAR"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/iar/startup_stm32g070xx.s" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G071 IAR"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/iar/startup_stm32g071xx.s" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32G081 IAR"   name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/iar/startup_stm32g081xx.s" attr="config" version="1.0.0"/>
+
+        <!-- system file -->
+        <file category="source"                             name="Drivers/CMSIS/Device/ST/STM32G0xx/Source/Templates/system_stm32g0xx.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>
+

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>iMXRT105x_MWP</name>
+  <description>NXP i.MX RT 105x MDK-Middleware examples and CMSIS-Drivers</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.0" date="2018-06-20">
+      Initial release of i.MX RT MDK-Middleware examples and CMSIS-Drivers Pack.
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"              version="5.3.0"/>
+      <package vendor="ARM"  name="CMSIS-Driver"       version="2.3.0"/>
+      <package vendor="Keil" name="ARM_Compiler"       version="1.4.0"/>
+      <package vendor="NXP"  name="MIMXRT1051_DFP"     version="10.0.2"/>
+      <package vendor="NXP"  name="MIMXRT1052_DFP"     version="10.0.2"/>
+      <package vendor="NXP"  name="EVKB-IMXRT1050_BSP" version="10.0.2"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>iMXRT</keyword>
+    <keyword>iMXRT105x</keyword>
+    <keyword>iMXRT1051</keyword>
+    <keyword>iMXRT1052</keyword>
+    <keyword>MIMXRT</keyword>
+    <keyword>MIMXRT1050-EVK</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="MIMXRT105x CMSIS">
+      <description>NXP i.MX RT 105x device and CMSIS-CORE</description>
+      <require Dvendor="NXP:11" Dname="MIMXRT105*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="MIMXRT105x CMSIS SDK_CAN">
+      <description>NXP i.MX RT 105x device, CMSIS-CORE and SDK drivers for CMSIS CAN driver</description>
+      <require condition="MIMXRT105x CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan"/>
+    </condition>
+
+    <condition id="MIMXRT105x CMSIS EMAC">
+      <description>NXP i.MX RT 105x device, CMSIS-CORE and SDK drivers for CMSIS EMAC driver</description>
+      <require condition="MIMXRT105x CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="enet"/>
+    </condition>
+
+    <condition id="MIMXRT105x CMSIS MCI">
+      <description>NXP i.MX RT 105x device, CMSIS-CORE and SDK drivers for CMSIS MCI driver</description>
+      <require condition="MIMXRT105x CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sdhc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- CMSIS Drivers -->
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Csub="CAN1" Capiversion="1.2.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS SDK_CAN">
+      <description>CAN1 Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN1        (1U)    /* Driver CAN1 */
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Documentation/evkb_imxrt1050_can.html"/>
+        <file category="sourceC" name="CMSIS/Driver/FLEXCAN_iMXRT105x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Csub="CAN2" Capiversion="1.2.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS SDK_CAN">
+      <description>CAN2 Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN2        (1U)    /* Driver CAN2 */
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Documentation/evkb_imxrt1050_can.html"/>
+        <file category="sourceC" name="CMSIS/Driver/FLEXCAN_iMXRT105x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Capiversion="2.1.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS EMAC">
+      <description>Ethernet MAC Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_ETH_MAC0    (1U)    /* Driver ETH_MAC0 */
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Documentation/evkb_imxrt1050_enet.html"/>
+        <file category="source" name="CMSIS/Driver/EMAC_iMXRT105x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.2.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS MCI">
+      <description>MCI Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0        (1U)    /* Driver MCI0 */
+        #define RTE_Drivers_MCI1        (1U)    /* Driver MCI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Documentation/evkb_imxrt1050_usdhc.html"/>
+        <file category="source" name="CMSIS/Driver/MCI_iMXRT105x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Csub="USB1" Capiversion="2.1.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS">
+      <description>USB0 Device Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD1               /* Driver USBD1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/USB1_iMXRT105x.c"/>
+        <file category="source" name="CMSIS/Driver/USBD1_iMXRT105x.c"/>
+        <file category="header" name="CMSIS/Driver/USB_iMXRT105x.h"/>
+        <file category="source" name="SDK/middleware/usb/device/usb_device_dci.c"/>
+        <file category="source" name="SDK/middleware/usb/device/usb_device_ehci.c"/>
+        <file category="header" name="SDK/middleware/usb/include/usb.h"/>
+        <file category="source" name="SDK/middleware/usb/osa/usb_osa_bm.c"/>
+        <file category="header" name="SDK/middleware/usb/osa/usb_osa.h"/>
+        <file category="source" name="SDK/middleware/usb/phy/usb_phy.c"/>
+        <file category="header" name="SDK/middleware/usb/phy/usb_phy.h"/>
+        <file category="header" name="SDK/middleware/usb/device/usb_device.h"/>
+        <file category="header" name="SDK/devices/MIMXRT1052/utilities/usb_device_config.h" attr="config" version="1.0.0"/>
+        <file category="header" name="SDK/devices/MIMXRT1052/utilities/usb_device_ch9.h"/>
+      </files>
+    </component>
+
+<!--
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Csub="USB2" Capiversion="2.1.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS">
+      <description>USB1 Device Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBD2               /* Driver USBD2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/USB2_iMXRT105x.c"/>
+        <file category="source" name="CMSIS/Driver/USBD2_iMXRT105x.c"/>
+        <file category="header" name="CMSIS/Driver/USB_iMXRT105x.h"/>
+        <file category="source" name="SDK/middleware/usb/device/usb_device_dci.c"/>
+        <file category="source" name="SDK/middleware/usb/device/usb_device_ehci.c"/>
+        <file category="header" name="SDK/middleware/usb/include/usb.h"/>
+        <file category="source" name="SDK/middleware/usb/osa/usb_osa_bm.c"/>
+        <file category="header" name="SDK/middleware/usb/osa/usb_osa.h"/>
+        <file category="source" name="SDK/middleware/usb/phy/usb_phy.c"/>
+        <file category="header" name="SDK/middleware/usb/phy/usb_phy.h"/>
+        <file category="header" name="SDK/middleware/usb/device/usb_device.h"/>
+        <file category="header" name="SDK/devices/MIMXRT1052/utilities/usb_device_config.h" attr="config" version="1.0.0"/>
+        <file category="header" name="SDK/devices/MIMXRT1052/utilities/usb_device_ch9.h"/>
+      </files>
+    </component>
+-->
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Csub="USB1" Capiversion="2.2.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS">
+      <description>USB1 EHCI Host Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH1       (1U)    /* Driver USBH1 */
+      </RTE_Components_h>
+      <files>
+        <file category="sourceC" name="CMSIS/Driver/USB1_iMXRT105x.c"/>
+        <file category="sourceC" name="CMSIS/Driver/USBH1_iMXRT105x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Csub="USB2" Capiversion="2.2.0" Cversion="1.0.0" condition="MIMXRT105x CMSIS">
+      <description>USB2 EHCI Host Driver for NXP i.MX RT 105x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH2       (1U)    /* Driver USBH2 */
+      </RTE_Components_h>
+      <files>
+        <file category="sourceC" name="CMSIS/Driver/USB2_iMXRT105x.c"/>
+        <file category="sourceC" name="CMSIS/Driver/USBH2_iMXRT105x.c"/>
+      </files>
+    </component>
+  </components>
+
+  <examples>
+    <!-- NXP EVKB-IMXRT1050 Board Examples -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS"  Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTOS2</category>
+      </attributes>
+    </example>
+
+    <example name="CAN" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/CAN/CAN">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/FileSystem/File_Demo">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Device/HID">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Device/MassStorage">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Device/VirtualCOM">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device WinUSB Echo" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Device/WinUSB_Echo">
+      <description>WinUSB Class Device echoing bulk endpoint data (implemented as Custom Class)</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="WinUSB_Echo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Custom Class"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Custom Class</keyword>
+        <keyword>WinUSB_Echo</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Host/MassStorage">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format the storage device</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Mass Storage</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/USB/Host/Keyboard">
+      <description>USB HID Keyboard as input device</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/BSD_Client">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/BSD_Server">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/FTP_Server">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/HTTP_Server">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/HTTP_Upload">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/SMTP_Client">
+      <description>Example showing how to compose and send emails</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/SNMP_Agent">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/NXP/EVKB-IMXRT1050/Middleware/Network/Telnet_Server">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+  </examples>
+</package>

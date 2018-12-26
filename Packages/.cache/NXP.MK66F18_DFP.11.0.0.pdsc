@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MK66F18_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MK66F18</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MK66F18" Dvendor="NXP:11">
+      <description>The Kinetis® K66 180MHz IEEE® 1588 Ethernet MCUs are built on the ARM® Cortex®-M4F core and are optimized for applications requiring large memory densities and low-power processing efficiency. This family offers High Speed USB with integrated HS USB Physical Transceiver, SDRAM Controller, Full Speed Crystal-less USB support, as well as shares the comprehensive enablement and scalability of the Kinetis portfolio.</description>
+      <device Dname="MK66FN2M0xxx18">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dendian="Little-endian" Dclock="180000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MK66FN2M0xxx18_flash.icf"/>
+        </environment>
+        <memory name="FLEX_RAM" start="0x14000000" size="0x1000" access="rw"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x200000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1fff0000" size="0x010000" access="rw"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x030000" access="rw" default="1"/>
+        <algorithm name="arm/MK_P2M0.FLM" start="0x00000000" size="0x00200000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="MK66F18.xml"/>
+        <variant Dvariant="MK66FN2M0VMD18">
+          <compile header="fsl_device_registers.h" define="CPU_MK66FN2M0VMD18"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MK66FN2M0VMD18/MK66FN2M0xxx18_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MK66FN2M0VLQ18">
+          <compile header="fsl_device_registers.h" define="CPU_MK66FN2M0VLQ18"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MK66FN2M0VLQ18/MK66FN2M0xxx18_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MK66FX1M0xxx18">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dendian="Little-endian" Dclock="180000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MK66FX1M0xxx18_flash.icf"/>
+        </environment>
+        <memory name="FLEX_NVM" start="0x10000000" size="0x040000" access="rx"/>
+        <memory name="FLEX_RAM" start="0x14000000" size="0x1000" access="rw"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x100000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1fff0000" size="0x010000" access="rw"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x030000" access="rw" default="1"/>
+        <algorithm name="arm/MK_P1M0.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKD256_4KB_SECTOR.FLM" start="0x10000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="MK66F18.xml"/>
+        <variant Dvariant="MK66FX1M0VMD18">
+          <compile header="fsl_device_registers.h" define="CPU_MK66FX1M0VMD18"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MK66FX1M0VMD18/MK66FX1M0xxx18_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MK66FX1M0VLQ18">
+          <compile header="fsl_device_registers.h" define="CPU_MK66FX1M0VLQ18"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MK66FX1M0VLQ18/MK66FX1M0xxx18_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.dmamux_AND_driver.edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.edma_AND_driver.sai">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.edma_AND_driver.lpuart">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK66F18_AND_utility.debug_console">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.common">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK66F18_AND_component.lists_AND_utility.debug_console">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MK66F18">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Driver_Include.I2C">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.uart">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="driver.lpuart_OR_driver.uart">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.lpuart_OR_driver.uart">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require condition="driver.lpuart_OR_driver.uart"/>
+    </condition>
+    <condition id="device.MK66F18_AND_component.serial_manager_AND_driver.common">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart_edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.edma_AND_driver.uart">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.edma_AND_driver.i2c">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.common_AND_driver.dmamux">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK66F18_AND_driver.dspi_AND_driver.edma">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK66F18_AND_device.MK66F18_CMSIS_AND_driver.clock">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MK66F18_startup"/>
+    </condition>
+    <condition id="device.MK66F18_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MK66F18_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart_AND_utility.debug_console">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MK66F18_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="device.MK66F18_AND_CMSIS_Include_core_cm4">
+      <accept Dname="MK66FN2M0???18" Dvendor="NXP:11"/>
+      <accept Dname="MK66FX1M0???18" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MK66F18_AND_driver.dmamux_AND_driver.edma">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai_edma" Cversion="2.1.5" condition="device.MK66F18_AND_driver.edma_AND_driver.sai">
+      <description>SAI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_sai_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma" Cversion="2.2.6" condition="device.MK66F18_AND_driver.edma_AND_driver.lpuart">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.MK66F18_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MK66F18_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.MK66F18_AND_component.lists_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="phyksz8081" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/phyksz8081/fsl_phy.h"/>
+        <file category="sourceC" name="components/phyksz8081/fsl_phy.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ili9341" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/ili9341/fsl_ili9341.h"/>
+        <file category="sourceC" name="components/ili9341/fsl_ili9341.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="fxos8700cq" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/fxos8700cq/fsl_fxos.h"/>
+        <file category="sourceC" name="components/fxos8700cq/fsl_fxos.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft6x06" Cversion="1.0.0" condition="device.MK66F18_AND_CMSIS_Driver_Include.I2C">
+      <description/>
+      <files>
+        <file category="header" name="components/ft6x06/fsl_ft6x06.h"/>
+        <file category="sourceC" name="components/ft6x06/fsl_ft6x06.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dialog7212" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/codec/da7212/fsl_dialog7212.h"/>
+        <file category="sourceC" name="components/codec/da7212/fsl_dialog7212.c"/>
+        <file category="header" name="components/codec/fsl_codec_common.h"/>
+        <file category="sourceC" name="components/codec/fsl_codec_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="device.MK66F18_AND_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/uart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/lists/generic_list.h"/>
+        <file category="sourceC" name="components/lists/generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_manager.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.MK66F18_AND_driver.lpuart_OR_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_usb_config" Cversion="1.0.0" condition="device.MK66F18">
+      <description/>
+      <files>
+        <file category="header" name="utilities/usb_device_config.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.MK66F18_AND_component.serial_manager_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis_edma" Cversion="2.0.2" condition="device.MK66F18_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_edma">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis_edma" Cversion="2.0.1" condition="device.MK66F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_edma">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_uart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_uart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis_edma" Cversion="2.0.1" condition="device.MK66F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart_edma">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_lpuart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_lpuart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.0.0" condition="device.MK66F18_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <description>DSPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_dspi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_dspi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.0" condition="device.MK66F18_AND_driver.common">
+      <description>WDOG Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="vref" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>VREF Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_vref.h"/>
+        <file category="sourceC" name="drivers/fsl_vref.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cversion="2.1.6" condition="device.MK66F18_AND_driver.edma_AND_driver.uart">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_uart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.1.6" condition="device.MK66F18_AND_driver.common">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart.h"/>
+        <file category="sourceC" name="drivers/fsl_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tsi_v4" Cversion="2.1.2" condition="device.MK66F18_AND_driver.common">
+      <description>TSI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_tsi_v4.h"/>
+        <file category="sourceC" name="drivers/fsl_tsi_v4.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm" Cversion="2.0.2" condition="device.MK66F18_AND_driver.common">
+      <description>TPM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_tpm.c"/>
+        <file category="header" name="drivers/fsl_tpm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysmpu" Cversion="2.2.1" condition="device.MK66F18_AND_driver.common">
+      <description>SYSMPU Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sysmpu.h"/>
+        <file category="sourceC" name="drivers/fsl_sysmpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.4" condition="device.MK66F18_AND_driver.common">
+      <description>SMC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_smc.h"/>
+        <file category="sourceC" name="drivers/fsl_smc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>SIM Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sim.h"/>
+        <file category="sourceC" name="drivers/fsl_sim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdramc" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>SDRAMC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdramc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdramc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdhc" Cversion="2.1.8" condition="device.MK66F18_AND_driver.common">
+      <description>SDHC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdhc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdhc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai" Cversion="2.1.7" condition="device.MK66F18_AND_driver.common">
+      <description>SAI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai.h"/>
+        <file category="sourceC" name="drivers/fsl_sai.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>RTC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>RNGA Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rnga.c"/>
+        <file category="header" name="drivers/fsl_rnga.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>RCM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rcm.c"/>
+        <file category="header" name="drivers/fsl_rcm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.0" condition="device.MK66F18_AND_driver.common">
+      <description>PMC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_pmc.h"/>
+        <file category="sourceC" name="drivers/fsl_pmc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>PIT Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pit.c"/>
+        <file category="header" name="drivers/fsl_pit.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>PDB Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pdb.c"/>
+        <file category="header" name="drivers/fsl_pdb.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.2.6" condition="device.MK66F18_AND_driver.common">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>LPTMR Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lptmr.c"/>
+        <file category="header" name="drivers/fsl_lptmr.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cache" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>CACHE Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cache.c"/>
+        <file category="header" name="drivers/fsl_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lmem" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>LMEM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lmem_cache.c"/>
+        <file category="header" name="drivers/fsl_lmem_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.2" condition="device.MK66F18_AND_driver.common">
+      <description>LLWU Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_llwu.h"/>
+        <file category="sourceC" name="drivers/fsl_llwu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.0.6" condition="device.MK66F18_AND_driver.edma_AND_driver.i2c">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_i2c_edma.c"/>
+        <file category="header" name="drivers/fsl_i2c_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.6" condition="device.MK66F18_AND_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.3.1" condition="device.MK66F18_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>FTM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan" Cversion="2.3.2" condition="device.MK66F18_AND_driver.common">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexcan.h"/>
+        <file category="sourceC" name="drivers/fsl_flexcan.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexbus" Cversion="2.0.2" condition="device.MK66F18_AND_driver.common">
+      <description>FLEXBUS Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexbus.h"/>
+        <file category="sourceC" name="drivers/fsl_flexbus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.0.0" condition="device.MK66F18">
+      <description>Flash Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_ftfx_adapter.h"/>
+        <file category="header" name="drivers/fsl_ftfx_utilities.h"/>
+        <file category="header" name="drivers/fsl_ftfx_features.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_controller.c"/>
+        <file category="header" name="drivers/fsl_ftfx_controller.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flash.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flash.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_cache.c"/>
+        <file category="header" name="drivers/fsl_ftfx_cache.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flexnvm.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flexnvm.h"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>EWM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ewm.c"/>
+        <file category="header" name="drivers/fsl_ewm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="enet" Cversion="2.2.3" condition="device.MK66F18_AND_driver.common">
+      <description>ENET Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_enet.h"/>
+        <file category="sourceC" name="drivers/fsl_enet.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.1.4" condition="device.MK66F18_AND_driver.common_AND_driver.dmamux">
+      <description>EDMA Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cversion="2.2.0" condition="device.MK66F18_AND_driver.dspi_AND_driver.edma">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cversion="2.2.0" condition="device.MK66F18_AND_driver.common">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.0.2" condition="device.MK66F18_AND_driver.common">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dmamux.h"/>
+        <file category="sourceC" name="drivers/fsl_dmamux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>DAC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dac.c"/>
+        <file category="header" name="drivers/fsl_dac.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>CRC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+        <file category="header" name="drivers/fsl_crc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmt" Cversion="2.0.1" condition="device.MK66F18_AND_driver.common">
+      <description>CMT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_cmt.h"/>
+        <file category="sourceC" name="drivers/fsl_cmt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.0" condition="device.MK66F18_AND_driver.common">
+      <description>CMP Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cmp.c"/>
+        <file category="header" name="drivers/fsl_cmp.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.MK66F18_AND_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.0.0" condition="device.MK66F18_AND_driver.common">
+      <description>ADC16 Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc16.c"/>
+        <file category="header" name="drivers/fsl_adc16.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.MK66F18_AND_device.MK66F18_CMSIS_AND_driver.clock">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK66F18" Cversion="1.0.0" condition="device.MK66F18_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MK66F18_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart_AND_utility.debug_console" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="MK66F18_startup" Cversion="1.0.0" condition="device.MK66F18_AND_CMSIS_Include_core_cm4">
+      <description/>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_MK66F18.s"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_MK66F18.s"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK66FN2M0xxx18_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK66FN2M0xxx18_ram.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK66FX1M0xxx18_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK66FX1M0xxx18_ram.scf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK66FN2M0xxx18_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK66FN2M0xxx18_ram.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK66FX1M0xxx18_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK66FX1M0xxx18_ram.icf"/>
+        <file category="header" attr="config" name="fsl_device_registers.h"/>
+        <file category="header" attr="config" name="MK66F18.h"/>
+        <file category="header" attr="config" name="MK66F18_features.h"/>
+        <file category="sourceC" attr="config" name="system_MK66F18.c"/>
+        <file category="header" attr="config" name="system_MK66F18.h"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32630</name>
+   <url>http://mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32630 and MAX32631 Series Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>
+      <release version="0.2.7-b" date="2018-01-18">
+         Initial release for public usage.
+         - IAR Support Added
+         - Keil uVision Support Added
+      </release>
+      <release version="0.2.7-b" date="2018-01-18">
+         Initial release for public usage.
+         - IAR Support Added
+         - Keil uVision Support Added
+      </release>
+      <release version="0.2.7-b" date="2017-02-01">
+         First MAX3263X pack file release
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32631</keyword>
+      <keyword>MAX32630</keyword>
+      <keyword>MAX32630 Evaluation Kit</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <packages>
+         <package name="CMSIS" vendor="ARM" version="4.1.0:4.5.0" />
+      </packages>
+      <compilers>
+         <compiler name="ARMCC" version="5.0.0:5.99.0" />
+      </compilers>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+
+   <devices>
+
+      <family Dfamily="MAX32630" Dvendor="Maxim:23">
+         <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+         <compile header="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h" />
+         <debug svd="SVD/MAX32630/max3263x.svd" />
+         <description>
+           The MAX32630 device family is designed for wearable and portable medical and fitness applications. The devices contain an ARM Cortex-M4 processor with FPU, execute up to 96MHz and include a 10-bit ADC and a versatile set of on-chip peripherals.
+         </description>
+         <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+         <book name="Documents/MAX32630_DS.pdf" title="MAX32630 Datasheet"/>
+         <book name="Documents/MAX32630_User_Guide.pdf" title="MAX32630 User Guide"/>
+
+         <feature type="Timer" n="12" m="16" name="32-Bit Timers reconfigurable as 2x16-Bit Timers"/>
+         <feature type="Timer" n="6" m="32"/>
+         <feature type="DMA" n="6" name="Peripheral Managment Unit"/>
+         <feature type="IOs" n="49"/>
+         <feature type="WDT" n="3"/>
+         <feature type="RTC" n="32768"/>
+         <feature type="ADC" n="10" m="10" name="Sigma-Delta ADC, 7.8ksps, Two 5.5V tolerant inputs, Two 1.2V tolerant inputs"/>
+         <feature type="TimerOther" n="16" name="Channel Pulse Train Engine"/>
+         <feature type="SDIO" n="3" m="4" name="x1, x2 and x4 SDIO Interface"/>
+         <feature type="SPI" n="3" m="24000000" name="3 SPI Masters"/>
+         <feature type="SPI" n="1" m="24000000" name="1 SPI Slave"/>
+         <feature type="ExtBus" n="4" name="SPI XiP at up to 24MHz for memory expansion"/>
+         <feature type="I2C" n="3" name="3 I2C Masters"/>
+         <feature type="I2C" n="1" name="1 I2C Slave"/>
+         <feature type="UART" n="4" m="115200"/>
+         <feature type="ComOther" n="1" name="1-Wire Master"/>
+         <feature type="USBD" n="1" name="Full-Speed USB Device"/>
+         <feature type="VCC" n="1.2" name="Core Supply Voltage"/>
+         <feature type="VCC" n="1.8" m="3.6" name="1.8V - 3.6V VDD with I/O Supply Selectable Between 1.8V and 3.6V"/>
+         <feature type="Temp" n="-40" m="85"/>
+         <feature type="PowerMode" n="4" name="LP3 Run, LP2 PMU, LP1 Standby, LP0 Stop"/>
+         <feature type="CoreOther" n="1" name="CRC Calculation Unit"/>
+         <feature type="ClockOther" n="96000000" name="Internal Relaxation Oscillator with +/- 1% accuracy"/>
+         <feature type="ClockOther" n="4000000" name="Low Power 4MHz Internal Ring Oscillator"/>
+         <feature type="Crypto" n="128.256" name="128/256-bit Hareware Accelerated AES Encryption Engine"/>
+
+         <device Dname="MAX32630">
+            <processor Dclock="96000000"/>
+            <debugconfig default="jtag" clock="1000000" swj="1"/>
+            <compile header="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h"/>
+            <debug svd="SVD/MAX32630/max3263x.svd"/>
+            <algorithm name="Flash/MAX32630.FLM" start="0x00000000" size="0x00200000" default="1"/>
+            <memory id="IROM1" access="rwx" start="0x00000000" size="0x00200000" startup="1" default="1"/>
+            <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00080000" init="0" default="1"/>
+         </device>
+
+         <device Dname="MAX32631">
+            <processor Dclock="96000000"/>
+            <debugconfig default="jtag" clock="1000000" swj="1"/>
+            <compile header="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h"/>
+            <debug svd="SVD/MAX32630/max3263x.svd"/>
+            <algorithm name="Flash/MAX32630.FLM" start="0x00000000" size="0x00200000" default="1"/>
+            <memory id="IROM1" access="rx" start="0x00000000" size="0x00200000" startup="1" default="1"/>
+            <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00080000" init="0" default="1"/>
+            <feature type="RNG" n="1" name="Random Seed Generator"/>
+            <feature type="Crypto" n="128.256" name="AES hardware accelerator"/>
+            <feature type="Crypto" n="1024.2048" name="Modulo Arithmetic Accelerator (MAA) with up to 1024-bit DSA/ECDSA, 2048-bit (CRT) RSA"/>
+         </device>
+
+      </family>
+
+   </devices>
+
+   <boards>
+      <board vendor="Maxim" name="MAX32630_EVKIT" revision="REV 3.0" salesContact="sales@maximintegrated.com" orderForm="http://www.maximintegrated.com/MAX32630">
+         <description>The MAX32630 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32630 Family of microcontrollers. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications. This Evaluation Kit supports both the MAX32630 and the MAX32631 (Trust Protection Unit (TPU) enabled).
+         </description>
+         <image small="Images/MAX32630_EVKIT_Small.jpg" large="Images/MAX32630_EVKIT_Large.jpg"/>
+         <book category="manual" name="Documents/MAX32630_EVKIT_Datasheet.pdf" title="Evaluation Kit Datasheet and Configuration"/>
+         <book category="schematic" name="Documents/MAX32630_EVKIT_Datasheet.pdf" title="Schematic"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32630"/>
+         <compatibleDevice Dvendor="Maxim:23" Dfamily="MAX32630"/>
+         <feature type="PWR" n="3.3" m="5.5"/>
+         <feature type="Proto" n="13" m="11" name="13 x 11 Prototyping Area with one row connected to 1.8V PWR, one row connected to 3.3V PWR and one row connected to GND"/>
+         <feature type="Memory" n="16" name="MB SPI Flash"/>
+         <feature type="DIO" n="49" name="General Purpose IO on 3 x 16 pin headers, JH1-JH3, and 1 pin on JH4"/>
+         <feature type="AIO" n="4" name="Analog Inputs on 4 x 2 pin headers"/>
+         <feature type="SPI" n="4" name="3 x SPI Master and 1 x SPI Slave ports mapped on GPIO"/>
+         <feature type="I2C" n="3" name="Up to 3 x I2C Master Ports,  1 x I2C Slave (shares same I/O as each of the master ports)"/>
+         <feature type="RS232" n="4" name="1 UART, either UART0 or UART1, can be connected to the USB Micro B connector (CN1) via jumpers (JP10, JP12, JP13 and JP14). RTS/CTS hardware flow control are supported via USB as well. The remaining 3 UARTS are mapped to GPIO headers."/>
+         <feature type="LED" n="4" name="User LEDs"/>
+         <feature type="Other" n="1" name="External Bluetooth 4.0 Low Energy transceiver with chip antenna"/>
+         <feature type="GLCD" n="1" m="128.32" name="pixel graphic OLED display module. User connectable to SPI0 via jumpers"/>
+         <feature type="XTAL" n="96000000"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector (0.1 inch connector)"/>
+      </board>
+   </boards>
+
+   <examples>
+      <example name="ADC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/ADC">
+         <description>ADC Conversion Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/ADC.uvprojx"/>
+            <environment name="iar" load="IAR/ADC.ewp" />
+         </project>
+         <attributes>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="ADC" Cvendor="Maxim"/>
+            <component Cclass="Peripherals" Cgroup="Timers" Cvendor="Maxim"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <keyword>Getting Started</keyword>
+            <keyword>ADC</keyword>
+            <keyword>Analog</keyword>
+         </attributes>
+      </example>
+
+      <example name="AES" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/AES">
+         <description>Advanced Encryption Standard (AES) Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/AES.uvprojx"/>
+            <environment name="iar" load="IAR/AES.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="AES" Cvendor="Maxim"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+
+            <keyword>Getting Started</keyword>
+            <keyword>AES</keyword>
+         </attributes>
+      </example>
+
+      <example name="CLKMAN_4MHz" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/CLKMAN_4MHz">
+         <description>Clock management and usage of the 4MHz internal clock demo application</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/CLKMAN_4MHz.uvprojx"/>
+            <environment name="iar" load="IAR/CLKMAN_4MHz.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+
+            <keyword>Getting Started</keyword>
+            <keyword>Clocks</keyword>
+         </attributes>
+      </example>
+
+      <example name="CRC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/CRC">
+         <description>Cyclic Redundancy Check Example Application</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/CRC.uvprojx"/>
+            <environment name="iar" load="IAR/CRC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="CRC" Cvendor="Maxim"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+
+            <keyword>Getting Started</keyword>
+            <keyword>AES</keyword>
+         </attributes>
+      </example>
+
+      <example name="EVK_Demo" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/EVK_Demo">
+         <description>MAX32630 Evaluation Kit Default Demo Application</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/EVK_Demo.uvprojx"/>
+            <environment name="iar" load="IAR/EVK_Demo.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Timers</keyword>
+         </attributes>
+      </example>
+
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Hello_World.uvprojx"/>
+            <environment name="iar" load="IAR/Hello_World.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="I2C_Loopback" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/I2C_Loopback">
+         <description>I2C Loopback Demo Using the I2C Master and Slave Libraries</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/I2C_Loopback.uvprojx"/>
+            <environment name="iar" load="IAR/I2C_Loopback.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="I2C Slave"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>I2C</keyword>
+            <keyword>I2C Master</keyword>
+            <keyword>I2C Slave</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_GPIO" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_GPIO">
+         <description>Low Power Modes with wake up from GPIO</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP_GPIO.uvprojx"/>
+            <environment name="iar" load="IAR/LP_GPIO.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="I2C Slave"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Low Power</keyword>
+            <keyword>External Interrupts</keyword>
+            <keyword>Wakeup</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_PMU" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_PMU">
+         <description>Low Power Modes using the Smart DMA (Peripheral Management Unit)</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP_PMU.uvprojx"/>
+            <environment name="iar" load="IAR/LP_PMU.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="PMU"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="I2C Slave"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Periperal Management Unit</keyword>
+            <keyword>DMA</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_RTC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_RTC">
+         <description>Low Power Modes with RTC Wakeup</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP_RTC.uvprojx"/>
+            <environment name="iar" load="IAR/LP_RTC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="RTC"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Real-Time Clock</keyword>
+            <keyword>Low Power</keyword>
+            <keyword>Wakeup</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_UART" doc="IAR/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_UART">
+         <description>Low Power Modes with UART Wakeup</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="rx/ARM/LP_UART_RX.uvprojx"/>
+            <environment name="iar" load="IAR/LP_UART_Workspace.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Real-Time Clock</keyword>
+            <keyword>Low Power</keyword>
+            <keyword>Wakeup</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_WakeupTime" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_WakeupTime">
+         <description>Low Power Modes 0 and 1 wake up time measurement.</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP_WakeupTime.uvprojx"/>
+            <environment name="iar" load="IAR/LP_WakeupTime.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Low Power</keyword>
+            <keyword>Wakeup</keyword>
+            <keyword>GPIO</keyword>
+            <keyword>External Interrupts</keyword>
+         </attributes>
+      </example>
+
+      <example name="LP_Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/LP_Watchdog">
+         <description>Low Power Mode with Watchdog.</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP_Watchdog.uvprojx"/>
+            <environment name="iar" load="IAR/LP_Watchdog.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Watchdog Timers</keyword>
+         </attributes>
+      </example>
+
+      <example name="Pulse_Train" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/Pulse_Train">
+         <description>Pulse Train Generation Example</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Pulse_Train.uvprojx"/>
+            <environment name="iar" load="IAR/Pulse_Train.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Pulse Train"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Pulse Train Engine</keyword>
+         </attributes>
+      </example>
+
+      <example name="RTC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/RTC">
+         <description>RTC example showing use of alarms and snooze features</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/RTC.uvprojx"/>
+            <environment name="iar" load="IAR/RTC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="RTC"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Real-Time Clock</keyword>
+         </attributes>
+      </example>
+
+      <example name="RTX_Blinky" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/RTX_Blinky">
+         <description>CMSIS-RTOS Blinky</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/RTX_Blinky.uvprojx"/>
+            <environment name="iar" load="IAR/RTX_Blinky.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="RTOS"/>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cbundle="ARM Compiler" Cclass="Compiler" Cgroup="Event Recorder" Cvariant="DAP"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>CMSIS-RTX</keyword>
+            <keyword>RTOS</keyword>
+         </attributes>
+      </example>
+
+      <example name="SPIM_MX25" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/SPIM_MX25">
+         <description>SPI Master Example showing use of the on-board MX25 Flash for Storage</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SPIM_MX25.uvprojx"/>
+            <environment name="iar" load="IAR/SPIM_MX25.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>External Memory</keyword>
+            <keyword>SPI Master</keyword>
+         </attributes>
+      </example>
+
+<!--       <example name="SPIS" doc="IAR/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/SPIS">
+         <description>SPI Slave Example showing use of the SPI Slave loopback from the SPI Master</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPIS.ewp"/>
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="SPI Slave"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>External Memory</keyword>
+            <keyword>SPI XiP</keyword>
+         </attributes>
+      </example> -->
+
+      <example name="SPIX_MX25" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/SPIX_MX25">
+         <description>SPI XIP Example showing use of the on-board MX25 Flash for Execution</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SPIX_MX25.uvprojx"/>
+            <environment name="iar" load="IAR/SPIX_MX25.ewp"/>
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="SPI XIP"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>External Memory</keyword>
+            <keyword>SPI XiP</keyword>
+         </attributes>
+      </example>
+
+      <example name="SysTick" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/SysTick">
+         <description>System Tick LED Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SysTick.uvprojx"/>
+            <environment name="iar" load="IAR/SysTick.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="Timer" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/Timer">
+         <description>32/16-bit Timer Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Timer.uvprojx"/>
+            <environment name="iar" load="IAR/Timer.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Timers</keyword>
+         </attributes>
+      </example>
+
+      <example name="UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/UART">
+         <description>UART Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/UART.uvprojx"/>
+            <environment name="iar" load="IAR/UART.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Communications</keyword>
+            <keyword>UART</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_CDCACM" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/USB_CDCACM">
+         <description>USB CDCACM Serial Port Example</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_CDCACM.uvprojx"/>
+            <environment name="iar" load="IAR/USB_CDCACM.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0" />
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="HAL" Cgroup="Hardware Access Layer" />
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master" />
+            <component Cclass="Communications" Cgroup="I2C Master" />
+            <component Cclass="Communications" Cgroup="UART" />
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support" />
+            <component Cbundle="MAXUSB Libraries" Cclass="MAXUSB" Cgroup="MAXUSB" />
+            <keyword>Getting Started</keyword>
+            <keyword>USB</keyword>
+            <keyword>CDC</keyword>
+            <keyword>ACM</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_HIDKeyboard" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/USB_HIDKeyboard">
+         <description>USB HID Keyboard Example Application</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_HIDKeyboard.uvprojx"/>
+            <environment name="iar" load="IAR/USB_HIDKeyboard.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0" />
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="HAL" Cgroup="Hardware Access Layer" />
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master" />
+            <component Cclass="Communications" Cgroup="I2C Master" />
+            <component Cclass="Communications" Cgroup="UART" />
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support" />
+            <component Cbundle="MAXUSB Libraries" Cclass="MAXUSB" Cgroup="MAXUSB" />
+            <keyword>Getting Started</keyword>
+            <keyword>USB</keyword>
+            <keyword>HID</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_HIDKeyboardLP1" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/USB_HIDKeyboardLP1">
+         <description>USB HID Keyboard Example Application with Low Power Mode 1 Support</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_HIDKeyboardLP1.uvprojx"/>
+            <environment name="iar" load="IAR/USB_HIDKeyboardLP1.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0" />
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="HAL" Cgroup="Hardware Access Layer" />
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master" />
+            <component Cclass="Communications" Cgroup="I2C Master" />
+            <component Cclass="Communications" Cgroup="UART" />
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support" />
+            <component Cbundle="MAXUSB Libraries" Cclass="MAXUSB" Cgroup="MAXUSB" />
+            <keyword>Getting Started</keyword>
+            <keyword>USB</keyword>
+            <keyword>Low Power</keyword>
+            <keyword>HID</keyword>
+            <keyword>Keyboard</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_HIDRaw" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/USB_HIDRaw">
+         <description>USB HID raw device example application</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_HIDRaw.uvprojx"/>
+            <environment name="iar" load="IAR/USB_HIDRaw.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0" />
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="HAL" Cgroup="Hardware Access Layer" />
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master" />
+            <component Cclass="Communications" Cgroup="I2C Master" />
+            <component Cclass="Communications" Cgroup="UART" />
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support" />
+            <component Cbundle="MAXUSB Libraries" Cclass="MAXUSB" Cgroup="MAXUSB" />
+            <keyword>Getting Started</keyword>
+            <keyword>USB</keyword>
+            <keyword>HID</keyword>
+            <keyword>Raw</keyword>
+         </attributes>
+      </example>
+
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/Watchdog">
+         <description>Watchdog Timer Demo</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Watchdog.uvprojx"/>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32630 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0" />
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="HAL" Cgroup="Hardware Access Layer" />
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" />
+            <component Cclass="Communications" Cgroup="SPI Master" />
+            <component Cclass="Communications" Cgroup="I2C Master" />
+            <component Cclass="Communications" Cgroup="UART" />
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support" />
+            <keyword>Getting Started</keyword>
+            <keyword>Watchdog</keyword>
+         </attributes>
+      </example>
+
+      <example name="RTX_Blinky" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32630_EVKIT/RTX_Blinky">
+         <description>CMSIS-RTOS Blinky</description>
+         <board name="MAX32630_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/RTX_Blinky.uvprojx"/>
+         </project>
+         <attributes>
+            <component Cclass="CMSIS" Cgroup="RTOS"/>
+            <component Cclass="CMSIS" Cgroup="CORE" Cversion="4.3.0"/>
+            <component Cbundle="ARM Compiler" Cclass="Compiler" Cgroup="Event Recorder" Cvariant="DAP"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="HAL" Cgroup="Hardware Access Layer"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Communications" Cgroup="SPI Master"/>
+            <component Cclass="Communications" Cgroup="I2C Master"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <category>Getting Started</category>
+            <category>CMSIS-RTX</category>
+         </attributes>
+      </example>
+
+   </examples>
+
+   <conditions>
+      <condition id="MAX32630 Device">
+         <description> Maxim Integrated MAX32630 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32630"/>
+      </condition>
+      <condition id="MAX32631 Device">
+         <description> Maxim Integrated MAX32631 device</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32631"/>
+      </condition>
+
+      <condition id="MAX3263X CMSIS-CORE">
+         <description>Maxim MAX32630 Series devices and CMSIS-CORE</description>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.1.0"/>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.1.1"/>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.2.0"/>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.3.0"/>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.4.0"/>
+         <accept Cgroup="CORE" Cclass="CMSIS" Cversion="4.5.0"/>
+         <accept condition="MAX32630 Device"/>
+         <accept condition="MAX32631 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <condition id="Startup ARM">
+         <description>Startup files for the Keil/ARMCC Toolchains</description>
+         <require Tcompiler="ARMCC"/>
+      </condition>
+
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS ADC">
+         <description>ADC Interface</description>
+         <require Dvendor="Maxim:23"/>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS AES">
+         <description>Advanced Encryption Standard</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS CRC">
+         <description>Advanced Encryption Standard</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS GPIO">
+         <description>GPIO Interface Layer</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS I2C Master">
+         <description>I2C Master Interface</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+
+
+      </condition>
+      <condition id="MAX32630 CMSIS I2C Slave">
+         <description>I2C Slave Interface</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+<!--      <condition id="MAX32631 CMSIS MAA">
+         <description>Modular Arithmetic Accelerator</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Dname="MAX32631"/>
+      </condition>
+-->
+      <condition id="MAX32630 CMSIS 1-Wire">
+         <description>1-Wire Master Interface</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS PMU">
+         <description>Peripheral Management Unit for DMA</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS Pulse Train">
+         <description>Pulse Train (PWM) Controller</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS RTC">
+         <description>Real Time Clock</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS Flash IAP">
+         <description>In-Application Flash Programming</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS SPI Master">
+         <description>SPI Master Interface</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS SPI Slave">
+         <description>SPI Slave Interface</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS SPI XIP">
+         <description>SPI eXecute In Place</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS TIMER">
+         <description>32/16-Bit Timers</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS WDT1">
+         <description>Watchdog Timer 1</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS WDT2">
+         <description>Watchdog Timer 2</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32630 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32630 BSP">
+         <description>Board Support Package</description>
+         <require condition="MAX3263X CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+         <require Cclass="HAL" Cgroup="Hardware Access Layer"/>
+         <require Cclass="Communications" Cgroup="SPI Master"/>
+         <require Cclass="Communications" Cgroup="I2C Master"/>
+         <require Cclass="Communications" Cgroup="UART"/>
+      </condition>
+
+      <condition id="Maxim USB">
+         <description>MAXUSB Libraries</description>
+         <require Dvendor="Maxim:23"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+         <require Cclass="HAL" Cgroup="Hardware Access Layer"/>
+      </condition>
+
+   </conditions>
+
+   <components>
+      <component Cclass="Device" Cgroup="Startup" Cversion="0.2.7-b" condition="MAX32630 Device">
+         <description>System Startup for Maxim MAX32630 Microcontroller</description>
+         <files>
+            <file category="include" name="Libraries/Device/Maxim/MAX3263X/Include/"/>
+            <file category="include" name="Libraries/MAX3263XPeriphDriver/Include/"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/ARM/startup_max3263x.s" version="0.2.7-b" condition="Startup ARM"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/GCC/startup_max3263x.S" version="0.2.7-b" condition="Startup GCC"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/startup_max3263x.s" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/low_level_init.c" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/cmain.s" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/system_max3263x.c" version="0.2.7-b" />
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/nvic_table.c" version="0.2.7-b"/>
+            <file category="header" attr="config" name="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h" version="0.2.7-b" />
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="Startup" Cversion="0.2.7-b" condition="MAX32631 Device">
+         <description>System Startup for Maxim MAX32631 Microcontroller</description>
+         <files>
+            <file category="include" name="Libraries/Device/Maxim/MAX3263X/Include/"/>
+            <file category="include" name="Libraries/MAX3263XPeriphDriver/Include/"/>
+            <file category="sourceAsm" name="Libraries/Device/Maxim/MAX3263X/Source/ARM/startup_max3263x.s" version="0.2.7-b" attr="config" condition="Startup ARM"/>
+            <file category="sourceAsm" name="Libraries/Device/Maxim/MAX3263X/Source/GCC/startup_max3263x.S" version="0.2.7-b" attr="config" condition="Startup GCC"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/startup_max3263x.s" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/low_level_init.c" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/IAR/cmain.s" version="0.2.7-b" condition="Startup IAR"/>
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX3263X/Source/system_max3263x.c" version="0.2.7-b"/>
+            <file category="sourceC" attr="config" name="Libraries/MAX3263XPeriphDriver/Source/nvic_table.c" version="0.2.7-b"/>
+            <file category="header" name="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="HAL" Cgroup="Hardware Access Layer" Cversion="0.2.7-b" condition="MAX3263X CMSIS-CORE">
+         <description>Hardware Access Layer and System Configuration</description>
+         <files>
+            <file category="header" attr="config" name="Libraries/Device/Maxim/MAX3263X/Include/max3263x.h" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/clkman.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/flc.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/icc.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/lp.c" version="0.2.7-b"/>
+            <file category="header" attr="config" name="Libraries/MAX3263XPeriphDriver/Include/mxc_config.h" version="0.2.7-b" />
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/mxc_assert.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/mxc_lock.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/mxc_sys.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="ADC" Cversion="0.2.7-b" condition="MAX32630 CMSIS ADC">
+         <description>ADC Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/adc.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Trust Protection Unit" Cgroup="AES" Cversion="0.2.7-b" condition="MAX32630 CMSIS AES">
+         <description>AES Hardware Engine</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/aes.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="CRC" Cversion="0.2.7-b" condition="MAX32630 CMSIS CRC">
+         <description>CRC Engine</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/crc.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="GPIO" Cversion="0.2.7-b" condition="MAX32630 CMSIS GPIO">
+         <description>GPIO</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/gpio.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/ioman.c" version="0.2.7-b"/>
+        </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="I2C Master" Cversion="0.2.7-b" condition="MAX32630 CMSIS I2C Master">
+         <description>I2C Master Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/i2cm.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="I2C Slave" Cversion="0.2.7-b" condition="MAX32630 CMSIS I2C Slave">
+         <description>I2C Slave Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/i2cs.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="SPI Master" Cversion="0.2.7-b" condition="MAX32630 CMSIS SPI Master">
+         <description>SPI Master Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/spim.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+<!--       <component Cclass="Communications" Cgroup="SPI Slave" Cversion="0.2.7-b" condition="MAX32630 CMSIS SPI Slave">
+         <description>SPI Slave Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/spis.c" version="0.2.7-b"/>
+         </files>
+      </component> -->
+
+      <component Cclass="Communications" Cgroup="SPI XIP" Cversion="0.2.7-b" condition="MAX32630 CMSIS SPI XIP">
+         <description>SPI eXecute In Place (XIP) Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/spix.c" version="0.2.7-b"/>
+         </files>
+      </component>
+<!--       <component Cclass="Trust Protection Unit" Cgroup="MAA" Cversion="0.2.7-b" condition="MAX32631 CMSIS MAA">
+         <description>MAA Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/maa.c" version="0.2.7-b"/>
+         </files>
+      </component>
+ -->
+      <component Cclass="Communications" Cgroup="1-Wire Master" Cversion="0.2.7-b" condition="MAX32630 CMSIS 1-Wire">
+         <description>1-Wire Master Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/owm.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="PMU" Cversion="0.2.7-b" condition="MAX32630 CMSIS PMU">
+         <description>Peripheral Management Unit(PMU) for DMA</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/pmu.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="Pulse Train" Cversion="0.2.7-b" condition="MAX32630 CMSIS Pulse Train">
+         <description>Pulse Train (PWM) Controller</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/pt.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="RTC" Cversion="0.2.7-b" condition="MAX32630 CMSIS RTC">
+         <description>Real Time Clock Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/rtc.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="Flash IAP" Cversion="0.2.7-b" condition="MAX32630 CMSIS Flash IAP">
+         <description>Flash In-Application Programming Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/flc.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="Timers" Cversion="0.2.7-b" condition="MAX32630 CMSIS TIMER">
+         <description>32/16 Bit Timers</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/tmr.c" version="0.2.7-b"/>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/tmr_utils.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT1" Cversion="0.2.7-b" condition="MAX32630 CMSIS WDT1">
+         <description>Watchdog Timer 1</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/wdt.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="WDT" Csub="WDT2" Cversion="0.2.7-b" condition="MAX32630 CMSIS WDT2">
+         <description>Watchdog Timer 2</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/wdt2.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="UART" Cversion="0.2.7-b" condition="MAX32630 CMSIS UART">
+         <description>UART Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX3263XPeriphDriver/Source/uart.c" version="0.2.7-b"/>
+         </files>
+      </component>
+
+      <bundle Cbundle="MAX32630 EVKIT Board Support" Cclass="BSP" Cversion="0.2.7-b">
+         <description>MAX32630 Evaluation Kit Board Support Package</description>
+         <doc>Documents/MAX32630_EVKIT_Datasheet.pdf</doc>
+         <component Cgroup="Board Support" condition="MAX32630 BSP">
+            <description>MAX32630 Evaluation Kit Board Setup</description>
+            <files>
+               <file category="doc" name="Documents/MAX32630_EVKIT_Datasheet.pdf"/>
+               <file category="include" name="Boards/Maxim/MAX32630_EVKIT/Common/EvKit_V1/Include/"/>
+               <file category="include" name="Boards/Maxim/MAX32630_EVKIT/Common/Include/"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/EvKit_V1/Source/board.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/stdio.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/nhd12832.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/pb.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/led.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/max14690.c" version="0.2.7-b"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32630_EVKIT/Common/Source/mx25.c" version="0.2.7-b"/>
+           </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="MAXUSB Libraries" Cclass="MAXUSB" Cversion="0.2.7-b">
+         <description>MAXUSB Libraries for the Maxim Integrated ARM Cortex Family of Microcontrollers</description>
+         <doc>Documents/MAX32630_EVKIT_Datasheet.pdf</doc>
+         <component Cgroup="MAXUSB" condition="Maxim USB">
+            <description>Maxim Integrated USB libraries for the ARM Cortex.</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/"/>
+               <file category="include" name="Libraries/MAXUSB/include/devclass/"/>
+               <file category="include" name="Libraries/MAXUSB/include/enumerate/"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/arm/"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/arm/usb.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/usb_event.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/fifo.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/cdc_acm.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_kbd.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_raw.c"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/enumerate/enumerate.c"/>
+            </files>
+         </component>
+      </bundle>
+
+   </components>
+
+</package>

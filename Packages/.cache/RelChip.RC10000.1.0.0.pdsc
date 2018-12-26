@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>RelChip</vendor>
+  <name>RC10000</name>
+  <description>RC10000 ARM Cortex-M0 Family Package</description>
+  <url>http://www.relchip.com/Keil/</url>
+  <supportContact>info@relchip.com</supportContact>
+  
+  <releases>
+    <release version="1.0.0" date="2018-04-24">
+      Initial Release
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>RelChip</keyword>
+    <keyword>RC10001</keyword>
+    <keyword>Cortex M0</keyword>
+  </keywords>
+
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM"/>
+    </packages>
+  </requirements> 
+  
+  <devices>
+    <family Dfamily="RC10000 Series" Dvendor="RelChip:146">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="4000000"/>
+      <debugconfig default="swd" clock="1000000"/>
+      <compile header="Device/Include/RC10001.h"/>
+      <description>
+        - ARM 32-bit Cortex-M0 CPU Based Microcontroller
+        - 90 GPIO Pins
+        - RS232, RS485, LIN 2.0 UART
+        - SPI Master or Slave
+        - 4 Timer/Counters
+        - Clock and Reset Management
+        - External Bus
+      </description>
+      <debug svd="SVD/RC10001.svd"/>
+      <feature type="NVIC"        n="24"                    name="NVIC"/>
+      <feature type="ExtBus"      n="32"                    name="External Bus Interface"/>
+      <feature type="XTAL"        n="1"		   m="4000000"  name="Crystal Oscillator"/>
+      <feature type="RTC"         n="10"                    name="Real-Time Clock"/>
+      <feature type="ClockOther"  n="1"                     name="Clock Output"/>
+      <feature type="PowerMode"   n="3"                     name="Run,Sleep,Deep-Sleep"/>
+      <feature type="VCC"         n="4.5"      m="5.5"/>
+      <feature type="Consumption" n="0.015"    m="0.075"/>
+      <feature type="PowerOther"  n="1"                     name="POR"/>
+      <feature type="QFP"         n="144"                   name="QFP"/>
+      <feature type="IOs"         n="90"                    name="GPIO"/>
+      <feature type="ExtInt"      n="90"                    name="External Interrupts"/>
+      <feature type="Temp"        n="-55"      m="300"      name="Operating Temperature"/>
+      <feature type="Timer"       n="2"        m="16"       name="16-Bit Timers"/>
+      <feature type="Timer"       n="2"        m="32"       name="32-Bit Timers"/>
+      <feature type="WDT"         n="1"/>
+      <feature type="LIN"         n="1"/>
+      <feature type="SPI"         n="1"        m="1000000"  name="SPI/Microwire/SSP Interface"/>
+      <feature type="UART"        n="1"        m="500000"   name="RS232/485 UART"/>
+      <book name="Docs/RC10001UserManual.pdf" title="RC10001 User Manual"/>
+      <book name="Docs/RC10001.pdf" title="RC10001 DataSheet"/>
+      <book name="Docs/RC2110836.pdf" title="RC2110836 DataSheet"/>
+      <subFamily DsubFamily="RC10000 Family">
+        <device Dname="RC10001">
+          <memory id="IRAM1" access="rwx" start="0x00000000" size="0x1000" startup="true" default="true"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  
+  <conditions>
+    <condition id="RC10001">
+      <description>RC10001 Device and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="RelChip:146" Dname="RC10001"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="RC10001">
+      <description>Generic System Startup</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source" name="Device/Source/startup_RC10001.s" attr="config" version="1.0.0"/>
+        <file category="source" name="Device/Source/system_RC10001.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Examples" Cgroup="blinky" Cversion="1.0.0" condition="RC10001">
+      <description>Routine to Blink Dev Board Lights from Internal Memory</description>
+      <files>
+        <file category="source" name="Examples/blinky/blinky.c"/>
+        <file category="source" name="Device/Source/startup_RC10001.s"/>
+        <file category="source" name="Device/Source/system_RC10001Blinky.c"/>
+        <file category="include" name="Device/Include/"/>
+      </files>
+	</component>
+    <component Cclass="Examples" Cgroup="blinkyExternal" Cversion="1.0.0" condition="RC10001">
+      <description>Routine to Blink Dev Board Lights from External Memory</description>
+      <files>
+        <file category="source" name="Examples/blinkyExternal/blinkyExternal.c"/>
+        <file category="source" name="Examples/blinkyExternal/exbus.c"/>
+        <file category="source" name="Examples/blinkyExternal/iocon.c"/>
+        <file category="source" name="Device/Source/startup_RC10001.s"/>
+        <file category="source" name="Device/Source/system_RC10001BlinkyExternal.c"/>
+        <file category="include" name="Device/Include/"/>
+      </files>
+   </component>
+  </components>
+
+  <boards>
+    <board vendor="RelChip" name="RC10001_DB" revision="1.0">
+      <description>RelChip RC10001 Development Board</description>
+      <feature type="XTAL"       n="3686400"                  name="Crystal Oscillator"/> 
+      <feature type="PWR"        n="5"                        name="USB Powered"/> 
+      <feature type="Curr"       n="0.05"        m="0.13"     name="Current Draw"/> 
+      <feature type="DIO"        n="90"                       name="Digital IO"/> 
+      <feature type="ConnOther"  n="9"                        name="Connector/Headers"/> 
+      <feature type="Button"     n="6"                        name="Pushbuttons"/> 
+      <feature type="CustomFF"   n="125"         m="78"       name="Board Size"/> 
+      <feature type="LED"        n="8"                        name="Debug Display"/> 
+      <mountedDevice             deviceIndex="0" Dvendor="RelChip:146" Dname="RC10001"/> 
+      <compatibleDevice          deviceIndex="0" Dvendor="RelChip:146" Dfamily="RC10000 Series"/>
+      <debugInterface    adapter="JTAG/SW"     connector="10-pin Cortex Debug Connector"/> 
+      <book category="manual"    name="Docs/The_Quick_Start_Guide.pdf" title="Quick Start"/>
+      <book category="manual"    name="Docs/RC10001_DB_Development_System_Reference.pdf" title="Development System Reference"/> 
+      <book category="manual"    name="Docs/Starting_a_New_Project.pdf" title="Starting a New Project"/> 
+      <book category="manual"    name="Docs/Getting_Started_with_the_blinky_Example.pdf" title="Getting Started with the blinky Example"/>
+      <book category="manual"    name="Docs/Getting_Started_with_the_blinkyExternal_Example.pdf" title="Getting Started with the blinkyExternal Example"/>
+      <book category="schematic" name="Docs/RC10001_DB_Schematic.pdf" title="Development System Schematic"/> 
+    </board>
+  </boards>
+
+  <examples>
+    <example name="blinky" folder="Examples/blinky" doc="Getting_Started_with_the_blinky_Example.pdf">
+      <description>Routine to Blink Dev Board Lights from Internal Memory</description>
+      <board vendor="RelChip" name="RC10001_DB"/> 
+      <project>
+        <environment name="uv" load="blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Example Project</category>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <keyword>blinky</keyword>
+        <keyword>Getting Started</keyword>
+      </attributes>
+    </example>
+
+    <example name="blinkyExternal" doc="Getting_Started_with_the_blinkyExternal_Example.pdf" folder="Examples/blinkyExternal">
+      <description>Routine to Blink Dev Board Lights from External Memory</description>
+      <board name="RC10001_DB" vendor="RelChip"/>
+      <project>
+        <environment name="uv" load="blinkyExternal.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Example Project</category>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <keyword>blinky</keyword>
+        <keyword>Getting Started</keyword>
+      </attributes>
+    </example>
+  </examples> 
+</package>

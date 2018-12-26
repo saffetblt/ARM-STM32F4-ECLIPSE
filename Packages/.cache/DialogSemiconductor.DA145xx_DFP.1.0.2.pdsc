@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  
+    <name>DA145xx_DFP</name>
+    <description>Dialog Semiconductor BLE ARM devices Device Family Pack.</description>
+    <vendor>DialogSemiconductor</vendor>
+    <url>https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/CMSIS</url>
+    <supportContact>support.dialog-semiconductor.com</supportContact>
+	<license>License\license.txt</license>
+
+    <keywords>
+        <keyword>DeviceFamilyPack</keyword>
+        <keyword>Dialog</keyword>
+        <keyword>Dialog Semiconductor</keyword>
+        <keyword>DA14580</keyword>
+        <keyword>DA14581</keyword>
+        <keyword>DA14582</keyword>
+        <keyword>DA14583</keyword>
+        <keyword>DA14585</keyword>
+        <keyword>DA14586</keyword>
+        <keyword>BLE</keyword>
+        <keyword>ANT</keyword>
+    </keywords>
+
+  
+  <releases>
+    <release version="1.0.2" date="2018-12-12">
+      Date: 12.12.2018
+      Added IAR.
+	</release>
+  </releases>
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+
+	<family Dfamily="DA1458x Series" Dvendor="Dialog Semiconductor:113">
+	 
+    	<processor  Dcore="Cortex-M0"
+                    DcoreVersion="r0p2"
+                    Dendian="Little-endian"
+                    Dclock="16000000"
+                    Dfpu="0"
+                    Dmpu="0" />
+
+                <description>The DA1458x series are a System-on-Chip with a fully integrated radio transceiver and baseband processor for Bluetooth ® low energy 4.2 The DA1458x family supports a flexible memory architecture for storing Bluetooth profiles and custom application code, which can be updated over the air (OTA). The qualified Bluetooth low energy protocol stack is stored in a dedicated ROM. All software runs on the ARM® Cortex®-M0 processor via a simple scheduler. The Bluetooth low energy firmware includes the L2CAP service layer protocols, Security Manager (SM), Attribute Protocol (ATT), the Generic Attribute Profile (GATT) and the Generic Access Profile (GAP). All profiles published by the Bluetooth SIG as well as custom profiles are supported.</description>
+				
+                <device Dname="DA14580">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14580.pdf" title="DA14580 - Data Sheet"/>  
+				<debug svd="Device/SVD/DA14580.svd"/>
+				<description>The DA14580 is an all-round champion for Bluetooth 4.2 it has a fully integrated radio transceiver and baseband processor for Bluetooth ® low energy. It can be used as a standalone application processor or as a data pump in hosted systems</description>
+				<compile header="Device/Include/DA14580.h" define="DA14580"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x0c000"  init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				</device>
+				
+                <device Dname="DA14581">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14581.pdf" title="DA14581 - Data Sheet"/>  
+				<description>The DA14581 Optimized for Air Fuel and HCI applications. It is an optimized version of the DA14580, offering a reduced boot time and supporting up to 8 connections. It has a fully integrated radio transceiver and baseband processor for Bluetooth ® low energy. It can be used as a standalone application processor or as a data pump in hosted systems.</description>
+				<debug svd="Device/SVD/DA14581.svd"/>
+				<compile header="Device/Include/DA14581.h" define="DA14581"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x0c000"  init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				</device>
+				
+                <device Dname="DA14582">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14582.pdf" title="DA14582 - Data Sheet"/>  
+				<description>The DA14582 integrated circuit has a fully integrated radio transceiver, baseband processor for Bluetooth® low energy, and includes an audio CODEC. The DA14582 is optimized for remote control units (RCU) requiring support for voice commands and motion/gesture recognition. Its integrated analog wide band audio CODEC provides native support for analog microphones thereby reducing the total number of components of the system while its optimized package enables designs using single-layer FR1 PCBs furthermore contributing to the reduction of the cost of the system.</description>
+				<debug svd="Device/SVD/DA14582.svd"/>
+				<compile header="Device/Include/DA14582.h" define="DA14582"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x0c000"  init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				</device>
+				
+                <device Dname="DA14583">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14583.pdf" title="DA14583 - Data Sheet"/>  
+				<description>The DA14583 allows OTA upgrades with Flash flexibility. It has a fully integrated radio transceiver and baseband processor for Bluetooth ® low energy. It can be used as a standalone application processor or as a data pump in hosted systems.</description>
+				<debug svd="Device/SVD/DA14583.svd"/>
+				<compile header="Device/Include/DA14583.h" define="DA14583"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x0c000"  init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				</device>
+                  
+				<device Dname="DA14585">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14585.pdf" title="DA14585 - Data Sheet"/>  
+				<description> The DA14585 has Flexible memory options for Bluetooth 5. It is an ultra-low power SoC integrating a 2.4 GHz transceiver and an ARM Cortex-M0® microcontroller with 96kB of RAM and 64kB of One-Time Programmable (OTP) memory. It offers a very fast boot time less then (less then 50ms) and supports up to 8 BLE connections. It can be used as a standalone application processor or as a data pump in hosted systems.</description>
+				<debug svd="Device/SVD/DA14585.svd"/>
+				<compile header="Device/Include/DA14585.h" define="DA14585"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x018000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				</device>
+                
+   				<device Dname="DA14586">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14586.pdf" title="DA14586 - Data Sheet"/>  
+				<description>The DA14586 is an ultra-low power SoC integrating a 2.4 GHz transceiver and an ARM Cortex-M0® microcontroller with 96kB of RAM, 64kB of One-Time Programmable (OTP) memory and 2 Mbit of Flash memory, for storing Bluetooth® Low Energy profiles and custom application code, which can be updated over the air (OTA). It offers a very fast boot time (less then 50ms) and supports up to 8 BLE connections. It can be used as a standalone application processor or as a data pump in hosted systems.</description>
+				<debug svd="Device/SVD/DA14586.svd"/>
+				<compile header="Device/Include/DA14586.h" define="DA14586"/>
+				<memory name="IRAM1" access ="rw" start="0x007fc000" size="0x018000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x015000" startup="1" default="1"/>
+				<memory name="IROM2" access ="rx" start="0x10000000" size="0x200000" startup="1" default="1"/>
+				</device>
+		</family>
+		
+  </devices>
+  <!-- conditions section (optional for all Software Packs)-->
+  
+    <conditions>
+	<!-- Compiler Conditions -->
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+		<condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+		<condition id="DA1458x">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA1458x Series devices</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14580"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14581"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14582"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14583"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14585"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14586"/>
+		</condition>		
+
+		<condition id="DA1458x CMSIS-Core">
+		<!-- conditions selecting Devices -->
+		<description>Dialog Semiconductor DA1458x Series devices and CMSIS-Core (Cortex-M)</description>
+		<require condition="DA1458x"/>
+		<require Cclass="CMSIS" Cgroup="CORE"/>
+		</condition>		
+		
+  	    <!-- DA14580 Conditions -->
+		<condition id="DA14580 device and CMSIS">
+			<description>Dialog Semiconductor DA14580 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+
+  	    <!-- DA14581 Conditions -->
+		<condition id="DA14581 device and CMSIS">
+			<description>Dialog Semiconductor DA14581 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+		
+  	    <!-- DA14582 Conditions -->
+		<condition id="DA14582 device and CMSIS">
+			<description>Dialog Semiconductor DA14582 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+
+  	    <!-- DA14583 Conditions -->
+		<condition id="DA14583 device and CMSIS">
+			<description>Dialog Semiconductor DA14583 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+
+ 	    <!-- DA14585 Conditions -->
+		<condition id="DA14585 device and CMSIS">
+			<description>Dialog Semiconductor DA14585 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+
+  	    <!-- DA14586 Conditions -->
+		<condition id="DA14586 device and CMSIS">
+			<description>Dialog Semiconductor DA14586 CMSIS device</description>
+            <require condition="DA1458x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1458*"/>
+        </condition>
+
+    </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  
+	<components>
+
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14580 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14580 device</description>
+
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14580.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+       
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14581 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14581 device</description>
+			
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14581.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+		
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14582 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14582 device</description>
+			
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14582.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+				
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14583 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14583 device</description>
+			
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14583.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14585 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14585 device</description>
+			
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14585.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14586 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14586 device</description>
+
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14586.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1458x.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA1458x.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA1458x.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1458x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1458x.h" 	                  version="1.0.0"/>
+				
+			</files>		
+		</component>
+   </components>
+</package>

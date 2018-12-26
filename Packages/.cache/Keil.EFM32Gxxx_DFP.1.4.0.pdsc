@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>EFM32Gxxx_DFP</name>
+  <description>Silicon Labs EFM32 Gecko Series Device Support</description>
+
+  <releases>
+    <release version="1.4.0" date="2018-01-15" deprecated="2018-01-15" replacement="SiliconLabs.EFM32G_DFP">
+      The maintenance of this pack will be discontinued and SiliconLabs is providing the new pack SiliconLabs.EFM32G_DFP.
+    </release>
+    <release version="1.3.0" date="2017-06-22">
+      Updated device support files to V5.1.3.
+      Updated Flash Algorithms to 5.2.0.
+      Updated SVD files to V5.2.1.
+      Updated emlib, emdrv to V5.1.3.
+      Updated documentation.
+    </release>
+    <release version="1.2.0" date="2016-04-22">
+      Updated device support files to V4.2.1.
+      Updated emlib, emdrv to V4.2.1.
+    </release>
+    <release version="1.1.0" date="2015-07-31">
+      Updated device support files to V4.0.0.
+      Added emlib support.
+      Changed Device Vendor to '"Silicon Labs:21".
+      Corrected Flash Algorithm size.
+    </release>
+    <release version="1.0.1" date="2014-02-20">
+      Device description updated with features and flash programming algorithms
+    </release>
+    <release version="1.0.0">
+      First Release version of EFM32 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>EFM32G</keyword>
+    <keyword>EFM32</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFM32G Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <processor Dclock="32000000"/>
+
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>
+
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <book name="Documents/EFM32-Cortex-M3-RM.pdf"      title="EFM32 Cortex-M3 Reference Manual"/>
+      <book name="Documents/EFM32G-RM.pdf"               title="EFM32G Reference Manual"/>
+
+      <description>
+Silicon Labs' EFM32™ Gecko 32-bit microcontroller (MCU) family includes 25 devices that offer flash memory configurations up to 128 kB, 8–16 kB of RAM and CPU speeds up to 32 MHz.
+Based on the powerful ARM® Cortex®-M3 core, the Gecko family features innovative low energy techniques, short wake-up time from energy saving modes and a wide selection of peripherals, making it ideal for battery operated applications and other systems requiring high performance and low-energy consumption.
+      </description>
+
+      <feature type="VCC"           n="1.85"    m="3.80"/>
+      <feature type="Temp"          n="-40"     m="85"/>
+      <feature type="AnalogOther"   n="1"                           name="Supply Voltage Comparator"/>
+      <feature type="AnalogOther"   n="2"                           name="Analog Comparator"/>
+      <feature type="I2C"           n="1"/>
+      <feature type="UART"          n="1"/>
+      <feature type="WDT"           n="1"                           name="Watchdog Timer with dedicated RC oscillator @ 50 nA"/>
+      <feature type="Timer"         n="1"       m="24"/>
+      <feature type="DMA"           n="8"/>
+      <feature type="XTAL"          n="4"       m="32"/>
+      <feature type="IntRC"         n="4"       m="32"              name="Internal RC Oscillator with +/- 2% accuracy"/>
+      <feature type="Crypto"        n="1"       m="128.256"         name="Hardware AES in 54/75 cycles"/>
+
+
+      <!-- ************************  Subfamily 'EFM32G200'  **************************** -->
+      <subFamily DsubFamily="EFM32G200">
+        <feature type="Touch"         n="5"/>
+        <feature type="USART"         n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ExtInt"        n="14"/>
+        <feature type="Timer"         n="1"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="4"       m="12"/>
+        <feature type="IOs"           n="24"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="QFN"           n="32"/>
+
+        <book name="Documents/EFM32G200.pdf" title="EFM32G200 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G200F16'  ***************************** -->
+        <device Dname="EFM32G200F16">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G200F16"/>
+          <debug svd="SVD/EFM32G/EFM32G200F16.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00004000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G200F32'  ***************************** -->
+        <device Dname="EFM32G200F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G200F32"/>
+          <debug svd="SVD/EFM32G/EFM32G200F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G200F64'  ***************************** -->
+        <device Dname="EFM32G200F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G200F64"/>
+          <debug svd="SVD/EFM32G/EFM32G200F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G210'  **************************** -->
+      <subFamily DsubFamily="EFM32G210">
+        <feature type="Touch"         n="5"/>
+        <feature type="USART"         n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ExtInt"        n="14"/>
+        <feature type="Timer"         n="1"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="4"       m="12"/>
+        <feature type="IOs"           n="24"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="QFN"           n="32"/>
+
+        <book name="Documents/EFM32G210.pdf" title="EFM32G210 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G210F128'  ***************************** -->
+        <device Dname="EFM32G210F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G210F128"/>
+          <debug svd="SVD/EFM32G/EFM32G210F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G222'  **************************** -->
+      <subFamily DsubFamily="EFM32G222">
+        <feature type="Touch"         n="12"/>
+        <feature type="USART"         n="2"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="Timer"         n="2"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="4"       m="12"/>
+        <feature type="IOs"           n="37"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFP"           n="48"/>
+
+        <book name="Documents/EFM32G222.pdf" title="EFM32G222 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G222F32'  ***************************** -->
+        <device Dname="EFM32G222F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G222F32"/>
+          <debug svd="SVD/EFM32G/EFM32G222F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G222F64'  ***************************** -->
+        <device Dname="EFM32G222F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G222F64"/>
+          <debug svd="SVD/EFM32G/EFM32G222F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G222F128'  ***************************** -->
+        <device Dname="EFM32G222F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G222F128"/>
+          <debug svd="SVD/EFM32G/EFM32G222F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G230'  **************************** -->
+      <subFamily DsubFamily="EFM32G230">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="56"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFN"           n="64"/>
+
+        <book name="Documents/EFM32G230.pdf" title="EFM32G230 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G230F32'  ***************************** -->
+        <device Dname="EFM32G230F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G230F32"/>
+          <debug svd="SVD/EFM32G/EFM32G230F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G230F64'  ***************************** -->
+        <device Dname="EFM32G230F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G230F64"/>
+          <debug svd="SVD/EFM32G/EFM32G230F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G230F128'  ***************************** -->
+        <device Dname="EFM32G230F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G230F128"/>
+          <debug svd="SVD/EFM32G/EFM32G230F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G232'  **************************** -->
+      <subFamily DsubFamily="EFM32G232">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="53"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFP"           n="64"/>
+
+        <book name="Documents/EFM32G232.pdf" title="EFM32G232 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G232F32'  ***************************** -->
+        <device Dname="EFM32G232F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G232F32"/>
+          <debug svd="SVD/EFM32G/EFM32G232F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G232F64'  ***************************** -->
+        <device Dname="EFM32G232F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G232F64"/>
+          <debug svd="SVD/EFM32G/EFM32G232F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G232F128'  ***************************** -->
+        <device Dname="EFM32G232F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G232F128"/>
+          <debug svd="SVD/EFM32G/EFM32G232F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G280'  **************************** -->
+      <subFamily DsubFamily="EFM32G280">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtBus"        n="1"       m="16"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="86"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFP"           n="100"/>
+
+        <book name="Documents/EFM32G280.pdf" title="EFM32G280 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G280F32'  ***************************** -->
+        <device Dname="EFM32G280F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G280F32"/>
+          <debug svd="SVD/EFM32G/EFM32G280F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G280F64'  ***************************** -->
+        <device Dname="EFM32G280F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G280F64"/>
+          <debug svd="SVD/EFM32G/EFM32G280F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G280F128'  ***************************** -->
+        <device Dname="EFM32G280F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G280F128"/>
+          <debug svd="SVD/EFM32G/EFM32G280F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G290'  **************************** -->
+      <subFamily DsubFamily="EFM32G290">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtBus"        n="1"       m="16"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="90"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="BGA"           n="112"/>
+
+        <book name="Documents/EFM32G290.pdf" title="EFM32G290 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G290F32'  ***************************** -->
+        <device Dname="EFM32G290F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G290F32"/>
+          <debug svd="SVD/EFM32G/EFM32G290F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G290F64'  ***************************** -->
+        <device Dname="EFM32G290F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G290F64"/>
+          <debug svd="SVD/EFM32G/EFM32G290F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G290F128'  ***************************** -->
+        <device Dname="EFM32G290F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G290F128"/>
+          <debug svd="SVD/EFM32G/EFM32G290F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G800'  **************************** -->
+      <subFamily DsubFamily="EFM32G800">
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="LCD"           n="1"       m="4.24"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="90"/>
+        <feature type="Timer"         n="3"       m="16"/>
+
+        <book name="Documents/EFM32G800.pdf" title="EFM32G800 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G800F128'  ***************************** -->
+        <device Dname="EFM32G800F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G800F128"/>
+          <debug svd="SVD/EFM32G/EFM32G800F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G840'  **************************** -->
+      <subFamily DsubFamily="EFM32G840">
+        <feature type="Touch"         n="8"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="LCD"           n="1"       m="4.24"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="56"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFN"           n="64"/>
+
+        <book name="Documents/EFM32G840.pdf" title="EFM32G840 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G840F32'  ***************************** -->
+        <device Dname="EFM32G840F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G840F32"/>
+          <debug svd="SVD/EFM32G/EFM32G840F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G840F64'  ***************************** -->
+        <device Dname="EFM32G840F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G840F64"/>
+          <debug svd="SVD/EFM32G/EFM32G840F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G840F128'  ***************************** -->
+        <device Dname="EFM32G840F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G840F128"/>
+          <debug svd="SVD/EFM32G/EFM32G840F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G842'  **************************** -->
+      <subFamily DsubFamily="EFM32G842">
+        <feature type="Touch"         n="8"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="LCD"           n="1"       m="4.22"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="53"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFP"           n="64"/>
+
+        <book name="Documents/EFM32G842.pdf" title="EFM32G842 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G842F32'  ***************************** -->
+        <device Dname="EFM32G842F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G842F32"/>
+          <debug svd="SVD/EFM32G/EFM32G842F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G842F64'  ***************************** -->
+        <device Dname="EFM32G842F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G842F64"/>
+          <debug svd="SVD/EFM32G/EFM32G842F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G842F128'  ***************************** -->
+        <device Dname="EFM32G842F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G842F128"/>
+          <debug svd="SVD/EFM32G/EFM32G842F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G880'  **************************** -->
+      <subFamily DsubFamily="EFM32G880">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtBus"        n="1"       m="16"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="LCD"           n="1"       m="4.40"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="86"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="QFP"           n="100"/>
+
+        <book name="Documents/EFM32G880.pdf" title="EFM32G880 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G880F32'  ***************************** -->
+        <device Dname="EFM32G880F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G880F32"/>
+          <debug svd="SVD/EFM32G/EFM32G880F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G880F64'  ***************************** -->
+        <device Dname="EFM32G880F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G880F64"/>
+          <debug svd="SVD/EFM32G/EFM32G880F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G880F128'  ***************************** -->
+        <device Dname="EFM32G880F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G880F128"/>
+          <debug svd="SVD/EFM32G/EFM32G880F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32G890'  **************************** -->
+      <subFamily DsubFamily="EFM32G890">
+        <feature type="Touch"         n="16"/>
+        <feature type="USART"         n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="ExtBus"        n="1"       m="16"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="LCD"           n="1"       m="4.40"/>
+        <feature type="Timer"         n="3"       m="8"               name="8Bit Pulse Counter"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="90"/>
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="BGA"           n="112"/>
+
+        <book name="Documents/EFM32G890.pdf" title="EFM32G890 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32G890F32'  ***************************** -->
+        <device Dname="EFM32G890F32">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G890F32"/>
+          <debug svd="SVD/EFM32G/EFM32G890F32.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00008000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G890F64'  ***************************** -->
+        <device Dname="EFM32G890F64">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G890F64"/>
+          <debug svd="SVD/EFM32G/EFM32G890F64.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32G890F128'  ***************************** -->
+        <device Dname="EFM32G890F128">
+          <compile header="Device/EFM32G/Include/em_device.h" define="EFM32G890F128"/>
+          <debug svd="SVD/EFM32G/EFM32G890F128.svd"/>
+          <memory id="IROM1"                start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFM32G">
+      <description>Silicon Labs EFM32G devices</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32G*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="EFM32G CMSIS">
+      <description>Silicon Labs EFM32G devices, CMSIS Core</description>
+      <require condition="EFM32G"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + CMSIS + Compiler Conditions -->
+    <condition id="EFM32G CMSIS GCC">
+      <description>Silicon Labs EFM32G devices, CMSIS Core, GCC compiler</description>
+      <require condition="EFM32G CMSIS"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+
+    <!-- emlib Conditions -->
+    <condition id="emlib Framework">
+      <description>Silicon Labs emlib Framework</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+    </condition>
+    <condition id="emlib SYSTEM">
+      <description>Silicon Labs emlib with SYSTEM</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib EMU">
+      <description>Silicon Labs emlib with EMU</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+    </condition>
+    <condition id="emlib CMU">
+      <description>Silicon Labs emlib with CMU</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM">
+      <description>Silicon Labs emlib with CMU, SYSTEM</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM CORE">
+      <description>Silicon Labs emlib with CMU, SYSTEM, CORE</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+    </condition>
+    <condition id="emlib CMU GPIO">
+      <description>Silicon Labs emlib with CMU, GPIO</description>
+      <require condition="EFM32G"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+    </condition>
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Device"        Cgroup="emlib"   doc="emdoc/efm32g/html/group__emlib.html" >Silicon Labs Low-level peripheral library</description>
+  </taxonomy>
+
+  <components>
+    <!-- Startup -->
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="5.1.3" condition="EFM32G CMSIS">
+      <description>System Startup for Silicon Labs EFM32G device series</description>
+      <files>
+        <file category="doc"          name="emdoc/efm32g/html/index.html"/>
+
+        <file category="include"      name="Device/EFM32G/Include/"/>
+        <file category="sourceAsm"    name="Device/EFM32G/Source/ARM/startup_efm32g.s" attr="config" version="5.1.3" condition="Compiler ARMCC"/>
+        <file category="sourceC"      name="Device/EFM32G/Source/GCC/startup_efm32g.S" attr="config" version="5.1.3" condition="Compiler GCC"  />
+        <file category="linkerScript" name="Device/EFM32G/Source/GCC/efm32g.ld"        attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="sourceC"      name="Device/EFM32G/Source/system_efm32g.c"      attr="config" version="5.1.3"/>
+        <!-- device configuration required by drivers at the moment -->
+        <!--file category="header"       name="RTE_Driver/Config/RTE_Device.h"            attr="config" version="2.0.2"/-->
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="5.1.3" condition="EFM32G CMSIS GCC">
+      <description>System Startup for Silicon Labs EFM32G device series</description>
+      <files>
+        <file category="doc"          name="emdoc/efm32g/html/index.html"/>
+
+        <file category="include"      name="Device/EFM32G/Include/"/>
+        <file category="sourceC"      name="Device/EFM32G/Source/GCC/startup_efm32g.c" attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="linkerScript" name="Device/EFM32G/Source/GCC/efm32g.ld"        attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="sourceC"      name="Device/EFM32G/Source/system_efm32g.c"      attr="config" version="5.1.3"/>
+        <!-- device configuration required by drivers at the moment -->
+        <!--file category="header"       name="RTE_Driver/Config/RTE_Device.h"            attr="config" version="2.0.2"/-->
+      </files>
+    </component>
+
+    <!-- emlib -->
+    <component Cclass="Device" Cgroup="emlib" Csub="Framework" Cversion="5.1.3" condition="EFM32G">
+      <description>emlib Framework</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_FRAMEWORK
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__emlib.html"/>
+        <file category="header"  name="emlib/inc/em_common.h"/>
+        <file category="header"  name="emlib/inc/em_chip.h"/>
+        <file category="header"  name="emlib/inc/em_bus.h"/>
+        <file category="header"  name="emlib/inc/em_version.h"/>
+        <file category="header"  name="emlib/inc/em_assert.h"/>
+        <file category="source"  name="emlib/src/em_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ACMP"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Analog comparator (ACMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ACMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__ACMP.html"/>
+        <file category="header"  name="emlib/inc/em_acmp.h"/>
+        <file category="source"  name="emlib/src/em_acmp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ADC"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Analog to Digital Converter (ADC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__ADC.html"/>
+        <file category="header"  name="emlib/inc/em_adc.h"/>
+        <file category="source"  name="emlib/src/em_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="AES"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Advanced Encryption Standard Accelerator (AES) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_AES
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__AES.html"/>
+        <file category="header"  name="emlib/inc/em_aes.h"/>
+        <file category="source"  name="emlib/src/em_aes.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="BURTC"     Cversion="5.1.3" condition="emlib Framework">
+      <description>Backup Real Time Counter (BURTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_BURTC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__BURTC.html"/>
+        <file category="header"  name="emlib/inc/em_burtc.h"/>
+        <file category="source"  name="emlib/src/em_burtc.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="CMU"       Cversion="5.1.3" condition="emlib EMU">
+      <description>Clock management unit (CMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__CMU.html"/>
+        <file category="header"  name="emlib/inc/em_cmu.h"/>
+        <file category="source"  name="emlib/src/em_cmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="CORE"      Cversion="5.1.3" condition="emlib Framework">
+      <description>General purpose utilities and cross-compiler support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CORE
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__CORE.html"/>
+        <file category="header"  name="emlib/inc/em_core.h"/>
+        <file category="source"  name="emlib/src/em_core.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYOTIMER" Cversion="5.1.3" condition="emlib Framework">
+      <description>Ultra Low Energy Timer/Counter (CRYOTIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOTIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__CRYOTIMER.html"/>
+        <file category="header"  name="emlib/inc/em_cryotimer.h"/>
+        <file category="source"  name="emlib/src/em_cryotimer.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYPTO"    Cversion="5.1.3" condition="emlib Framework">
+      <description>Cryptography accelerator peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOPTO
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__CRYPTO.html"/>
+        <file category="header"  name="emlib/inc/em_crypto.h"/>
+        <file category="source"  name="emlib/src/em_crypto.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CSEN"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Capacitive Sense (CSEN) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CSEN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__CSEN.html"/>
+        <file category="header"  name="emlib/inc/em_csen.h"/>
+        <file category="source"  name="emlib/src/em_csen.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="DAC"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Digital to Analog Converter (DAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__DAC.html"/>
+        <file category="header"  name="emlib/inc/em_dac.h"/>
+        <file category="source"  name="emlib/src/em_dac.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DBG"       Cversion="5.1.3" condition="emlib CMU GPIO">
+      <description>Debug (DBG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DBG
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__DBG.html"/>
+        <file category="header"  name="emlib/inc/em_dbg.h"/>
+        <file category="source"  name="emlib/src/em_dbg.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DMA"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Direct Memory Access (DMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__DMA.html"/>
+        <file category="header"  name="emlib/inc/em_dma.h"/>
+        <file category="source"  name="emlib/src/em_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EBI"       Cversion="5.1.3" condition="emlib Framework">
+      <description>EBI External Bus Interface (EBI) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EBI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__EBI.html"/>
+        <file category="header"  name="emlib/inc/em_ebi.h"/>
+        <file category="source"  name="emlib/src/em_ebi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EMU"       Cversion="5.1.3" condition="emlib CMU SYSTEM">
+      <description>Energy Management Unit (EMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__EMU.html"/>
+        <file category="header"  name="emlib/inc/em_emu.h"/>
+        <file category="source"  name="emlib/src/em_emu.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="GPCRC"     Cversion="5.1.3" condition="emlib Framework">
+      <description>General Purpose Cyclic Redundancy Check (GPCRC) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPCRC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__GPCRC.html"/>
+        <file category="header"  name="emlib/inc/em_gpcrc.h"/>
+        <file category="source"  name="emlib/src/em_gpcrc.c"/>
+      </files>
+    </component!-->
+    <component Cclass="Device" Cgroup="emlib" Csub="GPIO"      Cversion="5.1.3" condition="emlib Framework">
+      <description>General Purpose Input/Output (GPIO) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__GPIO.html"/>
+        <file category="header"  name="emlib/inc/em_gpio.h"/>
+        <file category="source"  name="emlib/src/em_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="I2C"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Inter-integrated Circuit (I2C) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__I2C.html"/>
+        <file category="header"  name="emlib/inc/em_i2c.h"/>
+        <file category="source"  name="emlib/src/em_i2c.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="IDAC"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Current Digital to Analog Converter (IDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_IDAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__IDAC.html"/>
+        <file category="header"  name="emlib/inc/em_idac.h"/>
+        <file category="source"  name="emlib/src/em_idac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="INT"       Cversion="5.1.3" condition="emlib Framework">
+      <deprecated>1</deprecated>
+      <description>Safe nesting interrupt disable/enable API (deprecated!)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_INT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__INT.html"/>
+        <file category="header"  name="emlib/inc/em_int.h"/>
+        <file category="source"  name="emlib/src/em_int.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LCD"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Liquid Crystal Display (LCD) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LCD
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__LCD.html"/>
+        <file category="header"  name="emlib/inc/em_lcd.h"/>
+        <file category="source"  name="emlib/src/em_lcd.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="LDMA"      Cversion="5.1.3" condition="emlib CMU SYSTEM CORE">
+      <description>Linked Direct Memory Access (LDMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LDMA
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__LDMA.html"/>
+        <file category="header"  name="emlib/inc/em_ldma.h"/>
+        <file category="source"  name="emlib/src/em_ldma.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="LESENSE"   Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Sensor (LESENSE) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LESENSE
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__LESENSE.html"/>
+        <file category="header"  name="emlib/inc/em_lesense.h"/>
+        <file category="source"  name="emlib/src/em_lesense.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="LETIMER"   Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Timer (LETIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LETIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__LETIMER.html"/>
+        <file category="header"  name="emlib/inc/em_letimer.h"/>
+        <file category="source"  name="emlib/src/em_letimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LEUART"    Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Universal Asynchronous Receiver/Transmitter (LEUART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LEUART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__LEUART.html"/>
+        <file category="header"  name="emlib/inc/em_leuart.h"/>
+        <file category="source"  name="emlib/src/em_leuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MPU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Memory Protection Unit (MPU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__MPU.html"/>
+        <file category="header"  name="emlib/inc/em_mpu.h"/>
+        <file category="source"  name="emlib/src/em_mpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MSC"       Cversion="5.1.3" condition="emlib CMU SYSTEM">
+      <description>Flash controller (MSC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MSC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__MSC.html"/>
+        <file category="header"  name="emlib/inc/em_msc.h"/>
+        <file category="source"  name="emlib/src/em_msc.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="OPAMP"     Cversion="5.1.3" condition="emlib SYSTEM">
+      <description>Operational Amplifier (OPAMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_OPAMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__OPAMP.html"/>
+        <file category="header"  name="emlib/inc/em_opamp.h"/>
+        <file category="source"  name="emlib/src/em_opamp.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="PCNT"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Pulse Counter (PCNT) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PCNT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__PCNT.html"/>
+        <file category="header"  name="emlib/inc/em_pcnt.h"/>
+        <file category="source"  name="emlib/src/em_pcnt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="PRS"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Peripheral Reflex System (PRS) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PRS
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__PRS.html"/>
+        <file category="header"  name="emlib/inc/em_prs.h"/>
+        <file category="source"  name="emlib/src/em_prs.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RAMFUNC"   Cversion="5.1.3" condition="emlib Framework">
+      <description>RAM code support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RAMFUNC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__RAMFUNC.html"/>
+        <file category="header"  name="emlib/inc/em_ramfunc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RMU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Reset Management Unit (RMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__RMU.html"/>
+        <file category="header"  name="emlib/inc/em_rmu.h"/>
+        <file category="source"  name="emlib/src/em_rmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RTC"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Real Time Counter (RTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__RTC.html"/>
+        <file category="header"  name="emlib/inc/em_rtc.h"/>
+        <file category="source"  name="emlib/src/em_rtc.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="RTCC"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Real Time Counter (RTCC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTCC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__RTCC.html"/>
+        <file category="header"  name="emlib/inc/em_rtcc.h"/>
+        <file category="source"  name="emlib/src/em_rtcc.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="SMU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Security Management Unit (SMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__SMU.html"/>
+        <file category="header"  name="emlib/inc/em_smu.h"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="SYSTEM"    Cversion="5.1.3" condition="emlib Framework">
+      <description>System API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SYSTEM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__SYSTEM.html"/>
+        <file category="header"  name="emlib/inc/em_system.h"/>
+        <file category="source"  name="emlib/src/em_system.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="TIMER"     Cversion="5.1.3" condition="emlib Framework">
+      <description>Timer/Counter (TIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_TIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__TIMER.html"/>
+        <file category="header"  name="emlib/inc/em_timer.h"/>
+        <file category="source"  name="emlib/src/em_timer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="USART"     Cversion="5.1.3" condition="emlib CMU">
+      <description>Universal Synchronous/Asynchronous Receiver/Transmitter (USART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_USART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__USART.html"/>
+        <file category="header"  name="emlib/inc/em_usart.h"/>
+        <file category="source"  name="emlib/src/em_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="VCMP"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Voltage Comparator (VCMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VCMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__VCMP.html"/>
+        <file category="header"  name="emlib/inc/em_vcmp.h"/>
+        <file category="source"  name="emlib/src/em_vcmp.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="VDAC"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Digital to Analog Voltage Converter (VDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VDAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__VDAC.html"/>
+        <file category="header"  name="emlib/inc/em_vdac.h"/>
+        <file category="source"  name="emlib/src/em_vdac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="WDOG"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Watchdog (WDOG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_WDOG
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32g/html/group__WDOG.html"/>
+        <file category="header"  name="emlib/inc/em_wdog.h"/>
+        <file category="source"  name="emlib/src/em_wdog.c"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

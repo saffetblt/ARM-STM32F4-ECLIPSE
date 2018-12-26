@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KVxx_DFP</name>
+  <description>NXP Kinetis KVxx Series Device Support</description>
+
+  <releases>
+    <release version="1.8.0" date="2018-05-15">
+	  Reintroduced support for devices not supported by NXP directly.
+    </release>
+    <release version="1.7.1" date="2017-11-20">
+      Maintenance of this pack is discontinued. NXP is now continuing the support in these packs:
+      - NXP.MKV10Z1287_DFP, NXP.MKV11Z7_DFP.
+      - NXP.MKV30F12810_DFP, NXP.MKV31F12810_DFP, NXP.MKV31F25612_DFP, NXP.MKV31F51212_DFP.
+      - NXP.MKV42F16_DFP, NXP.MKV44F16_DFP, NXP.MKV46F16_DFP.
+      - NXP.MKV56F24_DFP, NXP.MKV58F24_DFP.
+    </release>
+    <release version="1.7.0" date="2017-05-08">
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+      Added FAC Flash Algorithm for KV11, KV3xF, KV4xF devices.
+      Corrected KV56F, KV58F startup code (Flash configuration address).
+      Updated documentation.
+      Updated boards description.
+      Changed device vendor to NXP
+    </release>
+    <release version="1.6.0" date="2016-04-04">
+      Updated KV56F, KV58F Device Support.
+    </release>
+    <release version="1.5.0" date="2015-09-30">
+      Updated KV4x Device Support
+      - KV4x device names updated to reflect new maximum clock frequency of 168 MHz
+      Updated TWR-KV46F150M Blinky example.
+    </release>
+    <release version="1.4.0" date="2015-07-31">
+      Updated Device Support now support KV1x, KV3x, KV4x and KV5x subfamilies
+      Added TWR-KV11Z75M Blinky example.
+      Updated KV11 Flash Algorithms (2KB sector).
+    </release>
+    <release version="1.3.0" date="2014-10-06">
+      Added KV4x sub-family CMSIS Core and CMSIS SVD files.
+      SRAM ranges corrected.
+    </release>
+    <release version="1.2.0" date="2014-06-24">
+      Updated KV3x sub-family CMSIS Core and CMSIS SVD files.
+    </release>
+    <release version="1.1.0" date="2014-06-12">
+      Added KV3x sub-family devices.
+      Added TWR-KV10Z32 board description.
+    </release>
+   <release version="1.0.0">
+      First Release version of KVxx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KVxx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KVxx Series" Dvendor="NXP:11">
+      <description>
+Kinetis V Series MCUs are based upon the ARM® Cortex®-M0+, Cortex-M4 and Cortex-M7 cores and are designed for a wide range of BLDC, PMSM and ACIM motor control and digital power conversion applications.
+      </description>
+
+      <!-- ******************************  KV1x  ****************************** -->
+      <subFamily DsubFamily="KV1x">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+        <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <description>
+The Kinetis KV1x MCU family is the entry point of the V series. Built upon the ARM® Cortex®-M0+ core running at 75 MHz with hardware square root and divide capability, it delivers a 27% increase in performance in math-intensive applications versus comparable MCUs, allowing it to target BLDC as well as more computationally demanding PMSM motors.
+Additional features include integrated FlexCAN, dual 16-bit analog-to-digital controllers (ADCs) sampling at up to 1.2 mega samples per second (MS/s) in 12-bit mode, multiple motor control timers, up to 128 KB of flash memory and a comprehensive enablement suite from NXP and third-party resources, including reference designs, software libraries and motor configuration tools.
+        </description>
+
+        <!-- ******************************  MKV10Z16xxx7  ****************************** -->
+        <device Dname="MKV10Z16xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="75000000"/>
+          <compile header="Device/Include/MKV10Z7.h" define="MKV10Z16xxx7"/>
+          <debug svd="SVD/MKV10Z7.svd"/>
+          <memory id="IROM1"                          start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                          start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKV_P16_1KB_SEC.FLM" start="0x00000000" size="0x00004000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+
+          <book name="Documents/KV10P48M75RM.pdf" title="MKV10Z16xxx7 Reference Manual"/>
+          <book name="Documents/KV10P48M75.pdf"   title="MKV10Z16xxx7 Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKV10Z32xxx7  ****************************** -->
+        <device Dname="MKV10Z32xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="75000000"/>
+          <compile header="Device/Include/MKV10Z7.h" define="MKV10Z32xxx7"/>
+          <debug svd="SVD/MKV10Z7.svd"/>
+          <memory id="IROM1"                          start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                          start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKV_P32_1KB_SEC.FLM" start="0x00000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+
+          <book name="Documents/KV10P48M75RM.pdf" title="MKV10Z32xxx7 Reference Manual"/>
+          <book name="Documents/KV10P48M75.pdf"   title="MKV10Z32xxx7 Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKV10Z64xxx7  ****************************** -->
+        <device Dname="MKV10Z64xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="75000000"/>
+          <compile header="Device/Include/MKV10Z1287.h" define="MKV10Z64xxx7"/>
+          <debug svd="SVD/MKV10Z1287.svd"/>
+          <memory id="IROM1"                          start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                          start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKV_P64_2KB_SEC.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/KV11P64M75RM.pdf" title="MKV10Z64xxx7 Reference Manual"/>
+          <book name="Documents/KV11P64M75.pdf"   title="MKV10Z64xxx7 Data Sheet"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="KV10Z7 CMSIS">
+      <description>NXP Kinetis KV10 75MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKV10Z16xxx7"/>
+      <accept Dname="MKV10Z32xxx7"/>
+    </condition>
+
+    <condition id="MKV10Z1287 CMSIS">
+      <description>NXP Kinetis KV10 64/128 KB 75MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKV10Z64xxx7"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup KV10Z7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="KV10Z7 CMSIS">
+      <description>System Startup for Kinetis KV10 75MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKV10Z7.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKV10Z7.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKV10Z1287 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKV10Z1287 CMSIS">
+      <description>System Startup for Kinetis KV10 64/128 KB 75MHz devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKV10Z1287.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKV10Z1287.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKV10Z1287.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="TWR-KV10Z32" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKV10Z32xxx7"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="KV10"/>
+      <description>The TWR-KV10Z32 is a development tool for the Kinetis V series KV1x family built on the ARM® Cortex™-M0+ processor.</description>
+      <image small="Boards/NXP/TWR-KV10Z32/Documents/TWR-KV10Z32_small.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/kinetis-symbols-footprints-and-models/kinetis-kv1x-family-tower-system-module:TWR-KV10Z32" title="TWR-KV10Z32 Web Page"/>
+      <book category="setup"     name="Boards/NXP/TWR-KV10Z32/Documents/MKV10Z32QSG.pdf"     title="Quick Start Guide"/>
+      <book category="schematic" name="Boards/NXP/TWR-KV10Z32/Documents/TWR-KV10Z32_SCH.pdf" title="Schematics"/>
+      <book category="manual"    name="Boards/NXP/TWR-KV10Z32/Documents/TWRKV10Z32UG.pdf"    title="User Manual"/>
+      <feature type="ODbg"      n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="ConnOther" n="2"              name="Motor Control Auxiliary Connector"/>
+      <feature type="ConnOther" n="2"              name="Tower connectivity for access to USB, Ethernet, RS232/RS485, CAN, SPI, I²C, Flexbus, etc."/>
+      <feature type="Button"    n="2"/>
+      <feature type="Accelerometer" n="1"          name="Three axis accelerometer (MMA78451Q)"/>
+      <feature type="LED"       n="8"              name="Eight user-controlled LEDs with connected buffers to PWM channels for dimming"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="CMSIS-DAP" connector="USB Mini-B"/>
+      <feature type="TowerFF"   n="1"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- TWR-KV10Z32 Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-KV10Z32/Blinky">
+      <description>Blinky example</description>
+      <board name="TWR-KV10Z32" vendor="NXP" Dvendor="NXP:11" Dname="MKV10Z32xxx7"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-KV10Z32/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-KV10Z32" vendor="NXP" Dvendor="NXP:11" Dname="MKV10Z32xxx7"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

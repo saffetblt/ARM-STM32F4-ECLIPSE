@@ -1,0 +1,3028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC54000_DFP</name>
+  <description>NXP LPC54000 Series Device Support</description>
+
+  <releases>
+    <release version="2.6.0" date="2017-11-17">
+      Updated emWin examples to emWin V5.42i.
+      Updated Board Support LED_*.c files.
+      Updated debug sequences: use read modify write operation on updating DEMCR_Addr to avoid side effects.
+    </release>
+    <release version="2.5.0" date="2017-09-21">
+      Removed LPC54S606, LPC54S608, LPC54S616, LPC54S618 devices not offered by NXP.
+      Updated documentation.
+    </release>
+    <release version="2.4.0" date="2017-06-29">
+      Added LPC54628 device support.
+      Updated all LPC546xx device support files.
+      Updated LPC546xx documentation.
+    </release>
+    <release version="2.3.0" date="2017-06-02">
+      Removed LPCOpen support for LPC5460x device series (not supported by NXP).
+      Updated format command options in File Demo example.
+      Updated USB Device Audio example for Keil MCB54110 evaluation board.
+      Updated documentation.
+      Replaced LPC5410x SVD files.
+      Updated LPC5460x SVD Files.
+      Corrected Debug description syntax errors for Single-Core Variants.
+      Added MCB54110 QSG and link to keil.com/boards2 database.
+    </release>
+    <release version="2.2.0" date="2016-12-22">
+      Added LPC54616/54618/54S606/54S608/54S616/54S618 device support.
+      Updated debug sequences addressing defects.
+      Updated MCB54110 development board examples:
+      - configuring CMSIS-DAP debug interface instead of ULINK2.
+      - corrected RAM address for Flash algorithm in the DualCore example.
+      Updated emWin examples to emWin V5.36f
+    </release>
+    <release version="2.1.0" date="2016-10-18">
+      Added LPC5460x device support (LPC54608, LPC54607, LPC54606, LPC54605)
+      Added LPC5460x device support (LPC54608, LPC54607, LPC54606, LPC54605)
+      Updated LPC54113, LPC54114 device support
+      Updated CMSIS Driver:
+      - Updated USART and SPI driver to work with corrected LPCOpen dma_service_5411x.c
+      Device Description:
+      - Added debugconfig to set debug clock default and protocol
+      - Updated debug description to support multi-core devices
+      MCB54110 Board Support:
+      - Added Audio support and USBD Audio example
+      - Updated USB Device CDC ACM VirtualCOM example (corrected initial UART receive size)
+      - Updated emWin Examples GLCD_MCB54110.c and LCD_X.c to use Flexcomm Interface 5
+    </release>
+    <release version="2.0.0" date="2016-05-06">
+      Updated LPCOpen firmware package from NXP for LPC5411x devices to V3.00c.001
+      Added CMSIS-Driver for I2C, SAI, SPI, USART and USB Device
+      Added Board Support for the MCB54110 evaluation board
+      - Blinky, DualCore, emWin and Middleware based examples using USB Device and FileSystem
+    </release>
+    <release version="1.2.0" date="2016-03-03">
+      Added LPC5411x device support
+      Added LPCOpen V3 firmware package
+    </release>
+    <release version="1.1.0" date="2015-05-06">
+      Updated LED_LPCXpresso54102.c (LPCXpresso board uses different LED pins than Niobe board).
+      Renamed devices, subfamily according datasheet
+      Added device features
+      Added RTX_Blinky example
+    </release>
+    <release version="1.0.0" date="2014-11-06">
+      First Release version of LPC54000 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC54100</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="LPC54000 Series" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="true"/>
+
+      <sequences>
+
+<!-- ************************************************************************************************* -->
+<!-- ******************** LPC5410x Device Sequences (SINGLECORE VARIANT) ***************************** -->
+<!-- ************************************************************************************************* -->
+
+        <!-- ResetCatchSet Sequence LPC5410x Cortex-M4  -->
+        <sequence name="ResetCatchSet_LPC5410x_M4_SingleCore">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU = 0x00000000;
+            __var CPUCTRL = 0x40000300;
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+              value = Read32 (0x00000004);                    // Read Reset Vector
+            </block>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								    // Set BP0 to Reset Vector
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xe0002000, value);								    // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+
+        <!-- Reset Processor LPC5410x Cortex-M4 -->
+        <sequence name="ResetProcessor_LPC5410x_M4_SingleCore">
+          <block>
+            Write32(0xE000ED0C, 0x05FA0001);                // Reset Cortex-M4, execute VECTRESET via AIRCR
+          </block>
+        </sequence>
+
+<!-- ************************************************************************************************* -->
+<!-- ******************** LPC5410x Device Sequences (MULTICORE VARIANT) ****************************** -->
+<!-- ************************************************************************************************* -->
+
+        <!-- ResetCatchSet Sequence LPC5410x Cortex-M4  -->
+        <sequence name="ResetCatchSet_LPC5410x_M4">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU  = 0x00000000;
+            __var CPUCTRL    = 0x40000300;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+            </block>
+
+            <control if="masterCPU == 1" info="Cortex-M4 is the master CPU">
+              <block>
+                value = Read32 (0x00000004);                 // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="masterCPU == 0" info="Cortex-M4 is the slave CPU">
+              <block>
+                value = Read32 (sCPU_ImageEntry + 4);        // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								    // Set BP0 to Reset Vector
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xe0002000, value);								    // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+        <!-- ResetCatchSet Sequence LPC5410x Cortex-M0plus  -->
+        <sequence name="ResetCatchSet_LPC5410x_M0">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU  = 0x00000000;
+            __var CPUCTRL    = 0x40000300;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+            </block>
+
+            <control if="masterCPU == 1" info="Cortex-M0 is the slave CPU">
+              <block>
+                value = Read32 (sCPU_ImageEntry + 4);         // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="masterCPU == 0" info="Cortex-M0 is the master CPU">
+              <block>
+                value = Read32 (0x00000004);                  // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);                   // Set BP0
+                value = FPB_KEY | FPB_ENABLE;                 // Set BP0 to Reset Vector
+                Write32(0xe0002000, value);                   // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+        <!-- Reset Processor LPC5410x Cortex-M4 -->
+        <sequence name="ResetProcessor_LPC5410x_M4">
+          <block>
+            __var value      = 0;
+            __var masterCPU  = 0;
+            __var resetCPU   = 0;
+            __var CPUCTRL    = 0x40000300;
+            __var CPBOOT     = 0x40000304;
+            __var CPSTACK    = 0x40000308;
+            __var slaveBOOT  = 0;
+            __var slaveSTACK = 0;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="masterCPU == 1" info="Cortex-M4 is the master CPU">
+            <block>
+              Write32(0xE000ED0C, 0x05FA0001);                // Reset Cortex-M4, execute VECTRESET via AIRCR
+            </block>
+          </control>
+
+          <control if="masterCPU == 0" info="Cortex-M4 is the slave CPU">
+            <block>
+              slaveBOOT = Read32( sCPU_ImageEntry + 4);
+              slaveSTACK = Read32( sCPU_ImageEntry);
+
+              __ap = 1;                                       // Access via masterCPU access port
+              Write32( CPBOOT, slaveBOOT);                    // Set slave boot address
+              Write32( CPSTACK, slaveSTACK);                  // Set slave stack address
+
+              resetCPU = value | 0x00000010;
+              Write32( CPUCTRL, resetCPU);                    // Reset Cortex-M0 via CPUCTRL, CM0RSTEN(Bit5)
+              Write32( CPUCTRL, value);                       // Release Cortex-M0 from reset
+              __ap = 0;
+            </block>
+          </control>
+        </sequence>
+
+        <!-- Reset Processor LPC5410x Cortex-M0 -->
+        <sequence name="ResetProcessor_LPC5410x_M0">
+          <block>
+            __var value      = 0;
+            __var masterCPU  = 0;
+            __var resetCPU   = 0;
+            __var CPUCTRL    = 0x40000300;
+            __var CPBOOT     = 0x40000304;
+            __var CPSTACK    = 0x40000308;
+            __var slaveBOOT  = 0;
+            __var slaveSTACK = 0;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                         //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);    //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                   //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="masterCPU == 1" info="Cortex-M0 is the slave CPU">
+            <block>
+              slaveBOOT = Read32( sCPU_ImageEntry + 4);
+              slaveSTACK = Read32( sCPU_ImageEntry);
+
+              __ap = 0;                                       // Access via masterCPU access port
+              Write32( CPBOOT, slaveBOOT);                    // Set slave boot address
+              Write32( CPSTACK, slaveSTACK);                  // Set slave stack address
+
+              resetCPU = value | 0x00000020;
+              Write32( CPUCTRL, resetCPU);                    // Reset Cortex-M0 via CPUCTRL, CM0RSTEN(Bit5)
+              Write32( CPUCTRL, value);                       // Release Cortex-M0 from reset
+              __ap = 1;
+            </block>
+          </control>
+
+          <control if="masterCPU == 0" info="Cortex-M0 is the master CPU">
+            <block>
+              //Write32(0xE000ED0C, 0x05FA0001);              // Reset Cortex-M0, execute VECTRESET via AIRCR, !!! THERE IS NO VECTRESET IN AIRCR
+                                                              // DOES NOT SUPPORTED
+            </block>
+          </control>
+        </sequence>
+
+<!-- ************************************************************************************************* -->
+<!-- ******************** LPC5411x Device Sequences (SINGLECORE VARIANT) ***************************** -->
+<!-- ************************************************************************************************* -->
+
+        <!-- ResetCatchSet Sequence LPC5411x Cortex-M4  -->
+        <sequence name="ResetCatchSet_LPC5411x_M4_SingleCore">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU = 0x00000000;
+            __var CPUCTRL = 0x40000800;
+          </block>
+
+
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+              value = Read32 (0x00000004);                    // Read Reset Vector
+            </block>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								    // Set BP0 to Reset Vector
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xe0002000, value);								    // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+
+        <!-- Reset Processor LPC5411x Cortex-M4 -->
+        <sequence name="ResetProcessor_LPC5411x_M4_SingleCore">
+          <block>
+            Write32(0xE000ED0C, 0x05FA0001);                  // Reset Cortex-M4, execute VECTRESET via AIRCR
+          </block>
+        </sequence>
+
+
+<!-- ************************************************************************************************* -->
+<!-- ******************** LPC5411x Device Sequences (MULTICORE VARIANT) ****************************** -->
+<!-- ************************************************************************************************* -->
+
+        <!-- ResetCatchSet Sequence LPC5411x Cortex-M4  -->
+        <sequence name="ResetCatchSet_LPC5411x_M4">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU  = 0x00000000;
+            __var CPUCTRL    = 0x40000800;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+            </block>
+
+            <control if="masterCPU == 1" info="Cortex-M4 is the master CPU">
+              <block>
+                value = Read32 (0x00000004);                 // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="masterCPU == 0" info="Cortex-M4 is the slave CPU">
+              <block>
+                value = Read32 (sCPU_ImageEntry + 4);        // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								    // Set BP0 to Reset Vector
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xe0002000, value);								    // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+        <!-- ResetCatchSet Sequence LPC5411x Cortex-M0plus  -->
+        <sequence name="ResetCatchSet_LPC5411x_M0">
+          <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+            __var masterCPU  = 0x00000000;
+            __var CPUCTRL    = 0x40000800;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors
+            </block>
+
+            <control if="masterCPU == 1" info="Cortex-M0 is the slave CPU">
+              <block>
+                value = Read32 (sCPU_ImageEntry + 4);         // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="masterCPU == 0" info="Cortex-M0 is the master CPU">
+              <block>
+                value = Read32 (0x00000004);                  // Read Reset Vector
+              </block>
+            </control>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								    // Set BP0
+                value = FPB_KEY | FPB_ENABLE;                 // Set BP0 to Reset Vector
+                Write32(0xe0002000, value);								    // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="Enable reset vector catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+        <!-- Reset Processor LPC5411x Cortex-M4 -->
+        <sequence name="ResetProcessor_LPC5411x_M4">
+          <block>
+            __var value      = 0;
+            __var masterCPU  = 0;
+            __var resetCPU   = 0;
+            __var CPUCTRL    = 0x40000800;
+            __var CPBOOT     = 0x40000804;
+            __var CPSTACK    = 0x40000808;
+            __var slaveBOOT  = 0;
+            __var slaveSTACK = 0;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                           //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);      //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                     //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="masterCPU == 1" info="Cortex-M4 is the master CPU">
+            <block>
+              Write32(0xE000ED0C, 0x05FA0001);                // Reset Cortex-M4, execute VECTRESET via AIRCR
+            </block>
+          </control>
+
+          <control if="masterCPU == 0" info="Cortex-M4 is the slave CPU">
+            <block>
+              slaveBOOT = Read32( sCPU_ImageEntry + 4);
+              slaveSTACK = Read32( sCPU_ImageEntry);
+
+              __ap = 1;                                       // Access via masterCPU access port
+              Write32( CPBOOT, slaveBOOT);                    // Set slave boot address
+              Write32( CPSTACK, slaveSTACK);                  // Set slave stack address
+
+              resetCPU = value | 0x00000010;
+              Write32( CPUCTRL, resetCPU);                    // Reset Cortex-M0 via CPUCTRL, CM0RSTEN(Bit5)
+              Write32( CPUCTRL, value);                       // Release Cortex-M0 from reset
+              __ap = 0;
+            </block>
+          </control>
+        </sequence>
+
+        <!-- Reset Processor LPC5411x Cortex-M0 -->
+        <sequence name="ResetProcessor_LPC5411x_M0">
+          <block>
+            __var value      = 0;
+            __var masterCPU  = 0;
+            __var resetCPU   = 0;
+            __var CPUCTRL    = 0x40000800;
+            __var CPBOOT     = 0x40000804;
+            __var CPSTACK    = 0x40000808;
+            __var slaveBOOT  = 0;
+            __var slaveSTACK = 0;
+
+            // Get MasterCPU
+            value = Read32( CPUCTRL);                         //  CPU Control register: CPUCTRL (0x40000800)
+            value = 0xC0C40000 | (value &amp; 0x0000FFFF);    //  Bit31:16 must be written as 0xC0C4 for the write to have an effect
+            value = value &amp; 0xFFFF807D;                   //  Bit1, Bit7:14 should be 0
+            masterCPU = value &amp; 0x00000001;
+          </block>
+
+          <control if="masterCPU == 1" info="Cortex-M0 is the slave CPU">
+            <block>
+              slaveBOOT = Read32( sCPU_ImageEntry + 4);
+              slaveSTACK = Read32( sCPU_ImageEntry);
+
+              __ap = 0;                                       // Access via masterCPU access port
+              Write32( CPBOOT, slaveBOOT);                    // Set slave boot address
+              Write32( CPSTACK, slaveSTACK);                  // Set slave stack address
+
+              resetCPU = value | 0x00000020;
+              Write32( CPUCTRL, resetCPU);                    // Reset Cortex-M0 via CPUCTRL, CM0RSTEN(Bit5)
+              Write32( CPUCTRL, value);                       // Release Cortex-M0 from reset
+              __ap = 1;
+            </block>
+          </control>
+
+          <control if="masterCPU == 0" info="Cortex-M0 is the master CPU">
+            <block>
+              //Write32(0xE000ED0C, 0x05FA0001);              // Reset Cortex-M0, execute VECTRESET via AIRCR, !!! THERE IS NO VECTRESET IN AIRCR
+                                                              // DOES NOT SUPPORTED
+            </block>
+          </control>
+        </sequence>
+
+
+        <!-- ********************************** -->
+        <!-- **** LPC5460x Device Sequences *** -->
+        <!-- ********************************** -->
+
+        <!-- ResetCatchSet Sequence LPC5460x Cortex-M4  -->
+        <sequence name="ResetCatchSet_LPC5460x_M4">
+          <block>
+            // System Control Space (SCS) offset as defined
+            // in ARMv6-M/ARMv7-M. Reimplement this sequence
+            // if the SCS is located at a different offset.
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+
+            // Enable Reset Vector Catch in DEMCR
+            value = Read32(DEMCR_Addr);
+            Write32(DEMCR_Addr, (value | 0x00000001));
+          </block>
+
+          <control if="Dbg_CR == 0x00000000" info="Stop after bootloader disabled">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+            </block>
+          </control>
+
+          <control if="Dbg_CR == 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              value &amp;= ~1;                                // Clear Reset Vector Catch
+              Write32(DEMCR_Addr, value);                     // Disable Reset Vector Catch
+              Write32(0x40000000, 0x00000002);                // Map Flash to Vectors (not sure if the register address is correct!)
+              value = Read32 (0x00000004);                    // Read Reset Vector
+            </block>
+
+            <control if="value &lt; 0x20000000" info="Set and enable breakpoint">
+              <block>
+                // Set BP0 to Reset Vector
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);                   // Set BP0 to Reset Vector
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xe0002000, value);                   // Enable FPB
+              </block>
+            </control>
+
+            <control if="value &gt;= 0x20000000" info="enable Vector Catch">
+              <block>
+              // Enable Reset Vector Catch in DEMCR
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value | 0x00000001));
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Read32(DHCSR_Addr);                               // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+        </sequence>
+
+        <!-- Reset Processor LPC5460x Cortex-M4 -->
+        <sequence name="ResetProcessor_LPC5460x_M4">
+          <block>
+              Write32(0xE000ED0C, 0x05FA0001);                // Reset Cortex-M4, execute VECTRESET via AIRCR
+          </block>
+
+        </sequence>
+
+
+<!-- ************************************************************************************************* -->
+<!-- ***************************** Global Sequences ************************************************** -->
+<!-- ************************************************************************************************* -->
+
+        <!-- ResetCatchClear Sequence -->
+        <sequence name="ResetCatchClear">
+          <block>
+            // System Control Space (SCS) offset as defined
+            // in ARMv6-M/ARMv7-M. Reimplement this sequence
+            // if the SCS is located at a different offset.
+            __var SCS_Addr   = 0xE000E000;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+
+            // Disable Reset Vector Catch in DEMCR
+            value = Read32(DEMCR_Addr);
+            Write32(DEMCR_Addr, (value &amp; (~0x00000001)));
+
+            //Clear BP0 and FPB
+            Write32(0xE0002008, 0);      						        // Clear BP0
+            Write32(0xE0002000, 0x00000002);  			        // Disable FPB
+          </block>
+        </sequence>
+
+        <!-- DebugCodeMemRemap Sequence -->
+        <sequence name="DebugCodeMemRemap">
+          <block>
+            Write32 (0x40000000, 2);                        // Setup remap: Interrupt vectors reside in flash
+          </block>
+        </sequence>
+
+        <!-- TraceStart Sequence for Cortex-M4 -->
+        <sequence name="TraceStart_CM4">
+          <block>
+            __var traceSWO = (__traceout &amp; 0x1) != 0;   // SWO Trace Selected?
+          </block>
+
+          <control if="traceSWO">
+            <block>
+              Sequence("EnableTraceSWO_CM4");               // Call SWO Trace Setup
+            </block>
+          </control>
+        </sequence>
+
+        <!-- EnableTraceSWO Sequence for Cortex-M4 -->
+        <sequence name="EnableTraceSWO_CM4">
+          <block>
+            Write32 (0x40000220, 0x00002000);               // Enable IOCON peripheral clock
+            Write32 (0x40000304, 0x00000000);               // Enable Trace clock divider
+          </block>
+
+          <control if="LPC541xx_SWO_Pin == 0">
+            <block>
+              Write32 (0x4000103C, 2);                      // Configure PIO0_15 IOCON for function 2
+            </block>
+          </control>
+
+          <control if="LPC541xx_SWO_Pin == 1">
+            <block>
+              Write32 (0x40001084, 2);                      // Configure PIO1_1 IOCON for function 2
+            </block>
+          </control>
+
+          <control if="LPC541xx_SWO_Pin == 2">
+            <block>
+              Write32 (0x40001028, 6);                      // Configure PIO0_10 IOCON for function 6
+            </block>
+          </control>
+
+          <control if="LPC541xx_SWO_Pin == 3">
+            <block>
+              Write32 (0x40001020, 4);                      // Configure PIO0_8 IOCON for function 4
+            </block>
+          </control>
+        </sequence>
+
+      </sequences>
+
+      <!-- ************************  Subfamily 'LPC54100'  **************************** -->
+      <subFamily DsubFamily="LPC54100">
+        <processor Pname="M4" Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+        <!--compile Pname="M4" define="CORE_M4"/> With compile it is only possible to set one define.
+                                                  using environment is a hack to be able to set an additional define -->
+        <environment Pname="M4" name="uv">
+          <CMisc>-DCORE_M4</CMisc>
+        </environment>
+
+        <debugvars configfile="Debug/LPC541xx.dbgconf">
+          // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+          __var LPC541xx_SWO_Pin      = 0;                    // Serial Wire Output pin: 0 = PIO0_15, 1 = PIO1_1
+          __var Dbg_CR                = 0x00000000;           // DBG_CR
+          __var sCPU_ImageEntry       = 0x00020000;           // Slave CPU Image Start Entry
+        </debugvars>
+
+
+        <book Pname="M4" name="Documents/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <description>
+The LPC54100 Series microcontrollers were designed from the ground up to deliver the industry's best power efficiency for always-on sensor-processing applications.
+These highly efficient MCUs support ultra-low-power performance for sensor tasks such as listening, collection, and aggregation of sensor data as well as complex sensor processing tasks such as sensor fusion.
+
+Crucial for always-on applications, LPC54100 Series MCUs require as little as 3 uA for continuous sensor listening.
+A first for sensor applications, an asymmetric dual-core architecture enables scalable active power/performance:
+Developers can use the 55 uA/MHz Cortex-M0+ core for sensor data collection, aggregation, and external communications, or the ARM Cortex-M4 core (100 uA/MHz) to execute math-intensive algorithms (i.e., motion sensor fusion) more quickly while saving power.
+The LPC54100 Series also includes single-core (ARM Cortex-M4) options with similar sensor listening and Cortex-M4 power efficiencies.
+        </description>
+
+        <!-- *************************  Device 'LPC54101J256BD64'  ***************************** -->
+        <device Dname="LPC54101J256BD64">
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug svd="SVD/LPC54101.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"        name="Low-Profile QFP Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54101J256UK49'  ***************************** -->
+        <device Dname="LPC54101J256UK49">
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug svd="SVD/LPC54101.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="39"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+
+        </device>
+
+        <!-- *************************  Device 'LPC54101J512BD64'  ***************************** -->
+        <device Dname="LPC54101J512BD64">
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug svd="SVD/LPC54101.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"        name="Low-Profile QFP Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54101J512UK49'  ***************************** -->
+        <device Dname="LPC54101J512UK49">
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug svd="SVD/LPC54101.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="39"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54102J256BD64'  ***************************** -->
+        <device Dname="LPC54102J256BD64">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug Pname="M4"     svd="SVD/LPC54102_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54102_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"        name="Low-Profile QFP Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+        <!-- *************************  Device 'LPC54102J256UK49'  ***************************** -->
+        <device Dname="LPC54102J256UK49">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug Pname="M4"     svd="SVD/LPC54102_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54102_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="39"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+        <!-- *************************  Device 'LPC54102J512BD64'  ***************************** -->
+        <device Dname="LPC54102J512BD64">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug Pname="M4"     svd="SVD/LPC54102_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54102_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"        name="Low-Profile QFP Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+        <!-- *************************  Device 'LPC54102J512UK49'  ***************************** -->
+        <device Dname="LPC54102J512UK49">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5410x/chip_5410x/inc/chip.h" define="CHIP_LPC5410X"/>
+          <debug Pname="M4"     svd="SVD/LPC54102_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54102_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x02000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x02010000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm Pname="M4" name="Flash/LPC5410x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5410X.pdf" title="LPC5410x Datasheet"/>
+          <book name="Documents/UM10850.pdf"  title="LPC5410x User manual"/>
+
+          <feature type="UART"          n="4"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="39"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5410x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5410x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC54110'  **************************** -->
+      <subFamily DsubFamily="LPC54110">
+        <processor Pname="M4" Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+        <!--compile Pname="M4" define="CORE_M4"/> With compile it is only possible to set one define.
+                                                  using environment is a hack to be able to set an additional define -->
+        <environment Pname="M4" name="uv">
+          <CMisc>-DCORE_M4</CMisc>
+        </environment>
+
+        <debugvars configfile="Debug/LPC541xx.dbgconf">
+          // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+          __var LPC541xx_SWO_Pin      = 0;                    // Serial Wire Output pin: 0 = PIO0_15, 1 = PIO1_1
+          __var Dbg_CR                = 0x00000000;           // DBG_CR
+          __var sCPU_ImageEntry       = 0x00020000;           // Slave CPU Image Start Entry
+        </debugvars>
+
+        <book Pname="M4" name="Documents/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <description>
+The LPC54110 Series microcontrollers were designed from the ground up to deliver the industry's best power efficiency for always-on sensor-processing applications.
+These highly efficient MCUs support ultra-low-power performance for sensor tasks such as listening, collection, and aggregation of sensor data as well as complex sensor processing tasks such as sensor fusion.
+
+Crucial for always-on applications, LPC54100 Series MCUs require as little as 3 uA for continuous sensor listening.
+A first for sensor applications, an asymmetric dual-core architecture enables scalable active power/performance:
+Developers can use the 55 uA/MHz Cortex-M0+ core for sensor data collection, aggregation, and external communications, or the ARM Cortex-M4 core (100 uA/MHz) to execute math-intensive algorithms (i.e., motion sensor fusion) more quickly while saving power.
+The LPC54110 Series also includes single-core (ARM Cortex-M4) options with similar sensor listening and Cortex-M4 power efficiencies.
+        </description>
+
+        <!-- *************************  Device 'LPC54113J128BD64'  ***************************** -->
+        <device Dname="LPC54113J128BD64">
+          <compile header="LPCOpen/lpc5411x/chip_5411x/inc/chip.h" define="CHIP_LPC5411X"/>
+          <debug Pname="M4" svd="SVD/LPC54113.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5411x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/LPC5411X.pdf" title="LPC5411x Datasheet"/>
+          <book name="Documents/UM10914.pdf"  title="LPC5411x User manual"/>
+
+          <feature type="MPSerial"      n="8"          name="Flexcomm Serial Peripheral Module: USART, SPI, I2C"/>
+          <feature type="USBD"          n="1"          name="Full-Speed USB Device"/>
+          <feature type="ComOther"      n="1"          name="DMIC Subsystem"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="TempSens"      n="1"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"         name="Low-Profile QFP Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54113J256BD64'  ***************************** -->
+        <device Dname="LPC54113J256BD64">
+          <compile header="LPCOpen/lpc5411x/chip_5411x/inc/chip.h" define="CHIP_LPC5411X"/>
+          <debug Pname="M4" svd="SVD/LPC54113.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5411x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/LPC5411X.pdf" title="LPC5411x Datasheet"/>
+          <book name="Documents/UM10914.pdf"  title="LPC5411x User manual"/>
+
+          <feature type="MPSerial"      n="8"          name="Flexcomm Serial Peripheral Module: USART, SPI, I2C"/>
+          <feature type="USBD"          n="1"          name="Full-Speed USB Device"/>
+          <feature type="ComOther"      n="1"          name="DMIC Subsystem"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="TempSens"      n="1"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"         name="Low-Profile QFP Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54113J256UK49'  ***************************** -->
+        <device Dname="LPC54113J256UK49">
+          <compile header="LPCOpen/lpc5411x/chip_5411x/inc/chip.h" define="CHIP_LPC5411X"/>
+          <debug Pname="M4" svd="SVD/LPC54113.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5411x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/LPC5411X.pdf" title="LPC5411x Datasheet"/>
+          <book name="Documents/UM10914.pdf"  title="LPC5411x User manual"/>
+
+          <feature type="MPSerial"      n="8"          name="Flexcomm Serial Peripheral Module: USART, SPI, I2C"/>
+          <feature type="USBD"          n="1"          name="Full-Speed USB Device"/>
+          <feature type="ComOther"      n="1"          name="DMIC Subsystem"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="TempSens"      n="1"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="37"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M4_SingleCore");
+              </block>
+            </sequence>
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+          </sequences>
+        </device>
+
+        <!-- *************************  Device 'LPC54114J256BD64'  ***************************** -->
+        <device Dname="LPC54114J256BD64">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5411x/chip_5411x/inc/chip.h" define="CHIP_LPC5411X"/>
+          <debug Pname="M4"     svd="SVD/LPC54114_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54114_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5411x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5411X.pdf" title="LPC5411x Datasheet"/>
+          <book name="Documents/UM10914.pdf"  title="LPC5411x User manual"/>
+
+          <feature type="MPSerial"      n="8"          name="Flexcomm Serial Peripheral Module: USART, SPI, I2C"/>
+          <feature type="USBD"          n="1"          name="Full-Speed USB Device"/>
+          <feature type="ComOther"      n="1"          name="DMIC Subsystem"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="TempSens"      n="1"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"         name="Low-Profile QFP Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+        <!-- *************************  Device 'LPC54114J256UK49'  ***************************** -->
+        <device Dname="LPC54114J256UK49">
+          <processor Pname="M0plus" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+          <environment Pname="M0plus" name="uv">
+            <CMisc>-DCORE_M0PLUS</CMisc>
+          </environment>
+          <compile header="LPCOpen/lpc5411x/chip_5411x/inc/chip.h" define="CHIP_LPC5411X"/>
+          <debug Pname="M4"     svd="SVD/LPC54114_cm4.svd"/>
+          <debug Pname="M0plus" svd="SVD/LPC54114_cm0plus.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5411x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book Pname="M0plus" name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+          <book name="Documents/LPC5411X.pdf" title="LPC5411x Datasheet"/>
+          <book name="Documents/UM10914.pdf"  title="LPC5411x User manual"/>
+
+          <feature type="MPSerial"      n="8"          name="Flexcomm Serial Peripheral Module: USART, SPI, I2C"/>
+          <feature type="USBD"          n="1"          name="Full-Speed USB Device"/>
+          <feature type="ComOther"      n="1"          name="DMIC Subsystem"/>
+          <feature type="ADC"           n="12"       m="12"/>
+          <feature type="TempSens"      n="1"/>
+          <feature type="Timer"         n="5"        m="32"/>
+          <feature type="PWM"           n="1"/>
+          <feature type="Temp"          n="-40"      m="105"/>
+          <feature type="VCC"           n="1.62"     m="3.60"/>
+          <feature type="IOs"           n="37"/>
+          <feature type="CSP"           n="49"         name="Wafer-Level Chip-Scale Package"/>
+
+          <debug Pname="M4" __dp="0" __ap="0"/>             <!-- AP 0 for Cortex-M4  -->
+          <debug Pname="M0plus" __dp="0" __ap="1"/>         <!-- AP 1 for Cortex-M0+ -->
+
+          <sequences>
+            <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+            <sequence name="ResetProcessor" Pname="M4">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M4");
+              </block>
+            </sequence>
+
+            <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+            <sequence name="ResetProcessor" Pname="M0plus">
+              <block>
+                Sequence("ResetProcessor_LPC5411x_M0");
+              </block>
+            </sequence>
+
+            <!-- ResetCatchSet Sequence for Cortex-M4 -->
+            <sequence name="ResetCatchSet" Pname="M4">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M4");
+              </block>
+            </sequence>
+
+            <!--ResetCatchSet Sequence for Cortex-M0-->
+            <sequence name="ResetCatchSet" Pname="M0plus">
+              <block>
+                Sequence("ResetCatchSet_LPC5411x_M0");
+              </block>
+            </sequence>
+
+
+            <!-- Override for Pre-Defined TraceStart Sequence -->
+            <sequence name="TraceStart"  Pname="M4">
+              <block>
+                Sequence("TraceStart_CM4");
+              </block>
+            </sequence>
+            <sequence name="TraceStart"  Pname="M0plus">
+              <block>
+
+              </block>
+            </sequence>
+
+          </sequences>
+
+        </device>
+
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC54600'  **************************** -->
+      <subFamily DsubFamily="LPC54600">
+        <processor Pname="M4" Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="180000000"/>
+
+        <description>
+The LPC5460x is a family of ARM Cortex-M4 based microcontrollers for embedded applications featuring a rich peripheral set with very low power consumption and enhanced debug features.
+        </description>
+
+        <!--compile Pname="M4" define="CORE_M4"/> With compile it is only possible to set one define.
+                                                  using environment is a hack to be able to set an additional define -->
+        <environment Pname="M4" name="uv">
+          <CMisc>-DCORE_M4</CMisc>
+        </environment>
+
+        <debugvars configfile="Debug/LPC5460x.dbgconf">
+          // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+          __var LPC541xx_SWO_Pin = 0;                         // Serial Wire Output pin: 0 = PIO0_15, 1 = PIO1_1
+          __var Dbg_CR           = 0x00000000;                // DBG_CR
+          __var sCPU_ImageEntry  = 0xFFFFFFFF;                // Slave CPU Image Start Entry
+        </debugvars>
+
+        <sequences>
+          <!-- ResetCatchSet Sequence for Cortex-M4 -->
+          <sequence name="ResetCatchSet" Pname="M4">
+            <block>
+              Sequence("ResetCatchSet_LPC5460x_M4");
+            </block>
+          </sequence>
+
+          <!-- Override for Pre-Defined TraceStart Sequence -->
+          <sequence name="TraceStart"  Pname="M4">
+            <block>
+              Sequence("TraceStart_CM4");
+            </block>
+          </sequence>
+        </sequences>
+
+        <book Pname="M4" name="Documents/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documents/LPC546XX.pdf" title="LPC546XX Datasheet"/>
+        <book name="Documents/UM10912.pdf"  title="LPC546XX User manual"/>
+        <description>
+The LPC5460x is a family of ARM Cortex-M4 based microcontrollers for embedded applications featuring a rich peripheral set with very low power consumption and enhanced debug features.
+        </description>
+
+        <!-- *************************  Device 'LPC54608J512BD208'  ***************************** -->
+        <device Dname="LPC54608J512BD208">
+          <compile header="Device/Include/LPC54608.h" define="LPC54608"/>
+          <debug svd="SVD/LPC54608.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54608J512ET180'  ***************************** -->
+        <device Dname="LPC54608J512ET180">
+          <compile header="Device/Include/LPC54608.h" define="LPC54608"/>
+          <debug svd="SVD/LPC54608.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54607J512ET180'  ***************************** -->
+        <device Dname="LPC54607J512ET180">
+          <compile header="Device/Include/LPC54607.h" define="LPC54607"/>
+          <debug svd="SVD/LPC54607.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54607J256BD208'  ***************************** -->
+        <device Dname="LPC54607J256BD208">
+          <compile header="Device/Include/LPC54607.h" define="LPC54607"/>
+          <debug svd="SVD/LPC54607.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54607J256ET180'  ***************************** -->
+        <device Dname="LPC54607J256ET180">
+          <compile header="Device/Include/LPC54607.h" define="LPC54607"/>
+          <debug svd="SVD/LPC54607.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00018000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54606J512BD208'  ***************************** -->
+        <device Dname="LPC54606J512BD208">
+          <compile header="Device/Include/LPC54606.h" define="LPC54606"/>
+          <debug svd="SVD/LPC54606.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54606J256ET180'  ***************************** -->
+        <device Dname="LPC54606J256ET180">
+          <compile header="Device/Include/LPC54606.h" define="LPC54606"/>
+          <debug svd="SVD/LPC54606.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00018000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54605J512ET180'  ***************************** -->
+        <device Dname="LPC54605J512ET180">
+          <compile header="Device/Include/LPC54605.h" define="LPC54605"/>
+          <debug svd="SVD/LPC54605.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54605J256ET180'  ***************************** -->
+        <device Dname="LPC54605J256ET180">
+          <compile header="Device/Include/LPC54605.h" define="LPC54605"/>
+          <debug svd="SVD/LPC54605.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00018000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54616J256ET180'  ***************************** -->
+        <device Dname="LPC54616J256ET180">
+          <compile header="Device/Include/LPC54616.h" define="LPC54616"/>
+          <debug svd="SVD/LPC54616.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00018000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54616J512BD208'  ***************************** -->
+        <device Dname="LPC54616J512BD208">
+          <compile header="Device/Include/LPC54616.h" define="LPC54616"/>
+          <debug svd="SVD/LPC54616.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54618J512ET180'  ***************************** -->
+        <device Dname="LPC54618J512ET180">
+          <compile header="Device/Include/LPC54618.h" define="LPC54618"/>
+          <debug svd="SVD/LPC54618.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54618J512BD208'  ***************************** -->
+        <device Dname="LPC54618J512BD208">
+          <compile header="Device/Include/LPC54618.h" define="LPC54618"/>
+          <debug svd="SVD/LPC54618.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC54628J512ET180'  ***************************** -->
+        <device Dname="LPC54628J512ET180">
+          <processor Pname="M4" Dclock="220000000"/>
+          <compile header="Device/Include/LPC54628.h" define="LPC54628"/>
+          <debug svd="SVD/LPC54628.svd"/>
+          <memory id="IROM1"                                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                                  start="0x20000000" size="0x00028000" init   ="0" default="1"/>
+          <memory id="IRAM2"                                  start="0x04000000" size="0x00008000" init   ="0" default="0"/>
+          <algorithm Pname="M4" name="Flash/LPC5460x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="LPC5410x">
+      <description>NXP LPC5410x Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC5410*"/>
+    </condition>
+
+    <condition id="LPC5411x">
+      <description>NXP LPC5411x Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC5411*"/>
+    </condition>
+
+    <condition id="LPC5460x">
+      <description>NXP LPC5460x Devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC5460*"/>
+    </condition>
+    <condition id="LPC54605">
+      <description>NXP LPC54605 Devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC54605*"/>
+    </condition>
+    <condition id="LPC54606">
+      <description>NXP LPC54606 Devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC54606*"/>
+    </condition>
+    <condition id="LPC54607">
+      <description>NXP LPC54607 Devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC54607*"/>
+    </condition>
+    <condition id="LPC54608">
+      <description>NXP LPC54608 Devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC54608*"/>
+    </condition>
+
+    <condition id="LPC541xx">
+      <description>NXP LPC541xx Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC541*"/>
+    </condition>
+
+    <!-- Device + Core Conditions -->
+    <condition id="LPC5410x CM4">
+      <description>NXP LPC5410x CM4 Devices</description>
+      <require condition="LPC5410x"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC5410x CM0+">
+      <description>NXP LPC5410x CM0+ Devices</description>
+      <require condition="LPC5410x"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+
+    <condition id="LPC5411x CM4">
+      <description>NXP LPC5411x CM4 Devices</description>
+      <require condition="LPC5411x"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC5411x CM0+">
+      <description>NXP LPC5411x CM0+ Devices</description>
+      <require condition="LPC5411x"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+
+    <condition id="LPC54605 CM4">
+      <description>NXP LPC54605 CM4 Devices</description>
+      <require condition="LPC54605"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC54606 CM4">
+      <description>NXP LPC54606 CM4 Devices</description>
+      <require condition="LPC54606"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC54607 CM4">
+      <description>NXP LPC54607 CM4 Devices</description>
+      <require condition="LPC54607"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="LPC54608 CM4">
+      <description>NXP LPC54608 CM4 Devices</description>
+      <require condition="LPC54608"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+
+    <!-- Device + Core + Compiler Conditions -->
+    <condition id="LPC5410x CM4 ARMCC">
+      <description>NXP LPC5410x CM4 Devices and the ARM compiler</description>
+      <require condition="LPC5410x CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC5410x CM0+ ARMCC">
+      <description>NXP LPC5410x CM0+ Devices and the ARM compiler</description>
+      <require condition="LPC5410x CM0+"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC5410x CM4 IAR">
+      <description>NXP LPC5410x CM4 Devices and the IAR compiler</description>
+      <require condition="LPC5410x CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="LPC5410x CM0+ IAR">
+      <description>NXP LPC5410x CM0+ Devices and the IAR compiler</description>
+      <require condition="LPC5410x CM0+"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="LPC5411x CM4 ARMCC">
+      <description>NXP LPC5411x CM4 Devices and the ARM compiler</description>
+      <require condition="LPC5411x CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC5411x CM0+ ARMCC">
+      <description>NXP LPC5411x CM0+ Devices and the ARM compiler</description>
+      <require condition="LPC5411x CM0+"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC5411x CM4 IAR">
+      <description>NXP LPC5411x CM4 Devices and the IAR compiler</description>
+      <require condition="LPC5411x CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="LPC5411x CM0+ IAR">
+      <description>NXP LPC5411x CM0+ Devices and the IAR compiler</description>
+      <require condition="LPC5411x CM0+"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="LPC54605 CM4 ARMCC">
+      <description>NXP LPC5460x CM4 Devices and the ARM compiler</description>
+      <require condition="LPC54605 CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC54605 CM4 IAR">
+      <description>NXP LPC54605 CM4 Devices and the IAR compiler</description>
+      <require condition="LPC54605 CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="LPC54606 CM4 ARMCC">
+      <description>NXP LPC54606 CM4 Devices and the ARM compiler</description>
+      <require condition="LPC54606 CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC54606 CM4 IAR">
+      <description>NXP LPC54606 CM4 Devices and the IAR compiler</description>
+      <require condition="LPC54606 CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="LPC54607 CM4 ARMCC">
+      <description>NXP LPC54607 CM4 Devices and the ARM compiler</description>
+      <require condition="LPC54607 CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC54607 CM4 IAR">
+      <description>NXP LPC54607 CM4 Devices and the IAR compiler</description>
+      <require condition="LPC54607 CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="LPC54608 CM4 ARMCC">
+      <description>NXP LPC54608 CM4 Devices and the ARM compiler</description>
+      <require condition="LPC54608 CM4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC54608 CM4 IAR">
+      <description>NXP LPC54608 CM4 Devices and the IAR compiler</description>
+      <require condition="LPC54608 CM4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC5410x CMSIS">
+      <description>NXP LPC5410x Devices and CMSIS-CORE</description>
+      <require condition="LPC5410x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS">
+      <description>NXP LPC5411x Devices and CMSIS-CORE</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC5460x CMSIS">
+      <description>NXP LPC5460x Devices and CMSIS-CORE</description>
+      <require condition="LPC5460x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC54616 CMSIS">
+      <description>NXP LPC54616 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="LPC54616*"/>
+    </condition>
+
+    <condition id="LPC54618 CMSIS">
+      <description>NXP LPC54618 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="LPC54618*"/>
+    </condition>
+
+    <condition id="LPC54628 CMSIS">
+      <description>NXP LPC54628 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept  Dname="LPC54628*"/>
+    </condition>
+
+    <!-- Device + CMSIS + LPCOpen Conditions -->
+    <condition id="LPC541xx CMSIS LPCOPEN">
+      <description>NXP LPC541xx Devices and LPCOpen firmware</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <condition id="LPC5410x CMSIS LPCOPEN">
+      <description>NXP LPC5410x Devices and LPCOpen firmware</description>
+      <require condition="LPC5410x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS LPCOPEN">
+      <description>NXP LPC5411x Devices and LPCOpen firmware</description>
+      <require condition="LPC5411x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <condition id="LPC541xx CMSIS LPCOPEN_BSP">
+      <description>NXP LPC541xx Devices and LPCOpen board support firmware</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+      <deny Cclass="Compiler" Cgroup="I/O"/>
+    </condition>
+
+    <!-- CMSIS Driver Conditions -->
+    <condition id="LPC541xx CMSIS_Driver I2C">
+      <description>Requirement for CMSIS I2C Driver</description>
+      <require condition="LPC541xx CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5410x CMSIS_Driver SPI">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="LPC5410x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver SPI">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC541xx CMSIS_Driver SAI">
+      <description>Requirement for CMSIS SAI Driver</description>
+      <require condition="LPC5411x CMSIS"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <condition id="LPC5410x CMSIS_Driver USART">
+      <description>Requirement for CMSIS USART Driver</description>
+      <require condition="LPC5410x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC5411x CMSIS_Driver USART">
+      <description>Requirement for CMSIS USART Driver</description>
+      <require condition="LPC5411x CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC541xx CMSIS_Driver USB">
+      <description>Requirement for CMSIS USB Driver</description>
+      <require condition="LPC5411x CMSIS"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <!-- Device + CMSIS Driver -->
+    <condition id="LPC541xx I2C">
+      <description>Requirement for components using CMSIS I2C driver</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC541xx SPI">
+      <description>Requirement for components using CMSIS SPI driver</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+    </condition>
+
+    <condition id="LPC541xx I2C SAI">
+      <description>Requirement for components using CMSIS I2C and SAI drivers</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+      <require Cclass="CMSIS Driver" Cgroup="SAI"/>
+    </condition>
+
+    <!-- Board support Conditions -->
+    <condition id="MCB54110 Audio common Mic">
+      <description>Requirement for MCB54110 Audio microphone </description>
+      <require condition="LPC541xx"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Microphone"/>
+    </condition>
+    <condition id="MCB54110 Audio common Codec">
+      <description>Requirement for MCB54110 Audio Codec</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Codec"/>
+    </condition>
+    <condition id="MCB54110 Audio common Codec Mic">
+      <description>Requirement for MCB54110 Audio Codec and Microphone</description>
+      <require condition="LPC541xx"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Codec"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Microphone"/>
+    </condition>
+    <condition id="MCB54110 Audio Codec">
+      <description>Requirement for MCB54110 Audio Codec</description>
+      <require condition="LPC541xx I2C SAI"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Audio"/>
+    </condition>
+    <condition id="MCB54110 Audio Mic">
+      <description>Requirement for MCB54110 Audio Microphone</description>
+      <require condition="LPC541xx CMSIS LPCOPEN"/>
+      <require Cclass="Board Support" Cgroup="Audio" Csub="Audio"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup LPC54100 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.1.0" condition="LPC541xx CMSIS LPCOPEN">
+      <description>System Startup for NXP LPC54100 Devices</description>
+      <files>
+        <file category="header"    name="RTE_Driver/Config_LPC5410x/RTE_Device.h"                        attr="config" version="1.0.0" condition="LPC5410x"/>
+        <file category="header"    name="RTE_Driver/Config_LPC5411x/RTE_Device.h"                        attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="sourceC"   name="LPCOpen/lpc5410x/chip_5410x/startup/sysinit.c"                  attr="config" version="1.0.0" condition="LPC5410x"/>
+        <file category="sourceC"   name="LPCOpen/lpc5411x/chip_5411x/startup/sysinit.c"                  attr="config" version="1.0.0" condition="LPC5411x"/>
+
+        <file category="sourceAsm" name="LPCOpen/lpc5410x/chip_5410x/startup/keil_startup_lpc5410x.s"    attr="config" version="1.0.0" condition="LPC5410x CM4 ARMCC"/>
+        <file category="sourceAsm" name="LPCOpen/lpc5410x/chip_5410x/startup/keil_startup_lpc5410x-m0.s" attr="config" version="1.0.0" condition="LPC5410x CM0+ ARMCC"/>
+
+        <file category="sourceAsm" name="LPCOpen/lpc5411x/chip_5411x/startup/keil_startup_lpc5411x.s"    attr="config" version="1.0.0" condition="LPC5411x CM4 ARMCC"/>
+        <file category="sourceAsm" name="LPCOpen/lpc5411x/chip_5411x/startup/keil_startup_lpc5411x-m0.s" attr="config" version="1.0.0" condition="LPC5411x CM0+ ARMCC"/>
+
+        <file category="sourceAsm" name="LPCOpen/lpc5410x/chip_5410x/startup/iar_startup_lpc5410x.s"     attr="config" version="1.0.0" condition="LPC5410x CM4 IAR"/>
+        <file category="sourceAsm" name="LPCOpen/lpc5410x/chip_5410x/startup/iar_startup_lpc5410x-m0.s"  attr="config" version="1.0.0" condition="LPC5410x CM0+ IAR"/>
+
+        <file category="sourceAsm" name="LPCOpen/lpc5411x/chip_5411x/startup/iar_startup_lpc5411x.s"     attr="config" version="1.0.0" condition="LPC5411x CM4 IAR"/>
+        <file category="sourceAsm" name="LPCOpen/lpc5411x/chip_5411x/startup/iar_startup_lpc5411x-m0.s"  attr="config" version="1.0.0" condition="LPC5411x CM0+ IAR"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC5460x -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="LPC5460x CMSIS">
+      <description>System Startup for NXP LPC54100 Devices</description>
+      <files>
+        <file category="include"    name="Device/Include/"/>
+
+        <file category="header"     name="RTE_Driver/Config_LPC5460x/RTE_Device.h" attr="config" version="1.2.0" condition="LPC5460x"/>
+
+        <file category="sourceAsm"  name="Device/Source/ARM/startup_LPC54605.s"    attr="config" version="1.2.0" condition="LPC54605 CM4 ARMCC"/>
+        <file category="sourceAsm"  name="Device/Source/IAR/startup_LPC54605.s"    attr="config" version="1.2.0" condition="LPC54605 CM4 IAR"/>
+        <file category="sourceC"    name="Device/Source/system_LPC54605.c"         attr="config" version="1.2.0" condition="LPC54605"/>
+        <file category="header"     name="Device/Source/system_LPC54605.h"         attr="config" version="1.2.0" condition="LPC54605"/>
+
+        <file category="sourceAsm"  name="Device/Source/ARM/startup_LPC54606.s"    attr="config" version="1.2.0" condition="LPC54606 CM4 ARMCC"/>
+        <file category="sourceAsm"  name="Device/Source/IAR/startup_LPC54606.s"    attr="config" version="1.2.0" condition="LPC54606 CM4 IAR"/>
+        <file category="sourceC"    name="Device/Source/system_LPC54606.c"         attr="config" version="1.2.0" condition="LPC54606"/>
+        <file category="header"     name="Device/Source/system_LPC54606.h"         attr="config" version="1.2.0" condition="LPC54606"/>
+
+        <file category="sourceAsm"  name="Device/Source/ARM/startup_LPC54607.s"    attr="config" version="1.2.0" condition="LPC54607 CM4 ARMCC"/>
+        <file category="sourceAsm"  name="Device/Source/IAR/startup_LPC54607.s"    attr="config" version="1.2.0" condition="LPC54607 CM4 IAR"/>
+        <file category="sourceC"    name="Device/Source/system_LPC54607.c"         attr="config" version="1.2.0" condition="LPC54607"/>
+        <file category="header"     name="Device/Source/system_LPC54607.h"         attr="config" version="1.2.0" condition="LPC54607"/>
+
+        <file category="sourceAsm"  name="Device/Source/ARM/startup_LPC54608.s"    attr="config" version="1.2.0" condition="LPC54608 CM4 ARMCC"/>
+        <file category="sourceAsm"  name="Device/Source/IAR/startup_LPC54608.s"    attr="config" version="1.2.0" condition="LPC54608 CM4 IAR"/>
+        <file category="sourceC"    name="Device/Source/system_LPC54608.c"         attr="config" version="1.2.0" condition="LPC54608"/>
+        <file category="header"     name="Device/Source/system_LPC54608.h"         attr="config" version="1.2.0" condition="LPC54608"/>
+
+      </files>
+    </component>
+
+    <!-- Startup LPC54616 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="LPC54616 CMSIS">
+      <description>System Startup for NXP LPC54616 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_LPC54616.s" attr="config" version="1.2.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_LPC54616.c"      attr="config" version="1.2.0"/>
+        <file category="header"  name="Device/Source/system_LPC54616.h"      attr="config" version="1.2.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC54618 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="LPC54618 CMSIS">
+      <description>System Startup for NXP LPC54618 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_LPC54618.s" attr="config" version="1.2.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_LPC54618.c"      attr="config" version="1.2.0"/>
+        <file category="header"  name="Device/Source/system_LPC54618.h"      attr="config" version="1.2.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC54628 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="LPC54628 CMSIS">
+      <description>System Startup for NXP LPC54628 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_LPC54628.s" attr="config" version="1.2.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_LPC54628.c"      attr="config" version="1.2.0"/>
+        <file category="header"  name="Device/Source/system_LPC54628.h"      attr="config" version="1.2.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="LPCOpen" Cversion="3.1.0" condition="LPC5410x CMSIS">
+      <description>LPCOpen chip drivers for the NXP LPC54100 family</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LPCOPEN
+      </RTE_Components_h>
+      <files>
+        <file category="library" condition="LPC5410x CM4 ARMCC"  name="LPCOpen/lpc5410x/chip_5410x/libs/keil_lib_power.lib"/>
+        <file category="library" condition="LPC5410x CM4 ARMCC"  name="LPCOpen/lpc5410x/prj_lpcxpresso_54102/keil/lib_chip_5410x/keil_output/core_m4/lib_chip_5410x.lib" src="LPCOpen/lpc5410x/chip_5410x/src/"/>
+        <file category="library" condition="LPC5410x CM0+ ARMCC" name="LPCOpen/lpc5410x/chip_5410x/libs/keil_lib_power_m0.lib"/>
+        <file category="library" condition="LPC5410x CM0+ ARMCC" name="LPCOpen/lpc5410x/prj_lpcxpresso_54102/keil/lib_chip_5410x_m0/keil_output/core_m0/lib_chip_5410x_m0.lib" src="LPCOpen/lpc5410x/chip_5410x/src/"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="LPCOpen" Cversion="3.0.1" condition="LPC5411x CMSIS">
+      <description>LPCOpen chip drivers for the NXP LPC54110 family</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LPCOPEN
+      </RTE_Components_h>
+      <files>
+        <file category="library" condition="LPC5411x CM4 ARMCC"  name="LPCOpen/lpc5411x/chip_5411x/libs/keil_lib_power.lib"/>
+        <file category="library" condition="LPC5411x CM4 ARMCC"  name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_chip_5411x/keil_output/core_m4/lib_chip_5411x.lib" src="LPCOpen/lpc5411x/chip_5411x/src/"/>
+        <file category="library" condition="LPC5411x CM0+ ARMCC" name="LPCOpen/lpc5411x/chip_5411x/libs/keil_lib_power_m0.lib"/>
+        <file category="library" condition="LPC5411x CM0+ ARMCC" name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_chip_5411x_m0/keil_output/core_m0/lib_chip_5411x_m0.lib" src="LPCOpen/lpc5411x/chip_5411x/src/"/>
+      </files>
+    </component>
+
+    <!-- CMSIS Driver class -->
+    <component Cclass="CMSIS Driver" Cgroup="I2C"              Capiversion="2.2.0" Cversion="1.0.0" condition="LPC541xx CMSIS_Driver I2C">
+      <description>I2C Driver for LPC54100 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
+        #define RTE_Drivers_I2C3                /* Driver I2C3 */
+        #define RTE_Drivers_I2C4                /* Driver I2C4 */
+        #define RTE_Drivers_I2C5                /* Driver I2C5 */
+        #define RTE_Drivers_I2C6                /* Driver I2C6 */
+        #define RTE_Drivers_I2C7                /* Driver I2C7 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_LPC5410x.c" condition="LPC5410x"/>
+        <file category="source" name="RTE_Driver/I2C_LPC5411x.c" condition="LPC5411x"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SAI"              Capiversion="1.0.0" Cversion="1.1.0" condition="LPC541xx CMSIS_Driver SAI">
+      <description>SAI Driver for LPC54100 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+        #define RTE_Drivers_SAI1                /* Driver SAI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2S_LPC5411x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI"   Csub="SPI" Capiversion="2.1.0" Cversion="1.0.0" condition="LPC5410x CMSIS_Driver SPI">
+      <description>SPI Driver for LPC54100 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+        #define RTE_Drivers_SPI3                /* Driver SPI3 */
+        #define RTE_Drivers_SPI4                /* Driver SPI4 */
+        #define RTE_Drivers_SPI5                /* Driver SPI5 */
+        #define RTE_Drivers_SPI6                /* Driver SPI6 */
+        #define RTE_Drivers_SPI7                /* Driver SPI7 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_LPC5410x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI"   Csub="SPI" Capiversion="2.1.0" Cversion="1.1.0" condition="LPC5411x CMSIS_Driver SPI">
+      <description>SPI Driver for LPC54110 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+        #define RTE_Drivers_SPI3                /* Driver SPI3 */
+        #define RTE_Drivers_SPI4                /* Driver SPI4 */
+        #define RTE_Drivers_SPI5                /* Driver SPI5 */
+        #define RTE_Drivers_SPI6                /* Driver SPI6 */
+        #define RTE_Drivers_SPI7                /* Driver SPI7 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_LPC5411x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART"            Capiversion="2.1.0" Cversion="1.0.0" condition="LPC5410x CMSIS_Driver USART">
+      <description>USART Driver for LPC54100 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+        #define RTE_Drivers_USART4              /* Driver USART4 */
+        #define RTE_Drivers_USART5              /* Driver USART5 */
+        #define RTE_Drivers_USART6              /* Driver USART6 */
+        #define RTE_Drivers_USART7              /* Driver USART7 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USART_LPC5410x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART"            Capiversion="2.1.0" Cversion="1.1.0" condition="LPC5411x CMSIS_Driver USART">
+      <description>USART Driver for LPC54110 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+        #define RTE_Drivers_USART4              /* Driver USART4 */
+        #define RTE_Drivers_USART5              /* Driver USART5 */
+        #define RTE_Drivers_USART6              /* Driver USART6 */
+        #define RTE_Drivers_USART7              /* Driver USART7 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USART_LPC5411x.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device"       Capiversion="2.1.0" Cversion="1.0.0" condition="LPC541xx CMSIS_Driver USB">
+      <description>USB Device Driver for LPC54100 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD_LPC5411x.c"/>
+      </files>
+    </component>
+
+    <!-- MCB54110 Board Support-->
+    <bundle Cbundle="MCB54110" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCB54110</description>
+      <doc>Documents/MCB54110_CHM_Dummy.txt</doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC541xx CMSIS LPCOPEN">
+        <description>A/D Converter interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/ADC_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio" Capiversion="1.1.0" Cvariant="Codec In/Out" condition="MCB54110 Audio common Codec">
+        <description>Audio interface for Keil MCB54110 Development Board </description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_CODEC_OUT
+          #define RTE_BSP_AUDIO_CODEC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio" Capiversion="1.1.0" Cvariant="Codec Out + Mic In" condition="MCB54110 Audio common Codec Mic">
+        <description>Audio interface for Keil MCB54110 Development Board </description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_CODEC_OUT
+          #define RTE_BSP_AUDIO_MIC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Audio" Capiversion="1.1.0" Cvariant="Mic In" condition="MCB54110 Audio common Mic">
+        <description>Audio interface for Keil MCB54110 Development Board </description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BSP_AUDIO_MIC_IN
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Codec"  Capiversion="1.1.0" condition="MCB54110 Audio Codec">
+        <description>Audio Codec interface for Keil MCB54110 Development Board </description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_WM8904.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Csub="Microphone"  Capiversion="1.1.0" condition="MCB54110 Audio Mic">
+        <description>Digital microphone interface for Keil MCB54110 Development Board </description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Audio_DMIC.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC541xx I2C">
+        <description>LED interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/LED_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC541xx CMSIS LPCOPEN">
+        <description>Buttons interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Buttons_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.0.0" condition="LPC541xx I2C">
+        <description>Joystick interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Joystick_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="LPC541xx SPI">
+        <description>Graphic LCD interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB54110/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/GLCD_MCB54110.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1.0" Cvariant="SPI IF" condition="LPC541xx SPI">
+        <description>emWin LCD RGB Interface for Keil MCB54110 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/LCD_X.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" Csub="STMPE811" condition="LPC541xx I2C">
+        <description>Touchscreen interface for STMPE811</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB54110/Common/STMPE811.h"/>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Touch_STMPE811.c"/>
+        </files>
+      </component>
+      <component Cgroup="Thermometer" Capiversion="1.0.0" Csub="LM75" condition="LPC541xx I2C">
+        <description>Thermometer interface for LM75</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB54110/Common/Thermometer_LM75.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPCXpresso54102 Board Support-->
+    <bundle Cbundle="LPCXpresso54102" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP LPCXpresso54102 Board</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC5410x CMSIS">
+        <description>LED driver for NXP LPCXpresso54102 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54102/Common/LED_LPCXpresso54102.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC5410x CMSIS">
+        <description>Buttons interface for NXP LPCXpresso54102 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54102/Common/Buttons_LPCXpresso54102.c"/>
+        </files>
+      </component>
+      <component Cgroup="LPCOpen" condition="LPC541xx CMSIS LPCOPEN_BSP"> <!-- must not have  Cversion="3.01.000" here as the bundle version rules -->
+      <description>LPCOpen board support code for LPCXpresso54102 board</description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BOARD_SUPPORT_LPCOPEN
+        </RTE_Components_h>
+        <files>
+          <file category="include" condition="LPC5410x"            name="LPCOpen/lpc5410x/lpcxpresso_54102/inc/"/>
+          <file category="header"  condition="LPC5410x"            name="LPCOpen/lpc5410x/lpcxpresso_54102/inc/board.h"/>
+          <file category="library" condition="LPC5410x CM4 ARMCC"  name="LPCOpen/lpc5410x/prj_lpcxpresso_54102/keil/lib_board_lpcxpresso_54102/keil_output/core_m4/lib_board_lpcxpresso_lpc54102.lib" src="LPCOpen/lpc5410x/lpcxpresso_54102/src/"/>
+          <file category="library" condition="LPC5410x CM0+ ARMCC" name="LPCOpen/lpc5410x/prj_lpcxpresso_54102/keil/lib_board_lpcxpresso_54102_m0/keil_output/core_m0/lib_board_lpcxpresso_54102_m0.lib" src="LPCOpen/lpc5410x/lpcxpresso_54102/src/"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPCXpresso5411x Board Support-->
+    <bundle Cbundle="LPCXpresso54114" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP LPCXpresso54114 Board</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC5411x CMSIS">
+        <description>LED driver for NXP LPCXpresso54114 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54114/Common/LED_LPCXpresso54114.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC5411x CMSIS">
+        <description>Buttons interface for NXP LPCXpresso54114 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54114/Common/Buttons_LPCXpresso54114.c"/>
+        </files>
+      </component>
+      <component Cgroup="LPCOpen" condition="LPC541xx CMSIS LPCOPEN_BSP">  <!-- must not have  Cversion="3.01.000" here as the bundle version rules -->
+      <description>LPCOpen board support code for LPCXpresso54114 board</description>
+        <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_BOARD_SUPPORT_LPCOPEN
+        </RTE_Components_h>
+        <files>
+          <file category="include" condition="LPC5411x"            name="LPCOpen/lpc5411x/brd_xpresso54114/inc/"/>
+          <file category="header"  condition="LPC5411x"            name="LPCOpen/lpc5411x/brd_xpresso54114/inc/board.h"/>
+          <file category="library" condition="LPC5411x CM4 ARMCC"  name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_board_lpcxpresso_54114/keil_output/core_m4/lib_board_lpcxpresso_54114.lib" src="LPCOpen/lpc5411x/lpcxpresso_54114/src/"/>
+          <file category="library" condition="LPC5411x CM0+ ARMCC" name="LPCOpen/lpc5411x/prj_xpresso54114/keil/lib_board_lpcxpresso_54114_m0/keil_output/core_m0/lib_board_lpcxpresso_54114_m0.lib" src="LPCOpen/lpc5411x/lpcxpresso_54114/src/"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPCXpresso54608 Board Support-->
+    <bundle Cbundle="LPCXpresso54608" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP LPCXpresso54608 Board</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC5460x CMSIS">
+        <description>LED driver for NXP LPCXpresso54608 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54608/Common/LED_LPCXpresso54608.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC5460x CMSIS">
+        <description>Buttons interface for NXP LPCXpresso54608 Board</description>
+        <files>
+          <file category="source" name="Boards/NXP/LPCXpresso54608/Common/Buttons_LPCXpresso54608.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Keil" name="MCB54110" revision="Ver 1.0" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB54110=ON">
+      <description>Keil MCB54110 Development Board</description>
+      <image small="Documents/mcb54110_small.png" large="Documents/mcb54110_large.png"/>
+      <book category="overview"  name="http://www.keil.com/boards2/keil/mcb54110/" title="MCB54110 Evaluation Board Web Page"/>
+      <book category="setup"     name="Documents/MCB54110_QSG.pdf" title="MCB54110 Quick Start Guide"/>
+      <!--
+      <book category="schematic" name="Documents/mcb54110v1-0-schematics.pdf" title="MCB54110 Schematics"/>
+      <book category="manual"    name="Documents/mcb54110.chm" title="User Manual"/>
+      -->
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC54114J256BD64"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC54110"/>
+      <feature type="PWR"             n="1"              name="USB Powered"/>
+      <feature type="ROM"             n="1"              name="8 MB SPI Flash"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Device interface (micro USB Device connectors)"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="LineIn"          n="1"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="LineOut"         n="1"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="ConnOther"       n="1"              name="On-board Speaker"/>
+      <feature type="Button"          n="4"              name="Push-Buttons: Reset, ISP0, ISP1, WAKEUP"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="NXP" name="LPCXpresso54102" revision="Rev. A" salesContact="http://www.nxp.com/support.html">
+      <description>NXP LPCXpresso54102 Board</description>
+      <image small="Boards/NXP/LPCXpresso54102/Documents/LPCXpresso54102_small.png"
+             large="Boards/NXP/LPCXpresso54102/Documents/LPCXpresso54102_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/demoboard/OM13077.html"                         title="LPCXpresso Board for the LPC54100 family of MCUs"/>
+      <book category="schematic" name="Boards/NXP/LPCXpresso54102/Documents/LPCX54102_Schematic_RevA.pdf" title="LPCXpresso54102 Schematics"/>
+      <book category="manual"    name="Boards/NXP/LPCXpresso54102/Documents/UM10855-om13077.pdf"          title="LPCXpresso54102 User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC54102J512BD64"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC54100"/>
+      <feature type="XTAL"            n="1200000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="LED"             n="3"              name="I/O Port RGB LED"/>
+      <feature type="Button"          n="3"              name="Reset, Wake, ISP button"/>
+      <feature type="ArduinoFF"       n="1"/>
+      <feature type="ConnOther"       n="1"              name="FTDI compatible interface"/>
+      <feature type="ConnOther"       n="1"              name="PMOD compatible interface"/>
+      <feature type="ODbg"            n="1"              name="LPC-Link2"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="NXP" name="LPCXpresso54114" revision="Rev. A" salesContact="http://www.nxp.com/support.html">
+      <description>NXP LPCXpresso54114 Board</description>
+      <image small="Boards/NXP/LPCXpresso54114/Documents/LPCXpresso54114_small.png"
+             large="Boards/NXP/LPCXpresso54114/Documents/LPCXpresso54114_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/demoboard/OM13089.html"                           title="LPCXpresso Board for the LPC54110 family of MCUs"/>
+      <book category="schematic" name="Boards/NXP/LPCXpresso54114/Documents/LPCX5411x_Schematic_Rev_A1.pdf" title="LPCXpresso54114 Schematics"/>
+      <book category="manual"    name="Boards/NXP/LPCXpresso54114/Documents/UM10973.pdf"                    title="LPCXpresso54114 User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC54114J256BD64"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC54110"/>
+      <feature type="XTAL"            n="1200000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="LED"             n="3"              name="I/O Port RGB LED"/>
+      <feature type="Button"          n="3"              name="Reset, Wake, ISP button"/>
+      <feature type="ArduinoFF"       n="1"/>
+      <feature type="ConnOther"       n="1"              name="FTDI compatible interface"/>
+      <feature type="ConnOther"       n="1"              name="PMOD compatible interface"/>
+      <feature type="ODbg"            n="1"              name="LPC-Link2"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="NXP" name="LPCXpresso54608" revision="Rev. A" salesContact="http://www.nxp.com/support.html">
+      <description>NXP LPCXpresso54608 Board</description>
+<!--
+      <image small="Boards/NXP/LPCXpresso54114/Documents/LPCXpresso54114_small.png"
+             large="Boards/NXP/LPCXpresso54114/Documents/LPCXpresso54114_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/demoboard/OM13077.html"                         title="LPCXpresso Board for the LPC54100 family of MCUs"/>
+      <book category="schematic" name="Boards/NXP/LPCXpresso54114/Documents/LPCX54114_Schematic_RevA.pdf" title="LPCXpresso54114 Schematics"/>
+      <book category="manual"    name="Boards/NXP/LPCXpresso54114/Documents/UM10855-om13077.pdf"          title="LPCXpresso54114 User Manual"/>
+-->
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC54608J512BD208"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC54600"/>
+      <feature type="XTAL"            n="1200000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="LED"             n="3"              name="I/O Port RGB LED"/>
+      <!--feature type="Button"          n="5"              name="Reset, ISP buttons, user"/-->
+      <!--feature type="ArduinoFF"       n="1"/-->
+      <!--feature type="ConnOther"       n="1"              name="FTDI compatible interface"/-->
+      <!--feature type="ConnOther"       n="1"              name="PMOD compatible interface"/-->
+      <feature type="ODbg"            n="1"              name="LPC-Link2"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- MCB54110 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Blinky" version="1.0.0">
+      <description>CMSIS-RTOS Blinky example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DualCore Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB54110/DualCore" version="1.0.0">
+      <description>DualCore Blinky example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Keil/MCB54110/emWin/Example" version="1.0.0">
+      <description>emWin Graphics simple example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Keil/MCB54110/emWin/GUIDemo" version="1.0.0">
+      <description>emWin Graphics Demo example</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Headphone.</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Keil/MCB54110/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="MCB54110" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <!-- LPCXpresso54102 Board -->
+      <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54102/Blinky">
+      <description>Blinky example</description>
+      <board name="LPCXpresso54102" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54102/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPCXpresso54102" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DualCore Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54102/DualCore">
+      <description>DualCore Blinky example</description>
+      <board name="LPCXpresso54102" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS DualCore Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54102/RTX_DualCore">
+      <description>CMSIS-RTOS based DualCore Blinky example</description>
+      <board name="LPCXpresso54102" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+
+    <!-- LPCXpresso54114 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54114/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPCXpresso54114" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS DualCore Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54114/RTX_DualCore">
+      <description>CMSIS-RTOS based DualCore Blinky example</description>
+      <board name="LPCXpresso54114" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54114/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="LPCXpresso54114" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54114/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="LPCXpresso54114" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+
+    <!-- LPCXpresso54608 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/LPCXpresso54608/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPCXpresso54608" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

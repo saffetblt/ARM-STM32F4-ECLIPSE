@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32650</name>
+   <url>http://www.mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32650 and MAX32651 Series Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>
+      <release version="1.1.0-a" date="2018-07-11">
+         - Updates to ARM startup
+      </release>
+      <release version="1.0.6" date="2018-07-11">
+         - Additional demo support
+         - Updates to API for portability
+         - Moved peripherals to predefined group in CMSIS.
+      </release>
+      <release version="1.0.5" date="2018-05-16">
+         - Added mem_utils to the startup group.
+      </release>
+      <release version="1.0.4" date="2018-05-15">
+         - Updated MAXUSB device library for the High-Speed USB supported on the MAX3265x family.
+         - Added USB examples.
+      </release>
+      <release version="1.0.3" date="2018-05-08">
+         - Updated MAXUSB device library for the High-Speed USB supported on the MAX3265x family.
+         - Added USB examples.
+      </release>
+      <release version="1.0.2" date="2018-04-17">
+         - Added device support for MAX32651 and MAX32652
+      </release>
+      <release version="1.0.1" date="2018-04-15">
+         - Corrected Keil MDK projects.
+         - Added __backspace support required for scanf.
+         - Reduced warnings in both IAR and Keil for the SDK.
+      </release>
+      <release version="1.0.0" date="2018-04-13">
+         - Added MAXUSB Component Libraries.
+         - Added SDHC Component Libraries.
+         - Fixed BSP dependencies to require I2C, SPI and UART.
+         - Fixed stdio issue to avoid a compiler issue.
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32651</keyword>
+      <keyword>MAX32650</keyword>
+      <keyword>MAX32650 Evaluation Kit</keyword>
+      <keyword>Maxim Device Support</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <packages>
+         <package name="CMSIS" vendor="ARM"/>
+      </packages>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+
+   <devices>
+      <family Dfamily="MAX3265X" Dvendor="Maxim:23">
+         <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="120000000" />
+         <compile header="Libraries/Device/Maxim/MAX32650/Include/max32650.h" />
+         <debug svd="SVD/MAX32650/max32650.svd" />
+         <description>
+           The MAX3265x device family is designed for wearable and portable medical and fitness applications. The devices contain an ARM Cortex-M4 processor with FPU, execute up to 120MHz and include an ADC, 3MB Flash, 1MB SRAM, external memory interfaces and a versatile set of on-chip peripherals.
+         </description>
+         <book name="https://datasheets.maximintegrated.com/en/ds/MAX32650.pdf" title="MAX32650 Datasheet"/>
+         <book name="Documents/MAX32650_User_Guide.pdf" title="MAX32650 User Guide"/>
+         <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+         <feature type="Timer" n="6" m="32" name="32-Bit Timers"/>
+         <feature type="DMA" n="6"/>
+         <feature type="IOs" n="106"/>
+         <feature type="WDT" n="2"/>
+         <feature type="RTC" n="32768"/>
+         <feature type="ADC" n="10" m="10" name="Sigma-Delta ADC, 7.8ksps, Two 5.5V tolerant inputs, Two 1.2V tolerant inputs"/>
+         <feature type="TimerOther" n="16" name="Channel Pulse Train Engine"/>
+         <feature type="SDIO" n="1" m="4" name="SD Host Controller (SDHC)"/>
+         <feature type="SPI" n="3" m="60000000" name="3 SPI Masters"/>
+         <feature type="SPI" n="1" m="30000000" name="1 SPI Slave"/>
+         <feature type="I2S" n="1"/>
+         <feature type="ExtBus" n="4" name="SPI-XiP RAM for external data/code memory expansion"/>
+         <feature type="ExtBus" n="8" name="Hyper Bus and AccelaBus for external data/code memory expansion"/>
+         <feature type="ExtBus" n="4" name="SPI-XIP Flash for external code memory expansion"/>
+         <feature type="I2C" n="2" name="3 I2C Masters"/>
+         <feature type="I2C" n="1" name="1 I2C Slave"/>
+         <feature type="UART" n="3" m="4000000"/>
+         <feature type="USBD" n="1" name="Hi Speed USB Device"/>
+         <feature type="VCC" n="1.08" m="1.32" name="Core Supply Voltage"/>
+         <feature type="VCC" n="1.8" m="3.6" name="1.8V - 3.6V VDD with I/O Supply Selectable Between 1.8V and 3.6V"/>
+         <feature type="Temp" n="-40" m="85"/>
+         <feature type="PowerMode" n="4" name="LP3 Run, LP2 DMA, LP1 Standby, LP0 Stop"/>
+         <feature type="CoreOther" n="1" name="CRC Calculation Unit"/>
+         <feature type="ClockOther" n="120000000" name="High Frequency Internal Relaxation Oscillator"/>
+         <feature type="ClockOther" n="40000000" name="Low Power 40MHz Internal Ring Oscillator"/>
+         <feature type="ClockOther" n="7372800" name="7.3728MHz Internal Ring Oscillator"/>
+
+         <device Dname="MAX32650">
+            <debugconfig default="swd" clock="1000000"/>
+            <compile header="Libraries/Device/Maxim/MAX32650/Include/max32650.h" define="MAX32650"/>
+            <memory id="IROM1" start="0x10000000" size="0x00300000" startup="1" default="1"/>
+            <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00100000" init="0" default="1"/>
+            <algorithm name="Flash/MAX32650.FLM" start="0x10000000" size="0x00300000" default="1" style="Keil" />
+            <algorithm  name="FlashIAR/FlashMAX32650.flash" start="0x10000000" size="0x00300000" RAMstart="0x20000000" RAMsize="0x00100000" default="0" style="IAR"/>
+            <debug svd="SVD/MAX32650/max32650.svd"/>
+         </device>
+         <device Dname="MAX32651">
+            <debugconfig default="swd" clock="1000000"/>
+            <compile header="Libraries/Device/Maxim/MAX32650/Include/max32650.h" define="MAX32650"/>
+            <memory id="IROM1" start="0x10000000" size="0x00300000" startup="1" default="1"/>
+            <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00100000" init="0" default="1"/>
+            <algorithm name="Flash/MAX32650.FLM" start="0x10000000" size="0x00300000" default="1" style="Keil" />
+            <algorithm  name="FlashIAR/FlashMAX32650.flash" start="0x10000000" size="0x00300000" RAMstart="0x20000000" RAMsize="0x00100000" default="0" style="IAR"/>
+            <debug svd="SVD/MAX32650/max32650.svd"/>
+         </device>
+         <device Dname="MAX32652">
+            <debugconfig default="swd" clock="1000000"/>
+            <compile header="Libraries/Device/Maxim/MAX32650/Include/max32650.h" define="MAX32650"/>
+            <memory id="IROM1" start="0x10000000" size="0x00300000" startup="1" default="1"/>
+            <memory id="IRAM1" access="rwx" start="0x20000000" size="0x00100000" init="0" default="1"/>
+            <algorithm name="Flash/MAX32650.FLM" start="0x10000000" size="0x00300000" default="1" style="Keil" />
+            <algorithm  name="FlashIAR/FlashMAX32650.flash" start="0x10000000" size="0x00300000" RAMstart="0x20000000" RAMsize="0x00100000" default="0" style="IAR"/>
+            <debug svd="SVD/MAX32650/max32650.svd"/>
+         </device>
+      </family>
+   </devices>
+
+   <!-- MAX32650 Evaluation Kit Board Support Package -->
+   <boards>
+      <board vendor="Maxim" name="MAX32650_EVKIT" revision="REV 3.0" salesContact="sales@maximintegrated.com" orderForm="http://www.maximintegrated.com/MAX32650">
+         <description>The MAX32650 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32650 Family of microcontrollers. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications. This Evaluation Kit supports both the MAX32650 and the MAX32651 (Trust Protection Unit (TPU) enabled).
+         </description>
+         <image small="http://www.mxim.net/microcontroller/pack/images/MAX32650_EvKit_Small.jpg" large="http://www.mxim.net/microcontroller/pack/images/MAX32650_EvKit_Large.jpg"/>
+         <book category="manual" name="https://datasheets.maximintegrated.com/en/ds/MAX32650EVKIT.pdf" title="MAX32650 Evaluation Kit Datasheet"/>
+         <book category="schematic" name="https://datasheets.maximintegrated.com/en/ds/MAX32650EVKIT.pdf" title="MAX32650 Evaluation Kit Datasheet"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32650"/>
+         <compatibleDevice Dvendor="Maxim:23" Dfamily="MAX3265X"/>
+         <feature type="PWR" n="3.3" m="5.5"/>
+         <feature type="Proto" n="13" m="11" name="13 x 11 Prototyping Area with one row connected to 1.8V PWR, one row connected to 3.3V PWR and one row connected to GND"/>
+         <feature type="Memory" n="16" name="MB SPI Flash"/>
+         <feature type="DIO" n="49" name="General Purpose IO on 3 x 16 pin headers, JH1-JH3, and 1 pin on JH4"/>
+         <feature type="AIO" n="4" name="Analog Inputs on 4 x 2 pin headers"/>
+         <feature type="SPI" n="4" name="3 x SPI Master and 1 x SPI Slave ports mapped on GPIO"/>
+         <feature type="I2C" n="3" name="Up to 3 x I2C Master Ports,  1 x I2C Slave (shares same I/O as each of the master ports)"/>
+         <feature type="RS232" n="4" name="1 UART, either UART0 or UART1, can be connected to the USB Micro B connector (CN1) via jumpers (JP10, JP12, JP13 and JP14). RTS/CTS hardware flow control are supported via USB as well. The remaining 3 UARTS are mapped to GPIO headers."/>
+         <feature type="LED" n="4" name="User LEDs"/>
+         <feature type="Other" n="1" name="External Bluetooth 4.0 Low Energy transceiver with chip antenna"/>
+         <feature type="GLCD" n="1" m="128.32" name="pixel graphic OLED display module. User connectable to SPI0 via jumpers"/>
+         <feature type="XTAL" n="120000000"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector (0.1 inch connector)"/>
+         <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      </board>
+
+      <board vendor="Maxim" name="MAX32651_EVKIT" revision="REV 3.0" salesContact="sales@maximintegrated.com" orderForm="http://www.maximintegrated.com/MAX32650">
+         <description>The MAX32651 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32651 microcontroller. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications. This Evaluation Kit supports the MAX32651 which includes the Trust Protection Unit (TPU).
+         </description>
+         <image small="http://www.mxim.net/microcontroller/pack/images/MAX32650_EvKit_Small.jpg" large="http://www.mxim.net/microcontroller/pack/images/MAX32650_EvKit_Large.jpg"/>
+         <book category="manual" name="https://datasheets.maximintegrated.com/en/ds/MAX32650EVKIT.pdf" title="MAX32650 Evaluation Kit Datasheet"/>
+         <book category="schematic" name="https://datasheets.maximintegrated.com/en/ds/MAX32650EVKIT.pdf" title="MAX32650 Evaluation Kit Datasheet"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32651"/>
+         <feature type="PWR" n="3.3" m="5.5"/>
+         <feature type="Proto" n="13" m="11" name="13 x 11 Prototyping Area with one row connected to 1.8V PWR, one row connected to 3.3V PWR and one row connected to GND"/>
+         <feature type="Memory" n="16" name="MB SPI Flash"/>
+         <feature type="DIO" n="49" name="General Purpose IO on 3 x 16 pin headers, JH1-JH3, and 1 pin on JH4"/>
+         <feature type="AIO" n="4" name="Analog Inputs on 4 x 2 pin headers"/>
+         <feature type="SPI" n="4" name="3 x SPI Master and 1 x SPI Slave ports mapped on GPIO"/>
+         <feature type="I2C" n="3" name="Up to 3 x I2C Master Ports,  1 x I2C Slave (shares same I/O as each of the master ports)"/>
+         <feature type="RS232" n="4" name="1 UART, either UART0 or UART1, can be connected to the USB Micro B connector (CN1) via jumpers (JP10, JP12, JP13 and JP14). RTS/CTS hardware flow control are supported via USB as well. The remaining 3 UARTS are mapped to GPIO headers."/>
+         <feature type="LED" n="4" name="User LEDs"/>
+         <feature type="Other" n="1" name="External Bluetooth 4.0 Low Energy transceiver with chip antenna"/>
+         <feature type="GLCD" n="1" m="128.32" name="pixel graphic OLED display module. User connectable to SPI0 via jumpers"/>
+         <feature type="XTAL" n="120000000"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector (0.1 inch connector)"/>
+         <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      </board>
+   </boards>
+   <!-- Evaluation Kit Example Programs -->
+   <examples>
+
+      <example name="ADC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/ADC">
+         <description>ADC Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/ADC.uvprojx"/>
+            <environment name="iar" load="IAR/ADC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="ADC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC" />
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Display</keyword>
+         </attributes>
+      </example>
+
+      <example name="AES" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/AES" >
+         <description>AES Demo</description>
+         <board name="MAX32651_EVKIT" vendor="Maxim" />
+         <project>
+            <environment name="uv" load="ARM/AES.uvprojx"/>
+            <environment name="iar" load="IAR/AES.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32651 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup" />
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="AES"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC" />
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Display</keyword>
+         </attributes>
+      </example>
+
+      <example name="CLCD" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/CLCD">
+         <description>CLCD Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/CLCD.uvprojx"/>
+            <environment name="iar" load="IAR/CLCD.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="CLCD"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC" />
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Display</keyword>
+         </attributes>
+      </example>
+
+      <example name="EMCC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/EMCC">
+         <description>External Memory Cache Controller Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/EMCC.uvprojx"/>
+            <environment name="iar" load="IAR/EMCC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="EMCC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Display</keyword>
+         </attributes>
+      </example>
+
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Hello_World.uvprojx"/>
+            <environment name="iar" load="Hello_World.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC" />
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/UART">
+         <description>UART Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/UART.uvprojx"/>
+            <environment name="iar" load="IAR/UART.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="SDHC_FAT" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/SDHC_FAT">
+         <description>SDHC Fat File System Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SDHC_FAT.uvprojx"/>
+            <environment name="iar" load="IAR/SDHC_FAT.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SDHC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <component Cbundle="MAXSDHC" Cclass="MAXSDHC" Cgroup="MAXSDHC"/>
+            <component Cbundle="MAXFAT" Cclass="FAT32" Cgroup="MAXFAT"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_CDCACM" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/USB_CDCACM">
+         <description>USB CDC ACM Device Class Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_CDCACM.uvprojx"/>
+            <environment name="iar" load="IAR/USB_CDCACM.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <component Cbundle="MAXUSB_HS" Cclass="MAXUSB_HS" Cgroup="MAXUSB_HS"/>
+            <keyword>USB</keyword>
+            <keyword>CDC</keyword>
+            <keyword>ACM</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_HIDKeyBoard" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/USB_HIDKeyBoard">
+         <description>USB HID Keyboard Device Class Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_HIDKeyBoard.uvprojx"/>
+            <environment name="iar" load="IAR/USB_HIDKeyBoard.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <component Cbundle="MAXUSB_HS" Cclass="MAXUSB_HS" Cgroup="MAXUSB_HS"/>
+            <keyword>USB</keyword>
+            <keyword>HID</keyword>
+            <keyword>Keyboard</keyword>
+         </attributes>
+      </example>
+
+      <example name="USB_MassStorage" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/USB_MassStorage">
+         <description>USB Mass Storage Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/USB_MassStorage.uvprojx"/>
+            <environment name="iar" load="IAR/USB_MassStorage.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <component Cbundle="MAXUSB_HS" Cclass="MAXUSB_HS" Cgroup="MAXUSB_HS"/>
+            <keyword>USB</keyword>
+            <keyword>HID</keyword>
+            <keyword>Keyboard</keyword>
+         </attributes>
+      </example>
+
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32650_EVKIT/Watchdog">
+         <description>Watchdog Timer Demo</description>
+         <board name="MAX32650_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Watchdog.uvprojx"/>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32650 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Watchdog"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+            <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+            <component Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+   </examples>
+
+   <conditions>
+      <!-- MAX32650 Device Condition -->
+      <condition id="MAX32650 Device">
+         <description> Maxim Integrated MAX32650 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32650"/>
+      </condition>
+
+      <!-- MAX32651 Device Condition -->
+      <condition id="MAX32651 Device">
+         <description> Maxim Integrated MAX32651 device</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32651"/>
+      </condition>
+
+      <!-- MAX32651 Device Condition -->
+      <condition id="MAX32652 Device">
+         <description> Maxim Integrated MAX32652 device</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32652"/>
+      </condition>
+
+      <!-- MAX32650/51/52 CMSIS-CORE Condition - This accepts any of the three device conditions -->
+      <condition id="MAX32650 CMSIS-CORE">
+         <description>Maxim MAX32650 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <accept condition="MAX32650 Device"/>
+         <accept condition="MAX32651 Device"/>
+         <accept condition="MAX32652 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <condition id="MAX32651 CMSIS-CORE">
+         <description>Maxim MAX32650 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <require condition="MAX32651 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <!-- Keil/ARM Compiler Condition -->
+      <condition id="Startup ARM">
+         <description>Startup files for the Keil/ARMCC Toolchains</description>
+         <require Tcompiler="ARMCC"/>
+      </condition>
+
+      <!-- GNUC/Eclipse Compiler Condition -->
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <!-- IAR Embedded Workbench Compiler Condition -->
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+      <!-- ADC Peripheral Condition -->
+      <condition id="MAX32650 CMSIS ADC">
+         <description>ADC Interface</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- AES - MAX32651 Only -->
+      <condition id="MAX32651 CMSIS AES">
+         <description>Advanced Encryption Standard</description>
+         <require condition="MAX32651 Device"/>
+         <require condition="MAX32651 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Color LCD/TFT Peripheral -->
+      <condition id="MAX32650 CMSIS CLCD">
+         <description>Color LCD-TFT Controller</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Standard DMA Peripheral -->
+      <condition id="MAX32650 CMSIS DMA">
+         <description>Standard DMA</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- External Memory Cache Controller Peripheral -->
+      <condition id="MAX32650 CMSIS EMCC">
+         <description>External Memory Cache Controller (EMCC)</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Hyperbus Peripheral -->
+      <condition id="MAX32650 CMSIS HYPER">
+         <description>Hyperbus/Xcella Bus</description>
+         <require condition="MAX32650 CMSIS SPI"/>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- FLash IAP Peripheral -->
+      <condition id="MAX32650 CMSIS IAP">
+         <description>Internal Flash In-Application Programming</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- I2C -->
+      <condition id="MAX32650 CMSIS I2C">
+         <description>I2C Interface</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- I2S -->
+      <condition id="MAX32650 CMSIS I2S">
+         <description>I2S Interface</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- OWM -->
+      <condition id="MAX32650 CMSIS OWM">
+         <description>1-Wire Master Interface</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- PT -->
+      <condition id="MAX32650 CMSIS PT">
+         <description>Pulse Train Engine</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32650 CMSIS RTC">
+         <description>Real-Time Clock</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32650 CMSIS SDHC">
+         <description>SD Host Controller</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32650 CMSIS SPI XIP RAM">
+         <description>SPI-XiP RAM Interface</description>
+         <require condition="MAX32650 CMSIS SPI"/>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32650 CMSIS SPI XIP FLASH">
+         <description>SPI-XiP Flash Interface</description>
+         <require condition="MAX32650 CMSIS SPI"/>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32650 CMSIS SPI">
+         <description>SPI Interface</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Timer -->
+      <condition id="MAX32650 CMSIS TIMER">
+         <description>Timers</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- UART -->
+      <condition id="MAX32650 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <!-- WDT -->
+      <condition id="MAX32650 CMSIS WDT">
+         <description>Watchdog Timers</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32650 BSP">
+         <description>Board Support Package</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+         <accept condition="MAX32650 Device"/>
+         <accept condition="MAX32651 Device"/>
+         <accept condition="MAX32652 Device"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+      </condition>
+
+      <condition id="MAX32651 BSP">
+         <description>Board Support Package</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+         <require condition="MAX32651 Device"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="SPI"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="I2C"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="UART"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash"/>
+      </condition>
+
+      <condition id="Maxim USB High-Speed">
+         <description>MAXUSB Libraries</description>
+         <require Dvendor="Maxim:23"/>
+         <require condition="MAX32650 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="Maxim SDHC">
+         <description>Maxim SDHC Libraries</description>
+         <require Dvendor="Maxim:23"/>
+         <require condition="MAX32650 CMSIS-CORE"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="SDHC"/>
+      </condition>
+
+      <condition id="Maxim FAT32">
+         <description>FAT/exFAT Filesystem</description>
+         <require condition="MAX32650 CMSIS-CORE"/>
+         <require Cclass="Device" Cgroup="PeriphDriver" Csub="SDHC"/>
+      </condition>
+
+   </conditions>
+
+   <components>
+
+      <!-- MAX32650 Device Selection -->
+      <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0-a" condition="MAX32650 Device" >
+         <description>System Startup for Maxim MAX32650 Microcontroller</description>
+         <RTE_Components_h>
+               <!-- the following content goes into file 'RTE_Components.h' -->
+               #define TARGET MAX32650   /* Target Device Part Number */
+               #define TARGET_REV 0x4131 /* Target Device Revision Number */
+               #define TARGET_NUM 32650 /* Just the number of the target part */
+         </RTE_Components_h>
+         <files>
+            <!-- Include paths for the tools -->
+            <file category="include" name="Libraries/Device/Maxim/MAX32650/Include/" version="1.1.0-a" />
+            <file category="include" name="Libraries/MAX32650PeriphDriver/Include/" version="1.1.0-a" />
+
+            <!-- Keil/ARM device startup file and sub_main to call SystemInit -->
+            <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/startup_max32650.s" condition="Startup ARM" />
+            <!-- <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/sub_main.c" condition="Startup ARM" /> -->
+            <!-- GNUC/Eclipse device startup file -->
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/GCC/startup_max32650.S" condition="Startup GCC" />
+
+            <!-- IAR device startup file, low level init and cmain.s -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32650/Source/IAR/startup_max32650.s" condition="Startup IAR" version="1.1.0-a" />
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/low_level_init.c" condition="Startup IAR" />
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/cmain.s" condition="Startup IAR" />
+
+            <!-- System, NVIC and device header files common to all platforms -->
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/system_max32650.c" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c" version="1.1.0-a" />
+            <file category="header" attr="config" name="Libraries/Device/Maxim/MAX32650/Include/max32650.h" version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/gpio.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/icc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/lp.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_assert.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_delay.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_lock.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_pins.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_sys.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/rtc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/sema.c"  version="1.1.0-a" />
+         </files>
+      </component>
+
+      <!-- MAX32651 Device Selection -->
+      <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0-a" condition="MAX32651 Device" >
+         <description>System Startup for Maxim MAX32651 Microcontroller</description>
+         <RTE_Components_h>
+               <!-- the following content goes into file 'RTE_Components.h' -->
+               #define TARGET MAX32650   /* Target Device Part Number */
+               #define TARGET_REV 0x4131 /* Target Device Revision Number */
+               #define TARGET_NUM 32650 /* Just the number of the target part */
+         </RTE_Components_h>
+         <files>
+            <!-- Include paths for the tools -->
+            <file category="include" name="Libraries/Device/Maxim/MAX32650/Include/" version="1.1.0-a" />
+            <file category="include" name="Libraries/MAX32650PeriphDriver/Include/" version="1.1.0-a" />
+
+            <!-- Keil/ARM device startup file and sub_main to call SystemInit -->
+            <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/startup_max32650.s" condition="Startup ARM" />
+            <!-- <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/sub_main.c" condition="Startup ARM" /> -->
+
+            <!-- GNUC/Eclipse device startup file -->
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/GCC/startup_max32650.S" condition="Startup GCC" />
+
+            <!-- IAR device startup file, low level init and cmain.s -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32650/Source/IAR/startup_max32650.s" condition="Startup IAR" version="1.1.0-a" />
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/low_level_init.c" condition="Startup IAR" />
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/cmain.s" condition="Startup IAR" />
+
+            <!-- System, NVIC and device header files common to all platforms -->
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/system_max32650.c" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c" version="1.1.0-a" />
+            <file category="header" attr="config" name="Libraries/Device/Maxim/MAX32650/Include/max32650.h" version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/gpio.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/icc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/lp.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mem_utils.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_assert.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_delay.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_lock.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_pins.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_sys.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/rtc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/sema.c"  version="1.1.0-a" />
+         </files>
+      </component>
+
+      <!-- MAX32652 Device Selection -->
+      <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0-a" condition="MAX32652 Device">
+         <description>System Startup for Maxim MAX32652 Microcontroller</description>
+         <RTE_Components_h>
+               <!-- the following content goes into file 'RTE_Components.h' -->
+               #define TARGET MAX32650   /* Target Device Part Number */
+               #define TARGET_REV 0x4131 /* Target Device Revision Number */
+               #define TARGET_NUM 32650 /* Just the number of the target part */
+         </RTE_Components_h>
+         <files>
+            <!-- Include paths for the tools -->
+            <file category="include" name="Libraries/Device/Maxim/MAX32650/Include/" version="1.1.0-a" />
+            <file category="include" name="Libraries/MAX32650PeriphDriver/Include/" version="1.1.0-a" />
+
+            <!-- Keil/ARM device startup file and sub_main to call SystemInit -->
+            <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/startup_max32650.s" condition="Startup ARM" />
+            <!-- <file category="sourceAsm" attr="config" version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/ARM/sub_main.c" condition="Startup ARM" /> -->
+
+            <!-- GNUC/Eclipse device startup file -->
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/GCC/startup_max32650.S" condition="Startup GCC" />
+
+            <!-- IAR device startup file, low level init and cmain.s -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32650/Source/IAR/startup_max32650.s" condition="Startup IAR" version="1.1.0-a" />
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/low_level_init.c" condition="Startup IAR" />
+            <file category="sourceAsm" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/IAR/cmain.s" condition="Startup IAR" />
+
+            <!-- System, NVIC and device header files common to all platforms -->
+            <file category="sourceC" attr="config"  version="1.1.0-a" name="Libraries/Device/Maxim/MAX32650/Source/system_max32650.c" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c" version="1.1.0-a" />
+            <file category="header" attr="config" name="Libraries/Device/Maxim/MAX32650/Include/max32650.h" version="1.1.0-a"  />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/gpio.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/icc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/lp.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_assert.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_delay.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_lock.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_pins.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mxc_sys.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/rtc.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/nvic_table.c"  version="1.1.0-a" />
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/sema.c"  version="1.1.0-a" />
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="ADC" Cversion="1.1.0-a" condition="MAX32650 CMSIS ADC"> <description>ADC Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/adc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="AES" Cversion="1.1.0-a" condition="MAX32651 CMSIS AES" >
+         <description>AES Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/crypto.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/maa.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/mem_utils.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="CLCD" condition="MAX32650 CMSIS CLCD" Cversion="1.1.0-a">
+         <description>CLCD-TFT Controller</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/clcd.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="DMA" condition="MAX32650 CMSIS DMA" Cversion="1.1.0-a">
+         <description>Standard DMA</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/dma.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="EMCC" condition="MAX32650 CMSIS EMCC" Cversion="1.1.0-a">
+         <description>External Memory Cache Controller (EMCC)</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/emcc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="HyperBus" condition="MAX32650 CMSIS HYPER" Cversion="1.1.0-a">
+         <description>HyperBus/Xcella Bus Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/hpb.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/emcc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="Flash IAP" condition="MAX32650 CMSIS IAP" Cversion="1.1.0-a">
+         <description>In-Application Programming for Internal Flash Memory</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/flc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2C" condition="MAX32650 CMSIS I2C" Cversion="1.1.0-a">
+         <description>I2C Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/i2c.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="I2S" condition="MAX32650 CMSIS I2S" Cversion="1.1.0-a">
+         <description>I2S Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/i2s.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="1-Wire" condition="MAX32650 CMSIS OWM" Cversion="1.1.0-a">
+         <description>1-Wire Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/owm.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="Pulse Train" condition="MAX32650 CMSIS PT" Cversion="1.1.0-a">
+         <description>Pulse Train Engine</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/pt.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="RTC" condition="MAX32650 CMSIS RTC" Cversion="1.1.0-a">
+         <description>Real-Time Clock</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/rtc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="SDHC" condition="MAX32650 CMSIS SDHC" Cversion="1.1.0-a">
+         <description>SD Host Controller</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/sdhc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="SPI" condition="MAX32650 CMSIS SPI" Cversion="1.1.0-a">
+         <description>SPI Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/spi.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/spi17y.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/spid.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP RAM" condition="MAX32650 CMSIS SPI XIP RAM" Cversion="1.1.0-a">
+         <description>SPI eXecute In Place (XIP) Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/spixc.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/emcc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="XiP Flash" condition="MAX32650 CMSIS SPI XIP FLASH" Cversion="1.1.0-a">
+         <description>SPI eXecute In Place (XIP) Interface For External Code Execution</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/spixc.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="Timers" condition="MAX32650 CMSIS TIMER" Cversion="1.1.0-a">
+         <description>32-Bit Timers</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/tmr.c" version="1.1.0-a"/>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/tmr_utils.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="Watchdog" condition="MAX32650 CMSIS WDT" Cversion="1.1.0-a">
+         <description>Watchdog Timers</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/wdt.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <component Cclass="Device" Cgroup="PeriphDriver" Csub="UART" condition="MAX32650 CMSIS UART" Cversion="1.1.0-a">
+         <description>UART Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32650PeriphDriver/Source/uart.c" version="1.1.0-a"/>
+         </files>
+      </component>
+
+      <bundle Cbundle="MAX32650 KIT BSP" Cclass="BSP" Cversion="1.1.0-a">
+         <description>MAX32650 Evaluation Kit Board Support Package</description>
+         <doc>https://datasheets.maximintegrated.com/en/ds/MAX32650-EVKIT.pdf</doc>
+         <component Cgroup="Board Support" condition="MAX32650 BSP">
+            <description>MAX32650 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define BOARD EvKit_V1 /* Target Board */
+            </RTE_Components_h>
+            <files>
+               <file category="doc" name="https://datasheets.maximintegrated.com/en/ds/MAX32650EVKIT.pdf"/>
+               <file category="include" name="Boards/Maxim/MAX32650_EVKIT/Common/EvKit_V1/Include/"/>
+               <file category="include" name="Boards/Maxim/MAX32650_EVKIT/Common/Include/"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32650_EVKIT/Common/EvKit_V1/Source/board.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32650_EVKIT/Common/Source/stdio.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32650_EVKIT/Common/Source/pb.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32650_EVKIT/Common/Source/led.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32650_EVKIT/Common/Source/mx25.c" version="1.1.0-a"/>
+           </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="MAXUSB_HS" Cclass="MAXUSB_HS" Cversion="1.1.0-a">
+         <description>MAXUSB Libraries for the Maxim Integrated ARM Cortex Family of Microcontrollers</description>
+         <doc>https://datasheets.maximintegrated.com/en/ds/MAX32650-EVKIT.pdf</doc>
+         <component Cgroup="MAXUSB_HS" condition="Maxim USB High-Speed">
+            <description>Maxim Integrated USB libraries for the ARM Cortex.</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/" version="1.1.0-a"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/" version="1.1.0-a"/>
+               <file category="include" name="Libraries/MAXUSB/include/devclass/" version="1.1.0-a"/>
+               <file category="include" name="Libraries/MAXUSB/include/enumerate/" version="1.1.0-a"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/musbhsfc/" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/musbhsfc/usb.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/usb_event.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/fifo.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/cdc_acm.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/msc.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_kbd.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_raw.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/enumerate/enumerate.c" version="1.1.0-a"/>
+            </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="MAXSDHC" Cclass="MAXSDHC" Cversion="1.1.0-a">
+         <description>SDHC Library for the MAX32650 Device Family</description>
+         <doc>Libraries/SDHC/ff13/documents/00index_e.html</doc>
+         <component Cgroup="MAXSDHC" condition="Maxim SDHC">
+            <description>SDHC Library for the MAX32650 Part Family</description>
+            <files>
+               <file category="header" attr="config" name="Libraries/SDHC/Source/sdhc_lib.h" version="1.1.0-a"/>
+               <file category="header" name="Libraries/SDHC/Source/sdhc_resp_regs.h" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/SDHC/Source/sdhc_lib.c" version="1.1.0-a"/>
+            </files>
+         </component>
+      </bundle>
+
+      <bundle Cbundle="MAXFAT" Cclass="FAT32" Cversion="1.1.0-a">
+         <description>FAT exFAT Filesystem Library</description>
+         <doc>Libraries/SDHC/ff13/documents/00index_e.html</doc>
+         <component Cgroup="MAXFAT" condition="Maxim FAT32">
+            <description>Fat Filesystem for SDHC on the MAX32650 Device Family</description>
+            <files>
+               <file category="header" attr="config" name="Libraries/SDHC/ff13/Source/ffconf.h" version="1.1.0-a"/>
+               <file category="header" name="Libraries/SDHC/ff13/Source/ff.h" version="1.1.0-a"/>
+               <file category="header" name="Libraries/SDHC/ff13/Source/diskio.h" version="1.1.0-a"/>
+               <file category="header" name="Libraries/SDHC/ff13/Source/integer.h" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/diskio.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ff.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffsystem.c" version="1.1.0-a"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffunicode.c" version="1.1.0-a"/>
+            </files>
+         </component>
+      </bundle>
+
+   </components>
+
+</package>

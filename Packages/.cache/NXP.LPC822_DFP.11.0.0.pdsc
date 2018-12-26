@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC822_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for LPC822</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">NXP CMSIS packs based on MCUXpresso SDK 2.4.2. Fixed missing flash algorithms for LPC8xx CMSIS packs.</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="LPC822" Dvendor="NXP:11">
+      <description>The LPC82x are an ARM Cortex-M0+ based, low-cost 32-bit MCU family operating at CPU frequencies of up to 30 MHz. The LPC82x support up to 32 KB of flash memory and 8 KB of SRAM.The peripheral complement of the LPC82x includes a CRC engine, four I2C-bus interfaces, up to three USARTs, up to two SPI interfaces, one multi-rate timer, self-wake-up timer, and state-configurable timer with PWM function (SCTimer/PWM), a DMA, one 12-bit ADC and one analog comparator, function-configurable I/O ports througha switch matrix, an input pattern match engine, and up to 29 general-purpose I/O pins.</description>
+      <device Dname="LPC822">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="30000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/LPC822_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x4000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x10000000" size="0x1000" access="rw" default="1"/>
+        <algorithm name="arm/LPC8xx_16.FLM" start="0x00000000" size="0x00040000" RAMstart="0x10000000" RAMsize="0x00002000" default="1"/>
+        <debug svd="LPC822.xml"/>
+        <variant Dvariant="LPC822M101JHI33">
+          <compile header="fsl_device_registers.h" define="CPU_LPC822M101JHI33"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC822M101JHI33/LPC822_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="LPC822M101JDH20">
+          <compile header="fsl_device_registers.h" define="CPU_LPC822M101JDH20"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC822M101JDH20/LPC822_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.common">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.common_AND_driver.inputmux_connections">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections"/>
+    </condition>
+    <condition id="device.LPC822_AND_utility.debug_console_lite">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.lpc_miniusart">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+    </condition>
+    <condition id="device.LPC822">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.common_AND_driver.swm_connections">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.common_AND_driver.syscon_connections">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections"/>
+    </condition>
+    <condition id="device.LPC822_AND_driver.common_AND_driver.power_no_lib">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+    </condition>
+    <condition id="device.LPC822_AND_device.LPC822_CMSIS_AND_driver.clock_AND_driver.reset">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC822_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+    </condition>
+    <condition id="device.LPC822_AND_component.miniusart_adapter_AND_device.LPC822_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.reset_AND_driver.swm_AND_utility.debug_console_lite">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC822_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+    </condition>
+    <condition id="device.LPC822_AND_CMSIS_Include_core_cm0plus">
+      <accept Dname="LPC822*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>Inputmux_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_inputmux_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux" Cversion="2.0.0" condition="device.LPC822_AND_driver.common_AND_driver.inputmux_connections">
+      <description>INPUTMUX Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_inputmux.h"/>
+        <file category="sourceC" name="drivers/fsl_inputmux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dma" Cversion="2.0.0" condition="device.LPC822_AND_driver.common">
+      <description>DMA Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dma.c"/>
+        <file category="header" name="drivers/fsl_dma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_spi.h"/>
+        <file category="sourceC" name="drivers/fsl_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="device.LPC822_AND_utility.debug_console_lite">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter" Cversion="1.0.0" condition="device.LPC822_AND_driver.lpc_miniusart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/miniusart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="device.LPC822">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console_lite/fsl_debug_console.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.0" condition="device.LPC822_AND_driver.common">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wwdt.h"/>
+        <file category="sourceC" name="drivers/fsl_wwdt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wkt" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>WKT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wkt.h"/>
+        <file category="sourceC" name="drivers/fsl_wkt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections" Cversion="2.0.0" condition="device.LPC822_AND_driver.common">
+      <description>Swm_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_swm_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sctimer" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>SCT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sctimer.h"/>
+        <file category="sourceC" name="drivers/fsl_sctimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm" Cversion="2.0.0" condition="device.LPC822_AND_driver.common_AND_driver.swm_connections">
+      <description>SWM Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_swm.h"/>
+        <file category="sourceC" name="drivers/fsl_swm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>MRT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_mrt.h"/>
+        <file category="sourceC" name="drivers/fsl_mrt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.2" condition="device.LPC822_AND_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections" Cversion="2.0.0" condition="device.LPC822_AND_driver.common">
+      <description>Syscon_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_syscon_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon" Cversion="2.0.0" condition="device.LPC822_AND_driver.common_AND_driver.syscon_connections">
+      <description>SYSCON Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_syscon.c"/>
+        <file category="header" name="drivers/fsl_syscon.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pint" Cversion="2.0.3" condition="device.LPC822_AND_driver.common">
+      <description>PINT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_pint.h"/>
+        <file category="sourceC" name="drivers/fsl_pint.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.2" condition="device.LPC822_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_acomp" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>LPC_ACOMP Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_acomp.h"/>
+        <file category="sourceC" name="drivers/fsl_acomp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.2.0" condition="device.LPC822_AND_driver.common">
+      <description>ADC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_adc.h"/>
+        <file category="sourceC" name="drivers/fsl_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_reset.h"/>
+        <file category="sourceC" name="drivers/fsl_reset.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power" Cversion="2.0.0" condition="device.LPC822_AND_driver.common">
+      <description>Power Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_power.h"/>
+        <file category="sourceC" name="drivers/fsl_power.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.LPC822_AND_driver.common_AND_driver.power_no_lib">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iocon" Cversion="2.0.0" condition="device.LPC822_AND_driver.common">
+      <description>IOCON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_iocon.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart" Cversion="2.0.1" condition="device.LPC822_AND_driver.common">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_usart.h"/>
+        <file category="sourceC" name="drivers/fsl_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.LPC822_AND_device.LPC822_CMSIS_AND_driver.clock_AND_driver.reset">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="LPC822" Cversion="1.0.0" condition="device.LPC822_AND_component.miniusart_adapter_AND_device.LPC822_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.reset_AND_driver.swm_AND_utility.debug_console_lite" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="LPC822_startup" Cversion="1.0.0" condition="device.LPC822_AND_CMSIS_Include_core_cm0plus">
+      <description/>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_LPC822.s"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_LPC822.s"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/LPC822_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/LPC822_ram.scf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/LPC822_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/LPC822_ram.icf"/>
+        <file category="header" attr="config" name="fsl_device_registers.h"/>
+        <file category="header" attr="config" name="LPC822.h"/>
+        <file category="header" attr="config" name="LPC822_features.h"/>
+        <file category="sourceC" attr="config" name="system_LPC822.c"/>
+        <file category="header" attr="config" name="system_LPC822.h"/>
+      </files>
+    </component>
+  </components>
+</package>

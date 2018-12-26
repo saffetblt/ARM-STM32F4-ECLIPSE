@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.2"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>AnalogDevices</vendor>
+	<name>ADuCM36x_DFP</name>
+	<description>Analog Devices ADuCM36x Device Support and Examples</description>
+	<url>http://download.analog.com/tools/EZBoards/CM36x/Releases/</url>
+	<supportContact>http://www.analog.com/en/content/technical_support_page/fca.html</supportContact>
+	<license>License/2017-12-08-CM36xCPF Click Thru SLA.txt</license>
+	<releases>
+		<release version="1.0.3">
+      Additional support for ADuCM362/3 and bug fixes
+    </release>
+		<release date="2017-12-11" version="1.0.2">
+      Compatible with CrossCore Embedded Studio
+    </release>
+		<release version="1.0.1">
+      Fixed errors due to new ADI website
+    </release>
+		<release version="1.0.0">
+      Initial Release
+    </release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>Analog Devices</keyword>
+		<keyword>ADI</keyword>
+		<keyword>Device Support</keyword>
+		<keyword>Board Support</keyword>
+		<keyword>Device Family Package Analog Devices</keyword>
+		<keyword>ADuCM360</keyword>
+		<keyword>ADuCM361</keyword>
+		<keyword>ADuCM362</keyword>
+		<keyword>ADuCM363</keyword>
+	</keywords>
+	<devices>
+		<family Dfamily="ADuCM36x Series" Dvendor="Analog Devices:1">
+			<processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="16000000"/>
+			<book    name="Documents/DUI0552A_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+			<book    name="Documents/AN-1160.pdf"                 title="Cortex-M3 Based ADuCxxx Serial Download Protocol"/>
+			<book    name="Documents/AN-1159.pdf"                 title="I2C-Compatible Interface"/>
+			<book    name="Documents/AN-1111.pdf"                 title="Options for Minimizing Power Consumption When Using the ADuCM360/ADuCM361"/>
+			<book    name="Documents/CN0221.pdf"                  title="USB-Based, Thermocouple Temperature Measurement System"/>
+			<book    name="Documents/CN0267.pdf"                  title="Complete 4 mA to 20 mA Loop Powered Field Instrument with HART Interface"/>
+			<book    name="Documents/CN0300.pdf"                  title="12-Bit, 4-20mA Loop-Powered Thermocouple Measurement System"/>
+			<book    name="Documents/CN0319.pdf"                  title="14-Bit, 4-20 mA, Loop Powered, Thermocouple Temperature Measurement System"/>
+			<feature type="AnalogOther"   n="2"       name="Programmable current source" />
+			<feature type="AnalogOther"   n="1"       name="Precision voltage reference" />
+			<feature type="AnalogOther"   n="1"       name="VBias Generator" />
+			<feature type="AnalogOther"   n="1"       name="Ground Switch" />
+			<feature type="AnalogOther"   n="1"       name="Diagnostic current sources" />
+			<feature type="DAC"           n="1"       m="12"/>
+			<feature type="PWM"           n="6"       m="16"/>
+			<feature type="Memory"        n="8192"    name="8kB SRAM"/>
+			<feature type="SPI"           n="2"       m="8000000"/>
+			<feature type="I2C"           n="2"/>
+			<feature type="UART"          n="1"       m="500000"/>
+			<feature type="IOs"           n="19"/>
+			<feature type="Timer"         n="2"       m="16"/>
+			<feature type="WDT"           n="1"/>
+			<feature type="TimerOther"    n="1"       name="32 bitWake-up timer"/>
+			<feature type="DMA"           n="12"/>
+			<feature type="NVIC"          n="39"/>
+			<feature type="TempSens"      n="1"/>
+			<feature type="Temp"          n="-40"     m="125"/>
+			<feature type="VCC"           n="1.80"    m="3.60"/>
+			<feature type="CSP"           n="48"/>
+			<subFamily DsubFamily="ADuCM360_1">
+				<feature type="Memory" n="131072" name="128kB Flash memory"/>
+				<memory    id="IROM1"                    start="0x00000000" size="0x20000" startup="1" default="1"/>
+				<memory    id="IRAM1"                    start="0x20000000" size="0x2000"  init ="1" default="1"/>
+				<algorithm name="Flash/ADUCMxxx_128.FLM" start="0x00000000" size="0x20000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+				<book name="Documents/ADuCM360_361.pdf"                                 title="ADuCM360 Data Sheet"/>
+				<book name="Documents/ADuCM360_361_silicon_anomaly.pdf"                 title="ADuCM360 Silicon Anomalies"/>
+				<book name="Documents/UG-367.pdf"                                       title="ADuCM360 Hardware Reference Manual"/>
+				<book name="Documents/ADuCM360_361_Digital_Filter_Response_Model.xlsx"  title="ADuCM360 Digital Filter Response Model"/>
+				<book name="Documents/ADuCM360_361_IDD_calculator_RevD.xlsx"            title="ADuCM360 IDD calculator"/>
+				<book name="Documents/UG-457.pdf"                                       title="ADuCM360 Users Guide"/>
+				<!-- ****************************** ADuCM36x ****************************** -->
+				<device Dname="ADuCM360">
+					<description>
+The ADuCM360 is a fully integrated, 3.9 kSPS, 24-bit data acquisition system that incorporates dual high performance, multichannel sigma-delta ADCs,a 32-bit ARM Cortex-M3 processor, and Flash/EE memory on a single chip.
+The ADuCM360 is designed for direct interfacing to external precision sensors in both wired and battery-powered applications.
+					</description>
+					<feature type="ADC"           n="15"      m="24"    name="Ultra high precision, Multichannel, Dual 24-bit ADCs"/>
+					<compile header="Device/Include/ADuCM360.h"  define="__ADUCM360__"/>
+					<debug      svd="SVD/ADuCM360.svd"/>
+				</device>
+				<device Dname="ADuCM361">
+					<description>
+The ADuCM361 is a fully integrated, 3.9 kSPS, 24-bit data acquisition system incorporating high performance multi-channel sigma-delta ADC, 32-bit ARM Cortex-M3 MCU, and Flash/EE memory on a single chip.
+The ADuCM361 is designed for direct interfacing to external precision sensors in both wired and battery-powered applications.
+					</description>
+					<feature type="ADC"           n="15"      m="24"    name="Ultra high precision, Multichannel, 24-bit ADC"/>
+					<compile header="Device/Include/ADuCM361.h"  define="__ADUCM361__"/>
+					<debug      svd="SVD/ADuCM361.svd"/>
+				</device>
+			</subFamily>
+			<subFamily DsubFamily="ADuCM362_3">
+				<feature type="Memory"  n="262144" name="256kB Flash memory"/>
+				<memory    id="IROM1"                    start="0x00000000" size="0x20000" startup="1" default="1"/>
+				<memory    id="IRAM1"                    start="0x20000000" size="0x6000"  init ="1" default="1"/>
+				<algorithm name="Flash/ADUCMxxx_256.FLM" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+				<book name="Documents/ADuCM362_363.pdf"                                   title="ADuCM362 Data Sheet"/>
+				<book name="Documents/ADuCM362_363_Hardware_Reference_Manual_UG_1048.pdf" title="ADuCM362 Hardware Reference Manual"/>
+				<device Dname="ADuCM362">
+					<description>
+The ADuCM362 is a fully integrated, 3.9 kSPS, 24-bit data acquisition system incorporating high performance multi-channel sigma-delta ADC, 32-bit ARM Cortex-M3 MCU, and Flash/EE memory on a single chip.
+The ADuCM362 is designed for direct interfacing to external precision sensors in both wired and battery-powered applications.
+					</description>
+					<feature type="ADC"           n="15"      m="24"    name="Ultra high precision, Multichannel, 24-bit ADC"/>
+					<compile header="Device/Include/ADuCM362.h"  define="__ADUCM362__"/>
+					<debug      svd="SVD/ADuCM362.svd"/>
+				</device>
+				<device Dname="ADuCM363">
+					<description>
+The ADuCM363 is a fully integrated, 3.9 kSPS, 24-bit data acquisition system incorporating high performance multi-channel sigma-delta ADC, 32-bit ARM Cortex-M3 MCU, and Flash/EE memory on a single chip.
+The ADuCM363 is designed for direct interfacing to external precision sensors in both wired and battery-powered applications. The ADuCM363 contains all the features of the ADuCM362 except for the ADC0, which is removed.
+					</description>
+					<feature type="ADC"           n="15"      m="24"    name="Ultra high precision, Multichannel, 24-bit ADC"/>
+					<compile header="Device/Include/ADuCM363.h"  define="__ADUCM363__"/>
+					<debug      svd="SVD/ADuCM363.svd"/>
+				</device>
+			</subFamily>
+		</family>
+	</devices>
+	<!-- boards section (mandatory for Board Support Packs) -->
+	<boards>
+		<board vendor="Analog Devices" name="EVAL-ADuCM360MKZ" revision="Rev. B" orderForm="http://www.analog.com/en/processors-dsp/analog-microcontrOLlers/aducm360/products/EVAL-ADUCM360/eb.html">
+			<description>Analog Devices ADuCM360 Evaluation Kit</description>
+			<image small="Images/EVAL-ADuCM360MKZ_small.jpg" large="Images/EVAL-ADuCM360MKZ.jpg"/>
+			<book category="setup"         name="Documents/UG-457.pdf" title="ADuCM360 Development Systems Getting Started Tutorial"/>
+			<book category="schematic"     name="Documents/ADuCM360_361_board_outline.pdf"   title="Layout"/>
+			<book category="schematic"     name="Documents/ADuCM360_361_schematic.PDF"      title="Schematic"/>
+			<mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM360"/>
+			<debugInterface adapter="J-Link Lite ADI" connector="Mini-USB"/>
+			<feature type="USB"       n="1"              name="Mini-USB connector for Debugger, Power and UART "/>
+			<feature type="XTAL"      n="32768"/>
+			<feature type="DIO"       n="19"             name="Digital IO"/>
+			<feature type="AIO"       n="11"             name="Analog inputs to ADC"/>
+			<feature type="AIO"       n="1"              name="VDAC Outputs"/>
+			<feature type="Button"    n="1"              name="Reset Push-Button"/>
+			<feature type="LED"       n="2"              name="Red Display LED and Green power LED"/>
+		</board>
+		<board vendor="Analog Devices" name="EVAL-ADuCM362QSPZ" revision="Rev. B" orderForm="http://www.analog.com/en/processors-dsp/analog-microcontrOLlers/aducm362/products/EVAL-ADUCM362/eb.html">
+			<description>Analog Devices ADuCM360 Evaluation Kit</description>
+			<image small="Images/EVAL-ADuCM362QSPZ_small.jpg" large="Images/EVAL-ADuCM362QSPZ.jpg"/>
+			<book category="schematic"     name="Documents/ADuCM362_363_board_outline.pdf"   title="Layout"/>
+			<book category="schematic"     name="Documents/ADuCM362_363_schematic.PDF"      title="Schematic"/>
+			<mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM362"/>
+			<debugInterface adapter="J-Link Lite ADI" connector="Mini-USB"/>
+			<feature type="USB"       n="1"              name="Mini-USB connector for Debugger, Power and UART "/>
+			<feature type="XTAL"      n="32768"/>
+			<feature type="DIO"       n="19"             name="Digital IO"/>
+			<feature type="AIO"       n="11"             name="Analog inputs to ADC"/>
+			<feature type="AIO"       n="1"              name="VDAC Outputs"/>
+			<feature type="Button"    n="1"              name="Reset Push-Button"/>
+			<feature type="LED"       n="2"              name="Red Display LED and Green power LED"/>
+		</board>
+	</boards>
+	<!-- examples section (optional for all Software Packs)-->
+	<examples>
+		<example name="Blinky_360" doc="README.txt" folder="Examples/Blinky" version="1.0.3">
+			<description>Blinky ADuCM360 example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="uv" load="keil/Blinky.uvprojx"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Getting Started</category>
+			</attributes>
+		</example>
+		<example name="RTX_Blinky_360" doc="README.txt" folder="Examples/RTX_Blinky" version="1.0.3">
+			<description>Simple RTX Kernel based example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/Blinky.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/RTX_Blinky.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Getting Started</category>
+			</attributes>
+		</example>
+		<example name="Blinky_362" doc="README.txt" folder="Examples/Blinky_362" version="1.0.3">
+			<description>Blinky ADuCM362 example</description>
+			<board name="EVAL-ADuCM362QSPZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="uv" load="keil/Blinky_362.uvprojx"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Getting Started</category>
+			</attributes>
+		</example>
+		<!-- Basic driver examples -->
+		<example name="ADC" doc="README.txt" folder="Examples/ADC" version="1.0.3">
+			<description>ADC example, including UART example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/AdcExample.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/AdcExample.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>ADC</keyword>
+			</attributes>
+		</example>
+		<example name="ADC_DMA" doc="README.txt" folder="Examples/ADC_DMA" version="1.0.3">
+			<description>ADC_DMA example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/ADC_DMA.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/ADC_DMA.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>ADC_DMA</keyword>
+			</attributes>
+		</example>
+		<example name="AN1159 I2C" doc="README.txt" folder="Examples/AN1159 I2C" version="1.0.3">
+			<description>AN1159 I2C example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/I2C.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/I2C.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Board Examples</category>
+				<keyword>I2C</keyword>
+			</attributes>
+		</example>
+		<example name="DAC_DMA" doc="README.txt" folder="Examples/DAC_DMA" version="1.0.3">
+			<description>DAC_DMA example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/DAC_DMA.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/DAC_DMA.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>DAC_DMA</keyword>
+			</attributes>
+		</example>
+		<example name="Flash" doc="README.txt" folder="Examples/Flash" version="1.0.3">
+			<description>Flash example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/Flash.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/Flash.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>Flash</keyword>
+			</attributes>
+		</example>
+		<example name="FlashProtect" doc="README.txt" folder="Examples/FlashProtect" version="1.0.3">
+			<description>FlashProtect example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/FlashProtect.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/FlashProtect.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<category>Driver Examples</category>
+				<keyword>FlashProtect</keyword>
+			</attributes>
+		</example>
+		<example name="I2C_DMA Master" doc="README.txt" folder="Examples/I2C_DMA/Master" version="1.0.3">
+			<description>I2C_DMA Master example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/I2C_Master.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/I2CDMA_Master.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>I2C_Master</keyword>
+			</attributes>
+		</example>
+		<example name="I2C_DMA Slave" doc="README.txt" folder="Examples/I2C_DMA/Slave" version="1.0.3">
+			<description>I2C_DMA Slave example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/I2C_Slave.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/I2CDMA_Slave.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>I2C_Slave</keyword>
+			</attributes>
+		</example>
+		<example name="PowerDown" doc="README.txt" folder="Examples/PowerDown" version="1.0.3">
+			<description>PowerDown example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/PowerDown.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/PowerDown.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>PowerDown</keyword>
+			</attributes>
+		</example>
+		<example name="PWM" doc="README.txt" folder="Examples/PWM" version="1.0.3">
+			<description>PWM example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/PWM.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/PWM.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>PWM</keyword>
+			</attributes>
+		</example>
+		<example name="RTD_Demo" doc="README.txt" folder="Examples/RTD_Demo" version="1.0.3">
+			<description>RTD_Demo example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/RTD_Demo.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/RTD_Demo.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>RTD_Demo</keyword>
+			</attributes>
+		</example>
+		<example name="SPI" doc="README.txt" folder="Examples/SPI" version="1.0.3">
+			<description>SPI example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/SPI.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/SPI.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>SPI</keyword>
+			</attributes>
+		</example>
+		<example name="SPI DMA Master" doc="README.txt" folder="Examples/SPI_DMA/SPIDMA_Master" version="1.0.3">
+			<description>SPI DMA Master example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/SPIDMA_Master.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/SPIDMA_Master.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>SPIDMA_Master</keyword>
+			</attributes>
+		</example>
+		<example name="SPI DMA Slave" doc="README.txt" folder="Examples/SPI_DMA/SPIDMA_Slave" version="1.0.3">
+			<description>SPI DMA Slave example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/SPIDMA_Slave.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/SPIDMA_Slave.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>SPIDMA_Slave</keyword>
+			</attributes>
+		</example>
+		<example name="Timers" doc="README.txt" folder="Examples/Timers" version="1.0.3">
+			<description>Timers example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/Timers.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/Timers.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>Timers</keyword>
+			</attributes>
+		</example>
+		<example name="Uart_DMA" doc="README.txt" folder="Examples/Uart_DMA" version="1.0.3">
+			<description>Uart_DMA example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/UARTDma_demo.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/UARTDMA.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>Uart_DMA</keyword>
+			</attributes>
+		</example>
+		<example name="SysTick" doc="README.txt" folder="Examples/SysTick" version="1.0.3">
+			<description>SysTick timer example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/SysTick.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/SysTick.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>SysTick</keyword>
+			</attributes>
+		</example>
+		<example name="I2CBasic_Master" doc="README.txt" folder="Examples/I2C_Basic/Master" version="1.0.3">
+			<description>I2CBasic Master example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/I2CBasic_Master.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/I2CBasic_Master.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>I2CBasic_Master</keyword>
+			</attributes>
+		</example>
+		<example name="I2CBasic_Slave" doc="README.txt" folder="Examples/I2C_Basic/Slave" version="1.0.3">
+			<description>I2CBasic Slave example</description>
+			<board name="EVAL-ADuCM360MKZ" vendor="Analog Devices"/>
+			<project>
+				<environment name="uv" load="keil/I2CBasic_Slave.uvprojx"/>
+				<environment name="cces" load="cces/.project"/>
+				<environment name="iar" load="iar/I2CBasic_Slave.ewp"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Driver Examples</category>
+				<keyword>I2CBasic_Slave</keyword>
+			</attributes>
+		</example>
+	</examples>
+	<conditions>
+		<condition id="ARMCC">
+			<require Tcompiler="ARMCC" />
+		</condition>
+		<condition id="GCC">
+			<require Tcompiler="GCC" />
+		</condition>
+		<condition id="IAR">
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="ADuCM360">
+			<description>ADuCM360 device</description>
+			<require Dvendor="Analog Devices:1"/>
+			<require Dname="ADuCM360"/>
+		</condition>
+		<condition id="ADuCM360_ARM">
+			<description>ADuCM360 device</description>
+			<require condition="ADuCM360"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="ADuCM360_GCC">
+			<description>ADuCM360 GCC</description>
+			<require condition="ADuCM360"/>
+			<require condition="GCC"/>
+		</condition>
+		<condition id="ADuCM360_IAR">
+			<description>ADuCM360 device</description>
+			<require condition="ADuCM360"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="ADuCM361">
+			<description>ADuCM361 device</description>
+			<require Dvendor="Analog Devices:1"/>
+			<require Dname="ADuCM361"/>
+		</condition>
+		<condition id="ADuCM361_ARM">
+			<description>ADuCM361 device</description>
+			<require condition="ADuCM361"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="ADuCM361_GCC">
+			<description>ADuCM361 GCC</description>
+			<require condition="ADuCM361"/>
+			<require condition="GCC"/>
+		</condition>
+		<condition id="ADuCM361_IAR">
+			<description>ADuCM361 device</description>
+			<require condition="ADuCM361"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="ADuCM362">
+			<description>ADuCM362 device</description>
+			<require Dvendor="Analog Devices:1"/>
+			<require Dname="ADuCM362"/>
+		</condition>
+		<condition id="ADuCM362_ARM">
+			<description>ADuCM362 device</description>
+			<require condition="ADuCM362"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="ADuCM362_GCC">
+			<description>ADuCM362 GCC</description>
+			<require condition="ADuCM362"/>
+			<require condition="GCC"/>
+		</condition>
+		<condition id="ADuCM362_IAR">
+			<description>ADuCM362 device</description>
+			<require condition="ADuCM362"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="ADuCM363">
+			<description>ADuCM363 device</description>
+			<require Dvendor="Analog Devices:1"/>
+			<require Dname="ADuCM363"/>
+		</condition>
+		<condition id="ADuCM363_ARM">
+			<description>ADuCM363 device</description>
+			<require condition="ADuCM363"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="ADuCM363_GCC">
+			<description>ADuCM363 GCC</description>
+			<require condition="ADuCM363"/>
+			<require condition="GCC"/>
+		</condition>
+		<condition id="ADuCM363_IAR">
+			<description>ADuCM363 device</description>
+			<require condition="ADuCM363"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="ADuCM36x">
+			<description>ADuCM36x device</description>
+			<accept  condition="ADuCM360"/>
+			<accept  condition="ADuCM361"/>
+			<accept  condition="ADuCM362"/>
+			<accept  condition="ADuCM363"/>
+		</condition>
+		<condition id="ADuCM36x_ARM">
+			<description>ADuCM36x ARMCC</description>
+			<accept  condition="ADuCM360"/>
+			<accept  condition="ADuCM361"/>
+			<accept  condition="ADuCM362"/>
+			<accept  condition="ADuCM363"/>
+			<require condition="ARMCC"/>
+		</condition>
+		<condition id="ADuCM36x_GCC">
+			<description>ADuCM36x GCC</description>
+			<accept  condition="ADuCM360"/>
+			<accept  condition="ADuCM361"/>
+			<accept  condition="ADuCM362"/>
+			<accept  condition="ADuCM363"/>
+			<require condition="GCC"/>
+		</condition>
+		<condition id="ADuCM36x_IAR">
+			<description>ADuCM36x IAR</description>
+			<accept  condition="ADuCM360"/>
+			<accept  condition="ADuCM361"/>
+			<accept  condition="ADuCM362"/>
+			<accept  condition="ADuCM363"/>
+			<require condition="IAR"/>
+		</condition>
+		<condition id="ADuCM36x CMSIS Device">
+			<description>ADuCM36x CMSIS Device</description>
+			<require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+			<require Dvendor="Analog Devices:1"/>
+			<accept  condition="ADuCM360"/>
+			<accept  condition="ADuCM361"/>
+			<accept  condition="ADuCM362"/>
+			<accept  condition="ADuCM363"/>
+		</condition>
+		<!-- Driver Requirements -->
+		<condition id="ADuCM36x Driver">
+			<description>Common ADuCM36x driver requirements</description>
+			<require condition="ADuCM36x CMSIS Device"/>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<!-- <require Cclass="Device" Cgroup="Global Configuration"/> -->
+		</condition>
+		<!-- Drivers Dependency -->
+		<condition id="ADuCM36x ADC">
+			<description>ADuCM36x ADC driver requirements</description>
+			<require condition="ADuCM36x Driver"/>
+			<require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+			<!-- <require Cclass="Device" Cgroup="Drivers" Csub="Power"/> -->
+		</condition>
+		<condition id="ADuCM36x URT">
+			<description>ADuCM36x UART driver requirements</description>
+			<require condition="ADuCM36x Driver"/>
+			<require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+			<!-- <require Cclass="Device" Cgroup="Drivers" Csub="Power"/> -->
+		</condition>
+	</conditions>
+	<taxonomy>
+		<description Cclass="Device" Cgroup="Drivers" doc="Docs/html/index.html">Analog Devices driver components for ADuCM36x devices</description>
+	</taxonomy>
+	<components>
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="ADuCM36x CMSIS Device">
+			<!-- Cversion is necessary -->
+			<description>System Startup for ADuCM36x</description>
+			<files>
+				<!-- additional include path -->
+				<file category="include" name="Device/Include/"/>
+				<!-- startup files for ARMCC-->
+				<file category="source" name="Device/Source/ARM/startup_ADuCM360.s" version="1.0.0" attr="config" condition="ADuCM360_ARM"/>
+				<file category="source" name="Device/Source/ARM/startup_ADuCM361.s" version="1.0.0" attr="config" condition="ADuCM361_ARM"/>
+				<file category="source" name="Device/Source/ARM/startup_ADuCM362.s" version="1.0.0" attr="config" condition="ADuCM362_ARM"/>
+				<file category="source" name="Device/Source/ARM/startup_ADuCM363.s" version="1.0.0" attr="config" condition="ADuCM363_ARM"/>
+				<!-- startup files for GCC-->
+				<file category="source" name="Device/Source/GCC/startup_ADuCM360.c" version="1.0.3" attr="config" condition="ADuCM360_GCC"/>
+				<file category="source" name="Device/Source/GCC/startup_ADuCM361.c" version="1.0.3" attr="config" condition="ADuCM361_GCC"/>
+				<file category="source" name="Device/Source/GCC/startup_ADuCM362.c" version="1.0.3" attr="config" condition="ADuCM362_GCC"/>
+				<file category="source" name="Device/Source/GCC/startup_ADuCM363.c" version="1.0.3" attr="config" condition="ADuCM363_GCC"/>
+				<!-- startup files for IAR-->
+				<file category="source" name="Device/Source/IAR/startup_ADuCM360.s" version="1.0.3" attr="config" condition="ADuCM360_IAR"/>
+				<file category="source" name="Device/Source/IAR/startup_ADuCM361.s" version="1.0.3" attr="config" condition="ADuCM361_IAR"/>
+				<file category="source" name="Device/Source/IAR/startup_ADuCM362.s" version="1.0.3" attr="config" condition="ADuCM362_IAR"/>
+				<file category="source" name="Device/Source/IAR/startup_ADuCM363.s" version="1.0.3" attr="config" condition="ADuCM363_IAR"/>
+				<!-- system files -->
+				<file category="source" name="Device/Source/system_ADuCM360.c" version="1.0.3" attr="config"      condition="ADuCM360" />
+				<file category="source" name="Device/Source/system_ADuCM361.c" version="1.0.3" attr="config"      condition="ADuCM361" />
+				<file category="source" name="Device/Source/system_ADuCM362.c" version="1.0.3" attr="config"      condition="ADuCM362" />
+				<file category="source" name="Device/Source/system_ADuCM363.c" version="1.0.3" attr="config"      condition="ADuCM363" />
+				<!-- linker scripts -->
+				<file category="linkerScript" name="Device/Source/GCC/ADuCM360.ld" version="1.0.3" attr="config" condition="ADuCM360_GCC"/>
+				<file category="linkerScript" name="Device/Source/GCC/ADuCM361.ld" version="1.0.3" attr="config" condition="ADuCM361_GCC"/>
+				<file category="linkerScript" name="Device/Source/GCC/ADuCM362.ld" version="1.0.3" attr="config" condition="ADuCM362_GCC"/>
+				<file category="linkerScript" name="Device/Source/GCC/ADuCM363.ld" version="1.0.3" attr="config" condition="ADuCM363_GCC"/>
+			</files>
+		</component>
+		<!-- Drivers -->
+		<component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="1.0.3" condition="ADuCM36x ADC">
+			<description>ADC peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/AdcLib.c"/>
+				<file category="header" name="Device/Include/drivers/AdcLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__adc.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="DMA" Cversion="1.0.3" condition="ADuCM36x">
+			<description>DMA peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/DmaLib.c"/>
+				<file category="header" name="Device/Include/drivers/DmaLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__dma.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="DIO" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Digital IO peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/DioLib.c"/>
+				<file category="header" name="Device/Include/drivers/DioLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__dio.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="GPT" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Timer peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/GptLib.c"/>
+				<file category="header" name="Device/Include/drivers/GptLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__gpt.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="DAC" Cversion="1.0.3" condition="ADuCM36x">
+			<description>DAC peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/DacLib.c"/>
+				<file category="header" name="Device/Include/drivers/DacLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__dac.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="FEE" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Flash peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/FeeLib.c"/>
+				<file category="header" name="Device/Include/drivers/FeeLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__fee.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="CLK" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Clock System functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/ClkLib.c"/>
+				<file category="header" name="Device/Include/drivers/ClkLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__clk.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="1.0.3" condition="ADuCM36x">
+			<description>I2C peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/I2cLib.c"/>
+				<file category="header" name="Device/Include/drivers/I2cLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__i2c.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="IEXC" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Excitation Current Source functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/IexcLib.c"/>
+				<file category="header" name="Device/Include/drivers/IexcLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__iexc.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="INT" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Interrupt functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/IntLib.c"/>
+				<file category="header" name="Device/Include/drivers/IntLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__int.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="PWM" Cversion="1.0.3" condition="ADuCM36x">
+			<description>PWM functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/PwmLib.c"/>
+				<file category="header" name="Device/Include/drivers/PwmLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__pwm.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="PWR" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Functions for controling power modes</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/PwrLib.c"/>
+				<file category="header" name="Device/Include/drivers/PwrLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__pwr.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="RST" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Reads the reset status bits and allows them to be reset</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/RstLib.c"/>
+				<file category="header" name="Device/Include/drivers/RstLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__rst.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.0.3" condition="ADuCM36x">
+			<description>SPI peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/SpiLib.c"/>
+				<file category="header" name="Device/Include/drivers/SpiLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__spi.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="URT" Cversion="1.0.3" condition="ADuCM36x URT">
+			<description>UART peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/UrtLib.c"/>
+				<file category="header" name="Device/Include/drivers/UrtLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__urt.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Watchdog Timer peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/WdtLib.c"/>
+				<file category="header" name="Device/Include/drivers/WdtLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__wdt.html"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="Drivers" Csub="WUT" Cversion="1.0.3" condition="ADuCM36x">
+			<description>Wake up Timer peripheral functions</description>
+			<files>
+				<file category="source" name="Device/Source/drivers/WutLib.c"/>
+				<file category="header" name="Device/Include/drivers/WutLib.h" version="1.0.3" attr="config"/>
+				<file category="doc" name="Docs/html/group__wut.html"/>
+			</files>
+		</component>
+	</components>
+</package>

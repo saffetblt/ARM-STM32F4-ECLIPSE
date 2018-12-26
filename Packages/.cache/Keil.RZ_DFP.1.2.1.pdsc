@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>RZ_DFP</name>
+  <description>Renesas RZ Family Device Support and Examples</description>
+
+  <releases>
+    <release version="1.2.1" date="2018-10-10">
+      Updated requirements removing list of other installed packs.
+    </release>
+    <release version="1.2.0" date="2018-07-18">
+      Updated OS Timer implementation:
+      - using OS Tick API 1.0.1
+      - GIC pending flag is used to check for overflow
+    </release>
+    <release version="1.1.0" date="2017-08-11">
+      Initial public release of the device family pack for Renesas RZ devices.
+      Examples: CMSIS-RTOS2 RTX5 and FreeRTOS.
+      Note: CMSIS-RTOS2 for Renesas RZ_A Series requires IRQ Controller GIC and OS Tick components.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Renesas</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Renesas</keyword>
+    <keyword>RZ</keyword>
+    <keyword>RZ_A</keyword>
+    <keyword>RZ_A1H</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="RZ_A" Dvendor="Renesas:117">
+
+      <subFamily DsubFamily="RZ_A1H">
+
+        <!-- ******************************  RZ_A1H  ******************************* -->
+
+        <processor Dcore="Cortex-A9" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU"/>
+        <debugconfig default="swd" swj="true" sdf="Debug/RZ_A1H.sdf"/>
+
+        <description>
+          RZ/A1H is the premium full-featured part in the RZ/A1 family with an ARM Cortex-A9 core running at 400MHz 
+          and 10MB of on-chip SRAM to support the largest frame-buffers on-chip.
+          With 10MB on-chip SRAM, the RZ/A1H supports up to 2 Displays with WXGA (1280x800) resolution without the 
+          need for external memory. 
+          RZ/A1H enables very compact embedded designs without the need to worry about memory procurement and memory EOL. 
+          With RZ/A1H, you can design your embedded system like an MCU and get the performance of a 400MHz ARM Cortex-A9 MPU. 
+          Enabled for support with Linux, RTOS or Bare-metal, this is the ideal device for designing Intelligent IoT End Point
+          devices with compactness and high performance. 
+          Supported in QFP and BGA packages with different sizes to support board layout flexibility 
+          and with SDRAM interface to expand up to 128MB of external memory.
+        </description>
+        
+        <book name="Documents/r01uh0403ej0300_rz_a1h.pdf" title="RZ_A1H RZ_A1M User Manual"/>
+ 
+        <debug __dp="0" __ap="1" address="0x80030000"/>
+        
+        <compile header="Device/Include/RZ_A1H.h" define="RZ_A1H"/>
+
+        <!--debug svd="SVD/RZ_A1H.svd"/-->
+
+        <device Dname="R7S72100"> </device>
+
+      </subFamily>      
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="ARMCC5">
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    
+    <!-- Device + Core + CMSIS Conditions -->
+    <condition id="RZ_A1H CMSIS">
+      <description>Renesas RZ_A1H and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Renesas:117"/>
+      <accept  Dname="R7S72100"/>
+    </condition>
+
+    <!-- OS Tick -->
+    <condition id="OS Tick OSTM">
+      <description>Components required for OS Tick OSTM</description>
+      <require condition="RZ_A1H CMSIS"/>
+      <require Cclass="Device" Cgroup="IRQ Controller" Csub="GIC"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup Renesas RZ_A1H -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="RZ_A1H CMSIS">
+      <description>Renesas RZ_A1H devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="include"      name="Device/Include/iodefines/"/>
+        <file category="sourceC"      name="Device/Source/AC5/startup_RZ_A1H.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/Source/AC5/RZ_A1H.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/Source/AC6/startup_RZ_A1H.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/Source/AC6/RZ_A1H.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceAsm"    name="Device/Source/GCC/startup_RZ_A1H.S" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/RZ_A1H.ld"        version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/Source/system_RZ_A1H.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/Source/mmu_RZ_A1H.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/Include/system_RZ_A1H.h"     version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/Include/mem_RZ_A1H.h"        version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="OS Tick" Csub="OSTM0" Capiversion="1.0.1" Cversion="1.0.1" condition="OS Tick OSTM">
+      <description>OS Tick implementation using OS Timer 0 (OSTM0)</description>
+      <files>
+        <file category="sourceC"      name="Device/Source/os_tick_ostm.c"/>
+      </files>
+    </component>
+
+    <!-- Board Support -->
+    <bundle Cbundle="RTK772100-GENMAI" Cclass="Board Support" Cversion="1.0.0">
+      <description>R7S72100 CPU board</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="RZ_A1H CMSIS">
+        <description>LED driver</description>
+        <files>
+          <file category="source" name="Boards/Renesas/RTK772100-GENMAI/Common/LED_RTK772100-GENMAI.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board name="RTK772100-GENMAI" vendor="Renesas" revision="Rev A" orderForm="">
+      <description>R7S72100 CPU board</description>
+      <mountedDevice deviceIndex="0" Dvendor="Renesas:117" Dname="R7S72100"/>
+      <book name="Documents/r20ut2596ej_r7s72100evum.pdf" title="R7S72100 CPU board User Manual"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Blinky_RTX5" doc="Abstract.txt" folder="Boards/Renesas/RTK772100-GENMAI/Blinky_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example</description>
+      <board name="RTK772100-GENMAI" vendor="Renesas"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    
+    <example name="Blinky_RTX5_AC6" doc="Abstract.txt" folder="Boards/Renesas/RTK772100-GENMAI/Blinky_RTX5_AC6">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for ARMCC6</description>
+      <board name="RTK772100-GENMAI" vendor="Renesas"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- To build this GCC example the DS-MDK needs "Cross ARM GCC toolchain" via gnuarmeclipse adapter
+    <example name="Blinky_RTX5_GCC" doc="Abstract.txt" folder="Boards/Renesas/RTK772100-GENMAI/Blinky_RTX5_GCC">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for ARM GCC</description>
+      <board name="RTK772100-GENMAI" vendor="Renesas"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    -->
+
+    <example name="Blinky_FreeRTOS" doc="Abstract.txt" folder="Boards/Renesas/RTK772100-GENMAI/Blinky_FreeRTOS">
+      <description>CMSIS-RTOS2 FreeRTOS Blinky example</description>
+      <board name="RTK772100-GENMAI" vendor="Renesas"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+  
+</package>
+

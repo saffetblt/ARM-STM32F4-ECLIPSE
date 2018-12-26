@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>MKL03Z4_DFP</name>
+  <description>Device Family Pack for MKL03Z4</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Device Startup</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MKL03Z4" Dvendor="NXP:11">
+      <description>The Kinetis(r) KL03 chip-scale package (CSP) MCU offers the world's smallest ARM Powered(r) microcontroller, designed to support the latest innovation in smart, small devices.
+
+- Allows designers to dramatically reduce their board size without compromising performance, feature integration or power consumption of end products
+- Consumes 35 percent less PCB area, while delivering 60 percent more GPIO than the nearest competitor
+- Features security circuitry to prevent unauthorized access to RAM and flash contents
+- Supported by low-power, cost effective development platform for quick application prototyping and demonstration
+&amp;lt;/ul&amp;gt;</description>
+      <device Dname="MKL03Z16xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="0" Dendian="Little-endian" Dclock="48000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKL03Z16xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x00000000" size="0x4000" startup="1" default="1"/>
+        <memory name="SRAM" access="rw" start="0x1ffffe00" size="0x0800" default="1"/>
+        <algorithm name="arm/MK_P16_48MHZ_KL03.FLM" start="0x00000000" size="0x00004000" RAMstart="0x1FFFFE00" RAMsize="0x800" default="1"/>
+        <debug svd="MKL03Z4.xml"/>
+        <variant Dvariant="MKL03Z16VFG4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z16VFG4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z16VFG4/MKL03Z16xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKL03Z16VFK4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z16VFK4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z16VFK4/MKL03Z16xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKL03Z32xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="0" Dendian="Little-endian" Dclock="48000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKL03Z32xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x00000000" size="0x8000" startup="1" default="1"/>
+        <memory name="SRAM" access="rw" start="0x1ffffe00" size="0x0800" default="1"/>
+        <algorithm name="arm/MK_P32_48MHZ_KL03.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFE00" RAMsize="0x800" default="1"/>
+        <debug svd="MKL03Z4.xml"/>
+        <variant Dvariant="MKL03Z32CAF4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z32CAF4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z32CAF4/MKL03Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKL03Z32VFG4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z32VFG4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z32VFG4/MKL03Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKL03Z32VFK4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z32VFK4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z32VFK4/MKL03Z32xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKL03Z8xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="0" Dendian="Little-endian" Dclock="48000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKL03Z8xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x00000000" size="0x2000" startup="1" default="1"/>
+        <memory name="SRAM" access="rw" start="0x1ffffe00" size="0x0800" default="1"/>
+        <algorithm name="arm/MK_P8_48MHZ_KL03.FLM" start="0x00000000" size="0x00002000" RAMstart="0x1FFFFE00" RAMsize="0x800" default="1"/>
+        <debug svd="MKL03Z4.xml"/>
+        <variant Dvariant="MKL03Z8VFG4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z8VFG4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z8VFG4/MKL03Z8xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKL03Z8VFK4">
+          <compile header="fsl_device_registers.h" define="CPU_MKL03Z8VFK4"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKL03Z8VFK4/MKL03Z8xxx4_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="MKL03Z16???4" Dvendor="NXP:11"/>
+      <accept Dname="MKL03Z32???4" Dvendor="NXP:11"/>
+      <accept Dname="MKL03Z8???4" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="devices.MKL03Z4_device.MKL03Z4_device.MKL03Z4_startup_device.device_device_driver.clock_driver.common_driver.gpio_driver.lpuart_driver.port_driver.smc_utility_utility.debug_console">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MKL03Z4_driver.i2c">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKL03Z4_driver.lpuart">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MKL03Z4_driver.spi">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="spi_cmsis" Capiversion="5.0.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+    </condition>
+    <condition id="device.MKL03Z4_utility.debug_console">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MKL03Z4_driver.common">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKL03Z4_driver.flash">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+    </condition>
+    <condition id="device.MKL03Z4">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.MKL03Z4_platform.Include_core_cm0plus">
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+    </condition>
+    <condition id="devices.MKL03Z16xxx4_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+    </condition>
+    <condition id="devices.MKL03Z32xxx4_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+    </condition>
+    <condition id="devices.MKL03Z8xxx4_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+    </condition>
+    <condition id="devices.MKL03Z16xxx4_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z16???4"/>
+    </condition>
+    <condition id="devices.MKL03Z32xxx4_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z32???4"/>
+    </condition>
+    <condition id="devices.MKL03Z8xxx4_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="NXP:11" Dname="MKL03Z8???4"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="devices.MKL03Z4_platform.Include_core_cm0plus">
+      <description></description>
+      <files>
+        <file name="arm/startup_MKL03Z4.s" category="sourceAsm" condition="mdk" attr="config"/>
+        <file name="iar/startup_MKL03Z4.s" category="sourceAsm" condition="iar" attr="config"/>
+        <file name="MKL03Z4.h" category="header" attr="config"/>
+        <file name="MKL03Z4_features.h" category="header" attr="config"/>
+        <file name="fsl_device_registers.h" category="header" attr="config"/>
+        <file name="arm/MKL03Z16xxx4_flash.scf" category="linkerScript" condition="devices.MKL03Z16xxx4_mdk" attr="config"/>
+        <file name="arm/MKL03Z16xxx4_ram.scf" category="linkerScript" condition="devices.MKL03Z16xxx4_mdk" attr="config"/>
+        <file name="arm/MKL03Z32xxx4_flash.scf" category="linkerScript" condition="devices.MKL03Z32xxx4_mdk" attr="config"/>
+        <file name="arm/MKL03Z32xxx4_ram.scf" category="linkerScript" condition="devices.MKL03Z32xxx4_mdk" attr="config"/>
+        <file name="arm/MKL03Z8xxx4_flash.scf" category="linkerScript" condition="devices.MKL03Z8xxx4_mdk" attr="config"/>
+        <file name="arm/MKL03Z8xxx4_ram.scf" category="linkerScript" condition="devices.MKL03Z8xxx4_mdk" attr="config"/>
+        <file name="iar/MKL03Z16xxx4_flash.icf" category="linkerScript" condition="devices.MKL03Z16xxx4_iar" attr="config"/>
+        <file name="iar/MKL03Z16xxx4_ram.icf" category="linkerScript" condition="devices.MKL03Z16xxx4_iar" attr="config"/>
+        <file name="iar/MKL03Z32xxx4_flash.icf" category="linkerScript" condition="devices.MKL03Z32xxx4_iar" attr="config"/>
+        <file name="iar/MKL03Z32xxx4_ram.icf" category="linkerScript" condition="devices.MKL03Z32xxx4_iar" attr="config"/>
+        <file name="iar/MKL03Z8xxx4_flash.icf" category="linkerScript" condition="devices.MKL03Z8xxx4_iar" attr="config"/>
+        <file name="iar/MKL03Z8xxx4_ram.icf" category="linkerScript" condition="devices.MKL03Z8xxx4_iar" attr="config"/>
+        <file name="system_MKL03Z4.c" category="sourceC" attr="config"/>
+        <file name="system_MKL03Z4.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="project_template" Cvariant="MKL03Z4" isDefaultVariant="1" condition="devices.MKL03Z4_device.MKL03Z4_device.MKL03Z4_startup_device.device_device_driver.clock_driver.common_driver.gpio_driver.lpuart_driver.port_driver.smc_utility_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Cversion="2.0.1" Csub="i2c_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MKL03Z4_driver.i2c">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_i2c_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_i2c_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="2.0.0" Csub="lpuart_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MKL03Z4_driver.lpuart">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Cversion="2.0.0" Csub="spi_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MKL03Z4_driver.spi">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_spi_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_spi_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="adc" condition="device.MKL03Z4_driver.common">
+      <description>ADC16 Driver</description>
+      <files>
+        <file name="drivers/fsl_adc16.c" category="sourceC"/>
+        <file name="drivers/fsl_adc16.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="clock" condition="device.MKL03Z4_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file name="drivers/fsl_clock.c" category="sourceC"/>
+        <file name="drivers/fsl_clock.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="cmp" condition="device.MKL03Z4_driver.common">
+      <description>CMP Driver</description>
+      <files>
+        <file name="drivers/fsl_cmp.c" category="sourceC"/>
+        <file name="drivers/fsl_cmp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="common" condition="device.MKL03Z4_driver.common">
+      <description>COMMON Driver</description>
+      <files>
+        <file name="drivers/fsl_common.c" category="sourceC"/>
+        <file name="drivers/fsl_common.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="cop" condition="device.MKL03Z4_driver.common">
+      <description>COP Driver</description>
+      <files>
+        <file name="drivers/fsl_cop.c" category="sourceC"/>
+        <file name="drivers/fsl_cop.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.4.1" Csub="flash" condition="device.MKL03Z4">
+      <description>Flash Driver</description>
+      <files>
+        <file name="drivers/fsl_flash.c" category="sourceC"/>
+        <file name="drivers/fsl_flash.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.1" Csub="gpio" condition="device.MKL03Z4_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file name="drivers/fsl_gpio.c" category="sourceC"/>
+        <file name="drivers/fsl_gpio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.5" Csub="i2c" condition="device.MKL03Z4_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file name="drivers/fsl_i2c.c" category="sourceC"/>
+        <file name="drivers/fsl_i2c.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="llwu" condition="device.MKL03Z4_driver.common">
+      <description>LLWU Driver</description>
+      <files>
+        <file name="drivers/fsl_llwu.c" category="sourceC"/>
+        <file name="drivers/fsl_llwu.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="lptmr" condition="device.MKL03Z4_driver.common">
+      <description>LPTMR Driver</description>
+      <files>
+        <file name="drivers/fsl_lptmr.c" category="sourceC"/>
+        <file name="drivers/fsl_lptmr.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.4" Csub="lpuart" condition="device.MKL03Z4_driver.common">
+      <description>LPUART Driver</description>
+      <files>
+        <file name="drivers/fsl_lpuart.c" category="sourceC"/>
+        <file name="drivers/fsl_lpuart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pmc" condition="device.MKL03Z4_driver.common">
+      <description>PMC Driver</description>
+      <files>
+        <file name="drivers/fsl_pmc.c" category="sourceC"/>
+        <file name="drivers/fsl_pmc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="port" condition="device.MKL03Z4_driver.common">
+      <description>PORT Driver</description>
+      <files>
+        <file name="drivers/fsl_port.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="rcm" condition="device.MKL03Z4_driver.common">
+      <description>RCM Driver</description>
+      <files>
+        <file name="drivers/fsl_rcm.c" category="sourceC"/>
+        <file name="drivers/fsl_rcm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="rtc" condition="device.MKL03Z4_driver.common">
+      <description>RTC Driver</description>
+      <files>
+        <file name="drivers/fsl_rtc.c" category="sourceC"/>
+        <file name="drivers/fsl_rtc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="sim" condition="device.MKL03Z4_driver.common">
+      <description>SIM Driver</description>
+      <files>
+        <file name="drivers/fsl_sim.c" category="sourceC"/>
+        <file name="drivers/fsl_sim.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="smc" condition="device.MKL03Z4_driver.flash">
+      <description>SMC Driver</description>
+      <files>
+        <file name="drivers/fsl_smc.c" category="sourceC"/>
+        <file name="drivers/fsl_smc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.4" Csub="spi" condition="device.MKL03Z4_driver.common">
+      <description>SPI Driver</description>
+      <files>
+        <file name="drivers/fsl_spi.c" category="sourceC"/>
+        <file name="drivers/fsl_spi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="tpm" condition="device.MKL03Z4_driver.common">
+      <description>TPM Driver</description>
+      <files>
+        <file name="drivers/fsl_tpm.c" category="sourceC"/>
+        <file name="drivers/fsl_tpm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="vref" condition="device.MKL03Z4_driver.common">
+      <description>VREF Driver</description>
+      <files>
+        <file name="drivers/fsl_vref.c" category="sourceC"/>
+        <file name="drivers/fsl_vref.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="RTE_Device" condition="device.MKL03Z4">
+      <description></description>
+      <files>
+        <file name="template/RTE_Device.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="assert" condition="device.MKL03Z4_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_assert.c" category="sourceC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console" condition="device.MKL03Z4">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_debug_console.c" category="sourceC"/>
+        <file name="utilities/fsl_debug_console.h" category="header"/>
+        <file name="utilities/fsl_debug_console_conf.h" category="header"/>
+        <file name="utilities/io/fsl_io.c" category="sourceC"/>
+        <file name="utilities/io/fsl_io.h" category="header"/>
+        <file name="utilities/log/fsl_log.c" category="sourceC"/>
+        <file name="utilities/log/fsl_log.h" category="header"/>
+        <file name="utilities/str/fsl_str.c" category="sourceC"/>
+        <file name="utilities/str/fsl_str.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="notifier" condition="device.MKL03Z4_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_notifier.c" category="sourceC"/>
+        <file name="utilities/fsl_notifier.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="shell" condition="device.MKL03Z4_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_shell.c" category="sourceC"/>
+        <file name="utilities/fsl_shell.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

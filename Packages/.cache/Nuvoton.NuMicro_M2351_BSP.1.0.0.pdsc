@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Nuvoton</vendor>
+  <url>http://www.nuvoton.com/hq/enu/Documents/KEILSoftwarePack</url>
+  <name>NuMicro_M2351_BSP</name>
+  <description>Nuvoton ARM Cortex-M NuMicro Family M2351 BSP Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2018-09-07">
+      First Release version of M2351 BSP Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Nuvoton</keyword>
+    <keyword>BSP Support</keyword>
+    <keyword>Board Sample Package Nuvoton</keyword>
+    <keyword>M2351</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Nuvoton" name="NuTiny-SDK-M2351" revision="V1.0" salesContact="sales@nuvoton.com">
+      <description>Nuvoton NuTiny SDK M2351 Board Support and Examples</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M2351KIAAE"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" DsubFamily="M2351"/>
+    	<feature type="ODbg"      n="1"                name="On-board Nu-Link-ME"/>
+    	<feature type="PWR"       n="5"                name="USB Powered"/>
+    	<feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
+    	<feature type="DIO"       n="180"              name="4 extended connectors to all chip pins"/>
+    	<feature type="LED"       n="1"                name="User LED"/>
+    	<feature type="Button"    n="1"                name="Reset Button"/>
+    	<feature type="USB"       n="1"                name="USB OTG Host/Device Connector"/>
+      <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="M23NuMicro M2351 Device">
+      <description>Nuvoton M23NuMicro M2351 Series devices</description>
+      <accept Dvendor="Nuvoton:18"  Dname="M2351[KSZ]IAAE"/>
+      <accept Dvendor="Nuvoton:18"  Dname="M2351KIAAEES"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- *************************  Startup file  ***************************** -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Nuvoton M2351 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+      <files>
+        <!-- header path -->
+		<file category="include" name="Device/M2351/StdDriver/inc/"/>
+		<file category="include" name="Device/M2351/Include/"/>
+        <file category="header"  name="Device/M2351/Include/M2351.h"/>
+		<file category="header"  name="Device/M2351/Include/NuMicro.h"/>
+        <file category="header"  name="Device/M2351/Include/system_M2351.h"/>
+        <!-- startup/system files -->
+        <file category="sourceAsm"  name="Device/M2351/Source/ARM/startup_M2351.s" attr="config" version="0.00.001" condition="Compiler ARM"/>
+        <file category="source"  name="Device/M2351/Source/system_M2351.c" attr="config" version="0.00.001"/>
+        <!-- retarget files -->	
+        <file category="sourceC" name="Device/M2351/StdDriver/src/retarget.c" attr="config" version="0.00.001"/>
+      </files>
+    </component>
+	
+	<!-- *************************  Device driver IP file ***************************** -->
+	<component Cclass="Device" Cgroup="StdDriver" Csub="ACMP" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>ACMP driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_ACMP              /* Driver ACMP */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/acmp.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/acmp.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="BPWM" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>BPWM driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_BPWM              /* Driver BPWM */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/bpwm.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/bpwm.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="CAN" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>CAN driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_CAN              /* Driver CAN */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/can.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/can.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="CLK" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>CLK driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_CLK              /* Driver CLK */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/clk.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/clk.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="CRC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>CRC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_CRC              /* Driver CRC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/crc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/crc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="CRYPTO" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>CRYPTO driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_CRYPTO              /* Driver CRYPTO */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/crypto.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/crypto.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="DAC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>DAC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_DAC              /* Driver DAC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/dac.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/dac.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="ADC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>ADC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_ADC              /* Driver ADC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/eadc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/eadc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="EBI" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>EBI driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_EBI              /* Driver EBI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/ebi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/ebi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="ECAP" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>ECAP driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_ECAP              /* Driver ECAP */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/ecap.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/ecap.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="EPWM" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>EPWM driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_EPWM              /* Driver EPWM */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/epwm.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/epwm.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="FMC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>FMC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_FMC              /* Driver FMC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/fmc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/fmc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="GPIO" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>GPIO driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_GPIO              /* Driver GPIO */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/gpio.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/gpio.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="HDIV" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>HDIV driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_HDIV              /* Driver HDIV */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/hdiv.h" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="I2C" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>I2C driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_I2C              /* Driver I2C */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/i2c.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/i2c.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="I2S" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>I2S driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_I2S              /* Driver I2S */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/i2s.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/i2s.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="MKROM" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>MKROM driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_MKROM              /* Driver MKROM */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/mkromlib.h" version="0.00.001"/>
+		<file category="library" name="Device/M2351/StdDriver/src/libmkrom.a" version="0.00.001"/>
+		<file category="library" name="Device/M2351/StdDriver/src/MKROMLib_Keil.lib" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="OTG" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>OTG driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_OTG              /* Driver OTG */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/otg.h" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="PDMA" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>PDMA driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_PDMA              /* Driver PDMA */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/pdma.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/pdma.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="QEI" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>QEI driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_QEI              /* Driver QEI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/qei.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/qei.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="QSPI" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>QSPI driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_QSPI              /* Driver QSPI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/qspi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/qspi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="RTC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>RTC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_RTC              /* Driver RTC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/rtc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/rtc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SC" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SC driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SC              /* Driver SC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/sc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/sc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SCU" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SCU driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SCU              /* Driver SCU */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/scu.h" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SCUART" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SCUART driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SCUART              /* Driver SCUART */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/scuart.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/scuart.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SDH" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SDH driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SDH              /* Driver SDH */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/sdh.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/sdh.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SPI" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SPI driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SPI              /* Driver SPI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/spi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/spi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SYS" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>SYS driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SYS              /* Driver SYS */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/sys.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/sys.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="TIMER" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>TIMER driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_TIMER              /* Driver TIMER */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/timer.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/timer.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="TIMER_PWM" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>TIMER_PWM driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_TIMER_PWM              /* Driver TIMER_PWM */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/timer_pwm.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/timer_pwm.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="UART" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>UART driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_UART              /* Driver UART */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/uart.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/uart.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="USBD" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>USBD driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_USBD              /* Driver USBD */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/usbd.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/usbd.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="USCI_I2C" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>USCI_I2C driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_USCI_I2C              /* Driver USCI_I2C */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/usci_i2c.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/usci_i2c.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="USCI_SPI" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>USCI_SPI driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_USCI_SPI              /* Driver USCI_SPI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/usci_spi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/usci_spi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="USCI_UART" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>USCI_UART driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_USCI_UART              /* Driver USCI_UART */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/usci_uart.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/usci_uart.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="WDT" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>WDT driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_WDT              /* Driver WDT */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/wdt.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/wdt.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="WWDT" Cversion="0.00.001" condition="M23NuMicro M2351 Device">
+	  <description>WWDT driver for Nuvoton M2351 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_WWDT              /* Driver WWDT */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M2351/StdDriver/inc/wwdt.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M2351/StdDriver/src/wwdt.c" version="0.00.001"/>
+	  </files>
+	</component>
+  </components>
+
+  <examples>  
+	<example name="TrustZone" doc="Abstract.txt" folder="Boards/M2351/TrustZone/Template" version="0.00.001">
+	  <description>M2351 TrustZone sample code</description>
+	  <board name="NuTiny-SDK-M2351" vendor="Nuvoton"/>
+	  <project>
+		<environment name="uv" load="TrustZone.uvmpw"/>
+	  </project>
+      <attributes>
+		<component Cclass="CMSIS" Cgroup="CORE"/>
+		<component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="CLK"/>
+      </attributes>
+	</example>
+	<example name="GPIO_INT" doc="Abstract.txt" folder="Boards/M2351/StdDriver/GPIO_INT" version="0.00.001">
+	  <description>M2351 GPIO_INT sample code</description>
+	  <board name="NuTiny-SDK-M2351" vendor="Nuvoton"/>
+	  <project>
+		<environment name="uv" load="Keil/GPIO_INT.uvprojx"/>
+	  </project>
+      <attributes>
+		<component Cclass="CMSIS" Cgroup="CORE"/>
+		<component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="CLK"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="SYS"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART"/>
+      </attributes>
+	</example>
+  </examples>
+</package>

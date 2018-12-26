@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>fRSTL_ARMCMx_EVAL</name>
+  <description>!!! DEPRECATED Product !!! YOGITECH fRSTL Functional Safety EVAL Software Pack for ARM Cortex-M Processors (M0, M0+, M3, M4F)</description>
+  <vendor>YOGITECH</vendor>
+  <url>http://www.keil.com/pack</url>
+  <supportContact>frstl_support@yogitech.com</supportContact>
+  <license>license\license.txt</license>
+
+  
+  <releases>
+    <release version="1.1.0" date="2016-08-31" deprecated="2016-08-31">
+      IMPORTANT NOTE: Yogitech no longer sells this product and the PACK is no longer available for download
+    </release>
+    <release version="1.0.1">
+	    2015/09/17: Improved filtering of packages based on core selection
+    </release>
+    <release version="1.0.0">
+	    2015/07/20: Initial release
+    </release>
+  </releases>
+  <keywords>
+    <keyword>YOGITECH</keyword>
+   <keyword>EVAL fRSTL Safety diagnostic library ARM Cortex-M IEC61508 Certified SIL2(3)</keyword>
+  </keywords>
+
+  <!-- apis section (optional - for Application Programming Interface descriptions) -->
+  <!-- 
+  <apis>
+  </apis>
+  -->
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <!--
+      
+  <devices>
+	  <family>ARM</family>
+	  <device>ARMCM4</device>
+  </devices>
+ --> 
+
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <!--
+        -->
+<conditions>
+	<condition id="ARMCC">
+	  <description>ARM C/C++ Compiler</description>
+	  <require Tcompiler="ARMCC"/>
+        </condition> 
+	<condition id="ARMCM0_COND">
+	  <description>ARM Cortex M4 Core</description>
+	  <require Dcore="Cortex-M0"/>
+	  <require Tcompiler="ARMCC"/>
+        </condition>  
+	<condition id="ARMCM0P_COND">
+	  <description>ARM Cortex M4 Core</description>
+	  <require Dcore="Cortex-M0+"/>
+	  <require Tcompiler="ARMCC"/>
+	</condition>  
+  	<condition id="ARMCM3_COND">
+	  <description>ARM Cortex M4 Core</description>
+	  <require Dcore="Cortex-M3"/>
+	  <require Tcompiler="ARMCC"/>
+	</condition>  
+  	<condition id="ARMCM4_COND">
+	  <description>ARM Cortex M4 Core</description>
+	  <require Dcore="Cortex-M4"/>
+	  <require Tcompiler="ARMCC"/>
+	  <accept  Dfpu="FPU"/>
+	</condition>  
+</conditions>
+ 
+  
+<components>
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM0" Cversion="1.0" condition="ARMCM0_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_armCM0_EVAL\1.0\DeliDocs\fRSTL_ARMCMx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\h\cmnType.h"/>
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\h\frstl_armcmx_test_dummy.h"/>
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\h\frstl_core.h"/>
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\h\test_segments.h"/>
+<file category="header" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\c\frstl_core.c"/>
+<file category="source" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\c\frstl_status.c"/>
+<file category="source" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_src\c\TestSegments\frstl_armcmx_test_dummy.c"/>
+
+<file category="source" name="fRSTL_armCM0_EVAL\1.0\OOTBTB\OOTBTB_src\pfi_test_all.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+ <!--<file category="library" name="fRSTL_armCM0_EVAL\1.0\Source\fRSTL_armCM0_lib\fRSTL_armCM0_EVAL_lib.lib"/>
+      -->
+
+</files>
+</component>
+
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM0+" Cversion="1.0" condition="ARMCM0P_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_armCM0p_EVAL\1.0\DeliDocs\fRSTL_ARMCMx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\h\cmnType.h"/>
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\h\frstl_armcmx_test_dummy.h"/>
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\h\frstl_core.h"/>
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\h\test_segments.h"/>
+<file category="header" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\c\frstl_core.c"/>
+<file category="source" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\c\frstl_status.c"/>
+<file category="source" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_src\c\TestSegments\frstl_armcmx_test_dummy.c"/>
+
+<file category="source" name="fRSTL_armCM0p_EVAL\1.0\OOTBTB\OOTBTB_src\pfi_test_all.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+ <!--<file category="library" name="fRSTL_armCM0p_EVAL\1.0\Source\fRSTL_armCM0p_lib\fRSTL_armCM0p_EVAL_lib.lib"/>
+-->
+</files>
+</component>
+
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM3" Cversion="1.0" condition="ARMCM3_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_armCM3_EVAL\1.0\DeliDocs\fRSTL_ARMCMx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\h\cmnType.h"/>
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\h\frstl_armcm3_test_dummy.h"/>
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\h\frstl_core.h"/>
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\h\test_segments.h"/>
+<file category="header" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\c\frstl_core.c"/>
+<file category="source" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\c\frstl_status.c"/>
+<file category="source" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_src\c\TestSegments\frstl_armcm3_test_dummy.c"/>
+
+<file category="source" name="fRSTL_armCM3_EVAL\1.0\OOTBTB\OOTBTB_src\pfi_test_all.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+ <!--<file category="library" name="fRSTL_armCM3_EVAL\1.0\Source\fRSTL_armCM3_lib\fRSTL_armCM3_EVAL_lib.lib"/>
+-->
+</files>
+</component>
+
+
+
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM4" Cversion="1.0" condition="ARMCM4_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_armCM4_EVAL\1.0\DeliDocs\fRSTL_ARMCMx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\h\cmnType.h"/>
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\h\frstl_armcm4_test_dummy.h"/>
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\h\frstl_core.h"/>
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\h\test_segments.h"/>
+<file category="header" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\c\frstl_core.c"/>
+<file category="source" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\c\frstl_status.c"/>
+<file category="source" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_src\c\TestSegments\frstl_armcm4_test_dummy.c"/>
+
+<file category="source" name="fRSTL_armCM4_EVAL\1.0\OOTBTB\OOTBTB_src\pfi_test_all.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+ <!--<file category="library" name="fRSTL_armCM4_EVAL\1.0\Source\fRSTL_armCM4_lib\fRSTL_armCM4_EVAL_lib.lib"/>
+-->
+</files>
+</component>
+</components>
+
+<examples>
+<example name="fRSTL_EVAL ARM CM0" doc="Abstract.txt" folder="fRSTL_armCM0_EVAL\1.0\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL Simulatable Template (OOTBTB)</description>
+	<board name="uVision Simulator" vendor="Keil"/>		
+	<project>
+		<environment name="uv" load="Project\keil\OOTBTB_fRSTL_armCM0_EVAL.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM0"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL ARM CM0+" doc="Abstract.txt" folder="fRSTL_armCM0p_EVAL\1.0\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL Simulatable Template (OOTBTB)</description>
+	<board name="uVision Simulator" vendor="Keil"/>		
+	<project>
+		<environment name="uv" load="Project\keil\OOTBTB_fRSTL_armCM0p_EVAL.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM0+"/>
+	</attributes>
+</example>
+<example name="fRSTL_EVAL ARM CM3" doc="Abstract.txt" folder="fRSTL_armCM3_EVAL\1.0\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL Simulatable Template (OOTBTB)</description>
+	<board name="uVision Simulator" vendor="Keil"/>		
+	<project>
+		<environment name="uv" load="Project\keil\OOTBTB_fRSTL_armCM3_EVAL.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM3"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL ARM CM4" doc="Abstract.txt" folder="fRSTL_armCM4_EVAL\1.0\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL Simulatable Template (OOTBTB)</description>
+	<board name="uVision Simulator" vendor="Keil"/>		
+	<project>
+		<environment name="uv" load="Project\keil\OOTBTB_fRSTL_armCM4_EVAL.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="ARM_CORES_CM4"/>
+	</attributes>
+</example>
+</examples>
+
+<taxonomy>
+    <description Cclass="Functional Safety" doc="fRSTL_armCM0_EVAL\1.0\DeliDocs\fRSTL_ARMCMx_EVAL_SM_UG_ptr.pdf">Yogitech fRSTL Safety Software Component</description>
+</taxonomy>
+
+  
+</package>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Nuvoton</vendor>
+  <url>http://www.nuvoton.com/hq/enu/Documents/KEILSoftwarePack</url>
+  <name>NuMicro_M051_BSP</name>
+  <description>Nuvoton ARM Cortex-M NuMicro Family M051 BSP Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2018-09-07">
+      First Release version of M051 BSP Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Nuvoton</keyword>
+    <keyword>BSP Support</keyword>
+    <keyword>Board Sample Package Nuvoton</keyword>
+    <keyword>M051</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Nuvoton" name="NuTiny-SDK-M051" revision="V1.0" salesContact="sales@nuvoton.com">
+      <description>Nuvoton NuTiny SDK M051 Board Support and Examples</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M0516LDE"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" DsubFamily="M051"/>
+  	    <feature type="ODbg"      n="1"                name="On-board Nu-Link-ME"/>
+	    <feature type="PWR"       n="5"                name="USB Powered"/>
+	    <feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
+	    <feature type="LED"       n="1"                name="User LED"/>
+	    <feature type="Button"    n="1"                name="Reset Button"/>
+      <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="M0NuMicro M051 Device">
+      <description>Nuvoton M0NuMicro M051 Series devices</description>
+      <accept  Dvendor="Nuvoton:18"  Dname="M052[LZ][ABD][NE]"/>
+      <accept  Dvendor="Nuvoton:18"  Dname="M054[LZ][ABD][NE]"/>
+      <accept  Dvendor="Nuvoton:18"  Dname="M058[LZ][ABD][NE]"/>
+      <accept  Dvendor="Nuvoton:18"  Dname="M0516[LZ][ABD][NE]"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- *************************  Startup file  ***************************** -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Nuvoton M051 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+      <files>
+        <!-- header path -->
+		<file category="include" name="Device/M051/StdDriver/inc/"/>
+		<file category="include" name="Device/M051/Include/"/>
+        <file category="header"  name="Device/M051/Include/M051Series.h"/>
+        <!-- startup/system files -->
+        <file category="sourceAsm"  name="Device/M051/Source/ARM/startup_M051Series.s" attr="config" version="0.00.001" condition="Compiler ARM"/>
+        <file category="source"  name="Device/M051/Source/system_M051Series.c" attr="config" version="0.00.001"/>
+        <!-- retarget files -->		
+        <file category="sourceC" name="Device/M051/StdDriver/src/retarget.c" attr="config" version="0.00.001"/>
+      </files>
+    </component>
+	
+	<!-- *************************  Device driver IP file ***************************** -->
+	<component Cclass="Device" Cgroup="StdDriver" Csub="ACMP" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>ACMP driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_ACMP              /* Driver ACMP */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/acmp.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/acmp.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="ADC" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>ADC driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_ADC              /* Driver ADC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/adc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/adc.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="CLK" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>CLK driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_CLK              /* Driver CLK */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/clk.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/clk.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="EBI" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>EBI driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_EBI              /* Driver EBI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/ebi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/ebi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="FMC" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>FMC driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_FMC              /* Driver FMC */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/fmc.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/FMC.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="GPIO" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>GPIO driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_GPIO              /* Driver GPIO */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/gpio.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/gpio.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="HDIV" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>HDIV driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_HDIV              /* Driver HDIV */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/hdiv.h" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="I2C" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>I2C driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_I2C              /* Driver I2C */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/i2c.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/i2c.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="PWM" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>PWM driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_PWM              /* Driver PWM */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/pwm.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/pwm.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SPI" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>SPI driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SPI              /* Driver SPI */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/spi.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/spi.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="SYS" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>SYS driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_SYS              /* Driver SYS */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/sys.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/sys.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="Timer" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>Timer driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_Timer              /* Driver Timer */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/timer.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/timer.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="UART" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>UART driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_UART              /* Driver UART */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/uart.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/uart.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="WDT" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>WDT driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_WDT              /* Driver WDT */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/wdt.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/wdt.c" version="0.00.001"/>
+	  </files>
+	</component>
+	<component Cclass="Device" Cgroup="StdDriver" Csub="WWDT" Cversion="0.00.001" condition="M0NuMicro M051 Device">
+	  <description>WWDT driver for Nuvoton M051 Series</description>
+	  <RTE_Components_h>
+		<!-- the following content goes into file 'RTE_Components.h' -->
+		#define RTE_Drivers_WWDT              /* Driver WWDT */
+	  </RTE_Components_h>
+	  <files>
+		<file category="header" name="Device/M051/StdDriver/inc/wwdt.h" version="0.00.001"/>
+		<file category="sourceC" name="Device/M051/StdDriver/src/wwdt.c" version="0.00.001"/>
+	  </files>
+	</component>
+  </components>
+
+
+  <examples>  
+	<example name="Template" doc="Abstract.txt" folder="Boards/M051/Template" version="0.00.001">
+	  <description>M051 Template sample code</description>
+	  <board name="NuTiny-SDK-M051" vendor="Nuvoton"/>
+	  <project>
+		<environment name="uv" load="Keil/Template.uvprojx"/>
+	  </project>
+      <attributes>
+		<component Cclass="CMSIS" Cgroup="CORE"/>
+		<component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="CLK"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="SYS"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART"/>
+      </attributes>
+	</example>
+	<example name="GPIO_INT" doc="Abstract.txt" folder="Boards/M051/StdDriver/GPIO_INT" version="0.00.001">
+	  <description>M051 GPIO_INT sample code</description>
+	  <board name="NuTiny-SDK-M051" vendor="Nuvoton"/>
+	  <project>
+		<environment name="uv" load="KEIL/GPIO_INT.uvprojx"/>
+	  </project>
+      <attributes>
+		<component Cclass="CMSIS" Cgroup="CORE"/>
+		<component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="GPIO"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="CLK"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="SYS"/>
+		<component Cclass="Device" Cgroup="Driver" Csub="UART"/>
+      </attributes>
+	</example>
+  </examples>
+</package>

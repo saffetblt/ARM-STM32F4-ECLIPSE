@@ -1,0 +1,80 @@
+This is an Virtual COM example that demonstrates Communication Device Class (CDC)
+on USB Device.
+
+It demonstrates a bridge between PC USB Virtual COM Port and UART port on the 
+evaluation board and is based on a Windows USB host driver (usbser.sys).
+
+Detailed description is available on:
+www.keil.com/pack/doc/MW/USB/html/dev_cdc_tutorial.html
+
+Board:                  Keil 'MCBSTM32F400'
+Microcontroller:        ST   'STM32F407'
+Clock Settings:         XTAL       =  25 MHz
+                        CPUCLK     = 168 MHz
+                        USB FS CLK =  48 MHz
+                        USB HS CLK =  60 MHz (from external ULPI)
+
+The PC will install a Virtual COM Port on the PC (see Driver Installation).
+After installation an additional port "MCBSTM32F400 USB VCom Port(COMx)"
+can be found under System/Hardware/Device Manager/Ports(COM&LPT).
+Number "x" is not fixed as different PC configuration may have different 
+"x" displayed on the device manager. The USB host driver assigns "x" 
+dynamically based on the existing COM port configuration of the system.
+
+Jumpers J13 and J14 define which bridge is fully functional:
+USBD_OTG_FS Virtual COM Port and UART1 bridge or
+USBD_OTG_HS Virtual COM Port and UART3 bridge.
+
+Testing the USB Virtual COM Port with serial cable:
+
+  Open two Hyperterminal windows. 
+      One with "MCBSTM32F400 USB VCom Port(COMx)" 
+      One with "Communications Port (COM1)"
+  Connect PC port COM1 to MCBSTM32F400 COM1 and open "COM1" and "COMx".
+  Data from "COM1" will be echoed on "COMx" and visa versa. 
+  So, this is bi-directional communication between the physical COM 
+  port 1 on MCBSTM32F400 and the Virtual COM Port COMx on host PC.
+
+The program is available for target(s):
+
+  - STM32F407 Flash: Downloads to and executes from internal Flash
+
+Important Note: MCBSTM32F400 does not have routed flow control pins on the UART 
+                so it is possible that this example will loose characters 
+                because of lack of flow control
+
+
+Driver Files:
+-------------
+    - mcbstm32f4xx-vcom.inf       : Driver setup information.
+    - mcbstm32f4xx-vcom_x86.cat   : Digitally signed driver catalog file for
+                                    32-bit host PCs.
+    - mcbstm32f4xx-vcom_amd64.cat : Digitally signed driver catalog file for
+                                    64-bit host PCs.
+
+Note : Digitally signing of the driver catalog file is required to install
+drivers on 64-bit PCs using Windows Vista or later Windows versions. Please
+refer to Microsoft documentation for further information.
+
+
+Driver Installation:
+--------------------
+     "Welcome to the Found New Hardware Wizard" appears
+     - select 'No, not this time'
+     - press  'Next'
+
+     - select 'Install from a list or specific location (Advanced)'
+     - press  'Next'
+
+     - select 'Search for the best driver in these locations'
+     - check  'include this location in the serach'
+     - set to <project folder>
+     - press 'Next'
+
+
+     "Hardware Installation" appears
+     "has not passed Windows Logo testing..."
+     - press 'Continue Anyway'
+
+     "Completing the Found New Hardware Wizard" appears
+     - press 'Finish'

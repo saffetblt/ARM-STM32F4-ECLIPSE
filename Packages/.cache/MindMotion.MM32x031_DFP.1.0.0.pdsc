@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>MindMotion</vendor>
+  <url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>  
+  <name>MM32x031_DFP</name>
+  <description>MindMotion MM32x031 Series Device Support, Drivers and Examples</description>
+
+  <releases>
+    <release version="1.0.0">
+      First Release version of MM32x031 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>MindMotion</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package MindMotion</keyword>
+    <keyword>MM32x031</keyword>
+    <keyword>MM32</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="MM32x031 Series" Dvendor="MindMotion:132">
+      <processor Dcore="Cortex-M0"  DcoreVersion="r1p0" Dfpu="0" Dmpu = "0" Dendian="Little-endian"/>
+ 
+            <description>
+	The MindMotion MM32x031 device family contains an ARM Cortex-M0 processor with a versatile set of on-chip peripherals
+
+MM32x031 - ARM Cortex-M0 Core
+  Frequency up to 48 MHz
+  Single-cycle multiplier and hardware divider
+  NVIC support 16 interrupts, each interrupt has 16 priority levels
+  
+  Flash memory
+
+Flash up to 32 KB
+  SRAM up to 4 KB
+
+
+Low-power management
+  Support power saving mode: sleep, and standby mode
+
+
+High performance analog peripherals
+  1 x 12bit, 1us ADC
+
+
+  
+Varity of peripherals interface
+  Up to 1 x UART
+  Up to 1 x SPI (18Mbit/s)
+  Up to 1 x I2C (400Kbit/s)
+
+
+On-chip resources
+  1 x Advanced Timer, 1 x SysTick Timer, 2 x WDT
+  1 x DMA supported
+  POR,PDR and LVD
+  80% available GPIO
+  Clock: HSI (8MHz) and LSI (40KHz)
+
+        </description>
+
+
+      <!-- ************************  Subfamily 'MM32x031'  **************************** -->
+      <!-- *<subFamily DsubFamily="MM32x031"> * -->
+
+      <!-- *************************  Device 'MM32x031'  ***************************** -->
+      <device Dname="MM32x031">
+	  <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+        <compile header="Device/Include/MM32x031.h"  define="MM32x031"/>
+        <debug      svd="SVD/MM32x031.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x8000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32x031_32.FLM"    start="0x08000000"  size="0x8000"                   default="1"/>
+        
+         
+        <book    name="Documents/PB_MM32x031.pdf"                   title="MM32x031 Product Brief"/>
+
+      </device>
+
+		
+      <!-- *</subFamily> * -->
+
+
+    </family>
+  </devices>
+
+
+
+  
+  
+  
+  <conditions>   <!-- conditions are dependency rules that can apply to a component or an individual file -->
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<!-- add 20160418 start -->
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: one of CM0, CM0+, CM3, CM4, CM7, SC000, SC3000</description>
+      <accept Dcore="Cortex-M0"/>
+    </condition>
+
+    <condition id="Cortex-M Device CMSIS Core">
+      <description>ARM Cortex-M device that depends on CMSIS Core component</description>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="Cortex-M Device Startup">
+      <description>Only show for Cortex-M based devices. Depends on Device Startup component.</description>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    
+    <condition id="CMSIS Core">
+      <description>CMSIS CORE processor and device specific Startup files</description>
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+
+
+	<!-- add 20160418 end -->	
+	    <!-- Device + CMSIS Conditions -->
+        <!-- condition : MM32x031 ********************************************************-->
+	<condition id="MM32x031 CMSIS">
+		<description>MM32x031 device and CMSIS-Core</description>
+		<require Tcompiler="ARMCC"/>                                          <!-- conditions selecting ARM Compiler -->
+		<require Cclass="CMSIS" Cgroup="CORE"/>
+		<accept Dvendor="MindMotion:132" Dname="MM32x031"/>
+
+	</condition>
+
+
+  </conditions>
+  
+
+  <components>
+    <!-- CMSIS-Core component not required, is coming from CMSIS Pack -->
+  
+    <!-- Startup MM32x031 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MM32x031 CMSIS">
+      <description>System Startup for MindMotion MM32x031 Low density devices</description>
+      <files>
+        <!-- include folder    -->
+		        <!-- include folder / device header file -->
+        <file category="header"  name="Device/Include/MM32x031.h"/>
+        <file category="header"  name="Device/Include/system_MM32x031.h"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/Source/ARM/startup_MM32x031_ld.s" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source" name="Device/Source/system_MM32x031.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component> 
+  
+
+ 
+
+  </components>
+  
+  
+ 
+  
+  <examples>
+    <!-- Core031C_Board Core Board  -->
+
+
+	
+	<example name="Core031C_Board GPIO LED blinky" doc="README.TXT" folder="Boards/Core031C_Boardreg/MM32x031_Blink_with_reg/">
+		<description>Core031C_Board Blinky example</description>
+		<board name="Core031C_Board" vendor="MindMotion"/>
+		<project>
+			<environment name="uv" load="KEILPRJ/BLINK.uvprojx"/>
+		</project>
+		<attributes>
+			<component Cclass="CMSIS"     Cgroup="CORE"/>
+			<component Cclass="Device"    Cgroup="Startup"/>
+			<category>Getting Started</category>
+		</attributes>
+	</example>
+	
+  </examples>
+  
+  
+ <boards>
+    <board vendor="MindMotion" name="Core031C_Board" revision="Ver 1.0" >
+      <description>MindMotion Core031C_Board Development Board</description>
+      <image small="Images/Core031Csmall.jpg" large="Images/Core031Cbig.jpg"/>
+      <book category="setup"     name="Documents/boards/Core031C_Board_quickstart.pdf" title="Core031C_Board Quick Start"/>
+	  <book category="schematic" name="Documents/boards/Core031C_Board_SCH.pdf" title="Core031C_Board Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32x031"/>
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+
+    </board>
+  </boards>
+  
+  
+</package>

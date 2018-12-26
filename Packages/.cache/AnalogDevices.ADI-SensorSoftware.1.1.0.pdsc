@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>AnalogDevices</vendor>
+    <name>ADI-SensorSoftware</name>
+    <description>Analog Devices Sensor Drivers and Examples</description>
+    <url>http://download.analog.com/tools/Sensor_Software/Releases/</url>
+    <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+    <license>License\2012-05-11-LWSC Click Thru SLA.txt</license>
+
+    <releases>
+        <release version="1.1.0" date="2017-08-11">
+            Move example projects to respective board support packages. FIFO support added to ADXL362 class driver. Add SensorStrobe driver. Fix configuration include path issue.
+        </release>        
+        <release version="1.0.0" date="2017-05-31">
+            Initial Release
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>Analog Devices</keyword>
+        <keyword>Sensors</keyword>
+        <keyword>Accelerometer</keyword>
+        <keyword>Temperature sensor</keyword>
+        <keyword>Gas sensor</keyword>
+        <keyword>Visible light sensor</keyword>
+    </keywords>    
+
+    <taxonomy>
+        <description Cclass="Sensors" doc="Documents/html/index.html">
+            Analog Devices Sensor Software Pack Documentation
+        </description>
+    </taxonomy>
+
+    <boards>
+        <board vendor="AnalogDevices" name="EVAL-ADICUP3029" revision="Ver 1.0" orderForm="http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/eval-adicup3029.html#eb-buy">
+            <description>Analog Devices ADICUP3029 Evaluation Board</description>
+
+            <image small="Documents/eval-adicup3029-image.jpg" />
+            
+            <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM3029"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM302x Series"/>
+
+            <feature type="Batt"   n="2"        name="AAA batteries"/>
+            <feature type="PWR"    n="7" m="12" name="+7V to +12V DC power supply"/>
+            <feature type="Button" n="3"        name="Push-buttons: Reset, WiFi Reset, and Boot" />
+            <feature type="SPI"    n="2"        name="4-Pin Header (1 PMOD and 1 Arduino Shield)" />             
+            <feature type="I2C"    n="2"        name="2-Pin Header (1 PMOD and 1 Arduino Shield)" />
+            <feature type="LED"    n="4"        name="2 Debug LEDs and 2 User LEDs" />
+            <feature type="USB"    n="1"        name="UART over USB for serial input/output" />
+
+            <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+            <debugInterface adapter="CMSIS-DAP" connector="10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="10-pin Cortex Debug Connector"/>
+        </board>
+    </boards>       
+
+  <conditions>
+    <condition id="ADuCM3029">
+      <description>ADuCM3029 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <require Dname="ADuCM3029"/>
+    </condition>    
+    <condition id="Supported Devices">
+        <description>Supported microcontrollers</description>
+        <accept condition="ADuCM3029" />
+    </condition>
+    <condition id="SPI_AND_GPIO">
+      <description>Sensors that require both SPI and GPIO</description>
+      <require condition="Supported Devices"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+    </condition>
+    <condition id="SPI">
+      <description>Sensors that require SPI </description>
+      <require condition="Supported Devices"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+    </condition>
+  <condition id="I2C">
+      <description>Sensors that require SPI </description>
+      <require condition="Supported Devices"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="I2C"/>
+    </condition>    
+    <condition id="AD7798">
+      <description>Sensors that require SPI </description>
+      <require condition="Supported Devices"/>
+      <require Cclass="Sensors" Cgroup="ADC" Csub="ad7798"/>
+    </condition>
+    <condition id="AD7790">
+      <description>AD7790</description>
+      <require condition="Supported Devices"/>
+      <require Cclass="Sensors" Cgroup="ADC" Csub="ad7790"/>
+    </condition>    
+    <condition id="SensorStrobe">
+      <description>Drivers required for SensorStrobe component</description>
+      <require condition="Supported Devices" />
+      <require Cclass="Device" Cgroup="Drivers" Csub="GPIO" />
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power" />
+      <require Cclass="Device" Cgroup="Drivers" Csub="Interrupt" />
+      <require Cclass="Device" Cgroup="Drivers" Csub="RTC" />
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Sensors" Cgroup="Accelerometer" Csub="adxl362" Cversion="1.1.0" condition="SPI">
+      <description>adxl362 sensor driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="header" name="Include/sensor/config/adi_adxl362_config.h" version="1.1.0" attr="config" />
+            <file category="source" name="Source/sensor/axl/adxl362/adi_adxl362.cpp"/>
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_a_d_x_l362.html" />
+      </files>
+    </component>
+
+    <component Cclass="Sensors" Cgroup="Temperature" Csub="adt7420" Cversion="1.1.0" condition="I2C">
+      <description>adt7420 sensor driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="header" name="Include/sensor/config/adi_adt7420_config.h" version="1.1.0" attr="config" />
+            <file category="source" name="Source/sensor/temp/adt7420/adi_adt7420.cpp"/>
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_a_d_t7420.html" />
+      </files>
+    </component>
+
+    <component Cclass="Sensors" Cgroup="ADC" Csub="ad7790" Cversion="1.1.0" condition="SPI_AND_GPIO">
+      <description>ad7790 driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="header" name="Include/sensor/config/adi_ad7790_config.h" version="1.1.0" attr="config" />
+            <file category="source" name="Source/sensor/adc/ad7790/adi_ad7790.cpp"/>
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_a_d7790.html" />
+      </files>
+    </component>   
+        
+    <component Cclass="Sensors" Cgroup="ADC" Csub="ad7798" Cversion="1.1.0" condition="SPI">
+      <description>ad7798 driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="header" name="Include/sensor/config/adi_ad7798_config.h" version="1.1.0" attr="config" />
+            <file category="source" name="Source/sensor/adc/ad7798/adi_ad7798.cpp"/>
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_a_d7798.html" />
+      </files>
+    </component>   
+
+    <component Cclass="Sensors" Cgroup="Visible Light" Csub="cn0397" Cversion="1.1.0" condition="AD7798">
+      <description>cn0397 driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="source" name="Source/sensor/visible_light/cn0397/adi_cn0397.cpp"/>
+            <file category="header" name="Include/sensor/config/adi_cn0397_config.h" version="1.1.0" attr="config" />
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_c_n0397.html" />
+      </files>
+    </component>    
+
+    <component Cclass="Sensors" Cgroup="Gas" Csub="cn0357" Cversion="1.1.0" condition="AD7790">
+      <description>cn0357 driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="header" name="Include/sensor/config/adi_cn0357_config.h" version="1.1.0" attr="config" />
+            <file category="source" name="Source/sensor/gas/cn0357/adi_cn0357.cpp"/>
+            <file category="doc" name="Documents/html/classadi__sensor__swpack_1_1_c_n0357.html" />
+      </files>
+    </component>
+
+     <component Cclass="Sensors" Cgroup="SensorStrobe" Csub="SensorStrobe" Cversion="1.0.0" condition="SensorStrobe">
+      <description>SensorStrobe driver</description>
+      <files>
+            <file category="include" name="Include/sensor/" />
+            <file category="source" name="Source/sensor/sensor_strobe/adi_sensor_strobe.c"/>
+            <file category="doc" name="Documents/html/group__sensor__strobe.html" />
+      </files>
+    </component>
+
+  </components>
+</package>

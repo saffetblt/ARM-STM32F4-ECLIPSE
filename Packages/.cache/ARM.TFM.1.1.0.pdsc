@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2018 Arm Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>TFM</name>
+  <description>
+  Trusted Firmware-M (TF-M) is the reference implementation of Arm's Platform Security Architecture (PSA). PSA is a recipe for building secure connected devices from analysis to implementation.
+  </description>
+  <releases>
+    <release version="1.1.0" date="2018-09-24">
+    Out-of-the box examples for ARM V2M-MPS2 BSP for CoreLink SSE-200 added.
+    </release>
+    <release version="1.0.1" date="2018-08-24">
+    Fix vendor URL.
+    </release>
+    <release version="1.0.0" date="2018-08-08">
+    First version of TFM released in Keil pack. This pack includes TFM Core, Audit Log and Secure Storage Service as secure services
+    and Non-Secure API. Out-of-the box examples based on TFM configurations are also attached.
+    This version is a snapshot of https://git.trustedfirmware.org/trusted-firmware-m.git repository
+    of the following hash: 5c1756fbab6097f5688583d11dea5d1271d2d774
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>Security</keyword>
+    <keyword>PSA</keyword>
+    <keyword>TFM</keyword>
+    <keyword>TF-M</keyword>
+    <keyword>TrustZone</keyword>
+    <keyword>Trusted Firmware</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="mbed TLS">
+      <description>mbed TLS for encrypton</description>
+      <require Cclass="Security" Cgroup="mbed TLS" Cversion="2.6.1:2.6.1"/>
+    </condition>
+    <condition id="Secure Device TFM">
+      <description>Secure Device TFM</description>
+      <require Cclass="Device" Cgroup="Startup" Cvariant="Secure" Cversion="2.0.0"/>
+      <require Dsecure="Secure"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="Non-Secure Device TFM">
+      <description>Non-Secure Device TFM</description>
+      <require Cclass="Device" Cgroup="Startup" Cvariant="Non-Secure" Cversion="2.0.0"/>
+      <require Dsecure="Non-secure"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="Secure Service TFM">
+      <description>Secure Device TFM</description>
+      <require condition="mbed TLS"/>
+      <require Cclass="Device" Cgroup="Memory map"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="TFM" Cgroup="Core" Cversion="1.0.0" condition="Secure Device TFM">
+      <description>Secure Core functionality of TFM</description>
+      <files>
+        <file category="include" name="./"/>
+        <file category="include" name="interface/include/"/>
+        <file category="include" name="platform/ext/cmsis/"/>
+        <file category="include" name="platform/ext/common/"/>
+        <file category="include" name="platform/ext/driver/"/>
+        <file category="include" name="secure_fw/core/"/>
+        <file category="include" name="secure_fw/spm/"/>
+        <file category="source" name="platform/ext/common/uart_stdout.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/core/tfm_core.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/core/tfm_handler.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/core/tfm_secure_api.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/core/tfm_unpriv_api.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/ns_callable/tfm_log_veneers.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/ns_callable/tfm_sst_veneers.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/spm/spm_api.c" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="TFM" Cgroup="Secure Services" Csub="Audit Log" Cversion="1.0.0" condition="Secure Service TFM">
+      <description>Audit Log Secure Service</description>
+      <files>
+        <file category="header" name="platform/ext/common/tfm_mbedtls_config.h" version="1.0.0" attr="config"/>
+        <file category="header" name="secure_fw/services/audit_logging/mbedtls_global_symbols.h" version="1.0.0" attr="config"/>
+
+        <file category="include" name="./"/>
+        <file category="include" name="interface/include/"/>
+        <file category="include" name="platform/ext/cmsis/"/>
+        <file category="include" name="platform/ext/common/"/>
+        <file category="include" name="platform/ext/driver/"/>
+        <file category="include" name="secure_fw/core/"/>
+        <file category="include" name="secure_fw/spm/"/>
+        <file category="source" name="secure_fw/services/audit_logging/log_core.c" version="1.0.0"/>
+      </files>
+     </component>
+    <component Cclass="TFM" Cgroup="Secure Services" Csub="Storage" Cversion="1.0.0" condition="Secure Service TFM">
+      <description>Secure Storage Service</description>
+      <files>
+        <file category="header" name="platform/ext/common/tfm_mbedtls_config.h" version="1.0.0" attr="config"/>
+        <file category="header" name="secure_fw/services/secure_storage/crypto/mbedtls_global_symbols.h" version="1.0.0" attr="config"/>
+
+        <file category="include" name="./"/>
+        <file category="include" name="interface/include/"/>
+        <file category="include" name="platform/ext/cmsis/"/>
+        <file category="include" name="platform/ext/common/"/>
+        <file category="include" name="platform/ext/driver/"/>
+        <file category="include" name="secure_fw/core/"/>
+        <file category="include" name="secure_fw/spm/"/>
+        <file category="source" name="secure_fw/services/secure_storage/assets/sst_asset_defs.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/crypto/sst_crypto_interface.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/flash/sst_flash.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/sst_asset_management.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/sst_core.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/sst_encrypted_object.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/sst_object_system.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/sst_utils.c" version="1.0.0"/>
+        <file category="source" name="secure_fw/services/secure_storage/tfm_sst_secure_api.c" version="1.0.0"/>
+      </files>
+     </component>
+    <component Cclass="TFM" Cgroup="API" Cversion="1.0.0" condition="Non-Secure Device TFM">
+      <description>Non-Secure API of TFM for secure services</description>
+      <files>
+        <file category="include" name="./"/>
+        <file category="include" name="interface/include/"/>
+        <file category="include" name="platform/ext/cmsis/"/>
+        <file category="include" name="platform/ext/driver/"/>
+        <file category="include" name="secure_fw/core/"/>
+        <file category="include" name="secure_fw/spm/"/>
+        <file category="source" name="interface/src/tfm_id_mngr_dummy.c" version="1.0.0"/>
+        <file category="source" name="interface/src/tfm_log_api.c" version="1.0.0"/>
+        <file category="source" name="interface/src/tfm_log_svc_handler.c" version="1.0.0"/>
+        <file category="source" name="interface/src/tfm_ns_lock_rtx.c" version="1.0.0"/>
+        <file category="source" name="interface/src/tfm_sst_api.c" version="1.0.0"/>
+        <file category="source" name="interface/src/tfm_sst_svc_handler.c" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+  <!-- Examples -->
+  <examples>
+    <example name="TFM Demo" doc="ReadMe.txt" folder="Examples/Musca/tfm_musca_demo" version="1.0.0">
+      <description>Bare minimum demonstration of TFM</description>
+      <board name="Musca" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm_musca_demo.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM" Cgroup="Core"/>
+        <component Cclass="TFM" Cgroup="API"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TFM Regression Test" doc="ReadMe.txt" folder="Examples/Musca/tfm_musca_regression_test" version="1.0.0">
+      <description>Regression tests of secure core and secure services</description>
+      <board name="Musca" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm_musca_regression_test.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM" Cgroup="Core"/>
+        <component Cclass="TFM" Cgroup="API"/>
+        <category>Test</category>
+      </attributes>
+    </example>
+    <example name="TFM Demo" doc="ReadMe.txt" folder="Examples/mps2/an521/tfm_an521_demo" version="1.0.0">
+      <description>Bare minimum demonstration of TFM</description>
+      <board name="V2M-MPS2-SSE-200" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm_an521_demo.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM" Cgroup="Core"/>
+        <component Cclass="TFM" Cgroup="API"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TFM Regression Test" doc="ReadMe.txt" folder="Examples/mps2/an521/tfm_an521_regression_test" version="1.0.0">
+      <description>Regression tests of secure core and secure services</description>
+      <board name="V2M-MPS2-SSE-200" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm_an521_regression_test.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM" Cgroup="Core"/>
+        <component Cclass="TFM" Cgroup="API"/>
+        <category>Test</category>
+      </attributes>
+    </example>
+    <example name="TFM Core Test" doc="ReadMe.txt" folder="Examples/mps2/an521/tfm_an521_core_test" version="1.0.0">
+      <description>Core tests of secure core and secure services</description>
+      <board name="V2M-MPS2-SSE-200" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm_an521_core_test.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM" Cgroup="Core"/>
+        <component Cclass="TFM" Cgroup="API"/>
+        <category>Test</category>
+      </attributes>
+    </example>
+  </examples>
+ </package>

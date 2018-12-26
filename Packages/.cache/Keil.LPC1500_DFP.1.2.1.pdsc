@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC1500_DFP</name>
+  <description>NXP LPC1500 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.2.1" date="2018-03-05">
+      Fixed incorrect Core clock frequency Dclock to 72 MHz.
+    </release>
+    <release version="1.2.0" date="2016-06-28">
+      Added SPI CMSIS driver.
+      Updated CMSIS-Driver to ver.:2.0 for I2C and USB Device.
+      Added LPCOpen V2.2 firmware package.
+    </release>
+    <release version="1.1.0" date="2016-04-29">
+      Corrected LPC_SYSCON_Type in LPC15xx header file.
+      Corrected doxy comments is system file.
+    </release>
+    <release version="1.0.4">
+      Corrected USB Device driver SETUP packet interrupt clearing.
+    </release>
+    <release version="1.0.3">
+      Corrected USB Device driver for configured In Endpoint to NAK IN packets.
+    </release>
+    <release version="1.0.2">
+      Updated SVD file.
+    </release>
+    <release version="1.0.1">
+      File name consistency.
+    </release>
+    <release version="1.0.0">
+      First Release version of LPC1500 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC1500</keyword>
+    <keyword>LPC15xx</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="LPC1500 Series" Dvendor="NXP:11">
+      <processor Dclock="72000000" Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <environment name="uv">
+        <CMisc>-DCORE_M3</CMisc>
+      </environment>
+      <book    name="Documents/dui0552a_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+      <book    name="Documents/LPC15XX_DS.pdf" title="LPC1500 Data Sheet"/>
+      <book    name="Documents/LPC15XX_UM.pdf" title="LPC1500 User Manual"/>
+      <description>
+ARM Cortex-M3 CPU running up to 72MHz
+
+Memory:
+- Up to 256 kB on-chip flash (ISP and IAP)
+- Up to  36 kB SRAM
+-        4 kB EEPROM
+
+Digital peripherals:
+- Simple DMA engine with 18 chn
+- up to 76 General-Purpose I/O (GPIO) pins
+- GPIO interrupt generation capability
+- 2 GPIO grouped port interrupts
+- Switch matrix for flexible configuration of each I/O pin function
+- CRC engine
+- Quadrature Encoder Interface (QEI)
+
+Timers
+- 2 State Configurable Timers (SCT) in large config.
+- 2 State Configurable Timers (SCT) in small config.
+- SCT Input Pre-processor Unit (SCTIPU)
+- 24-bit, 4-channel, multi-rate timer (MRT)
+- Repetitive interrupt timer
+- Windowed Watchdog timer (WWDT)
+- High-resolution 32-bit Real-time clock (RTC)
+
+Analog peripherals:
+- 2 12-bit ADC with up to 12 input chn per ADC
+- 1 12-bit DAC
+- Integrated temperature sensor
+- 4 comparators
+
+Serial interfaces:
+- 3 USART interfaces
+- 2 SPI controllers
+- 1 I2C-bus interface
+- 1 C_CAN controller
+- 1 USB 2.0 FS device controller with on-chip PHY
+
+Clock generation:
+- 12 MHz internal RC osc.
+- Crystal osc. (operating range of 1 MHz to 25 MHz)
+- Programmable watchdog osc.
+- 32 kHz low-power RTC osc.
+- System PLL allows CPU operation up to the maximum CPU rate
+- 2 additional PLLs for generating the USB and SCT clocks
+- Clock output function with divider that can reflect various clocks
+
+Power control:
+- Integrated PMU (Power Management Unit)
+- Reduced power modes: Sleep, Deep-sleep, Power-down, Deep power-down
+- APIs provided for optimizing power consumption
+- Wake-up from Deep-sleep and Power-down modes on activity on USB, USART, SPI, I2C
+- Timer-controlled self wake-up from Deep power-down
+- Power-On Reset (POR)
+- BrownOut Detect BOD)
+Unique device serial number for identification
+          </description>
+      <feature type="USART" n="3"/>
+      <feature type="I2C"   n="1"/>
+      <feature type="SPI"   n="2"/>
+      <feature type="CAN"   n="1"/>
+      <feature type="PWM"   n="4" m="32"/>
+      <feature type="DAC"   n="1" m="12"/>
+      <feature type="VCC"   n="2.4" m="3.6"/>
+      <feature type="Temp"  n="-40" m="105"/>
+      <feature type="XTAL"  n="1000000" m="25000000"/>
+      <!-- *************************  Device 'LPC1517'  ***************************** -->
+      <device Dname="LPC1517JBD48">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1517JBD48"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x3000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="9" name="ADC0"/>
+        <feature type="ADC" n="12" m="7" name="ADC1"/>
+        <feature type="IOs" n="32"/>
+        <feature type="QFP" n="48" name="LQFP48"/>
+      </device>
+      <device Dname="LPC1517JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1517JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x3000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="46"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1518'  ***************************** -->
+      <device Dname="LPC1518JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1518JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="46"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+
+      <device Dname="LPC1518JBD100">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1518JBD100"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="78"/>
+        <feature type="QFP" n="100" name="LQFP100"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1519'  ***************************** -->
+      <device Dname="LPC1519JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1519JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x9000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="46"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+      <device Dname="LPC1519JBD100">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1519JBD100"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x9000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="78"/>
+        <feature type="QFP" n="100" name="LQFP100"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1547'  ***************************** -->
+      <device Dname="LPC1547JBD48">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1547JBD48"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x3000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="9" name="ADC0"/>
+        <feature type="ADC" n="12" m="7" name="ADC1"/>
+        <feature type="IOs" n="30"/>
+        <feature type="QFP" n="48" name="LQFP48"/>
+      </device>
+      <device Dname="LPC1547JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1547JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x3000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="44"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1548'  ***************************** -->
+      <device Dname="LPC1548JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1548JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="44"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+      <device Dname="LPC1548JBD100">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1548JBD100"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="76"/>
+        <feature type="QFP" n="100" name="LQFP100"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1549'  ***************************** -->
+      <device Dname="LPC1549JBD48">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1549JBD48"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x9000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="9" name="ADC0"/>
+        <feature type="ADC" n="12" m="7" name="ADC1"/>
+        <feature type="IOs" n="30"/>
+        <feature type="QFP" n="48" name="LQFP48"/>
+      </device>
+      <device Dname="LPC1549JBD64">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1549JBD64"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x9000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="44"/>
+        <feature type="QFP" n="64" name="LQFP64"/>
+      </device>
+      <device Dname="LPC1549JBD100">
+        <compile header="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/chip.h"  define="LPC1549JBD100"/>
+        <debug      svd="SVD/LPC15xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x02000000"  size="0x9000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC15xx_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x02000000"  RAMsize="0x1000"  default="1"/>
+        <feature type="USBD"  n="1"/>
+        <feature type="ADC" n="12" m="12" name="ADC0"/>
+        <feature type="ADC" n="12" m="12" name="ADC1"/>
+        <feature type="IOs" n="76"/>
+        <feature type="QFP" n="100" name="LQFP100"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Device Condition -->
+    <condition id="LPC15xx">
+      <description>NXP LPC15xx Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC15*"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions -->
+    <condition id="LPC15xx ARMCC">
+      <description>NXP LPC15xx Devices and the ARM compiler</description>
+      <require condition="LPC15xx"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="LPC15xx IAR">
+      <description>NXP LPC15xx Devices and the IAR compiler</description>
+      <require condition="LPC15xx"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC15xx CMSIS">
+      <description>NXP LPC15xx Devices and CMSIS-CORE</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + CMSIS + LPCOpen Conditions -->
+    <condition id="LPC15xx CMSIS LPCOPEN">
+      <description>NXP LPC15xx Devices and LPCOpen firmware</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <!-- CMSIS Driver Conditions -->
+    <condition id="LPC15xx CMSIS_Driver I2C">
+      <description>Requirement for CMSIS I2C Driver</description>
+      <require condition="LPC15xx CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC15xx CMSIS_Driver SPI">
+      <description>Requirement for CMSIS SPI Driver</description>
+      <require condition="LPC15xx CMSIS LPCOPEN"/>
+    </condition>
+
+    <condition id="LPC15xx CMSIS_Driver USB">
+      <description>Requirement for CMSIS USB Driver</description>
+      <require condition="LPC15xx CMSIS"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <!-- Device + CMSIS Driver -->
+    <condition id="LPC15xx I2C">
+      <description>Requirement for components using CMSIS I2C driver</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC15xx SPI">
+      <description>Requirement for components using CMSIS SPI driver</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup LPC1500 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.20" condition="LPC15xx CMSIS LPCOPEN">
+      <description>System Startup for NXP LPC1500 Devices</description>
+      <files>
+        <file category="header"    name="RTE_Driver/Config/RTE_Device.h"                                   attr="config" version="1.1.0" condition="LPC15xx"/>
+
+        <file category="sourceC"   name="LPCOpen/applications/lpc15xx/startup_code/sysinit.c"              attr="config" version="1.0.0"/>
+
+        <file category="sourceAsm" name="LPCOpen/applications/lpc15xx/startup_code/keil_startup_lpc15xx.s" attr="config" version="1.0.0" condition="LPC15xx ARMCC"/>
+
+        <file category="sourceAsm" name="LPCOpen/applications/lpc15xx/startup_code/iar_startup_lpc15xx.s"  attr="config" version="1.0.0" condition="LPC15xx IAR"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="LPCOpen" Cversion="2.20" condition="LPC15xx CMSIS">
+      <description>LPCOpen chip drivers for the NXP LPC1500 family</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LPCOPEN
+      </RTE_Components_h>
+      <files>
+        <file category="include" condition="LPC15xx"        name="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/config_15xx/"/>
+        <file category="include" condition="LPC15xx"        name="LPCOpen/software/lpc_core/lpc_chip/chip_common/"/>
+        <file category="library" condition="LPC15xx ARMCC"  name="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/keil_output/chip_15xx_lib/chip_15xx_lib.lib" src="LPCOpen/software/lpc_core/lpc_chip/chip_15xx/"/>
+      </files>
+    </component>
+
+    <!-- CMSIS Driver class -->
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2" Cversion="2.0" condition="LPC15xx CMSIS_Driver I2C">
+      <description>I2C Driver for LPC1500 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_LPC15xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SPI" Capiversion="2.1" Cversion="2.0" condition="LPC15xx CMSIS_Driver SPI">
+      <description>SPI Driver for LPC1500 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_LPC15xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1" Cversion="2.0" condition="LPC15xx CMSIS_Driver USB">
+      <description>USB Device Driver for LPC1500 Series</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD_LPC15xx.c"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>
+

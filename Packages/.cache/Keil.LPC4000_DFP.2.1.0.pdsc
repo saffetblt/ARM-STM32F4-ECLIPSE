@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC4000_DFP</name>
+  <description>NXP LPC4000 Series Device Support</description>
+
+  <releases>
+    <release version="2.1.0" date="2018-06-26">
+      Device support:
+      - RTE_Device.h configuration file.
+      - Added system_LPC407x_8x_177x_8x.h to component startup.
+      Updated CMSIS drivers:
+      - CAN: 
+      -- Corrected SetBitrate function.
+      -- Corrected receive overrun signaling.
+      -- Corrected functionality when NULL pointer is provided for one or both 
+         signal callbacks in Initialize function call.
+      - EMAC: Added support for CMSIS-RTOS2.
+      - SSP and SPI driver:
+      -- MISO and MOSI pins can be configured as "not used".
+      - USART driver: 
+      -- Corrected send_active flag handling in USART_Send function.
+      -- TX and RX pins can be configured as "not used".
+      -- Added DMA support for UART4.
+      - USB Device/Host OTG driver: Added auto-detection of OTG Transceiver I2C address.
+      Board Examples:
+      - Added CAN Data example for Embedded Artists LPC4088-32 Developers Kit.
+      - Updated USB Host examples thread stack settings.
+      - Updated USB Device Audio example for Embedded Artists LPC4088-32 Developers Kit.
+      - Updated USB Device CDC ACM VirtualCOM example for Embedded Artists LPC4088-32 Developers Kit.
+      -- Corrected initial UART receive size.
+    </release>
+    <release version="2.0.0" date="2016-01-11">
+      Added CMSIS-Driver for CAN, Ethernet, I2C, MCI, SAI , SPI, USART, USB Device and USB Host
+      Added Board Support for the Embedded Artists LPC4088-32 Developers Kit
+      - CMSIS-RTOS Blinky and MDK-Middleware Version 7.0 based examples using USB Device and Host, FileSystem and Network
+      Updated Device Startup component, adding external memory controller configuration to system file
+    </release>
+    <release version="1.2.0" date="2015-05-12">
+      Updated system_LPC407x_8x_177x_8x.c and Device-Startup Cversion.
+      Removed duplicate device definitions (LPC4074FBD144, LPC4074FBD80)
+    </release>
+    <release version="1.1.0" date="2014-09-19">
+      Updated header file LPC407x_8x_177x_8x.h.
+      Removed flash algorithm LPC407x_8x_S25FL032.FLM.
+    </release>
+    <release version="1.0.0">
+      Initial version of LPC4000 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC4000</keyword>
+    <keyword>LPC40xx</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="LPC4000 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book    name="Documents/dui0553a_cortex_m4_dgug.pdf"           title="Cortex-M4 Generic User Guide"/>
+        <description>
+NXP's LPC4000 Series is a digital signal controller for embedded applications requiring a high level of integration and low power dissipation.
+Typical applications include Point-of-sale terminals, web servers, multi-protocol bridges, Automation controllers, application control, robotics control, Audio, MP3 decoderscar alarms, GPS/fleet monitors
+
+  - LCD Controller (1024x768x24) for STN and TFT
+  - CRC Engine
+  - Event Recorder
+  - Quad SPI Flash interface (SPIFI)
+  - Motor control PWM for three-phase motor
+  - Unique ID for each device
+        </description>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="MPSerial"      n="3"                           name="SSP"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="Timer"         n="4"       m="32"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+
+      <!-- ************************  Subfamily 'LPC407x'  **************************** -->
+      <subFamily DsubFamily="LPC407x">
+        <book       name="Documents/UM10562.pdf"                          title="LPC4000 Series Reference Manual"/>
+        <book       name="Documents/LPC408X_7X_DS.pdf"                    title="LPC4000 Series Datasheet"/>
+        <book       name="Documents/LPC407X_8X_ES.pdf"                    title="LPC4000 Series Erratasheet"/>
+
+      <!-- *************************  Device 'LPC4074FBD144'  ***************************** -->
+      <device Dname="LPC4074FBD144">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+        <debug      svd="SVD/LPC408x_7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+        <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+        <feature type="UART"          n="4"/>
+        <feature type="PWM"           n="6"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+
+        <!-- *************************  Device 'LPC4074FBD80'  ***************************** -->
+        <device Dname="LPC4074FBD80">
+          <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="80"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4072FBD80'  ***************************** -->
+        <device Dname="LPC4072FBD80">
+          <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="80"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4072FET80'  ***************************** -->
+        <device Dname="LPC4072FET80">
+          <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+          <feature type="UART"          n="4"/>
+          <feature type="BGA"           n="80"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4076FBD144'  ***************************** -->
+        <device Dname="LPC4076FBD144">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4076FET180'  ***************************** -->
+        <device Dname="LPC4076FET180">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2048 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FBD100'  ***************************** -->
+        <device Dname="LPC4078FBD100">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FBD144'  ***************************** -->
+        <device Dname="LPC4078FBD144">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FBD208'  ***************************** -->
+        <device Dname="LPC4078FBD208">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FBD80'  ***************************** -->
+        <device Dname="LPC4078FBD80">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="QFP"           n="80"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FET180'  ***************************** -->
+        <device Dname="LPC4078FET180">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4078FET208'  ***************************** -->
+        <device Dname="LPC4078FET208">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="USBOTG"        n="1"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="6"/>
+          <feature type="BGA"           n="208"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC408x'  **************************** -->
+      <subFamily DsubFamily="LPC408x">
+        <book       name="Documents/UM10562.pdf"                          title="LPC4000 Series Reference Manual"/>
+        <book       name="Documents/LPC408X_7X_DS.pdf"                    title="LPC4000 Series Datasheet"/>
+        <book       name="Documents/LPC407X_8X_ES.pdf"                    title="LPC4000 Series Erratasheet"/>
+
+        <feature type="MemoryOther"   n="1"                           name="4032 Bytes EEPROM"/>
+        <feature type="GLCD"          n="1"       m="1024.768"        name="LCD Controller (1024x768x24) for STN and TFT"/>
+        <feature type="ETH"      n="1"       m="100000000"/>
+        <feature type="USBOTG"        n="1"/>
+        <feature type="UART"          n="5"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4088FBD144'  ***************************** -->
+        <device Dname="LPC4088FBD144">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4088FBD208'  ***************************** -->
+        <device Dname="LPC4088FBD208">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="QFP"           n="208"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4088FET180'  ***************************** -->
+        <device Dname="LPC4088FET180">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="BGA"           n="180"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4088FET208'  ***************************** -->
+        <device Dname="LPC4088FET208">
+          <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+          <compile header="Device/Include/LPC407x_8x_177x_8x.h"  define="CORE_M4"/>
+          <debug      svd="SVD/LPC408x_7x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="BGA"           n="208"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <boards>
+    <board vendor="Embedded Artists" name="LPC4088-32 Developers Kit" revision="Ver 1.3" salesContact="http://www.embeddedartists.com/contact" orderForm="http://www.embeddedartists.com/products/kits/lpc4088_kit.php">
+      <description>Embedded Artists LPC1788-32 Developers Kit</description>
+      <image small="Documents/kit_lpc4088_small.jpg" large="Documents/kit_lpc4088_large.jpg"/>
+      <book category="overview"  name="http://www.embeddedartists.com/products/kits/lpc4088_kit.php" title="LPC4088 Developer's Kit Web Page"/>
+      <book category="manual" name="Documents/LPC4088_OEM_Board_Datasheet.pdf" title="Data Sheet"/>
+      <book category="manual"    name="Documents/LPC4088_OEM_Board_Users_Guide.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC4088FET208"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC408x"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="Proto"           n="4"              name="Prototyping areas connected to I/Os"/>
+      <feature type="DIO"             n="70"             name="Digital I/Os (depending on configuration)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Host/OTG interface (USB Host connector)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Device interface (USB Device connector)"/>
+      <feature type="CAN"             n="2"/>
+      <feature type="RS232"           n="2"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="ConnOther"       n="1"              name="Speaker with amplifier"/>
+      <feature type="Button"          n="2"              name="Push-Buttons: Reset, INT0 (external interrupt)"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <feature type="CustomFF"        n="120" m="120"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC40xx">
+      <description>NXP LPC4000 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC40??*"/>
+    </condition>
+
+    <condition id="LPC40xx ETHERNET">
+      <description>NXP LPC4000 Series devices with Ethernet Controller</description>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="LPC4076*"/>
+      <accept Dname="LPC4078*"/>
+      <accept Dname="LPC408?*"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS">
+      <description>NXP LPC4000 Series devices and CMSIS-CORE</description>
+      <require condition="LPC40xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS_Driver EMAC">
+      <description>Requirement for CMSIS Ethernet MAC Driver</description>
+      <require condition="LPC40xx ETHERNET"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS_Driver CAN I2C">
+      <description>Requirement for CMSIS CAN and I2C Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS_Driver MCI SPI">
+      <description>Requirement for CMSIS MCI and SPI Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS_Driver SAI USART">
+      <description>Requirement for CMSIS SAI and USART Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC40xx CMSIS_Driver USB">
+      <description>Requirement for CMSIS USB Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP ADC">
+      <description>Requirement for EA BSP ADC Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP Audio">
+      <description>Requirement for EA BSP Audio Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+      <require Cclass="CMSIS Driver" Cgroup="SAI"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP Button LED">
+      <description>Requirement for EA BSP Button and LED Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP GLCD LITTLE">
+      <description>Requirement for EA BSP GLCD 320x240 Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP GLCD BIG">
+      <description>Requirement for EA BSP GLCD 480x272 and 800x480 Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC40xx EA_BSP Joystick">
+      <description>Requirement for EA BSP Joystick Driver</description>
+      <require condition="LPC40xx CMSIS"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Device class -->
+
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="LPC40xx CMSIS">
+      <description>System Startup for NXP LPC4000 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="header" name="Device/Include/LPC407x_8x_177x_8x.h"/>
+
+        <!-- startup / system file -->
+        <file category="source" name="Device/Source/ARM/startup_LPC407x_8x_177x_8x.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_LPC407x_8x_177x_8x.c"       attr="config" version="1.0.1"/>
+        <file category="header" name="Device/Include/system_LPC407x_8x_177x_8x.h"      attr="config" version="1.0.0"/>
+
+        <!-- device configuration required by drivers -->
+        <file category="header" name="RTE_Driver/Config/RTE_Device.h"                  attr="config" version="2.0.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="GPDMA" Cversion="1.0" condition="LPC40xx CMSIS">
+      <description>GPDMA driver used by CMSIS Drivers for LPC4000 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPDMA_LPC40xx.h"/>
+        <file category="source" name="RTE_Driver/GPDMA_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.0" condition="LPC40xx CMSIS">
+      <description>GPIO driver used by CMSIS Drivers for LPC4000 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPIO_LPC40xx.h"/>
+        <file category="source" name="RTE_Driver/GPIO_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="PIN" Cversion="1.0" condition="LPC40xx CMSIS">
+      <description>Pin Connect driver used by CMSIS Drivers for LPC4000 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/PIN_LPC40xx.h"/>
+        <file category="source" name="RTE_Driver/PIN_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <!-- CMSIS Driver class -->
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.0" Cversion="1.3" condition="LPC40xx CMSIS_Driver CAN I2C">
+      <description>CAN Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN1                /* Driver CAN1 */
+        #define RTE_Drivers_CAN2                /* Driver CAN2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/CAN_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Capiversion="2.1" Cversion="1.1" condition="LPC40xx CMSIS_Driver EMAC">
+      <description>Ethernet MAC Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_ETH_MAC0            /* Driver ETH_MAC0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/EMAC_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2" Cversion="1.0" condition="LPC40xx CMSIS_Driver CAN I2C">
+      <description>I2C Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.2" Cversion="1.0" condition="LPC40xx CMSIS_Driver MCI SPI">
+      <description>MCI Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0                /* Driver MCI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/MCI_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SAI" Capiversion="1.0" Cversion="1.0" condition="LPC40xx CMSIS_Driver SAI USART">
+      <description>SAI Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2S_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SSP" Capiversion="2.1" Cversion="1.1" condition="LPC40xx CMSIS_Driver MCI SPI">
+      <description>SPI Driver for LPC4000 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SSP_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1" Cversion="1.2" condition="LPC40xx CMSIS_Driver SAI USART">
+      <description>UART Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+        #define RTE_Drivers_USART4              /* Driver USART4 */
+        </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/UART_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1" Cversion="1.0" condition="LPC40xx CMSIS_Driver USB">
+      <description>USB Device Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD_LPC40xx.c"/>
+        <file category="source" name="RTE_Driver/OTG_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Capiversion="2.1" Cversion="1.0" condition="LPC40xx CMSIS_Driver USB">
+      <description>USB OHCI Host Driver for LPC4000 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBH_LPC40xx.c"/>
+        <file category="source" name="RTE_Driver/OTG_LPC40xx.c"/>
+      </files>
+    </component>
+
+    <!-- LPC4088-32 Developers Kit -->
+    <bundle Cbundle="LPC4088-32 Developers Kit" Cclass="Board Support" Cversion="1.0.0">
+      <description>Embedded Artists LPC4088-32 Developers Kit</description>
+      <doc></doc>
+      <component Cgroup="A/D Converter" Capiversion="1.00" condition="LPC40xx EA_BSP ADC">
+        <description>A/D Converter interface for Embedded Artists LPC4088-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/ADC_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Capiversion="1.01" condition="LPC40xx EA_BSP Audio">
+        <description>Audio interface for UDA1380</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/Audio_UDA1380.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="LPC40xx EA_BSP Button LED">
+        <description>Buttons interface for Embedded Artists LPC4088-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/Buttons_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" Cvariant="TFT 800x480" condition="LPC40xx EA_BSP GLCD BIG">
+        <description>LCD Board rev PB1 "7 inch TFT 800x480" for Embedded Artists LPC1788-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_800x480
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" Cvariant="TFT 480x272" condition="LPC40xx EA_BSP GLCD BIG">
+        <description>LCD Board rev PB1 "4.3 inch TFT 480x272" for Embedded Artists LPC4088-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_480x272
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" Cvariant="TFT 320x240" condition="LPC40xx EA_BSP GLCD LITTLE">
+        <description>LCD Board rev PB1 "3.2 inch TFT 320x240" for Embedded Artists LPC1788-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_320x240
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/GLCD_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.00" condition="LPC40xx EA_BSP Joystick">
+        <description>Joystick interface for Embedded Artists LPC4088-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/Joystick_EA_LPC4088.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.00" condition="LPC40xx EA_BSP Button LED">
+      <description>LED driver for Embedded Artists LPC4088-32 Developers Kit</description>
+        <files>
+        <file category="source" name="Boards/Embedded Artists/LPC4088-32 Developers Kit/Common/LED_EA_LPC4088.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <examples>
+    <!-- LPC4088-32 Developers Kit -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- Middleware::CAN examples -->
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/CAN/CAN" version="1.0.0">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <!-- Middleware::FileSystem examples -->
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <!-- Middleware::NetworkDS examples -->
+
+    <example name="BSD Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/BSD_Client" version="1.0.0">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/BSD_Server" version="1.0.0">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server IPv4/IPv6" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/NetworkDS/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <!-- Middleware::USB Device examples -->
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Headphone.</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and joystick.</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using RAM Disk as storage media</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <!-- Middleware::USB Host examples -->
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC4088-32 Developers Kit/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="LPC4088-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

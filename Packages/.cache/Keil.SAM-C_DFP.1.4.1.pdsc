@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAM-C_DFP</name>
+  <description>Microchip SAM C Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.4.1" date="2018-05-07">
+      Updated vendor name from Atmel to Microchip.
+    </release>
+    <release version="1.4.0" date="2017-12-01">
+      Added SAMC21N-XPRO board support.
+    </release>
+    <release version="1.3.0" date="2017-05-19">
+      Added SAMC2xJ15A device support.
+      Updated SAMC20, SAMC21 device support files.
+    </release>
+    <release version="1.2.0" date="2017-04-06">
+      Added SAMC20N, SAMC21N basic device support.
+      Updated SAMC20, SAMC21 device support files.
+      Updated documentation.
+    </release>
+    <release version="1.1.0" date="2017-03-29">
+      Updated SAMC20, SAMC21 device support files.
+      Updated documentation.
+    </release>
+    <release version="1.0.0" date="2005-06-23">
+      First Release version of SAM C Device Family Pack.
+      - SAMC20 and SAMC21 basic device support.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Microchip</keyword>
+    <keyword>SAM C</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM C Series" Dvendor="Microchip:3">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <!--book name="http://www.atmel.com/products/microcontrollers/arm/sam-c.aspx" title="SAMC Documents"/-->
+      <description>
+The Microchip | SMART SAM C ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+Microchip | SMART SAM C devices are truly differentiated 5V microcontrollers that are ideal for home appliances, industrial control and other 5V applications.
+      </description>
+
+      <!-- ******************************  SAM C20  ****************************** -->
+      <subFamily DsubFamily="SAM C20">
+        <processor Dclock="48000000"/>
+        <book name="Documents/60001479A.pdf" title="SAM C20 Datasheet"/>
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with 2.7V – 5.5V operating voltage make the Microchip SAM C20 ARM Cortex-M0+ based microcontroller series ideal for a wide range of consumer, industrial and other 5V applications.
+SAM C20 devices are designed for simple and intuitive migration between SAM C devices with identical peripheral modules, hex compatible code and a linear address map.
+        </description>
+
+        <feature type="CoreOther"     n="6"                       name="Event System channels"/>
+        <feature type="DMA"           n="6"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Timer"         n="3"       m="32"          name="Timer/Counter for Control"/>
+        <feature type="Timer"         n="5"       m="32"          name="Timer/Counter"/>
+        <feature type="DAC"           n="1"       m="10"/>
+        <feature type="ComOther"      n="4"                       name="SERCOMM (i2C, USART, SPI)"/>
+        <feature type="AnalogOther"   n="2"                       name="Analog Comparator"/>
+        <feature type="RTC"           n="32768"/>
+        <feature type="Touch"         n="1"                       name="Peripheral Touch Controller"/>
+        <feature type="VCC"           n="2.70"    m="5.50"/>
+        <feature type="Temp"          n="-40"     m="105"/>
+
+        <!-- ******************************  ATSAMC20E15A  ****************************** -->
+        <device Dname="ATSAMC20E15A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20E15A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20E15A.svd"/>
+          <memory     id="IROM1"                        start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory     id="IRAM1"                        start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20E16A  ****************************** -->
+        <device Dname="ATSAMC20E16A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20E16A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20E16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20E17A  ****************************** -->
+        <device Dname="ATSAMC20E17A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20E17A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20E17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20E18A  ****************************** -->
+        <device Dname="ATSAMC20E18A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20E18A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20E18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20G15A  ****************************** -->
+        <device Dname="ATSAMC20G15A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20G15A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20G15A.svd"/>
+          <memory     id="IROM1"                        start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory     id="IRAM1"                        start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20G16A  ****************************** -->
+        <device Dname="ATSAMC20G16A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20G16A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20G16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20G17A  ****************************** -->
+        <device Dname="ATSAMC20G17A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20G17A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20G17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20G18A  ****************************** -->
+        <device Dname="ATSAMC20G18A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20G18A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20G18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J15A  ****************************** -->
+        <device Dname="ATSAMC20J15A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J15A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J15A.svd"/>
+          <memory id="IROM1"                            start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory id="IRAM1"                            start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J16A  ****************************** -->
+        <device Dname="ATSAMC20J16A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J16A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J17A  ****************************** -->
+        <device Dname="ATSAMC20J17A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J17A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J17AU  ****************************** -->
+        <device Dname="ATSAMC20J17AU">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J17AU__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J17AU.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" default="1" startup="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J18A  ****************************** -->
+        <device Dname="ATSAMC20J18A">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J18A__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20J18AU  ****************************** -->
+        <device Dname="ATSAMC20J18AU">
+          <compile header="Device/SAMC20/Include/samc20.h" define="__SAMC20J18AU__"/>
+          <debug svd="SVD/SAMC20/ATSAMC20J18AU.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" default="1" startup="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20N17A  ****************************** -->
+        <device Dname="ATSAMC20N17A">
+          <compile header="Device/SAMC20N/Include/samc20.h" define="__SAMC20N17A__"/>
+          <debug svd="SVD/SAMC20N/ATSAMC20N17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC20N18A  ****************************** -->
+        <device Dname="ATSAMC20N18A">
+          <compile header="Device/SAMC20N/Include/samc20.h" define="__SAMC20N18A__"/>
+          <debug svd="SVD/SAMC20N/ATSAMC20N18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM C21  ****************************** -->
+      <subFamily DsubFamily="SAM C21">
+        <processor Dclock="48000000"/>
+        <book name="Documents/60001479A.pdf" title="SAM C21 Datasheet"/>
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with 2.7V – 5.5V operating voltage make the Microchip SAM C21 ARM Cortex-M0+ based microcontroller series ideal for a wide range of consumer and industrial applications.
+SAM C21 devices are designed for simple and intuitive migration between SAM C devices with identical peripheral modules, compatible code and a linear address map.
+        </description>
+
+        <feature type="CoreOther"     n="12"                      name="Event System channels"/>
+        <feature type="DMA"           n="12"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Timer"         n="3"       m="32"          name="Timer/Counter for Control"/>
+        <feature type="Timer"         n="5"       m="32"          name="Timer/Counter"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="DAC"           n="1"       m="10"/>
+        <feature type="RTC"           n="32768"/>
+        <feature type="TempSens"      n="1"/>
+        <feature type="Touch"         n="1"                       name="Peripheral Touch Controller"/>
+        <feature type="VCC"           n="2.70"    m="5.50"/>
+        <feature type="Temp"          n="-40"     m="105"/>
+
+        <!-- ******************************  ATSAMC21E15A  ****************************** -->
+        <device Dname="ATSAMC21E15A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21E15A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21E15A.svd"/>
+          <memory     id="IROM1"                        start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory     id="IRAM1"                        start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ComOther"      n="4"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="ADC"           n="1"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="3"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21E16A  ****************************** -->
+        <device Dname="ATSAMC21E16A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21E16A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21E16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ComOther"      n="4"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="ADC"           n="1"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="3"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21E17A  ****************************** -->
+        <device Dname="ATSAMC21E17A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21E17A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21E17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ComOther"      n="4"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="ADC"           n="1"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="3"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21E18A  ****************************** -->
+        <device Dname="ATSAMC21E18A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21E18A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21E18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ComOther"      n="4"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="ADC"           n="1"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="3"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="26"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                      name="QFN Package"/>
+          <feature type="QFP"           n="32"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21G15A  ****************************** -->
+        <device Dname="ATSAMC21G15A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21G15A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21G15A.svd"/>
+          <memory     id="IROM1"                        start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory     id="IRAM1"                        start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="ADC"           n="2"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21G16A  ****************************** -->
+        <device Dname="ATSAMC21G16A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21G16A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21G16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="ADC"           n="2"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21G17A  ****************************** -->
+        <device Dname="ATSAMC21G17A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21G17A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21G17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="ADC"           n="2"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21G18A  ****************************** -->
+        <device Dname="ATSAMC21G18A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21G18A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21G18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="ADC"           n="2"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J15A  ****************************** -->
+        <device Dname="ATSAMC21J15A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J15A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J15A.svd"/>
+          <memory     id="IROM1"                        start="0x00000000" size="0x08000" startup="1" default="1"/>
+          <memory     id="IRAM1"                        start="0x20000000" size="0x01000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_32.FLM"         start="0x00000000" size="0x08000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_32_EEPROM.FLM"  start="0x00400000" size="0x00400"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="ADC"           n="2"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="38"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                      name="QFN Package"/>
+          <feature type="QFP"           n="48"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J16A  ****************************** -->
+        <device Dname="ATSAMC21J16A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J16A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J16A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x10000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x02000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_64.FLM"         start="0x00000000" size="0x10000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_64_EEPROM.FLM"  start="0x00400000" size="0x00800"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="ADC"           n="3"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J17A  ****************************** -->
+        <device Dname="ATSAMC21J17A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J17A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="ADC"           n="3"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J17AU  ****************************** -->
+        <device Dname="ATSAMC21J17AU">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J17AU__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J17AU.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" default="1" startup="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="ADC"           n="3"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J18A  ****************************** -->
+        <device Dname="ATSAMC21J18A">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J18A__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="ADC"           n="3"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="52"                      name="General Purpose I/Os"/>
+          <feature type="QFN"           n="64"                      name="QFN Package"/>
+          <feature type="QFP"           n="64"                      name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21J18AU  ****************************** -->
+        <device Dname="ATSAMC21J18AU">
+          <compile header="Device/SAMC21/Include/samc21.h" define="__SAMC21J18AU__"/>
+          <debug svd="SVD/SAMC21/ATSAMC21J18AU.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" default="1" startup="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ComOther"      n="6"                       name="SERCOMM (i2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="ADC"           n="3"       m="16"          name="Sigma-Delta ADC"/>
+          <feature type="AnalogOther"   n="4"                       name="Analog Comparator"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21N17A  ****************************** -->
+        <device Dname="ATSAMC21N17A">
+          <compile header="Device/SAMC21N/Include/samc21.h" define="__SAMC21N17A__"/>
+          <debug svd="SVD/SAMC21N/ATSAMC21N17A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x20000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x04000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_128.FLM"        start="0x00000000" size="0x20000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_128_EEPROM.FLM" start="0x00400000" size="0x01000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMC21N18A  ****************************** -->
+        <device Dname="ATSAMC21N18A">
+          <compile header="Device/SAMC21N/Include/samc21.h" define="__SAMC21N18A__"/>
+          <debug svd="SVD/SAMC21N/ATSAMC21N18A.svd"/>
+          <memory    id="IROM1"                         start="0x00000000" size="0x40000" startup="1" default="1"/>
+          <memory    id="IRAM1"                         start="0x20000000" size="0x08000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAMC_256.FLM"        start="0x00000000" size="0x40000"             default="1"/>
+          <algorithm name="Flash/ATSAMC_256_EEPROM.FLM" start="0x00400000" size="0x02000"             default="1"/>
+
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="84"                      name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                     name="TQFP Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="SAMC20">
+      <description>Microchip SAM C20 devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMC20[EGJ]*"/>
+    </condition>
+    <condition id="SAMC20N">
+      <description>Microchip SAM C20N devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMC20N*"/>
+    </condition>
+
+    <condition id="SAMC21">
+      <description>Microchip SAM C21 devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMC21[EGJ]*"/>
+    </condition>
+    <condition id="SAMC21N">
+      <description>Microchip SAM C21N devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAMC21N*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMC20 CMSIS">
+      <description>Microchip SAM C20 devices and CMSIS Core</description>
+      <require condition="SAMC20"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="SAMC20N CMSIS">
+      <description>Microchip SAM C20N devices and CMSIS Core</description>
+      <require condition="SAMC20N"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAMC21 CMSIS">
+      <description>Microchip SAM C21 devices and CMSIS Core</description>
+      <require condition="SAMC21"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="SAMC21N CMSIS">
+      <description>Microchip SAM C21N devices and CMSIS Core</description>
+      <require condition="SAMC21N"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SAMC20 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMC20 CMSIS">
+      <description>System Startup for Microchip SAM C20 devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/SAMC20/Include/"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/SAMC20/Source/ARM/startup_SAMC20.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/SAMC20/Source/system_samc20.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup SAMC20N -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMC20N CMSIS">
+      <description>System Startup for Microchip SAM C20N devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/SAMC20N/Include/"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/SAMC20N/Source/ARM/startup_SAMC20.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/SAMC20N/Source/system_samc20.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAMC21 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMC21 CMSIS">
+      <description>System Startup for Microchip SAM C21 devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/SAMC21/Include/"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/SAMC21/Source/ARM/startup_SAMC21.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/SAMC21/Source/system_samc21.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup SAMC21N -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMC21N CMSIS">
+      <description>System Startup for Microchip SAM C21 devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/SAMC21N/Include/"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/SAMC21N/Source/ARM/startup_SAMC21.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/SAMC21N/Source/system_samc21.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAMC21N-XPRO Board Support -->
+    <bundle Cbundle="SAMC21N-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMC21N-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED"     Capiversion="1.0.0" condition="SAMC21N CMSIS">
+      <description>LED driver for Microchip SAMC21N-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMC21N-XPRO/Common/LED_SAMC21N-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAMC21N CMSIS">
+      <description>Button driver for Microchip SAMC21N-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAMC21N-XPRO/Common/Buttons_SAMC21N-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAMC21N-XPRO" revision="Rev.5" salesContact="http://www.atmel.com/buy/contact_us.aspx?contactType=Sales%20Representative" orderForm="http://store.atmel.com/product.ashx?sku=ATSAMD20-XPRO&amp;tool_id=">
+      <description>Microchip SAM C21N Xplained Pro Evaluation Kit</description>
+      <image small="Boards/Atmel/SAMC21N-XPRO/Documents/SAMC21N-XPRO_small.jpg"
+             large="Boards/Atmel/SAMC21N-XPRO/Documents/SAMC21N-XPRO_large.jpg"/>
+      <book category="overview"  name="http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ATSAMC21N-XPRO" title="SAMC21N Xplained Pro Evaluation Kit"/>
+      <book category="manual"    name="Boards/Atmel/SAMC21N-XPRO/Documents/70005318A.pdf" title="User Guide"/>
+      <book category="schematic" name="Boards/Atmel/SAMC21N-XPRO/Documents/SAMC21N_Xplained_Pro_design_documentation.pdf" title="Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMC21N18A"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dfamily="SAM C21"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="Button"    n="1"              name="QTouch button"/>
+	    <feature type="LED"       n="1"              name="Yellow User LED"/>
+	    <feature type="USB"       n="1"              name="Target USB"/>
+	    <feature type="CustomFF"  n="60" m="100"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMC21N-XPRO Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAMC21N-XPRO/Blinky">
+      <description>CMSIS-RTOS2 based Blinky example</description>
+      <board name="SAMC21N-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+
+</package>

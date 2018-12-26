@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32660</name>
+   <url>http://www.mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32660 Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>
+      <release version="1.1.2" date="2018-12-05">
+         - Fix Target Num to be Target.
+      </release>
+      <release version="1.1.1" date="2018-08-13">
+         - All examples supported for Keil and IAR.
+      </release>
+      <release version="1.1.0" date="2018-08-08">
+         - Updated for latest IAR support.
+      </release>
+      <release version="1.0.5" date="2018-06-05">
+         - Updated Hello_World project for uVision.
+         - Updated all example projects to project specific output names for uVision.
+      </release>
+      <release version="1.0.4" date="2018-05-16">
+         - Updated to latest MAX32660 SDK release.
+         - Includes support for Operating Voltage Range in API.
+         - Updated example abstract files to describe each example included.
+      </release>
+      <release version="1.0.3" date="2018-05-14">
+         - Fixed board and flash files to correctly work in IAR.
+         - Added additional IAR examples.
+         - Added Keil examples.
+      </release>
+      <release version="1.0.2" date="2018-05-14">
+         - Fixed board and flash files to correctly work in IAR.
+         - Added additional IAR examples.
+      </release>
+      <release version="1.0.1" date="2018-03-29">
+         - Updated BSP images to use full URLs so they show properly on http://www.keil.com/boards2.
+         - Added examples for BSP.
+         - Removed CMSIS version requirement.
+      </release>
+      <release version="1.0.0" date="2018-03-28">
+         - Initial Release for Device Family Pack and Board Support Package
+         - Includes IAR and Keil Support
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32660</keyword>
+      <keyword>MAX32660 Evaluation Kit</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <compilers>
+         <compiler name="ARMCC" version="5.0.0"/>
+         <compiler name="IAR" version="8.0.0"/>
+      </compilers>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+
+   <devices>
+      <family Dfamily="MAX32660" Dvendor="Maxim:23">
+         <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+         <compile header="Libraries/Device/Maxim/MAX32660/Include/max32660.h" />
+         <debug svd="SVD/MAX32660/max32660.svd" />
+         <description>
+            The MAX32660 is an ultra-low power, cost-effective, highly-integrated microcontroller designed for battery powered devices and wireless sensors. It combines a flexible and versatile power management unit with the powerful Arm Cortex-M4 with floating point unit (FPU). The MAX32660 enables designs with complex sensor processing without compromising battery life. It also offers legacy designs an easy and cost optimal upgrade path from 8- or 16-bit microcontrollers.
+            The device integrates up to 256KB of flash memory and 96KB of RAM to accommodate application and sensor code. It supports SPI, UART, and I2C communication in a tiny form factor: 1.6mm x 1.6mm 16-bump WLP or 5mm x 5mm 20-pin TQFN-EP.
+         </description>
+         <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+         <book name="Documents/MAX32660_User_Guide.pdf" title="MAX32660 User Guide"/>
+         <book name="https://datasheets.maximintegrated.com/en/ds/MAX32660.pdf" title="MAX32660 Datasheet"/>
+         <feature type="Timer" n="3" m="32"/>
+         <feature type="DMA" n="4" name="Peripheral Managment Unit"/>
+         <feature type="IOs" n="14"/>
+         <feature type="WDT" n="1"/>
+         <feature type="RTC" n="32768"/>
+         <feature type="SPI" n="2" m="24000000" name="2 SPI Master/Slave Interfaces (one can be used as an I2S Master/Slave"/>
+         <feature type="I2C" n="2" name="2 I2C Master/Slave Interfaces"/>
+         <feature type="UART" n="2" m="4000000"/>
+         <feature type="VCC" n="0.81" m="1.21" name="Optional Vcore Supply Voltage with programmable input ranges"/>
+         <feature type="VCC" n="1.71" m="3.63" name="1.8V - 3.6V VDD can be used as single input supply voltage"/>
+         <feature type="Temp" n="-40" m="85"/>
+         <feature type="PowerMode" n="4" name="LP3 Run, LP2 DMA, LP1 Standby, LP0 Stop"/>
+         <feature type="ClockOther" n="96000000" name="Internal High-Speed Oscillator"/>
+         <feature type="ClockOther" n="8000" name="Nano-Ring Oscillator"/>
+
+         <device Dname="MAX32660">
+            <debugconfig default="swd" clock="1000000"/>
+            <compile header="Libraries/Device/Maxim/MAX32660/Include/max32660.h" define="MAX32660"/>
+            <memory id="IROM1" start="0x00000000" size="0x00040000" startup="1" default="1"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00018000" init="0" default="1"/>
+            <algorithm name="Flash/MAX32660.FLM" start="0x00000000" size="0x00040000" default="1"/>
+            <algorithm  name="FlashIAR/FlashMAX32660.flash" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00018000" default="0" style="IAR"/>
+            <debug svd="SVD/MAX32660/max32660.svd"/>
+         </device>
+      </family>
+
+   </devices>
+
+   <boards>
+      <board vendor="Maxim" name="MAX32660_EVKIT" revision="REV 3.0" salesContact="sales@maximintegrated.com" orderForm="http://www.maximintegrated.com/MAX32660">
+         <description>The MAX32660 evaluation kit provides a compact development platform that provides access to all the features of the MAX32660 in a tiny, easy to use board. The form factor is a small 0.6in by 0.9in dual-row header footprint that is compatible with breadboards. The board includes a 10-pin Arm Cortex debug connector so that it can be used with a DAPLink adapter. Additionally, a red LED indicator and a pushbutton are on board. This board provides a powerful processing subsystem in a very small space that can be easily integrated into a variety of applications.
+         </description>
+         <image small="http://www.mxim.net/microcontroller/pack/images/MAX32660_EvKit_Small.png" large="http://www.mxim.net/microcontroller/pack/images/MAX32660_EvKit_Large.png"/>
+         <book category="manual" name="https://datasheets.maximintegrated.com/en/ds/MAX32660EVKIT.pdf" title="MAX32660 Evaluation Kit Datasheet"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32660"/>
+         <compatibleDevice Dvendor="Maxim:23" Dfamily="MAX32660"/>
+         <feature type="PWR" n="1.71" m="3.63"/>
+         <feature type="PWR" n="0.81" m="1.21"/>
+         <feature type="DIO" n="14" name="Up to 14 GPIO muxed with alternate functions available on DIP "/>
+         <feature type="SPI" n="2" name="Up to 2 SPI Master/Slave"/>
+         <feature type="I2C" n="2" name="Up to 2 x I2C Master/Slave"/>
+         <feature type="RS232" n="2" name="Up to 2 UARTs"/>
+         <feature type="LED" n="1" name="User LED"/>
+         <feature type="XTAL" n="96000000"/>
+         <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      </board>
+   </boards>
+   <examples>
+      <example name="DMA" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/DMA">
+         <description>Direct Memory Access (DMA) Demo</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/DMA.uvprojx"/>
+            <environment name="iar" load="IAR/DMA.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="DMA"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>DMA</keyword>
+            <keyword>Direct Memory Access</keyword>
+         </attributes>
+      </example>
+      <example name="Flash" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/Flash">
+         <description>In-Application Programming (IAP) of Internal Flash</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Flash.uvprojx"/>
+            <environment name="iar" load="IAR/Flash.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>In Application Programming</keyword>
+            <keyword>Flash IAP</keyword>
+            <keyword>Flash</keyword>
+         </attributes>
+      </example>
+      <example name="GPIO" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/GPIO">
+         <description>General-Purpose I/O Demo</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/GPIO.uvprojx"/>
+            <environment name="iar" load="IAR/GPIO.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>General-Purpose I/O</keyword>
+         </attributes>
+      </example>
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Hello_World.uvprojx" />
+            <environment name="iar" load="IAR/Hello_World.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Peripherals" Cgroup="RTC"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+            <keyword>Hello World</keyword>
+         </attributes>
+      </example>
+      <example name="I2C" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/I2C">
+         <description>I2C Communications Demo</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/I2C.uvprojx"/>
+            <environment name="iar" load="IAR/I2C.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>I2C</keyword>
+            <keyword>Serial Communications</keyword>
+            <keyword>Serial</keyword>
+         </attributes>
+      </example>
+   <example name="I2S" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/I2S">
+         <description>I2S Audio Demo</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/I2S.uvprojx"/>
+            <environment name="iar" load="IAR/I2S.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Peripherals" Cgroup="DMA"/>
+            <component Cclass="Communications" Cgroup="I2S"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>In Application Programming</keyword>
+            <keyword>I2S</keyword>
+            <keyword>Audio</keyword>
+            <keyword>DMA</keyword>
+         </attributes>
+      </example>
+   <example name="LP" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/LP">
+         <description>Low-Power Mode Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/LP.uvprojx"/>
+            <environment name="iar" load="IAR/LP.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Low-Power</keyword>
+         </attributes>
+      </example>
+      <example name="RTC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/RTC">
+         <description>Real-Time Clock Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/RTC.uvprojx"/>
+            <environment name="iar" load="IAR/RTC.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Peripherals" Cgroup="RTC"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>RTC</keyword>
+         </attributes>
+      </example>
+      <example name="SPI" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/SPI">
+         <description>Real-Time Clock Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SPI.uvprojx"/>
+            <environment name="iar" load="IAR/SPI.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>SPI</keyword>
+         </attributes>
+      </example>
+      <example name="SysTick" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/SysTick">
+         <description>Real-Time Clock Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/SysTick.uvprojx"/>
+            <environment name="iar" load="IAR/SysTick.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>SPI</keyword>
+         </attributes>
+      </example>
+      <example name="TMR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/TMR">
+         <description>32-Bit Timer Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/TMR.uvprojx"/>
+            <environment name="iar" load="IAR/TMR.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Timer</keyword>
+         </attributes>
+      </example>
+      <example name="UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/UART">
+         <description>UART with Hardware Flow Control Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/UART.uvprojx"/>
+            <environment name="iar" load="IAR/UART.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>UART</keyword>
+         </attributes>
+      </example>
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32660_EVKIT/Watchdog">
+         <description>Watchdog Timer Example</description>
+         <board name="MAX32660_EVKIT" vendor="Maxim"/>
+         <project>
+            <environment name="uv" load="ARM/Watchdog.uvprojx"/>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32660 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Peripherals" Cgroup="GPIO"/>
+            <component Cclass="Peripherals" Cgroup="Timers"/>
+            <component Cclass="Peripherals" Cgroup="WDT"/>
+            <component Cclass="Communications" Cgroup="SPI"/>
+            <component Cclass="Communications" Cgroup="I2C"/>
+            <component Cclass="Communications" Cgroup="UART"/>
+            <component Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Watchdog</keyword>
+         </attributes>
+      </example>
+   </examples>
+
+   <conditions>
+      <condition id="MAX32660 Device">
+         <description> Maxim Integrated MAX32660 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32660"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS-CORE">
+         <description>Maxim MAX32660 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <accept condition="MAX32660 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <condition id="Startup ARM">
+         <description>Startup files for the Keil/ARMCC Toolchains</description>
+         <require Tcompiler="ARMCC"/>
+      </condition>
+
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS GPIO">
+         <description>GPIO Interface Layer</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS I2C">
+         <description>I2C Master/Slave Interface</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS I2S">
+         <description>I2S Master/Slave Interface</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+         <require Cclass="Peripherals" Cgroup="DMA"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS DMA">
+         <description>DMA</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS RTC">
+         <description>Real Time Clock</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS Flash IAP">
+         <description>In-Application Flash Programming</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS SPI">
+         <description>SPI Master/Slave Interface</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS TIMER">
+         <description>32 Timers</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS WDT">
+         <description>Watchdog Timer</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+      </condition>
+
+      <condition id="MAX32660 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+      </condition>
+
+      <condition id="MAX32660 BSP">
+         <description>Board Support Package</description>
+         <require condition="MAX32660 CMSIS-CORE"/>
+         <require Cclass="Peripherals" Cgroup="GPIO"/>
+         <require Cclass="Communications" Cgroup="SPI"/>
+         <require Cclass="Communications" Cgroup="I2C"/>
+         <require Cclass="Communications" Cgroup="UART"/>
+      </condition>
+
+   </conditions>
+
+   <components>
+      <component Cclass="Device" Cgroup="Startup" Cversion="1.1.2" condition="MAX32660 Device">
+         <description>System Startup for Maxim MAX32660 Microcontroller</description>
+         <RTE_Components_h>
+               <!-- the following content goes into file 'RTE_Components.h' -->
+               #define TARGET 32660   /* Target Device Part Number */
+               #define TARGET_REV 0x4131 /* Target Device Revision Number */
+         </RTE_Components_h>
+         <files>
+            <file category="include" name="Libraries/Device/Maxim/MAX32660/Include/"/>
+            <file category="include" name="Libraries/MAX32660PeriphDriver/Include/"/>
+
+            <!-- Keil/ARM startup specific files -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/ARM/startup_max32660.s" version="1.1.2" condition="Startup ARM"/>
+
+            <!-- GCC startup files -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/GCC/startup_max32660.S" version="1.1.2" condition="Startup GCC"/>
+
+            <!-- IAR Specific Startup Files -->
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/IAR/startup_max32660.s" version="1.1.2" condition="Startup IAR"/>
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/IAR/low_level_init.c" version="1.1.2" condition="Startup IAR"/>
+            <file category="sourceAsm" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/IAR/cmain.s" version="1.1.2" condition="Startup IAR"/>
+
+            <!-- Shared startup files for all tools -->
+            <file category="sourceC" attr="config" name="Libraries/Device/Maxim/MAX32660/Source/system_max32660.c" version="1.1.2" />
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/nvic_table.c" version="1.1.2"/>
+            <file category="header" name="Libraries/Device/Maxim/MAX32660/Include/max32660.h" version="1.1.2" />
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/flc.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/icc.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/lp.c" version="1.1.2"/>
+            <file category="header" attr="config" name="Libraries/MAX32660PeriphDriver/Include/mxc_config.h" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/mxc_assert.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/mxc_lock.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/mxc_sys.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/mxc_pins.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/mxc_delay.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="GPIO" Cversion="1.1.2" condition="MAX32660 CMSIS GPIO">
+
+         <description>GPIO</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/gpio.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="I2C" Cversion="1.1.2" condition="MAX32660 CMSIS I2C">
+
+         <description>I2C Master Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/i2c.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="I2S" Cversion="1.1.2" condition="MAX32660 CMSIS I2S">
+
+         <description>I2S Master/Slave Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/i2s.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="SPI" Cversion="1.1.2" condition="MAX32660 CMSIS SPI">
+
+         <description>SPI Master Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/spi.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/spi17y.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/spimss.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="DMA" Cversion="1.1.2" condition="MAX32660 CMSIS DMA">
+
+         <description>DMA Engine</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/dma.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="RTC" Cversion="1.1.2" condition="MAX32660 CMSIS RTC">
+
+         <description>Real Time Clock Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/rtc.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="Flash IAP" Cversion="1.1.2" condition="MAX32660 CMSIS Flash IAP">
+
+         <description>Flash In-Application Programming Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/flc.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="Timers" Cversion="1.1.2" condition="MAX32660 CMSIS TIMER">
+
+         <description>32/16 Bit Timers</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/tmr.c" version="1.1.2"/>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/tmr_utils.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Peripherals" Cgroup="WDT" Cversion="1.1.2" condition="MAX32660 CMSIS WDT">
+
+         <description>Watchdog Timer</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/wdt.c" version="1.1.2"/>
+         </files>
+      </component>
+
+      <component Cclass="Communications" Cgroup="UART" Cversion="1.1.2" condition="MAX32660 CMSIS UART">
+
+         <description>UART Interface</description>
+         <files>
+            <file category="sourceC" name="Libraries/MAX32660PeriphDriver/Source/uart.c" version="1.1.2"/>
+         </files>
+
+      </component>
+
+      <bundle Cbundle="MAX32660 EVKIT Board Support" Cclass="BSP" Cversion="1.1.2">
+         <description>MAX32660 Evaluation Kit Board Support Package</description>
+         <doc>Documents/MAX32660_User_Guide.pdf</doc>
+         <component Cgroup="Board Support" condition="MAX32660 BSP">
+            <description>MAX32660 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define BOARD EvKit_V1 /* Target Board */
+            </RTE_Components_h>
+            <files>
+               <file category="doc" name="https://datasheets.maximintegrated.com/en/ds/MAX32660EVKIT.pdf"/>
+               <file category="include" name="Boards/Maxim/MAX32660_EVKIT/Common/EvKit_V1/Include/"/>
+               <file category="include" name="Boards/Maxim/MAX32660_EVKIT/Common/Include/"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32660_EVKIT/Common/EvKit_V1/Source/board.c" version="1.1.2"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32660_EVKIT/Common/Source/stdio.c" version="1.1.2"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32660_EVKIT/Common/Source/pb.c" version="1.1.2"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32660_EVKIT/Common/Source/led.c" version="1.1.2"/>
+            </files>
+
+         </component>
+
+      </bundle>
+
+   </components>
+
+</package>

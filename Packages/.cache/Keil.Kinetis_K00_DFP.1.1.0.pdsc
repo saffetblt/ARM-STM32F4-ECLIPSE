@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K00_DFP</name>
+  <description>NXP Kinetis K00 Series Device Support</description>
+
+  <releases>
+    <release version="1.1.0" date="2017-02-16">
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+      Added FAC Flash Algorithm for K02FN devices.
+      Updated documentation.
+      Updated device vendor from Freescale to NXP
+    </release>
+    <release version="1.0.0" date="2014-08-20">
+      First Release version of K00 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K00</keyword>
+  </keywords>
+
+  <devices>
+
+    <family Dfamily="K00 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book    name="Documents/dui0553a_cortex_m4_dgug.pdf"           title="Cortex-M4 Generic User Guide"/>
+
+        <description>
+The Kinetis K0x MCU family is the new entry point into the Kinetis K series MCU portfolio and provides a bridge from the Kinetis L series MCU family.
+Devices start from 64 KB of flash and are offered in several small-footprint package options.
+The Kinetis K0x MCU family provides the perfect balance of performance and power consumption, running at 100 MHz with floating point unit, while offering low dynamic power consumption and best-in-class static current consumption with more than 10 flexible low-power modes.
+Kinetis K0x MCUs deliver run currents down to 125 µA/MHz, low-power modes down to 150 nA, and 6µS wake-up from stop. Each family member combines the ultra-low-power performance with a streamlined level of integration optimized to meet the needs of a broad number of applications.
+         </description>
+
+      <!-- ******************************  MK02FN128xxx10  ****************************** -->
+      <device Dname="MK02FN128xxx10">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK02F12810.h"  define="MK02FN128xxx10"/>
+        <debug svd="SVD/MK02F12810.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFFE000" size="0x00002000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        <algorithm name="Flash/MK0x_FAC.FLM" start="0xFFFF0000" size="0x00000024"             default="0"/>
+
+        <book name="Documents/K02P64M100SFARM.pdf" title="MK02FN128xxx10 Reference Manual"/>
+        <book name="Documents/K02P64M100SFA.pdf"   title="MK02FN128xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK02FN64xxx10  ****************************** -->
+      <device Dname="MK02FN64xxx10">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK02F12810.h"  define="MK02FN64xxx10"/>
+        <debug svd="SVD/MK02F12810.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFFE000" size="0x00002000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+        <algorithm name="Flash/MK0x_FAC.FLM" start="0xFFFF0000" size="0x00000024"             default="0"/>
+
+        <book name="Documents/K02P64M100SFARM.pdf" title="MK02FN128xxx10 Reference Manual"/>
+        <book name="Documents/K02P64M100SFA.pdf"   title="MK02FN128xxx10 Data Sheet"/>
+      </device>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="MK02F12810">
+      <description>NXP Kinetis K02F10 Device</description>
+      <require Dvendor="NXP:11" Dname="MK02FN*xxx10"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MK02F12810 CMSIS">
+      <description>NXP Kinetis K02F10 Device and CMSIS-CORE</description>
+      <require condition="MK02F12810"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup K11DA5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK02F12810 CMSIS">
+      <description>System Startup for Kinetis K02F10 Device</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="header"  name="Device/Include/MK02F12810.h"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device/Source/ARM/startup_MK02F12810.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MK02F12810.c"       attr="config" version="1.0.0"/>
+        <file category="header" name="Device/Source/system_MK02F12810.h"       attr="config" version="1.0.0"/>
+
+        <!-- Flash Access Control Bytes templat -->
+        <file category="source" name="Device/Source/ARM/MK0x_FAC.s"            attr="template"               condition="Compiler ARMCC" select="Flash Execute-Only Access Control Template"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

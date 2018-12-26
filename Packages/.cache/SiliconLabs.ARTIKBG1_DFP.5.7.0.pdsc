@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>ARTIKBG1_DFP</name>
+  <description>Silicon Labs ARTIKBG1 Blue Gecko Series Device Support.</description>
+
+  <releases>
+    <release version="5.7.0" date="2018-12-12">
+      Added Mighty Gecko MGM1, MGM12, MGM13, MGM21 and ARTIKMG1 modules.
+      Added Blue Gecko BGM1, BGM13, BGM21 and ARTIKBG1 modules.
+      Added Mighty Gecko EFR32MG13P731 and  EFR32MG14P731 parts.
+      Added Mighty Gecko EFR32MG21 family.
+      Added Blue Gecko EFR32BG21 family.
+      Added Zen Gecko EFR32ZG14P family.
+      Added Zen Gecko ZGM13 module.
+    </release>
+    <release version="5.5.0" date="2018-05-07">
+      Updates and minor fixes in packs for EFM32GG11B, EFM32TG11B, EFM32PG12B, EFM32JG12B, EFR32xG12x, EFR32xG13x and EFR32xG14x families.
+    </release>
+    <release version="5.4.1" date="2018-02-14">
+      Fixed bug in Keil flashloader for EFM32GG11B family, added EFR families.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>ARTIKBG1</keyword>
+    <keyword>ARTIK</keyword>
+    <keyword>Blue Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="ARTIKBG1 Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <processor Dclock="38400000"/>
+      <book name="Documents/cortex_m4_dgug.pdf"      title="Cortex-M4 Generic User Guide"/>
+      <book name="Documents/efr32_reference_manual.pdf"  title="ARTIKBG1 Reference Manual"/>
+      <description>
+- 32-bit ARM Cortex-M4 core with 40 MHz maximum operating frequency&#xD;&#xA;- Scalable Memory and Radio configuration options available in several footprint compatible QFN packages&#xD;&#xA;- 12-channel Peripheral Reflex System enabling autonomous interaction of MCU peripherals&#xD;&#xA;- Autonomous Hardware Crypto Accelerator and Random Number Generator&#xD;&#xA;- Integrated 2.4 GHz balun and PA with up to 19.5 dBm transmit power&#xD;&#xA;- Integrated DC-DC with RF noise mitigation&#xD;&#xA;&#xD;&#xA;The Wireless Gecko portfolio of SoCs (EFR32) include Mighty Gecko (EFR32MG1), Blue Gecko (EFR32BG1), and Flex Gecko (EFR32FG1) families. With support for Bluetooth Smart (BLE), ZigBee, Thread and proprietary protocols, the Wireless Gecko portfolio is ideal for enabling energy-friendly wireless networking for IoT devices. The single-die solution provides industry-leading energy efficiency, ultra-fast wakeup times, a scalable high-power amplifier, an integrated balun and no-compromise MCU features.
+      </description>
+
+      <subFamily DsubFamily="ARTIKBG1">
+        <!-- *************************  Device 'ARTIK_020_A'  ***************************** -->
+        <device Dname="ARTIK_020_A">
+          <compile header="Device/SiliconLabs/ARTIKBG1/Include/em_device.h"  define="ARTIK_020_A"/>
+          <debug      svd="SVD/ARTIKBG1/Artik_020_A.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00007C00"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOP2.FLM"  start="0x00000000"  size="0x00040000"  RAMstart="0x20000000" RAMsize="0x1000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOP2.flash"  start="0x00000000"  size="0x00040000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'ARTIK_020_E'  ***************************** -->
+        <device Dname="ARTIK_020_E">
+          <compile header="Device/SiliconLabs/ARTIKBG1/Include/em_device.h"  define="ARTIK_020_E"/>
+          <debug      svd="SVD/ARTIKBG1/Artik_020_E.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00007C00"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOP2.FLM"  start="0x00000000"  size="0x00040000"  RAMstart="0x20000000" RAMsize="0x1000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOP2.flash"  start="0x00000000"  size="0x00040000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="ARTIKBG1">
+      <description>Silicon Labs ARTIKBG1 device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="ARTIK_020_*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="5.7.0" condition="ARTIKBG1">
+      <description>System Startup for Silicon Labs ARTIKBG1 device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/ARTIKBG1/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/ARTIKBG1/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/ARTIKBG1/Source/ARM/startup_artikbg1.s" condition="Compiler ARMCC" attr="config" version="5.7.0"/>
+        <file category="source"  name="Device/SiliconLabs/ARTIKBG1/Source/GCC/startup_artikbg1.S" condition="Compiler GCC"   attr="config" version="5.7.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/ARTIKBG1/Source/GCC/artikbg1.ld" condition="Compiler GCC" attr="config" version="5.7.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/ARTIKBG1/Source/system_artikbg1.c" attr="config" version="5.7.0"/>
+      </files>
+    </component>
+  </components>
+</package>

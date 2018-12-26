@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>Zilog</vendor>
+	<name>ZNEO32_DFP</name>
+	<description>Zilog ZNEO32! Family Device Support, Drivers and Examples</description>
+	<url>http://www.ixys.com/Zilog/packs/</url>
+	<supportContact>support@zilog.com</supportContact>
+	<license></license> 
+	<releases>
+		<release version="1.0.4" date="2017-02-01">
+			Added Z32F0642 Cortex M0 parts
+		</release>
+
+		<release version="1.0.2" date="2016-06-01">
+			Update Z32F384 to release version
+			Updated Z32F128 and Z32F064 datasheets and SVD
+			Added Macros for register bits to header files
+			Added support for IAR and GCC
+		</release>
+	</releases>
+	<keywords>
+		<keyword>Zilog</keyword>
+		<keyword>ZNEO32!</keyword>
+	</keywords>
+	<devices>
+		<family Dfamily="ZNEO32!-M3 Series" Dvendor="Zilog:89">
+			<processor Dcore="Cortex-M3" DcoreVersion="r1p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+			<description>
+			The Zilog ZNEO32! -M3 device family contains an ARM Cortex-M3 processor with a versatile set of on-chip peripherals
+			</description>
+			<!--********************************************************************************-->
+			<!-- 	Subfamily 'Z32F128'	-->
+			<!--********************************************************************************-->
+			<subFamily DsubFamily="Z32F1281">
+				<processor Dclock="72000000" />
+
+				<description>
+Zilog Z32F128 Family of microcontrollers is a cost-effective and high-performance 32-bit microcontroller for Motor drive Systems. The extended peripheral set is designed for the control of inverter bridges and include two 3-phase PWM generators, three High speed 12bit ADC units, built in Operational Amplifiers and comparators.
+- 2 MPWM 
+- 3 12bit fast ADC units (16 Channels)
+- 4 OpAmps, 4 Comparators
+- 6 Timers 
+- Communications 2 I2C, 2 SPI, 4 UARTs
+- Quadrature Encoder Interface
+</description>
+
+
+				<compile header="Device/Include/Z32F1281.h" />
+				<debug svd="SVD/Z32F1281.svd" />
+				<book name="Document/PS0345.pdf" title="Z32F128 Series Product Specifications" />
+				<algorithm name="Flash/Z32F1281.FLM" start="0x00000000" size="0x20000" default="1" />
+				
+				<feature type="VCC" n="3.00" m="5.50" />
+				<feature type="Temp" n="-40" m="85" />
+				<memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1" />
+				<memory id="IRAM1" start="0x20000000" size="0x3000" init="0" default="1" />
+				<feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+				<feature type="Timer" n="6" m="16" name="Timer" />
+				<feature type="PWM" n="2" m="16" name="PWM" />
+				<feature type="SPI" n="2" name="SPI" />
+				<feature type="ADC" n="3" m="12" name="ADC" />
+				<feature type="AnalogOther" n="4" name="OPAMP" />
+				<feature type="AnalogOther" n="4" name="COMP" />
+				<!-- Device 'Z32F12811ATS-->
+				<device Dname="Z32F12811ATS">
+					<description>
+- 68 I/Os
+- Package type 80LQFP
+					</description>
+
+					<feature type="I2C" n="2" name="I2C" />
+					<feature type="UART" n="4" name="UART" />
+					<feature type="IOs" n="68" name="Inputs/Outputs" />
+					<feature type="QFP" n="80" name="Low-Profile QFP Package" />
+				</device>
+				<!-- Device 'Z32f12811ARS' -->
+				<device Dname="Z32F12811ARS">
+					<description>
+- 48 I/Os
+- Package type 64LQFP
+					</description>
+
+					<feature type="I2C" n="1" name="I2C" />
+					<feature type="UART" n="2" name="UART" />
+					<feature type="IOs" n="48" name="Inputs/Outputs" />
+					<feature type="QFP" n="64" name="Low-Profile QFP Package" />
+				</device>
+			</subFamily>
+			<!--********************************************************************************-->
+			<!-- 	Subfamily 'Z32F064'	-->
+			<!--********************************************************************************-->
+			<subFamily DsubFamily="Z32F0641">
+				<processor Dclock="48000000" />
+				<description>
+				Zilog Z32F064 Family of microcontrollers is a cost-effective and high-performance 32-bit microcontroller. The Z32F064 MCU provides a 3-phase PWM generator unit which is suitable for inverter bridges, including motor drive systems.
+Two 12-bit high speed ADC units with 16-channel analog multiplexed inputs support feedback retrieval from the inverter bridge. Multiple powerful external serial interfaces help communicate with on-board sensors and devices.
+				</description>
+				<compile header="Device/Include/Z32F0641.h" />
+				<debug svd="SVD/Z32F0641.svd" />
+				<book name="Document/PS0344.pdf" title="Z32F064 Series Product Specifications" />
+				<algorithm name="Flash/Z32F0641.FLM" start="0x00000000" size="0x20000" default="1" />
+				<feature type="VCC" n="3.00" m="5.50" />
+				<feature type="Temp" n="-40" m="85" />
+				<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+				<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+				<feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+				<feature type="Timer" n="6" m="16" name="Timer" />
+				<feature type="PWM" n="1" m="16" name="MPWM" />
+				<feature type="SPI" n="1" name="SPI" />
+				<feature type="ADC" n="2" m="12" name="ADC" />
+				<!-- Device 'Z32F06410AES-->
+				<device Dname="Z32F06410AES">
+					<description>
+- Communications I2C,SPI, 2 UARTs
+- 44 I/Os 
+- 6 Timers 
+- MPWM 
+- 2 ADC units (11 Channels)
+- Package type 48LQFP
+					</description>
+					<feature type="I2C" n="1" name="I2C" />
+					<feature type="UART" n="2" name="UART" />
+					<feature type="IOs" n="44" name="Inputs/Outputs" />
+					<feature type="QFP" n="48" name="Low-Profile QFP Package" />
+				</device>
+				<!-- Device 'Z32f06410AKS' -->
+				<device Dname="Z32F06410AKS">
+					<description>
+- Communications I2C,SPI, 2 UARTs
+- 30 I/Os 
+- 6 Timers 
+- MPWM 
+- 2 ADC units (8 Channels)
+- Package type 32LQFP
+					</description>
+
+					<feature type="I2C" n="1" name="I2C" />
+					<feature type="UART" n="2" name="UART" />
+					<feature type="IOs" n="30" name="Inputs/Outputs" />
+					<feature type="QFP" n="32" name="Low-Profile QFP Package" />
+				</device>
+			</subFamily>
+			<!--********************************************************************************-->
+			<!-- 	Subfamily 'Z32F384'	-->
+			<!--********************************************************************************-->
+			<subFamily DsubFamily="Z32F3841">
+				<processor  Dclock="75000000"/>
+
+				<description>
+Zilog Z32F384 Family of microcontrollers is a cost-effective and high-performance 32-bit microcontroller designed for any system requiring an extensive list of peripherals and inverter bridge controls. The Z32F384 MCUs provides two 3-phase PWM generator units which are suitable for inverter bridges, including motor drive systems. Two 12-bit high speed ADC units with 16-channel analog multiplexed inputs provides the support for analog input for measurements from sensors and other analog input.
+- 2 MPWM 
+- 2 12bit fast ADC units (16 Channels)
+- 10 16 bit Timers 
+- 32 bit Free Run Timer
+- Communications 2 I2C, 2 SPI, 4 UARTs
+- DMA controller
+				</description>
+
+
+
+				<compile	header="Device/Include/Z32F3841.h"/>
+				<debug		svd="SVD/Z32F3841.svd"/>
+				<book		name="Document/PS0346.pdf"	title="Z32F384 Series Product Specifications"/>
+				<algorithm	name="Flash/Z32F3841.FLM"   start="0x00000000"	size="0x20000"	default="1"/>
+
+				<feature	type="VCC"		n="3.00"	m="5.50"/>
+				<feature	type="Temp"		n="-40"		m="85"/>
+
+				<memory		id="IROM1"		start="0x00000000"	size="0x60000"	startup="1"		default="1"/>
+				<memory		id="IRAM1"		start="0x20000000"	size="0x4000"	init   ="0"		default="1"/>
+				<feature	type="WDT"		n="1"		m="32"	name="Watchdog Timer"/>
+				<feature	type="Timer"	n="1"		m="32"	name="Free Run Timer"/>
+				<feature	type="Timer"	n="10"		m="16"	name="Timer"/>
+				<feature	type="PWM"		n="2"		m="16"	name="PWM"/>
+				<feature	type="SPI"		n="2"				name="SPI"/>
+				<feature	type="ADC"		n="2"		m="12"	name="ADC"/>
+				<feature	type="I2C"		n="2"				name="I2C"/>
+				<feature	type="UART"		n="4"				name="UART"/>
+
+			<!-- Device 'Z32F38412ALS-->
+				<device Dname="Z32F38412ALS">
+					<description>
+- 86 I/Os 
+- Package type 100LQFP
+					</description>
+					<feature	type="IOs"		n="86"			name="Inputs/Outputs"/>
+					<feature	type="QFP"		n="100" name="Low-Profile QFP Package" />
+				</device>
+			</subFamily>
+		</family>
+<!--********************************************************* Cortex M0 Section *****************************************************************-->
+
+		<family Dfamily="ZNEO32!-M0 Series" Dvendor="Zilog:89">
+			<processor Dcore="Cortex-M0" DcoreVersion="r1p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+			<description>
+			The Zilog ZNEO32! -M0 device family contains an ARM Cortex-M0 processor with a versatile set of on-chip peripherals
+			</description>
+			<!--********************************************************************************-->
+			<!-- 	Subfamily 'Z32F0642'	-->
+			<!--********************************************************************************-->
+			<subFamily DsubFamily="Z32F0642">
+				<processor Dclock="40000000" />
+
+				<description>
+Zilog Z32F0642 Family of microcontrollers is a cost-effective and high-performance 32-bit microcontroller for Motor drive Systems. The extended peripheral set is designed for the control of inverter bridges and include two 3-phase PWM generators, three High speed 12bit ADC units, built in Operational Amplifiers and comparators.
+- 1 MPWM 
+- 1 12bit fast ADC units (up to 12 Channels)
+- 4 Timers 
+- Communications 1 I2C, 1 SPI, 2 UARTs
+</description>
+
+
+				<compile header="Device/Include/Z32F0642.h" />
+				<debug svd="SVD/Z32F0642.svd" />
+<!--
+				<book name="Document/PS0392.pdf" title="Z32F0642 Series Product Specifications" />
+-->
+				<algorithm name="Flash/Z32F0642.FLM" start="0x00000000" size="0x20000" default="1" />
+				
+				<feature type="VCC" n="3.00" m="5.50" />
+				<feature type="Temp" n="-40" m="85" />
+				<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1" />
+				<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1" />
+				<feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+				<feature type="Timer" n="4" m="16" name="Timer" />
+				<feature type="PWM" n="1" m="16" name="PWM" />
+				<feature type="SPI" n="1" name="SPI" />
+				<!-- Device 'Z32F06423AKE-->
+				<device Dname="Z32F06423AKE">
+					<description>
+- 30 I/Os
+- Package type 32LQFP
+					</description>
+
+					<feature type="ADC" n="1" m="10" name="ADC" />
+					<feature type="IOs" n="30" name="Inputs/Outputs" />
+					<feature type="QFP" n="32" name="Low-Profile QFP Package" />
+				</device>
+
+				<!-- Device 'Z32F06423EKE-->
+				<device Dname="Z32F06423EKE">
+					<description>
+- 44 I/Os
+- Package type 48LQFP
+					</description>
+					<feature type="ADC" n="1" m="12" name="ADC" />
+					<feature type="IOs" n="44" name="Inputs/Outputs" />
+					<feature type="QFP" n="48" name="Low-Profile QFP Package" />
+				</device>
+			</subFamily>
+	</family>
+
+	</devices>
+	<conditions>
+		<!--************************************************************************************-->
+		<!--	Z32F064, Z32F128, Z32F384 CMSIS 	-->
+		<!--************************************************************************************-->
+		<condition id="ZNEO32! CMSIS Devices">
+			<require Cclass="CMSIS" Cgroup="CORE" /> 
+			<require Dvendor="Zilog:89" Dname="Z32F*" />
+		</condition>
+		<condition id="Z32F0641 CMSIS">
+			<description>Z32F06410AES, Z32F06410AKS devices and CMSIS-Core</description>
+			<accept Dname="Z32F06410AES" />
+			<accept Dname="Z32F06410AKS" />
+		</condition>
+		<condition id="Z32F1281 CMSIS">
+			<description>Z32F12811ARS, Z32F12811ATS devices and CMSIS-Core</description>
+			<accept Dname="Z32F12811ATS" />
+			<accept Dname="Z32F12811ARS" />
+		</condition>
+		<condition id="Z32F3841 CMSIS">
+			<description>Z32F38412ALS device and CMSIS-Core</description>
+			<accept	Dname="Z32F38412ALS"/>
+		</condition>
+		
+		<!-- Tools conditions -->
+		
+		<condition id="Z32F3841_ARMCC">
+			<description>filter for Z32F384 device and the ARM compiler</description>
+			<require condition="Z32F3841 CMSIS"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Z32F3841_GCC">
+			<description>filter for Z32F3841 devices and the GCC compiler</description>
+			<require condition="Z32F3841 CMSIS"/>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Z32F3841_IAR">
+			<description>filter for Z32F3841 devices and the IAR compiler</description>
+			<require condition="Z32F3841 CMSIS"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+
+
+		<condition id="Z32F1281_ARMCC">
+			<description>filter for Z32F1281 device and the ARM compiler</description>
+			<require condition="Z32F1281 CMSIS"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Z32F1281_GCC">
+			<description>filter for Z32F1281 devices and the GCC compiler</description>
+			<require condition="Z32F1281 CMSIS"/>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Z32F1281_IAR">
+			<description>filter for Z32F31281 devices and the IAR compiler</description>
+			<require condition="Z32F1281 CMSIS"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+
+
+		<condition id="Z32F0641_ARMCC">
+			<description>filter for Z32F0641 device and the ARM compiler</description>
+			<require condition="Z32F0641 CMSIS"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Z32F0641_GCC">
+			<description>filter for Z32F0641 devices and the GCC compiler</description>
+			<require condition="Z32F0641 CMSIS"/>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Z32F0641_IAR">
+			<description>filter for Z32F0641 devices and the IAR compiler</description>
+			<require condition="Z32F0641 CMSIS"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<!--************************************************************************************-->
+		<!--	Z32F0642 CMSIS 	-->
+		<!--************************************************************************************-->
+		<condition id="Z32F0642 CMSIS">
+			<description>Z32F06423AKE, Z32F06423EKE devices and CMSIS-Core</description>
+			<accept Dname="Z32F06423AKE" />
+			<accept Dname="Z32F06423EKE" />
+		</condition>
+
+		<!-- TOOLS  -->
+
+		<condition id="Z32F0642_ARMCC">
+			<description>filter for Z32F0642 device and the ARM compiler</description>
+			<require condition="Z32F0642 CMSIS"/>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Z32F0642_GCC">
+			<description>filter for Z32F0642 devices and the GCC compiler</description>
+			<require condition="Z32F0642 CMSIS"/>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Z32F0642_IAR">
+			<description>filter for Z32F0642 devices and the IAR compiler</description>
+			<require condition="Z32F0642 CMSIS"/>
+			<require Tcompiler="IAR"/>
+		</condition>
+		
+		
+	</conditions>
+	<components>
+	
+		<!--************************************************************************************-->
+		<!--	Z32F128 CMSIS : Z32F12811xxx	-->
+		<!--************************************************************************************-->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="ZNEO32! CMSIS Devices">
+			<description>System Startup for Zilog ZNEO32!  devices</description>
+			<files>
+				<!-- Header Files -->
+				<file version="1.0.0" category="header" name="Device/Include/Z32F1281.h" condition="Z32F1281 CMSIS" />
+				<file version="1.0.0" category="header" name="Device/Include/Z32F0641.h" condition="Z32F0641 CMSIS" />
+				<file version="1.0.0" category="header" name="Device/Include/Z32F3841.h"	condition="Z32F3841 CMSIS"/>
+				<file version="1.0.0" category="header" name="Device/Include/Z32F0642.h"	condition="Z32F0642 CMSIS"/>
+
+
+				<!-- System file -->
+				<file version="1.0.0" category="source" name="Device/Source/system_Z32F0641.c" attr="config" condition="Z32F0641 CMSIS" />
+				<file version="1.0.0" category="source" name="Device/Source/system_Z32F1281.c" attr="config" condition="Z32F1281 CMSIS" />
+      			<file version="1.0.0" category="source" name="Device/Source/system_Z32F3841.c"  attr="config"     condition="Z32F3841 CMSIS" />
+     			<file version="1.0.0" category="source" name="Device/Source/system_Z32F0642.c"  attr="config"     condition="Z32F0642 CMSIS" />
+
+
+				<!-- startup file based on tool chain-->
+				<file version="1.0.0" category="source" name="Device/Source/ARM/startup_Z32F0641.s" attr="config" condition="Z32F0641_ARMCC" />
+				<file version="1.0.0" category="source" name="Device/Source/ARM/startup_Z32F1281.s" attr="config" condition="Z32F1281_ARMCC" />
+      			<file version="1.0.0" category="source" name="Device/Source/ARM/startup_Z32F3841.s" attr="config" condition="Z32F3841_ARMCC" />
+      			<file version="1.0.0" category="source" name="Device/Source/ARM/startup_Z32F0642.s" attr="config" condition="Z32F0642_ARMCC" />
+
+
+				<file version="1.0.0" category="source" name="Device/Source/IAR/startup_Z32F0641.s" attr="config" condition="Z32F0641_IAR" />
+				<file version="1.0.0" category="source" name="Device/Source/IAR/startup_Z32F1281.s" attr="config" condition="Z32F1281_IAR" />
+      			<file version="1.0.0" category="source" name="Device/Source/IAR/startup_Z32F3841.s" attr="config" condition="Z32F3841_IAR" />
+      			<file version="1.0.0" category="source" name="Device/Source/IAR/startup_Z32F0642.s" attr="config" condition="Z32F0642_IAR" />
+
+
+				<file version="1.0.0" category="source" name="Device/Source/GCC/startup_Z32F0641.S" attr="config" condition="Z32F0641_GCC" />
+				<file version="1.0.0" category="source" name="Device/Source/GCC/startup_Z32F1281.S" attr="config" condition="Z32F1281_GCC" />
+      			<file version="1.0.0" category="source" name="Device/Source/GCC/startup_Z32F3841.S" attr="config" condition="Z32F3841_GCC" />
+      			<file version="1.0.0" category="source" name="Device/Source/GCC/startup_Z32F0642.S" attr="config" condition="Z32F0642_GCC" />
+
+
+
+<!-- Should incluude Linker script for each -->
+
+			</files>
+		</component>
+	</components>
+	<boards>
+		<!--************************************************************************************-->
+		<!--	Z32F064 CMSIS : Z32F06410xxx	-->
+		<!--************************************************************************************-->
+		<board vendor="Zilog" name="Z32F0640100KITG" revision="V1.0" salesContact="http://www.zilog.com/index.php?option=com_zicon&amp;task=zilog_sales&amp;Itemid=79">
+			<description>Zilog Z32F06410 Development Kit</description>
+			<mountedDevice deviceIndex="0" Dvendor="Zilog:89" Dname="Z32F06410AES" />
+			<compatibleDevice deviceIndex="0" Dvendor="Zilog:89" DsubFamily="Z32F0641" />
+
+			<book category="schematic" name="Document/UM0276.pdf" title="Z32F0640100KITG Schematics"/>
+			<book category="manual" name="Document/UM0276.pdf" title="Z32F0640100KITG User Manual"/>
+
+			<feature type="XTAL" n="8000000" />
+			<feature type="PWR" n="5" name="USB Powered" />
+			<feature type="PWR" n="3" m="5" name="External Supply" />
+			<feature type="Button" n="2" name="Push-buttons: User and Reset" />
+			<feature type="LED" n="6" name="LEDs: six user" />
+		</board>
+		<board vendor="Zilog" name="Z32F1280100KITG" revision="V1.0" salesContact="http://www.zilog.com/index.php?option=com_zicon&amp;task=zilog_sales&amp;Itemid=79">
+			<description>Zilog Z32F128 Development Kit</description>
+			<mountedDevice deviceIndex="0" Dvendor="Zilog:89" Dname="Z32F12811ARS" />
+			<compatibleDevice deviceIndex="0" Dvendor="Zilog:89" DsubFamily="Z32F1281" />
+
+			<book category="schematic" name="Document/UM0277.pdf" title="Z32F1280100KITG Schematics"/>
+			<book category="manual" name="Document/UM0277.pdf" title="Z32F1280100KITG User Manual"/>
+
+			<feature type="XTAL" n="8000000" />
+			<feature type="PWR" n="5" name="USB Powered" />
+			<feature type="PWR" n="3" m="5" name="External Supply" />
+			<feature type="Button" n="2" name="Push-buttons: User and Reset" />
+			<feature type="LED" n="3" name="LEDs: Power, Two user" />
+		</board>
+		<board vendor="Zilog" name="Z32F3840100KITG" revision="V1.0" salesContact="http://www.zilog.com/index.php?option=com_zicon&amp;task=zilog_sales&amp;Itemid=79">
+			<description>Zilog Z32F384 Development Kit</description>
+			<mountedDevice deviceIndex="0" Dvendor="Zilog:89" Dname="Z32F38412ALS" />
+			<compatibleDevice deviceIndex="0" Dvendor="Zilog:89" DsubFamily="Z32F3841" />
+
+			<book category="schematic" name="Document/UM0278.pdf" title="Z32F1280100KITG Schematics"/>
+			<book category="manual" name="Document/UM0278.pdf" title="Z32F1280100KITG User Manual"/>
+
+			<feature type="XTAL" n="8000000" />
+			<feature type="PWR" n="5" name="USB Powered" />
+			<feature type="PWR" n="3" m="5" name="External Supply" />
+			<feature type="Button" n="2" name="Push-buttons: User and Reset" />
+			<feature type="LED" n="3" name="LEDs: Power, Two user" />
+		</board>		
+
+		<board vendor="Zilog" name="Z32F0642100KITG" revision="V1.0" salesContact="http://www.zilog.com/index.php?option=com_zicon&amp;task=zilog_sales&amp;Itemid=79">
+			<description>Zilog Z32F0642 Development Kit</description>
+			<mountedDevice deviceIndex="0" Dvendor="Zilog:89" Dname="Z32F06423AKE" />
+			<compatibleDevice deviceIndex="0" Dvendor="Zilog:89" DsubFamily="Z32F0642" />
+
+			<book category="schematic" name="Document/UM0284.pdf" title="Z32F0642100KITG Schematics"/>
+			<book category="manual" name="Document/UM284.pdf" title="Z32F06421000KITG User Manual"/>
+
+			<feature type="XTAL" n="16000000" />
+			<feature type="PWR" n="5" name="USB Powered" />
+			<feature type="PWR" n="3" m="5" name="External Supply" />
+			<feature type="Button" n="2" name="Push-buttons: User and Reset" />
+			<feature type="LED" n="7" name="LEDs: Power, six user" />
+		</board>		
+
+	</boards>
+	<examples>
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Z32F3840100KITG/Blinky">
+      <description>Blinky example</description>
+      <board name="Z32F3840100KITG" vendor="Zilog" Dvendor="Zilog:89" Dname="Z32F38412ALS"/>
+      <project>
+        <environment name="uv" load="ARM/Blinky.uvprojx"/>
+   		<environment name="iar" load="EWARM/Blinky.eww"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+       </attributes>
+    </example>	
+
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Z32F1280100KITG/Blinky">
+      <description>Blinky example</description>
+      <board name="Z32F1280100KITG" vendor="Zilog" Dvendor="Zilog:89" Dname="Z32F12811ARS"/>
+      <project>
+        <environment name="uv" load="ARM/Blinky.uvprojx"/>
+		<environment name="iar" load="EWARM/Blinky.eww"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+       </attributes>
+    </example>	
+
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Z32F0640100KITG/Blinky">
+      <description>Blinky example</description>
+      <board name="Z32F0640100KITG" vendor="Zilog" Dvendor="Zilog:89" Dname="Z32F06410AES"/>
+      <project>
+        <environment name="uv" load="ARM/Blinky.uvprojx"/>
+		<environment name="iar" load="EWARM/Blinky.eww"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+       </attributes>
+    </example>	
+
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Z32F0642100KITG/Blinky">
+      <description>Blinky example</description>
+      <board name="Z32F0642100KITG" vendor="Zilog" Dvendor="Zilog:89" Dname="Z32F06420AKE"/>
+      <project>
+        <environment name="uv" load="ARM/Blinky.uvprojx"/>
+		<environment name="iar" load="EWARM/Blinky.eww"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+       </attributes>
+    </example>	
+    
+    </examples>
+    
+</package>

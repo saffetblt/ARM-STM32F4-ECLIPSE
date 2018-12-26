@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>wolfSSL</name>                                                     <!-- name of package -->
+  <description>Light weight SSL/TLS and Crypt Library for Embedded Systems</description>  <!-- brief description of PACK -->
+  <vendor>wolfSSL</vendor>                                                 <!-- unique vendor/distributor of PACK -->
+  <url>http://www.wolfSSL.com/files/ide</url>                              <!-- Required but NOT USED AT THE MOMENT -->
+  <license>wolfssl\IDE\MDK5-ARM\Docs\wolfSSL-License.txt</license>
+    <taxonomy>
+    <description Cclass="wolfSSL"
+                 >wolfSSL: SSL/TLS and Crypt Library</description>
+    <description Cclass="wolfSSL" Cgroup="wolfSSL"
+                 >wolfSSL: SSL/TLS Library</description>
+    <description Cclass="wolfSSL" Cgroup="wolfCrypt"
+                 >wolfCrypt: Crypt Library</description>
+  </taxonomy>
+
+  <releases>                                                                <!-- contains complete release history of available releases (put most recent first) -->
+    <release version="3.14.0" date="2018-03-13">
+      March/13/2018,  wolfSSL pack for wolfSSL 3.14.0
+    </release>
+    <release version="3.13.1" date="2018-02-09">
+      February/09/2018,  wolfSSL pack for wolfSSL 3.13.0
+      Update for being listed as generic Pack
+    </release>
+    <release version="3.13.0" date="2018-01-21">
+      January/21/2018,  wolfSSL pack for wolfSSL 3.13.0
+    </release>
+    <release version="3.9.0">
+      March/28/2016,  wolfSSL pack for wolfSSL 3.9.0
+    </release>
+    <release version="3.8.0">
+      March/5/2016,  wolfSSL pack for wolfSSL 3.8.0
+    </release>
+  </releases>
+
+  <keywords>                                                                 <!-- PACK related keywords for search indexing (automatic are vendor and pack name) -->
+    <keyword>CyaSSL</keyword>
+    <keyword>wolfSSL</keyword>
+    <keyword>Security</keyword>
+    <keyword>Crypt</keyword>
+    <keyword>Cipher</keyword>
+    <keyword>SSL</keyword>
+    <keyword>TLS</keyword>
+  </keywords>
+
+  <conditions>
+
+    <!-- Conditions to express dependencies on devices, processors, software components, toolchains -->
+    <condition id="wolfCrypt-Core">
+      <require Cclass="wolfSSL" Cgroup="wolfCrypt" Csub="CORE"/>
+    </condition>
+    <condition id="wolfSSL-Core">
+      <require Cclass="wolfSSL" Cgroup="wolfSSL" Csub="Core" />
+      <require condition="wolfCrypt-Core"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="wolfSSL" Cclass="wolfSSL" Cversion="3.14.0" >
+      <description>wolfSSL: SSL/TLS and Crypt Library</description>
+      <doc>wolfssl/wolfSSLManual-TableofContents.htm</doc>
+      <component Cgroup="wolfSSL" Csub="Core" condition="wolfCrypt-Core">
+        <description>wolfSSL, Light weight SSL/TLS library</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="doc" name="wolfssl/IDE/MDK5-ARM/Docs/wolfSSLManual-TableofContents.htm"/>
+
+          <file category="header" name="wolfssl/IDE/MDK5-ARM/Conf/user_settings.h" attr="config" version="3.14.0" />
+          
+          <file category="include" name="wolfssl/IDE/MDK5-ARM/Inc/"/>
+          <file category="include" name="wolfssl/"/>
+
+          <file category="source" name="wolfssl/src/crl.c" />
+          <file category="source" name="wolfssl/src/internal.c" />
+          <file category="source" name="wolfssl/src/keys.c" />
+          <file category="source" name="wolfssl/src/ocsp.c" />
+          <file category="source" name="wolfssl/src/sniffer.c" />
+          <file category="source" name="wolfssl/src/ssl.c" />
+          <file category="source" name="wolfssl/src/tls.c" />
+          <file category="source" name="wolfssl/src/tls13.c" />
+          <file category="source" name="wolfssl/src/wolfio.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfCrypt" Csub="CORE" condition="wolfCrypt-Core">
+        <description>wolfCrypt Core, Light weight Crypt/Cipher Library</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="doc" name="wolfssl/IDE/MDK5-ARM/Docs/wolfSSLManual-wolfCryptUsageReference.htm" />
+
+          <file category="header" name="wolfssl/IDE/MDK5-ARM/Conf/user_settings.h" attr="config" version="3.14.0" />
+          
+          <file category="include" name="wolfssl/IDE/MDK5-ARM/Inc/"/>
+          <file category="include" name="wolfssl/"/>
+          <file category="source" name="wolfssl/wolfcrypt/src/aes.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/arc4.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/asm.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/asn.c" />
+          <!-- <file category="source" name="wolfssl/wolfcrypt/src/async.c" /> -->
+          <file category="source" name="wolfssl/wolfcrypt/src/blake2b.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/camellia.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/chacha.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/chacha20_poly1305.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/cmac.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/coding.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/compress.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/cpuid.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/curve25519.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/des3.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/dh.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/dsa.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ecc.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ecc_fp.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ed25519.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/error.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/fe_low_mem.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/fe_operations.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ge_low_mem.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ge_operations.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/hash.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/hc128.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/hmac.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/integer.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/logging.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/md2.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/md4.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/md5.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/memory.c" />
+          <!-- <file category="source" name="wolfssl/wolfcrypt/src/misc.c" /> -->
+          <file category="source" name="wolfssl/wolfcrypt/src/pkcs12.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/pkcs7.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/poly1305.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/pwdbased.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/rabbit.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/random.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/ripemd.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/rsa.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sha.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sha256.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sha3.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sha512.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/signature.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sp.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/sp_int.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/srp.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/tfm.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/wc_encrypt.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/wc_port.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/wolfevent.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/wolfmath.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/arm/armv8-aes.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/arm/armv8-sha256.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/atmel/atmel.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/caam/caam_aes.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/caam/caam_driver.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/caam/caam_init.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/caam/caam_sha.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/nxp/ksdk_port.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/pic32/pic32mz-crypt.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/st/stm32.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/ti/ti-aes.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/ti/ti-ccm.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/ti/ti-des3.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/ti/ti-hash.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/xilinx/xil-aesgcm.c" />
+          <file category="source" name="wolfssl/wolfcrypt/src/port/xilinx/xil-sha3.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfCrypt" Csub="Dummy" condition="wolfCrypt-Core">
+        <description>Dummy file for Crypt alone use</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/IDE/MDK5-ARM/Src/ssl-dummy.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfCrypt" Csub="Test" condition="wolfCrypt-Core">
+        <description>wolfCrypt Test suite</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/wolfcrypt/test/test.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfCrypt" Csub="Benchmark" condition="wolfCrypt-Core">
+        <description>wolfCrypt Benchmark Suite</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/wolfcrypt/benchmark/benchmark.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfSSL" Csub="echoClient" condition="wolfSSL-Core">
+        <description>TLS echo Client</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/examples/echoclient/echoclient.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfSSL" Csub="echoServer" condition="wolfSSL-Core">
+        <description>TLS echo Server</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/examples/echoserver/echoserver.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfSSL" Csub="SimpleClient" condition="wolfSSL-Core">
+        <description>simple TLS Client</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/examples/client/client.c" />
+        </files>
+      </component>
+      <component Cgroup="wolfSSL" Csub="SimpleServer" condition="wolfSSL-Core">
+        <description>simple TLS Server</description>
+        <RTE_Components_h>
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="wolfssl/examples/server/server.c" />
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <examples>
+    <example name="wolfSSL 2: wolfCrypt test" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/CryptTest">
+      <description>wolfCrypt Simple Test Suite</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="CryptTest.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="woflCrypt" Csub="Test"/>
+        <component Cclass="wolfSSL" Cgroup="woflCrypt" Csub="Dummy"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+    <example name="wolfSSL 3: wolfCrypt Benchmark" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/CryptBenchmark">
+      <description>wolfCrypt Benchmark Suite</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="CryptBenchmark.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="woflCrypt" Csub="Benchmark"/>
+        <component Cclass="wolfSSL" Cgroup="wolfCrypt" Csub="Dummy"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+    <example name="wolfSSL 4: Simple Client" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/SimpleClient">
+      <description>wolfSSL Simple Client Example</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SimpleClient.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="Core"/>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="SimpleClient"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+    <example name="wolfSSL 5: Simple Server" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/SimpleServer">
+      <description>wolfSSL Simple Server Example</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SimpleServer.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="Core"/>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="SimpleServer"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+    <example name="wolfSSL 6: Echo Client" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/EchoClient">
+      <description>wolfSSL Echo Client Example</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="EchoClient.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="Core"/>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="EchoClient"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+    <example name="wolfSSL 7: Echo Server" doc="Abstract.txt" folder="wolfssl/IDE/MDK5-ARM/Projects/EchoServer">
+      <description>wolfSSL Echo Server Example</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="EchoServer.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="Core"/>
+        <component Cclass="wolfSSL" Cgroup="wolfSSL" Csub="EchoServer"/>
+        <category>Middleware</category>
+        <category>Security</category>
+        <keyword>Crypt</keyword>
+        <keyword>Cipher</keyword>
+      </attributes>
+    </example>
+</examples>
+</package>

@@ -1,0 +1,2818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC1100_DFP</name>
+  <description>NXP LPC1100 Series Device Support</description>
+
+  <releases>
+    <release version="1.4.0" date="2015-10-21">
+      Updated SVD file for LPC11Cxx.svd fixing CANTEST->RX register
+    </release>
+    <release version="1.3.0" date="2015-01-29">
+      Added LPC1124 and LPC1125 device support.
+      Added board support and examples for:
+      - LPCXpresso11U68, LPC11C14 and LPCXpresso1125
+      Renamed LPC112x devices according datasheet.
+      Reworked Startup section and corrected processor settings.
+    </release>
+    <release version="1.2.0" date="2014-09-16">
+      SVD files updated to version 0.8
+    </release>
+    <release version="1.1.0" date="2014-07-29">
+      Added LPC11E6x device support.
+    </release>
+    <release version="1.0.0">
+      First Release version of LPC1100 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC1100</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="LPC1100 Series" Dvendor="NXP:11">
+      <book name="Documents\dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+      <book name="Documents\dui0662a_cortex_m0p_r0p0_dgug.pdf"      title="Cortex-M0+ Generic User Guide"/>
+        <description>
+The LPC1100 series is designed for low cost 8/16-bit microcontroller applications, offering performance, low power, simple
+instruction set and memory addressing together with reduced code size compared to existing 8/16-bit architectures.
+Typical applications include 8-/16-bit applications, eMetering, Lighting, Alarm systems, Consumer peripherals, Mobile devices and White goods.
+
+  - Three reduced power modes: Sleep, Deep-sleep, and Deep power-down.
+  - Unique device serial number for identification.
+  - Extended temperature (-40 C to +105 C)
+        </description>
+
+      <!-- ************************  Subfamily 'LPC1100LV'  **************************** -->
+      <subFamily DsubFamily="LPC1100LV">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <debug svd="SVD\LPC11xxLV_LPC111x_LV.svd"/>
+        <book name="Documents\UM10578.pdf"                  title="LPC11xxLV User Manual"/>
+        <book name="Documents\LPC111XLV_LPC11XXLVUK.pdf"    title="LPC111XLV/LPC11XXLVUK Datasheet"/>
+
+        <feature type="UART"          n="1"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="ADC"           n="6"       m="8"/>
+        <feature type="IOs"           n="21"/>
+        <feature type="CSP"           n="25"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC1101LVUK'  ***************************** -->
+        <device Dname="LPC1101LVUK">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1102LVUK'  ***************************** -->
+        <device Dname="LPC1102LVUK">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112LVFHI33/103'  ***************************** -->
+        <device Dname="LPC1112LVFHI33/103">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="ADC"           n="8"       m="8"/>
+          <feature type="IOs"           n="27"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112LVFHN24/003'  ***************************** -->
+        <device Dname="LPC1112LVFHN24/003">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+
+          <feature type="ADC"           n="6"       m="8"/>
+          <feature type="IOs"           n="20"/>
+          <feature type="QFN"           n="24"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114LVFHI33/303'  ***************************** -->
+        <device Dname="LPC1114LVFHI33/303">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="ADC"           n="8"       m="8"/>
+          <feature type="IOs"           n="27"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114LVFHN24/103'  ***************************** -->
+        <device Dname="LPC1114LVFHN24/103">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="ADC"           n="6"       m="8"/>
+          <feature type="IOs"           n="20"/>
+          <feature type="QFN"           n="24"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114LVFHN24/303'  ***************************** -->
+        <device Dname="LPC1114LVFHN24/303">
+          <compile header="Device\Include\LPC11xxLV\LPC11xxLV.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="ADC"           n="6"       m="8"/>
+          <feature type="IOs"           n="20"/>
+          <feature type="QFN"           n="24"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC1100XL'  **************************** -->
+      <subFamily DsubFamily="LPC1100XL">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <feature type="UART"          n="1"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC1102UK'  ***************************** -->
+        <device Dname="LPC1102UK">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC1102_04.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10429.pdf"      title="LPC1102/04 User manual"/>
+          <book name="Documents\LPC1102_1104.pdf" title="LPC1102/04 Datasheet"/>
+
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="8"/>
+          <feature type="CSP"           n="16"/>
+          <feature type="IOs"           n="11"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1104UK'  ***************************** -->
+        <device Dname="LPC1104UK">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC1102_04.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10429.pdf"      title="LPC1102/04 User manual"/>
+          <book name="Documents\LPC1102_1104.pdf" title="LPC1102/04 Datasheet"/>
+
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="8"/>
+          <feature type="CSP"           n="16"/>
+          <feature type="IOs"           n="13"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1110FD20'  ***************************** -->
+        <device Dname="LPC1110FD20">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0400"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_4.FLM"      start="0x00000000"  size="0x1000"  RAMstart="0x10000000"  RAMsize="0x03E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="10"/>
+          <feature type="IOs"           n="16"/>
+          <feature type="SOP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FDH20/002'  ***************************** -->
+        <device Dname="LPC1111FDH20/002">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="10"/>
+          <feature type="IOs"           n="16"/>
+          <feature type="SOP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FHN33/101'  ***************************** -->
+        <device Dname="LPC1111FHN33/101">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FHN33/102'  ***************************** -->
+        <device Dname="LPC1111FHN33/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FHN33/201'  ***************************** -->
+        <device Dname="LPC1111FHN33/201">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FHN33/202'  ***************************** -->
+        <device Dname="LPC1111FHN33/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+		<!-- *************************  Device 'LPC1111FHN33/103'  ***************************** -->
+        <device Dname="LPC1111FHN33/103">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1111FHN33/203'  ***************************** -->
+        <device Dname="LPC1111FHN33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FD20/102 '  ***************************** -->
+        <device Dname="LPC1112FD20/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="10"/>
+          <feature type="IOs"           n="16"/>
+          <feature type="SOP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FDH20/102'  ***************************** -->
+        <device Dname="LPC1112FDH20/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="5"       m="10"/>
+          <feature type="IOs"           n="14"/>
+          <feature type="SOP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FDH28/102'  ***************************** -->
+        <device Dname="LPC1112FDH28/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="6"       m="10"/>
+          <feature type="IOs"           n="22"/>
+          <feature type="SOP"           n="28"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHI33/202'  ***************************** -->
+        <device Dname="LPC1112FHI33/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHI33/203'  ***************************** -->
+        <device Dname="LPC1112FHI33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN24/202'  ***************************** -->
+        <device Dname="LPC1112FHN24/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="6"       m="10"/>
+          <feature type="IOs"           n="19"/>
+          <feature type="QFN"           n="24"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/101'  ***************************** -->
+        <device Dname="LPC1112FHN33/101">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/201'  ***************************** -->
+        <device Dname="LPC1112FHN33/201">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/102'  ***************************** -->
+        <device Dname="LPC1112FHN33/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/202'  ***************************** -->
+        <device Dname="LPC1112FHN33/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/103'  ***************************** -->
+        <device Dname="LPC1112FHN33/103">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112FHN33/203'  ***************************** -->
+        <device Dname="LPC1112FHN33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1112JHI33/203'  ***************************** -->
+        <device Dname="LPC1112JHI33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FBD48/301'  ***************************** -->
+        <device Dname="LPC1113FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FBD48/302'  ***************************** -->
+        <device Dname="LPC1113FBD48/302">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FBD48/303'  ***************************** -->
+        <device Dname="LPC1113FBD48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/201'  ***************************** -->
+        <device Dname="LPC1113FHN33/201">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/301'  ***************************** -->
+        <device Dname="LPC1113FHN33/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/202'  ***************************** -->
+        <device Dname="LPC1113FHN33/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/302'  ***************************** -->
+        <device Dname="LPC1113FHN33/302">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/203'  ***************************** -->
+        <device Dname="LPC1113FHN33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1113FHN33/303'  ***************************** -->
+        <device Dname="LPC1113FHN33/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FBD48/301'  ***************************** -->
+        <device Dname="LPC1114FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FBD48/302'  ***************************** -->
+        <device Dname="LPC1114FBD48/302">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FBD48/303'  ***************************** -->
+        <device Dname="LPC1114FBD48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FBD48/323'  ***************************** -->
+        <device Dname="LPC1114FBD48/323">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_48.FLM"     start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FBD48/333'  ***************************** -->
+        <device Dname="LPC1114FBD48/333">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xE000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_56.FLM"     start="0x00000000"  size="0xE000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FDH28/102'  ***************************** -->
+        <device Dname="LPC1114FDH28/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="6"       m="10"/>
+          <feature type="IOs"           n="22"/>
+          <feature type="SOP"           n="28"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHI33/302'  ***************************** -->
+        <device Dname="LPC1114FHI33/302">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHI33/303'  ***************************** -->
+        <device Dname="LPC1114FHI33/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/201'  ***************************** -->
+        <device Dname="LPC1114FHN33/201">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/301'  ***************************** -->
+        <device Dname="LPC1114FHN33/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/202'  ***************************** -->
+        <device Dname="LPC1114FHN33/202">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/302'  ***************************** -->
+        <device Dname="LPC1114FHN33/302">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/203'  ***************************** -->
+        <device Dname="LPC1114FHN33/203">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/303'  ***************************** -->
+        <device Dname="LPC1114FHN33/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FHN33/333'  ***************************** -->
+        <device Dname="LPC1114FHN33/333">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xE000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_56.FLM"     start="0x00000000"  size="0xE000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114FN28/102'  ***************************** -->
+        <device Dname="LPC1114FN28/102">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="ADC"           n="6"       m="10"/>
+          <feature type="IOs"           n="22"/>
+          <feature type="DIP"           n="28"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1114JHN33/333'  ***************************** -->
+        <device Dname="LPC1114JHN33/333">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xE000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_56.FLM"     start="0x00000000"  size="0xE000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1115FBD48/303'  ***************************** -->
+        <device Dname="LPC1115FBD48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1115FET48/303'  ***************************** -->
+        <device Dname="LPC1115FET48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="BGA"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1115JBD48/303'  ***************************** -->
+        <device Dname="LPC1115JBD48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1115JET48/303'  ***************************** -->
+        <device Dname="LPC1115JET48/303">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <debug svd="SVD\LPC111x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10398.pdf" title="LPC111x/LPC11Cxx User Manual"/>
+          <book name="Documents\LPC111X.pdf" title="LPC1110/11/12/13/14/15 Datasheet"/>
+
+          <feature type="I2C"           n="1"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="BGA"           n="48"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC11A00'  **************************** -->
+      <subFamily DsubFamily="LPC11A00">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <debug svd="SVD\LPC11Axx.svd"/>
+        <book name="Documents\UM10527.pdf"  title="LPC11Axx User Manual"/>
+        <book name="Documents\LPC11AXX.pdf" title="LPC11Axx Datasheet"/>
+
+        <feature type="UART"          n="1"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="ADC"           n="8"       m="10"/>
+        <feature type="DAC"           n="1"       m="10"/>
+        <feature type="AnalogOther"   n="1"/>
+        <feature type="TempSens"      n="1"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC11A02UK'  ***************************** -->
+        <device Dname="LPC11A02UK">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="18"/>
+          <feature type="CSP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A04UK'  ***************************** -->
+        <device Dname="LPC11A04UK">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="1"/>
+          <feature type="IOs"           n="18"/>
+          <feature type="CSP"           n="20"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A11FHN33/001'  ***************************** -->
+        <device Dname="LPC11A11FHN33/001">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x07E0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="512B EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A12FBD48/101'  ***************************** -->
+        <device Dname="LPC11A12FBD48/101">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="1kB EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A12FHN33/101'  ***************************** -->
+        <device Dname="LPC11A12FHN33/101">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="1kB EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A13FHI33/201'  ***************************** -->
+        <device Dname="LPC11A13FHI33/201">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A14FBD48/301'  ***************************** -->
+        <device Dname="LPC11A14FBD48/301">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11A14FHN33/301'  ***************************** -->
+        <device Dname="LPC11A14FHN33/301">
+          <compile header="Device\Include\LPC11Axx\LPC11Axx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC11C00'  **************************** -->
+      <subFamily DsubFamily="LPC11C00">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <debug svd="SVD\LPC11Cxx.svd"/>
+        <book name="Documents\UM10398.pdf"      title="LPC111x/LPC11Cxx User Manual"/>
+        <book name="Documents\LPC11CX2_CX4.pdf" title="LPC11Cx2/Cx4 Datasheet"/>
+
+        <feature type="UART"          n="1"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="CAN"           n="1"/>
+        <feature type="ADC"           n="8"       m="10"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC11C12FBD48/301'  ***************************** -->
+        <device Dname="LPC11C12FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="IOs"           n="40"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11C14FBD48/301'  ***************************** -->
+        <device Dname="LPC11C14FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="IOs"           n="40"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11C22FBD48/301'  ***************************** -->
+        <device Dname="LPC11C22FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="IOs"           n="36"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11C24FBD48/301'  ***************************** -->
+        <device Dname="LPC11C24FBD48/301">
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="IOs"           n="36"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC11D00'  **************************** -->
+      <subFamily DsubFamily="LPC11D00">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <debug svd="SVD\LPC11D14.svd"/>
+        <book name="Documents\UM10398.pdf"  title="LPC111x/LPC11Cxx User Manual"/>
+        <book name="Documents\LPC11D14.pdf" title="LPC11D14 Datasheet"/>
+
+        <feature type="UART"          n="1"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="ADC"           n="8"       m="10"/>
+        <feature type="IOs"           n="42"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC11D14FBD100/302'  ***************************** -->
+        <device Dname="LPC11D14FBD100/302">
+          <processor Dclock="50000000"/>
+          <compile header="Device\Include\LPC11xx\LPC11xx.h"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <feature type="QFP"           n="100"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC11E00'  **************************** -->
+      <subFamily DsubFamily="LPC11E00">
+        <processor Dclock="50000000"/>
+
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'LPC11E11FHN33/101'  ***************************** -->
+        <device Dname="LPC11E11FHN33/101">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_8.FLM"      start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="512B EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E12FBD48/201'  ***************************** -->
+        <device Dname="LPC11E12FBD48/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="1kB EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E13FBD48/301'  ***************************** -->
+        <device Dname="LPC11E13FBD48/301">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="1kB EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E14FBD48/401'  ***************************** -->
+        <device Dname="LPC11E14FBD48/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E14FBD64/401'  ***************************** -->
+        <device Dname="LPC11E14FBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E14FHN33/401'  ***************************** -->
+        <device Dname="LPC11E14FHN33/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E1X.pdf" title="LPC11E1x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E36FBD64/501'  ***************************** -->
+        <device Dname="LPC11E36FBD64/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x18000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96.FLM"     start="0x00000000"  size="0x18000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E3X.pdf" title="LPC11E3x Datasheet"/>
+
+        </device>
+
+        <!-- *************************  Device 'LPC11E36FHN33/501'  ***************************** -->
+        <device Dname="LPC11E36FHN33/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x18000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96.FLM"     start="0x00000000"  size="0x18000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E3X.pdf" title="LPC11E3x Datasheet"/>
+
+        </device>
+
+        <!-- *************************  Device 'LPC11E37FBD48/501'  ***************************** -->
+        <device Dname="LPC11E37FBD48/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E3X.pdf" title="LPC11E3x Datasheet"/>
+
+        </device>
+
+        <!-- *************************  Device 'LPC11E37FBD64/501'  ***************************** -->
+        <device Dname="LPC11E37FBD64/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E3X.pdf" title="LPC11E3x Datasheet"/>
+
+        </device>
+
+        <!-- *************************  Device 'LPC11E37HFBD64/401'  ***************************** -->
+        <device Dname="LPC11E37HFBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11Exx.h"/>
+          <debug svd="SVD\LPC11Exx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10518.pdf"  title="LPC11Exx User Manual"/>
+          <book name="Documents\LPC11E3X.pdf" title="LPC11E3x Datasheet"/>
+
+        </device>
+
+        <!-- *************************  Device 'LPC11E66JBD48'  ***************************** -->
+        <device Dname="LPC11E66JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="4"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="IOs"           n="36"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E67JBD100'  ***************************** -->
+        <device Dname="LPC11E67JBD100">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="80"/>
+          <feature type="QFP"           n="100"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E67JBD48'  ***************************** -->
+        <device Dname="LPC11E67JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="4"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="IOs"           n="36"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E67JBD64'  ***************************** -->
+        <device Dname="LPC11E67JBD64">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="4"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E68JBD100'  ***************************** -->
+        <device Dname="LPC11E68JBD100">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="IOs"           n="80"/>
+          <feature type="QFP"           n="100"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E68JBD48'  ***************************** -->
+        <device Dname="LPC11E68JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="4"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="IOs"           n="36"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11E68JBD64'  ***************************** -->
+        <device Dname="LPC11E68JBD64">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Exx\LPC11E6x.h"/>
+          <debug svd="SVD\LPC11E6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11E6X.pdf" title="LPC11E6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="4"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="50"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC11U00'  **************************** -->
+      <subFamily DsubFamily="LPC11U00">
+        <processor Dclock="50000000"/>
+
+        <feature type="Temp"          n="-40"     m="85"/>
+        <!-- <feature type="USBD"          n="1"/> -->
+
+        <!-- *************************  Device 'LPC11U12FBD48/201'  ***************************** -->
+        <device Dname="LPC11U12FBD48/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U12FHN33/201'  ***************************** -->
+        <device Dname="LPC11U12FHN33/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_16.FLM"     start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U13FBD48/201'  ***************************** -->
+        <device Dname="LPC11U13FBD48/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U14FBD48/201'  ***************************** -->
+        <device Dname="LPC11U14FBD48/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U14FET48/201'  ***************************** -->
+        <device Dname="LPC11U14FET48/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="BGA"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U14FHI33/201'  ***************************** -->
+        <device Dname="LPC11U14FHI33/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U14FHN33/201'  ***************************** -->
+        <device Dname="LPC11U14FHN33/201">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U1X.pdf" title="LPC11U1x Datasheet"/>
+
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U23FBD48/301'  ***************************** -->
+        <device Dname="LPC11U23FBD48/301">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x6000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_24.FLM"     start="0x00000000"  size="0x6000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="1kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FBD48/301'  ***************************** -->
+        <device Dname="LPC11U24FBD48/301">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FBD48/401'  ***************************** -->
+        <device Dname="LPC11U24FBD48/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FBD64/401'  ***************************** -->
+        <device Dname="LPC11U24FBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FET48/301'  ***************************** -->
+        <device Dname="LPC11U24FET48/301">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="BGA"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FHI33/301'  ***************************** -->
+        <device Dname="LPC11U24FHI33/301">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x1800"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U24FHN33/401'  ***************************** -->
+        <device Dname="LPC11U24FHN33/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U2X.pdf" title="LPC11U2x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U34FBD48/311'  ***************************** -->
+        <device Dname="LPC11U34FBD48/311">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xA000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_40.FLM"     start="0x00000000"  size="0xA000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U34FBD48/421'  ***************************** -->
+        <device Dname="LPC11U34FBD48/421">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_48.FLM"     start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U34FHN33/311'  ***************************** -->
+        <device Dname="LPC11U34FHN33/311">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xA000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_40.FLM"     start="0x00000000"  size="0xA000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U34FHN33/421'  ***************************** -->
+        <device Dname="LPC11U34FHN33/421">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_48.FLM"     start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U35FBD48/401'  ***************************** -->
+        <device Dname="LPC11U35FBD48/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U35FBD64/401'  ***************************** -->
+        <device Dname="LPC11U35FBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U35FET48/501'  ***************************** -->
+        <device Dname="LPC11U35FET48/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="BGA"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U35FHI33/501'  ***************************** -->
+        <device Dname="LPC11U35FHI33/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U35FHN33/401'  ***************************** -->
+        <device Dname="LPC11U35FHN33/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U36FBD48/401'  ***************************** -->
+        <device Dname="LPC11U36FBD48/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x18000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96.FLM"     start="0x00000000"  size="0x18000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U36FBD64/401'  ***************************** -->
+        <device Dname="LPC11U36FBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x18000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96.FLM"     start="0x00000000"  size="0x18000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U37FBD48/401'  ***************************** -->
+        <device Dname="LPC11U37FBD48/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U37FBD64/501'  ***************************** -->
+        <device Dname="LPC11U37FBD64/501">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U37HFBD64/401'  ***************************** -->
+        <device Dname="LPC11U37HFBD64/401">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11Uxx.h"/>
+          <debug svd="SVD\LPC11Uxx.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20004000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10462.pdf"  title="LPC11U3x/2x/1x User Manual"/>
+          <book name="Documents\LPC11U3X.pdf" title="LPC11U3x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="IOs"           n="54"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U66JBD48'  ***************************** -->
+        <device Dname="LPC11U66JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="3"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U67JBD100'  ***************************** -->
+        <device Dname="LPC11U67JBD100">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="80"/>
+          <feature type="QFP"           n="100"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U67JBD48'  ***************************** -->
+        <device Dname="LPC11U67JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="3"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U67JBD64'  ***************************** -->
+        <device Dname="LPC11U67JBD64">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_32.FLM"  start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="3"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U68JBD100'  ***************************** -->
+        <device Dname="LPC11U68JBD100">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="80"/>
+          <feature type="QFP"           n="100"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U68JBD48'  ***************************** -->
+        <device Dname="LPC11U68JBD48">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="3"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="QFP"           n="48"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+
+        <!-- *************************  Device 'LPC11U68JBD64'  ***************************** -->
+        <device Dname="LPC11U68JBD64">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <compile header="Device\Include\LPC11Uxx\LPC11U6x.h"/>
+          <debug svd="SVD\LPC11U6x.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_96_160.FLM" start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <book name="Documents\UM10732.pdf"  title="LPC11U6x/E6x User Manual"/>
+          <book name="Documents\LPC11U6X.pdf" title="LPC11U6x Datasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="USART"         n="3"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="Timer"         n="6"       m="16"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="64"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC1120'  **************************** -->
+      <subFamily DsubFamily="LPC1120">
+        <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+        <processor Dclock="50000000"/>
+        <debug svd="SVD\LPC112x.svd"/>
+          <!--book       name="Documents\NotAvailable.pdf"          title="LPC1120 Reference Manual"/-->
+
+        <feature type="UART"          n="3"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="ADC"           n="8"       m="12"/>
+
+        <!-- *************************  Device 'LPC1124JBD48/303'  ***************************** -->
+        <device Dname="LPC1124JBD48/303">
+          <compile header="Device\Include\LPC112x\LPC112x.h"  define="LPC1124"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x08000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_32.FLM"     start="0x00000000"  size="0x08000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <!--book       name="Documents\NotAvailable.pdf"          title="LPC1125 Series Datasheet"/-->
+
+          <feature type="IOs"           n="38"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1125JBD48/303'  ***************************** -->
+        <device Dname="LPC1125JBD48/303">
+          <compile header="Device\Include\LPC112x\LPC112x.h"  define="LPC1125"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash\LPC1xxx_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <!--book       name="Documents\NotAvailable.pdf"          title="LPC1125 Series Datasheet"/-->
+
+          <feature type="IOs"           n="38"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="LPC11xx_Cxx">
+      <description>NXP LPC1100 Series devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC110*"/>
+      <accept Dvendor="NXP:11" Dname="LPC111*"/>
+      <accept Dvendor="NXP:11" Dname="LPC11C*"/>
+      <accept Dvendor="NXP:11" Dname="LPC11D*"/>
+      <deny   Dvendor="NXP:11" Dname="LPC11??LV*"/>
+    </condition>
+
+    <condition id="LPC11xxLV">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11??LV*"/>
+    </condition>
+
+    <condition id="LPC11Axx">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11A*"/>
+    </condition>
+
+    <condition id="LPC11Exx">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11E*"/>
+      <deny    Dvendor="NXP:11" Dname="LPC11E6*"/>
+    </condition>
+
+    <condition id="LPC11E6x">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11E6*"/>
+    </condition>
+
+    <condition id="LPC11Uxx">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11U*"/>
+      <deny    Dvendor="NXP:11" Dname="LPC11U6*"/>
+    </condition>
+
+    <condition id="LPC11U6x">
+      <description>NXP LPC1100 Series devices</description>
+      <require Dvendor="NXP:11" Dname="LPC11U6*"/>
+    </condition>
+
+    <condition id="LPC112x">
+      <description>NXP LPC112x Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC112*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC11xx_Cxx CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11xx_Cxx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11xxLV CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11xxLV"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11Axx CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11Axx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11Exx CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11Exx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11E6x CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11E6x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11Uxx CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11Uxx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC11U6x CMSIS">
+      <description>NXP LPC1100 Devices and CMSIS-CORE</description>
+      <require condition="LPC11U6x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC112x CMSIS">
+      <description>NXP LPC112x Devices and CMSIS-CORE</description>
+      <require condition="LPC112x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+
+  <components>
+    <!-- Startup LPC11xxLV -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11xxLV CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11xxLV\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11xxLV.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11xxLV.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11xx_Cxx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11xx_Cxx CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11xx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11xx.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11xx.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11Axx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11Axx CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11Axx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11Axx.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11Axx.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11Exx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11Exx CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11Exx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11Exx.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11Exx.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11E6x -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11E6x CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11Exx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11E6x.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11E6x.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11Uxx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11Uxx CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11Uxx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11Uxx.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11Uxx.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC11U6x -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC11U6x CMSIS">
+      <description>System Startup for NXP LPC1100 Series</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\LPC11Uxx\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC11U6x.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC11U6x.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC112x -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC112x CMSIS">
+      <description>System Startup for NXP LPC112x Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include"  name="Device\Include\LPC112x\"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm" name="Device\Source\ARM\startup_LPC112x.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="sourceC"   name="Device\Source\system_LPC112x.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- MCB11C14 Board Support -->
+    <bundle Cbundle="MCB11C14" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil MCB11C14 Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" condition="LPC11xx_Cxx CMSIS">
+      <description>LED interface for Keil MCB11C14 Board</description>
+        <files>
+          <file category="source" name="Boards\Keil\MCB11C14\Common\LED_MCB11C14.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" condition="LPC11xx_Cxx CMSIS">
+        <description>Buttons interface for Keil MCB11C14 Board</description>
+        <files>
+          <file category="source" name="Boards\Keil\MCB11C14\Common\Buttons_MCB11C14.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPCXpresso1125 Board Support -->
+    <bundle Cbundle="LPCXpresso1125" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP LPCXpresso1125 Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" condition="LPC112x CMSIS">
+      <description>LED interface for NXP LPCXpresso1125 Board</description>
+        <files>
+          <file category="source" name="Boards\NXP\LPCXpresso1125\Common\LED_LPCXpresso1125.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" condition="LPC112x CMSIS">
+        <description>Buttons interface for NXP LPCXpresso1125 Board</description>
+        <files>
+          <file category="source" name="Boards\NXP\LPCXpresso1125\Common\Buttons_LPCXpresso1125.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPCXpresso11U68 Board Support -->
+    <bundle Cbundle="LPCXpresso11U68" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP LPCXpresso11U68 Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" condition="LPC11U6x CMSIS">
+      <description>LED interface for NXP LPCXpresso11U68 Board</description>
+        <files>
+          <file category="source" name="Boards\NXP\LPCXpresso11U68\Common\LED_LPCXpresso11U68.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" condition="LPC11U6x CMSIS">
+        <description>Buttons interface for NXP LPCXpresso11U68 Board</description>
+        <files>
+          <file category="source" name="Boards\NXP\LPCXpresso11U68\Common\Buttons_LPCXpresso11U68.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Keil" name="MCB11C14" revision="Ver 2.6" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1000=ON">
+      <description>Keil MCB1000 Development Board</description>
+      <image small="Boards\Keil\MCB11C14\Documents\mcb1100_small.jpg" large="Boards\Keil\MCB11C14\Documents\mcb1100_large.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcb1000/" title="MCB1100 Evaluation Board Web Page"/>
+      <book category="schematic" name="Boards\Keil\MCB11C14\Documents\mcb1100-schematics.pdf" title="MCB1100 Schematics"/>
+      <book category="schematic" name="Boards\Keil\MCB11C14\Documents\mcb11u10-schematics.pdf" title="MCB11U10 Schematics"/>
+      <book category="manual"    name="Boards\Keil\MCB11C14\Documents\mcb1000.chm" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC11C14FBD48/301"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-Speed Device (LPC11U14 and LPC1343 only)"/>
+      <feature type="CAN"             n="2"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="Button"          n="4"              name="Push-Buttons: 2 x GPIO, Reset, ISP"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+	  <feature type="CustomFF"        n="80" m="80"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="NXP" name="LPCXpresso1125" revision="Rev. 1" salesContact="http://www.nxp.com/support.html">
+      <description>NXP LPCXpresso1125 Board</description>
+      <image small="Boards\NXP\LPCXpresso1125\Documents\LPCXpresso1125_small.png"
+             large="Boards\NXP\LPCXpresso1125\Documents\LPCXpresso1125_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/demoboard/OM13080.html"  title="LPCXpresso1125 Board"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1125JBD48/303"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC1120"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="USB"             n="1"              name="USB Virtual communications port"/>
+      <feature type="LED"             n="1"              name="I/O Port RGB LED"/>
+      <feature type="Button"          n="3"              name="Reset, Wake, ISP button"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="ArduinoFF"       n="1"/>
+      <feature type="ODbg"            n="1"              name="LPC-Link"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="NXP" name="LPCXpresso11U68" revision="Rev. C" salesContact="http://www.nxp.com/support.html">
+      <description>NXP LPCXpresso11U68 Board</description>
+      <image small="Boards\NXP\LPCXpresso11U68\Documents\LPCXpresso11U68_small.jpg"
+             large="Boards\NXP\LPCXpresso11U68\Documents\LPCXpresso11U68_large.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/demoboard/OM13058.html"  title="LPCXpresso11U68 Board"/>
+      <book category="schematic" name="Boards\NXP\LPCXpresso11U68\Documents\LPC11U68_Xpresso_v2_Schematic_RevC_1.pdf" title="LPCXpresso11U68 Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC11U68JBD100"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC11U6"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="USB"             n="1"              name="Micro-B USB"/>
+      <feature type="LED"             n="1"              name="I/O Port RGB LED"/>
+      <feature type="Button"          n="3"              name="Reset, Wake, ISP button"/>
+      <feature type="ArduinoFF"       n="1"/>
+      <feature type="ODbg"            n="1"              name="LPC-Link"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- MCB11C14 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Keil\MCB11C14\Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB11C14" vendor="Keil" Dvendor="NXP:11" Dname="LPC11C14FBD48/301"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- LPCXpresso1125 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\NXP\LPCXpresso1125\Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPCXpresso1125" vendor="NXP" Dvendor="NXP:11" Dname="LPC1125JBD48/303"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- LPCXpresso11U68 Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\NXP\LPCXpresso11U68\Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPCXpresso11U68" vendor="NXP" Dvendor="NXP:11" Dname="LPC11U68JBD100"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

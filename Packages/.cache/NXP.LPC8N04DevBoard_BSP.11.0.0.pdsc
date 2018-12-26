@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC8N04DevBoard_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Board Support Pack for LPC8N04DEVBOARD</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="LPC8N04DevBoard">
+      <description>The LPC8N04DevBoard is an development platform for LPC8N04 MCUs</description>
+      <mountedDevice Dname="LPC8N04" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="device.LPC8N04_AND_device.LPC8N04_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_1_AND_driver.lpc_iocon_AND_driver.power_no_lib_AND_driver.reset">
+      <accept Dname="LPC8N04*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC8N04_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="led_matrix" folder="demo_apps/led_matrix" doc="readme.txt">
+      <description>The LED Matrix application shows how to drive the LED matrix to show the numbers.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/led_matrix.uvprojx"/>
+        <environment name="iar" load="iar/led_matrix.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="gpio_1_input_interrupt" folder="driver_examples/gpio/input_interrupt" doc="readme.txt">
+      <description>The GPIO input_interrupt project is a demonstration program that uses the KSDK software to manipulate the general-purposeoutputs. The example use LEDs demonstrates GPIO API for port and pin manipulation (init, toggle).</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/gpio_1_input_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/gpio_1_input_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="gpio_1_led_blink" folder="driver_examples/gpio/led_blink" doc="readme.txt">
+      <description>The GPIO Blink project is a demonstration program that uses the KSDK software to manipulate the general-purposeoutputs. The example use LEDs demonstrates GPIO API for port and pin manipulation (init, toggle).</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/gpio_1_led_blink.uvprojx"/>
+        <environment name="iar" load="iar/gpio_1_led_blink.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="nfc_example" folder="driver_examples/nfc" doc="readme.txt">
+      <description>The NFC Example project is to demonstrate usage of the SDK NFC driver, The text message "hello world" could be read out by NFC reader, such as using "TagInfo" on smart phones.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/nfc_example.uvprojx"/>
+        <environment name="iar" load="iar/nfc_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="eeprom" folder="driver_examples/eeprom" doc="readme.txt">
+      <description>The EEPROM Example project is a demonstration program that uses the KSDK software to program eeprom memoryand verify the program.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/eeprom.uvprojx"/>
+        <environment name="iar" load="iar/eeprom.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="power_mode_switch_lpc" folder="demo_apps/power_mode_switch_lpc" doc="readme.txt">
+      <description>The power_mode_switch application shows the usage of normal power mode control APIs for entering the three kinds oflow power mode: Sleep mode, Deep Sleep mode, deep power down mode. When the application runs to each low powermode, the device would cut off the power for specific modules to save energy. The device can be also waken up by prepared wakeup source from external event. Tips: This demo is to show how the various power mode can switch to each other. However, in actual low power use case, to save energy and reduce the consumption even more, many things can be done including: - Disable the clock for unnecessary module during low power mode. That means, programmer can disable the clocks before entering the low power mode and re-enable them after exiting the low power mode when necessary. - Disable the function for unnecessary part of a module when other part would keep working in low power mode. At the most time, more powerful function means more power consumption. For example, disable the digital function for the unnecessary pin mux, and so on. - Set the proper pin state (direction and logic level) according to the actual application hardware. Otherwise, the pin cirrent would be activied unexpectedly waste some energy. - Other low power consideration based on the actual application hardware. - In order to meet typedef power consumption of DateSheet manual, Please configure MCU under the following conditions.     • Configure all pins as GPIO with pull-up resistor disabled in the IOCON block.     • Configure GPIO pins as outputs using the GPIO DIR register.     • Write 1 to the GPIO CLR register to drive the outputs LOW.     • All peripherals disabled.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/power_mode_switch_lpc.uvprojx"/>
+        <environment name="iar" load="iar/power_mode_switch_lpc.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_pwm_example" folder="driver_examples/ctimer/simple_pwm" doc="readme.txt">
+      <description>The CTimer Example project is to demonstrate usage of the KSDK ctimer driver.In this example, CTimer is used to generate a PWM signal.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_pwm_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_pwm_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_pwm_interrupt_example" folder="driver_examples/ctimer/simple_pwm_interrupt" doc="readme.txt">
+      <description>The Simple PWM Interrupt project is to demonstrate usage of the SDK CTimer driver as a PWM with interrupt callback functionsIn this example an IO pin connected to the LED is used as a PWM output line to generate a PWM signal.With an interrupt callback the PWM duty cycle is changed frequently in such a way that the LED brightness can be varied.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_pwm_interrupt_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_pwm_interrupt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_match_interrupt_example" folder="driver_examples/ctimer/simple_match_interrupt" doc="readme.txt">
+      <description>The Simple Match Interrupt project is to demonstrate usage of the SDK CTimer driver with interrupt callback functionsIn this example the upon match and IO pin connected to the LED is toggled and the timer is reset, so it would generate a square wave.With an interrupt callback the match value is changed frequently in such a way that the frequency of the output square wave is increased gradually.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_match_interrupt_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_match_interrupt_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ctimer_match_example" folder="driver_examples/ctimer/simple_match" doc="readme.txt">
+      <description>The CTimer Example project is to demonstrate usage of the KSDK ctimer driver.In this example, the match feature of the CTimer is used to toggle the output level.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ctimer_match_example.uvprojx"/>
+        <environment name="iar" load="iar/ctimer_match_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_functional_master" folder="driver_examples/spi/interrupt_functional/master" doc="readme.txt">
+      <description>The spi_interrupt_functional_master example shows how to use spi/ssp driver as master to do board to board transfer with interrupt functional API:In this example, one spi instance as master and another spi instance on other board as slave. Master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_functional_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_functional_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_functional_slave" folder="driver_examples/spi/interrupt_functional/slave" doc="readme.txt">
+      <description>The spi_interrupt_functional_slave example shows how to use spi/ssp driver as slave to do board to board transfer with interrupt functional API:In this example, one spi instance as slave and another spi instance on other board as master. master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from master is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_functional_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_functional_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_transfer_master" folder="driver_examples/spi/interrupt_transfer/master" doc="readme.txt">
+      <description>The spi_interrupt_transfer_master example shows how to use spi/ssp driver as master to do board to board transfer with interrupt:In this example, one spi instance as master and another spi instance on othereboard as slave. Master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_interrupt_transfer_slave" folder="driver_examples/spi/interrupt_transfer/slave" doc="readme.txt">
+      <description>The spi_interrupt_transfer_slave example shows how to use spi/ssp driver as slave to do board to board transfer with interrupt:In this example, one spi instance as slave and another spi instance on othere board as master. Master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from master is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_interrupt_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_interrupt_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_polling_transfer_master" folder="driver_examples/spi/polling_transfer/master" doc="readme.txt">
+      <description>The spi_polling_transfer_master example shows how to use spi/ssp driver as master to do board to board transfer with polling mode:In this example, one spi instance as master and another spi instance on other board as slave. Master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_polling_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/spi_polling_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_polling_transfer_slave" folder="driver_examples/spi/polling_transfer/slave" doc="readme.txt">
+      <description>The spi_polling_transfer_slave example shows how to use spi/ssp driver as slave to do board to board transfer with polling mode:In this example, one spi instance as slave and another spi instance on other board as master. Master sends a piece ofdata to slave, and receive a piece of data from slave. This example checks if the data received from master is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_polling_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/spi_polling_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_1_interrupt_transfer_master" folder="driver_examples/i2c/interrupt_transfer/master" doc="readme.txt">
+      <description>The i2c_interrupt_transfer_master example shows how to use i2c driver as master to do board to board transfer with interrupt:In this example, one i2c instance as master and another i2c instance on the other board as slave. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_1_interrupt_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_1_interrupt_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_1_interrupt_transfer_slave" folder="driver_examples/i2c/interrupt_transfer/slave" doc="readme.txt">
+      <description>The i2c_interrupt_transfer_slave example shows how to use i2c driver as slave to do board to board transfer with interrupt:In this example, one i2c instance as slave and another i2c instance on the other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_1_interrupt_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_1_interrupt_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_1_polling_transfer_master" folder="driver_examples/i2c/polling_transfer/master" doc="readme.txt">
+      <description>The i2c_polling_transfer_master example shows how to use i2c driver as master to do board to board transfer using polling method:In this example, one i2c instance as master and another i2c instance on the other board as slave. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_1_polling_transfer_master.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_1_polling_transfer_master.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_i2c_1_polling_transfer_slave" folder="driver_examples/i2c/polling_transfer/slave" doc="readme.txt">
+      <description>The i2c_polling_transfer_slave example shows how to use i2c driver as slave to do board to board transfer with a polling master:In this example, one i2c instance as slave and another i2c instance on the other board as master. Master sends a piece of data to slave, and receive a piece of data from slave. This example checks if the data received from slave is correct.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_i2c_1_polling_transfer_slave.uvprojx"/>
+        <environment name="iar" load="iar/lpc_i2c_1_polling_transfer_slave.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="iap_flash_basic" folder="driver_examples/iap/iap_flash_basic" doc="readme.txt">
+      <description>The IAP Flash project is a simple demonstration program of the SDK IAP driver. It erases and programs a portion of on-chip flash memory. A message a printed on the UART terminal as various operations on flash memory are performed.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/iap_flash_basic.uvprojx"/>
+        <environment name="iar" load="iar/iap_flash_basic.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="iap_flash1" folder="driver_examples/iap/iap_flash" doc="readme.txt">
+      <description>The IAP Flash project is a simple demonstration program of the SDK IAP driver. It erases and programs a portion of on-chip flash memory. A message a printed on the UART terminal as various operations on flash memory are performed.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/iap_flash1.uvprojx"/>
+        <environment name="iar" load="iar/iap_flash1.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lpc_rtc_example" folder="driver_examples/rtc" doc="readme.txt">
+      <description>The RTC project is a simple demonstration program of the SDK RTC driver.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lpc_rtc_example.uvprojx"/>
+        <environment name="iar" load="iar/lpc_rtc_example.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="wdt" folder="driver_examples/wdt" doc="readme.txt">
+      <description>The WDOG Example project is to demonstrate usage of the KSDK wdog driver.In this example,quick test is first implemented to test the wdog.And then after 5 times of refreshing the watchdog, a timeout reset is generated.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/wdt.uvprojx"/>
+        <environment name="iar" load="iar/wdt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tsens_interrupt" folder="driver_examples/tsens/interrupt" doc="readme.txt">
+      <description>The tsens_interrupt example shows how to configure TSENS register to measure the temperature through a high-precision zoom-ADC. In this example, it shows how to init and configure the TSENS model and get the temperature value from the register when the application is ready.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tsens_interrupt.uvprojx"/>
+        <environment name="iar" load="iar/tsens_interrupt.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tsens_polling" folder="driver_examples/tsens/polling" doc="readme.txt">
+      <description>The tsens_polling example shows how to configure TSENS register to measure the temperature through a high-precision zoom-ADC. In this example, it shows how to init and configure the TSENS model and get the temperature value from the register when the application is ready.</description>
+      <board name="LPC8N04DevBoard" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tsens_polling.uvprojx"/>
+        <environment name="iar" load="iar/tsens_polling.ewp"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="lpc8n04devboard" Cversion="1.0.0" condition="device.LPC8N04_AND_device.LPC8N04_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_1_AND_driver.lpc_iocon_AND_driver.power_no_lib_AND_driver.reset">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+  </components>
+</package>

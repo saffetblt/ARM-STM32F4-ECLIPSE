@@ -1,0 +1,2001 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Holtek</vendor>
+  <name>HT32_DFP</name>
+  <description>Holtek HT32 Family Support</description>
+  <url>http://mcu.holtek.com.tw/pack</url>
+  <!-- optional license file -->
+  <!--
+  <license>
+  </license>
+  -->
+
+  <releases>
+    <release version="1.0.16" date="2018-07-14">
+      1. Update ht32_op.s.
+      2. Update package information of HT32F50220/50230/50231/50241.
+    </release>
+    <release version="1.0.15" date="2018-04-28">
+      1. Modify SRAM from 8 KB to 16 KB of HT32F0006.
+      2. Update SVD file of HT32F52342/523252.
+      3. Add new device: HT32F52344/52354.
+    </release>
+    <release version="1.0.14" date="2018-01-03">
+      1. Update startup_ht32fxxxx_xx.s and system_ht32fxxxx_xx.c.
+    </release>
+    <release version="1.0.13" date="2017-12-06">
+      1. Add new device: HT32F50231, HT32F50241.
+    </release>
+    <release version="1.0.12" date="2017-11-23">
+      1. Add new device: HT32F0006.
+      2. Add new device: HT32F50220, HT32F50230.
+      3. Fix SVD compiler error of HT32F52342/52352.
+    </release>
+    <release version="1.0.11" date="2017-10-16">
+      1. Update startup related files.
+      2. Add preliminary version of System View (SVD/SFR) for HT32F52342/52352.
+    </release>
+    <release version="1.0.10" date="2017-09-03">
+      1. Fix memory size error.
+    </release>
+    <release version="1.0.9" date="2017-08-31">
+      1. Add device name to compatible with previous Firmwarw Library project setting.
+      2. Add new device: HT32F5826, HT32F0008.
+    </release>
+    <release version="1.0.8" date="2017-07-13">
+      1. Fix device name issue (space is not allow).
+    </release>
+    <release version="1.0.7" date="2017-07-03">
+      1. Add Compiler define.
+      2. Update description of each device.
+    </release>
+    <release version="1.0.6" date="2017-05-31">
+      1. Add new device: HT32F12345, HT32F52243, HT32F52253.
+      2. Update HT32F12365, HT32F12366, HT32F22366, HT32F165x related files.
+    </release>
+    <release version="1.0.5" date="2016-11-24">
+      1. Update Datasheet and User Manual document.
+      2. Add new device: HT32F12365, HT32F12366, HT32F22366.
+    </release>
+    <release version="1.0.4" date="2016-06-20">
+      1. Update Datasheet and User Manual document.
+      2. Update IROM size error.
+    </release>
+    <release version="1.0.3" date="2016-04-14">
+      1. Update HT32F52220/52230 document.
+      2. Add 33QFN package information for HT32F52220/52230.
+    </release>
+    <release version="1.0.2" date="2016-03-03">
+      Fix SVD error.
+    </release>
+    <release version="1.0.1" date="2016-02-16">
+      Added: HT32F52331, HT32F52341, HT32F52342, HT32F52352 devices.
+    </release>
+    <release version="1.0.0" date="2015-03-23">
+      First Release version of HT32 Device Family Pack.
+      Contains the following Devices:HT32F1251,HT32F1253,HT32F1252,HT32F1251,HT32F1251B
+                                     HT32F1755,HT32F1765,HT32F2755
+                                     HT32F1655,HT32F1656,HT32F1653,HT32F1654
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>HOLTEK</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Holtek</keyword>
+    <keyword>HT32 Family</keyword>
+    <keyword>HT32</keyword>
+  </keywords>
+
+  <devices>
+
+  <!-- ************************  Series 'HT32F125x'  **************************** -->
+    <family Dfamily="HT32F12xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+      <description>
+The Holtek HT32F125x series of devices are high performance, low power consumption 32-bit microcontrollers based on the ARM Cortex-M3 rocessor core. The Cortex-M3 is a next-generation processor core which is tightly coupled with a Nested Vectored Interrupt Controller (NVIC), SysTick timer and advanced debug support.
+
+The HT32F125x device operates at a frequency of up to 72MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 32KB of embedded Flash memory for code/data storage and up to 8 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, SPI, SW-DP (Serial Wire Debug Port), etc., are also implemented in this device series. Several power saving modes provide the flexibility  for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features make the HT32F125x device suitable for a wide range of applications, especially in areas such as white goods and application control, power monitor and alarm systems, consumer and handheld equipment, data logging applications and so on.
+      </description>
+      <subFamily DsubFamily="HT32F1251B/51/52/53">
+        <compile    header="ARM/INC/Holtek/HT32F125x/ht32f125x.h"/>
+        <debug      svd="SVD/HT32F125x.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="VCC"         n="2.70"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="8"           m="12"/>
+        <feature type="AnalogOther" n="2"                               name="OPA/Comparator"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="SPI"         n="1"/>
+        <feature type="I2C"         n="1"/>
+        <device Dname="HT32F1251B">
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <feature type="IOs" n="30"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1251">
+          <feature type="RTC"         n="32768"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <feature type="IOs" n="32"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1252">
+          <feature type="RTC"         n="32768"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="32"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1253">
+          <feature type="RTC"         n="32768"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x7C00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="32"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F165x'  **************************** -->
+    <family Dfamily="HT32F16xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+      <description>
+The Holtek HT32F165x devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M3 processor core. The Cortex-M3 is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and includes advanced debug support.
+
+The devices operate at a frequency of up to 72 MHz with a Flash accelerator to obtain maximum efficiency. They provide up to 256 KB of embedded Flash memory for code/data storage and 32 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, UART, SPI, I2S, PDMA, GPTM, MCTM, SCI, EBI, CRC- 16/32, USB2.0 FS, SW-DP (Serial Wire Debug Port), etc., are also implemented in the devices. Several power saving modes provide the flexibility for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control, fingerprint recognition and so on.
+      </description>
+      <subFamily DsubFamily="HT32F1653/1654">
+        <compile    header="ARM/INC/Holtek/HT32F1xxxx/ht32f1xxxx_01.h"/>
+        <compile    define="USE_HT32F1653_54"/>
+        <debug      svd="SVD/HT32F1653_54.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.70"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="8"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="2"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="1"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F1653">
+          <!--<compile    define="USE_MEM_HT32F1653"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F1653_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F1653"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1653_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F1653"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1654">
+          <!--<compile    define="USE_MEM_HT32F1654"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F1654_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F1654"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1654_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F1654"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F1655/1656">
+        <compile    header="ARM/INC/Holtek/HT32F1xxxx/ht32f1xxxx_01.h"/>
+        <compile    define="USE_HT32F1655_56"/>
+        <debug      svd="SVD/HT32F1655_56.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.70"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="8"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="16"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="OPA/Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="2"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="1"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F1655">
+          <!--<compile    define="USE_MEM_HT321655"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F1655_48LQFP">
+          <!--<compile    define="USE_MEM_HT321655"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="35"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1655_64LQFP">
+          <!--<compile    define="USE_MEM_HT321655"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="49"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1655_100LQFP">
+          <!--<compile    define="USE_MEM_HT321655"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1656">
+          <!--<compile    define="USE_MEM_HT321656"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F1656_48LQFP">
+          <!--<compile    define="USE_MEM_HT321656"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="35"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1656_64LQFP">
+          <!--<compile    define="USE_MEM_HT321656"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="49"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1656_100LQFP">
+          <!--<compile    define="USE_MEM_HT321656"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F175x'  **************************** -->
+    <family Dfamily="HT32F17xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+      <description>
+The Holtek HT32F1755/1765/2755 devices are high performance and low power consumption 32-bit microcontrollers based around an ARM Cortex-M3 processor core. The Cortex-M3 is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and including advanced debug support.
+
+The HT32F1755/1765 devices operate at a frequency of up to 72MHz with a Flash accelerator to obtain maximum efficiency. It provides 128KB of embedded Flash memory for code/data storage and up to 64KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, SPI, PDMA, GPTM, MCTM, SCI, CSIF, USB2.0 FS, SWJ-DP (Serial Wire and JTAG Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the HT32F1755/1765/2755 devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control, fingerprint recognition and so on.
+      </description>
+      <subFamily DsubFamily="HT32F1755/1765/2755">
+        <compile    header="ARM/INC/Holtek/HT32F175x_275x/ht32f175x_275x.h"/>
+        <compile    define="USE_HT32F1755_65"/>
+        <debug      svd="SVD/HT32F175x.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.70"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="12"                              name="Peripheral DMA"/>
+        <feature type="ADC"         n="8"           m="12"/>
+        <feature type="AnalogOther" n="2"                               name="OPA/Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="1"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <device Dname="HT32F1755">
+          <!--<compile    define="USE_MEM_HT32F1755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="48" name="48QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F1755_48QFN">
+          <!--<compile    define="USE_MEM_HT32F1755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFN" n="48" name="QFN"/>
+        </device>
+        <device Dname="HT32F1755_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F1755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1755_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F1755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="47"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1755_100LQFP">
+          <!--<compile    define="USE_MEM_HT32F1755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1765">
+          <!--<compile    define="USE_MEM_HT32F1765"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="48" name="48QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F1765_48QFN">
+          <!--<compile    define="USE_MEM_HT32F1765"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFN" n="48" name="QFN"/>
+        </device>
+        <device Dname="HT32F1765_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F1765"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1765_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F1765"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="47"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F1765_100LQFP">
+          <!--<compile    define="USE_MEM_HT32F1765"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+        <device Dname="HT32F2755">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F2755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="48" name="48QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F2755_48QFN">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F2755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFN" n="48" name="QFN"/>
+        </device>
+        <device Dname="HT32F2755_48LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F2755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="33"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F2755_64LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F2755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="47"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F2755_100LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F2755"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F522xx'  **************************** -->
+    <family Dfamily="HT32F522xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="40000000" />
+      <description>
+The HOLTEK HT32F522xx devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M0+ processor core. The Cortex-M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer and including advanced debug support.
+
+The devices operate at a frequency of up to 40 MHz for HT32F522xx with a Flash accelerator to obtain maximum efficiency. It provides up to 128 KB of embedded Flash memory for code/data storage and 16 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, DIV, PDMA, I2C, USART, UART, SPI, MCTM, GPTM, SCTM, CRC-16/32, RTC, WDT, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimization between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control and so on.
+      </description>
+      <subFamily DsubFamily="HT32F52220/52230">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52220_30"/>
+        <debug      svd="SVD/HT32F52220_30.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="8"           m="12"/>
+        <feature type="Timer"       n="1"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="1"/>
+        <feature type="SPI"         n="1"/>
+        <feature type="I2C"         n="1"/>
+        <device Dname="HT32F52220">
+          <!--<compile    define="USE_MEM_HT32F52220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+        </device>
+        <device Dname="HT32F52220_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F52220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52220_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F52220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52220_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52230">
+          <!--<compile    define="USE_MEM_HT32F52230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x7C00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+        </device>
+        <device Dname="HT32F52230_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F52230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x7C00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52230_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F52230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x7C00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52230_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x7C00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F52231/52241">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52231_41"/>
+        <debug      svd="SVD/HT32F52231_41.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="4"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F52231">
+          <!--<compile    define="USE_MEM_HT32F52231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F52231_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F52231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52231_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F52231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52231_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52231_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52241">
+          <!--<compile    define="USE_MEM_HT32F52241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F52241_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F52241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52241_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F52241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="23"/>
+          <feature type="SOP" n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F52241_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52241_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F52243/52253">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52243_53"/>
+        <debug      svd="SVD/HT32F52243_53.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="4"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="4"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="3"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <device Dname="HT32F52243">
+          <!--<compile    define="USE_MEM_HT32F52243"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="52"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52243_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52243"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52243_46QFN">
+          <!--<compile    define="USE_MEM_HT32F52243"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F52243_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52243"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52243_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52243"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="52"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52253">
+          <!--<compile    define="USE_MEM_HT32F52253"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="52"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52253_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52253"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52253_46QFN">
+          <!--<compile    define="USE_MEM_HT32F52253"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F52253_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52253"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52253_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52253"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="52"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+
+    </family>
+
+
+  <!-- ************************  Series 'HT32F523xx'  **************************** -->
+    <family Dfamily="HT32F523xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+      <description>
+The HOLTEK HT32F523xx devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M0+ processor core. The Cortex-M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and including advanced debug support.
+
+The devices operate at a frequency of up to 48 or 60 MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 128 KB of embedded Flash memory for code/data storage and 16 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, UART, SPI, I2S, GPTM, MCTM, SCI, CRC-16/32, RTC, WDT, PDMA, EBI, USB2.0 FS, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control and so on.
+      </description>
+
+      <subFamily DsubFamily="HT32F52331/52341">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52331_41"/>
+        <debug      svd="SVD/HT32F52331_41.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="4"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="1"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F52331">
+          <!--<compile    define="USE_MEM_HT32F52331"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F52331_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52331"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="24"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52331_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52331"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52341">
+          <!--<compile    define="USE_MEM_HT32F52341"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFE00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F52341_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52341"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFE00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="24"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52341_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52341"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFE00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F52342/52352">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52342_52"/>
+        <debug      svd="SVD/HT32F52342_52.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="2"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F52342">
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52342_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52342"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52342_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52342"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="39"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52342_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52342"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52352">
+          <!--<compile    define="USE_MEM_HT32F52352"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52352_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52352"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52352_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52352"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="39"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52352_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52352"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F52344/52354">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F52344_54"/>
+        <debug      svd="SVD/HT32F52344_54.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x0400"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="1.65"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="1"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <device Dname="HT32F52344">
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52344_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52344"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52344_46QFN">
+          <!--<compile    define="USE_MEM_HT32F52344"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F52344_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52344"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52344_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52344"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="54"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52354">
+          <!--<compile    define="USE_MEM_HT32F52354"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F52354_33QFN">
+          <!--<compile    define="USE_MEM_HT32F52354"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F52354_46QFN">
+          <!--<compile    define="USE_MEM_HT32F52354"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F52354_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F52354"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F52354_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F52354"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="54"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F123xx'  **************************** -->
+    <family Dfamily="HT32F123xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+      <description>
+These devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M3 processor core. The Cortex-M3 is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and includes advanced debug support.
+
+The devices operate at a frequency of up to 96 MHz with a Flash accelerator to obtain maximum efficiency. They provide up to 256 KB of embedded Flash memory for code/data storage and 128 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, UART, SPI, I2S, PDMA, GPTM, MCTM, SCI, EBI, CRC-16/32, AES-128/256, USB2.0 FS, SDIO, CSIF and SWJ-DP (Serial Wire and JTAG Debug Port), etc., are also implemented in the devices series. Several power saving modes provide the flexibility for maximum optimization between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control, fingerprint recognition and so on.
+      </description>
+      <subFamily DsubFamily="HT32F12345">
+        <compile    header="ARM/INC/Holtek/HT32F1xxxx/ht32f1xxxx_01.h"/>
+        <compile    define="USE_HT32F12345"/>
+        <debug      svd="SVD/HT32F12345.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="12"                              name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="2"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="SDIO"        n="1"           m="4"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F12345">
+          <!--<compile    define="USE_MEM_HT32F12345"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F12345_46QFN">
+          <!--<compile    define="USE_MEM_HT32F12345"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F12345_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F12345"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12345_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F12345"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+
+      <subFamily DsubFamily="HT32F12365/12366/22366">
+        <compile    header="ARM/INC/Holtek/HT32F1xxxx/ht32f1xxxx_01.h"/>
+        <compile    define="USE_HT32F12365_66"/>
+        <debug      svd="SVD/HT32F12365_66.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="12"                              name="Peripheral DMA"/>
+        <feature type="ADC"         n="16"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="2"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="2"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="SDIO"        n="1"           m="4"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="AES"/>
+        <device Dname="HT32F12365">
+          <!--<compile    define="USE_MEM_HT32F12365"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F12365_46QFN">
+          <!--<compile    define="USE_MEM_HT32F12365"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F12365_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F12365"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12365_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F12365"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12365_100LQFP">
+          <!--<compile    define="USE_MEM_HT32F12365"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12366">
+          <!--<compile    define="USE_MEM_HT32F12366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F12366_46QFN">
+          <!--<compile    define="USE_MEM_HT32F12366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F12366_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F12366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12366_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F12366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F12366_100LQFP">
+          <!--<compile    define="USE_MEM_HT32F12366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+        <device Dname="HT32F22366">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F22366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFN" n="46" name="46QFN"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+          <feature type="QFP" n="64" name="64LQFP"/>
+          <feature type="QFP" n="100" name="100LQFP"/>
+        </device>
+        <device Dname="HT32F22366_46QFN">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F22366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F22366_48LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F22366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F22366_64LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F22366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+        <device Dname="HT32F22366_100LQFP">
+          <feature type="ComOther"    n="1"                               name="CSIF"/>
+          <!--<compile    define="USE_MEM_HT32F22366"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x3FC00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F5826'  **************************** -->
+    <family Dfamily="HT32F5826 Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+      <description>
+The HOLTEK HT32F5826 devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M0+ processor core. The Cortex-M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and including advanced debug support.
+
+The devices operate at a frequency of up to 48 MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 128 KB of embedded Flash memory for code/data storage and 16 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, I2C, USART, UART, SPI, I2S, GPTM, MCTM, SCI, CRC-16/32, RTC, WDT, PDMA, EBI, USB2.0 FS, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control and so on.
+      </description>
+
+      <subFamily DsubFamily="HT32F5826">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F5826"/>
+        <debug      svd="SVD/HT32F5826.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="AnalogOther" n="2"                               name="Comparator"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="2"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="ComOther"    n="2"                               name="SCI"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="ExtBus"      n="16"                              name="EBI"/>
+        <feature type="I2S"         n="1"/>
+        <feature type="USART"       n="2"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <device Dname="HT32F5826">
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="39"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F0008'  **************************** -->
+    <family Dfamily="HT32F0008 Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="60000000"/>
+      <description>
+The HOLTEK HT32F0008 devices are high performance, low power consumption 32-bit microcontrollers based around an ARM Cortex-M0+ processor core. The Cortex-M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and including advanced debug support.
+
+The devices operate at a frequency of up to 60 MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 64 KB of embedded Flash memory for code/data storage and 16 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as I2C, USART, UART, SPI, GPTM, PWM, CRC-16/32, AES, DIV, RTC, WDT, PDMA, USB2.0 FS, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimisation between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the devices are suitable for use in a wide range of applications, especially in areas such as white goods application control, power monitors, alarm systems, consumer products, handheld equipment, data logging applications, motor control and so on.
+      </description>
+
+      <subFamily DsubFamily="HT32F0008">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F0008"/>
+        <debug      svd="SVD/HT32F0008.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="1"/>
+        <feature type="SPI"         n="1"/>
+        <feature type="I2C"         n="1"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="AES"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <device Dname="HT32F0008">
+          <!--<compile    define="USE_MEM_HT32F0008"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="40"/>
+          <feature type="QFN"  n="24" name="24QFN"/>
+          <feature type="QFN"  n="33" name="33QFN"/>
+          <feature type="QFN"  n="46" name="46QFN"/>
+          <feature type="QFP"  n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F0008_24QFN">
+          <!--<compile    define="USE_MEM_HT32F0008"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="18"/>
+          <feature type="QFN" n="24" name="QFN"/>
+        </device>
+        <device Dname="HT32F0008_33QFN">
+          <!--<compile    define="USE_MEM_HT32F0008"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="26"/>
+          <feature type="QFN" n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F0008_46QFN">
+          <!--<compile    define="USE_MEM_HT32F0008"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="38"/>
+          <feature type="QFN" n="46" name="QFN"/>
+        </device>
+        <device Dname="HT32F0008_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F0008"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xFC00"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F0006'  **************************** -->
+    <family Dfamily="HT32F0006 Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+      <description>
+The HOLTEK HT32F0006 device is a high performance, low power consumption 32-bit microcontroller based around an ARM Cortex M0+ processor core. The Cortex M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer and including advanced debug support.
+The device operates at a frequency of up to 48 MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 128 KB of embedded Flash memory for code/data storage and 8 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, 2-channel DAC, I2C, I2S, USART, UART, SPI, QSPI, GPTM, SCTM, CRC-16/32, RTC, WDT, USB2.0 FS, 32-channel music synthesizer, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device. Several power saving modes provide the flexibility for maximum optimization between wakeup latency and power consumption, an especially important consideration in low power applications.
+The HT32F0006 integrates Wave Table synthesis function. It can operate up to 32 channels of Wave Table synthesis at one time and control the MIDI Engine to generate melody by setting the special registers. The Wave Table synthesis waveform is stored in external SPI Flash ROM for application flexibility. With these features, it provides enhanced functions and higher performance.
+The above features ensure that the device is suitable for use in a wide range of applications, especially in areas such as electronic organs, digital pianos, electronic drums, electric guitars, electric accordions and so on.
+      </description>
+
+      <subFamily DsubFamily="HT32F0006">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F0006"/>
+        <debug      svd="SVD/HT32F0006.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="16000000"/>
+        <feature type="IntRC"       n="8000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.00"        m="3.60"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="5"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2,Power-Down"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="DMA"         n="6"                               name="Peripheral DMA"/>
+        <feature type="ADC"         n="16"          m="12"/>
+        <feature type="DAC"         n="2"           m="16"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="4"           m="16"              name="SCTM with single PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USBD"        n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="1"/>
+        <feature type="SPI"         n="1"                               name="SPI"/>
+        <feature type="SPI"         n="1"                               name="QSPI"/>
+        <feature type="I2C"         n="1"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <feature type="Other"       n="1"                               name="Music Synthesis Engine-MSE"/>
+        <device Dname="HT32F0006">
+          <!--<compile    define="USE_MEM_HT32F0006"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="52"/>
+          <feature type="QFP"  n="48" name="48LQFP"/>
+          <feature type="QFP"  n="64" name="64LQFP"/>
+        </device>
+        <device Dname="HT32F0006_48LQFN">
+          <!--<compile    define="USE_MEM_HT32F0006"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F0006_64LQFP">
+          <!--<compile    define="USE_MEM_HT32F0006"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x1FE00"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="52"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+
+  <!-- ************************  Series 'HT32F02xx'  **************************** -->
+    <family Dfamily="HT32F502xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+      <description>
+The HOLTEK HT32F502xx device is a high performance, low power consumption 32-bit microcontroller based around an ARM Cortex M0+ processor core. The Cortex M0+ is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer and including advanced debug support.
+
+TThe devices operate at a frequency of up to 20 MHz for HT32F502xx with a Flash accelerator to obtain maximum efficiency. It provides up to 64 KB of embedded Flash memory for code/data storage and 8 KB of embedded SRAM memory for system operation and application program usage. A variety of peripherals, such as ADC, DIV, PDMA, I2C, USART, UART, SPI, MCTM, GPTM, SCTM, CRC-16/32, RTC, WDT, SW-DP (Serial Wire Debug Port), etc., are also implemented in the device series. Several power saving modes provide the flexibility for maximum optimization between wakeup latency and power consumption, an especially important consideration in low power applications.
+
+The above features ensure that the device is suitable for use in a wide range of applications, especially in areas such as electronic organs, digital pianos, electronic drums, electric guitars, electric accordions and so on.
+      </description>
+      <subFamily DsubFamily="HT32F50220/50230">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F50220_30"/>
+        <debug      svd="SVD/HT32F50220_30.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="20000000"/>
+        <feature type="IntRC"       n="20000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.50"        m="5.50"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="4"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="Timer"       n="1"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="1"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <device Dname="HT32F50220">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24QFN"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="SOP" n="28" name="28SOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="44" name="44LQFP"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F50220_24QFN">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="18"/>
+          <feature type="QFN" n="24" name="QFN"/>
+        </device>
+        <device Dname="HT32F50220_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50220_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="23"/>
+          <feature type="SOP"  n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50220_28SOP">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="22"/>
+          <feature type="SOP"  n="28" name="SOP"/>
+        </device>
+        <device Dname="HT32F50220_33QFN">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="26"/>
+          <feature type="QFN"  n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F50220_44LQFP">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="36"/>
+          <feature type="QFP"  n="44" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50220_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F50220"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="40"/>
+          <feature type="QFP"  n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50230">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24QFN"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="SOP" n="28" name="28SOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="44" name="44LQFP"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F50230_24QFN">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="18"/>
+          <feature type="QFN" n="24" name="QFN"/>
+        </device>
+        <device Dname="HT32F50230_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50230_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="23"/>
+          <feature type="SOP"  n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50230_28SOP">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="22"/>
+          <feature type="SOP"  n="28" name="SOP"/>
+        </device>
+        <device Dname="HT32F50230_33QFN">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="26"/>
+          <feature type="QFN"  n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F50230_44LQFP">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="36"/>
+          <feature type="QFP"  n="44" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50230_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F50230"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="40"/>
+          <feature type="QFP"  n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+      <subFamily DsubFamily="HT32F50231/50241">
+        <compile    header="ARM/INC/Holtek/HT32F5xxxx/ht32f5xxxx_01.h"/>
+        <compile    define="USE_HT32F50231_41"/>
+        <debug      svd="SVD/HT32F50231_41.svd"/>
+        <algorithm  name="ARM/Flash/HT32F.FLM"      start="0x00000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="ARM/Flash/HT32F_OPT.FLM"  start="0x1FF00000"  size="0x1000"                   default="1"/>
+        <feature type="XTAL"        n="4000000"     m="20000000"/>
+        <feature type="IntRC"       n="20000000"/>
+        <feature type="RTC"         n="32768"/>
+        <feature type="VCC"         n="2.50"        m="5.50"/>
+        <feature type="Temp"        n="-40"         m="85"/>
+        <feature type="PowerMode"   n="4"                               name="Run,Sleep,Deep-Sleep1,Deep-Sleep2"/>
+        <feature type="ExtInt"      n="16"/>
+        <feature type="ADC"         n="12"          m="12"/>
+        <feature type="Timer"       n="2"           m="32"              name="BFTM"/>
+        <feature type="Timer"       n="2"           m="16"              name="PWM"/>
+        <feature type="Timer"       n="1"           m="16"              name="GPTM with Quadrature Decoder"/>
+        <feature type="Timer"       n="1"           m="16"              name="MCTM with Complementary Outputs"/>
+        <feature type="WDT"         n="1"/>
+        <feature type="USART"       n="1"/>
+        <feature type="UART"        n="2"/>
+        <feature type="SPI"         n="2"/>
+        <feature type="I2C"         n="2"/>
+        <feature type="Other"       n="1"                               name="CRC"/>
+        <feature type="Other"       n="1"                               name="DIV"/>
+        <device Dname="HT32F50231">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24QFN"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="SOP" n="28" name="28SOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="44" name="44LQFP"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F50231_24QFN">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="18"/>
+          <feature type="QFN" n="24" name="QFN"/>
+        </device>
+        <device Dname="HT32F50231_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50231_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="23"/>
+          <feature type="SOP"  n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50231_28SOP">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="22"/>
+          <feature type="SOP"  n="28" name="SOP"/>
+        </device>
+        <device Dname="HT32F50231_33QFN">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="26"/>
+          <feature type="QFN"  n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F50231_44LQFP">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="36"/>
+          <feature type="QFP"  n="44" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50231_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F50231"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="40"/>
+          <feature type="QFP"  n="48" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50241">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="40"/>
+          <feature type="SOP" n="24" name="24QFN"/>
+          <feature type="SOP" n="24" name="24SSOP"/>
+          <feature type="SOP" n="28" name="28SSOP"/>
+          <feature type="SOP" n="28" name="28SOP"/>
+          <feature type="QFN" n="33" name="33QFN"/>
+          <feature type="QFP" n="44" name="44LQFP"/>
+          <feature type="QFP" n="48" name="48LQFP"/>
+        </device>
+        <device Dname="HT32F50241_24QFN">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="18"/>
+          <feature type="QFN" n="24" name="QFN"/>
+        </device>
+        <device Dname="HT32F50241_24SSOP">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs" n="19"/>
+          <feature type="SOP" n="24" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50241_28SSOP">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="23"/>
+          <feature type="SOP"  n="28" name="SSOP"/>
+        </device>
+        <device Dname="HT32F50241_28SOP">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="22"/>
+          <feature type="SOP"  n="28" name="SOP"/>
+        </device>
+        <device Dname="HT32F50241_33QFN">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="26"/>
+          <feature type="QFN"  n="33" name="QFN"/>
+        </device>
+        <device Dname="HT32F50241_44LQFP">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="36"/>
+          <feature type="QFP"  n="44" name="LQFP"/>
+        </device>
+        <device Dname="HT32F50241_48LQFP">
+          <!--<compile    define="USE_MEM_HT32F50241"/>-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <feature type="IOs"  n="40"/>
+          <feature type="QFP"  n="48" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="Compiler ARM">                                             <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="HT32Fxxxx CMSIS">                                   <!-- conditions selecting Devices -->
+      <description>Holtek HT32F1xxxx device series, CMSIS-CORE, and ARMCC compiler</description>
+      <require Dvendor="Holtek:106" Dname="HT32F[01256]*"/>
+      <accept Dname="HT32F[01256]*"/>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="HT32F1xxxx">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F[12][2][23]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F5xxxx">
+      <description>Holtek Cortex-M0+ Standard MCU</description>
+      <accept Dname="HT32F[56][02][23]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F125x">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F125[123]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F175x">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F17[56]5*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F1653_54">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F165[34]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F1655_56">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F165[56]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F2755">
+      <description>Holtek Cortex-M3 Special-Purpose MUC</description>
+      <accept Dname="HT32F2755*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52220_30">
+      <description>Holtek Cortex-M0+ Standard MCU Value Line</description>
+      <accept Dname="HT32F522[23]0*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52231_41">
+      <description>Holtek Cortex-M0+ Standard MCU Value Line</description>
+      <accept Dname="HT32F522[34]1*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52243_53">
+      <description>Holtek Cortex-M0+ Standard MCU Value Line</description>
+      <accept Dname="HT32F522[45]3*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52331_41">
+      <description>Holtek Cortex-M0+ Standard MCU USB Line</description>
+      <accept Dname="HT32F523[34]1*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52342_52">
+      <description>Holtek Cortex-M0+ Standard MCU USB Line</description>
+      <accept Dname="HT32F523[45]2*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F12345">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F12345*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F12365_66">
+      <description>Holtek Cortex-M3 Standard MCU</description>
+      <accept Dname="HT32F1236[56]*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F22366">
+      <description>Holtek Cortex-M3 Special-Purpose MCU</description>
+      <accept Dname="HT32F22366*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F5826">
+      <description>Holtek Cortex-M0+ Standard MCU USB Line</description>
+      <accept Dname="HT32F5826*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F0008">
+      <description>Holtek Cortex-M0+ Special-Purpose MCU</description>
+      <accept Dname="HT32F0008*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F0006">
+      <description>Holtek Cortex-M0+ Special-Purpose MCU</description>
+      <accept Dname="HT32F0006*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F50220_30">
+      <description>Holtek Cortex-M0+ 5V Tolerant MCU</description>
+      <accept Dname="HT32F502[23]0*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F50231_41">
+      <description>Holtek Cortex-M0+ 5V Tolerant MCU</description>
+      <accept Dname="HT32F502[34]1*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+    <condition id="HT32F52344_54">
+      <description>Holtek Cortex-M0+ Standard MCU USB Line</description>
+      <accept Dname="HT32F523[45]4*"/>
+      <require condition="Compiler ARM"/>
+    </condition>
+
+  </conditions>
+
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="HT32Fxxxx CMSIS">
+      <description>System Startup for Holtek HT32 Family device</description>
+      <files>
+        <!--  include folder -->
+        <file category="include" name="ARM/INC/Holtek/HT32F125x/"       condition="HT32F125x"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F175x_275x/"  condition="HT32F175x"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F1xxxx/"      condition="HT32F1653_54"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F1xxxx/"      condition="HT32F1655_56"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F5xxxx/"      condition="HT32F5xxxx"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F1xxxx/"      condition="HT32F1xxxx"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F1xxxx/"      condition="HT32F5826"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F5xxxx/"      condition="HT32F0008"/>
+        <file category="include" name="ARM/INC/Holtek/HT32F5xxxx/"      condition="HT32F0006"/>
+
+        <!-- Flash Option Bytes templates -->
+        <file category="source" name="ARM/Startup/Holtek/ht32_op.s"                               attr="config"    condition="Compiler ARM" version="1.0.1" select="Flash Option Bytes Template"/>
+
+        <!-- startup files -->
+        <file category="source" name="ARM/Startup/Holtek/HT32F125x/startup_ht32f125x.s"           attr="config"    condition="HT32F125x" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F175x_275x/startup_ht32f175x_275x.s" attr="config"    condition="HT32F175x" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F175x_275x/startup_ht32f175x_275x.s" attr="config"    condition="HT32F2755" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/startup_ht32f165x.s"          attr="config"    condition="HT32F1653_54" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/startup_ht32f165x.s"          attr="config"    condition="HT32F1655_56" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52220_30.s"      attr="config"    condition="HT32F52220_30" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52231_41.s"      attr="config"    condition="HT32F52231_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52331_41.s"      attr="config"    condition="HT32F52331_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52342_52.s"      attr="config"    condition="HT32F52342_52" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52243_53.s"      attr="config"    condition="HT32F52243_53" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/startup_ht32f12345.s"         attr="config"    condition="HT32F12345" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/startup_ht32f12365_66.s"      attr="config"    condition="HT32F12365_66" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/startup_ht32f12365_66.s"      attr="config"    condition="HT32F22366" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f5826.s"          attr="config"    condition="HT32F5826" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f0008.s"          attr="config"    condition="HT32F0008" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f0006.s"          attr="config"    condition="HT32F0006" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f50220_30.s"      attr="config"    condition="HT32F50220_30" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f50231_41.s"      attr="config"    condition="HT32F50231_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/startup_ht32f52344_54.s"      attr="config"    condition="HT32F52344_54" version="1.1.0"/>
+
+        <!-- system file -->
+        <file category="source" name="ARM/Startup/Holtek/HT32F125x/system_ht32f125x.c"            attr="config"    condition="HT32F125x" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F175x_275x/system_ht32f175x_275x.c"  attr="config"    condition="HT32F175x" version="1.0.1"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F175x_275x/system_ht32f175x_275x.c"  attr="config"    condition="HT32F2755" version="1.0.1"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/system_ht32f1xxxx_01.c"       attr="config"    condition="HT32F1653_54" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/system_ht32f1xxxx_01.c"       attr="config"    condition="HT32F1655_56" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_01.c"       attr="config"    condition="HT32F52331_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_01.c"       attr="config"    condition="HT32F52342_52" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_02.c"       attr="config"    condition="HT32F52220_30" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_02.c"       attr="config"    condition="HT32F52231_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_02.c"       attr="config"    condition="HT32F52243_53" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/system_ht32f1xxxx_02.c"       attr="config"    condition="HT32F12345" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/system_ht32f1xxxx_02.c"       attr="config"    condition="HT32F12365_66" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F1xxxx/system_ht32f1xxxx_02.c"       attr="config"    condition="HT32F22366" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5826.c"           attr="config"    condition="HT32F5826" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_03.c"       attr="config"    condition="HT32F0008" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f0006.c"           attr="config"    condition="HT32F0006" version="1.0.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_04.c"       attr="config"    condition="HT32F50220_30" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_04.c"       attr="config"    condition="HT32F50231_41" version="1.1.0"/>
+        <file category="source" name="ARM/Startup/Holtek/HT32F5xxxx/system_ht32f5xxxx_03.c"       attr="config"    condition="HT32F52344_54" version="1.1.0"/>
+
+        <!-- device configuration required by drivers at the moment -->
+      </files>
+    </component>
+  </components>
+
+</package>

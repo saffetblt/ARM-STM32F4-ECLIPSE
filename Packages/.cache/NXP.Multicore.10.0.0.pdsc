@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>Multicore</name>
+  <description>NXP Kinetis SDK Multicore Software Pack</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+  </releases>
+  <keywords>
+    <keyword>MULTICORE Software Pack</keyword>
+    <keyword>MULTICORE Software Pack</keyword>
+    <keyword>MULTICORE Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Multicore" Cgroup="RPMsg-Lite BM">RPMsg-Lite baremetal environment layer</description>
+    <description Cclass="Multicore" Cgroup="RPMsg-Lite">Remote Procedure Messaging Lite library</description>
+    <description Cclass="Multicore" Cgroup="RPMsg-Lite FreeRTOS">RPMsg-Lite FreeRTOS environment layer</description>
+  </taxonomy>
+  <conditions>
+    <condition id="middleware.freertos_middleware.multicore.rpmsg_lite.freertos">
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="freertos"/>
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite FreeRTOS" Csub="rpmsg_lite_freertos_env"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="template_application.freertos"/>
+    </condition>
+    <condition id="middleware.multicore.rpmsg_lite_middleware.multicore.rpmsg_lite.bm">
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite" Csub="rpmsg_lite"/>
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite BM" Csub="rpmsg_lite_bm_env"/>
+    </condition>
+    <condition id="middleware.multicore.rpmsg_lite_middleware.multicore.rpmsg_lite.freertos">
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite" Csub="rpmsg_lite"/>
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite FreeRTOS" Csub="rpmsg_lite_freertos_env"/>
+    </condition>
+    <condition id="middleware.multicore.rpmsg_lite.bm">
+      <require Cclass="Multicore" Cgroup="RPMsg-Lite BM" Csub="rpmsg_lite_bm_env"/>
+    </condition>
+    <condition id="middleware.multicore.rpmsg_lite_support"/>
+  </conditions>
+  <components>
+    <bundle Cbundle="MCUXpresso SDK Multicore" Cclass="Multicore" Cversion="1.2.0">
+      <description>RPMsg-Lite baremetal environment layer</description>
+      <doc></doc>
+      <component Cgroup="RPMsg-Lite BM" Csub="rpmsg_lite_bm_env" Cversion="1.0.0" condition="middleware.multicore.rpmsg_lite_support">
+        <description>RPMsg-Lite_baremetal_env</description>
+        <files>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_env.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/porting/environment/rpmsg_env_bm.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="RPMsg-Lite BM" Csub="rpmsg_lite_bm_config" Cversion="1.0.0" condition="middleware.multicore.rpmsg_lite_middleware.multicore.rpmsg_lite.bm">
+        <description>RPMsg-Lite_bm_config</description>
+        <files>
+          <file name="multicore/rpmsg_lite/template_application/rpmsg_config.h" category="header"/>
+        </files>
+      </component>
+      <component Cgroup="RPMsg-Lite BM" Csub="rpmsg_lite_imx8mq_m4_bm" Cversion="1.2.0" condition="middleware.multicore.rpmsg_lite.bm">
+        <description>RPMsg-Lite_evkmimx8mq_porting_layer</description>
+        <files>
+          <file name="multicore/rpmsg_lite/lib/include/platform/imx8mq_m4/rpmsg_platform.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/porting/platform/imx8mq_m4/rpmsg_platform.c" category="sourceC"/>
+        </files>
+      </component>
+    </bundle>
+    <bundle Cbundle="MCUXpresso SDK Multicore" Cclass="Multicore" Cversion="1.2.0">
+      <description>Remote Procedure Messaging Lite library</description>
+      <doc></doc>
+      <component Cgroup="RPMsg-Lite" Csub="rpmsg_lite" Cversion="1.2.0" condition="middleware.multicore.rpmsg_lite_support">
+        <description>RPMsg-Lite</description>
+        <files>
+          <file name="multicore/rpmsg_lite/doc/search/variables_6.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_4.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_1.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_5.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/functions_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_2.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/search_r.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/search/nomatches.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/mag_sel.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_2.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/search_l.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_4.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_7.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/close.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_5.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/typedefs_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_5.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/pages_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_7.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_6.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_1.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_3.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_5.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_2.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_4.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_2.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/search.css" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_1.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_4.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/functions_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/pages_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_3.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/searchdata.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_6.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/groups_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/groups_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/classes_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_7.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_3.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/search.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/classes_0.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/search_m.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/search/typedefs_0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_1.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_6.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/variables_7.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/search/all_3.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/tab_a.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/tabs.css" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/dir_5a30104352ef4255dc24354b02eb2d20.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/bc_s.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/sync_off.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/tab_h.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg__ns_8h_source.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/index.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg__lite_8h_source.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg__queue_8h_source.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg_lite_send_receive.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/nxp_logo_small.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/nav_h.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/open.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/tab_b.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/tab_s.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/navtree.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__ns.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/folderopen.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/arrowdown.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/navtree.css" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/closed.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/dynsections.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/splitbar.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/resize.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/folderclosed.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__queue.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/navtreeindex0.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/modules.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__queue.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/sync_on.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/modules.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/customdoxygen.css" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/doxygen.css" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__lite.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg_lite_arch.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/nav_f.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/bdwn.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/doc.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/dir_97aefd0d527b934f1d99a682da8fe6a9.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/arrowright.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/doxygen.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/navtreedata.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__lite.html" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/rpmsg_isoosi.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/jquery.js" category="other"/>
+          <file name="multicore/rpmsg_lite/doc/nav_g.png" category="image"/>
+          <file name="multicore/rpmsg_lite/doc/group__rpmsg__ns.html" category="other"/>
+          <file name="multicore/rpmsg_lite/lib/common/llist.c" category="sourceC"/>
+          <file name="multicore/rpmsg_lite/lib/include/llist.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_compiler.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_default_config.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_lite.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_ns.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/virtio_ring.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/virtqueue.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/rpmsg_lite.c" category="sourceC"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/rpmsg_ns.c" category="sourceC"/>
+          <file name="multicore/rpmsg_lite/lib/virtio/virtqueue.c" category="sourceC"/>
+          <file name="multicore/rpmsg_lite/readme.txt" category="doc"/>
+        </files>
+      </component>
+    </bundle>
+    <bundle Cbundle="MCUXpresso SDK Multicore" Cclass="Multicore" Cversion="1.2.0">
+      <description>RPMsg-Lite FreeRTOS environment layer</description>
+      <doc></doc>
+      <component Cgroup="RPMsg-Lite FreeRTOS" Csub="rpmsg_lite_freertos_env" Cversion="1.0.0" condition="middleware.multicore.rpmsg_lite_support">
+        <description>RPMsg-Lite_freertos_env</description>
+        <files>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_env.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/include/rpmsg_queue.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/porting/environment/rpmsg_env_freertos.c" category="sourceC"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/rpmsg_queue.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="RPMsg-Lite FreeRTOS" Csub="rpmsg_lite_freertos_config" Cversion="1.0.0" condition="middleware.multicore.rpmsg_lite_middleware.multicore.rpmsg_lite.freertos">
+        <description>RPMsg-Lite_freertos_config</description>
+        <files>
+          <file name="multicore/rpmsg_lite/template_application/rpmsg_config.h" category="header"/>
+        </files>
+      </component>
+      <component Cgroup="RPMsg-Lite FreeRTOS" Csub="rpmsg_lite_imx8mq_m4_freertos" Cversion="1.2.0" condition="middleware.freertos_middleware.multicore.rpmsg_lite.freertos">
+        <description>RPMsg-Lite_evkmcimx8mq_m4_porting_layer</description>
+        <files>
+          <file name="multicore/rpmsg_lite/lib/include/platform/imx8mq_m4/rpmsg_platform.h" category="header"/>
+          <file name="multicore/rpmsg_lite/lib/rpmsg_lite/porting/platform/imx8mq_m4/rpmsg_platform.c" category="sourceC"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>NXP</vendor>
+  <name>iMXRT_DFP</name>
+  <description>NXP iMXRT Series Device Support</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <supportContact></supportContact>
+  <!-- optional license file -->
+  <!-- 
+  <license>
+  </license>
+  -->
+  
+  <releases>
+    <release version="1.0.3" date="2018-07-27" deprecated="2018-07-27">
+     Maintenance of this pack is discontinued. Now continuing the support in these packs:
+     - NXP.MIMXRT1051_DFP
+     - NXP.MIMXRT1052_DFP	
+    </release>
+    <release version="1.0.2">
+      Add flash algorithm for Hyper flash
+      Add url address
+    </release>
+    <release version="1.0.1">
+      Initial Version
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>RT1050</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="i.MX RT Series" Dvendor="NXP:11">
+
+      <!-- ******************************  RT1050  ****************************** -->
+      <subFamily DsubFamily="i.MX RT1050">
+        <processor Pname="M7"  Dcore="Cortex-M7"  DcoreVersion="r1p1" Dfpu="SP_FPU" Dmpu="MPU"  Dendian="Little-endian"/>
+        <book Pname="M7"  name="Documents/DUI0646B_cortex_m7_dgug.pdf"       title="Cortex-M7 Generic User Guide"/>
+        <algorithm name="Flash/MIMXRT105x_HYPER_256KB_SEC.FLM" start="0x60000000" size="0x4000000" default="1"/>
+        <description>
+          The i.MX RT1050 processors feature NXP's advanced implementation of the
+          ARM®Cortex®-M7 core.The i.MX RT1050 processors are NXP's latest additions to a growing family of real-time
+          processing products offering high-performance processing optimized for lowest power
+          consumption and best real-time response.
+          - ARM Cortex-M7 processor, 500MHz (OD 600MHz), 32KB I-Cache, 32KB D-Cache, up to 512KB TCM
+          - 512KB on-chip SRAM shared with TCM
+          - 8/16-bit SDRAM controller
+          - 8/16-bit Parallel NOR FLASH, Dual-channel Quad-SPI NOR FLASH
+          - Parallel LCD Display up to WVGA (800x480) 
+          - 8/16-bit Parallel Camera Sensor Interface
+          - MMC 5.0/SD 3.0/SDIO Port
+          - USB 2.0 OTG, HS/FS, Device or Host with PHY
+          - I2S/SAI, S/PDIF Tx/Rx
+          - 10/100 Ethernet with IEEE 1588
+          - 12-bit ADC, ACMP, Quad-timer, FlexPWM, TRNG, Crypto
+        </description>
+
+        <!-- ******************************  MIMXRT1051  ***************************** -->
+        <device Dname="MIMXRT1051">
+         <compile Pname="M7"  header="Device/Include/MIMXRT1051.h"  define="MIMXRT1051"/>
+         <debug   Pname="M7"  svd="SVD/MIMXRT1051.svd"/>
+         <memory  Pname="M7"  id="IRAM2"                  start="0x00000000" size="0x00020000" default="0" init   ="0"/>
+         <memory  Pname="M7"  id="IRAM1"                  start="0x20000000" size="0x00060000" default="1" init   ="0"/>
+        </device>
+
+        <!-- ******************************  MIMXRT1052  ***************************** -->
+        <device Dname="MIMXRT1052">
+         <compile Pname="M7"  header="Device/Include/MIMXRT1052.h"  define="MIMXRT1052"/>
+         <debug   Pname="M7"  svd="SVD/MIMXRT1052.svd"/>
+         <memory  Pname="M7"  id="IRAM2"                  start="0x00000000" size="0x00020000" default="0" init   ="0"/>
+         <memory  Pname="M7"  id="IRAM1"                  start="0x20000000" size="0x00060000" default="1" init   ="0"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <!-- examples section (optional for all Software Packs)-->
+  <!--
+  <examples>
+  </examples>
+  -->
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MIMXRT1051 CMSIS">
+      <description>Imx MIMXRT1051 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="MIMXRT1051"/>
+    </condition>
+    <condition id="MIMXRT1052 CMSIS">
+      <description>Imx MIMXRT1052 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <require Dname="MIMXRT1052"/>
+    </condition>
+  </conditions>
+ 
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MIMXRT1051 CMSIS">
+      <description>System Startup and Linker for Imx MIMXRT1051 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_MIMXRT1051.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_MIMXRT1051.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/IAR/startup_MIMXRT1051.s"   attr="config" version="1.0.0" condition="IAR"/>
+        <file category="source"       name="Device/Source/system_MIMXRT1051.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_MIMXRT1051.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/ARM/MIMXRT1051xxx5A_ram.scf" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="linkerScript" name="Device/Source/ARM/MIMXRT1051xxx6A_ram.scf" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/MIMXRT1051xxx5A_ram.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/MIMXRT1051xxx6A_ram.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/IAR/MIMXRT1051xxx5A_ram.icf" attr="config" version="1.0.0" condition="IAR"/>
+        <file category="linkerScript" name="Device/Source/IAR/MIMXRT1051xxx6A_ram.icf" attr="config" version="1.0.0" condition="IAR"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MIMXRT1052 CMSIS">
+      <description>System Startup and Linker for Imx MIMXRT1052 devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="source"       name="Device/Source/ARM/startup_MIMXRT1052.s"   attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source"       name="Device/Source/GCC/startup_MIMXRT1052.S"   attr="config" version="1.0.0" condition="GCC"/>
+        <file category="source"       name="Device/Source/IAR/startup_MIMXRT1052.s"   attr="config" version="1.0.0" condition="IAR"/>
+        <file category="source"       name="Device/Source/system_MIMXRT1052.c"        attr="config" version="1.0.0"/>
+        <file category="header"       name="Device/Source/system_MIMXRT1052.h"        attr="config" version="1.0.0"/>
+        <file category="linkerScript" name="Device/Source/ARM/MIMXRT1052xxx5A_ram.scf" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="linkerScript" name="Device/Source/ARM/MIMXRT1052xxx6A_ram.scf" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/MIMXRT1052xxx5A_ram.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/GCC/MIMXRT1052xxx6A_ram.ld" attr="config" version="1.0.0" condition="GCC"/>
+        <file category="linkerScript" name="Device/Source/IAR/MIMXRT1052xxx5A_ram.icf" attr="config" version="1.0.0" condition="IAR"/>
+        <file category="linkerScript" name="Device/Source/IAR/MIMXRT1052xxx6A_ram.icf" attr="config" version="1.0.0" condition="IAR"/>
+      </files>
+    </component>
+  </components>
+</package>

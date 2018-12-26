@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>MCB1200_BSP</name>
+  <description>Keil MCB1200 Development Board Support Package</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.0" date="2014-08-01">
+      First public version of MCB1200 Board Support Pack including basic examples
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>MCB1200</keyword>
+    <keyword>MCB</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Keil" name="MCB1200" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1200=ON">
+      <description>Keil MCB1200 Board Support</description>
+      <image small="Images\MCB1200-Board_small.jpg" large="Images\MCB1200-Board_big.jpg"/>
+      <book category="overview"  name="http://www.keil.com/MCB1200/" title="MCB1200 Web Page"/>
+      <book category="schematic" name="Documents\mcb1200-schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents\mcb1200.chm" title="User Manual" />
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1227FBD64/301"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC122x"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="4"              name="Push-buttons: Reset, ISP, 2 GPIO"/>
+      <feature type="LED"       n="9"              name="LEDs: Power, 8x User: green"/>
+      <feature type="USB"       n="1"              name="USB Device Interface"/>
+      <feature type="DIO"       n="52"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="RS232"     n="1"/>
+      <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      <feature type="CustomFF"  n="80" m="80"/>
+    </board>
+  </boards>  
+
+  <conditions>
+    <condition id="LPC122x CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC122x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="LPC122*"/>
+    </condition>
+  </conditions>
+  
+  <components>
+    <bundle Cbundle="MCB1200" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCB1200</description>
+      <doc>Documents\mcb1200.chm</doc>
+      <component Cgroup="A/D Converter" condition="LPC122x CMSIS Device">
+        <description>A/D Converter interface for Keil MCB1200 Development Board</description>
+        <files>
+          <file category="sourceC" name="Common\ADC_MCB1200.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" condition="LPC122x CMSIS Device">
+      <description>LED driver for Keil MCB1200 Development Board</description>
+        <files>
+        <file category="sourceC" name="Common\LED_MCB1200.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <examples>
+    <example name="Blinky" doc="Abstract.txt" folder="Examples\Blinky">
+      <description>Blinky example</description>
+      <board name="MCB1200" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Examples\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB1200" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="RTX_Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

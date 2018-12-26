@@ -1,0 +1,2402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>TMPM3_DFP</name>
+  <description>Toshiba TX03 Series Device Support</description>
+
+  <releases>
+    <release version="1.4.0" date="2016-05-27">
+      Added TMPM37A device support.
+    </release>
+    <release version="1.3.0" date="2016-05-23">
+      Added M360, M395 board support and examples
+      Updated TMPM381, TMPM383 features.
+    </release>
+    <release version="1.2.0" date="2015-07-16">
+      Added TMPM381 device support.
+      Added TMPM383 device support.
+    </release>
+    <release version="1.1.0" date="2014-11-26">
+      Corrected Flash Programming Algorithm for TMPM36BFYFG.
+    </release>
+    <release version="1.0.0">
+      First Release version of TMPM3 Device Family Pack for the TX03 Series.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3</keyword>
+    <keyword>TX03</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TX03 Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <description>
+The TX03 microcontroller series embeds an ARM Cortex-M3 core, which provides high code density and fast interrupt response times required for real-time applications.
+The TX03 Series also incorporates a Toshiba-proprietary NANO FLASH™ memory featuring high capacity and low power consumption.
+      </description>
+
+      <feature type="WDT"           n="1"/>
+
+      <!-- ************************  Subfamily 'M330'  **************************** -->
+      <subFamily DsubFamily="M330">
+        <feature type="Timer"         n="10"      m="16"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="VCC"           n="2.70"    m="3.60"/>
+
+        <!-- *************************  Device 'TMPM330FDFG'  ***************************** -->
+        <device Dname="TMPM330FDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM330.h"/>
+          <debug svd="SVD/M330.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM330_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM330FDFG_datasheet_en_20101006.pdf" title="M330FDFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM330FDWFG'  ***************************** -->
+        <device Dname="TMPM330FDWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM330.h"/>
+          <debug svd="SVD/M330.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM330_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM330FDWFG_datasheet_en_20130805.pdf" title="M330FDWFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM330FWFG'  ***************************** -->
+        <device Dname="TMPM330FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM330.h"/>
+          <debug svd="SVD/M330.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM330_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM330FWFG_datasheet_en_20101006.pdf" title="M330FWFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM330FYFG'  ***************************** -->
+        <device Dname="TMPM330FYFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM330.h"/>
+          <debug svd="SVD/M330.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM330_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM330FYFG_datasheet_en_20101006.pdf" title="M330FYFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM330FYWFG'  ***************************** -->
+        <device Dname="TMPM330FYWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM330.h"/>
+          <debug svd="SVD/M330.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM330_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM330FYWFG_datasheet_en_20130805.pdf" title="M330FYWFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM332FWUG'  ***************************** -->
+        <device Dname="TMPM332FWUG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM332.h"/>
+          <debug svd="SVD/M332.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM33x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM332FWUG_datasheet_en_20101006.pdf" title="M332FWUG Reference Manual"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="5"/>
+          <feature type="IOs"           n="44"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM333FDFG'  ***************************** -->
+        <device Dname="TMPM333FDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM333.h"/>
+          <debug svd="SVD/M333.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM33x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM333FDFG_datasheet_en_20101006.pdf" title="M333FDFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM333FWFG'  ***************************** -->
+        <device Dname="TMPM333FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM333.h"/>
+          <debug svd="SVD/M333.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM33x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM333FWFG_datasheet_en_20101006.pdf" title="M333FWFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM333FYFG'  ***************************** -->
+        <device Dname="TMPM333FYFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM333.h"/>
+          <debug svd="SVD/M333.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM33x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM333FYFG_datasheet_en_20101006.pdf" title="M333FYFG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="12"      m="10"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="78"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M340'  **************************** -->
+      <subFamily DsubFamily="M340">
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'TMPM341FDXBG'  ***************************** -->
+        <device Dname="TMPM341FDXBG">
+          <processor Dclock="54000000"/>
+          <compile header="Device/Include/TMPM341.h"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM341_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM341FDXBG_datasheet_en_20130611.pdf" title="M341FDXBG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="ExtInt"        n="12"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="1.65"    m="3.60"/>
+          <feature type="BGA"           n="113"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM341FYXBG'  ***************************** -->
+        <device Dname="TMPM341FYXBG">
+          <processor Dclock="54000000"/>
+          <compile header="Device/Include/TMPM341.h"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM341_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM341FYXBG_datasheet_en_20130611.pdf" title="M341FYXBG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="ExtInt"        n="12"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="1.65"    m="3.60"/>
+          <feature type="BGA"           n="113"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM342FYXBG'  ***************************** -->
+        <device Dname="TMPM342FYXBG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM342.h"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00009000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM342_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM342FYXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="ADC"           n="4"       m="16"              name="16-Bit Delta-Sigma A/D converters"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="Timer"         n="8"       m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="2"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="1"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="63"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="142"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM343F10XBG'  ***************************** -->
+        <device Dname="TMPM343F10XBG">
+          <processor Dclock="50000000"/>
+          <compile header="Device/Include/TMPM343.h"/>
+          <debug svd="SVD/M343.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM343_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM343F10XBG Reference Manual"/-->
+
+          <feature type="DMA"           n="6"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="6"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="16"      m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="3"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="4"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="162"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM343FDXBG'  ***************************** -->
+        <device Dname="TMPM343FDXBG">
+          <processor Dclock="50000000"/>
+          <compile header="Device/Include/TMPM343.h"/>
+          <debug svd="SVD/M343.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM343_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM343FDXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="6"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="6"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="16"      m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="3"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="4"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="162"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM343FEXBG'  ***************************** -->
+        <device Dname="TMPM343FEXBG">
+          <processor Dclock="50000000"/>
+          <compile header="Device/Include/TMPM343.h"/>
+          <debug svd="SVD/M343.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x000C0000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM343_768.FLM" start="0x00000000" size="0x000C0000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM343FEXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="6"/>
+          <feature type="UART"          n="1"/>
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="6"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="16"      m="16"              name="Hi-resolution 16Bit Timer"/>
+          <feature type="Timer"         n="3"                           name="2-phase pulse counter(PHC)"/>
+          <feature type="Other"         n="4"                           name="Servo/Sequence Controller"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="42"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="BGA"           n="162"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M360'  **************************** -->
+      <subFamily DsubFamily="M360">
+        <feature type="VCC"           n="2.70"    m="3.60"/>
+
+        <!-- *************************  Device 'TMPM361F10FG'  ***************************** -->
+        <device Dname="TMPM361F10FG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM361.h"/>
+          <debug svd="SVD/M361.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <book name="Documents/TMPM361F10FG_datasheet_en_20130531.pdf" title="M361F10FG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="76"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM361FDFG'  ***************************** -->
+        <device Dname="TMPM361FDFG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM361.h"/>
+          <debug svd="SVD/M361.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000A000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM361FDFG Reference Manual"/-->
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="76"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM361FYFG'  ***************************** -->
+        <device Dname="TMPM361FYFG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM361.h"/>
+          <debug svd="SVD/M361.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM361FYFG Reference Manual"/-->
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="76"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM362F10FG'  ***************************** -->
+        <device Dname="TMPM362F10FG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM362.h"/>
+          <debug svd="SVD/M362.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <book name="Documents/TMPM362F10FG_datasheet_en_20130531.pdf" title="M362F10FG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="12"                          name="UART/SIO"/>
+          <feature type="I2C"           n="5"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="120"/>
+          <feature type="Temp"          n="-20"     m="85"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM363F10FG'  ***************************** -->
+        <device Dname="TMPM363F10FG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM363.h"/>
+          <debug svd="SVD/M363.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <book name="Documents/TMPM363F10FG_datasheet_en_20130531.pdf" title="M363F10FG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="5"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM364F10FG'  ***************************** -->
+        <device Dname="TMPM364F10FG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM364.h"/>
+          <debug svd="SVD/M364.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <book name="Documents/TMPM364F10FG_datasheet_en_20130531.pdf" title="M364F10FG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="UART"          n="12"                          name="UART/SIO"/>
+          <feature type="I2C"           n="5"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+          <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM365FYXBG'  ***************************** -->
+        <device Dname="TMPM365FYXBG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM365.h"/>
+          <debug svd="SVD/M365.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM365_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM365FYXBG_datasheet_en_20130612.pdf"                     title="M365FYXBG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="105"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FDFG'  ***************************** -->
+        <device Dname="TMPM366FDFG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM366FDFG_datasheet_en_20130611.pdf"                      title="M366FDFG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FDXBG'  ***************************** -->
+        <device Dname="TMPM366FDXBG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM366FDXBG_datasheet_en_20130611.pdf"                     title="M366FDXBG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FWFG'  ***************************** -->
+        <device Dname="TMPM366FWFG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM366FWFG_datasheet_en_20130611.pdf" title="M366FWFG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FWXBG'  ***************************** -->
+        <device Dname="TMPM366FWXBG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM366FWXBG_datasheet_en_20130611.pdf" title="M366FWXBG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FYFG'  ***************************** -->
+        <device Dname="TMPM366FYFG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM366FYFG_datasheet_en_20130611.pdf" title="M366FYFG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM366FYXBG'  ***************************** -->
+        <device Dname="TMPM366FYXBG">
+          <processor Dclock="48000000"/>
+          <compile header="Device/Include/TMPM366.h"/>
+          <debug svd="SVD/M366.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM366FYXBG_datasheet_en_20130611.pdf" title="M366FYXBG Reference Manual"/>
+
+          <feature type="DMA"           n="4"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="USART"         n="1"/>
+          <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="12"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="Other"         n="2"                           name="CS/WAIT Controller"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FDFG'  ***************************** -->
+        <device Dname="TMPM367FDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM367FDFG_datasheet_en_20131011.pdf" title="M367FDFG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FDXBG'  ***************************** -->
+        <device Dname="TMPM367FDXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM367FDXBG_datasheet_en_20131011.pdf" title="M367FDXBG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FWFG'  ***************************** -->
+        <device Dname="TMPM367FWFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM367FWFG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FWXBG'  ***************************** -->
+        <device Dname="TMPM367FWXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM367FWXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FYFG'  ***************************** -->
+        <device Dname="TMPM367FYFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM367FYFG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM367FYXBG'  ***************************** -->
+        <device Dname="TMPM367FYXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM367.h"/>
+          <debug svd="SVD/M367.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM367FYXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM368FDFG'  ***************************** -->
+        <device Dname="TMPM368FDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM368.h"/>
+          <debug svd="SVD/M368.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM368FDFG_datasheet_en_20131024.pdf" title="M368FDFG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM368FDXBG'  ***************************** -->
+        <device Dname="TMPM368FDXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM368.h"/>
+          <debug svd="SVD/M368.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM368FDXBG_datasheet_en_20131024.pdf" title="M368FDXBG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="109"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM369FDFG'  ***************************** -->
+        <device Dname="TMPM369FDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM369.h"/>
+          <debug svd="SVD/M369.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM369FDFG_datasheet_en_20131022.pdf" title="M369FDFG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="102"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM369FDXBG'  ***************************** -->
+        <device Dname="TMPM369FDXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM369.h"/>
+          <debug svd="SVD/M369.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM369FDXBG_datasheet_en_20131018.pdf" title="M369FDXBG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="102"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="177"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM369FYFG'  ***************************** -->
+        <device Dname="TMPM369FYFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM369.h"/>
+          <debug svd="SVD/M369.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM369FYFG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="102"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM369FYXBG'  ***************************** -->
+        <device Dname="TMPM369FYXBG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM369.h"/>
+          <debug svd="SVD/M369.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM369FYXBG Reference Manual"/-->
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="USBD"          n="1"/>
+          <feature type="USBH"          n="1"                           name="USB Host (Full Speed)"/>
+          <feature type="ETH"           n="1"       m="100000000"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="10"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="102"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="177"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM36BF10FG'  ***************************** -->
+        <device Dname="TMPM36BF10FG">
+          <processor Dclock="64000000"/>
+          <compile header="Device/Include/TMPM36B.h"/>
+          <debug svd="SVD/M36B.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x20000000" size="0x00040800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM36x_1024.FLM" start="0x00000000" size="0x00100000"             default="1"/>
+
+          <book name="Documents/TMPM36BF10FG_datasheet_en_20130809.pdf" title="M36BF10FG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM36BFYFG'  ***************************** -->
+        <device Dname="TMPM36BFYFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM36B.h"/>
+          <debug svd="SVD/M36B.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM365_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM36BFYFG_datasheet_en_20131219.pdf" title="M36BFYFG Reference Manual"/>
+
+          <feature type="DMA"           n="32"/>
+          <feature type="MPSerial"      n="3"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="USART"         n="2"/>
+          <feature type="I2C"           n="3"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="Other"         n="4"                           name="CS/WAIT Controller"/>
+          <feature type="RTC"           n="1"       m="32768"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M370'  **************************** -->
+      <subFamily DsubFamily="M370">
+        <feature type="Other"         n="1"                           name="Vector Engine(VE)"/>
+        <feature type="VCC"           n="4.50"    m="5.50"/>
+
+        <!-- *************************  Device 'TMPM370FYDFG'  ***************************** -->
+        <device Dname="TMPM370FYDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM370.h"/>
+          <debug svd="SVD/M370.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM370_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM370FYDFG_datasheet_en_20130415.pdf" title="M370FYDFG Reference Manual"/>
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="ADC"           n="22"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="76"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM370FYFG'  ***************************** -->
+        <device Dname="TMPM370FYFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM370.h"/>
+          <debug svd="SVD/M370.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM370_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM370FYFG_datasheet_en_20130415.pdf" title="M370FYFG Reference Manual"/>
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="ADC"           n="22"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="76"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM372FWFG'  ***************************** -->
+        <device Dname="TMPM372FWFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM372.h"/>
+          <debug svd="SVD/M372.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00001800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM372FWFG Reference Manual"/-->
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="IOs"           n="53"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM372FWUG'  ***************************** -->
+        <device Dname="TMPM372FWUG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM372.h"/>
+          <debug svd="SVD/M372.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00001800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM372FWUG_datasheet_en_20130415.pdf" title="M372FWUG Reference Manual"/>
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="10"/>
+          <feature type="IOs"           n="53"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM373FWDUG'  ***************************** -->
+        <device Dname="TMPM373FWDUG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM373.h"/>
+          <debug svd="SVD/M373.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00001800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM373FWDUG_datasheet_en_20130412.pdf" title="M373FWDUG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="37"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM374FWUG'  ***************************** -->
+        <device Dname="TMPM374FWUG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM374.h"/>
+          <debug svd="SVD/M374.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00001800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM374FWUG_datasheet_en_20130415.pdf" title="M374FWUG Reference Manual"/>
+
+          <feature type="UART"          n="3"                           name="UART/SIO"/>
+          <feature type="ADC"           n="6"       m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="7"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="44"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM375FSDMG'  ***************************** -->
+        <device Dname="TMPM375FSDMG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM375.h"/>
+          <debug svd="SVD/M375.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_64.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+
+          <book name="Documents/TMPM375FSDMG_datasheet_en_20130830.pdf" title="M375FSDMG Reference Manual"/>
+
+          <feature type="UART"          n="2"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="4"       m="12"/>
+          <feature type="Timer"         n="4"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="1"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="3"/>
+          <feature type="IOs"           n="21"/>
+          <feature type="Temp"          n="-40"     m="105"/>
+          <feature type="SOP"           n="30"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM376FDDFG'  ***************************** -->
+        <device Dname="TMPM376FDDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM376.h"/>
+          <debug svd="SVD/M376.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM376FDDFG_datasheet_en_20130412.pdf" title="M376FDDFG Reference Manual"/>
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="22"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="82"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM376FDFG'  ***************************** -->
+        <device Dname="TMPM376FDFG">
+          <processor Dclock="80000000"/>
+          <compile header="Device/Include/TMPM376.h"/>
+          <debug svd="SVD/M376.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/TMPM376FDFG_datasheet_en_20130412.pdf" title="M376FDFG Reference Manual"/>
+
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="22"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+          <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="82"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM37AFSQG'  ***************************** -->
+        <device Dname="TMPM37AFSQG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM37A.h"/>
+          <debug svd="SVD/M37A.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM37x_64.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+
+          <!--book name="Documents/TMPM37AFSQG_datasheet_en_20130412.pdf" title="TMPM37AFSQG Reference Manual"/-->
+
+          <feature type="UART"          n="1"                           name="UART/SIO"/>
+          <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+          <feature type="ADC"           n="5"       m="12"/>
+          <feature type="Timer"         n="4"       m="16"/>
+          <feature type="PWM"           n="1"                           name="Three Phase PWM Output"/>
+          <feature type="ExtInt"        n="3"/>
+          <feature type="IOs"           n="13"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="QFN"           n="32"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M380'  **************************** -->
+      <subFamily DsubFamily="M380">
+        <feature type="MPSerial"      n="2"/>
+        <feature type="UART"          n="5"                           name="UART/SIO"/>
+        <feature type="I2C"           n="2"                           name="I2C/SIO"/>
+        <feature type="Other"         n="1"                           name="Remote Control Preprocessor"/>
+        <feature type="PWM"           n="2"                           name="Three Phase PWM Output"/>
+        <feature type="Other"         n="2"                           name="Incremental Encoder Input"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'TMPM380FWDFG'  ***************************** -->
+        <device Dname="TMPM380FWDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM380.h"/>
+          <debug svd="SVD/M380.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM38x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM380FWDFG_datasheet_en_20110317.pdf" title="M380FWDFG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM380FWFG'  ***************************** -->
+        <device Dname="TMPM380FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM380.h"/>
+          <debug svd="SVD/M380.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM38x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/TMPM380FWFG_datasheet_en_20110317.pdf" title="M380FWFG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM380FYDFG'  ***************************** -->
+        <device Dname="TMPM380FYDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM380.h"/>
+          <debug svd="SVD/M380.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM38x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM380FYDFG_datasheet_en_20110317.pdf" title="M380FYDFG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM380FYFG'  ***************************** -->
+        <device Dname="TMPM380FYFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM380.h"/>
+          <debug svd="SVD/M380.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM38x_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/TMPM380FYFG_datasheet_en_20110317.pdf" title="M380FYFG Reference Manual"/>
+
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="TimerOther"    n="3"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="84"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM381FWFG'  ****************************** -->
+        <device Dname="TMPM381FWFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM381.h"/>
+          <debug svd="SVD/M381.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM381_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM381FWFG Reference Manual"/-->
+
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="83"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM381FWDFG'  ***************************** -->
+        <device Dname="TMPM381FWDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM381.h"/>
+          <debug svd="SVD/M381.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM381_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM381FWDFG Reference Manual"/-->
+
+          <feature type="ADC"           n="18"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="83"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM383FWUG'  ***************************** -->
+        <device Dname="TMPM383FWUG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM383.h"/>
+          <debug svd="SVD/M383.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM383_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM383FWUG Reference Manual"/-->
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM383FWEFG'  **************************** -->
+        <device Dname="TMPM383FWEFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM383.h"/>
+          <debug svd="SVD/M383.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002800" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM383_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM383FWEFG Reference Manual"/-->
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM383FSUG'  ***************************** -->
+        <device Dname="TMPM383FSUG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM383.h"/>
+          <debug svd="SVD/M383.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM383_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM383FSUG Reference Manual"/-->
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM383FSEFG'  **************************** -->
+        <device Dname="TMPM383FSEFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM383.h"/>
+          <debug svd="SVD/M383.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM383_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM383FSEFG Reference Manual"/-->
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="8"       m="16"/>
+          <feature type="CoreOther"     n="1"                           name="Remote control signal preprocessor (RMC)"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="VCC"           n="3.90"    m="5.50"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM384FDFG'  ***************************** -->
+        <device Dname="TMPM384FDFG">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/TMPM384.h"/>
+          <debug svd="SVD/M384.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM38x_512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM384FDFG Reference Manual"/-->
+
+          <feature type="DMA"           n="2"/>
+          <feature type="ADC"           n="22"      m="12"/>
+          <feature type="Timer"         n="12"      m="16"/>
+          <feature type="TimerOther"    n="4"                           name="Multi-Purpose Timer (MPT)"/>
+          <feature type="IOs"           n="121"/>
+          <feature type="VCC"           n="4.00"    m="5.50"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M390'  **************************** -->
+      <subFamily DsubFamily="M390">
+        <feature type="UART"          n="3"                           name="UART/SIO"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="I2C"           n="1"                           name="I2C/SIO"/>
+        <feature type="ADC"           n="12"      m="10"/>
+        <feature type="Timer"         n="10"      m="16"/>
+        <feature type="ComOther"      n="1"                           name="CEC Remote Control preprocessor"/>
+        <feature type="Other"         n="2"                           name="Remote Control Preprocessor"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="VCC"           n="1.70"    m="3.60"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'TMPM390FWFG'  ***************************** -->
+        <device Dname="TMPM390FWFG">
+          <processor Dclock="20000000"/>
+          <compile header="Device/Include/TMPM390.h"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM39x_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM390FWFG Reference Manual"/-->
+
+          <feature type="MPSerial"      n="1"/>
+          <feature type="ExtInt"        n="8"/>
+          <feature type="IOs"           n="74"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM395FWAXBG'  ***************************** -->
+        <device Dname="TMPM395FWAXBG">
+          <processor Dclock="20000000"/>
+          <compile header="Device/Include/TMPM395.h"/>
+          <debug svd="SVD/M395.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM395_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <!--book name="Documents/NotAvailable.pdf" title="TMPM395FWAXBG Reference Manual"/-->
+
+          <feature type="MPSerial"      n="4"/>
+          <feature type="ExtInt"        n="11"/>
+          <feature type="IOs"           n="91"/>
+          <feature type="BGA"           n="120"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM330 CMSIS">
+      <description>Toshiba TMPM330 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM330*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM332 CMSIS">
+      <description>Toshiba TMPM332 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM332*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM333 CMSIS">
+      <description>Toshiba TMPM333 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM333*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM341 CMSIS">
+      <description>Toshiba TMPM341 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM341*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM342 CMSIS">
+      <description>Toshiba TMPM342 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM342*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM343 CMSIS">
+      <description>Toshiba TMPM343 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM343*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM361 CMSIS">
+      <description>Toshiba TMPM361 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM361*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM362 CMSIS">
+      <description>Toshiba TMPM362 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM362*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM363 CMSIS">
+      <description>Toshiba TMPM363 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM363*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM364 CMSIS">
+      <description>Toshiba TMPM364 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM364*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM365 CMSIS">
+      <description>Toshiba TMPM365 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM365*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM366 CMSIS">
+      <description>Toshiba TMPM366 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM366*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM367 CMSIS">
+      <description>Toshiba TMPM367 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM367*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM368 CMSIS">
+      <description>Toshiba TMPM368 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM368*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM369 CMSIS">
+      <description>Toshiba TMPM369 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM369*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM36B CMSIS">
+      <description>Toshiba TMPM36B devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM36B*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM370 CMSIS">
+      <description>Toshiba TMPM370 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM370*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM372 CMSIS">
+      <description>Toshiba TMPM372 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM372*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM373 CMSIS">
+      <description>Toshiba TMPM373 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM373*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM374 CMSIS">
+      <description>Toshiba TMPM374 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM374*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM375 CMSIS">
+      <description>Toshiba TMPM375 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM375*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM376 CMSIS">
+      <description>Toshiba TMPM376 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM376*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM37A CMSIS">
+      <description>Toshiba TMPM37A devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM37A*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM380 CMSIS">
+      <description>Toshiba TMPM380 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM380*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM381 CMSIS">
+      <description>Toshiba TMPM381 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM381*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM383 CMSIS">
+      <description>Toshiba TMPM383 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM383*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM384 CMSIS">
+      <description>Toshiba TMPM384 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM384*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM390 CMSIS">
+      <description>Toshiba TMPM390 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM390*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM395 CMSIS">
+      <description>Toshiba TMPM395 devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM395*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM369FDFG CMSIS Device">
+      <description>Toshiba TMPM369FDFG devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup TMPM330 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM330 CMSIS">
+      <description>System Startup for Toshiba TMPM330 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM330.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM330.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM332 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM332 CMSIS">
+      <description>System Startup for Toshiba TMPM332 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM332.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM332.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM333 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM333 CMSIS">
+      <description>System Startup for Toshiba TMPM333 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM333.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM333.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM341 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM341 CMSIS">
+      <description>System Startup for Toshiba TMPM341 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM341.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM341.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM342 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM342 CMSIS">
+      <description>System Startup for Toshiba TMPM342 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM342.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM342.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM343 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM343 CMSIS">
+      <description>System Startup for Toshiba TMPM343 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM343.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM343.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM361 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM361 CMSIS">
+      <description>System Startup for Toshiba TMPM361 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM361.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM361.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM362 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM362 CMSIS">
+      <description>System Startup for Toshiba TMPM362 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM362.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM362.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM363 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM363 CMSIS">
+      <description>System Startup for Toshiba TMPM363 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM363.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM363.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM364 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM364 CMSIS">
+      <description>System Startup for Toshiba TMPM364 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM364.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM364.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM365 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM365 CMSIS">
+      <description>System Startup for Toshiba TMPM365 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM365.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM365.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM366 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM366 CMSIS">
+      <description>System Startup for Toshiba TMPM366 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM366.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM366.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM367 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM367 CMSIS">
+      <description>System Startup for Toshiba TMPM367 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM367.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM367.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM368 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM368 CMSIS">
+      <description>System Startup for Toshiba TMPM368 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM368.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM368.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM369 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM369 CMSIS">
+      <description>System Startup for Toshiba TMPM369 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM369.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM369.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM36B -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM36B CMSIS">
+      <description>System Startup for Toshiba TMPM36B Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM36B.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM36B.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM370 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM370 CMSIS">
+      <description>System Startup for Toshiba TMPM370 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM370.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM370.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM372 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM372 CMSIS">
+      <description>System Startup for Toshiba TMPM372 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM372.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM372.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM373 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM373 CMSIS">
+      <description>System Startup for Toshiba TMPM373 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM373.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM373.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM374 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM374 CMSIS">
+      <description>System Startup for Toshiba TMPM374 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM374.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM374.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM375 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM375 CMSIS">
+      <description>System Startup for Toshiba TMPM375 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM375.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM375.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM376 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM376 CMSIS">
+      <description>System Startup for Toshiba TMPM376 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM376.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM376.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM37A -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM37A CMSIS">
+      <description>System Startup for Toshiba TMPM37A Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM37A.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM37A.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM380 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM380 CMSIS">
+      <description>System Startup for Toshiba TMPM380 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM380.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM380.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM381 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM381 CMSIS">
+      <description>System Startup for Toshiba TMPM381 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM381.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM381.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM383 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM383 CMSIS">
+      <description>System Startup for Toshiba TMPM383 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM383.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM383.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM384 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM384 CMSIS">
+      <description>System Startup for Toshiba TMPM384 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM384.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM384.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM390 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM390 CMSIS">
+      <description>System Startup for Toshiba TMPM390 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM390.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM390.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM395 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM395 CMSIS">
+      <description>System Startup for Toshiba TMPM395 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM395.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_TMPM395.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    
+    <bundle Cbundle="EB_TMPM369FDFG" Cclass="Board Support" Cversion="1.0.0">
+      <description>Yokogawa EB_TMPM369FDFG Development Board</description>
+      <doc>Documents/</doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="TMPM369FDFG CMSIS Device">
+        <description>LED driver for YDC EB-TMPM369FDFG Development Board</description>
+        <files>
+          <file category="sourceC" name="Boards/Yokogawa/Common/LED_EB_TMPM369FDFG.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="TMPM369FDFG CMSIS Device">
+        <description>Button driver for YDC EB-TMPM369FDFG Development Board</description>
+        <files>
+          <file category="sourceC" name="Boards/Yokogawa/Common/Buttons_EB_TMPM369FDFG.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board vendor="Keil" name="MCBTMPM330" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBTMPM330=ON">
+      <description>Keil MCBTMPM330 Board Support and Examples</description>
+      <image small="Images/mcbtmpm330_board.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcbtmpm330/" title="MCBTMPM330 Web Page"/>
+      <book category="schematic" name="Documents/mcbtmpm330-schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents/mcbtmpm330.chm" title="User Manual" />
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM330FDFG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M330"/>
+      <feature type="XTAL"      n="10000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="3"              name="Push-buttons: DPH1, NMI and Reset"/>
+      <feature type="LED"       n="3"              name="LEDs: Power, User: green, yellow, red"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="CustomFF"  n="100" m="70"/>
+    </board>
+    
+    <board vendor="Keil" name="MCBTMPM360" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBTMPM360=ON">
+      <description>Keil MCBTMPM360 Board Support</description>
+      <image small="Images/mcbtmpm360_board_small.jpg" large="Images/mcbtmpm360_board_big.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcbtmpm360/" title="MCBTMPM360 Web Page"/>
+      <book category="schematic" name="Documents/MCBTMPM360v1-1.PDF" title="Schematics"/>
+      <book category="manual"    name="Documents/mcbtmpm360.chm" title="User Manual" />
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM362F10FG"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM364F10FG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M360"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="6"              name="Push-buttons: PJ4/5/6/7, NMIn and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: Power, User: green"/>
+      <feature type="USB"       n="1"              name="USB 2.0 Host (TMPM364 only)"/>
+      <feature type="CAN"       n="1"              name="CAN 2.0 Interface (TMPM364 only)"/>
+      <feature type="DIO"       n="120"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="CustomFF"  n="135" m="60"/>
+      <feature type="Curr"      n="15"  m="25"/>
+    </board>
+    
+    <board vendor="Keil" name="MCBTMPM395" revision="v1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBTMPM395=ON">
+      <description>Keil MCBTMPM395 Board Support</description>
+      <image small="Images/mcbtmpm395_board_small.jpg" large="Images/mcbtmpm395_board_big.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcbtmpm395/" title="MCBTMPM395 Web Page"/>
+      <book category="schematic" name="Documents/mcbtmpm395-schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents/mcbtmpm395.chm" title="User Manual" />
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM395FWAXBG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M390"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="6"              name="Push-buttons: 4x GPIO, NMI and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: Power, 2x User: green"/>
+      <feature type="USB"       n="1"/>
+      <feature type="DIO"       n="57"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="RS232"     n="1"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="CustomFF"  n="135" m="69"/>
+      <feature type="Curr"      n="10"  m="15"/>
+    </board>
+
+    <board vendor="Toshiba" name="BMSKTOPASM369" revision="v1" salesContact="http://www.toshiba-components.com/microcontroller/Cortex_SKs.html" orderForm="http://www.toshiba-components.com/microcontroller/Cortex_SKs.html">
+      <description>Toshiba BMSKTOPASM369 Board Support and Examples</description>
+      <image small="Boards/Toshiba/BMSKTOPASM369/Documents/BMSKTOPASM369_small.png"
+             large="Boards/Toshiba/BMSKTOPASM369/Documents/BMSKTOPASM369_large.png"/>
+      <book category="overview" name="Boards/Toshiba/BMSKTOPASM369/Documents/6154E.pdf" title="Overview"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M360"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="ETH"       n="1"              name="10/100MBit Ethernet"/>
+      <feature type="MemCard"   n="1"              name="MicroSD Card Holder"/>
+      <feature type="PWR"       n="5" m="12"       name="Extern Powered"/>
+      <feature type="Joystick"  n="1"              name="5-position Joystick"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB device"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB host"/>
+      <feature type="LED"       n="8"              name="LEDs: User: green"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+    </board>
+    
+    <board vendor="Yokogawa" name="EB_TMPM369FDFG" revision="v1"> <!--- salesContact="" orderForm="" -->
+      <description>Yokogawa EB_TMPM369FDFG Board Support</description>
+      <image small="Images/EB_TMPM369FDFG_board_small.jpg" large="Images/EB_TMPM369FDFG_board_big.png"/>
+      <!-- book category="overview"  name="http://www.keil.com/" title="TMPM369FDFG Web Page"/ -->
+      <book category="schematic" name="Documents/EB_TMPM369FDFG_Schematic.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents/EB_TMPM369FDFG Users Manual.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M360"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="6"              name="Push-buttons: PC0,1,2,3, NMI and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: Power, User: green: PC4,5,6,7"/>
+      <feature type="USB"       n="1"              name="USB 2.0 Host"/>
+      <feature type="USB"       n="1"              name="USB 2.0 Device"/>
+      <feature type="CAN"       n="1"              name="CAN 2.0B Interface"/>
+      <feature type="ETH"       n="1"              name="10/100Base-T"/>
+      <feature type="DIO"       n="120"/>
+      <feature type="Poti"      n="2"/>
+      <feature type="RS232"     n="2"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug Interface"/>
+      <feature type="CustomFF"  n="135" m="100"/>
+    </board>
+
+  </boards>
+
+  <examples>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCBTMPM330/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBTMPM330" vendor="Keil" Dvendor="Toshiba:92" Dname="TMPM330FDFG"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCBTMPM360/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBTMPM360" vendor="Keil" Dvendor="Toshiba:92" Dname="TMPM364F10FG"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCBTMPM395/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBTMPM395" vendor="Keil" Dvendor="Toshiba:92" Dname="TMPM395FWAXBG"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Toshiba/BMSKTOPASM369/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="BMSKTOPASM369" vendor="Toshiba" Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- YDC EB_TMPM369FDFG Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Yokogawa/Examples/Blinky">
+      <description>Blinky example</description>
+      <board name="EB_TMPM369FDFG" vendor="Yokogawa"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Yokogawa/Examples/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="EB_TMPM369FDFG" vendor="Yokogawa"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

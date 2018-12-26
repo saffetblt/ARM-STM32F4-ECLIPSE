@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K50_DFP</name>
+  <description>NXP Kinetis K50 Series Device Support</description>
+
+  <releases>
+    <release version="1.2.0" date="2017-02-17">
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+      Reworked K50_DFP.
+       - changed vendor to NXP.
+       - updated documentation.
+       - replaced backslash with forward slash.
+    </release>
+    <release version="1.1.0" date="2015-09-18">
+      Added MK51DN256xxx10 device support.
+      Updated K5x device support files.
+    </release>
+    <release version="1.0.0">
+      First Release version of K50 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K50</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="K50 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+      <description>
+The Kinetis K5x MCU family is pin-, peripheral- and software-compatible with other Kinetis MCUs and provides designers with an analog measurement engine consisting of integrated operational and transimpedance amplifiers and high-resolution ADC and DAC modules.
+The family also features IEEE® 1588 Ethernet and hardware encryption, full-speed USB 2.0 On-The-Go with device charger detect capability and a flexible low-power segment LCD controller with support for up to 320 segments. Devices start from 128 KB of flash in 64-pin LQFP packages extending up to 512 KB in a 144-pin MAPBGA package.
+      </description>
+
+      <!-- ******************************  MK50DX128xxx7  ****************************** -->
+      <device Dname="MK50DX128xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK50D7.h" define="MK50DX128xxx7"/>
+        <debug svd="SVD/MK50D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P128.FLM"      start="0x00000000" size="0x00020000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K50P100M72SF1RM.pdf" title="MK50DX128xxx7 Reference Manual"/>
+        <book name="Documents/K50P100M72SF1.pdf"   title="MK50DX128xxx7 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK50DX256xxx7  ****************************** -->
+      <device Dname="MK50DX256xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK50D7.h" define="MK50DX256xxx7"/>
+        <debug svd="SVD/MK50D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K50P100M72SF1RM.pdf" title="MK50DX256xxx7 Reference Manual"/>
+        <book name="Documents/K50P100M72SF1.pdf"   title="MK50DX256xxx7 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK51DX128xxx7  ****************************** -->
+      <device Dname="MK51DX128xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK51D7.h" define="MK51DX128xxx7"/>
+        <debug svd="SVD/MK51D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P128.FLM"      start="0x00000000" size="0x00020000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K51P100M72SF1RM.pdf" title="MK51DX128xxx7 Reference Manual"/>
+        <book name="Documents/K51P100M72SF1.pdf"   title="MK51DX128xxx7 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK51DX256xxx7  ****************************** -->
+      <device Dname="MK51DX256xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK51D7.h" define="MK51DX256xxx7"/>
+        <debug svd="SVD/MK51D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K51P100M72SF1RM.pdf" title="MK51DX256xxx7 Reference Manual"/>
+        <book name="Documents/K51P100M72SF1.pdf"   title="MK51DX256xxx7 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK50DN512xxx10  ****************************** -->
+      <device Dname="MK50DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK50D10.h" define="MK50DN512xxx10"/>
+        <debug svd="SVD/MK50D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM"      start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K50P121M100SF2V2RM.pdf" title="MK50DN512xxx10 Reference Manual"/>
+        <book name="Documents/K50P121M100SF2V2.pdf"   title="MK50DN512xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK50DX256xxx10  ****************************** -->
+      <device Dname="MK50DX256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK50D10.h" define="MK50DX256xxx10"/>
+        <debug svd="SVD/MK50D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D256.FLM"      start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K50P121M100SF2V2RM.pdf" title="MK50DX256xxx10 Reference Manual"/>
+        <book name="Documents/K50P121M100SF2V2.pdf"   title="MK50DX256xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK51DN256xxx10  ****************************** -->
+      <device Dname="MK51DN256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK50D10.h" define="MK50DN512xxx10"/>
+        <debug svd="SVD/MK50D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K50P121M100SF2V2RM.pdf" title="MK50DN256xxx10 Reference Manual"/>
+        <book name="Documents/K50P121M100SF2V2.pdf"   title="MK50DN256xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK51DN512xxx10  ****************************** -->
+      <device Dname="MK51DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK51D10.h" define="MK51DN512xxx10"/>
+        <debug svd="SVD/MK51D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM"      start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K51P121M100SF2V2RM.pdf" title="MK51DN512xxx10 Reference Manual"/>
+        <book name="Documents/K51P121M100SF2V2.pdf"   title="MK51DN512xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK51DX256xxx10  ****************************** -->
+      <device Dname="MK51DX256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK51D10.h" define="MK51DX256xxx10"/>
+        <debug svd="SVD/MK51D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D256.FLM"      start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K51P121M100SF2V2RM.pdf" title="MK51DX256xxx10 Reference Manual"/>
+        <book name="Documents/K51P121M100SF2V2.pdf"   title="MK51DX256xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK52DN512xxx10  ****************************** -->
+      <device Dname="MK52DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK52D10.h" define="MK52DN512xxx10"/>
+        <debug svd="SVD/MK52D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM"      start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K52P144M100SF2V2RM.pdf" title="MK52DN512xxx10 Reference Manual"/>
+        <book name="Documents/K52P144M100SF2V2.pdf"   title="MK52DN512xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK53DN512xxx10  ****************************** -->
+      <device Dname="MK53DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK53D10.h" define="MK53DN512xxx10"/>
+        <debug svd="SVD/MK53D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM"      start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K53P144M100SF2V2RM.pdf" title="MK53DN512xxx10 Reference Manual"/>
+        <book name="Documents/K53P144M100SF2V2.pdf"   title="MK53DN512xxx10 Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK53DX256xxx10  ****************************** -->
+      <device Dname="MK53DX256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK53D10.h" define="MK53DX256xxx10"/>
+        <debug svd="SVD/MK53D10.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D256.FLM"      start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K53P144M100SF2V2RM.pdf" title="MK53DX256xxx10 Reference Manual"/>
+        <book name="Documents/K53P144M100SF2V2.pdf"   title="MK53DX256xxx10 Data Sheet"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="K50D7 CMSIS">
+      <description>NXP Kinetis K50D 72MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK50DX128xxx7"/>
+      <accept Dname="MK50DX256xxx7"/>
+    </condition>
+
+    <condition id="K51D7 CMSIS">
+      <description>NXP Kinetis K51D 72MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK51DX128xxx7"/>
+      <accept Dname="MK51DX256xxx7"/>
+    </condition>
+
+    <condition id="K50D10 CMSIS">
+      <description>NXP Kinetis K50D 100MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK50DN512xxx10"/>
+      <accept Dname="MK50DX256xxx10"/>
+    </condition>
+
+    <condition id="K51D10 CMSIS">
+      <description>NXP Kinetis K51D 100MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK51DN256xxx10"/>
+      <accept Dname="MK51DN512xxx10"/>
+      <accept Dname="MK51DX256xxx10"/>
+    </condition>
+
+    <condition id="K52D10 CMSIS">
+      <description>NXP Kinetis K51D 100MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK52DN512xxx10"/>
+    </condition>
+
+    <condition id="K53D10 CMSIS">
+      <description>NXP Kinetis K53D 100MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK53DN512xxx10"/>
+      <accept Dname="MK53DX256xxx10"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup K50D7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K50D7 CMSIS">
+      <description>System Startup for NXP Kinetis K50D 72MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK50D7.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK50D7.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup K51D7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K51D7 CMSIS">
+      <description>System Startup for NXP Kinetis K50D 72MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK51D7.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK51D7.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup K50D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K50D10 CMSIS">
+      <description>System Startup for NXP Kinetis K50D 100MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK50D10.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK50D10.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup K51D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K51D10 CMSIS">
+      <description>System Startup for NXP Kinetis K51D 100MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK51D10.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK51D10.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup K52D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K52D10 CMSIS">
+      <description>System Startup for NXP Kinetis K52D 100MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK52D10.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK52D10.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup K53D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="K53D10 CMSIS">
+      <description>System Startup for NXP Kinetis K53D 100MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK53D10.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK53D10.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>

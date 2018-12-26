@@ -1,0 +1,845 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>MIMXRT1064_DFP</name>
+  <description>Device Family Pack for MIMXRT1064</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0" date="2018-10-16">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Device Startup</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MIMXRT1064" Dvendor="NXP:11">
+      <description>The MIMXRT1064 are ARM Cortex-M7 based microcontrollers for embedded applications.</description>
+      <device Dname="MIMXRT1064xxxxA">
+        <processor Dcore="Cortex-M7" Dfpu="DP_FPU" Dendian="Little-endian" Dclock="600000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MIMXRT1064xxxxx_ram.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" access="rx" start="0x70000000" size="0x400000" startup="1" default="1"/>
+        <memory name="SRAM_DTC" access="rw" start="0x20000000" size="0x020000"/>
+        <memory name="SRAM_ITC" access="rw" start="0x00000000" size="0x020000"/>
+        <memory name="SRAM_OC" access="rw" start="0x20200000" size="0x0c0000" default="1"/>
+        <algorithm name="arm/MIMXRT1064_QSPI_4KB_SEC.FLM" start="0x70000000" size="0x400000" default="1"/>
+        <debug svd="MIMXRT1064.xml"/>
+        <variant Dvariant="MIMXRT1064CVL5A">
+          <compile header="fsl_device_registers.h" define="CPU_MIMXRT1064CVL5A"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MIMXRT1064CVL5A/MIMXRT1064xxxxx_ram.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MIMXRT1064DVL6A">
+          <compile header="fsl_device_registers.h" define="CPU_MIMXRT1064DVL6A"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MIMXRT1064DVL6A/MIMXRT1064xxxxx_ram.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="MIMXRT1064???xA" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MIMXRT1064_driver.lpi2c">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="lpi2c_cmsis" Capiversion="5.1.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MIMXRT1064_driver.lpspi">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="lpspi_cmsis" Capiversion="5.1.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+    </condition>
+    <condition id="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MIMXRT1064_driver.lpuart">
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Capiversion="5.1.1"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="devices.MIMXRT1064_device.MIMXRT1064_device.MIMXRT1064_startup_driver.clock_driver.common_driver.igpio_driver.iomuxc_utility.debug_console">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iomuxc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.edma_driver.flexio_i2s">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2s"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.edma_driver.flexio_spi">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_spi"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.edma_driver.flexio_uart">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_uart"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.lpi2c">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.lpspi">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.lpuart">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.sai">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.edma_driver.spdif">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spdif"/>
+    </condition>
+    <condition id="device.MIMXRT1064_utility.debug_console">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.flexio">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.edma">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MIMXRT1064_driver.common">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MIMXRT1064">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.MIMXRT1064_platform.Include_core_cm7">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.1.1"/>
+    </condition>
+    <condition id="devices.MIMXRT1064xxxxA_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="devices.MIMXRT1064xxxxA_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="devices.MIMXRT1064">
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064xxxxA" Dvariant="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="devices.MIMXRT1064_platform.Include_core_cm7">
+      <description></description>
+      <files>
+        <file name="arm/startup_MIMXRT1064.s" category="sourceAsm" condition="mdk" attr="config"/>
+        <file name="iar/startup_MIMXRT1064.s" category="sourceAsm" condition="iar" attr="config"/>
+        <file name="MIMXRT1064.h" category="header" attr="config"/>
+        <file name="MIMXRT1064_features.h" category="header" attr="config"/>
+        <file name="fsl_device_registers.h" category="header" attr="config"/>
+        <file name="arm/MIMXRT1064xxxxx_flexspi_nor.scf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1064xxxxx_flexspi_nor_sdram.scf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1064xxxxx_ram.scf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1064xxxxx_sdram.scf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1064xxxxx_sdram_txt.scf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_mdk" attr="config"/>
+        <file name="iar/MIMXRT1064xxxxx_flexspi_nor.icf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1064xxxxx_flexspi_nor_sdram.icf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1064xxxxx_ram.icf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1064xxxxx_sdram.icf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1064xxxxx_sdram_txt.icf" category="linkerScript" condition="devices.MIMXRT1064xxxxA_iar" attr="config"/>
+        <file name="system_MIMXRT1064.c" category="sourceC" attr="config"/>
+        <file name="system_MIMXRT1064.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="project_template" Cvariant="MIMXRT1064" isDefaultVariant="1" condition="devices.MIMXRT1064_device.MIMXRT1064_device.MIMXRT1064_startup_driver.clock_driver.common_driver.igpio_driver.iomuxc_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Cversion="2.0.0" Csub="lpi2c_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.I2C_CMSISInclude_device.MIMXRT1064_driver.lpi2c">
+      <description>LPI2C CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpi2c_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpi2c_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Cversion="2.0.0" Csub="lpspi_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.SPI_CMSISInclude_device.MIMXRT1064_driver.lpspi">
+      <description>LPSPI CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpspi_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpspi_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="2.0.0" Csub="lpuart_cmsis" condition="RTE_Device_platform.CMSIS_Driver_Include.USART_CMSISInclude_device.MIMXRT1064_driver.lpuart">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.c" category="sourceC"/>
+        <file name="cmsis_drivers/fsl_lpuart_cmsis.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="adc_12b1msps_sar" condition="device.MIMXRT1064_driver.common">
+      <description>ADC Driver</description>
+      <files>
+        <file name="drivers/fsl_adc.c" category="sourceC"/>
+        <file name="drivers/fsl_adc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="adc_etc" condition="device.MIMXRT1064_driver.common">
+      <description>ADC_ETC Driver</description>
+      <files>
+        <file name="drivers/fsl_adc_etc.c" category="sourceC"/>
+        <file name="drivers/fsl_adc_etc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="aipstz" condition="device.MIMXRT1064_driver.common">
+      <description>aipstz Driver</description>
+      <files>
+        <file name="drivers/fsl_aipstz.c" category="sourceC"/>
+        <file name="drivers/fsl_aipstz.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="aoi" condition="device.MIMXRT1064_driver.common">
+      <description>AOI Driver</description>
+      <files>
+        <file name="drivers/fsl_aoi.c" category="sourceC"/>
+        <file name="drivers/fsl_aoi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="bee" condition="device.MIMXRT1064_driver.common">
+      <description>BEE Driver</description>
+      <files>
+        <file name="drivers/fsl_bee.c" category="sourceC"/>
+        <file name="drivers/fsl_bee.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="cache" condition="device.MIMXRT1064_driver.common">
+      <description>CACHE Driver</description>
+      <files>
+        <file name="drivers/fsl_cache.c" category="sourceC"/>
+        <file name="drivers/fsl_cache.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="clock" condition="device.MIMXRT1064_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file name="drivers/fsl_clock.c" category="sourceC"/>
+        <file name="drivers/fsl_clock.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="cmp" condition="device.MIMXRT1064_driver.common">
+      <description>CMP Driver</description>
+      <files>
+        <file name="drivers/fsl_cmp.c" category="sourceC"/>
+        <file name="drivers/fsl_cmp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="common" condition="device.MIMXRT1064_driver.common">
+      <description>COMMON Driver</description>
+      <files>
+        <file name="drivers/fsl_common.c" category="sourceC"/>
+        <file name="drivers/fsl_common.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="csi" condition="device.MIMXRT1064_driver.common">
+      <description>CSI Driver</description>
+      <files>
+        <file name="drivers/fsl_csi.c" category="sourceC"/>
+        <file name="drivers/fsl_csi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="dcdc_1" condition="device.MIMXRT1064_driver.common">
+      <description>DCDC Driver</description>
+      <files>
+        <file name="drivers/fsl_dcdc.c" category="sourceC"/>
+        <file name="drivers/fsl_dcdc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="dcp" condition="device.MIMXRT1064_driver.common">
+      <description>DCP Driver</description>
+      <files>
+        <file name="drivers/fsl_dcp.c" category="sourceC"/>
+        <file name="drivers/fsl_dcp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="dmamux" condition="device.MIMXRT1064_driver.common">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file name="drivers/fsl_dmamux.c" category="sourceC"/>
+        <file name="drivers/fsl_dmamux.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.3" Csub="edma" condition="device.MIMXRT1064_driver.common">
+      <description>EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="elcdif" condition="device.MIMXRT1064">
+      <description>ELCDIF Driver</description>
+      <files>
+        <file name="drivers/fsl_elcdif.c" category="sourceC"/>
+        <file name="drivers/fsl_elcdif.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="enc" condition="device.MIMXRT1064_driver.common">
+      <description>ENC Driver</description>
+      <files>
+        <file name="drivers/fsl_enc.c" category="sourceC"/>
+        <file name="drivers/fsl_enc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.3" Csub="enet" condition="device.MIMXRT1064_driver.common">
+      <description>ENET Driver</description>
+      <files>
+        <file name="drivers/fsl_enet.c" category="sourceC"/>
+        <file name="drivers/fsl_enet.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="ewm" condition="device.MIMXRT1064_driver.common">
+      <description>EWM Driver</description>
+      <files>
+        <file name="drivers/fsl_ewm.c" category="sourceC"/>
+        <file name="drivers/fsl_ewm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.3" Csub="flexcan" condition="device.MIMXRT1064_driver.common">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file name="drivers/fsl_flexcan.c" category="sourceC"/>
+        <file name="drivers/fsl_flexcan.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="flexio" condition="device.MIMXRT1064_driver.common">
+      <description>FLEXIO Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.6" Csub="flexio_i2c_master" condition="device.MIMXRT1064_driver.flexio">
+      <description>FLEXIO I2C Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2c_master.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2c_master.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.6" Csub="flexio_i2s" condition="device.MIMXRT1064_driver.flexio">
+      <description>FLEXIO I2S Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2s.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2s.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="flexio_i2s_edma" condition="device.MIMXRT1064_driver.edma_driver.flexio_i2s">
+      <description>FLEXIO I2S EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_i2s_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_i2s_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.3" Csub="flexio_spi" condition="device.MIMXRT1064_driver.flexio">
+      <description>FLEXIO SPI Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_spi.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_spi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.3" Csub="flexio_spi_edma" condition="device.MIMXRT1064_driver.edma_driver.flexio_spi">
+      <description>FLEXIO SPI EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_spi_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_spi_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_uart" condition="device.MIMXRT1064_driver.flexio">
+      <description>FLEXIO UART Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_uart.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_uart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="flexio_uart_edma" condition="device.MIMXRT1064_driver.edma_driver.flexio_uart">
+      <description>FLEXIO UART EDMA Driver</description>
+      <files>
+        <file name="drivers/fsl_flexio_uart_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_flexio_uart_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="flexram" condition="device.MIMXRT1064">
+      <description>FLEXRAM Driver</description>
+      <files>
+        <file name="drivers/fsl_flexram.c" category="sourceC"/>
+        <file name="drivers/fsl_flexram.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="flexspi" condition="device.MIMXRT1064_driver.common">
+      <description>FLEXSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_flexspi.c" category="sourceC"/>
+        <file name="drivers/fsl_flexspi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.0" Csub="gpc" condition="device.MIMXRT1064_driver.common">
+      <description>GPC Driver</description>
+      <files>
+        <file name="drivers/fsl_gpc.c" category="sourceC"/>
+        <file name="drivers/fsl_gpc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="gpt" condition="device.MIMXRT1064">
+      <description>GPT Driver</description>
+      <files>
+        <file name="drivers/fsl_gpt.c" category="sourceC"/>
+        <file name="drivers/fsl_gpt.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="gpio" condition="device.MIMXRT1064">
+      <description>GPIO Driver</description>
+      <files>
+        <file name="drivers/fsl_gpio.c" category="sourceC"/>
+        <file name="drivers/fsl_gpio.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="iomuxc" condition="device.MIMXRT1064_driver.common">
+      <description>IOMUXC Driver</description>
+      <files>
+        <file name="drivers/fsl_iomuxc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="kpp" condition="device.MIMXRT1064_driver.common">
+      <description>KPP Driver</description>
+      <files>
+        <file name="drivers/fsl_kpp.c" category="sourceC"/>
+        <file name="drivers/fsl_kpp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="i2c" condition="device.MIMXRT1064_driver.common">
+      <description>LPI2C Driver</description>
+      <files>
+        <file name="drivers/fsl_lpi2c.c" category="sourceC"/>
+        <file name="drivers/fsl_lpi2c.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.5" Csub="i2c_edma" condition="device.MIMXRT1064_driver.lpi2c">
+      <description>LPI2C Driver</description>
+      <files>
+        <file name="drivers/fsl_lpi2c_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_lpi2c_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="lpspi" condition="device.MIMXRT1064_driver.common">
+      <description>LPSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_lpspi.c" category="sourceC"/>
+        <file name="drivers/fsl_lpspi.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="lpspi_edma" condition="device.MIMXRT1064_driver.lpspi">
+      <description>LPSPI Driver</description>
+      <files>
+        <file name="drivers/fsl_lpspi_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_lpspi_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.5" Csub="lpuart" condition="device.MIMXRT1064_driver.common">
+      <description>LPUART Driver</description>
+      <files>
+        <file name="drivers/fsl_lpuart.c" category="sourceC"/>
+        <file name="drivers/fsl_lpuart.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.5" Csub="lpuart_edma" condition="device.MIMXRT1064_driver.lpuart">
+      <description>LPUART Driver</description>
+      <files>
+        <file name="drivers/fsl_lpuart_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_lpuart_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="pit" condition="device.MIMXRT1064_driver.common">
+      <description>PIT Driver</description>
+      <files>
+        <file name="drivers/fsl_pit.c" category="sourceC"/>
+        <file name="drivers/fsl_pit.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pmu" condition="device.MIMXRT1064">
+      <description>pmu Driver</description>
+      <files>
+        <file name="drivers/fsl_pmu.c" category="sourceC"/>
+        <file name="drivers/fsl_pmu.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pwm" condition="device.MIMXRT1064_driver.common">
+      <description>PWM Driver</description>
+      <files>
+        <file name="drivers/fsl_pwm.c" category="sourceC"/>
+        <file name="drivers/fsl_pwm.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="pxp" condition="device.MIMXRT1064_driver.common">
+      <description>PXP Driver</description>
+      <files>
+        <file name="drivers/fsl_pxp.c" category="sourceC"/>
+        <file name="drivers/fsl_pxp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="qtmr" condition="device.MIMXRT1064_driver.common">
+      <description>QTMR Driver</description>
+      <files>
+        <file name="drivers/fsl_qtmr.c" category="sourceC"/>
+        <file name="drivers/fsl_qtmr.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="rtwdog" condition="device.MIMXRT1064_driver.common">
+      <description>RTWDOG Driver</description>
+      <files>
+        <file name="drivers/fsl_rtwdog.c" category="sourceC"/>
+        <file name="drivers/fsl_rtwdog.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="sai" condition="device.MIMXRT1064_driver.common">
+      <description>SAI Driver</description>
+      <files>
+        <file name="drivers/fsl_sai.c" category="sourceC"/>
+        <file name="drivers/fsl_sai.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.1.4" Csub="sai_edma" condition="device.MIMXRT1064_driver.sai">
+      <description>SAI Driver</description>
+      <files>
+        <file name="drivers/fsl_sai_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_sai_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.4" Csub="semc" condition="device.MIMXRT1064_driver.common">
+      <description>SEMC Driver</description>
+      <files>
+        <file name="drivers/fsl_semc.c" category="sourceC"/>
+        <file name="drivers/fsl_semc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="snvs_hp" condition="device.MIMXRT1064_driver.common">
+      <description>SNVS HP Driver</description>
+      <files>
+        <file name="drivers/fsl_snvs_hp.c" category="sourceC"/>
+        <file name="drivers/fsl_snvs_hp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="snvs_lp" condition="device.MIMXRT1064_driver.common">
+      <description>SNVS LP Driver</description>
+      <files>
+        <file name="drivers/fsl_snvs_lp.c" category="sourceC"/>
+        <file name="drivers/fsl_snvs_lp.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="spdif" condition="device.MIMXRT1064_driver.common">
+      <description>SPDIF Driver</description>
+      <files>
+        <file name="drivers/fsl_spdif.c" category="sourceC"/>
+        <file name="drivers/fsl_spdif.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="spdif_edma" condition="device.MIMXRT1064_driver.edma_driver.spdif">
+      <description>SPDIF Driver</description>
+      <files>
+        <file name="drivers/fsl_spdif_edma.c" category="sourceC"/>
+        <file name="drivers/fsl_spdif_edma.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="src" condition="device.MIMXRT1064">
+      <description>SRC Driver</description>
+      <files>
+        <file name="drivers/fsl_src.c" category="sourceC"/>
+        <file name="drivers/fsl_src.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="tempmon" condition="device.MIMXRT1064_driver.common">
+      <description>TEMPMON Driver</description>
+      <files>
+        <file name="drivers/fsl_tempmon.c" category="sourceC"/>
+        <file name="drivers/fsl_tempmon.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.2" Csub="trng" condition="device.MIMXRT1064_driver.common">
+      <description>TRNG Driver</description>
+      <files>
+        <file name="drivers/fsl_trng.c" category="sourceC"/>
+        <file name="drivers/fsl_trng.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="tsc" condition="device.MIMXRT1064">
+      <description>TSC Driver</description>
+      <files>
+        <file name="drivers/fsl_tsc.c" category="sourceC"/>
+        <file name="drivers/fsl_tsc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.2.4" Csub="sdhc" condition="device.MIMXRT1064">
+      <description>USDHC Driver</description>
+      <files>
+        <file name="drivers/fsl_usdhc.c" category="sourceC"/>
+        <file name="drivers/fsl_usdhc.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="wdog" condition="device.MIMXRT1064_driver.common">
+      <description>wdog01 Driver</description>
+      <files>
+        <file name="drivers/fsl_wdog.c" category="sourceC"/>
+        <file name="drivers/fsl_wdog.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.3" Csub="xbara" condition="device.MIMXRT1064_driver.common">
+      <description>XBARA Driver</description>
+      <files>
+        <file name="drivers/fsl_xbara.c" category="sourceC"/>
+        <file name="drivers/fsl_xbara.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.1" Csub="xbarb" condition="device.MIMXRT1064_driver.common">
+      <description>XBARB Driver</description>
+      <files>
+        <file name="drivers/fsl_xbarb.c" category="sourceC"/>
+        <file name="drivers/fsl_xbarb.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Cversion="2.0.0" Csub="xip" condition="devices.MIMXRT1064">
+      <description>XIP Driver</description>
+      <RTE_Components_h>
+#define XIP_BOOT_HEADER_ENABLE 1
+#define XIP_BOOT_HEADER_DCD_ENABLE 1
+#define XIP_EXTERNAL_FLASH 1
+		</RTE_Components_h>
+      <files>
+        <file name="xip/evkmimxrt1064_flexspi_nor_config.c" category="sourceC"/>
+        <file name="xip/evkmimxrt1064_flexspi_nor_config.h" category="header"/>
+        <file name="xip/evkmimxrt1064_sdram_ini_dcd.c" category="sourceC"/>
+        <file name="xip/evkmimxrt1064_sdram_ini_dcd.h" category="header"/>
+        <file name="xip/fsl_flexspi_nor_boot.c" category="sourceC"/>
+        <file name="xip/fsl_flexspi_nor_boot.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Cversion="1.0.0" Csub="RTE_Device" condition="device.MIMXRT1064_driver.edma">
+      <description></description>
+      <files>
+        <file name="template/RTE_Device.h" category="header" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="assert" condition="device.MIMXRT1064_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_assert.c" category="sourceC"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console" condition="device.MIMXRT1064">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_debug_console.c" category="sourceC"/>
+        <file name="utilities/fsl_debug_console.h" category="header"/>
+        <file name="utilities/fsl_debug_console_conf.h" category="header"/>
+        <file name="utilities/io/fsl_io.c" category="sourceC"/>
+        <file name="utilities/io/fsl_io.h" category="header"/>
+        <file name="utilities/log/fsl_log.c" category="sourceC"/>
+        <file name="utilities/log/fsl_log.h" category="header"/>
+        <file name="utilities/str/fsl_str.c" category="sourceC"/>
+        <file name="utilities/str/fsl_str.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="debug_console_swo" condition="device.MIMXRT1064_utility.debug_console">
+      <description></description>
+      <files>
+        <file name="utilities/io/swo/fsl_swo.c" category="sourceC"/>
+        <file name="utilities/io/swo/fsl_swo.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="notifier" condition="device.MIMXRT1064_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_notifier.c" category="sourceC"/>
+        <file name="utilities/fsl_notifier.h" category="header"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Cversion="1.0.0" Csub="shell" condition="device.MIMXRT1064_driver.common">
+      <description></description>
+      <files>
+        <file name="utilities/fsl_shell.c" category="sourceC"/>
+        <file name="utilities/fsl_shell.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

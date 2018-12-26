@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SONiX</vendor>
+  <url>http://liveupdate.sonix.com.tw/sonix/develop_tool/MCU/DFP/</url>
+  <name>SN32F2_DFP</name>
+  <description>SONiX SN32F2 Series Device Support and Examples</description>
+
+  <releases>
+	   <release version="1.2.10" date="2018-09-19">
+	   Update system_SN32F240B.c and startup_SN32F240B.s
+	   Remove Documents\SN32F2xx_UM.pdf
+	   </release>
+	   
+	   <release version="1.2.9" date="2018-01-26">
+	   Update SN32F200_Def.h
+	   Add FLM related files and descriptions for setting Code option.
+	   </release>
+	   
+	   <release version="1.2.8" date="2017-07-25">
+	   Update SN32F240B.h
+       Update SN32F240B SVD files
+	   Update SN32F240B UM V1.1
+	   Update system_SN32F260.c
+	   Update SN32F264S/X 
+	   Update SN32F263X
+	   Update SN32F260 SVD/SFR files
+	   Remove SN32F220
+	   </release>
+	   
+	   <release version="1.2.7" date="2017-04-27">
+	   Add SN32F248B UM V1.0
+	   </release>
+	  
+       <release version="1.2.6" date="2017-03-21">
+	   Update SN32F260.h
+       Update SN32F260 SVD files
+	  </release>
+  
+       <release version="1.2.5" date="2016-10-14">
+	   Update SN32F260.h
+       Update SN32F260 SVD files
+	  </release>
+      <release version="1.2.4" date="2016-08-20">
+	   Update SN32F260.h
+       Update SN32F260 SVD files
+	  </release>
+      <release version="1.2.3" date="2016-08-02">
+      Add SN32F260 UM V1.1
+	  </release>
+      <release version="1.2.2" date="2016-01-19">
+      Add SN32F260 UM V1.0
+	  </release>
+    <release version="1.2.1" date="2015-12-25">
+      Update id="IROM1" size
+    </release>
+    <release version="1.1.1" date="2015-08-21">
+      Update ILRC Frequency in system_SN32F240.c
+      Update SN32F240 UM V1.4
+    </release>
+    <release version="1.1.0"  date="2015-05-06">
+      Update SN32F240.h, system_SN32F240.c, system_SN32F240.s
+      Update User Manual/SVD files
+    </release>
+    <release version="1.0.0">
+      First Release version of SN32F2 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>SONiX</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package SONiX</keyword>
+    <keyword>SN32F2</keyword>
+	<keyword>SN32F24xB</keyword>
+    <keyword>SN32</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="SN32F2 Series" Dvendor="SONiX:110">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+	  <book    name="Documents\dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+        <description>
+SN32F2 series 32-bit micro-controller is a new series of extremely Low Power Consumption and High Performance MCU powered by ARM Cortex M0 processor with Flash ROM architecture.
+        </description>
+
+        <feature type="Timer"         n="3"       m="16"/>
+        <feature type="Timer"         n="3"       m="32"/>
+        <feature type="PWM"           n="21"/>
+        <feature type="ExtInt"        n="4"/>
+        <feature type="Other"         n="1"                           name="Boot Loader"/>
+        <feature type="SPI"           n="2"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="RTC"           n="1"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="Other"         n="1"                           name="HW divider"/>
+        <feature type="VCC"           n="1.80"    m="5.50"/>
+
+      <!-- ************************  Subfamily 'SN32F230'  **************************** -->
+      <subFamily DsubFamily="SN32F230">
+      
+      <!-- *************************  Device 'SN32F235J'  ***************************** -->
+      <device Dname="SN32F235J">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F230"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7FFC"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F230_32.FLM"    start="0x00000000"  size="0x8000"                   default="1"/>
+		<algorithm  name="Flash\SN32F230_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="23"/>
+        <feature type="ADC"           n="4"       m="12"/>
+        <feature type="UART"          n="2"/>
+        <feature type="QFN"           n="33"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F236J'  ***************************** -->
+      <device Dname="SN32F236J">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F230"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7FFC"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F230_32.FLM"    start="0x00000000"  size="0x8000"                   default="1"/>
+		<algorithm  name="Flash\SN32F230_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="37"/>
+        <feature type="ADC"           n="6"       m="12"/>
+        <feature type="LCD"           n="15"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFN"           n="46"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F237F'  ***************************** -->
+      <device Dname="SN32F237F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F230"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7FFC"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F230_32.FLM"    start="0x00000000"  size="0x8000"                   default="1"/>
+		<algorithm  name="Flash\SN32F230_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="39"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="LCD"           n="15"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F238F'  ***************************** -->
+      <device Dname="SN32F238F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F230"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7FFC"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F230_32.FLM"    start="0x00000000"  size="0x8000"                   default="1"/>
+		<algorithm  name="Flash\SN32F230_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="55"/>
+        <feature type="ADC"           n="11"      m="12"/>
+        <feature type="LCD"           n="28"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F239F'  ***************************** -->
+      <device Dname="SN32F239F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F230"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7FFC"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x1000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F230_32.FLM"    start="0x00000000"  size="0x8000"                   default="1"/>
+		<algorithm  name="Flash\SN32F230_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="64"/>
+        <feature type="ADC"           n="14"      m="12"/>
+        <feature type="LCD"           n="32"      m="4"/>
+        <feature type="UART"          n="1"/>
+        <feature type="USART"         n="1"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="80"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'SN32F240'  **************************** -->
+      <subFamily DsubFamily="SN32F240">
+      
+      <!-- *************************  Device 'SN32F245J'  ***************************** -->
+      <device Dname="SN32F245J">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F240"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240_64.FLM"    start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="23"/>
+        <feature type="ADC"           n="4"       m="12"/>
+        <feature type="UART"          n="2"/>
+        <feature type="QFN"           n="33"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F246J'  ***************************** -->
+      <device Dname="SN32F246J">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F240"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240_64.FLM"    start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="37"/>
+        <feature type="ADC"           n="6"       m="12"/>
+        <feature type="LCD"           n="15"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFN"           n="46"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F247F'  ***************************** -->
+      <device Dname="SN32F247F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F240"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240_64.FLM"    start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="39"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="LCD"           n="15"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F248F'  ***************************** -->
+      <device Dname="SN32F248F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F240"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240_64.FLM"    start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="55"/>
+        <feature type="ADC"           n="11"      m="12"/>
+        <feature type="LCD"           n="28"      m="4"/>
+        <feature type="UART"          n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F249F'  ***************************** -->
+      <device Dname="SN32F249F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F240.h"  define="SN32F240"/>
+        <debug      svd="SVD\SN32F240.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240_64.FLM"    start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240_CO.FLM"    start="0x1FFF2000"  size="0x0400"                   default="1"/>
+        <feature type="IOs"           n="64"/>
+        <feature type="ADC"           n="14"      m="12"/>
+        <feature type="LCD"           n="32"      m="4"/>
+        <feature type="UART"          n="1"/>
+        <feature type="USART"         n="1"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="QFP"           n="80"/>
+      </device>
+      </subFamily>
+      <!-- ************************  Subfamily 'SN32F260'  **************************** -->
+      <subFamily DsubFamily="SN32F260">
+	        <!-- *************************  Device 'SN32F268F'  ***************************** -->
+      <device Dname="SN32F268F">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"           n="42"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+	  
+	        <!-- *************************  Device 'SN32F267J'  ***************************** -->
+      <device Dname="SN32F267J">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"           n="40"/>
+        <feature type="QFN"           n="46"/>
+      </device>	  
+	  
+	  	  	<!-- *************************  Device 'SN32F265J'  ***************************** -->
+      <device Dname="SN32F265J">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"      n="26"/>
+        <feature type="QFN"      n="32"/>
+      </device>	 
+	
+	   <!-- *************************  Device 'SN32F264S/X'  ***************************** -->
+      <device Dname="SN32F264S/X">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"           n="22"/>
+        <feature type="SOP"      n="28"/>
+		<feature type="Other" 	 n="28" 		name="SSOP"/>
+      </device>	 
+
+	  <!-- *************************  Device 'SN32F2641J'  ***************************** -->
+      <device Dname="SN32F2641J">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"      n="22"/>
+        <feature type="QFN"      n="28"/>
+      </device>	 
+	  
+	  <!-- *************************  Device 'SN32F263X'  ***************************** -->
+      <device Dname="SN32F263X">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F260.h"  define="SN32F260"/>
+        <debug      svd="SVD\SN32F260.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x77FC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F260_30.FLM"    start="0x00000000"  size="0x7800"                  default="1"/>
+        <feature type="IOs"       n="18"/>
+		<feature type="Other" 	  n="24" 			name="SSOP"/>
+      </device>	 	  
+	 </subFamily>  
+	  
+	  <!-- ************************  Subfamily 'SN32F240B'  **************************** -->
+      <subFamily DsubFamily="SN32F240B">
+      
+	  <!-- *************************  Device 'SN32F248BF'  ***************************** -->
+      <device Dname="SN32F248BF">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F240B.h"  define="SN32F240B"/>
+        <debug      svd="SVD\SN32F240B.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240B_64.FLM"   start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240B_CO.FLM"   start="0x1FFF2000"  size="0x0040"                   default="1"/>
+        <feature type="IOs"           n="57"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="UART"          n="3"/>
+		<feature type="I2C"	          n="1"/>
+		<feature type="SPI"           n="1"/>
+        <feature type="PWM"           n="24"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+	  
+	   <!-- *************************  Device 'SN32F247BF'  ***************************** -->
+      <device Dname="SN32F247BF">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F240B.h"  define="SN32F240B"/>
+        <debug      svd="SVD\SN32F240B.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240B_64.FLM"   start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240B_CO.FLM"   start="0x1FFF2000"  size="0x0040"                   default="1"/>
+        <feature type="IOs"           n="41"/>
+        <feature type="ADC"           n="13"      m="12"/>
+        <feature type="UART"          n="3"/>
+		<feature type="I2C"	          n="1"/>
+		<feature type="SPI"           n="1"/>
+        <feature type="PWM"           n="24"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+	  
+	   <!-- *************************  Device 'SN32F246BJ'  ***************************** -->
+      <device Dname="SN32F246BJ">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F240B.h"  define="SN32F240B"/>
+        <debug      svd="SVD\SN32F240B.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240B_64.FLM"   start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240B_CO.FLM"   start="0x1FFF2000"  size="0x0040"                   default="1"/>
+        <feature type="IOs"           n="39"/>
+        <feature type="ADC"           n="11"      m="12"/>
+        <feature type="UART"          n="3"/>
+		<feature type="I2C"	          n="1"/>
+		<feature type="SPI"           n="1"/>
+        <feature type="PWM"           n="23"/>
+        <feature type="QFN"           n="46"/>
+      </device>
+	  
+	   <!-- *************************  Device 'SN32F2451BJ'  ***************************** -->
+      <device Dname="SN32F2451BJ">
+        <processor Dclock="48000000"/>
+        <compile header="Device\Include\SN32F240B.h"  define="SN32F240B"/>
+        <debug      svd="SVD\SN32F240B.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0xFFFC"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F240B_64.FLM"   start="0x00000000"  size="0x10000"                  default="1"/>
+		<algorithm  name="Flash\SN32F240B_CO.FLM"   start="0x1FFF2000"  size="0x0040"                   default="1"/>
+        <feature type="IOs"           n="24"/>
+        <feature type="ADC"           n="6"      m="12"/>
+        <feature type="UART"          n="3"/>
+		<feature type="I2C"	          n="1"/>
+		<feature type="SPI"           n="1"/>
+        <feature type="PWM"           n="17"/>
+        <feature type="QFN"           n="33"/>
+      </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="SN32F23_4">
+      <description>SONiX SN32F2230_40 Series devices</description>
+      <accept Dvendor="SONiX:110" Dname="SN32F23??"/>
+      <accept Dvendor="SONiX:110" Dname="SN32F24??"/>
+    </condition>
+	
+    <condition id="SN32F26">
+      <description>SONiX SN32F260 Series devices</description>
+      <accept Dvendor="SONiX:110" Dname="SN32F26*"/>
+    </condition>
+	
+	<condition id="SN32F240B">
+      <description>SONiX SN32F240B Series devices</description>
+      <accept Dvendor="SONiX:110" Dname="SN32F24*B*"/>
+    </condition>
+	
+    <condition id="SN32F23_4 CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>SONiX SN32F230_40 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="SN32F23_4"/>
+    </condition>
+
+	<condition id="SN32F26 CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>SONiX SN32F260 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="SN32F26"/>
+    </condition>
+	
+	<condition id="SN32F240B CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>SONiX SN32F240B Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="SN32F240B"/>
+    </condition>
+	
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.1" condition="SN32F23_4 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for SONiX SN32F230_40 Series</description>
+
+      <files>
+        <file category="include"	name="Device\Include\"/>
+        <file category="sourceAsm"	name="Device\Source\ARM\startup_SN32F240.s"    attr="config"	version="1.1.0"	condition="Compiler ARM"/>
+        <file category="sourceC"	name="Device\Source\system_SN32F240.c"         attr="config"    version="1.1.1"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.3" condition="SN32F26 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for SONiX SN32F260 Series</description>
+
+      <files>
+        <file category="include"	name="Device\Include\"/>
+        <file category="sourceAsm"	name="Device\Source\ARM\startup_SN32F260.s"    attr="config"	version="1.0.2"	condition="Compiler ARM"/>
+        <file category="sourceC"	name="Device\Source\system_SN32F260.c"         attr="config"    version="1.0.3"/>
+      </files>
+    </component>
+	
+	<component Cclass="Device" Cgroup="Startup" Cversion="1.1.1" condition="SN32F240B CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for SONiX SN32F240B Series</description>
+
+      <files>
+        <file category="include"	name="Device\Include\"/>
+        <file category="sourceAsm"	name="Device\Source\ARM\startup_SN32F240B.s"    attr="config"	version="1.1.1"	condition="Compiler ARM"/>
+        <file category="sourceC"	name="Device\Source\system_SN32F240B.c"         attr="config"    version="1.0.2"/>
+      </files>
+    </component>
+	
+  </components>
+</package>

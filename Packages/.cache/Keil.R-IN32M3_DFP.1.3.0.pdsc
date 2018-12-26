@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>R-IN32M3_DFP</name>
+  <description>Renesas R-IN32M3 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.3.0" date="2016-06-10">
+      Removed HWRTOS related files/examples.
+      Moved board documentation to folder boards.
+      Replaced backslash with forward slash.
+      Removed PackCheck warnings.
+      Migrated Flash Programming Algorithms from uvproj to uvprojx.
+  	</release>
+    <release version="1.2.0" date="2014-11-03">
+      Reworked Flash Programming Algorithms.
+      Updated Abstract.txt in TS-R-IN32M3-CEC board examples.
+	  </release>
+    <release version="1.1.0" date="2014-06-17">
+      Board description and examples added
+    </release>
+    <release version="1.0.0">
+      First Release version of R-IN32M3 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Renesas</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Renesas</keyword>
+    <keyword>R-IN32M3</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="R-IN32M3 Series" Dvendor="Renesas:117">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+      <algorithm name  ="Flash/R-IN32M3_S25FL032P.FLM"  start="0x02000000"  size="0x00400000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <algorithm name  ="Flash/R-IN32M3_S25FL064P.FLM"  start="0x02000000"  size="0x00800000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <algorithm name  ="Flash/R-IN32M3_S29AL032D.FLM"  start="0x10000000"  size="0x00400000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <algorithm name  ="Flash/R-IN32M3_S29GL128S.FLM"  start="0x10000000"  size="0x01000000"  RAMstart="0x20000000"  RAMsize="0x1000"  default="0"/>
+      <book      name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <book      name="http://am.renesas.com/products/soc/assp/fa_lsi/multi_protocol_communication/r-in32m3/peer/documents.jsp" title="R-IN32M3 Documents"/>
+      <description>
+The R-IN32M3 Series of multi protocol communication LSIs realizing
+high-speed real-time response and low power consumption, 
+for which demand is increasing in industrial Ethernet communications, 
+have the following two major features.
+
+- Integrated real-time OS accelerator (HW-RTOS) and Ethernet accelerator
+  One of the most distinctive features of the R-IN32M3 is the 
+  high-speed operation with the basic function of the 
+  real-time OS in hardware to implement high-speed real-time 
+  response and high-precision communication control for industrial 
+  Ethernet communication. 
+- Multi-protocol support (CC-Link IE, EtherCAT, EtherNet/IP, etc.)
+  The R-IN32M3 Series supports various industrial Ethernet protocols, 
+  including CC-Link IE Field and EtherCAT, and conventional open network protocols.
+      </description>
+
+      <feature type="CoreOther"   n="1"                    name="Real-Time OS Accelerator (Hardware Real-Time OS, HW-RTOS)"/>
+      <feature type="DMA"         n="5"                    name="DMA"/>
+      <feature type="CoreOther"   n="3"                    name="Boot Options (Serial Flash ROM, Ext. Memory, Ext. MPU)"/>
+      <feature type="ExtBus"      n="16"                   name="16-bit or 32-bit Bus Interface"/>
+      <feature type="ExtInt"      n="29"/>
+      <feature type="IOs"         n="96"                   name="CMOS I/O"/>
+      <feature type="Timer"       n="4"     m="32"         name="Timer Array"/>
+      <feature type="TimerOther"  n="1"                    name="Internal Timer of Hardware RTOS"/>
+      <feature type="WDT"         n="1"                    name="Windowed Watchdog Timer"/>
+      <feature type="UART"        n="2"     m="12500000"   name="Asynchronous Serial Interface"/>
+      <feature type="I2C"         n="2"                    name="I2C Bus"/>
+      <feature type="CAN"         n="2"                    name="CAN Controller (ISO 11898)"/>
+      <feature type="ComOther"    n="2"                    name="Clocked Serial Interface"/>
+      <feature type="ComOther"    n="1"                    name="CC-Link"/>
+      <feature type="PLL"         n="1"                    name="Internal PLL"/>
+      <feature type="VCC"         n="3.0"   m="3.6"        name="Power Supply Voltage"/>
+      <feature type="Temp"        n="-40"   m="85"         name="Operating Temperature Range"/>
+      <feature type="BGA"         n="324"                  name="Plastic Ball Grid Array"/>
+
+      <!-- *************************  Device 'R-IN32M3-CL'  ***************************** -->
+      <device Dname="R-IN32M3-CL">
+        <compile header="Device/Include/RIN32M3.h"  define="RIN32M3_CL"/>
+        <debug      svd="SVD/RIN32M3_CL.svd"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x80000"     init   ="0"   default="1"/>
+
+        <feature type="ComOther"    n="1"                    name="10/100/1000Mbps Ether MAC"/>
+        <feature type="ComOther"    n="1"                    name="CC-Link IE Field (Intelligent device station)"/>
+      </device>
+      
+      <!-- *************************  Device 'R-IN32M3-EC'  ***************************** -->
+      <device Dname="R-IN32M3-EC">
+        <compile header="Device/Include/RIN32M3.h"  define="RIN32M3_EC"/>
+        <debug      svd="SVD/RIN32M3_EC.svd"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x80000"     init   ="0"   default="1"/>
+
+        <feature type="ComOther"    n="2"                    name="10/100Mbps EtherPHY"/>
+        <feature type="ComOther"    n="1"                    name="EtherCAT Slave controller"/>
+      </device>
+      
+    </family>
+
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependency rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="R-IN32M3 Device">
+      <description>Renesas R-IN32M3 devices</description>
+      <require Dvendor="Renesas:117"  Dname="R-IN32M3*"/>
+    </condition>
+
+    <condition id="R-IN32M3 CMSIS Device">
+      <description>Renesas R-IN32M3 devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="R-IN32M3 Device"/>
+    </condition>
+
+    <condition id="R-IN32M3 Driver IIC">
+      <description>Renesas R-IN32M3 Driver with IIC</description>
+      <require condition="R-IN32M3 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="IIC"/>
+    </condition>
+
+    <condition id="R-IN32M3 Driver SROMC">
+      <description>Renesas R-IN32M3 Driver with SROMC</description>
+      <require condition="R-IN32M3 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="SROMC"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- START: Renesas R-IN32M3 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>System Startup for Renesas R-IN32M3 device series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+
+      <files>
+        <!-- header path -->
+        <file category="include" name="Device/Include/"/>
+
+        <!-- startup/system files -->
+        <file category="source"       name="Device/Source/ARM/startup_RIN32M3.s"  attr="config" version="1.0.0" condition="Compiler ARM"/>
+        <file category="source"       name="Device/Source/system_RIN32M3.c"       attr="config" version="1.0.0"/>
+        <!-- After pack.xsd v1.3 is released change "doc" to "LinkerScript" -->
+        <file category="linkerScript" name="Device/Source/ARM/boot_extMem.sct"    attr="template"  condition="Compiler ARM"  select="Ext. Memory Boot Scatter File Template"/>
+        <file category="linkerScript" name="Device/Source/ARM/boot_extSPI.sct"    attr="template"  condition="Compiler ARM"  select="Ext. Serial Flash Boot Scatter File Template"/>
+        <file category="linkerScript" name="Device/Source/ARM/boot_intRAM.sct"    attr="template"  condition="Compiler ARM"  select="Int. RAM Boot Scatter File Template"/>
+     </files>
+    </component>
+    <!-- END: Renesas R-IN32M3 Startup -->
+
+    <!-- START: Renesas R-IN32M3 Drivers -->
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="CSI" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>Clocked Serial Interface (CSIH) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/csi/csi.h"/>
+        <file category="source"  name="Device/Driver/Source/csi/csi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="DMAC" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>DMA Controller (DMAC) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/dmac/dmac.h"/>
+        <file category="source"  name="Device/Driver/Source/dmac/dmac.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="IIC" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>I2C Bus Controller (I2CB) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/iic/iic.h"/>
+        <file category="source"  name="Device/Driver/Source/iic/iic.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="SROMC" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>Serial Flash ROM Controller (SROMC) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/sromc/sromc.h"/>
+        <file category="source"  name="Device/Driver/Source/sromc/sromc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="TIMER" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>Timer Array Unit (TAUJ2) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/timer/timer.h"/>
+        <file category="source"  name="Device/Driver/Source/timer/timer.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="UART" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>Asynchronous Serial Interface (UARTJn) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/uart/uart.h"/>
+        <file category="source"  name="Device/Driver/Source/uart/uart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="R-IN32M3 Drivers" Csub="WDT" Cversion="1.0.0" condition="R-IN32M3 CMSIS Device">
+      <description>Window Watchdog Timer (WDTA) driver for R-IN32M3</description>
+      <files>
+        <file category="include" name="Device/Driver/Include/"/>
+        <file category="header"  name="Device/Driver/Include/wdt/wdt.h"/>
+        <file category="source"  name="Device/Driver/Source/wdt/wdt.c"/>
+      </files>
+    </component>
+    <!-- END: Renesas R-IN32M3 Drivers -->
+
+  </components>
+
+  <boards>
+    <board vendor="Tessera" name="TS-R-IN32M3-CL" revision="Ver 1.0" salesContact="http://am.renesas.com/contact/" orderForm="https://www.buyrenesas.com/">
+      <description>R-IN32M3-CL Evaluation Board</description>
+      <image small="Boards/Tessera/TS-R-IN32M3-CL/Documents/TS-R-IN32M3-CL_small.jpg"
+             large="Boards/Tessera/TS-R-IN32M3-CL/Documents/TS-R-IN32M3-CL_large.jpg"/>
+      <book category="overview"  name="http://www.tessera.co.jp/eng/products/r-in32m3-cl-e.html" title="TS-R-IN32M3-CL Product Information"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Renesas:117" Dname="R-IN32M3-CL"/>
+
+      <feature type="ROM"             n="1"              name="Flash Memory (Serial), 64Mbit"/>
+      <feature type="ROM"             n="1"              name="Flash Memory (Parallel), 128Mbit (8M x 16bit)"/>
+      <feature type="I2C"             n="2"              name="I2C Connctor, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="CAN"             n="1"              name="CAN Connector, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="UART (USB) Connector, USB mini-B"/>
+      <feature type="ETH"             n="2"              name="CC-Link IE (Giga-Ethernet) Connector, RJ-45"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link Connector, 5-pin power clamp, board mount header"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link IE Monitor Connector, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link Monitor Connector, 7x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="ext. Memory / MCU Connector, 50x2 Pin Header 0.6 mm Pitch"/>
+      <feature type="CoreOther"       n="1"              name="Power Connector, 2x1 Pin Header 2.54 mm Pitch"/>
+      <feature type="PWR"             n="5"              name="DC Power Jack"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="Tessera" name="TS-R-IN32M3-EC" revision="Ver 1.0" salesContact="http://am.renesas.com/contact/" orderForm="https://www.buyrenesas.com/">
+      <description>R-IN32M3-EC Evaluation Board</description>
+      <image small="Boards/Tessera/TS-R-IN32M3-EC/Documents/TS-R-IN32M3-EC_small.jpg"
+             large="Boards/Tessera/TS-R-IN32M3-EC/Documents/TS-R-IN32M3-EC_large.jpg"/>
+      <book category="overview"  name="http://www.tessera.co.jp/eng/products/r-in32m3-ec-e.html" title="TS-R-IN32M3-EC Product Information"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Renesas:117" Dname="R-IN32M3-EC"/>
+
+      <feature type="ROM"             n="1"              name="Flash Memory (Serial), 32M bits × Dual"/>
+      <feature type="ROM"             n="1"              name="Flash Memory (Parallel), 2M × 16bit"/>
+      <feature type="I2C"             n="2"              name="I2C Connctor, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="CAN"             n="1"              name="CAN Connector, 4x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="UART (USB) Connector, USB mini-B"/>
+      <feature type="ETH"             n="2"              name="Ethernet / Ether CAT Connector, RJ-45"/>
+      <feature type="ConnOther"       n="1"              name="CC-Link Connector, 5-pin power clamp, board mount header"/>
+      <feature type="ConnOther"       n="2"              name="CSI Connector, 7x1 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="I/O Port Connector, 7x2 Pin Header, 2.54 mm Pitch"/>
+      <feature type="ConnOther"       n="1"              name="ext. Memory / MCU Connector, 50x2 Pin Header 0.6 mm Pitch"/>
+      <feature type="PWR"             n="5"              name="DC Power Jack"/>
+      <feature type="LED"             n="8"              name="GPIO LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="Tessera" name="TS-R-IN32M3-CEC" revision="Ver 1.0" salesContact="http://am.renesas.com/contact/" orderForm="https://www.buyrenesas.com/">
+      <description>R-IN32M3-EC Compact Evaluation Board</description>
+      <image small="Boards/Tessera/TS-R-IN32M3-CEC/Documents/TS-R-IN32M3-CEC_small.jpg"
+             large="Boards/Tessera/TS-R-IN32M3-CEC/Documents/TS-R-IN32M3-CEC_large.jpg"/>
+      <book category="overview"  name="http://www.tessera.co.jp/eng/products/r-in32m3-cec-e.html" title="TS-R-IN32M3-CEC Product Information"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Renesas:117" Dname="R-IN32M3-EC"/>
+
+      <feature type="ROM"             n="1"              name="Flash Memory (Serial), 32M bits"/>
+      <feature type="Memory"          n="16"             name="EEPROM (when using EtherCAT)"/>
+      <feature type="ConnOther"       n="2"              name="ext. Memory / MCU Connector, 30x2 pin 1.27x1.27 mm Pin Header"/>
+      <feature type="ETH"             n="2"              name="Ethernet / Ether CAT Connector, RJ-45"/>
+      <feature type="I2C"             n="1"              name="I2C Connctor, 3x2 pin 2.00x2.00 mm Pin Header"/>
+      <feature type="ConnOther"       n="1"              name="CSI Connector, 3x2 pin 2.00x2.00 mm Pin Header"/>
+      <feature type="ConnOther"       n="1"              name="NMIZ Connector, 3x2 pin 2.00x2.00 mm Pin Header"/>
+      <feature type="ConnOther"       n="1"              name="UART (USB) Connector, USB mini-B"/>
+      <feature type="ConnOther"       n="1"              name="GPIO Port Connector, 4x2 pin 2.00x2.00 mm Pin Header"/>
+      <feature type="CoreOther"       n="1"              name="DC Power Supply Extension Connector, 3x2 pin 2.00x2.00 mm Pin Header"/>
+      <feature type="PWR"             n="5"              name="DC Power Jack"/>
+      <feature type="LED"             n="8"              name="GPIO LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- TS-R-IN32M3-CL -->
+    <example name="OS-less Sample" doc="Abstract.txt" folder="Boards/Tessera/TS-R-IN32M3-CL/osless_sample">
+      <description>OS-less Sample example</description>
+      <board name="TS-R-IN32M3-CL" vendor="Tessera"/>
+      <project>
+        <environment name="uv" load="osless_sample.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- TS-R-IN32M3-EC -->
+    <example name="OS-less Sample" doc="Abstract.txt" folder="Boards/Tessera/TS-R-IN32M3-EC/osless_sample">
+      <description>OS-less Sample example</description>
+      <board name="TS-R-IN32M3-EC" vendor="Tessera"/>
+      <project>
+        <environment name="uv" load="osless_sample.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- TS-R-IN32M3-CEC -->
+    <example name="OS-less Sample" doc="Abstract.txt" folder="Boards/Tessera/TS-R-IN32M3-CEC/osless_sample">
+      <description>OS-less Sample example</description>
+      <board name="TS-R-IN32M3-CEC" vendor="Tessera"/>
+      <project>
+        <environment name="uv" load="osless_sample.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

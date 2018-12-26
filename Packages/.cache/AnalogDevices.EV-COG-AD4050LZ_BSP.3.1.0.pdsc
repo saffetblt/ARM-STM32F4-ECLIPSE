@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>EV-COG-AD4050LZ_BSP</name>
+  <description>Analog Devices EV-COG-AD4050 Off-Chip Drivers and Examples. (Subject to the Software License Agreement referred to in the Release Notes.)</description>
+  <url>http://download.analog.com/tools/EZBoards/COG_4050/Releases</url>
+  <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+  <license>License/2017-07-27-LWSCEDL Click Thru SLA.txt</license>
+
+  <releases>
+    <release version="3.1.0" date="2018-01-22">
+      Support for IAR 8.x extended
+    </release>
+    <release version="3.0.0" date="2017-10-31">
+      Support for IAR 8.x added
+      Version synchronization across IoT CMSIS Pack products
+    </release>
+    <release version="1.0.0" date="2017-08-11">
+      Initial Release
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package name="ADuCM4x50_DFP" vendor="AnalogDevices" version="3.1.0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <keyword>Analog Devices</keyword>
+    <keyword>Examples</keyword>
+    <keyword>Board Support Package</keyword>
+    <keyword>EV-COG-AD4050LZ</keyword>
+    <keyword>ADuCM4x50</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="AnalogDevices" name="EV-COG-AD4050LZ" revision="Rev B">
+    <description>Analog Devices EV-COG-AD4050LZ Evaluation Board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM4x50"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM4x50 Series"/>
+    <feature type="Batt" n="1" name="CR2032 Coin Cell"/>
+    <feature type="PWR" n="3" m = "6" name="+3V to +6V DC power supply"/>
+    <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+    <debugInterface adapter="J-Link" connector="10-pin Cortex Debug Connector"/>
+    </board>
+  </boards>
+
+  <conditions>
+  <condition id="ADuCM4050">
+    <description>ADuCM4050 device</description>
+    <require Dvendor="Analog Devices:1"/>
+    <accept Dname="ADuCM4050"/>
+  </condition>
+  <condition id="BSP GPIO">
+    <description>ADuCM4050 GPIO driver</description>
+    <require condition="ADuCM4050"/>
+    <require Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+  </condition>
+  </conditions>
+
+  <components>
+  <bundle Cbundle="EV-COG-AD4050LZ" Cclass="Board Support" Cversion="3.1.0">
+    <description>Analog Devices EV-COG-AD4050LZ Evaluation Board</description>
+    <doc></doc>
+    <component Cgroup="ADP5300" Cversion="3.1.0" condition="BSP GPIO">
+      <description>ADP5300 Voltage Regulator Off-Chip Driver</description>
+      <files>
+        <file category="include" name="Include/" />
+        <file category="source" name="Source/drivers/voltage_regulator/adi_adp5300.c"/>
+        <file category="doc" name="Documents/html/group___a_d_p5300___driver.html"/>
+      </files>
+    </component>
+  </bundle>
+  </components>
+
+   <examples>
+    <example name="blinky_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/gpio/blinky_example" doc="EV-COG-AD4050LZ/Readme_blinky_example.txt" version="3.1.0">
+      <description>Example demonstrating the GPIO driver blinking LEDs</description>
+
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="EV-COG-AD4050LZ"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/blinky_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>WDT</keyword>
+      </attributes>
+    </example>
+    <example name="button_press" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/push_button/button_press" doc="EV-COG-AD4050LZ/Readme_button_press.txt" version="3.1.0">
+      <description>Example demonstrating the blinking led after pressing push button</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="EV-COG-AD4050LZ"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/button_press.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>WDT</keyword>
+      </attributes>
+    </example>
+    <example name="rtc_alarm_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/rtc/rtc_alarm_example" doc="EV-COG-AD4050LZ/Readme_rtc_alarm.txt" version="3.1.0">
+      <description>Example demonstrating the RTC alarm feature</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4050"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/rtc_alarm_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+        <keyword>RTC, Alarm</keyword>
+      </attributes>
+    </example>
+    <example name="spi_loopback_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/spi/spi_loopback_example" doc="EV-COG-AD4050LZ/Readme_spi_loopback.txt" version="3.1.0">
+      <description>Basic example demonstrating the SPI driver (Loopback)</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/spi_loopback_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>SPI</keyword>
+      </attributes>
+    </example>
+    <example name="systick" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/systick/systick_example" doc="EV-COG-AD4050LZ/Readme_systick.txt" version="3.1.0">
+      <description>Example to demonstrate systick timer to generate specific number of interrupts</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/systick_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>SysTick</keyword>
+      </attributes>
+    </example>
+    <example name="tmr_example_gp" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/tmr/tmr_example_gp" doc="EV-COG-AD4050LZ/Readme_tmr_example_gp.txt" version="3.1.0">
+      <description>Example demonstrating the GP timer to generate a periodic interrupt and event capture</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="EV-COG-AD4050LZ"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/tmr_example_gp.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <keyword>WDT</keyword>
+      </attributes>
+    </example>
+    <example name="uart_autobaud_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/uart/uart_autobaud_example" doc="EV-COG-AD4050LZ/Readme_uart_autobaud.txt" version="3.1.0">
+      <description>Basic example demonstrating the UART driver using Autobaud mode</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/uart_autobaud_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+      </attributes>
+    </example>
+    <example name="uart_callback_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/uart/uart_callback_example" doc="EV-COG-AD4050LZ/Readme_uart_callback.txt" version="3.1.0">
+      <description>Basic example demonstrating the UART driver using Callback mode</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/uart_callback_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+      </attributes>
+    </example>
+    <example name="uart_loopback_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/uart/uart_loopback_example" doc="EV-COG-AD4050LZ/Readme_uart_loopback.txt" version="3.1.0">
+      <description>Basic example demonstrating the UART driver using Loopback </description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/uart_loopback_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+      </attributes>
+    </example>
+    <example name="wdt_example_reset" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/wdt/wdt_example_reset" doc="EV-COG-AD4050LZ/Readme_wdt_example_reset.txt" version="3.1.0">
+    <description>Example demonstrating the WDT driver(configured to reset on timeout)</description>
+    <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="EV-COG-AD4050LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar" load="EV-COG-AD4050LZ/iar/wdt_example_reset.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="xint_example" folder="Boards/EV-COG-AD4050LZ/Examples/drivers/xint/xint_example" doc="EV-COG-AD4050LZ/Readme_xint_example.txt" version="3.1.0">
+      <description>Example demonstrating external pin interrupt (XINT)</description>
+      <board name="EV-COG-AD4050LZ" vendor="AnalogDevices" Dname="ADuCM4x50"/>
+      <project>
+        <environment name="cces" load="EV-COG-AD4050LZ/cces/.project" />
+        <environment name="iar"  load="EV-COG-AD4050LZ/iar/xint_example.ewp" />
+      </project>
+      <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="XINT"/>
+        <keyword>XINT</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+</package>

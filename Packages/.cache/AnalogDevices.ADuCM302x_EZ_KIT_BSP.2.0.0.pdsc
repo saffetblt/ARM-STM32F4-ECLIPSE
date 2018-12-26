@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>ADuCM302x_EZ_KIT_BSP</name>
+  <description>Analog Devices ADuCM302x EZ-Kit Off-Chip Drivers and Examples</description>
+  <url>http://download.analog.com/tools/EZBoards/CM302x/Releases/</url>
+  <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+  <license>License/2017-05-17-CM302xEZBSP Click Thru SLA.txt</license>
+
+  <requirements>
+      <packages>
+          <package name="ADuCM302x_DFP" vendor="AnalogDevices" version="2.0.0"/>
+      </packages>
+  </requirements>
+
+  <releases>
+      <release version="2.0.0" date="2017-05-31">
+          Initial Release
+      </release>
+  </releases>
+
+  <keywords>
+      <keyword>Analog Devices</keyword>
+      <keyword>Off-Chip Drivers</keyword>
+      <keyword>Examples</keyword>
+      <keyword>Board Support Package</keyword>
+      <keyword>ADuCM302x</keyword>
+      <keyword>ADuCM3029</keyword>
+  </keywords>    
+
+  <boards>
+    <board vendor="AnalogDevices" name="ADuCM3029 EZ-KIT" revision="Ver 1.0">
+      <description>Analog Devices ADuCM3029 Evaluation Board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM3029"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM302x Series"/>
+      <feature type="PWR"             n="5"              name="External 5.0VDC/3.6A power supply"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>    
+
+  <conditions>
+
+    <condition id="ADuCM302x">
+      <description>ADuCM302x device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM302x"/>
+    </condition>
+    <condition id="ADuCM3029">
+      <description>ADuCM3029 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM3029"/>
+    </condition>
+    <condition id="BSP SPI">
+      <description>ADuCM3029 SPI driver</description>
+      <require condition="ADuCM3029"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+    </condition>
+    <condition id="BSP ADXL363">
+      <description>ADuCM3029 ADXL363 driver</description>
+      <require condition="ADuCM3029"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+    </condition>    
+  </conditions>
+
+  <components>
+    <bundle Cbundle="ADuCM3029 EZ-KIT" Cclass="Board Support" Cversion="2.0.0">
+      <description>ADuCM3029 Board Support Package</description>
+      <doc></doc>
+      <component Cgroup="ADXL363" Cversion="2.0.0" condition="BSP ADXL363">
+          <description>ADXL363 Accelerometer Off-Chip Driver</description>
+          <files>
+              <file category="include" name="Include/" />
+              <file category="source" name="Source/drivers/adxl363/adi_adxl363.c"/>
+              <file category="header" name="Include/config/adi_adxl363_config.h" version="2.0.0" attr="config"/>
+              <file category="doc" name="Documents/html/group___a_d_x_l363___driver.html"/>
+          </files>
+      </component>
+
+      <component Cgroup="SPI Flash" Cversion="2.0.0" condition="BSP SPI">
+          <description>W25Q32 SPI Flash Off-Chip Driver</description>
+          <files>
+              <file category="include" name="Include/" />
+              <file category="source" name="Source/drivers/spi-flash/w25q32/adi_w25q32.c"/>
+              <file category="doc" name="Documents/html/group___w25_q32___driver.html"/>
+          </files>
+      </component>
+    </bundle>
+  </components>
+  
+  <examples>
+
+    <example name="ADC_Channel_Read" folder="Boards/ADuCM3029-EZ-KIT/Examples/adc/adc_channel_read" doc="ADuCM302x/Readme_adc_channel_read.txt" version="2.0.0">
+    <description>Example to read from ADC channel</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM302x"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/adc_channel_read.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="ADC"/>
+        <keyword>ADC</keyword>
+        </attributes>
+    </example>
+    <example name="adxl363_accel" folder="Boards/ADuCM3029-EZ-KIT/Examples/adxl363/accel" doc="ADuCM302x/Readme_adxl363_example.txt" version="2.0.0">
+    <description>Basic example demonstrating the accelerometer</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/accelerometer.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Board Support" Cgroup="ADXL363" />
+        <keyword>adxl363, SPI</keyword>
+        </attributes>
+    </example>
+    <example name="accel_fifo" folder="Boards/ADuCM3029-EZ-KIT/Examples/adxl363/accel_using_FIFO" doc="ADuCM302x/Readme_adxl363_fifo_example.txt" version="2.0.0">
+    <description>Basic example demonstrating the accelerometer using FIFO </description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/accel_fifo.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Board Support" Cgroup="ADXL363" />
+        <keyword>ADXL363, FIFO</keyword>
+        </attributes>
+    </example>
+    <example name="beeper_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/beep/beeper_example" doc="ADuCM302x/Readme_beeper_example.txt" version="2.0.0">
+    <description>Basic example demonstrating the BEEP driver</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/beeper_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="BEEP"/>
+        <keyword>BEEP</keyword>
+        </attributes>
+    </example>
+    <example name="core_driven_crc" folder="Boards/ADuCM3029-EZ-KIT/Examples/crc/core_driven_CRC" doc="ADuCM302x/Readme_core_driven_crc.txt" version="2.0.0">
+    <description>Basic example demonstrating the CRC driver (core driven)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/core_driven_crc.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+        <keyword>CRC</keyword>
+        </attributes>
+    </example>
+    <example name="dma_driven_crc_without_callback" folder="Boards/ADuCM3029-EZ-KIT/Examples/crc/dma_driven_CRC_without_callback" doc="ADuCM302x/Readme_dma_driven_crc_without_callback.txt" version="2.0.0">
+    <description>Basic example demonstrating the CRC driver (DMA driven with no callback function)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/dma_driven_crc_without_callback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+        <keyword>CRC</keyword>
+        </attributes>
+    </example>
+    <example name="dma_driven_crc_with_callback" folder="Boards/ADuCM3029-EZ-KIT/Examples/crc/dma_driven_CRC_with_callback" doc="ADuCM302x/Readme_dma_driven_crc_with_callback.txt" version="2.0.0">
+    <description>Basic example demonstrating the CRC driver (DMA driven with callback function)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/dma_driven_crc_with_callback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+        <keyword>CRC</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_cbc_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_cbc" doc="ADuCM302x/Readme_crypto_cbc.txt" version="2.0.0">
+    <description>Crypto driver example using cbc cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_cbc.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_ccm_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_ccm" doc="ADuCM302x/Readme_crypto_ccm.txt" version="2.0.0">
+    <description>Crypto driver example using ccm cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_ccm.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_cmac_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_cmac" doc="ADuCM302x/Readme_crypto_cmac.txt" version="2.0.0">
+    <description>Crypto driver example using cmac cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_cmac.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_ctr_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_ctr" doc="ADuCM302x/Readme_crypto_ctr.txt" version="2.0.0">
+    <description>Crypto driver example using ctr cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_ctr.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_ecb_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_ecb" doc="ADuCM302x/Readme_crypto_ecb.txt" version="2.0.0">
+    <description>Crypto driver example using ecb cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_ecb.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="crypto_sha_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/crypto/crypto_sha" doc="ADuCM302x/Readme_crypto_sha.txt" version="2.0.0">
+    <description>Crypto driver example using sha cipher mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/crypto_sha.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Crypto"/>
+        <keyword>crypto</keyword>
+        </attributes>
+    </example>
+    <example name="flash_block_protect" folder="Boards/ADuCM3029-EZ-KIT/Examples/flash/flash_block_protect" doc="ADuCM302x/Readme_flash_block_protect.txt" version="2.0.0">
+    <description>Example for flash block protection</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/flash_block_protect.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="FLASH"/>
+        <keyword>GPIO</keyword>
+        </attributes>
+    </example>
+    <example name="flash_page_write" folder="Boards/ADuCM3029-EZ-KIT/Examples/flash/flash_page_write" doc="ADuCM302x/Readme_flash_page_write.txt" version="2.0.0">
+    <description>Example to write page to flash </description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/flash_page_write.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="FLASH"/>
+        <keyword>GPIO</keyword>
+        </attributes>
+    </example>
+    <example name="spi_loopback_freertos" folder="Boards/ADuCM3029-EZ-KIT/Examples/FreeRTOS/SPI_Loopback" doc="ADuCM302x/Readme_freertos_spi_loopback.txt" version="2.0.0">
+    <description>Example uses the SPI driver in the context of FreeRTOS</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/freertos_spi_loopback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="FreeRTOS"/>
+        <keyword>FreeRTOS</keyword>
+        </attributes>
+    </example>
+    <example name="LED_button_callback" folder="Boards/ADuCM3029-EZ-KIT/Examples/gpio/LED_button_callback" doc="ADuCM302x/Readme_LED_button_callback.txt" version="2.0.0">
+    <description>Push Button example using the GPIO driver</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/LED_button_callback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>GPIO</keyword>
+        </attributes>
+    </example>
+    <example name="temperature_sensor" folder="Boards/ADuCM3029-EZ-KIT/Examples/i2c/temperature_sensor" doc="ADuCM302x/Readme_temperature_sensor.txt" version="2.0.0">
+    <description>Temperature Sensor example using the I2C driver</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/temperature_sensor.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="I2C"/>
+        <keyword>I2C</keyword>
+        </attributes>
+    </example>
+    <example name="POST" folder="Boards/ADuCM3029-EZ-KIT/Examples/Power_On_Self_Test" doc="ADuCM302x/Readme_post.txt" version="2.0.0">
+    <description>Application example with manufacturing tests for the EZ-KIT</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/POST.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Board Support" Cgroup="SPI Flash"/>
+		<component Cclass="Board Support" Cgroup="ADXL363"/>
+        <keyword>POST</keyword>
+        </attributes>
+    </example>
+    <example name="rng_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/rng/rng_example" doc="ADuCM302x/Readme_rng_example.txt" version="2.0.0">
+    <description>Basic example demonstrating the RNG driver</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM302x"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/rng_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="RNG"/>
+        <keyword>RNG</keyword>
+        </attributes>
+    </example>
+    <example name="rtc_alarm" folder="Boards/ADuCM3029-EZ-KIT/Examples/rtc/Rtc_alarm" doc="ADuCM302x/Readme_rtc_alarm.txt" version="2.0.0">
+    <description>Example demonstrating the RTC alarm feature</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/rtc_alarm.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+        <keyword>RTC, Alarm</keyword>
+        </attributes>
+    </example>
+    <example name="rtc_IO_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/rtc/Rtc_IO_example" doc="ADuCM302x/Readme_rtc_IO_example.txt" version="2.0.0">
+    <description>Example demonstrates the SensorStrobe feature of RTC device.</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM302x"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/rtc_IO_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+        <keyword>RTC, Input, Output, SensorStrobe</keyword>
+        </attributes>
+    </example>
+    <example name="ucos-III" folder="Boards/ADuCM3029-EZ-KIT/Examples/rtos/ucos-III" doc="ADuCM302x/Readme_ucos_iii_example.txt" version="2.0.0">
+    <description>Example demonstrating the ucos-III RTOS</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/rtos_ucos_iii_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="MICRIUM"/>
+        <keyword>RTC, Alarm</keyword>
+        </attributes>
+    </example>
+    <example name="Spi_Loopback" folder="Boards/ADuCM3029-EZ-KIT/Examples/spi/LoopBack" doc="ADuCM302x/Readme_spi_loopback.txt" version="2.0.0">
+    <description>Basic example demonstrating the SPI driver (Loopback)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/spi_loopback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <keyword>SPI</keyword>
+        </attributes>
+    </example>
+    <example name="SPI_MasterSlave_LoopBack_Example" folder="Boards/ADuCM3029-EZ-KIT/Examples/spi/MasterSlaveLoopBack" doc="ADuCM302x/Readme_MasterSlave_loopback.txt" version="2.0.0">
+    <description>Basic example demonstrating the SPI driver (MasteSlave Loopback)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/MasterSlaveLoopback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <keyword>SPI</keyword>
+        </attributes>
+    </example>
+    <example name="w25q32_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/spi-flash/w25q32_example" doc="ADuCM302x/Readme_w25q32_example.txt" version="2.0.0">
+    <description>Basic example demonstrating the on-board SPI Flash</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/w25q32_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Board Support" Cgroup="SPI Flash"/>
+        <keyword>SPI Flash</keyword>
+        </attributes>
+    </example>
+    <example name="sport_loopback_dma" folder="Boards/ADuCM3029-EZ-KIT/Examples/sport/loopback_dma" doc="ADuCM302x/Readme_sport_loopback_dma.txt" version="2.0.0">
+    <description>Basic example demonstrating the SPORT driver (DMA driven)</description>                           
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+            <environment name="cces" load="ADuCM302x/cces/.project" />
+			<environment name="uv"   load="ADuCM302x/keil/loopback_dma.uvprojx"/>
+        </project>
+        <attributes>
+            <category>Driver Examples</category>
+            <component Cclass="CMSIS"  Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="Retarget" />
+            <component Cclass="Device" Cgroup="Examples Support" />
+            <component Cclass="Device" Cgroup="Drivers" Csub="SPORT"/>
+            <keyword>SPORT</keyword>
+        </attributes>
+    </example>
+    <example name="sport_loopback_int" folder="Boards/ADuCM3029-EZ-KIT/Examples/sport/loopback_int" doc="ADuCM302x/Readme_sport_loopback_int.txt" version="2.0.0">
+    <description>Basic example demonstrating the SPORT driver (interrupt driven)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+            <environment name="cces" load="ADuCM302x/cces/.project" />
+			<environment name="uv"   load="ADuCM302x/keil/loopback_int.uvprojx"/>
+        </project>
+        <attributes>
+            <category>Driver Examples</category>
+            <component Cclass="CMSIS"  Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="Retarget" />
+            <component Cclass="Device" Cgroup="Examples Support" />
+            <component Cclass="Device" Cgroup="Drivers" Csub="SPORT"/>
+            <keyword>SPORT</keyword>
+        </attributes>
+    </example>
+    <example name="systick_example" folder="Boards/ADuCM3029-EZ-KIT/Examples/SysTick/systick_example" doc="ADuCM302x/Readme_systick_example.txt" version="2.0.0">
+    <description>Example to demonstrate SysTick timer to generate specific number of interrupts</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/systick_example.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <keyword>SysTick</keyword>
+        </attributes>
+    </example>
+   <example name="tmr_example_gp" folder="Boards/ADuCM3029-EZ-KIT/Examples/tmr/tmr_example_gp" doc="ADuCM302x/Readme_tmr_example_gp.txt" version="2.0.0">
+    <description>Basic example demonstrating the TMR driver to generate a periodic interrupt and capture events</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/tmr_example_gp.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <keyword>TMR</keyword>
+        </attributes>
+    </example>
+    <example name="Autobaud" folder="Boards/ADuCM3029-EZ-KIT/Examples/uart/Autobaud" doc="ADuCM302x/Readme_autobaud.txt" version="2.0.0">
+    <description>UART autobaud example</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/Autobaud.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_callback" folder="Boards/ADuCM3029-EZ-KIT/Examples/uart/Callback" doc="ADuCM302x/Readme_uart_callback.txt" version="2.0.0">
+    <description>Basic example demonstrating the UART driver using Callback mode</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/uart_callback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_loopback" folder="Boards/ADuCM3029-EZ-KIT/Examples/uart/Loopback" doc="ADuCM302x/Readme_uart_loopback.txt" version="2.0.0">
+    <description>Basic example demonstrating the UART driver using Loopback </description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/uart_loopback.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_interrupt" folder="Boards/ADuCM3029-EZ-KIT/Examples/wdt/wdt_example_interrupt" doc="ADuCM302x/Readme_wdt_example_interrupt.txt" version="2.0.0">
+    <description>Example demonstrating the WDT driver(configured to interrupt on timeout)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/wdt_example_interrupt.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_reset" folder="Boards/ADuCM3029-EZ-KIT/Examples/wdt/wdt_example_reset" doc="ADuCM302x/Readme_wdt_example_reset.txt" version="2.0.0">
+    <description>Example demonstrating the WDT driver(configured to reset on timeout)</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/wdt_example_reset.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="wakeup_button" folder="Boards/ADuCM3029-EZ-KIT/Examples/xint/wakeup_button" doc="ADuCM302x/Readme_wakeup_button.txt" version="2.0.0">
+    <description>Basic example demonstrating the XINT driver</description>
+    <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="uv"   load="ADuCM302x/keil/wakeup_button.uvprojx"/>
+        <environment name="cces" load="ADuCM302x/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="XINT"/>
+        <keyword>XINT</keyword>
+        </attributes>
+    </example>
+
+
+  </examples>
+
+</package>

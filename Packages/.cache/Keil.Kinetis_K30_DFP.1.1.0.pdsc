@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K30_DFP</name>
+  <description>NXP Kinetis K30 Series Device Support</description>
+
+  <releases>
+    <release version="1.1.0" date="2017-02-16">
+      Reworked K30_DFP.
+      - changed vendor to NXP.
+      - updated documentation.
+      - reworked startup.
+      - replaced backslash with forward slash.
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+    </release>
+    <release version="1.0.1">
+      File name consistency.
+    </release>            
+    <release version="1.0.0">
+      First Release version of K30 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K30</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="K30 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+
+      <description>
+The Kinetis K3x MCU family is pin-peripheral and software-compatible with the Kinetis K1x MCU family and adds a flexible low-power segment LCD controller with support for up to 320 segments.
+Devices start from 64 KB of flash in 64 QFN packages extending up to 512 KB in a 144MAPBGA package with a rich suite of analog, communication, timing and control peripherals.
+      </description>
+      
+      <!-- ******************************  MK30DX128xxx7  ****************************** -->
+      <device Dname="MK30DX128xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK30D7.h" define="MK30DX128xxx7"/>
+        <debug svd="SVD/MK30D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P128.FLM"      start="0x00000000" size="0x00020000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K30P100M72SF1RM.pdf" title="MK30DX128xxx7 Reference Manual"/>
+        <book name="Documents/K30P100M72SF1.pdf"   title="MK30DX128xxx7 Data Sheet"/>
+      </device>
+      
+      <!-- ******************************  MK30DX256xxx7  ****************************** -->
+      <device Dname="MK30DX256xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK30D7.h" define="MK30DX256xxx7"/>
+        <debug svd="SVD/MK30D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM"      start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K30P100M72SF1RM.pdf" title="MK30DX256xxx7 Reference Manual"/>
+        <book name="Documents/K30P100M72SF1.pdf"   title="MK30DX256xxx7 Data Sheet"/>
+      </device>
+      
+      <!-- ******************************  MK30DX64xxx7  ****************************** -->
+      <device Dname="MK30DX64xxx7">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/Include/MK30D7.h" define="MK30DX64xxx7"/>
+        <debug svd="SVD/MK30D7.svd"/>
+        <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+        <memory id="IROM2"                       start="0x10000000" size="0x00008000" startup="0" default="0"/>
+        <memory id="IRAM1"                       start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+        <memory id="IRAM2"                       start="0x1FFFE000" size="0x00002000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P64.FLM"       start="0x00000000" size="0x00010000"             default="1"/>
+        <algorithm name="Flash/MK_D32_72MHZ.FLM" start="0x10000000" size="0x00008000"             default="1"/>
+
+        <book name="Documents/K30P100M72SF1RM.pdf" title="MK30DX64xxx7 Reference Manual"/>
+        <book name="Documents/K30P100M72SF1.pdf"   title="MK30DX64xxx7 Data Sheet"/>
+      </device>
+      
+      <!-- ******************************  MK30DN512xxx10  ****************************** -->
+      <device Dname="MK30DN512xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK30D10.h" define="MK30DN512xxx10"/>
+        <debug svd="SVD/MK30D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P512.FLM" start="0x00000000" size="0x00080000"             default="1"/>
+
+        <book name="Documents/K30P144M100SF2V2RM.pdf" title="MK30DN512xxx10 Reference Manual"/>
+        <book name="Documents/K30P144M100SF2V2.pdf"   title="MK30DN512xxx10 Data Sheet"/>
+      </device>
+      
+      <!-- ******************************  MK30DX128xxx10  ****************************** -->
+      <device Dname="MK30DX128xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK30D10.h" define="MK30DX128xxx10"/>
+        <debug svd="SVD/MK30D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IROM2"                  start="0x10000000" size="0x00020000" startup="0" default="0"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+        <algorithm name="Flash/MK_D128.FLM" start="0x10000000" size="0x00020000"             default="1"/>
+
+        <book name="Documents/K30P144M100SF2V2RM.pdf" title="MK30DX128xxx10 Reference Manual"/>
+        <book name="Documents/K30P144M100SF2V2.pdf"   title="MK30DX128xxx10 Data Sheet"/>
+      </device>
+      
+      <!-- ******************************  MK30DX256xxx10  ****************************** -->
+      <device Dname="MK30DX256xxx10">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/MK30D10.h"  define="MK30DX256xxx10"/>
+        <debug svd="SVD/MK30D10.svd"/>
+        <memory id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IROM2"                  start="0x10000000" size="0x00040000" startup="0" default="0"/>
+        <memory id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+        <memory id="IRAM2"                  start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+        <algorithm name="Flash/MK_P256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+        <algorithm name="Flash/MK_D256.FLM" start="0x10000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K30P144M100SF2V2RM.pdf" title="MK30DX256xxx10 Reference Manual"/>
+        <book name="Documents/K30P144M100SF2V2.pdf"   title="MK30DX256xxx10 Data Sheet"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- device Conditions -->
+    <condition id="MK30D7">
+      <description>NXP Kinetis K30D7 device</description>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK30DX128xxx7"/>
+      <accept Dname="MK30DX256xxx7"/>
+      <accept Dname="MK30DX64xxx7"/>
+    </condition>
+    
+    <condition id="MK30D10">
+      <description>NXP Kinetis K30D10 device</description>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK30DN512xxx10"/>
+      <accept Dname="MK30DX128xxx10"/>
+      <accept Dname="MK30DX256xxx10"/>
+      </condition>
+
+
+    <!-- device + CMSIS Conditions -->
+    <condition id="MK30D7 CMSIS">
+      <description>NXP Kinetis K30D7 device and CMSIS-CORE</description>
+      <require condition="MK30D7"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="MK30D10 CMSIS">
+      <description>NXP Kinetis K30D10 device and CMSIS-CORE</description>
+      <require condition="MK30D10"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup MK30D7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK30D7 CMSIS">
+      <description>System Startup for NXP Kinetis MK30D7 devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK30D7.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK30D7.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MK30D10 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MK30D10 CMSIS">
+      <description>System Startup for NXP Kinetis MK30D10 devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MK30D10.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MK30D10.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+</package>

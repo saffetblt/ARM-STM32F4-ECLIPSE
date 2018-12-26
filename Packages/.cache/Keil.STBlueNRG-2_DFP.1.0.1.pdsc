@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>STBlueNRG-2_DFP</name>
+  <description>STMicroelectronics BlueNRG-2 Series Device Support</description>
+
+  <releases>
+    <release version="1.0.1" date="2018-08-03">
+      Data patch for STBlueNRG-2 ROM table.
+    </release>
+    <release version="1.0.0">
+      First Release version of STBlueNRG-2 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>BlueNRG-2</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="STBlueNRG-2 Series" Dvendor="STMicroelectronics:13">
+     <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book name="Documents/dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+      <book name="Documents/DM00399302.pdf" title="BlueNRG Datasheet"/>
+      <!-- ************************  Subfamily 'BlueNRG-1'  **************************** -->
+      <subFamily DsubFamily="STBlueNRG-2">
+        <description>
+          High performance, ultra-low power ARM Cortex-M0 32-bit based architecture core
+          - Upgradable BLE stack (stored in embedded Flash memory, via SPI)
+          - AES security co-processor
+          - Low power modes
+          - 16 or 32 MHz crystal oscillator
+          - 12 MHz ring oscillator
+          - 32 kHz crystal oscillator
+          - 32 kHz ring oscillator
+          - Compliant with the following radio frequency regulations: ETSI EN 300 328, EN 300 440, FCC CFR47 Part 15, ARIB STD
+          - Operating temperature range: -40 to 85 Celsius
+        </description>
+        <debug svd="SVD/BlueNRG2.svd">
+          <datapatch __dp="0" __ap="0" address="0xF0000000" value="0xF00FF003" info="ROM Table pointer to block at 0xE00FF000"/>
+        </debug>
+        <!-- *************************  Device 'BlueNRG-1'  ***************************** -->
+        <device Dname="BlueNRG-2">
+          <memory     id="IROM1"                      start="0x10040000"  size="0x40000"     startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x6000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/STBlueNRG2.FLM"     start="0x10040000"  size="0x40000"  RAMstart="0x200002CC" RAMsize="0x1000"  default="1" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+</package>

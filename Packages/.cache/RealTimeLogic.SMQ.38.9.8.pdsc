@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+    
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>SMQ</name>                                                     <!-- name of package -->
+  <description>
+    Simple Message Queues (SMQ) is an easy to use IoT publish subscribe connectivity protocol designed and optimized for embedded systems.
+  </description>  <!-- brief description of PACK -->
+  <vendor>RealTimeLogic</vendor>                                                 <!-- unique vendor/distributor of PACK -->
+  <url>https://realtimelogic.com/downloads/arm-mdk-packs/</url>
+  <license>SMQ/License.txt</license>
+
+  <releases>                                                                <!-- contains complete release history of available releases (put most recent first) -->
+    <release version="38.9.8" date="2016-06-16">
+      June/16/2016,  First MDK release
+    </release>
+  </releases>
+  
+  <keywords>                                                                 <!-- PACK related keywords for search indexing (automatic are vendor and pack name) -->
+    <keyword>Simple Message Queues</keyword>
+    <keyword>SMQ</keyword>
+    <keyword>Internet of Things</keyword>
+    <keyword>IoT</keyword>
+    <keyword>MQTT</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="Cond-SMQ">
+      <require Cclass="SMQ" Cgroup="Lib"/>
+    </condition>
+    <condition id="CMSIS_stuff">
+      <description>CMSIS Core with RTOS for Cortex-M processor</description>
+      <require Cbundle="MDK-Pro" Cclass="Network" Cgroup="Lib"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="SMQ" Cgroup="Lib" Cversion="38.9.8" condition="Cond-SMQ">
+      <description>SMQ Library</description>
+      <files>
+        <file category="doc"     name="SMQ/doc.html"/>
+        <file category="include" name="SMQ/src/"/>
+        <file category="include" name="SMQ/src/arch/MDK/"/>
+        <file category="source"  name="SMQ/src/selib.c" />
+        <file category="source"  name="SMQ/src/SMQClient.c"/>
+      </files>
+    </component>
+
+    <component Cclass="SMQ" Cgroup="Example" Cversion="38.9.8" condition="Cond-SMQ">
+      <description>SMQ Example</description>
+      <files>
+        <file category="doc"     name="SMQ/Abstract.txt"/>
+        <file category="include" name="SMQ/examples/"/>
+        <file category="source"  name="SMQ/examples/m2m-led.c" />
+      </files>
+    </component>
+
+
+  </components>
+
+  <examples>
+
+      <example name="SMQ LED Example" doc="Abstract.txt" folder="Boards/ST/STM32F746G_Discovery/SMQ-LED">
+      <description>SMQ IoT pub/sub LED Example (control LEDs via cloud server)</description>
+      <board name="STM32F746G-Discovery" vendor="STMicroelectronics" Dvendor="STMicroelectronics:13"/>
+      <project>
+        <environment name="uv" load="SMQ.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="SMQ" Cgroup="Lib"/>
+        <component Cclass="SMQ" Cgroup="Example"/>
+        <category>Middleware</category>
+        <category>IoT</category>
+        <keyword>IoT</keyword>
+        <keyword>Internet of Things</keyword>
+        <keyword>SMQ</keyword>
+        <keyword>MQTT</keyword>
+      </attributes>
+    </example>
+
+      <example name="SMQ LED Example" doc="Abstract.txt" folder="Boards/NXP/FRDM-K64F/SMQ-LED">
+      <description>SMQ IoT pub/sub LED Example (control LEDs via cloud server)</description>
+      <board name="FRDM-K64F" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="SMQ.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="SMQ" Cgroup="Lib"/>
+        <component Cclass="SMQ" Cgroup="Example"/>
+        <category>Middleware</category>
+        <category>IoT</category>
+        <keyword>IoT</keyword>
+        <keyword>Internet of Things</keyword>
+        <keyword>SMQ</keyword>
+        <keyword>MQTT</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>
+
+

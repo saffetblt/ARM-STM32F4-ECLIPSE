@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMD09_DFP</name>
+  <description>Microchip SAM D09 Series basic Device Support</description>
+
+  <releases>
+    <release version="1.0.1" date="2018-05-07">
+      Updated device vendor from Atmel to Microchip.
+    </release>
+    <release version="1.0.0" date="2015-09-18">
+      First Release version of SAMD09 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAM D</keyword>
+    <keyword>SAM D09</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM D Series" Dvendor="Microchip:3">
+      <book name="Documents\dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The Microchip | SMART SAM D ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+The Microchip | SMART SAM D gives you a truly differentiated general-purpose microcontroller that is ideal for many low-power, cost-sensitive industrial and consumer applications.
+      </description>
+
+      <!-- ************************  Subfamily 'SAM D09'  **************************** -->
+      <subFamily DsubFamily="SAM D09">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+
+        <!--book name="Documents\Atmel-42242-SAM-D10_Datasheet.pdf" title="SAM D10 Datasheet"/-->
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with low power consumption in a small package make the Microchip SAM D09 ARM Cortex-M0+ based microcontroller series
+ideal for a wide range of home automation, consumer, metering and industrial applications.
+The SAM D09 series is designed for simple and intuitive migration between SAM D devices with identical peripheral modules, compatible code and a linear address map.
+        </description>
+
+        <feature type="DMA"           n="6"/>
+        <feature type="CoreOther"     n="6"                           name="Event System"/>
+        <feature type="MPSerial"      n="2"                           name="SERCOMM (I2C, USART, SPI)"/>
+        <feature type="RTC"           n="32768"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Timer"         n="2"       m="32"              name="Timer/Counter"/>
+        <feature type="ExtInt"        n="8"                           name="External Interrupts"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="VCC"           n="2.40"    m="3.63"/>
+
+        <!-- *************************  Device 'ATSAMD09C13A'  ***************************** -->
+        <device Dname="ATSAMD09C13A">
+          <compile header="Device\SAMD09\Include\samd09.h" define="__SAMD09C13A__"/>
+          <debug svd="SVD\SAMD09\ATSAMD09C13A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00002000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD09_8.FLM"   start="0x00000000" size="0x00002000"             default="1"/>
+
+          <feature type="ADC"           n="5"       m="12"/>
+          <feature type="IOs"           n="12"                          name="General Purpose I/Os"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD09D14A'  ***************************** -->
+        <device Dname="ATSAMD09D14A">
+          <compile header="Device\SAMD09\Include\samd09.h" define="__SAMD09D14A__"/>
+          <debug svd="SVD\SAMD09\ATSAMD09D14A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD09_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="22"                          name="General Purpose I/Os (nax.)"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMD09 CMSIS">
+      <description>Microchip SAM D09 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMD09*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup SAMD09 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMD09 CMSIS">
+      <description>System Startup for Microchip SAM D09 Devices</description>
+      <files>
+        <file category="include"   name="Device\SAMD09\Include\"/>
+        <file category="source"    name="Device\SAMD09\Source\ARM\startup_SAMD09.s" attr="config"   version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device\SAMD09\Source\system_samd09.c"      attr="config"   version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <name>nRF_IoT_lwIP</name>
+    <description>Port of the lwIP Stack for Nordic Semiconductor IoT SDK.</description>
+    <vendor>NordicSemiconductor</vendor>
+    <url>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_IoT_lwIP/</url>
+    <supportContact>http://www.nordicsemi.com/About-us/Contact-us</supportContact>
+
+    <releases>
+        <release version="1.4.1-1" date="2015-05-29">
+            This is a part of Nordic Semiconductor IoT SDK version 0.8.0. Checkout version - 8862a1ac8fdae69535e9e5e19a042d55a53f2d49. With additional modification.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>LWIP</keyword>
+    </keywords>
+
+    <boards>
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10028" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10028).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10031" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10031).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/>  
+            <feature type="Other"     n="1"              name="mbed Enabled"/>
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="USB"/>          
+        </board>
+        <board vendor="NordicSemiconductor" name="Wavetek board with nRF51822 Module"/>
+    </boards>
+
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="nRF51 Series">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAC"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+        </condition>
+
+        <condition id="nRF51 Series CMSIS Device">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+            <require condition="nRF51 Series"/>
+        </condition>
+        <condition id="mqtt">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="1.4.1-1" Cvendor="NordicSemiconductor" Csub="lwip" Cgroup="lwIP Stack" Cclass="Third Parties" />
+        </condition>
+
+        <condition id="lwip">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="0.8.0" Cvendor="NordicSemiconductor" Csub="ble_6lowpan" Cgroup="BLE 6LoWPAN" Cclass="nRF_IoT" />
+            <require Cversion="3.0.0" Cvendor="NordicSemiconductor" Cgroup="mem_manager" Cclass="nRF_Libraries" />
+        </condition>
+
+    </conditions>
+    <components>
+<component Cvendor="NordicSemiconductor" Cclass="Third Parties" Cgroup="lwIP Stack" Csub="mqtt" Cversion="1.4.1-1" condition="mqtt">
+  <description>MQTT Protocol implementation for lwIP</description>
+  <files>
+    <file category="source" name="src\app\mqtt\mqtt.c" attr="config"  version="1.4.1-1"/>
+    <file category="include" name="src\app\mqtt\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="Third Parties" Cgroup="lwIP Stack" Csub="lwip" Cversion="1.4.1-1" condition="lwip">
+  <description>lwIP stack for nRF51</description>
+  <files>
+    <file category="source" name="src\port\nrf_platform_port.c" attr="config"  version="1.4.1-1"/>
+    <file category="library" name="lib\liblwip.lib" />
+    <file category="header" name="src\include\lwip\udp.h" />
+    <file category="header" name="src\include\lwip\pbuf.h" />
+    <file category="include" name="src\include\" />
+    <file category="include" name="src\include\netif\" />
+    <file category="include" name="src\port\" />
+    <file category="include" name="src\port\arch\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="documentation\index.html" />
+  </files>
+</component>
+    </components>
+</package>

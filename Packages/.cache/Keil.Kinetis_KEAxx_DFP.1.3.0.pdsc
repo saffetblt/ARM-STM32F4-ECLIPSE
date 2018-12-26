@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KEAxx_DFP</name>
+  <description>NXP Kinetis KEAxx Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.3.0" date="2017-05-08">
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions.
+      Updated boards description.
+      Changed device vendor to NXP.
+    </release>
+    <release version="1.2.0" date="2015-02-12">
+      Added TRK-KEA boards and examples.
+      Reworked conditions, startup.
+    </release>
+    <release version="1.1.0" date="2014-08-28">
+      Corrected memory settings for SRAM to form a single contiguous region.
+      Udpated CMSIS-Core files to latest version from NXP.
+    </release>
+    <release version="1.0.0">
+      First Release version of KEAxx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KEAxx</keyword>
+    <keyword>TRK-KEA8</keyword>
+    <keyword>TRK-KEA64</keyword>
+    <keyword>TRK-KEA128</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KEAxx Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+
+      <description>
+Kinetis EA series of 32-bit ARM® Cortex® MCUs are targeted for a wide range of automotive and industrial applications requiring the highest level of quality and longevity support.
+The Kinetis EA series is an entry point to the broad ARM ecosystem and features:
+ - A low-power ARM Cortex-M0+ core and 8–128 KB of embedded flash
+ - Excellent EMC/ESD, high temperature and low radiated emissions
+ - Scalable, highly robust performance solution for cost-sensitive automotive applications
+ - A broad set of reference designs, tools and application notes to help shorten design development and speed time-to-market
+      </description>
+
+
+      <!-- ******************************  SKEAZ128xxx4  ****************************** -->
+      <device Dname="SKEAZ128xxx4">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZ1284.h" define="SKEAZ128xxx4"/>
+        <debug svd="SVD/SKEAZ1284.svd"/>
+        <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+        <memory id="IRAM1"                           start="0x1FFFF000" size="0x00004000"             default="1"/>
+        <algorithm name="Flash/MKE04Zxxx_P128KB.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+        <book name="Documents/KEA128RM.pdf"         title="SKEAZ128xxx4 Device Reference Manual"/>
+        <book name="Documents/SKEA128P80M48SF0.pdf" title="SKEAZ128xxx4 Device Data Sheet"/>
+      </device>
+
+      <!-- ******************************  SKEAZ64xxx4  ****************************** -->
+      <device Dname="SKEAZ64xxx4">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZ1284.h" define="SKEAZ64xxx4"/>
+        <debug svd="SVD/SKEAZ1284.svd"/>
+        <memory id="IROM1"                          start="0x00000000" size="0x00010000" startup="1" default="1"/>
+        <memory id="IRAM1"                          start="0x1FFFF800" size="0x00002000"             default="1"/>
+        <algorithm name="Flash/MKE04Zxxx_P64KB.FLM" start="0x00000000" size="0x00010000"             default="1"/>
+
+        <book name="Documents/KEA128RM.pdf"         title="SKEAZ64xxx4 Device Reference Manual"/>
+        <book name="Documents/SKEA128P80M48SF0.pdf" title="SKEAZ64xxx4 Device Data Sheet"/>
+      </device>
+
+      <!-- ******************************  SKEAZN8xxx4  ****************************** -->
+      <device Dname="SKEAZN8xxx4">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZN84.h" define="SKEAZN8xxx4"/>
+        <debug svd="SVD/SKEAZN84.svd"/>
+        <memory id="IROM1"                         start="0x00000000" size="0x00002000" startup="1" default="1"/>
+        <memory id="IRAM1"                         start="0x1FFFFF00" size="0x00000400"             default="1"/>
+        <algorithm name="Flash/MKE04Zxxx_P8KB.FLM" start="0x00000000" size="0x00002000"             default="1"/>
+
+        <book name="Documents/KEA8RM.pdf"         title="SKEAZN8xxx4 Device Reference Manual"/>
+        <book name="Documents/SKEA8P44M48SF0.pdf" title="SKEAZN8xxx4 Device Data Sheet"/>
+      </device>
+
+      <!-- ******************************  SKEAZN16xxx2  ****************************** -->
+      <device Dname="SKEAZN16xxx2">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZN642.h" define="SKEAZN16xxx2"/>
+        <debug svd="SVD/SKEAZN642.svd"/>
+        <memory id="IROM1"                           start="0x00000000" size="0x00004000" startup="1" default="1"/>
+        <memory id="IRAM1"                           start="0x1FFFFE00" size="0x00000800"             default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_P16KB.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100"             default="1"/>
+
+        <book name="Documents/KEA64RM.pdf"         title="SKEAZN16xxx2 Device Reference Manual"/>
+        <book name="Documents/SKEA64P64M20SF0.pdf" title="SKEAZN16xxx2 Device Data Sheet"/>
+      </device>
+
+      <!-- ******************************  SKEAZN32xxx2  ****************************** -->
+      <device Dname="SKEAZN32xxx2">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZN642.h" define="SKEAZN32xxx2"/>
+        <debug svd="SVD/SKEAZN642.svd"/>
+        <memory id="IROM1"                           start="0x00000000" size="0x00008000" startup="1" default="1"/>
+        <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000"             default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_P32KB.FLM"  start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00000800" default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFC00" RAMsize="0x00000800" default="1"/>
+
+        <book name="Documents/KEA64RM.pdf"         title="SKEAZN32xxx2 Device Reference Manual"/>
+        <book name="Documents/SKEA64P64M20SF0.pdf" title="SKEAZN32xxx2 Device Data Sheet"/>
+      </device>
+
+      <!-- ******************************  SKEAZN64xxx2  ****************************** -->
+      <device Dname="SKEAZN64xxx2">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+        <compile header="Device/Include/SKEAZN642.h" define="SKEAZN64xxx2"/>
+        <debug svd="SVD/SKEAZN642.svd"/>
+        <memory id="IROM1"                           start="0x00000000" size="0x00010000" startup="1" default="1"/>
+        <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000"             default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_P64KB.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+        <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100"             default="1"/>
+
+        <book name="Documents/KEA64RM.pdf"         title="SKEAZN64xxx2 Device Reference Manual"/>
+        <book name="Documents/SKEA64P64M20SF0.pdf" title="SKEAZN64xxx2 Device Data Sheet"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SKEAZ128 CMSIS">
+      <description>NXP Kinetis SKEAZ128 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="SKEAZ128xxx4"/>
+      <accept Dname="SKEAZ64xxx4"/>
+    </condition>
+
+    <condition id="SKEAZN8 CMSIS">
+      <description>NXP Kinetis SKEAZN8 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="SKEAZN8xxx4"/>
+    </condition>
+
+    <condition id="SKEAZNxxx2 CMSIS">
+      <description>NXP Kinetis SKEAZN 20MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="SKEAZN16xxx2"/>
+      <accept Dname="SKEAZN32xxx2"/>
+      <accept Dname="SKEAZN64xxx2"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SKEAZ128 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SKEAZ128 CMSIS">
+      <description>System Startup for NXP Kinetis SKEAZ128 48MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SKEAZ1284.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SKEAZ1284.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SKEAZN8 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SKEAZN8 CMSIS">
+      <description>System Startup for NXP Kinetis SKEAZN8 48MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SKEAZN84.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SKEAZN84.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SKEAZNxxx2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SKEAZNxxx2 CMSIS">
+      <description>System Startup for NXP Kinetis SKEAZN 20MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SKEAZN642.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SKEAZN642.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- TRK-KEA8 board support -->
+    <bundle Cbundle="TRK-KEA8" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP TRK-KEA8 board support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SKEAZN8 CMSIS">
+      <description>LED driver for NXP TRK-KEA8 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA8/Common/LED_TRK-KEA8.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SKEAZN8 CMSIS">
+      <description>Button driver for NXP TRK-KEA8 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA8/Common/Buttons_TRK-KEA8.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- TRK-KEA64 board support -->
+    <bundle Cbundle="TRK-KEA64" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP TRK-KEA64 board support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SKEAZNxxx2 CMSIS">
+      <description>LED driver for NXP TRK-KEA64 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA64/Common/LED_TRK-KEA64.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SKEAZNxxx2 CMSIS">
+      <description>Button driver for NXP TRK-KEA64 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA64/Common/Buttons_TRK-KEA64.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- TRK-KEA128 board support -->
+    <bundle Cbundle="TRK-KEA128" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP TRK-KEA128 board support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SKEAZ128 CMSIS">
+      <description>LED driver for NXP TRK-KEA128 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA128/Common/LED_TRK-KEA128.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SKEAZ128 CMSIS">
+      <description>Button driver for NXP TRK-KEA128 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TRK-KEA128/Common/Buttons_TRK-KEA128.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <!-- TRK-KEA8 board -->
+    <board vendor="NXP" name="TRK-KEA8" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <description>TRK-KEA8: Kinetis KEA8 StarterTRAK for Low-end Automotive Applications</description>
+      <image small="Boards/NXP/TRK-KEA8/Documentation/TRK-KEA8_small.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/startertrak-development-boards/kinetis-kea8-startertrak-for-low-end-automotive-applications:TRK-KEA8" title="TRK-KEA8 Web Page"/>
+      <book category="schematic" name="Boards/NXP/TRK-KEA8/Documentation/TRK-KEA8_SCH.pdf"  title="Schematics"/>
+      <book category="manual"    name="Boards/NXP/TRK-KEA8/Documentation/KINTESMCUAUTQSG.pdf" title="Quick Start Guide" />
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="SKEAZN8xxx4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KEAxx Series"/>
+      <feature type="Button"    n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="LED"       n="6"              name="LEDs: Power, SDA, 4x User"/>
+      <feature type="ConnOther" n="1"              name="LIN Connector"/>
+      <feature type="LightSens" n="1"              name="Light Sensor"/>
+      <feature type="CustomFF"  n="9"  m="8"       name="Individual Port Access"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="5"  m="12"      name="External Supply"/>
+      <feature type="ODbg"      n="1"              name="Onboard OpenSDA via USB"/>
+    </board>
+
+    <!-- TRK-KEA64 board -->
+    <board vendor="NXP" name="TRK-KEA64" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <description>TRK-KEA64: Kinetis KEA64 StarterTRAK with 256B EEPROM</description>
+      <image small="Boards/NXP/TRK-KEA64/Documentation/TRK-KEA64_small.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/startertrak-development-boards/kinetis-kea8-startertrak-for-low-end-automotive-applications:TRK-KEA64" title="TRK-KEA64 Web Page"/>
+      <book category="schematic" name="Boards/NXP/TRK-KEA64/Documentation/TRK-KEA64_SCH.pdf"  title="Schematics"/>
+      <book category="manual"    name="Boards/NXP/TRK-KEA64/Documentation/KINTESMCUAUTQSG.pdf" title="Quick Start Guide" />
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="SKEAZN64xxx2"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KEAxx Series"/>
+      <feature type="Button"    n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="LED"       n="6"              name="LEDs: Power, SDA, 4x User"/>
+      <feature type="ConnOther" n="1"              name="LIN Connector"/>
+      <feature type="LightSens" n="1"              name="Light Sensor"/>
+      <feature type="CustomFF"  n="9"  m="8"       name="Individual Port Access"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="5"  m="12"      name="External Supply"/>
+      <feature type="ODbg"      n="1"              name="Onboard OpenSDA via USB"/>
+    </board>
+
+    <!-- TRK-KEA128 board -->
+    <board vendor="NXP" name="TRK-KEA128" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <description>TRK-KEA128: Kinetis KEA128 StarterTRAK for CAN Applications</description>
+      <image small="Boards/NXP/TRK-KEA128/Documentation/TRK-KEA128_small.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/startertrak-development-boards/kinetis-kea8-startertrak-for-low-end-automotive-applications:TRK-KEA128" title="TRK-KEA128 Web Page"/>
+      <book category="schematic" name="Boards/NXP/TRK-KEA128/Documentation/TRK-KEA128_SCH.pdf"  title="Schematics"/>
+      <book category="manual"    name="Boards/NXP/TRK-KEA128/Documentation/KINTESMCUAUTQSG.pdf" title="Quick Start Guide" />
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="SKEAZ128xxx4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KEAxx Series"/>
+      <feature type="Button"    n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="LED"       n="6"              name="LEDs: Power, SDA, 4x User"/>
+      <feature type="CAN"       n="1"              name="CAN Connector"/>
+      <feature type="ConnOther" n="1"              name="LIN Connector"/>
+      <feature type="LightSens" n="1"              name="Light Sensor"/>
+      <feature type="CustomFF"  n="9"  m="8"       name="Individual Port Access"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="5"  m="12"      name="External Supply"/>
+      <feature type="ODbg"      n="1"              name="Onboard OpenSDA via USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- TRK-KEA8 board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA8/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TRK-KEA8" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA8_Lab1" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA8/NXP_Labs/TRK-KEA8_Keil_Lab1">
+      <description>TRK-KEA8 Keil LAB1 - Serial communication Interface (UART)</description>
+      <board name="TRK-KEA8" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA8_Lab1.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA8_Lab2" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA8/NXP_Labs/TRK-KEA8_Keil_Lab2">
+      <description>TRK-KEA8 Keil LAB2 – FlexTimer (FTM)</description>
+      <board name="TRK-KEA8" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA8_Lab2.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA8_Lab3" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA8/NXP_Labs/TRK-KEA8_Keil_Lab3">
+      <description>TRK-KEA8 Keil LAB3 - Analog to Digital Converter (ADC)</description>
+      <board name="TRK-KEA8" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA8_Lab3.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA8_Lab4" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA8/NXP_Labs/TRK-KEA8_Keil_Lab4">
+      <description>TRK-KEA8 Keil LAB4 - Keyboard Interrupt (KBI)</description>
+      <board name="TRK-KEA8" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA8_Lab4.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TRK-KEA64 board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA64/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TRK-KEA64" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA64_Lab1" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA64/NXP_Labs/TRK-KEA64_Keil_Lab1">
+      <description>TRK-KEA64 Keil LAB1 - Serial communication Interface (UART)</description>
+      <board name="TRK-KEA64" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA64_Lab1.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA64_Lab2" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA64/NXP_Labs/TRK-KEA64_Keil_Lab2">
+      <description>TRK-KEA64 Keil LAB2 – FlexTimer (FTM)</description>
+      <board name="TRK-KEA64" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA64_Lab2.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA64_Lab3" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA64/NXP_Labs/TRK-KEA64_Keil_Lab3">
+      <description>TRK-KEA64 Keil LAB3 - Analog to Digital Converter (ADC)</description>
+      <board name="TRK-KEA64" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA64_Lab3.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA64_Lab4" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA64/NXP_Labs/TRK-KEA64_Keil_Lab4">
+      <description>TRK-KEA64 Keil LAB4 - Keyboard Interrupt (KBI)</description>
+      <board name="TRK-KEA64" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA64_Lab4.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TRK-KEA128 board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA128_Lab1" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/NXP_Labs/TRK-KEA128_Keil_Lab1">
+      <description>TRK-KEA128 Keil LAB1 - Serial communication Interface (UART)</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA128_Lab1.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA128_Lab2" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/NXP_Labs/TRK-KEA128_Keil_Lab2">
+      <description>TRK-KEA128 Keil LAB2 – FlexTimer (FTM)</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA128_Lab2.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA128_Lab3" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/NXP_Labs/TRK-KEA128_Keil_Lab3">
+      <description>TRK-KEA128 Keil LAB3 - Analog to Digital Converter (ADC)</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA128_Lab3.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA128_Lab4" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/NXP_Labs/TRK-KEA128_Keil_Lab4">
+      <description>TRK-KEA128 Keil LAB4 - Keyboard Interrupt (KBI)</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA128_Lab4.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="TRK-KEA128_Lab5" doc="Abstract.txt" folder="Boards/NXP/TRK-KEA128/NXP_Labs/TRK-KEA128_Keil_Lab5">
+      <description>TRK-KEA128 Keil LAB5 - Pulse Width Timer (PWT)</description>
+      <board name="TRK-KEA128" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="TRK-KEA128_Lab5.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

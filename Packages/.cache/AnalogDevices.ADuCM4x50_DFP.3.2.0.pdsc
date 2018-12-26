@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>ADuCM4x50_DFP</name>
+  <description>Analog Devices ADuCM4x50 Device Support. (Subject to the Software License Agreement referred to in the Release Notes.)</description>
+  <url>http://download.analog.com/tools/EZBoards/ADuCM4050/Releases/</url>
+  <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+  <license>License/2017-02-16-CM4x50EZDFP Click Thru SLA.txt</license>
+
+  <releases>
+    <release version="3.2.0"  date="2018-08-03">
+      API extension for RTC driver.
+      Bug fixes for RTC, SPI and UART drivers.
+    </release>
+    <release version="3.1.2"  date="2018-04-11">
+      GPIO driver API extended with adi_gpio_GroupInterruptPolarityEnable to determine if the interrupts are generated
+      on the rising or falling edge of the corresponding GPIO pin.
+      RTC driver modified to eliminate the risks of counter overflows.
+      Software work around for anomaly 2100023, an anomaly that can impact RTC registers read accesses on ADuCM4050 si. rev.  0.0.
+      RTOS mapping extended with Micrium uC/OS-II.
+      UART driver updated for PIO Rx transfers to support all the FIFO trigger levels.
+    </release>
+    <release version="3.1.0"  date="2018-01-22">
+      Further version synchronization across IoT CMSIS Pack products
+      Flash controller driver default settings updated.
+    </release>
+    <release version="3.0.0"  date="2017-10-31">
+      Version synchronization across IoT CMSIS Pack products
+    </release>
+    <release version="1.1.0"  date="2017-10-16">
+      New APIs and fixes to drivers
+      - Crypto driver extended with HMAC in PKSTOR support
+      - Support to set the priority for all IRQ interrupts to a default value
+        different from 0 (1 by default) when using FreeRTOS.
+        The default priority value, ADI_MAX_IRQ_PRIORITY, can be found in file
+        Include\rtos_map\adi_rtos_map_freertos.h.
+      - FLash driver API extended to support wait states configuration
+      - GPIO driver API extended to read group interrupt and output information, and
+        to enable/disable increased drive strength capability
+      - Fix issues in PWR driver
+      - RTC driver API extended with functions to get and clear interrupt status
+      - SPI driver API extended with functions to set clock phase and polarity
+    </release>
+    <release version="1.0.0"  date="2017-03-09">
+      Initial Release
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.3.0"/>
+    </packages>
+  </requirements>
+
+  <boards>
+    <board vendor="AnalogDevices" name="ADuCM4050 EZ-KIT" revision="Ver 1.0">
+      <description>Analog Devices ADuCM4050 Evaluation Board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM4050"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM4050 Series"/>
+      <feature type="PWR"             n="5"              name="External 5.0VDC/3.6A power supply"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Analog Devices</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Analog Devices</keyword>
+    <keyword>ADuCM4x50</keyword>
+    <keyword>ADuCM4050</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="ADuCM4x50 Series" Dvendor="Analog Devices:1">
+      <description>
+        The ADuCM4050 processor is an ultra low-power integrated mixed-signal microcontroller system for processing, control and connectivity. The MCU system is based on the ARM Cortex-M4F processor. The MCU also has a collection of digital peripherals, embedded SRAM and flash memory, and an analog subsystem which provides clocking, reset, and power manage-ment capability in addition to an ADC subsystem.
+      </description>
+
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+        <AMisc>--cpreproc --cpreproc_opts=-U__STDC__,-D__ASSEMBLER__</AMisc>
+      </environment>
+
+      <environment name="cces">
+        <properties>
+          <property name="toolchain" value="arm.gcc.toolchain"/>
+          <property name="gdb-qemu" value="false"/>
+        </properties>
+
+        <silicon-revisions command-line-default="0.1">
+          <silicon revision="none"/>
+          <silicon revision="0.1"/>
+          <silicon revision="any"/>
+        </silicon-revisions>
+      </environment>
+
+      <!-- ******************************  ADuCM4050  ****************************** -->
+      <device Dname="ADuCM4050">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="52000000"/>
+        <environment name="iar">
+          <file category="i79file" name="ARM/config/devices/AnalogDevices/ADuCM4050.i79" />
+        </environment>
+        <debug      svd="SVD/ADuCM4050.svd"/>
+        <algorithm  name="Flash/ADuCM4x50.FLM"      start="0x00000000"  size="0x7F000"  default="1"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x7F000"  startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x04000"  init   ="1"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20040000"  size="0x14000"  init   ="0"   default="1"/>
+        <compile header="Include/ADuCM4050.h"  define="__ADUCM4050__"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <condition id="ADuCM4x50">
+      <description>ADuCM4x50 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM4050"/>
+    </condition>
+    <condition id="ADuCM4050">
+      <description>ADuCM4050 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM4050"/>
+    </condition>
+    <condition id="ADuCM4x50 CompilerIO">
+      <description>ADuCM4x50 Compiler I/O requirements</description>
+      <require condition="ADuCM4x50"/>
+      <require condition="ARMCC"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDOUT" Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDERR" Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDIN"  Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="TTY"    Cvariant="User"/>
+    </condition>
+    <condition id="ADuCM4x50 Examples Support">
+      <description>ADuCM4x50 Examples Support requirements</description>
+      <require condition="ADuCM4x50"/>
+      <require Cclass="Device" Cgroup="Examples Support" />
+      <require Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+    </condition>
+    <condition id="ADuCM4x50 Driver">
+      <description>Common ADuCM4x50 driver requirements</description>
+      <require condition="ADuCM4x50"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="Global Configuration"/>
+      <require Cclass="Device" Cgroup="Silicon Revision"/>
+    </condition>
+    <condition id="ADuCM4x50 Cycle Count">
+      <description>ADuCM4x50 Cycle Count requirements</description>
+      <require condition="ADuCM4x50"/>
+      <require condition="ADuCM4x50 Examples Support"/>
+    </condition>
+    <condition id="ADuCM4x50 ADC">
+      <description>ADuCM4x50 ADC driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 BEEP">
+      <description>ADuCM4x50 BEEP driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 Crypto">
+      <description>ADuCM4x50 Crypto driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 Flash">
+      <description>ADuCM4x50 Flash driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 I2C">
+      <description>ADuCM4x50 I2C driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 SPI">
+      <description>ADuCM4x50 SPI driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 SPORT">
+      <description>ADuCM4x50 SPORT driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50 UART">
+      <description>ADuCM4x50 UART driver requirements</description>
+      <require condition="ADuCM4x50 Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM4x50_ARM">
+      <description>ADuCM4x50 ARM (Keil) </description>
+      <require condition="ADuCM4x50"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="ADuCM4050_ARM">
+      <description>ADuCM4050 ARM (Keil) </description>
+      <require condition="ADuCM4050"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="ADuCM4050_GCC">
+      <description>ADuCM4050 GCC</description>
+      <require condition="ADuCM4050"/>
+      <require condition="GCC"/>
+    </condition>
+    <condition id="ADuCM4050_IAR">
+      <description>ADuCM4050 IAR</description>
+      <require condition="ADuCM4050"/>
+      <require condition="IAR"/>
+    </condition>
+
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Drivers" doc="Documents/html/index.html">Analog Devices driver components for ADuCM4x50 devices</description>
+  </taxonomy>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>System Startup for ADuCM4x50</description>
+      <files>
+        <!-- additional include path -->
+        <file category="include" name="Include/"/>
+
+        <!-- startup files -->
+        <file category="source" name="Source/ARM/startup_ADuCM4050.s" version="3.2.0" attr="config" condition="ADuCM4050_ARM"/>
+        <file category="source" name="Source/GCC/startup_ADuCM4050.c" version="3.2.0" attr="config" condition="ADuCM4050_GCC"/>
+        <file category="source" name="Source/GCC/reset_ADuCM4050.S" version="3.2.0" attr="config" condition="ADuCM4050_GCC"/>
+        <file category="source" name="Source/IAR/startup_ADuCM4050.s" version="3.2.0" attr="config" condition="ADuCM4050_IAR"/>
+
+        <!-- system files -->
+        <file category="header" name="Include/system_ADuCM4050.h" version="3.2.0" attr="config" condition="ADuCM4050"/>
+        <file category="source" name="Source/system_ADuCM4050.c" version="3.2.0" attr="config" condition="ADuCM4050"/>
+        <!-- linker scripts -->
+        <file category="linkerScript" name="Source/GCC/ADuCM4050.ld" version="3.2.0" attr="config" condition="ADuCM4050_GCC"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Retarget_UART" Cversion="3.2.0" condition="ADuCM4x50 CompilerIO">
+      <description>Compiler::IO support for ADuCM4x50 devices</description>
+      <files>
+        <file category="source" name="Source/retarget_uart.c" />
+        <file category="header" name="Include/retarget_uart_config.h" version="3.2.0" attr="config" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Examples Support" Cversion="3.2.0" condition="ADuCM4x50 Examples Support">
+      <description>Common utility functions for ADuCM4x50 examples</description>
+      <files>
+        <file category="source" name="Source/common.c"/>
+        <file category="header" name="Include/common.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Silicon Revision" Cvariant="0.0" Cversion="3.2.0" condition="ADuCM4x50">
+      <description>Silicon Revision 0.0</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+#define ADUCM4050_SI_REV  0             /* ADuCM4050 Si. Rev. 0.0 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Include/adi_si_rev.h" version="3.2.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Silicon Revision" Cvariant="0.1" Cversion="3.2.0" condition="ADuCM4x50">
+      <description>Silicon Revision 0.1</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+#define ADUCM4050_SI_REV  1             /* ADuCM4050 Si. Rev. 0.1 */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Include/adi_si_rev.h" version="3.2.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Global Configuration" Cversion="3.2.0" condition="ADuCM4x50">
+      <description>Global configuration files for ADuCM4x50 drivers</description>
+      <files>
+        <file category="header" name="Include/config/adi_cycle_counting_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Cycle Count" Cversion="3.2.0" condition="ADuCM4x50 Cycle Count">
+      <description>Common utility functions for ADuCM4x50 examples</description>
+      <files>
+        <file category="source" name="Source/adi_cyclecount.c"/>
+        <file category="header" name="Include/adi_cyclecount.h"/>
+        <file category="header" name="Include/config/adi_cycle_counting_config.h" version="3.2.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- Drivers -->
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="3.2.0" condition="ADuCM4x50 ADC">
+      <description>ADC</description>
+      <files>
+        <file category="source" name="Source/drivers/adc/adi_adc.c"/>
+        <file category="header" name="Include/drivers/adc/adi_adc.h"/>
+        <file category="header" name="Include/config/adi_adc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___a_d_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="BEEP" Cversion="3.2.0" condition="ADuCM4x50 BEEP">
+      <description>BEEP</description>
+      <files>
+        <file category="source" name="Source/drivers/beep/adi_beep.c"/>
+        <file category="header" name="Include/drivers/beep/adi_beep.h"/>
+        <file category="header" name="Include/config/adi_beep_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___b_e_e_p___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="CRC" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>CRC</description>
+      <files>
+        <file category="source" name="Source/drivers/crc/adi_crc.c"/>
+        <file category="header" name="Include/drivers/crc/adi_crc.h"/>
+        <file category="header" name="Include/config/adi_crc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___c_r_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Crypto" Cversion="3.2.0" condition="ADuCM4x50 Crypto">
+      <description>Crypto</description>
+      <files>
+        <file category="source" name="Source/drivers/crypto/adi_crypto.c"/>
+        <file category="header" name="Include/drivers/crypto/adi_crypto.h"/>
+        <file category="header" name="Include/config/adi_crypto_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___crypto___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="DMA" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>DMA</description>
+      <files>
+        <file category="source" name="Source/drivers/dma/adi_dma.c"/>
+        <file category="header" name="Include/drivers/dma/adi_dma.h"/>
+        <file category="doc" name="Documents/html/group___d_m_a___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Flash" Cversion="3.2.0" condition="ADuCM4x50 Flash">
+      <description>Flash Controller</description>
+      <files>
+        <file category="source" name="Source/drivers/flash/adi_flash.c"/>
+        <file category="header" name="Include/drivers/flash/adi_flash.h"/>
+        <file category="header" name="Include/config/adi_flash_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___flash___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="GPIO" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>GPIO</description>
+      <files>
+        <file category="source" name="Source/drivers/gpio/adi_gpio.c"/>
+        <file category="header" name="Include/drivers/gpio/adi_gpio.h"/>
+        <file category="doc" name="Documents/html/group___g_p_i_o___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="3.2.0" condition="ADuCM4x50 I2C">
+      <description>I2C</description>
+      <files>
+        <file category="source" name="Source/drivers/i2c/adi_i2c.c"/>
+        <file category="header" name="Include/drivers/i2c/adi_i2c.h"/>
+        <file category="header" name="Include/config/adi_i2c_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___i2_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Power" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>System Clock and Power Management</description>
+      <files>
+        <file category="source" name="Source/drivers/pwr/adi_pwr.c"/>
+        <file category="header" name="Include/drivers/pwr/adi_pwr.h"/>
+        <file category="header" name="Include/config/adi_pwr_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___power___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="RNG" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>Random Number Generator</description>
+      <files>
+        <file category="source" name="Source/drivers/rng/adi_rng.c"/>
+        <file category="header" name="Include/drivers/rng/adi_rng.h"/>
+        <file category="header" name="Include/config/adi_rng_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___r_n_g___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="RTC" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>RTC</description>
+      <files>
+        <file category="source" name="Source/drivers/rtc/adi_rtc.c"/>
+        <file category="header" name="Include/drivers/rtc/adi_rtc.h"/>
+        <file category="header" name="Include/config/adi_rtc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___r_t_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="3.2.0" condition="ADuCM4x50 SPI">
+      <description>SPI</description>
+      <files>
+        <file category="source" name="Source/drivers/spi/adi_spi.c"/>
+        <file category="header" name="Include/drivers/spi/adi_spi.h"/>
+        <file category="header" name="Include/config/adi_spi_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___s_p_i___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPORT" Cversion="3.2.0" condition="ADuCM4x50 SPORT">
+      <description>SPORT</description>
+      <files>
+        <file category="source" name="Source/drivers/sport/adi_sport.c"/>
+        <file category="header" name="Include/drivers/sport/adi_sport.h"/>
+        <file category="header" name="Include/config/adi_sport_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___s_p_o_r_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="TMR" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>GP Timer</description>
+      <files>
+        <file category="source" name="Source/drivers/tmr/adi_tmr.c"/>
+        <file category="header" name="Include/drivers/tmr/adi_tmr.h"/>
+        <file category="header" name="Include/config/adi_tmr_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___t_m_r___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="3.2.0" condition="ADuCM4x50 UART">
+      <description>UART</description>
+      <files>
+        <file category="source" name="Source/drivers/uart/adi_uart.c"/>
+        <file category="header" name="Include/drivers/uart/adi_uart.h"/>
+        <file category="header" name="Include/config/adi_uart_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___u_a_r_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>WDT</description>
+      <files>
+        <file category="source" name="Source/drivers/wdt/adi_wdt.c"/>
+        <file category="header" name="Include/drivers/wdt/adi_wdt.h"/>
+        <file category="header" name="Include/config/adi_wdt_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___w_d_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt" Cversion="3.2.0" condition="ADuCM4x50 Driver">
+      <description>External Interrupt</description>
+      <files>
+        <file category="source" name="Source/drivers/xint/adi_xint.c"/>
+        <file category="header" name="Include/drivers/xint/adi_xint.h"/>
+        <file category="doc" name="Documents/html/group___x_i_n_t___driver.html"/>
+      </files>
+    </component>
+
+  </components>
+
+  <examples>
+
+    <example name="HelloWorld" doc="ADuCM4x50/Readme_HelloWorld.txt" folder="Boards/ADuCM4050-EZ-KIT/Examples/hello_world" version="3.2.0">
+      <description>Hello World</description>
+      <board name="ADuCM4050 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM4050"/>
+      <project>
+        <environment name="uv"   load="ADuCM4x50/keil/HelloWorld.uvprojx"/>
+        <environment name="cces" load="ADuCM4x50/cces/.project"/>
+        <environment name="iar"  load="ADuCM4x50/iar/HelloWorld.ewp"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget"/>
+        <component Cclass="Device" Cgroup="Examples Support" />
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

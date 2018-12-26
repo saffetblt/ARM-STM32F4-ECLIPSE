@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>EFR32FG14V_DFP</name>
+  <description>Silicon Labs EFR32FG14V Flex Gecko Series Device Support.</description>
+
+  <releases>
+    <release version="5.7.0" date="2018-12-12">
+      Added Mighty Gecko MGM1, MGM12, MGM13, MGM21 and ARTIKMG1 modules.
+      Added Blue Gecko BGM1, BGM13, BGM21 and ARTIKBG1 modules.
+      Added Mighty Gecko EFR32MG13P731 and  EFR32MG14P731 parts.
+      Added Mighty Gecko EFR32MG21 family.
+      Added Blue Gecko EFR32BG21 family.
+      Added Zen Gecko EFR32ZG14P family.
+      Added Zen Gecko ZGM13 module.
+    </release>
+    <release version="5.5.0" date="2018-05-07">
+      Updates and minor fixes in packs for EFM32GG11B, EFM32TG11B, EFM32PG12B, EFM32JG12B, EFR32xG12x, EFR32xG13x and EFR32xG14x families.
+    </release>
+    <release version="5.4.1" date="2018-02-14">
+      Fixed bug in Keil flashloader for EFM32GG11B family, added EFR families.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFR32FG14V</keyword>
+    <keyword>EFR32</keyword>
+    <keyword>Flex Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFR32FG14V Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <processor Dclock="38400000"/>
+      <book name="Documents/cortex_m4_dgug.pdf"      title="Cortex-M4 Generic User Guide"/>
+      <book name="Documents/efr32xg14-reference-manual.pdf"  title="EFR32FG14V Reference Manual"/>
+      <description>
+- 32-bit ARM Cortex-M4 core with 40 MHz maximum operating frequency&#xD;&#xA;- Scalable Memory and Radio configuration options available in several footprint compatible QFN packages&#xD;&#xA;- 12-channel Peripheral Reflex System enabling autonomous interaction of MCU peripherals&#xD;&#xA;- Autonomous Hardware Crypto Accelerator and True Random Number Generator&#xD;&#xA;- Integrated balun for 2.4 GHz and integrated PA with up to 19 dBm transmit power for 2.4 GHz and 20 dBm transmit power for Sub-GHz radios&#xD;&#xA;- Integrated DC-DC with RF noise mitigation&#xD;&#xA;- Integrated PLFRCO eliminates external 32 kHz crystal for BLE applications&#xD;&#xA;&#xD;&#xA;The Wireless Gecko portfolio of SoCs (EFR32) includes Mighty Gecko (EFR32MG14), Blue Gecko (EFR32BG14), and Flex Gecko (EFR32FG14) families. With support for Zigbee, Thread, Bluetooth Low Energy (BLE) and proprietary protocols, the Wireless Gecko portfolio is ideal for enabling energy-friendly wireless networking for IoT devices. The single-die solution provides industry-leading energy efficiency, ultra-fast wakeup times, a scalable high-power amplifier, an integrated balun and no-compromise MCU features.
+      </description>
+
+      <subFamily DsubFamily="EFR32FG14V132">
+        <book         name="Documents/efr32fg14-datasheet.pdf"      title="EFR32FG14V132 Data Sheet"/>
+        <book         name="Documents/efr32fg14-errata.pdf"         title="EFR32FG14V132 Errata"/>
+        <!-- *************************  Device 'EFR32FG14V132F256GM32'  ***************************** -->
+        <device Dname="EFR32FG14V132F256GM32">
+          <compile header="Device/SiliconLabs/EFR32FG14V/Include/em_device.h"  define="EFR32FG14V132F256GM32"/>
+          <debug      svd="SVD/EFR32FG14V/EFR32FG14V132F256GM32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00040000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00040000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG14V132F256GM48'  ***************************** -->
+        <device Dname="EFR32FG14V132F256GM48">
+          <compile header="Device/SiliconLabs/EFR32FG14V/Include/em_device.h"  define="EFR32FG14V132F256GM48"/>
+          <debug      svd="SVD/EFR32FG14V/EFR32FG14V132F256GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00040000"  RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00040000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFR32FG14V">
+      <description>Silicon Labs EFR32FG14V device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFR32FG14V*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="5.7.0" condition="EFR32FG14V">
+      <description>System Startup for Silicon Labs EFR32FG14V device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFR32FG14V/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFR32FG14V/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG14V/Source/ARM/startup_efr32fg14v.s" condition="Compiler ARMCC" attr="config" version="5.7.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFR32FG14V/Source/GCC/startup_efr32fg14v.S" condition="Compiler GCC"   attr="config" version="5.7.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFR32FG14V/Source/GCC/efr32fg14v.ld" condition="Compiler GCC" attr="config" version="5.7.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG14V/Source/system_efr32fg14v.c" attr="config" version="5.7.0"/>
+      </files>
+    </component>
+  </components>
+</package>

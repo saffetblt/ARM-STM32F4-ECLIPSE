@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMG_DFP</name>
+  <description>Microchip SAMG Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.2.0" date="2018-05-15">
+      Updated device vendor from Atmel to Microchip.
+      Updated system file with corrected SystemCoreClock initial value to value set by SystemInit function
+      Added Arduino Quattro board support.
+    </release>
+    <release version="1.1.0" date="2015-01-09">
+      Added SAMG54 and SAMG55 Devices.
+      Updated SAMG5x device support files.
+    </release>
+    <release version="1.0.0">
+      First Release version of SAMG Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Microchip</keyword>
+    <keyword>SAMG</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="SAMG Series" Dvendor="Microchip:3">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book    name="Documents\dui0553a_cortex_m4_dgug.pdf"           title="Cortex-M4 Generic User Guide"/>
+      <book    name="http://www.atmel.com/products/microcontrollers/arm/sam-g.aspx" title="SAMG Documents"/>
+      <description>
+The SAM G family is optimized for ultra-low-power and high-performance applications.
+Its small form factor is based on an ARM Cortex-M4 core and, bundled with a
+floating point unit (FPU), these devices offer unrivaled efficiency in a tiny
+3 x 3 mm, 49-ball WLCSP package. The SAM G family is optimized with a highly-efficient
+set of serial peripherals including a 12-bit ADC, DMA, and a good SRAM-to-flash ratio.
+SAM G devices are ideal for sensor hub and battery-operated consumer applications.
+	  </description>
+      <!-- ******************************  SAMG51  ****************************** -->
+      <subFamily DsubFamily="SAMG51">
+        <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="48000000"/>
+
+        <feature    type="IOs"        n="34"/>
+        <feature    type="ExtInt"     n="16"/>
+        <feature    type="SPI"        n="2"/>
+        <feature    type="UART"       n="2"/>
+        <feature    type="USART"      n="1"/>
+        <feature    type="ComOther"   n="3"               name="Two-wire Interface"/>
+        <feature    type="ADC"        n="8"    m="12"/>
+        <feature    type="Timer"      n="3"    m="16"/>
+		<feature    type="TimerOther" n="1"               name="Real-time Timer"/>
+        <feature    type="RTC"        n="32768"/>
+		<feature    type="WDT"        n="1"/>
+        <feature    type="DMA"        n="18"              name="Peripheral DMA"/>
+        <feature    type="CoreOther"  n="1"               name="Chip Identifier"/>
+        <feature    type="Temp"       n="-40"  m="85"     name="Industrial Temperature Range"/>
+
+		<!-- ******************************  ATSAMG51G18  ****************************** -->
+        <device Dname="ATSAMG51G18">
+          <compile header="Device\Include\SAMG51\samg51.h"  define="__SAMG51G18__"/>
+          <debug      svd="SVD\SAMG51\ATSAMG51G18.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_256.FLM"     start="0x00400000"  size="0x40000"                  default="1"/>
+
+          <feature    type="CSP"        n="49"         name="Wafer-Level Chip-Scale Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMG51N18  ****************************** -->
+        <device Dname="ATSAMG51N18">
+          <compile header="Device\Include\SAMG51\samg51.h"  define="__SAMG51N18__"/>
+          <debug      svd="SVD\SAMG51\ATSAMG51N18.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_256.FLM"     start="0x00400000"  size="0x40000"                  default="1"/>
+
+          <feature    type="QFP"        n="100"        name="Low-Profile QFP Package"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAMG53  ****************************** -->
+      <subFamily DsubFamily="SAMG53">
+        <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="48000000"/>
+
+        <feature    type="IOs"        n="34"/>
+        <feature    type="ExtInt"     n="16"/>
+        <feature    type="SPI"        n="2"/>
+        <feature    type="UART"       n="2"/>
+        <feature    type="USART"      n="1"/>
+        <feature    type="ComOther"   n="3"               name="Two-wire Interface"/>
+        <feature    type="I2S"        n="2"               name="Inter-IC Sound Interface"/>
+        <feature    type="ComOther"   n="1"               name="Pulse Density Modulation Interface"/>
+        <feature    type="ADC"        n="6"    m="12"/>
+        <feature    type="Timer"      n="6"    m="16"/>
+		<feature    type="TimerOther" n="1"               name="Real-time Timer"/>
+        <feature    type="RTC"        n="32768"/>
+		<feature    type="WDT"        n="1"/>
+        <feature    type="DMA"        n="18"              name="Peripheral DMA"/>
+        <feature    type="CoreOther"  n="1"               name="Chip Identifier"/>
+        <feature    type="Temp"       n="-40"  m="85"     name="Industrial Temperature Range"/>
+
+		<!-- ******************************  ATSAMG53G19  ****************************** -->
+        <device Dname="ATSAMG53G19">
+          <compile header="Device\Include\SAMG53\samg53.h"  define="__SAMG53G19__"/>
+          <debug      svd="SVD\SAMG53\ATSAMG53G19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature    type="CSP"        n="49"         name="Wafer-Level Chip-Scale Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMG53N19  ****************************** -->
+        <device Dname="ATSAMG53N19">
+          <compile header="Device\Include\SAMG53\samg53.h"  define="__SAMG53N19__"/>
+          <debug      svd="SVD\SAMG53\ATSAMG53N19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAMG54  ****************************** -->
+      <subFamily DsubFamily="SAMG54">
+        <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="96000000"/>
+
+        <feature    type="IOs"        n="38"/>
+        <feature    type="ExtInt"     n="16"/>
+        <feature    type="SPI"        n="1"/>
+        <feature    type="UART"       n="2"/>
+        <feature    type="USART"      n="1"/>
+        <feature    type="ComOther"   n="3"              name="Two-wire Interface"/>
+        <feature    type="I2S"        n="2"              name="Inter-IC Sound Interface"/>
+        <feature    type="ComOther"   n="1"              name="Pulse Density Modulation Interface"/>
+        <feature    type="ComOther"   n="3"              name="TWI Interface"/>
+        <feature    type="ADC"        n="8"    m="12"/>
+        <feature    type="Timer"      n="6"    m="16"/>
+		<feature    type="TimerOther" n="1"               name="Real-time Timer"/>
+        <feature    type="RTC"        n="32768"/>
+		<feature    type="WDT"        n="1"/>
+        <feature    type="DMA"        n="18"              name="Peripheral DMA"/>
+        <feature    type="CoreOther"  n="1"               name="Chip Identifier"/>
+        <feature    type="Temp"       n="-40"  m="85"     name="Industrial Temperature Range"/>
+
+		<!-- ******************************  ATSAMG54G19  ****************************** -->
+        <device Dname="ATSAMG54G19">
+          <compile header="Device\Include\SAMG54\samg54.h"  define="__SAMG54G19__"/>
+          <debug      svd="SVD\SAMG54\ATSAMG54G19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature    type="CSP"        n="49"         name="Wafer-Level Chip-Scale Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMG54J19  ****************************** -->
+        <device Dname="ATSAMG54J19">
+          <compile header="Device\Include\SAMG54\samg54.h"  define="__SAMG54J19__"/>
+          <debug      svd="SVD\SAMG54\ATSAMG54J19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature    type="QFN"        n="64"        name="QFN Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMG54N19  ****************************** -->
+        <device Dname="ATSAMG54N19">
+          <compile header="Device\Include\SAMG54\samg54.h"  define="__SAMG54N19__"/>
+          <debug      svd="SVD\SAMG54\ATSAMG54N19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature    type="QFP"        n="100"        name="Low-Profile QFP Package"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAMG55  ****************************** -->
+      <subFamily DsubFamily="SAMG55">
+        <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+
+        <feature type="ExtInt"     n="16"/>
+        <feature type="I2S"        n="2"              name="Inter-IC Sound Interface"/>
+        <feature type="ComOther"   n="1"              name="Pulse Density Modulation Interface"/>
+        <feature type="ADC"        n="8"    m="12"/>
+		<feature type="USBD"       n="1"              name="USB Device"/>
+		<feature type="USBH"       n="1"              name="USB Host"/>
+        <feature type="Timer"      n="6"    m="16"/>
+		<feature type="TimerOther" n="1"               name="Real-time Timer"/>
+        <feature type="RTC"        n="32768"/>
+		<feature type="WDT"        n="1"/>
+        <feature type="DMA"        n="18"              name="Peripheral DMA"/>
+        <feature type="CoreOther"  n="1"               name="Chip Identifier"/>
+        <feature type="Temp"       n="-40"  m="85"     name="Industrial Temperature Range"/>
+
+		<!-- ******************************  ATSAMG55G19  ****************************** -->
+        <device Dname="ATSAMG55G19">
+          <compile header="Device\Include\SAMG55\samg55.h"  define="__SAMG55G19__"/>
+          <debug svd="SVD\SAMG55\ATSAMG55G19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"        n="38"/>
+          <feature type="SPI"        n="7"/>
+          <feature type="USART"      n="7"/>
+          <feature type="ComOther"   n="7"              name="Two-wire Interface"/>
+          <feature type="CSP"        n="49"             name="Wafer-Level Chip-Scale Package"/>
+        </device>
+
+        <!-- ******************************  ATSAMG55J19  ****************************** -->
+        <device Dname="ATSAMG55J19">
+          <compile header="Device\Include\SAMG55\samg55.h"  define="__SAMG55J19__"/>
+          <debug svd="SVD\SAMG55\ATSAMG55J19.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\ATSAMG_512.FLM"     start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"        n="48"/>
+          <feature type="SPI"        n="8"/>
+          <feature type="USART"      n="8"/>
+          <feature type="ComOther"   n="8"              name="Two-wire Interface"/>
+          <feature type="QFN"        n="64"             name="QFN Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- ****************************** SAMG51 ****************************** -->
+    <condition id="SAMG51 CMSIS">
+      <description>Microchip SAMG51 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAMG51*"/>
+    </condition>
+
+    <!-- ****************************** SAMG53 ****************************** -->
+    <condition id="SAMG53 CMSIS">
+      <description>Microchip SAMG53 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAMG53*"/>
+    </condition>
+
+    <!-- ****************************** SAMG54 ****************************** -->
+    <condition id="SAMG54 CMSIS">
+      <description>Microchip SAMG54 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAMG54*"/>
+    </condition>
+
+    <!-- ****************************** SAMG55 ****************************** -->
+    <condition id="SAMG55 CMSIS">
+      <description>Microchip SAMG55 Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAMG55*"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SAMG51 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMG51 CMSIS">
+      <description>System Startup for Microchip SAMG51 Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\SAMG51\"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device\Source\ARM\startup_SAMG51.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device\Source\system_samg51.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAMG53 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMG53 CMSIS">
+      <description>System Startup for Microchip SAMG53 Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\SAMG53\"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device\Source\ARM\startup_SAMG53.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device\Source\system_samg53.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAMG54 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMG54 CMSIS">
+      <description>System Startup for Microchip SAMG54 Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\SAMG54\"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device\Source\ARM\startup_SAMG54.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device\Source\system_samg54.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAMG55 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMG55 CMSIS">
+      <description>System Startup for Microchip SAMG55 Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device\Include\SAMG55\"/>
+        <!-- startup / system file -->
+        <file category="source" name="Device\Source\ARM\startup_SAMG55.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device\Source\system_samg55.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAMG55-XPRO Board Support -->
+    <bundle Cbundle="SAMG55-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMG55-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAMG55 CMSIS">
+      <description>LED driver for Microchip SAMG55-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\SAMG55-XPRO\Common\LED_SAMG55-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAMG55 CMSIS">
+      <description>Button driver for Microchip SAMG55-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\SAMG55-XPRO\Common\Buttons_SAMG55-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- Arduino-Quattro Board Support -->
+    <bundle Cbundle="Arduino-Quattro" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip Arduino-Quattro Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAMG55 CMSIS">
+      <description>LED driver for Microchip SAMG55-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\Arduino-Quattro\Common\LED_Arduino-Quattro.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAMG55 CMSIS">
+      <description>Button driver for Microchip Arduino-Quattro Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\Arduino-Quattro\Common\Buttons_Arduino-Quattro.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Microchip" name="SAMG55-XPRO" revision="Rev.2" salesContact="http://www.atmel.com/buy/contact_us.aspx?contactType=Sales%20Representative">
+      <description>Microchip SAM G55 Xplained Pro Evaluation Kit</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMG55J19"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMG55"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="LED"       n="1"              name="Yellow User LED"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+
+    <board vendor="Microchip" name="Arduino-Quattro" revision="Rev.2" salesContact="http://www.atmel.com/buy/contact_us.aspx?contactType=Sales%20Representative">
+      <description>Microchip Arduino Quattro development board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMG55J19"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAMG55"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+        <feature type="USB"       n="2"              name="EDBG, MCU-USB"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+        <feature type="DIO"       n="28"             name="Digital IOs on 2 x 14 pin header"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="LED"       n="2"              name="Yellow, Green User LED"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMG55-XPRO Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Atmel\SAMG55-XPRO\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAMG55-XPRO" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky" doc="Abstract.txt" folder="Boards\Atmel\SAMG55-XPRO\Blinky">
+      <description>Blinky example</description>
+      <board name="SAMG55-XPRO" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- Arduino-Quattro Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Atmel\Arduino-Quattro\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="Arduino-Quattro" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky" doc="Abstract.txt" folder="Boards\Atmel\Arduino-Quattro\Blinky">
+      <description>Blinky example</description>
+      <board name="Arduino-Quattro" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

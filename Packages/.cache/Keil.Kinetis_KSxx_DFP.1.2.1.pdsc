@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KSxx_DFP</name>
+  <description>NXP Kinetis KSxx Series Device Support</description>
+
+  <releases>
+    <release version="1.2.1" date="2017-11-20" deprecated="2017-11-20">
+      Maintenance of this pack is discontinued. NXP is now continuing the support in these packs:
+      - NXP.MKS20F12_DFP
+      - NXP.MKS22F12_DFP
+    </release>
+    <release version="1.2.0" date="2017-07-06">
+      Added KS20 device support.
+      Added documentation.
+      Updated KS22 devices support files.
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+    </release>
+    <release version="1.1.0" date="2016-07-12">
+      Vendor migrated from Freescale to NXP.
+    </release>
+    <release version="1.0.0" date="2015-12-01">
+      First Release version of KSxx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KSxx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KSxx Series" Dvendor="NXP:11">
+
+      <!-- ******************************  KS22/KS20  ****************************** -->
+      <subFamily DsubFamily="KS22/KS20">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documents/KS22P100M120SF0RM.pdf" title="KS22/KS20 Sub-Family Reference Manual"/>
+        <book name="Documents/KS22P100M120SF0.pdf"   title="KS22/KS20 Data Sheet"/>
+
+        <description>
+The KS22 MCU is based on the ARM Cortex-M4 core with 120MHz MCUs with FPU, offering full-speed USB 2.0 OTG, in addition to other features like USB crystal-less functionality.
+Devices have 128 KB and 256 KB of flash, 64 KB SRAM as well as LQFP and QFN packages.
+These devices offer various levels of integration, with a rich suite of analog, communication, timing and control peripherals.
+        </description>
+
+        <!-- ******************************  MKS20FN128xxx12  ***************************** -->
+        <device Dname="MKS20FN128xxx12">
+          <compile header="Device/Include/MKS20F12.h" define="MKS20FN128xxx12"/>
+          <debug svd="SVD/MKS20F12.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00020000" default="1" startup="1"/>
+          <memory id="IRAM1"                  start="0x1FFFC000" size="0x00010000" default="1" init   ="0"/>
+          <algorithm name="Flash/MK_P128.FLM" start="0x00000000" size="0x00020000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        </device>
+
+        <!-- ******************************  MKS20FN256xxx12  ***************************** -->
+        <device Dname="MKS20FN256xxx12">
+          <compile header="Device/Include/MKS20F12.h" define="MKS20FN256xxx12"/>
+          <debug svd="SVD/MKS20F12.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00040000" default="1" startup="1"/>
+          <memory id="IRAM1"                  start="0x1FFFC000" size="0x00010000" default="1" init   ="0"/>
+          <algorithm name="Flash/MK_P256.FLM" start="0x00000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        </device>
+
+        <!-- ******************************  MKS22FN128xxx12  ***************************** -->
+        <device Dname="MKS22FN128xxx12">
+          <compile header="Device/Include/MKS22F12.h" define="MKS22FN128xxx12"/>
+          <debug svd="SVD/MKS22F12.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00020000" default="1" startup="1"/>
+          <memory id="IRAM1"                  start="0x1FFFC000" size="0x00010000" default="1" init   ="0"/>
+          <algorithm name="Flash/MK_P128.FLM" start="0x00000000" size="0x00020000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        </device>
+
+        <!-- ******************************  MKS22FN256xxx12  ***************************** -->
+        <device Dname="MKS22FN256xxx12">
+          <compile header="Device/Include/MKS22F12.h" define="MKS22FN256xxx12"/>
+          <debug svd="SVD/MKS22F12.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00040000" default="1" startup="1"/>
+          <memory id="IRAM1"                  start="0x1FFFC000" size="0x00010000" default="1" init   ="0"/>
+          <algorithm name="Flash/MK_P256.FLM" start="0x00000000" size="0x00040000" default="1" RAMstart="0x20000000" RAMsize="0x1000"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MKS20F12 CMSIS">
+      <description>NXP Kinetis KS20 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKS20FN128xxx12"/>
+      <accept Dname="MKS20FN256xxx12"/>
+    </condition>
+    <condition id="MKS22F12 CMSIS">
+      <description>NXP Kinetis KS22 120MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKS22FN128xxx12"/>
+      <accept Dname="MKS22FN256xxx12"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup MKS20F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.1.0" condition="MKS20F12 CMSIS">
+      <description>System Startup for Kinetis KS20 120MHz devices</description>
+      <files>
+        <file category="include"  name="Device/Include/"/>
+        <file category="source" name="Device/Source/ARM/startup_MKS20F12.s"  attr="config" version="2.1.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MKS20F12.c"       attr="config" version="2.1.0"/>
+        <file category="header" name="Device/Source/system_MKS20F12.h"       attr="config" version="2.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKS22F12 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.1.0" condition="MKS22F12 CMSIS">
+      <description>System Startup for Kinetis KS22 120MHz devices</description>
+      <files>
+        <file category="include"  name="Device/Include/"/>
+        <file category="source" name="Device/Source/ARM/startup_MKS22F12.s"  attr="config" version="2.1.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MKS22F12.c"       attr="config" version="2.1.0"/>
+        <file category="header" name="Device/Source/system_MKS22F12.h"       attr="config" version="2.1.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>

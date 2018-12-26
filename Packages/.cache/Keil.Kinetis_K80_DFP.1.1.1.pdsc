@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_K80_DFP</name>
+  <description>NXP Kinetis K80 Series Device Support</description>
+
+  <releases>
+    <release version="1.1.1" date="2017-11-20" deprecated="2017-11-20">
+      Maintenance of this pack is discontinued. NXP is now continuing the support in these packs:
+      - NXP.MK80F25615_DFP
+      - NXP.MK82F25615_DFP
+    </release>
+    <release version="1.1.0" date="2017-02-17">
+      Reworked K80_DFP.
+      - changed vendor to NXP.
+      - added documentation.
+      - replaced backslash with slash.
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+    </release>
+    <release version="1.0.0" date="2015-07-01">
+      First Release version of K80 Device Family Pack providing K80F, K82F series device support.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>K80</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="K80 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+
+      <description>
+The high-performance Kinetis K8x ARM® Cortex®-M4 MCU family builds upon the Kinetis microcontroller portfolio with advanced security capabilities including boot ROM to support encrypted firmware updates, automatic decryption from external serial NOR flash memory, hardware AES acceleration built with side band attack protection, and hardware support for public key cryptography.
+The Kinetis K8x MCU family also integrates 8KB code and 8KB system cache, 256KB of embedded SRAM and flash, USB full-speed, low-power peripherals and a quad SPI serial flash interface.
+      </description>
+
+      <!-- ******************************  MK80FN256xxx15  ****************************** -->
+      <device Dname="MK80FN256xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK80F25615.h" define="MK80FN256xxx15"/>
+        <debug svd="SVD/MK80F25615.svd"/>
+        <memory id="IROM1"                            start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IRAM1"                            start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                            start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MKP256_4KB_SECTOR.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K80P121M150SF5RM.pdf" title="K80 150MHz Reference Manual"/>
+        <book name="Documents/K80P121M150SF5.pdf"   title="K80 150MHz Data Sheet"/>
+      </device>
+
+      <!-- ******************************  MK82FN256xxx15  ****************************** -->
+      <device Dname="MK82FN256xxx15">
+        <processor Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="150000000"/>
+        <compile header="Device/Include/MK82F25615.h" define="MK82FN256xxx15"/>
+        <debug svd="SVD/MK82F25615.svd"/>
+        <memory id="IROM1"                            start="0x00000000" size="0x00040000" startup="1" default="1"/>
+        <memory id="IRAM1"                            start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+        <memory id="IRAM2"                            start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+        <algorithm name="Flash/MKP256_4KB_SECTOR.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+        <book name="Documents/K82P121M150SF5RM.pdf" title="K82 150MHz Reference Manual"/>
+        <book name="Documents/K82P121M150SF5.pdf"   title="K82 150MHz Data Sheet"/>
+      </device>
+    </family>
+
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MK80F25615 CMSIS">
+      <description>NXP Kinetis K80 150MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK80FN256xxx15"/>
+    </condition>
+    <condition id="MK82F25615 CMSIS">
+      <description>NXP Kinetis K82 150MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MK82FN256xxx15"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup MK80F25615 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.1.0" condition="MK80F25615 CMSIS">
+      <description>System Startup for NXP MK80F25615 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source" name="Device/Source/ARM/startup_MK80F25615.s" attr="config" version="2.1.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MK80F25615.c"      attr="config" version="2.1.0"/>
+        <file category="header" name="Device/Source/system_MK80F25615.h"      attr="config" version="2.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MK82F25615 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="MK82F25615 CMSIS">
+      <description>System Startup for NXP MK80F25615 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source" name="Device/Source/ARM/startup_MK82F25615.s" attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MK82F25615.c"      attr="config" version="1.1.0"/>
+        <file category="header" name="Device/Source/system_MK82F25615.h"      attr="config" version="1.1.0"/>
+      </files>
+    </component>
+
+  </components>
+
+  <!--boards>
+  </boards-->
+
+  <!--examples>
+  </examples-->
+
+</package>

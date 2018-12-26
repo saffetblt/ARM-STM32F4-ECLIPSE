@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KExx_DFP</name>
+  <description>NXP Kinetis KExx Series Device Support</description>
+
+  <releases>
+    <release version ="1.8.1" date="2017-11-20" deprecated="2017-11-20">
+      Maintenance of this pack is discontinued. NXP is now continuing the support in these packs:
+      - NXP.MKE02Z4_DFP, NXP.MKE04Z4_DFP, NXP.MKE04Z1284_DFP, NXP.MKE06Z4_DFP.
+      - NXP.MKE14F16_DFP, NXP.MKE14Z7_DFP.
+      - NXP.MKE15Z7_DFP.
+      - NXP.MKE16F16_DFP.
+      - NXP.MKE18F16_DFP.
+    </release>
+    <release version="1.8.0" date="2017-07-13">
+      Updated device support files for:
+       - KE02Z4, KE04Z4, KE04Z128, KE06Z4.
+      Updated documentation.
+    </release>
+    <release version="1.7.0" date="2017-02-20">
+      Added TWR-KE18F development board support
+      - Added RTX5 example
+      - Added development board description and documentation
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+    </release>
+    <release version="1.6.0" date="2016-11-17">
+    - Updated KE1xZ device support files including documentation.
+    </release>
+    <release version="1.5.0" date="2016-09-21">
+      Reworked KExx_DFP.
+      - Changed device vendor to NXP.
+      - Renamed subfamily KE1x to KE1xZ according NXP web site.
+      - Updated KE1xZ device support files.
+      - Updated documentation.
+      - Updated boards description.
+      - Updated example project files for changed device vendor.
+    </release>
+    <release version="1.4.0" date="2016-05-23">
+      Added device support for KE14F, KE16F, KE18F devices
+      Added device support for KE1xZ series
+      Updated MKE1x_P256_2KB_SEC Flash Algorithm.
+      Updated KE1xZ Flash Algorithm.
+      Reworked section Conditions, Startup.
+      Updated documentation.
+    </release>
+    <release version="1.2.1">
+      SRAM range correction.
+    </release>
+    <release version="1.2.0" date="2014-07-29">
+      Added Boards FRDM-KE04Z, FRDM-KE06Z.
+      Added examples for FRDM-KE06Z.
+    </release>
+    <release version="1.1.0" date="2014-06-12">
+      Updated SVD files
+    </release>
+    <release version="1.0.0">
+      First Release version of KExx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KExx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KExx Series" Dvendor="NXP:11">
+
+      <!-- ******************************  KE02  ****************************** -->
+      <subFamily DsubFamily="KE02">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+        <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <description>
+The Kinetis KE02 40 MHz MCU family delivers a next-generation solution with enhanced ESD/EMC performance for cost-sensitive, high-reliability device applications used in high electrical noise environments.
+ - Offers a cost-effective 32-bit solution featuring low power and high robustness
+ - Includes a powerful array of analog, communication and timing, and control peripherals with varying flash memory size and pin count
+ - Provides a pin-compatible entry point to the Kinetis E series portfolio, as well as pin compatibility with Our 8-bit S08P family
+        </description>
+
+        <!-- ******************************  MKE02Z16xxx2  ****************************** -->
+        <device Dname="MKE02Z16xxx2">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+          <compile header="Device/Include/MKE02Z2.h" define="MKE02Z16xxx2"/>
+          <debug svd="SVD/MKE02Z2.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFE00" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P16KB.FLM"  start="0x00000000" size="0x00004000" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+
+          <book name="Documents/MKE02Z64M20SF0RM.pdf" title="MKE02Z16xxx2 Device Reference Manual"/>
+          <book name="Documents/MKE02P64M20SF0.pdf"   title="MKE02Z16xxx2 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE02Z32xxx2  ****************************** -->
+        <device Dname="MKE02Z32xxx2">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+          <compile header="Device/Include/MKE02Z2.h" define="MKE02Z32xxx2"/>
+          <debug svd="SVD/MKE02Z2.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P32KB.FLM"  start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE02Z64M20SF0RM.pdf" title="MKE02Z32xxx2 Device Reference Manual"/>
+          <book name="Documents/MKE02P64M20SF0.pdf"   title="MKE02Z32xxx2 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE02Z64xxx2  ****************************** -->
+        <device Dname="MKE02Z64xxx2">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="20000000"/>
+          <compile header="Device/Include/MKE02Z2.h" define="MKE02Z64xxx2"/>
+          <debug svd="SVD/MKE02Z2.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P64KB.FLM"  start="0x00000000" size="0x00010000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE02Z64M20SF0RM.pdf" title="MKE02Z64xxx2 Device Reference Manual"/>
+          <book name="Documents/MKE02P64M20SF0.pdf"   title="MKE02Z64xxx2 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE02Z64xxx4  ****************************** -->
+        <device Dname="MKE02Z64xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="40000000"/>
+          <compile header="Device/Include/MKE02Z4.h" define="MKE02Z64xxx4"/>
+          <debug svd="SVD/MKE02Z4.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P64KB.FLM"  start="0x00000000" size="0x00010000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE02P64M40SF0RM.pdf" title="Kinetis KE02 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE02P64M40SF0.pdf"   title="Kinetis KE02 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE02Z32xxx4  ****************************** -->
+        <device Dname="MKE02Z32xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="40000000"/>
+          <compile header="Device/Include/MKE02Z4.h" define="MKE02Z32xxx4"/>
+          <debug svd="SVD/MKE02Z4.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P32KB.FLM"  start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE02P64M40SF0RM.pdf" title="Kinetis KE02 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE02P64M40SF0.pdf"   title="Kinetis KE02 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE02Z16xxx4  ****************************** -->
+        <device Dname="MKE02Z16xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="40000000"/>
+          <compile header="Device/Include/MKE02Z4.h" define="MKE02Z16xxx4"/>
+          <debug svd="SVD/MKE02Z4.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFFE00" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_P16KB.FLM"  start="0x00000000" size="0x00004000" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+          <algorithm name="Flash/MKE02Zxxx_EE256B.FLM" start="0x10000000" size="0x00000100" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+
+          <book name="Documents/MKE02P64M40SF0RM.pdf" title="Kinetis KE02 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE02P64M40SF0.pdf"   title="Kinetis KE02 Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KE04  ****************************** -->
+      <subFamily DsubFamily="KE04">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+        <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <description>
+The Kinetis KE04 MCU family delivers a next-generation solution with enhanced ESD/EMC performance for cost-sensitive, high-reliability device applications used in high electrical noise environments.
+ - Offers a cost-effective 32-bit solution featuring low power and high robustness
+ - Provides a pin-compatibility within the Kinetis E series portfolio, as well as pin compatibility with our 8-bit S08P family
+ - Includes a powerful array of analog, communication and timing, and control peripherals with varying flash memory size and pin count
+        </description>
+
+        <!-- ******************************  MKE04Z8xxx4  ****************************** -->
+        <device Dname="MKE04Z8xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device/Include/MKE04Z4.h" define="MKE04Z8xxx4"/>
+          <debug svd="SVD/MKE04Z4.svd"/>
+          <memory id="IROM1"                         start="0x00000000" size="0x00002000" startup="1" default="1"/>
+          <memory id="IRAM1"                         start="0x1FFFFF00" size="0x00000400" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE04Zxxx_P8KB.FLM" start="0x00000000" size="0x00002000" RAMstart="0x1FFFFF00" RAMsize="0x400" default="1"/>
+
+          <book name="Documents/MKE04P24M48SF0RM.pdf" title="Kinetis KE04 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE04P24M48SF0.pdf"   title="Kinetis KE04 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE04Z64xxx4  ****************************** -->
+        <device Dname="MKE04Z64xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device/Include/MKE04Z1284.h" define="MKE04Z64xxx4"/>
+          <debug svd="SVD/MKE04Z1284.svd"/>
+          <memory id="IROM1"                          start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                          start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE04Zxxx_P64KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE04P24M48SF0RM.pdf" title="Kinetis KE04 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE04P24M48SF0.pdf"   title="Kinetis KE04 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE04Z64xxx4  ****************************** -->
+        <device Dname="MKE04Z128xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device/Include/MKE04Z1284.h" define="MKE04Z128xxx4"/>
+          <debug svd="SVD/MKE04Z1284.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE04Zxxx_P128KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE04P24M48SF0RM.pdf" title="Kinetis KE04 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE04P24M48SF0.pdf"   title="Kinetis KE04 Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KE06  ****************************** -->
+      <subFamily DsubFamily="KE06">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+        <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <description>
+The Kinetis KE06 MCU family delivers a next-generation solution with enhanced ESD/EMC performance for cost-sensitive, high-reliability device applications used in high electrical noise environments.
+ - Offers a cost-effective, entry-level 32-bit solution featuring low power and high robustness
+ - Provides a pin-compatibility within the Kinetis E series portfolio, as well as pin compatibility with Our 8-bit S08P family
+ - Includes a powerful array of analog, communication and timing, and control peripherals with varying flash memory size and pin count
+        </description>
+
+        <!-- ******************************  MKE06Z64xxx4  ****************************** -->
+        <device Dname="MKE06Z64xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device/Include/MKE06Z4.h" define="MKE06Z64xxx4"/>
+          <debug svd="SVD/MKE06Z4.svd"/>
+          <memory id="IROM1"                          start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                          start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE06Zxxx_P64KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE06P80M48SF0RM.pdf" title="Kinetis KE06 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE06P80M48SF0.pdf"   title="Kinetis KE06 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE06Z128xxx4  ****************************** -->
+        <device Dname="MKE06Z128xxx4">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device/Include/MKE06Z4.h" define="MKE06Z128xxx4"/>
+          <debug svd="SVD/MKE06Z4.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE06Zxxx_P128KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/MKE06P80M48SF0RM.pdf" title="Kinetis KE06 Sub-Family Reference Manual"/>
+          <book name="Documents/MKE06P80M48SF0.pdf"   title="Kinetis KE06 Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KE1xZ  ****************************** -->
+      <subFamily DsubFamily="KE1xZ">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+        <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <description>
+KE1xZ families based on ARM Cortex-M0+ core, providing upto 256 KB flash, 32 KB RAM, and the complete set of analog/digital features.
+KE1xZ256 extends Kinetis E family to higher performance and broader scalability. Robust TSI provides high level stability and accuracy to customers’ HMI system.
+1MSPS ADC and Flextimer are perfect solution for BLDC motor control systems.
+        </description>
+
+        <!-- ******************************  MKE14Z128xxx7  ****************************** -->
+        <device Dname="MKE14Z128xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+          <compile header="Device/Include/MKE14Z7.h" define="MKE14Z128xxx7"/>
+          <debug svd="SVD/MKE14Z7.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_2KB_SEC.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xZP100M72SF0RM.pdf" title="Kinetis KE1xZ Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xZP100M72SF0.pdf"   title="Kinetis KE1xZ Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE14Z256xxx7  ****************************** -->
+        <device Dname="MKE14Z256xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+          <compile header="Device/Include/MKE14Z7.h" define="MKE14Z256xxx7"/>
+          <debug svd="SVD/MKE14Z7.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFE000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_2KB_SEC.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xZP100M72SF0RM.pdf" title="Kinetis KE1xZ Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xZP100M72SF0.pdf"   title="Kinetis KE1xZ Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE15Z128xxx7  ****************************** -->
+        <device Dname="MKE15Z128xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+          <compile header="Device/Include/MKE15Z7.h" define="MKE15Z128xxx7"/>
+          <debug svd="SVD/MKE15Z7.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_2KB_SEC.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xZP100M72SF0RM.pdf" title="Kinetis KE1xZ Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xZP100M72SF0.pdf"   title="Kinetis KE1xZ Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE15Z256xxx7  ****************************** -->
+        <device Dname="MKE15Z256xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+          <compile header="Device/Include/MKE15Z7.h" define="MKE15Z256xxx7"/>
+          <debug svd="SVD/MKE15Z7.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFE000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_2KB_SEC.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xZP100M72SF0RM.pdf" title="Kinetis KE1xZ Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xZP100M72SF0.pdf"   title="Kinetis KE1xZ Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KE1xF  ****************************** -->
+      <subFamily DsubFamily="KE1xF">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="160000000"/>
+        <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <description>
+Kinetis KE1xF MCUs are the high end series MCUs in Kinetis E family, providing robust 5V solution with the high performance ARM Cortex-M4 core running at up to 168 MHz.
+The Kinetis KE1xF MCU family also integrates CAN 2.0B compliant FlexCAN provides high reliable serial communication interface for industry applications, and rich suite of communication interfaces including LPUARTs, LPI2Cs, LPSPIs, and FlexIO.
+        </description>
+
+        <!-- ******************************  MKE14F256xxx16  ****************************** -->
+        <device Dname="MKE14F256xxx16">
+          <compile header="Device/Include/MKE14F16.h" define="MKE14F256xxx16"/>
+          <debug svd="SVD/MKE14F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFC000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_4KB_SEC.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE14F512xxx16  ****************************** -->
+        <device Dname="MKE14F512xxx16">
+          <compile header="Device/Include/MKE14F16.h" define="MKE14F512xxx16"/>
+          <debug svd="SVD/MKE14F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00010000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFF8000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P512_4KB_SEC.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D64_2KB_SEC.FLM"  start="0x10000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE16F256xxx16  ****************************** -->
+        <device Dname="MKE16F256xxx16">
+          <compile header="Device/Include/MKE16F16.h" define="MKE16F256xxx16"/>
+          <debug svd="SVD/MKE16F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFC000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_4KB_SEC.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE16F512xxx16  ****************************** -->
+        <device Dname="MKE16F512xxx16">
+          <compile header="Device/Include/MKE16F16.h" define="MKE16F512xxx16"/>
+          <debug svd="SVD/MKE16F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00010000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFF8000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P512_4KB_SEC.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D64_2KB_SEC.FLM"  start="0x10000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE18F256xxx16  ****************************** -->
+        <device Dname="MKE18F256xxx16">
+          <compile header="Device/Include/MKE18F16.h" define="MKE18F256xxx16"/>
+          <debug svd="SVD/MKE18F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00008000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFFC000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P256_4KB_SEC.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D32_2KB_SEC.FLM"  start="0x10000000" size="0x00008000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKE14F512xxx16  ****************************** -->
+        <device Dname="MKE18F512xxx16">
+          <compile header="Device/Include/MKE18F16.h" define="MKE18F512xxx16"/>
+          <debug svd="SVD/MKE18F16.svd"/>
+          <memory id="IROM1"                             start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IROM2"                             start="0x10000000" size="0x00010000" startup="0" default="0"/>
+          <memory id="IRAM1"                             start="0x1FFF8000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKE1x_P512_4KB_SEC.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+          <algorithm name="Flash/MKE1x_D64_2KB_SEC.FLM"  start="0x10000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KE1xFP100M168SF0RM.pdf" title="Kinetis KE1xF Sub-Family Reference Manual"/>
+          <book name="Documents/KE1xFP100M168SF0.pdf"   title="Kinetis KE1xF Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="KE02Z2 CMSIS">
+      <description>NXP Kinetis KE02 20MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z16xxx2"/>
+      <accept Dname="MKE02Z32xxx2"/>
+      <accept Dname="MKE02Z64xxx2"/>
+    </condition>
+
+    <condition id="KE02Z4 CMSIS">
+      <description>NXP Kinetis KE02 40MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE02Z16xxx4"/>
+      <accept Dname="MKE02Z32xxx4"/>
+      <accept Dname="MKE02Z64xxx4"/>
+    </condition>
+
+    <condition id="KE04Z4 CMSIS">
+      <description>NXP Kinetis KE04 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8xxx4"/>
+      </condition>
+
+    <condition id="KE04Z1284 CMSIS">
+      <description>NXP Kinetis KE04 64kB/128kB 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z64xxx4"/>
+      <accept Dname="MKE04Z128xxx4"/>
+    </condition>
+
+    <condition id="KE06Z4 CMSIS">
+      <description>NXP Kinetis KE06 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE06Z64xxx4"/>
+      <accept Dname="MKE06Z128xxx4"/>
+    </condition>
+
+    <condition id="KE14Z7 CMSIS">
+      <description>NXP Kinetis KE14 72MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z128xxx7"/>
+      <accept Dname="MKE14Z256xxx7"/>
+    </condition>
+
+    <condition id="KE15Z7 CMSIS">
+      <description>NXP Kinetis KE15 72MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128xxx7"/>
+      <accept Dname="MKE15Z256xxx7"/>
+    </condition>
+
+    <condition id="KE14F16 CMSIS">
+      <description>NXP Kinetis KE14F 160MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE14F256xxx16"/>
+      <accept Dname="MKE14F512xxx16"/>
+    </condition>
+
+    <condition id="KE16F16 CMSIS">
+      <description>NXP Kinetis KE16F 160MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE16F256xxx16"/>
+      <accept Dname="MKE16F512xxx16"/>
+    </condition>
+
+    <condition id="KE18F16 CMSIS">
+      <description>NXP Kinetis KE18F 160MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKE18F256xxx16"/>
+      <accept Dname="MKE18F512xxx16"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup KE02Z2 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="KE02Z2 CMSIS">
+      <description>System Startup for Kinetis KE02 20MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE02Z2.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE02Z2.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE02Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="KE02Z4 CMSIS">
+      <description>System Startup for Kinetis KE02 40MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE02Z4.s" attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE02Z4.c"      attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/Source/system_MKE02Z4.h"      attr="config" version="1.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE04Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="KE04Z4 CMSIS">
+      <description>System Startup for Kinetis KE04 40MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE04Z4.s" attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE04Z4.c"      attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/Source/system_MKE04Z4.h"      attr="config" version="1.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE04Z1284 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="KE04Z1284 CMSIS">
+      <description>System Startup for Kinetis KE04 40MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE04Z1284.s" attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE04Z1284.c"      attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/Source/system_MKE04Z1284.h"      attr="config" version="1.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE06Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="KE06Z4 CMSIS">
+      <description>System Startup for Kinetis KE04 40MHz devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE06Z4.s" attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE06Z4.c"      attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/Source/system_MKE06Z4.h"      attr="config" version="1.1.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE14Z7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.0.0" condition="KE14Z7 CMSIS">
+      <description>System Startup for Kinetis KE14 72MHz devices devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE14Z7.s" attr="config" version="3.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE14Z7.c"      attr="config" version="3.0.0"/>
+        <file category="header"  name="Device/Source/system_MKE14Z7.h"      attr="config" version="3.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE15Z7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.0.0" condition="KE15Z7 CMSIS">
+      <description>System Startup for Kinetis KE15 72MHz devices devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE15Z7.s" attr="config" version="3.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE15Z7.c"      attr="config" version="3.0.0"/>
+        <file category="header"  name="Device/Source/system_MKE15Z7.h"      attr="config" version="3.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE14F16 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="KE14F16 CMSIS">
+      <description>System Startup for Kinetis KE14F 160MHz devices devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE14F16.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE14F16.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKE14F16.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE16F16 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="KE16F16 CMSIS">
+      <description>System Startup for Kinetis KE16F 160MHz devices devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE16F16.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE16F16.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKE16F16.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup KE18F16 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="KE18F16 CMSIS">
+      <description>System Startup for Kinetis KE18F 160MHz devices devices devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKE18F16.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKE18F16.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKE18F16.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="TWR-KE18F" Cclass="Board Support" Cversion="1.0.0">
+      <description>TWR-KE18F Board Support</description>
+      <doc></doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="KE18F16 CMSIS">
+        <description>A/D Converter interface for NXP TWR-KE18F board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KE18F/Common/ADC_TWR-KE18F.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="KE18F16 CMSIS">
+      <description>Button driver for NXP TWR-KE18F board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KE18F/Common/Buttons_TWR-KE18F.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="KE18F16 CMSIS">
+      <description>LED driver for NXP TWR-KE18F board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KE18F/Common/LED_TWR-KE18F.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board name="TWR-KE18F" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKE18F512xxx16"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KExx Series" DsubFamily="KE1xF"/>
+      <description>The TWR-KE18F is a development board for the Kinetis KE1xF 32-bit MCUs.</description>
+      <image small="Boards/NXP/TWR-KE18F/Images/TWRKE18F_small.png" large="Boards/NXP/TWR-KE18F/Images/TWRKE18F_large.png"/>
+      <book category="overview"  name="http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/e-series-5v-robust-m0-plus-m4/kinetis-ke18-mcu-tower-system-module:TWR-KE18F" title="TWR-KE18F Web Page"/>
+      <book category="manual"    name="Boards/NXP/TWR-KE18F/Documents/TWRKE18FUG.pdf"   title="TWR-KE18F User’s Guide"/>
+      <book category="setup"     name="Boards/NXP/TWR-KE18F/Documents/TWRKE18FQSG.pdf"  title="TWR-KE18F Quick Start Guide"/>
+      <book category="schematic" name="Boards/NXP/TWR-KE18F/Documents/spf-29160_a3.pdf" title="TWR-KE18F Schematics"/>
+      <feature type="ODbg"           n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"            n="5"              name="USB Powered"/>
+      <feature type="Button"         n="3"              name="Two mechanical push buttons and one reset button"/>
+      <feature type="LED"            n="5"              name="Four user-controlled LEDs and one RGB LED"/>
+      <feature type="Accelerometer"  n="1"              name="FXOS8700CQ 3D accelerometer + 3D magnetometer"/>
+      <feature type="Poti"           n="1"/>
+      <feature type="TempSens"       n="1"              name="On-board thermistor"/>
+      <feature type="CAN"            n="1"              name="CAN transceiver"/>
+      <feature type="ConnOther"      n="1"              name="Flex I/O header"/>
+      <feature type="IrDA"           n="1"              name="IrDA transmitter and receiver"/>
+      <feature type="TowerFF"        n="1"/>
+      <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      <debugInterface adapter="OpenSDA" connector="Micro-USB"/>
+    </board>
+
+    <board name="FRDM-KE04Z" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKE04Z8xxx4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KExx Series" DsubFamily="KE04"/>
+      <description>The FRDM-KE04Z is an ultra-low-cost development platform for Kinetis KE04 MCUs.</description>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freescale-freedom-development-platform-for-kinetis-ke04-mcus:FRDM-KE04Z" title="FRDM-KE04Z Web Page"/>
+      <book category="manual"    name="Boards/NXP/FRDM-KE04Z/Documents/FRDM-KE04ZUG.pdf" title="Freedom KE04 User’s Guide"/>
+      <feature type="ODbg"           n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"            n="5"              name="USB Powered"/>
+      <feature type="Button"         n="1"              name="Reset Button"/>
+      <feature type="LED"            n="1"              name="Tri-color LED"/>
+      <feature type="Accelerometer"  n="1"              name="MMA8451Q Accelerometer"/>
+      <feature type="ContOther"      n="1"              name="Capacitive touch slider"/>
+      <feature type="IrDA"           n="1"              name="IrDA transmitter and receiver"/>
+    </board>
+
+    <board name="FRDM-KE06Z" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKE06Z128xxx4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KExx Series" DsubFamily="KE06"/>
+      <description>The FRDM-KE06Z is a simple, yet sophisticated development platform for Kinetis KE06 MCUs.</description>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-ke06-mcus:FRDM-KE06Z" title="FRDM-KE06Z Web Page"/>
+      <book category="manual"    name="Boards/NXP/FRDM-KE06Z/Documents/FRDMKE06UG.pdf" title="Freedom KE06 User’s Guide"/>
+      <feature type="ODbg"           n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"            n="5"              name="USB Powered"/>
+      <feature type="Button"         n="1"              name="Reset Button"/>
+      <feature type="LED"            n="1"              name="Tri-color LED"/>
+      <feature type="Accelerometer"  n="1"              name="MMA8451Q Accelerometer"/>
+      <feature type="CAN"            n="1"              name="CAN communication"/>
+      <feature type="IrDA"           n="1"              name="IrDA transmitter and receiver"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- FRDM-KE04Z Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-KE04Z/Blinky">
+      <description>Blinky example</description>
+      <board name="FRDM-KE04Z" vendor="NXP" Dvendor="NXP:11" Dname="MKE04Z8xxx4"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- FRDM-KE06Z Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-KE06Z/Blinky">
+      <description>Blinky example</description>
+      <board name="FRDM-KE06Z" vendor="NXP" Dvendor="NXP:11" Dname="MKE06Z128xxx4"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-KE06Z/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="FRDM-KE06Z" vendor="NXP" Dvendor="NXP:11" Dname="MKE06Z128xxx4"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TWR-KE18F Tower Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-KE18F/RTX5_Blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="TWR-KE18F" vendor="NXP" Dvendor="NXP:11" Dname="MKE18F512xxx16"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

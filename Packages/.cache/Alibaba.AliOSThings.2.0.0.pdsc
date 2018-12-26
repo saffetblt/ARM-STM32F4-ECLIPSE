@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Alibaba</vendor>
+  <name>AliOSThings</name>
+  <description>AliOS Things software pack</description>
+  <url>https://mirrors.aliyun.com/AliOS-Things/keil/</url>
+  <supportContact>aliosthings@service.aliyun.com</supportContact>
+  <license>license.txt</license>
+  
+  <releases>
+    <release version="2.0.0" date="2018-11-20">
+      AliOS Things software pack version.
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>Alibaba</keyword>
+    <keyword>AliOS Things</keyword>
+  </keywords>
+ 
+  <components>
+    <bundle Cbundle="AliOSThings" Cclass="RTOS" Cversion="1.0.0">
+    <description>AliOS Things</description>
+    <doc>README.md</doc>
+    <component Cgroup="platform" Csub="arch_arm_armv7m" Cversion="1.0.0">
+      <description>arch arm armv7m</description>  
+      <files>
+        <file category="source" name="aos/platform/arch/arm/armv7m/armcc/m4/port_c.c" condition="CM4_KEIL"/>
+        <file category="sourceAsm" name="aos/platform/arch/arm/armv7m/armcc/m4/port_s.s" version="1.0.0" attr="config" condition="CM4_KEIL"/>
+        <file category="include" name="aos/platform/arch/arm/armv7m/armcc/m4/" condition="CM4_KEIL"/>
+      </files>
+    </component> 
+  
+    <component Cgroup="kernel" Cversion="1.0.0">
+      <description>AliOS Things kernel, include rhino osal libc init vfs cli log </description>  
+      <!-- global MARCO: HAVE_NOT_ADVANCED_FORMATE CONFIG_AOS_CLI -->
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define HAVE_NOT_ADVANCED_FORMATE         /*Global MARCO of tools cli*/
+        #define CONFIG_AOS_CLI                    /*Global MARCO of tools cli*/
+
+        #define AOS_FRAMEWORK_COMMON    /*Global MARCO of framework common*/ 
+        #define CONFIG_SYSINFO_APP_VERSION "app-2.0.0-181024.1857" /*Global MARCO of framework common*/
+        #define SYSINFO_APP_VERSION CONFIG_SYSINFO_APP_VERSION     /*Global MARCO of framework common*/
+
+        #define AOS_HAL                /*Global MARCO of kernel hal*/
+
+        #define OSAL_RHINO            /*Global MARCO of kernel osal*/
+
+        #define AOS_VFS                /*Global MARCO of kernel vfs*/ 
+        #define __BSD_VISIBLE          1 /*Global MARCO of kernel vfs*/
+      </RTE_Components_h>   
+      <files>
+        <!-- cli component -->
+        <file category="include" name="aos/tools/cli/include/"/>
+        <file category="source" name="aos/tools/cli/cli.c"/>
+        <file category="source" name="aos/tools/cli/dumpsys.c"/>
+        <!-- libc component -->
+        <file category="include" name="aos/utility/libc/compilers/armlibc/"/>
+        <file category="source" name="aos/utility/libc/compilers/armlibc/armcc_libc.c"/>
+        <file category="source" name="aos/utility/libc/compilers/armlibc/hal_stub.c"/>
+        <!-- log component -->
+        <file category="include" name="aos/utility/log/include/"/>
+        <file category="source" name="aos/utility/log/log.c"/>
+        <!-- common component -->
+        <file category="include" name="aos/middleware/common/include/"/>
+        <file category="source" name="aos/middleware/common/main.c"/>
+        <file category="source" name="aos/middleware/common/version.c"/>
+        <!-- hal component -->
+        <file category="include" name="aos/kernel/hal/include/"/>
+        <!-- init component -->
+        <file category="include" name="aos/kernel/init/include/"/>
+        <file category="source" name="aos/kernel/init/aos_init.c"/>
+        <!-- rhino component -->
+        <file category="include" name="aos/kernel/rhino/core/include/"/>
+        <file category="include" name="aos/kernel/rhino/uspace/include/"/>
+        <file category="include" name="aos/kernel/rhino/"/>
+        <file category="source" name="aos/kernel/rhino/core/k_err.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_mm.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_mm_debug.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_ringbuf.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_stats.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_task_sem.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_timer.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_buf_queue.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_event.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_mm_blk.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_mutex.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_pend.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_sched.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_sys.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_tick.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_workqueue.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_dyn_mem_proc.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_idle.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_obj.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_queue.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_sem.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_task.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_time.c"/>
+        <file category="source" name="aos/kernel/rhino/core/k_spin_lock.c"/>
+        <!-- osal component -->
+        <file category="include" name="aos/osal/aos/include/"/>
+        <file category="include" name="aos/osal/aos/"/>
+        <file category="include" name="aos/osal/mico/include/"/>
+        <file category="source" name="aos/osal/aos/aos_common.c"/>
+        <file category="source" name="aos/osal/aos/aos_rhino.c"/>
+        <!-- vfs component -->
+        <file category="include" name="aos/kernel/fs/vfs/include/"/>
+        <file category="source" name="aos/kernel/fs/vfs/vfs.c"/>
+        <file category="source" name="aos/kernel/fs/vfs/vfs_file.c"/>
+        <file category="source" name="aos/kernel/fs/vfs/vfs_inode.c"/>
+        <file category="source" name="aos/kernel/fs/vfs/vfs_register.c"/>
+      </files>
+    </component>  
+  </bundle>
+  </components>    
+  <conditions>
+    <condition id="ARM_Compiler">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="IAR_Compiler">
+      <require Tcompiler="IAR"/>
+    </condition> 
+    <condition id="CM4_KEIL">
+      <description>Cortex-M4 under Keil MDK</description>      
+      <require  Dcore="Cortex-M4"/>
+      <require condition="ARM_Compiler"/>
+    </condition>
+    <condition id="MCU_FPU">
+      <accept Dfpu="FPU"/>
+      <accept Dfpu="SP_FPU"/>
+      <accept Dfpu="DP_FPU"/>
+    </condition>
+    <condition id="CM4_FPU_KEIL">
+      <description>Cortex-M4 MCU with FPU under KEIL</description>      
+      <require condition="CM4_KEIL"/>
+      <require condition="MCU_FPU"/>
+    </condition>
+    <condition id="CM4_NFPU_KEIL">
+      <description>Cortex-M4 MCU with FPU under KEIL</description>      
+      <require condition="CM4_KEIL"/>
+      <require Dfpu="NO_FPU"/>
+    </condition>
+  </conditions>
+
+  <examples>
+    <!-- helloworld@stm32l496g-discovery example -->
+    <example name="AliOS Things Helloworld" doc="README.md" folder="aos/app/example/helloworld">
+      <description>AliOS Things Helloworld example </description>
+      <board vendor="STMicroelectronics" name="STM32L496G-Discovery"/>
+      <project>
+        <environment name="uv" load="stm32l496g-discovery.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="AliOSThings" Cgroup="kernel"/>
+        <component Cclass="AliOSThings" Cgroup="platform" Csub="arch_arm_armv7m" Cversion="1.0.0"/>
+        <keyword>Getting Started</keyword>
+        <keyword>helloworld</keyword>
+      </attributes>
+    </example>
+    
+  </examples>
+
+</package>

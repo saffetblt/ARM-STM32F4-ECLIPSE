@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC8N04_DFP</name>
+  <description>NXP LPC8N04 Series Device Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2018-07-30">
+      Initial release version of LPC8N04 Device Family Pack providing basic device support.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>LPC8N04</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="LPC8N04" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <debugconfig default="swd" clock="5000000" swj="0"/>
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+
+      <sequences>
+        <!-- VectReset not available on CM0/CM0+ -->
+        <sequence name="ResetProcessor" disable="true"/>
+      </sequences>
+
+      <!-- ************************  Subfamily 'LPC8N04'  *************************** -->
+      <subFamily DsubFamily="LPC8N04">
+        <processor Dclock="8000000"/>
+
+        <book name="Documents/UM11074.pdf" title="LPC8N04 User manual"/>
+        <book name="Documents/LPC8N04.pdf" title="LPC8N04 Datasheet"/>
+        <description>
+The NXP LPC8N04 is an IC optimized for an entry level Cortex-M0+ MCU with built-in NFC interface.
+LPC8N04 supports an effective system solution with a minimal number of external components for NFC related applications.
+        </description>
+
+        <feature type="TempSens"      n="1"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="RTC"           n="32768"                       name="Internal RTC"/>
+        <feature type="WDT"           n="1"                           name="Windowed Watchdog timer"/>
+        <feature type="Timer"         n="2"                           name="32-Bit / 16-Bit Timer"/>
+        <feature type="CoreOther"     n="1"                           name="NFC/RFID ISO 14443 type A interface"/>
+        <feature type="CoreOther"     n="1"                           name="CRC engine"/>
+        <feature type="CoreOther"     n="1"                           name="Unique device serial number"/>
+
+        <!-- *************************  Device 'LPC8N04FHI24'  ***************************** -->
+        <device Dname="LPC8N04FHI24">
+          <compile header="Device/Include/LPC8N04.h" define="LPC8N04FHI24"/>
+          <debug svd="SVD/LPC8N04.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00007800" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x10000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/LPC8N04_30.FLM" start="0x00000000" size="0x00007800"             default="1"/>
+
+          <feature type="IOs"           n="12"/>
+          <feature type="QFN"           n="24"                        name="QFN Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="AC5">
+      <description>ARM compiler Version 5</description>
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+    <condition id="AC6">
+      <description>ARM compiler Version 6</description>
+      <require Tcompiler="ARMCC" Toptions="AC6"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC8N04 CMSIS">
+      <description>NXP LPC8N04 Devices and CMSIS-CORE</description>
+      <require Dvendor="NXP:11" Dname="LPC8N04*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup LPC8N04 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="LPC8N04 CMSIS">
+      <description>System Startup for NXP LPC8N04 Devices</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="sourceC"      name="Device/Source/arm/startup_LPC8N04.c"     attr="config" version="1.0.0"/>
+        <file category="sourceC"      name="Device/Source/system_LPC8N04.c"          attr="config" version="1.0.0"/>
+
+        <file category="linkerScript" name="Device/Source/arm/LPC8N04_flash_AC5.scf" attr="config" version="1.0.0" condition="AC5"/>
+        <file category="linkerScript" name="Device/Source/arm/LPC8N04_ram_AC5.scf"   attr="config" version="1.0.0" condition="AC5"/>
+
+        <file category="linkerScript" name="Device/Source/arm/LPC8N04_flash.scf"     attr="config" version="1.0.0" condition="AC6"/>
+        <file category="linkerScript" name="Device/Source/arm/LPC8N04_ram.scf"       attr="config" version="1.0.0" condition="AC6"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

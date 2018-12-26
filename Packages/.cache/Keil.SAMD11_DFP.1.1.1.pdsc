@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMD11_DFP</name>
+  <description>Microchip SAM D11 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.1.1" date="2018-05-07">
+      Updated device vendor from Atmel to Microchip.
+    </release>
+    <release version="1.1.0" date="2015-04-15">
+      Splitting up of SAM D Device Family Pack (supporting SAMD11).
+      Fixed device feature description
+    </release>
+    <release version="1.0.0">
+      First Release version of SAMD11 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAM D</keyword>
+    <keyword>SAM D11</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM D Series" Dvendor="Microchip:3">
+      <book name="Documents\dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The Microchip | SMART SAM D ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+The Microchip | SMART SAM D gives you a truly differentiated general-purpose microcontroller that is ideal for many low-power, cost-sensitive industrial and consumer applications.
+      </description>
+
+      <!-- ************************  Subfamily 'SAM D11'  **************************** -->
+      <subFamily DsubFamily="SAM D11">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+
+        <book name="Documents\Atmel-42363-SAM-D11_Datasheet.pdf" title="SAM D11 Datasheet"/>
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with low power consumption make the Microchip SAM D11 ARM Cortex-M0+ based microcontroller series
+ideal for a wide range of home automation, consumer, metering and industrial applications.
+The SAM D11 is designed for simple and intuitive migration between SAM D devices with identical peripheral modules, compatible code and a linear address map.
+        </description>
+
+        <feature type="DMA"           n="6"/>
+        <feature type="CoreOther"     n="6"                           name="Event System"/>
+        <feature type="AnalogOther"   n="2"                           name="Analog Comparator"/>
+        <feature type="DAC"           n="1"       m="10"/>
+        <feature type="RTC"           n="32768"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Timer"         n="2"       m="32"              name="Timer/Counter"/>
+        <feature type="Timer"         n="1"       m="32"              name="Timer/Counter for Control"/>
+        <feature type="USBD"          n="1"                           name="Full-Speed USB Device"/>
+        <feature type="ExtInt"        n="8"                           name="External Interrupts"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="VCC"           n="1.62"    m="3.63"/>
+
+        <!-- *************************  Device 'ATSAMD11C13A'  ***************************** -->
+        <device Dname="ATSAMD11C13A">
+          <compile header="Device\SAMD11\Include\samd11.h" define="__SAMD11C13A__"/>
+          <debug svd="SVD\SAMD11\ATSAMD11C13A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00002000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD11_8.FLM"   start="0x00000000" size="0x00002000"             default="1"/>
+
+          <feature type="Touch"         n="12"                          name="channels (X- x Y-lines) for mutual capacitance"/>
+          <feature type="Touch"         n="7"                           name="channels for self capacitance (Y-lines only)"/>
+          <feature type="ADC"           n="5"       m="12"/>
+          <feature type="IOs"           n="12"                          name="General Purpose I/Os"/>
+          <feature type="MPSerial"      n="2"                           name="SERCOMM (I2C, USART, SPI)"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD11C14A'  ***************************** -->
+        <device Dname="ATSAMD11C14A">
+          <compile header="Device\SAMD11\Include\samd11.h" define="__SAMD11C14A__"/>
+          <debug svd="SVD\SAMD11\ATSAMD11C14A.svd"/>
+          <memory      id="IROM1"                 start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                 start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD11_16.FLM" start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="Touch"         n="12"                          name="channels (X- x Y-lines) for mutual capacitance"/>
+          <feature type="Touch"         n="7"                           name="channels for self capacitance (Y-lines only)"/>
+          <feature type="ADC"           n="5"       m="12"/>
+          <feature type="IOs"           n="12"                          name="General Purpose I/Os"/>
+          <feature type="MPSerial"      n="2"                           name="SERCOMM (I2C, USART, SPI)"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD11D14AM'  ***************************** -->
+        <device Dname="ATSAMD11D14AM">
+          <compile header="Device\SAMD11\Include\samd11.h" define="__SAMD11D14AM__"/>
+          <debug svd="SVD\SAMD11\ATSAMD11D14AM.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD11_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="Touch"         n="72"                          name="channels for mutual capacitance (nax.)"/>
+          <feature type="Touch"         n="16"                          name="channels for self capacitance (nax.)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="22"                          name="General Purpose I/Os (nax.)"/>
+          <feature type="MPSerial"      n="3"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="QFN"           n="24"                          name="QFN Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD11D14AS'  ***************************** -->
+        <device Dname="ATSAMD11D14AS">
+          <compile header="Device\SAMD11\Include\samd11.h" define="__SAMD11D14AS__"/>
+          <debug svd="SVD\SAMD11\ATSAMD11D14AS.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD11_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="Touch"         n="72"                          name="channels for mutual capacitance (nax.)"/>
+          <feature type="Touch"         n="16"                          name="channels for self capacitance (nax.)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="IOs"           n="22"                          name="General Purpose I/Os (nax.)"/>
+          <feature type="MPSerial"      n="3"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="SOP"           n="20"                          name="SOIC Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMD11 CMSIS">
+      <description>Microchip SAM D11 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMD11*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SAMD11 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMD11 CMSIS">
+      <description>System Startup for Microchip SAM D11 Devices</description>
+      <files>
+        <file category="include"   name="Device\SAMD11\Include\"/>
+        <file category="source"    name="Device\SAMD11\Source\ARM\startup_SAMD11.s" attr="config"   version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device\SAMD11\Source\system_samd11.c"      attr="config"   version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

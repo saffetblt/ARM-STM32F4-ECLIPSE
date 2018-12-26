@@ -1,0 +1,1966 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC1700_DFP</name>
+  <description>NXP LPC1700 Series Device Support, Drivers and Examples for MCB1700 and LPC1788-32</description>
+
+  <releases>
+    <release version="2.5.0" date="2018-10-03">
+      Upated CMSIS-Driver:
+      - I2C: Corrected pin configuration when I2C0_SCL Pin = P1.31 and I2C0_SDA Pin = P1.30
+      - EMAC: Corrected timeout implementation for RTOS2
+      - USART: Corrected UART SCLK pin configuration
+      - CAN: Corrected SetBitrate function
+      Updated Board Examples:
+      - emWin examples updated to emWin V5.46e.
+      - USB Host examples thread stack settings
+      Updated MCB1700 Board Support:
+      - GLCD driver.
+    </release>
+    <release version="2.4.0" date="2017-11-16">
+      Debug Description:
+      - Fixed debug sequence "Run over bootloader" reset behaviour
+      - Updated read modify write operation on updating DEMCR_Addr to avoid side effects.
+      CMSIS-Driver:
+      - Updated EMAC driver adding support for CMSIS-RTOS2
+      Board Examples:
+      - Updated USB Device Audio example for Embedded Artists LPC1788-32 Developers Kit
+      - Updated Board Support LED_*.c files.
+    </release>
+    <release version="2.3.0" date="2017-01-13">
+      CMSIS-PACK Description:
+      - Reworked board description.
+      - Trace Start/Stop debug sequence added
+      - moved dbgconf file name to dedicated folder and updated the file name
+      - Updated version of config file system_LPC177x_8x.c: was not updated in pack version 2.1.0
+      Device Support:
+      - Updated system_LPC177x_8x.[c|h]. correcting doxy comments
+      - Corrected PIN_LPC177x_8x.c to support also PORT4 and PORT5
+      - Updated RTE_device for LPC177x/8x.
+      - Update Device header file LPC177x_8x.h adding System Control register MATRIXARB
+      CMSIS-Driver:
+      - Updated GPDMA driver to transfer data bigger than 4k.
+      -- Updated CMSIS drivers (USART, I2S and SSP) to work with new GPDMA driver.
+      - Updated USB Device driver:
+      -- USBD_HW_ReadEP/USBD_HW_WriteEP function behavior for data parameter equal to NULL
+      -- EndpointUnconfigure function for isochronous endpoints (unconfiguring one isochronous endpoint prevented further functionality of any other configured isochronous endpoints)
+      -- updated the driver to work with LPC1751/52 device series
+      -- removed unnecessary __packed specifier for GCC compliance
+      - Updated USART driver:
+      -- Corrected send_active flag handling in USART_Send function.
+      -- TX and RX pins can be configured as "not used"
+      - Updated SSP and SPI driver: MISO and MOSI pins can be configured as "not used"
+      - Updated CAN driver:
+      -- corrected receive overrun signaling
+      -- corrected functionality when NULL pointer is provided for one or both signal callbacks in Initialize function call
+      Board Examples:
+      - Added USB Device Audio example for Keil MCB1700 evaluation board
+      - Added CAN Data example for Embedded Artists LPC1788-32 Developers Kit
+      - Updated emWin examples to emWin V5.36f
+      - Updated USB Device CDC ACM VirtualCOM example for Keil MCB1700 and EA LPC1788-32 Developers Kit evaluation boards
+      - Updated USB Host examples
+    </release>
+    <release version="2.2.0" date="2015-12-21">
+      Updated CMSIS drivers:
+      - Added CAN and SPI driver and respective configuration options in RTE_Device.h
+      - Updated USB Device driver:
+      -- added check for USBD_EndpointConfigure function: allow only endpoint configuration supported by hardware
+      -- corrected SetLineCoding request on CDC ACM device
+      -- corrected reading data from stalled endpoint causing hardfault
+      -- corrected initialization failure if Port1 not enabled in RTE_Device.h
+      - Updated USB Host driver:
+      -- corrected PowerControl for Power OFF
+      -- corrected initialization failure if Port1 not enabled in RTE_Device.h
+      - Updated SSP driver:
+      -- correcting ssel pin GPIO mode configuration (for LPC177x_8x)
+      -- corrected Bus Speed configuration
+      Updated EMAC driver:
+      - corrected return value of the ReadFrame function
+      - corrected PHY device addressing when using software controlled MDI
+      MDK example projects:
+      - added CAN Data project for Keil MCB1700 Evaluation Board
+      - added LPC1758 Flash Target in Network examples to support MCB1700 board populated with LPC1758 device
+    </release>
+    <release version="2.1.0" date="2015-06-19">
+      Added full support for LPC177x/8x devices:
+      -- CMSIS and Peripheral drivers
+      -- Board support and examples for Embedded Artists LPC1788-32 DK
+      -- External Memory Controller configuration in system file
+      Added new CMSIS drivers:
+      -- SAI/I2S driver
+      -- MCI driver for LPC177x/8x devices
+      Updated CMSIS drivers:
+      - Driver configuration (RTE_Device.h): added support for new drivers and LPC177x/8x devices
+      - I2C, EMAC, SPI, USART, USB Device, USB Host: Updated initialization, uninitialization and power procedures
+      - SPI, USART: Corrected status bit-field race conditions
+      - SPI: corrected ARM_SPI_EVENT_DATA_LOST event handling in slave mode
+      - EMAC:
+      -- corrected return value of PHY_Read function
+      -- GetMacAddress function implemented
+      -- corrected MDC clock divider setting for Ethernet PHY
+      -- corrected no communication after cable reconnected
+      - USART:
+      -- corrected disabling of receive DMA channel when aborting Receive or Transfer
+      -- fract_div_lookup_table moved from header file to driver .c file
+      -- improved baudrate calculation
+      -- corrected RX Time-out handling
+      -- corrected USART clock configuration
+      - USB Device:
+      -- added support for LPC177x/8x devices
+      -- added support for isochronous endpoints
+      - USB Host:
+      -- added support for LPC177x/8x devices
+      Updated SVD file for LPC175x/6x: corrected USB base address
+      Updated drivers:
+      - PIN: added support for LPC177x/8x devices
+      - GPDMA: added GPDMA_ChannelGetCount function
+      - OTG: added support for LPC177x/8x devices
+      Updated examples for Keil MCB1700 Board
+    </release>
+    <release version="2.0.0" date="2014-07-09">
+      - Added CMSIS-Driver 2.2.0 compliant drivers for LPC175x and LPC176x Device Series
+      - Added MDK-Middleware examples for MCB1700 Development Board (requires MDK-Middleware Pack 6.1.0 or higher)
+    </release>
+    <release version="1.0.2">
+      Renamed Device Sub-Families.
+    </release>
+    <release version="1.0.1">
+      MCB1700 added.
+    </release>
+    <release version="1.0.0">
+      First Release version of LPC1700 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC1700</keyword>
+    <keyword>LPC17xx</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="LPC1700 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <book    name="Documents/dui0552a_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+        <description>
+NXP's LPC1700 series are high performance MCUs for embedded applications featuring a high level of integration and low power consumption.
+Typical applications include eMetering, Lighting, Industrial networking, Alarm systems, White goods and Motor control.
+
+  - Quadrature Encoder interface,
+  - Motor control PWM for three-phase motor
+  - 2-input plus 2-output I2S-bus interface
+  - Code Read Protection (CRP) with different security levels.
+  - Unique device serial number
+        </description>
+
+        <feature type="Timer"         n="4"       m="32"/>
+
+      <debugvars configfile="Debug/LPC17xx.dbgconf">
+        // Debug Access Variables, can be modified by user via copy of SWO_Trace_LPC1768.dbgconf created by uVision.
+        __var Dbg_CR      = 0x00000000;                                        // DBG_CR:
+      </debugvars>
+
+      <sequences>
+
+        <sequence name="ResetCatchClear">
+          <block>
+            // System Control Space (SCS) offset as defined
+            // in ARMv6-M/ARMv7-M. Reimplement this sequence
+            // if the SCS is located at a different offset.
+            __var SCS_Addr   = 0xE000E000;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+
+            value = Read32(DEMCR_Addr);
+            Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                  // Disable Reset Vector Catch in DEMCR
+
+            //Clear BP0 and FPB
+            Write32(0xe0002008, 0);                                            // Clear BP0
+            Write32(0xe0002000, 0x00000002);                                   // Disable FPB
+          </block>
+        </sequence>
+
+        <sequence name="ResetCatchSet">
+          <block>
+            // System Control Space (SCS) offset as defined
+            // in ARMv6-M/ARMv7-M. Reimplement this sequence
+            // if the SCS is located at a different offset.
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+            __var DEMCR_Addr = SCS_Addr + 0xDFC;
+            __var value      = 0;
+            __var FPB_BKPT_H = 0x80000000;
+            __var FPB_BKPT_L = 0x40000000;
+            __var FPB_COMP_M = 0x1FFFFFFC;
+            __var FPB_KEY    = 0x00000002;
+            __var FPB_ENABLE = 0x00000001;
+
+            value = Read32(DEMCR_Addr);
+            Write32(DEMCR_Addr, (value | 0x00000001));                         // Enable Reset Vector Catch in DEMCR
+
+            Read32(DHCSR_Addr);                                                // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+          </block>
+
+          <control if="Dbg_CR &amp; 0x00000001" info="Stop after bootloader enabled">
+            <block>
+              // Run over Bootloader
+              value = Read32(DEMCR_Addr);
+              Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                // Disable Reset Vector Catch
+              Write32(0x400FC040, 0x00000001);   			  			       // Map Flash to Vectors
+              value = Read32 (0x00000004);           		  		           // Read Reset Vector
+            </block>
+
+            <control if="value &lt; 0x20000000" info="">
+              <block>
+                // Set BP0 to Reset Vector
+                value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+                Write32(0xE0002008, value);								       // Set BP0
+                value = FPB_KEY | FPB_ENABLE;
+                Write32(0xE0002000, value);								       // Enable FPB
+              </block>
+            </control>
+
+          </control>
+        </sequence>
+
+
+		<sequence name="ResetHardwareDefault">
+          <block>
+            __var nReset      = 0x80;
+            __var canReadPins = 0;
+
+            // Deassert nRESET line
+            canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);
+          </block>
+
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+
+          <control if="!canReadPins">
+            <block>
+              // Assert nRESET line
+              DAP_SWJ_Pins(nReset, nReset, 0);
+            </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+		</sequence>
+
+        <sequence name="ResetSystemDefault">
+          <block>
+            // System Control Space (SCS) offset as defined in ARMv6-M/ARMv7-M.
+            __var SCS_Addr   = 0xE000E000;
+            __var AIRCR_Addr = SCS_Addr + 0xD0C;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+            // Execute SYSRESETREQ via AIRCR
+            Write32(AIRCR_Addr, 0x05FA0004);
+          </block>
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="500000"/>
+        </sequence>
+
+        <sequence name="ResetProcessorDefault">
+          <block>
+            // System Control Space (SCS) offset as defined in ARMv7-M.
+            __var SCS_Addr   = 0xE000E000;
+            __var AIRCR_Addr = SCS_Addr + 0xD0C;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+            // Execute VECTRESET via AIRCR
+            Write32(AIRCR_Addr, 0x05FA0001);
+          </block>
+
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="500000"/>
+        </sequence>
+
+		<sequence name="WaitForBootloader">
+		  <block>
+		    __var value = 0;
+		  </block>
+		  <control while="(Read32(0xE000EDF0) &amp; 0x02000000) == 0" timeout="500000"/>
+		  <control if="(Read32(0xE000EDF0) &amp; 0x02000000) == 0">
+		    <block>
+			  // CPU still running (could be invalid user code) => Manually stop
+			  value      = Read32(0xE000EDF0);
+			  value &amp;= 0x0000FFFF;
+			  value     |= 0xA05F0002;
+
+			  Write32(0xE000EDF0, value);
+			</block>
+
+			<control while="(Read32(0xE000EDF0) &amp; 0x02000000) == 0" timeout="50000"/>
+
+		  </control>
+		</sequence>
+
+
+		<sequence name="ResetHardware">
+		  <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+		    __var WasStopped = 0;
+
+            // CPU State before reset
+			WasStopped = (Read32(DHCSR_Addr) &amp; 0x00020000);
+
+			// Execute Reset
+			Sequence("ResetHardwareDefault");
+		  </block>
+
+		  <control if="WasStopped &amp;&amp; (Dbg_CR &amp; 0x00000001)" info="Run over bootloader enabled and CPU running">
+		    <block>
+			  Sequence("WaitForBootloader");
+			</block>
+		  </control>
+
+		</sequence>
+
+		<sequence name="ResetSystem">
+		  <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+		    __var WasStopped = 0;
+
+            // CPU State before reset
+			WasStopped = (Read32(DHCSR_Addr) &amp; 0x00020000);
+
+			// Execute Reset
+			Sequence("ResetSystemDefault");
+		  </block>
+
+		  <control if="WasStopped &amp;&amp; (Dbg_CR &amp; 0x00000001)" info="Run over bootloader enabled and CPU running">
+		    <block>
+			  Sequence("WaitForBootloader");
+			</block>
+		  </control>
+
+		</sequence>
+
+		<sequence name="ResetProcessor">
+		  <block>
+            __var SCS_Addr   = 0xE000E000;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+		    __var WasStopped = 0;
+
+            // CPU State before reset
+			WasStopped = (Read32(DHCSR_Addr) &amp; 0x00020000);
+
+			// Execute Reset
+			Sequence("ResetProcessorDefault");
+		  </block>
+
+		  <control if="WasStopped &amp;&amp; (Dbg_CR &amp; 0x00000001)" info="Run over bootloader enabled and CPU running">
+		    <block>
+			  Sequence("WaitForBootloader");
+			</block>
+		  </control>
+
+		</sequence>
+
+        <sequence name="DebugCodeMemRemap">
+          <block>
+            Write8 (0x400FC040, 0x01);
+          </block>
+        </sequence>
+
+        <sequence name="TraceStart">
+          <control if="__traceout &amp; 0x00000002" info="Parallel Trace Port selected">
+            <block>
+              // TPIU interface enabled (PINSEL10)
+              Write32 (0x4002C028, 0x00000008);
+            </block>
+          </control>
+        </sequence>
+
+        <sequence name="TraceStop">
+          <control if="__traceout &amp; 0x00000002" info="Parallel Trace Port selected">
+            <block>
+              // TPIU interface disabled (PINSEL10)
+              Write32 (0x4002C028, 0x00000000);
+            </block>
+          </control>
+        </sequence>
+
+      </sequences>
+
+      <!-- ************************  Subfamily 'LPC175x'  **************************** -->
+      <subFamily DsubFamily="LPC175x">
+        <feature type="ADC"           n="6"       m="12"/>
+        <feature type="IOs"           n="52"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="2"                           name="SSP"/>
+        <feature type="USART"         n="4"/>
+        <feature type="USBD"          n="1"/>
+
+      <!-- *************************  Device 'LPC1751'  ***************************** -->
+      <device Dname="LPC1751">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_32.FLM"     start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="1"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1752'  ***************************** -->
+      <device Dname="LPC1752">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_64.FLM"     start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="1"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1754'  ***************************** -->
+      <device Dname="LPC1754">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="1"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1756'  ***************************** -->
+      <device Dname="LPC1756">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="2"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1758'  ***************************** -->
+      <device Dname="LPC1758">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1759'  ***************************** -->
+      <device Dname="LPC1759">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1759_58_56_54_52_51.pdf"     title="LPC175x Data Sheet"/>
+        <feature type="CAN"           n="2"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC176x'  **************************** -->
+      <subFamily DsubFamily="LPC176x">
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="70"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="2"                           name="SSP"/>
+        <feature type="USART"         n="4"/>
+
+      <!-- *************************  Device 'LPC1763'  ***************************** -->
+      <device Dname="LPC1763">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1764'  ***************************** -->
+      <device Dname="LPC1764">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1765'  ***************************** -->
+      <device Dname="LPC1765">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1766'  ***************************** -->
+      <device Dname="LPC1766">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1767'  ***************************** -->
+      <device Dname="LPC1767">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1768'  ***************************** -->
+      <device Dname="LPC1768">
+        <processor Dclock="100000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1769'  ***************************** -->
+      <device Dname="LPC1769">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC17xx.h"  define="LPC175x_6x"/>
+        <debug      svd="SVD/LPC176x5x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x2007C000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC17xx_UM.pdf"                 title="LPC1700 Series Reference Manual"/>
+        <book       name="Documents/LPC1769_68_67_66_65_64_63.pdf"  title="LPC176x Data Sheet"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC177x'  **************************** -->
+      <subFamily DsubFamily="LPC177x">
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="MPSerial"      n="3"                           name="SSP"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+
+      <!-- *************************  Device 'LPC1774'  ***************************** -->
+      <device Dname="LPC1774">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_128.FLM"    start="0x00000000"  size="0x20000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC177x Data Sheet"/>
+        <feature type="IOs"           n="109"/>
+        <feature type="USART"         n="4"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1776'  ***************************** -->
+      <device Dname="LPC1776">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC177x Data Sheet"/>
+        <feature type="IOs"           n="141"/>
+        <feature type="USART"         n="5"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1777'  ***************************** -->
+      <device Dname="LPC1777">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC177x Data Sheet"/>
+        <feature type="IOs"           n="165"/>
+        <feature type="USART"         n="5"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1778'  ***************************** -->
+      <device Dname="LPC1778">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC177x Data Sheet"/>
+        <feature type="IOs"           n="165"/>
+        <feature type="USART"         n="5"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC178x'  **************************** -->
+      <subFamily DsubFamily="LPC178x">
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="IOs"           n="165"/>
+        <feature type="MPSerial"      n="3"                           name="SSP"/>
+        <feature type="USART"         n="5"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="CAN"           n="2"/>
+
+      <!-- *************************  Device 'LPC1785'  ***************************** -->
+      <device Dname="LPC1785">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC178x Data Sheet"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1786'  ***************************** -->
+      <device Dname="LPC1786">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_256.FLM"    start="0x00000000"  size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC178x Data Sheet"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1787'  ***************************** -->
+      <device Dname="LPC1787">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC178x Data Sheet"/>
+      </device>
+
+      <!-- *************************  Device 'LPC1788'  ***************************** -->
+      <device Dname="LPC1788">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/LPC177x_8x.h"  define="LPC177x_8x"/>
+        <debug      svd="SVD/LPC178x7x.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/LPC_IAP_512.FLM"    start="0x00000000"  size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+        <book       name="Documents/LPC178X_7X_UM.pdf"              title="LPC178x/7x User Manual"/>
+        <book       name="Documents/LPC178X_7X.pdf"                 title="LPC178x Data Sheet"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+      </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <boards>
+    <board vendor="Keil" name="MCB1700" revision="Ver 1.3" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1760=ON">
+      <description>Keil MCB1700 Development Board</description>
+      <image small="Boards/Keil/MCB1700/Documentation/mcb1700_small.jpg"
+             large="Boards/Keil/MCB1700/Documentation/mcb1700_large.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcb1700/" title="MCB1700 Evaluation Board Web Page"/>
+      <book category="setup"     name="Boards/Keil/MCB1700/Documentation/MCB1700_QSG.pdf" title="MCB1700 Quick Start Guide"/>
+      <book category="schematic" name="Boards/Keil/MCB1700/Documentation/mcb1700-schematics.pdf" title="MCB1700 Schematics"/>
+      <book category="manual"    name="Boards/Keil/MCB1700/Documentation/mcb1700.chm" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1758"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1768"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC175x"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC176x"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="Proto"           n="4"              name="Prototyping areas connected to I/Os"/>
+      <feature type="DIO"             n="70"             name="Digital I/Os (depending on configuration)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Host/OTG interface (USB Host connector)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Device interface (USB Device connector)"/>
+      <feature type="CAN"             n="2"/>
+      <feature type="RS232"           n="2"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="ConnOther"       n="1"              name="Speaker with amplifier"/>
+      <feature type="Button"          n="2"              name="Push-Buttons: Reset, INT0 (external interrupt)"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <feature type="CustomFF"        n="120" m="120"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+
+    <board vendor="Embedded Artists" name="LPC1788-32 Developers Kit" revision="Ver 1.3" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1700=ON">
+      <description>Embedded Artists LPC1788-32 Developers Kit</description>
+      <image small="Boards/Embedded Artists/LPC1788-32 Developers Kit/Documentation/kit_lpc1788_small.jpg"
+             large="Boards/Embedded Artists/LPC1788-32 Developers Kit/Documentation/kit_lpc1788_large.jpg"/>
+      <book category="overview" name="http://www.embeddedartists.com/products/kits/lpc1788_kit.php" title="LPC1788-32 Developer's Kit Web Page"/>
+      <book category="manual"   name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Documentation/LPC1788_OEM_Board_Users_Guide.pdf" title="LPC1788 Developer’s Kit User’s Guide"/>
+      <book category="manual"   name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Documentation/LPC1788_OEM_Board_Datasheet_Rev_E.pdf" title="LPC1788 OEM Board Data Sheet"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1788"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC178x"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="Proto"           n="4"              name="Prototyping areas connected to I/Os"/>
+      <feature type="DIO"             n="70"             name="Digital I/Os (depending on configuration)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Host/OTG interface (USB Host connector)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Device interface (USB Device connector)"/>
+      <feature type="CAN"             n="2"/>
+      <feature type="RS232"           n="2"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="ConnOther"       n="1"              name="Speaker with amplifier"/>
+      <feature type="Button"          n="2"              name="Push-Buttons: Reset, INT0 (external interrupt)"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <feature type="CustomFF"        n="120" m="120"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <conditions>
+
+    <condition id="LPC175x">
+      <description>NXP LPC1750 Series devices</description>
+      <require Dname="LPC175*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC176x">
+      <description>NXP LPC1760 Series devices</description>
+      <require Dname="LPC176*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC177x">
+      <description>NXP LPC1770 Series devices</description>
+      <require Dname="LPC177*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC178x">
+      <description>NXP LPC1780 Series devices</description>
+      <require Dname="LPC178*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC1700 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="LPC175*"/>
+      <accept Dname="LPC176*"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC177x_8x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <accept Dname="LPC177*"/>
+      <accept Dname="LPC178*"/>
+    </condition>
+
+    <condition id="LPC17xx CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC1700 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="LPC17*"/>
+    </condition>
+
+    <condition id="LPC17xx CMSIS Device ARMCC">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC1700 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="LPC17*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN">
+      <description>NXP LPC1700 CMSIS with PIN</description>
+      <require condition="LPC1700 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN">
+      <description>NXP LPC177x_8x CMSIS with PIN</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC17xx CMSIS PIN">
+      <description>NXP LPC17xx CMSIS with PIN</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN GPDMA">
+      <description>NXP LPC1700 CMSIS with PIN and GPDMA</description>
+      <require condition="LPC1700 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN GPDMA">
+      <description>NXP LPC177x_8x CMSIS with PIN and GPDMA</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC17xx CMSIS PIN GPDMA">
+      <description>NXP LPC17xx CMSIS with PIN and GPDMA</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN GPIO">
+      <description>NXP LPC1700 CMSIS with PIN and GPIO</description>
+      <require condition="LPC1700 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN GPIO GPDMA">
+      <description>NXP LPC1700 CMSIS with PIN, GPIO and GPDMA</description>
+      <require condition="LPC1700 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN GPIO">
+      <description>NXP LPC177x_8x CMSIS with PIN and GPIO</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN GPIO GPDMA">
+      <description>NXP LPC177x_8x CMSIS with PIN, GPIO and GPDMA</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN GPIO I2C">
+      <description>NXP LPC177x_8x CMSIS with PIN, GPIO and I2C</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2.0"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN I2C">
+      <description>NXP LPC177x_8x CMSIS with PIN and I2C</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2.0"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN GPIO GPDMA SPI">
+      <description>NXP LPC1700 CMSIS with PIN, GPIO, GPDMA and SPI</description>
+      <require condition="LPC1700 CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.1.0"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS PIN GPIO GPDMA SPI">
+      <description>NXP LPC177x_8x CMSIS with PIN, GPIO, GPDMA and SPI</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.1.0"/>
+    </condition>
+
+    <condition id="LPC1700 CMSIS PIN GPIO GPDMA SPI Display">
+      <description>NXP LPC1700 CMSIS with PIN, GPIO, GPDMA, SPI and Display</description>
+      <require condition="LPC1700 CMSIS PIN GPIO GPDMA SPI"/>
+      <require Cclass="Graphics" Cgroup="Display" Csub="MCBQVGA*" Cvariant="SPI IF"/>
+    </condition>
+
+    <condition id="LPC177x_8x CMSIS I2C SAI">
+      <description>NXP LPC177x_8x CMSIS with I2C and SAI driver</description>
+      <require condition="LPC177x_8x CMSIS Device"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2.0"/>
+      <require Cclass="CMSIS Driver" Cgroup="SAI" Capiversion="1.0.0"/>
+      <accept Dname="LPC1756"/>
+      <accept Dname="LPC1758"/>
+      <accept Dname="LPC1759"/>
+      <accept Dname="LPC1763"/>
+      <accept Dname="LPC1765"/>
+      <accept Dname="LPC1766"/>
+      <accept Dname="LPC1767"/>
+      <accept Dname="LPC1768"/>
+      <accept Dname="LPC1769"/>
+      <accept Dname="LPC1774"/>
+      <accept Dname="LPC1776"/>
+      <accept Dname="LPC1777"/>
+      <accept Dname="LPC1778"/>
+      <accept Dname="LPC1785"/>
+      <accept Dname="LPC1786"/>
+      <accept Dname="LPC1787"/>
+      <accept Dname="LPC1788"/>
+    </condition>
+
+    <condition id="LPC17xx CAN">
+      <description>NXP LPC1700 with CAN Controller</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <accept Dname="LPC1751"/>
+      <accept Dname="LPC1752"/>
+      <accept Dname="LPC1754"/>
+      <accept Dname="LPC1756"/>
+      <accept Dname="LPC1758"/>
+      <accept Dname="LPC1759"/>
+      <accept Dname="LPC1764"/>
+      <accept Dname="LPC1765"/>
+      <accept Dname="LPC1766"/>
+      <accept Dname="LPC1768"/>
+      <accept Dname="LPC1769"/>
+      <accept Dname="LPC1774"/>
+      <accept Dname="LPC1776"/>
+      <accept Dname="LPC1777"/>
+      <accept Dname="LPC1778"/>
+      <accept Dname="LPC1785"/>
+      <accept Dname="LPC1786"/>
+      <accept Dname="LPC1787"/>
+      <accept Dname="LPC1788"/>
+    </condition>
+
+    <condition id="LPC17xx Ethernet">
+      <description>NXP LPC17xx with Ethernet Controller</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS2"/>
+      <accept Dname="LPC1758"/>
+      <accept Dname="LPC1764"/>
+      <accept Dname="LPC1766"/>
+      <accept Dname="LPC1767"/>
+      <accept Dname="LPC1768"/>
+      <accept Dname="LPC1769"/>
+      <accept Dname="LPC1776"/>
+      <accept Dname="LPC1778"/>
+      <accept Dname="LPC1786"/>
+      <accept Dname="LPC1788"/>
+    </condition>
+
+    <condition id="LPC17xx USBD">
+      <description>NXP LPC1700 with USB Device Controller</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <accept Dname="LPC1751"/>
+      <accept Dname="LPC1752"/>
+      <accept Dname="LPC1754"/>
+      <accept Dname="LPC1756"/>
+      <accept Dname="LPC1758"/>
+      <accept Dname="LPC1759"/>
+      <accept Dname="LPC1764"/>
+      <accept Dname="LPC1765"/>
+      <accept Dname="LPC1766"/>
+      <accept Dname="LPC1768"/>
+      <accept Dname="LPC1769"/>
+      <accept Dname="LPC1774"/>
+      <accept Dname="LPC1776"/>
+      <accept Dname="LPC1777"/>
+      <accept Dname="LPC1778"/>
+      <accept Dname="LPC1785"/>
+      <accept Dname="LPC1786"/>
+      <accept Dname="LPC1787"/>
+      <accept Dname="LPC1788"/>
+    </condition>
+
+    <condition id="LPC17xx USBH">
+      <description>NXP LPC17xx with USB Host Controller</description>
+      <require condition="LPC17xx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="PIN"/>
+      <accept Dname="LPC1754"/>
+      <accept Dname="LPC1756"/>
+      <accept Dname="LPC1758"/>
+      <accept Dname="LPC1759"/>
+      <accept Dname="LPC1765"/>
+      <accept Dname="LPC1766"/>
+      <accept Dname="LPC1768"/>
+      <accept Dname="LPC1769"/>
+      <accept Dname="LPC1776"/>
+      <accept Dname="LPC1777"/>
+      <accept Dname="LPC1778"/>
+      <accept Dname="LPC1785"/>
+      <accept Dname="LPC1786"/>
+      <accept Dname="LPC1787"/>
+      <accept Dname="LPC1788"/>
+    </condition>
+
+  </conditions>
+
+  <examples>
+    <!-- MCB1700 Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Blinky">
+      <description>Blinky example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky ULp" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Blinky_ULp">
+      <description>Blinky ULINKpro example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB1700/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Demo" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Demo">
+      <description>Demo example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Keil/MCB1700/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Keil/MCB1700/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/CAN/CAN">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Speaker.</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and joystick.</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card as storage media</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/BSD_Client" version="1.0.1">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/BSD_Server" version="1.0.1">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/HTTP_Server" version="1.0.1">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/SMTP_Client" version="1.0.1">
+      <description>Example showing how to compose and send emails</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/SNMP_Agent" version="1.0.1">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/Network/Telnet_Server" version="1.0.1">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Keil/MCB1700/Middleware/FileSystem/File_Demo" version="1.0.1">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="MCB1700" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <!-- LPC1788-32 Developers Kit -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Blinky">
+      <description>Blinky example</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/CAN/CAN" version="1.0.0">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Headphone.</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and joystick.</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using RAM Disk as storage media</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/BSD_Client" version="1.0.1">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/BSD_Server" version="1.0.1">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/HTTP_Server" version="1.0.1">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/SNMP_Agent" version="1.0.1">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/Network/Telnet_Server" version="1.0.1">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Embedded Artists/LPC1788-32 Developers Kit/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="LPC1788-32 Developers Kit" vendor="Embedded Artists"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC17xx CMSIS Device ARMCC">
+      <!-- Cversion is necessary -->
+      <description>System Startup for NXP LPC1700 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_LPC17XX      /* Device Startup for NXP17XX */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device/Include/"/>
+
+        <!-- header files -->
+        <file category="header" condition="LPC175x" name="Device/Include/LPC17xx.h"/>
+        <file category="header" condition="LPC176x" name="Device/Include/LPC17xx.h"/>
+        <file category="header" condition="LPC177x" name="Device/Include/LPC177x_8x.h"/>
+        <file category="header" condition="LPC178x" name="Device/Include/LPC177x_8x.h"/>
+
+        <!-- startup files -->
+        <file category="source" condition="LPC175x" name="Device/Source/ARM/startup_LPC17xx.s"      attr="config" version="1.0.0"/>
+        <file category="source" condition="LPC176x" name="Device/Source/ARM/startup_LPC17xx.s"      attr="config" version="1.0.0"/>
+        <file category="source" condition="LPC177x" name="Device/Source/ARM/startup_LPC177x_8x.s"   attr="config" version="1.0.0"/>
+        <file category="source" condition="LPC178x" name="Device/Source/ARM/startup_LPC177x_8x.s"   attr="config" version="1.0.0"/>
+
+        <!-- system file -->
+        <file category="source" condition="LPC175x" name="Device/Source/system_LPC17xx.c"           attr="config" version="1.0.0"/>
+        <file category="source" condition="LPC176x" name="Device/Source/system_LPC17xx.c"           attr="config" version="1.0.0"/>
+        <file category="source" condition="LPC177x" name="Device/Source/system_LPC177x_8x.c"        attr="config" version="1.1.1"/>
+        <file category="source" condition="LPC178x" name="Device/Source/system_LPC177x_8x.c"        attr="config" version="1.1.1"/>
+
+        <!-- device configuration for LPC17xx -->
+        <file category="header" condition="LPC1700 CMSIS Device" name="RTE_Driver/Config/RTE_Device.h" attr="config" version="2.4.1"/>
+
+        <!-- device configuration for LPC177x_8x -->
+        <file category="header" condition="LPC177x_8x CMSIS Device" name="RTE_Driver/Config_LPC177x_8x/RTE_Device.h" attr="config" version="2.3.2"/>
+
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="PIN" Cversion="1.0.0" condition="LPC1700 CMSIS Device">
+      <description>Pin Connect driver used by RTE Drivers for LPC1700 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/PIN_LPC17xx.h"/>
+        <file category="source" name="RTE_Driver/PIN_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="PIN" Cversion="1.1.0" condition="LPC177x_8x CMSIS Device">
+      <description>Pin Connect driver used by RTE Drivers for LPC177x_8x Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/PIN_LPC177x_8x.h"/>
+        <file category="source" name="RTE_Driver/PIN_LPC177x_8x.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.1.0" condition="LPC1700 CMSIS Device">
+      <description>GPIO driver used by RTE Drivers for LPC17xx Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPIO_LPC17xx.h"/>
+        <file category="source" name="RTE_Driver/GPIO_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.1.0" condition="LPC177x_8x CMSIS Device">
+      <description>GPIO driver used by RTE Drivers for LPC17xx Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPIO_LPC17xx.h"/>
+        <file category="source" name="RTE_Driver/GPIO_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="GPDMA" Cversion="1.2.0" condition="LPC17xx CMSIS Device">
+      <description>GPDMA driver used by RTE Drivers for LPC1700 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPDMA_LPC17xx.h"/>
+        <file category="source" name="RTE_Driver/GPDMA_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.0.0" Cversion="1.4.0" condition="LPC17xx CAN">
+      <description>CAN Driver for the LPC17xx series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN1                /* Driver CAN1 */
+        #define RTE_Drivers_CAN2                /* Driver CAN2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/CAN_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1.0" Cversion="2.12.0" condition="LPC17xx USBD">
+      <description>USB Device Driver for the LPC17xx series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD_LPC17xx.c"/>
+        <file category="source" name="RTE_Driver/OTG_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Capiversion="2.1.0" Cversion="2.5.0" condition="LPC17xx USBH">
+      <description>USB OHCI Host Driver for the LPC17xx series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBH_LPC17xx.c"/>
+        <file category="source" name="RTE_Driver/OTG_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SSP" Capiversion="2.1.0" Cversion="2.7.0" condition="LPC1700 CMSIS PIN GPIO GPDMA">
+      <description>SPI Driver for LPC17xx Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SSP_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SSP" Capiversion="2.1.0" Cversion="2.7.0" condition="LPC177x_8x CMSIS PIN GPIO GPDMA">
+      <description>SPI Driver for LPC177x_8x Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SSP_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SPI" Capiversion="2.1.0" Cversion="2.1.0" condition="LPC1700 CMSIS PIN GPIO">
+      <description>SPI Driver for LPC17xx Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2.0" Cversion="2.5.0" condition="LPC17xx CMSIS PIN">
+      <description>I2C Driver for LPC17xx Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SAI" Capiversion="1.0.0" Cversion="1.2.0" condition="LPC17xx CMSIS PIN GPDMA">
+      <description>SAI Driver for LPC17xx Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2S_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1.0" Cversion="2.6.0" condition="LPC1700 CMSIS PIN GPDMA">
+      <description>UART Driver for LPC1700 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/UART_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1.0" Cversion="2.8.0" condition="LPC177x_8x CMSIS PIN GPDMA">
+      <description>UART Driver for LPC177x_8x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+        #define RTE_Drivers_USART4              /* Driver USART4 */
+        </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/UART_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Capiversion="2.1.0" Cversion="2.11.0" condition="LPC17xx Ethernet">
+      <description>Ethernet MAC Driver for LPC1700 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_ETH_MAC0            /* Driver ETH_MAC0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/EMAC_LPC17xx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.2.0" Cversion="1.3.0" condition="LPC177x_8x CMSIS PIN GPIO GPDMA">
+      <description>MCI Driver for LPC177x_8x Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0                /* Driver MCI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/MCI_LPC177x_8x.c"/>
+      </files>
+    </component>
+
+    <!-- MCB1700 Development Board -->
+    <bundle Cbundle="MCB1700" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCB1700</description>
+      <doc>Boards/Keil/MCB1700/Documentation/mcb1700.chm</doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN">
+        <description>A/D Converter interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB1700/Common/ADC_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="D/A Converter" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN">
+        <description>D/A Converter interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB1700/Common/DAC_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN GPIO">
+      <description>LED driver for Keil MCB1700 Development Board</description>
+        <files>
+        <file category="source" name="Boards/Keil/MCB1700/Common/LED_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN GPIO">
+        <description>Buttons interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB1700/Common/Buttons_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN GPIO">
+        <description>Joystick interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB1700/Common/Joystick_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="LPC1700 CMSIS PIN GPIO GPDMA SPI">
+        <description>Graphic LCD interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB1700/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Keil/MCB1700/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Keil/MCB1700/Common/GLCD_MCB1700.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1.0" Cvariant="SPI IF" condition="LPC1700 CMSIS PIN GPIO GPDMA SPI Display">
+        <description>emWin LCD SPI Interface for Keil MCB1700 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB1700/Common/LCD_X.c"/>
+        </files>
+      </component>
+    </bundle>
+    <!-- LPC1788-32 Developers Kit -->
+    <bundle Cbundle="LPC1788-32 Developers Kit" Cclass="Board Support" Cversion="1.0.0">
+      <description>Embedded Artists LPC1788-32 Developers Kit</description>
+      <doc>Boards/Embedded Artists/LPC1788-32 Developers Kit/Documentation/LPC1788_OEM_Board_Users_Guide.pdf</doc>
+        <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC177x_8x CMSIS PIN">
+        <description>A/D Converter interface for Embedded Artists LPC1788-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/ADC_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC177x_8x CMSIS PIN I2C">
+      <description>LED driver for Embedded Artists LPC1788-32 Developers Kit</description>
+        <files>
+        <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/LED_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC177x_8x CMSIS PIN I2C">
+        <description>Buttons interface for Embedded Artists LPC1788-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/Buttons_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.0.0" condition="LPC177x_8x CMSIS PIN GPIO">
+        <description>Joystick interface for Embedded Artists LPC1788-32 Developers Kit</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/Joystick_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" Cvariant="TFT 800x480" condition="LPC177x_8x CMSIS PIN GPIO I2C">
+        <description>LCD Board rev PB1 "7 inch TFT 800x480" for Embedded Artists LPC1788-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_800x480
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" Cvariant="TFT 480x272" condition="LPC177x_8x CMSIS PIN GPIO I2C">
+        <description>LCD Board rev PB1 "4.3 inch TFT 480x272" for Embedded Artists LPC1788-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_480x272
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" Cvariant="TFT 320x240" condition="LPC177x_8x CMSIS PIN GPIO GPDMA SPI">
+        <description>LCD Board rev PB1 "3.2 inch TFT 320x240" for Embedded Artists LPC1788-32 Developers Kit</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_EA_LCD_TFT_320x240
+        </RTE_Components_h>
+        <files>
+          <file category="header" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/GLCD_EA_LPC1788.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Capiversion="1.1.0" condition="LPC177x_8x CMSIS I2C SAI">
+        <description>Audio interface for UDA1380</description>
+        <files>
+          <file category="source" name="Boards/Embedded Artists/LPC1788-32 Developers Kit/Common/Audio_UDA1380.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+</package>

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>L-Tek</vendor>
+  <name>FF_LPC546XX_BSP</name>
+  <description>Board Support Pack for FF_LPC546XX</description>
+  <license>Licenses.txt</license>
+  <url>https://github.com/L-Tek/FF-LPC546XX/raw/master/CMISIS-PACK/REPO/</url>
+  <releases>
+    <release version="1.0.2" date="2018-08-07">Add small and large picture of the board.</release>
+    <release version="1.0.1" date="2018-07-05">Add user manual and pinout picture.</release>
+    <release version="1.0.0" date="2018-06-21">L-Tek CMSIS pack based on LPCXpresso54608_BSP.</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="L-Tek" name="FF_LPC546XX">
+      <description>The L-Tek FF-LPC546XX is a small, 40-pin development board intended for prototyping general microcontroller applications. It is based on a low power, peripheral rich and debug capable NXP LPC54606 microcontroller with integrated DAPLink interface for complete debugging experience.</description>
+      <image small="https://github.com/L-Tek/FF-LPC546XX/raw/master/docs/img/ff-lpc546xx_small.png"  large="https://github.com/L-Tek/FF-LPC546XX/raw/master/docs/img/ff-lpc546xx.JPG"/>
+      <book category="other" name="docs/L-Tek-A4-Technical-Specification-FF-LPC546XX-15.pdf" title="Specification"/>
+      <book category="other" name="docs/L-Tek-A4-Inlay-FF-LPC546XX-10.pdf" title="Flyer"/>
+      <book category="other" name="https://github.com/L-Tek/FF-LPC546XX/raw/master/docs/user_manual.md" title="User Manual"/>
+      <book category="other" name="https://github.com/L-Tek/FF-LPC546XX/raw/master/docs/img/ff-lpc546xx-pinout_03072018_edite_final_uVision.png" title="Pinout"/>
+      <mountedDevice    Dname="LPC54606J512" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54608J512" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <requirements>
+     <packages>
+        <package name="LPC54608_DFP" vendor="NXP" version="10.0.2:10.0.2"/>
+     </packages>
+  </requirements>
+  <conditions>
+    <condition id="project_template.FF_LPC546XX">
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="led_blinky" folder="demo_apps/led_blinky" doc="readme.txt">
+      <description>The LED Blinky demo application provides a sanity check for the new SDK build environments and board bring up. The LED Blinky demo uses the systick interrupt to realize the function of timing delay. The example takes turns to shine the LED. The purpose of this demo is to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="FF_LPC546XX" vendor="L-Tek"/>
+      <project>
+        <environment name="uv" load="mdk/led_blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/led blinky</category>
+      </attributes>
+    </example>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description>The Hello World demo application provides a sanity check for the new SDK build environments and board bring up. The HelloWorld demo prints the "Hello World" string to the terminal using the SDK UART drivers. The purpose of this demo is toshow how to use the UART, and to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="FF_LPC546XX" vendor="L-Tek"/>
+      <project>
+        <environment name="uv" load="mdk/hello_world.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/hello world</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="FF_LPC546XX"  condition="project_template.FF_LPC546XX">
+      <description>Project Template</description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" version="1.0.0" attr="config"/>
+        <file name="project_template/board.h" category="header" version="1.0.0" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" version="1.0.0" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" version="1.0.0" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" version="1.0.0" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" version="1.0.0" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" version="1.0.0" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" version="1.0.0" attr="config"/>
+      </files>
+    </component>
+  </components>
+</package>

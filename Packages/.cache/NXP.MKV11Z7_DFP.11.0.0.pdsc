@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MKV11Z7_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MKV11Z7</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MKV11Z7" Dvendor="NXP:11">
+      <description>The Kinetis® KV1x MCU family is the entry point of the V series. Built upon the ARM® Cortex®-M0+ core running at 75 MHz with hardware square root and divide capability, it delivers a 27% increase in performance in math-intensive applications versus comparable MCUs, allowing it to target BLDC as well as more computationally demanding PMSM motors. Additional features include integrated FlexCAN, dual 16-bit analog-to-digital controllers (ADCs) sampling at up to 1.2 mega samples per second (MS/s) in 12-bit mode, multiple motor control timers, up to 128 KB of flash memory and a comprehensive enablement suite from NXP® and third-party resources, including reference designs, software libraries and motor configuration tools.</description>
+      <device Dname="MKV11Z128xxx7">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="75000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKV11Z128xxx7_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x020000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1ffff000" size="0x4000" access="rw" default="1"/>
+        <algorithm name="arm/MKV_P128_2KB_SEC.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKV1x_FAC.FLM" start="0xffff0000" size="0x00000024" RAMstart="0x20000000" RAMsize="0x00001000" default="0"/>
+        <debug svd="MKV11Z7.xml"/>
+        <variant Dvariant="MKV11Z128VFM7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z128VFM7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z128VFM7/MKV11Z128xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z128VLC7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z128VLC7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z128VLC7/MKV11Z128xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z128VLF7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z128VLF7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z128VLF7/MKV11Z128xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z128VLH7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z128VLH7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z128VLH7/MKV11Z128xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+      <device Dname="MKV11Z64xxx7">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="75000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKV11Z64xxx7_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x010000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1ffff000" size="0x4000" access="rw" default="1"/>
+        <algorithm name="arm/MKV_P64_2KB_SEC.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKV1x_FAC.FLM" start="0xffff0000" size="0x00000024" RAMstart="0x20000000" RAMsize="0x00001000" default="0"/>
+        <debug svd="MKV11Z7.xml"/>
+        <variant Dvariant="MKV11Z64VFM7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z64VFM7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z64VFM7/MKV11Z64xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z64VLC7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z64VLC7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z64VLC7/MKV11Z64xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z64VLF7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z64VLF7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z64VLF7/MKV11Z64xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MKV11Z64VLH7">
+          <compile header="fsl_device_registers.h" define="CPU_MKV11Z64VLH7"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MKV11Z64VLH7/MKV11Z64xxx7_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.dmamux_AND_driver.edma">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_utility.debug_console">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.common">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_component.lists_AND_utility.debug_console">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MKV11Z7">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.uart">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_component.serial_manager_AND_driver.common">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_edma">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_edma">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.edma_AND_driver.uart">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.edma_AND_driver.i2c">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.edma_AND_driver.flexcan">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.common_AND_driver.dmamux">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_driver.dspi_AND_driver.edma">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_device.MKV11Z7_CMSIS_AND_driver.clock">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MKV11Z7_startup"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MKV11Z7_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.port_AND_driver.smc_AND_driver.uart_AND_utility.debug_console">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MKV11Z7_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+    </condition>
+    <condition id="device.MKV11Z7_AND_CMSIS_Include_core_cm0plus">
+      <accept Dname="MKV11Z128???7" Dvendor="NXP:11"/>
+      <accept Dname="MKV11Z64???7" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MKV11Z7_AND_driver.dmamux_AND_driver.edma">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.MKV11Z7_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MKV11Z7_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.MKV11Z7_AND_component.lists_AND_utility.debug_console">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="fxos8700cq" Cversion="1.0.0" condition="device.MKV11Z7">
+      <description/>
+      <files>
+        <file category="header" name="components/fxos8700cq/fsl_fxos.h"/>
+        <file category="sourceC" name="components/fxos8700cq/fsl_fxos.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="device.MKV11Z7_AND_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/uart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MKV11Z7">
+      <description/>
+      <files>
+        <file category="header" name="components/lists/generic_list.h"/>
+        <file category="sourceC" name="components/lists/generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.0" condition="device.MKV11Z7">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_manager.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.MKV11Z7_AND_driver.uart">
+      <description/>
+      <files>
+        <file category="header" name="components/serial_manager/serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.MKV11Z7_AND_component.serial_manager_AND_driver.common">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis_edma" Cversion="2.0.2" condition="device.MKV11Z7_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_edma">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.0.0" condition="device.MKV11Z7_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <description>DSPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_dspi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_dspi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis_edma" Cversion="2.0.1" condition="device.MKV11Z7_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_edma">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_uart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_uart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>WDOG Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cversion="2.1.6" condition="device.MKV11Z7_AND_driver.edma_AND_driver.uart">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_uart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.1.6" condition="device.MKV11Z7_AND_driver.common">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart.h"/>
+        <file category="sourceC" name="drivers/fsl_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.4" condition="device.MKV11Z7_AND_driver.common">
+      <description>SMC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_smc.h"/>
+        <file category="sourceC" name="drivers/fsl_smc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>SIM Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_sim.h"/>
+        <file category="sourceC" name="drivers/fsl_sim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>RCM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rcm.c"/>
+        <file category="header" name="drivers/fsl_rcm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.1.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>PMC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_pmc.h"/>
+        <file category="sourceC" name="drivers/fsl_pmc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>PDB Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pdb.c"/>
+        <file category="header" name="drivers/fsl_pdb.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mmdvsq" Cversion="2.0.2" condition="device.MKV11Z7_AND_driver.common">
+      <description>MMDVSQ Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_mmdvsq.h"/>
+        <file category="sourceC" name="drivers/fsl_mmdvsq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>LPTMR Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lptmr.c"/>
+        <file category="header" name="drivers/fsl_lptmr.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.2" condition="device.MKV11Z7_AND_driver.common">
+      <description>LLWU Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_llwu.h"/>
+        <file category="sourceC" name="drivers/fsl_llwu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.0.6" condition="device.MKV11Z7_AND_driver.edma_AND_driver.i2c">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_i2c_edma.c"/>
+        <file category="header" name="drivers/fsl_i2c_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.6" condition="device.MKV11Z7_AND_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.3.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.1.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>FTM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan_edma" Cversion="2.2.4" condition="device.MKV11Z7_AND_driver.edma_AND_driver.flexcan">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexcan_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_flexcan_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan" Cversion="2.3.2" condition="device.MKV11Z7_AND_driver.common">
+      <description>FLEXCAN Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexcan.h"/>
+        <file category="sourceC" name="drivers/fsl_flexcan.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.0.0" condition="device.MKV11Z7">
+      <description>Flash Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_ftfx_adapter.h"/>
+        <file category="header" name="drivers/fsl_ftfx_utilities.h"/>
+        <file category="header" name="drivers/fsl_ftfx_features.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_controller.c"/>
+        <file category="header" name="drivers/fsl_ftfx_controller.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flash.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flash.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_cache.c"/>
+        <file category="header" name="drivers/fsl_ftfx_cache.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flexnvm.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flexnvm.h"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>EWM Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ewm.c"/>
+        <file category="header" name="drivers/fsl_ewm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.1.4" condition="device.MKV11Z7_AND_driver.common_AND_driver.dmamux">
+      <description>EDMA Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cversion="2.2.0" condition="device.MKV11Z7_AND_driver.dspi_AND_driver.edma">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cversion="2.2.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.0.2" condition="device.MKV11Z7_AND_driver.common">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dmamux.h"/>
+        <file category="sourceC" name="drivers/fsl_dmamux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>DAC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dac.c"/>
+        <file category="header" name="drivers/fsl_dac.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.1" condition="device.MKV11Z7_AND_driver.common">
+      <description>CRC Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+        <file category="header" name="drivers/fsl_crc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>CMP Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cmp.c"/>
+        <file category="header" name="drivers/fsl_cmp.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.0.0" condition="device.MKV11Z7_AND_driver.common">
+      <description>ADC16 Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc16.c"/>
+        <file category="header" name="drivers/fsl_adc16.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.MKV11Z7_AND_device.MKV11Z7_CMSIS_AND_driver.clock">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MKV11Z7" Cversion="1.0.0" condition="device.MKV11Z7_AND_component.serial_manager_uart_AND_component.uart_adapter_AND_device.MKV11Z7_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.port_AND_driver.smc_AND_driver.uart_AND_utility.debug_console" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="MKV11Z7_startup" Cversion="1.0.0" condition="device.MKV11Z7_AND_CMSIS_Include_core_cm0plus">
+      <description/>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_MKV11Z7.s"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_MKV11Z7.s"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKV11Z128xxx7_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKV11Z128xxx7_ram.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKV11Z64xxx7_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKV11Z64xxx7_ram.scf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKV11Z128xxx7_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKV11Z128xxx7_ram.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKV11Z64xxx7_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKV11Z64xxx7_ram.icf"/>
+        <file category="header" attr="config" name="fsl_device_registers.h"/>
+        <file category="header" attr="config" name="MKV11Z7.h"/>
+        <file category="header" attr="config" name="MKV11Z7_features.h"/>
+        <file category="sourceC" attr="config" name="system_MKV11Z7.c"/>
+        <file category="header" attr="config" name="system_MKV11Z7.h"/>
+      </files>
+    </component>
+  </components>
+</package>

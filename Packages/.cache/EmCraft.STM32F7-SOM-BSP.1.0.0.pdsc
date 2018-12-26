@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>EmCraft</vendor>
+  <name>STM32F7-SOM-BSP</name>
+  <description>Board Support Pack for STM32F7-SOM-based boards</description>
+  <url>https://emcraft.com/keil-bsp</url>
+  <supportContact></supportContact>
+  <!-- optional license file -->
+  <!--
+  <license>
+  </license>
+  -->
+
+  <releases>
+    <release version="1.0.0" date="2017-12-30">
+      Initial release
+      BSP:
+      - basic
+      - SDRAM
+      - NOR Flash
+      Examples:
+      - Demo (RTX, UART, Network, SDRAM, NOR)
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>EmCraft</keyword>
+    <keyword>SOM</keyword>
+    <keyword>STM32F7-SOM</keyword>
+  </keywords>
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+  <boards>
+    <board vendor="EmCraft Systems" name="STM32F7-SOM" revision="1A" salesContact="a2f-linux-support@emcraft.com" orderForm="http://www.emcraft.com">
+      <description>STM32F7 System on Module</description>
+      <image small="Images/stm32f746-64-som_s.jpg" large="Images/stm32f746-64-som_b.jpg"/>
+      <mountedDevice deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F746NGHx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F746"/>
+      <feature type="XTAL" n="12000000"/>
+      <feature type="PWR" n="3" m="3"/>
+      <feature type="RAM" n="1" name="256-Mbit SDRAM"/>
+      <feature type="ROM" n="1" name="128-Mbit NOR Flash"/>
+      <feature type="ConnOther" n="2" name="Extension header2"/>
+      <feature type="ETH" n="1" m="100000000" name="1x100Mbit PHY"/>
+    </board>
+  </boards>
+
+  <!-- examples section (optional for all Software Packs)-->
+  <examples>
+    <example name="CMSIS-RTOS Demo" doc="Abstract.txt" folder="MDK/Boards/EmCraft/STM32F7-SOM/Demo">
+      <description>CMSIS-RTOS based Demo example</description>
+      <board name="STM32F7-SOM" vendor="EmCraft Systems"/>
+      <project>
+        <environment name="uv" load="Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="STM32F7">
+      <description>STMicroelectronics STM32F7 Series devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F7*"/>
+    </condition>
+    <condition id="STM32F7-SOM BSP">
+      <description>EmCraft STM32-SOM BSP</description>
+      <require condition="STM32F7"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"/>
+    </condition>
+    <condition id="STM32F7-SOM BSP NOR Flash">
+      <description>EmCraft STM32F7-SOM BSP NOR Flash</description>
+      <require condition="STM32F7"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="NOR"/>
+    </condition>
+    <condition id="STM32F7-SOM BSP SDRAM">
+      <description>EmCraft STM32F7-SOM BSP SDRAM</description>
+      <require condition="STM32F7"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="SDRAM"/>
+    </condition>
+  </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <bundle Cbundle="STM32F7-SOM" Cclass="Board Support" Cversion="1.0.0">
+      <description>EmCraft Systems STM32F7-SOM</description>
+      <doc>https://emcraft.com/products/413</doc>
+      <component Cgroup="Drivers" Csub="Basic" condition="STM32F7-SOM BSP">
+        <description>Basic EmCraft STM32F7-SOM configuration (clocks, etc.)</description>
+        <files>
+          <file category="header" name="Drivers/BSP/STM32F7-SOM/stm32f7_som.h"/>
+          <file category="source" name="Drivers/BSP/STM32F7-SOM/stm32f7_som.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="NOR" condition="STM32F7-SOM BSP NOR Flash">
+        <description>NOR Flash for EmCraft STM32F7-SOM</description>
+        <files>
+          <file category="header" name="Drivers/BSP/STM32F7-SOM/stm32f7_som_nor_flash.h"/>
+          <file category="source" name="Drivers/BSP/STM32F7-SOM/stm32f7_som_nor_flash.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="SDRAM" condition="STM32F7-SOM BSP SDRAM">
+        <description>SDRAM for EmCraft STM32F7-SOM</description>
+        <files>
+          <file category="header" name="Drivers/BSP/STM32F7-SOM/stm32f7_som_sdram.h"/>
+          <file category="source" name="Drivers/BSP/STM32F7-SOM/stm32f7_som_sdram.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+</package>

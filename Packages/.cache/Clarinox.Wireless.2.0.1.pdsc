@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Clarinox</vendor>
+  <name>Wireless</name>
+  <description>Clarinox Bluetooth Classic, Bluetooth Low Energy and Wi-Fi for Embedded Systems</description>
+  <url>http://clarinox.com/cmsis</url>
+  <supportContact>http://www.clarinox.com/index.php?id=433</supportContact>
+  <license>Docs\license.rtf</license>
+  <releases>
+	 <release version="2.0.1" date="2015-07-31">
+		Filter for Koala EVM BSP added.
+		User manual for SppApplication updated.
+		ClarinoxSoftFrame version: 4.4.1.12722
+	    ClarinoxBlue version 6.0.4.9859
+	    ClarinoxWiFi version: 1.6.0.1342
+    </release>
+    <release version="2.0.0" date="2015-07-22">
+      Initial version. 
+	  ClarinoxSoftFrame version: 4.4.1.12722
+	  ClarinoxBlue version 6.0.4.9859
+	  ClarinoxWLAN version: 1.6.0.1342
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Clarinox</keyword>
+    <keyword>Wireless</keyword>
+    <keyword>Bluetooth</keyword>
+    <keyword>Bluetooth Low Energy</keyword>
+    <keyword>BLE</keyword>
+  </keywords>
+
+  <examples>
+    <example name="Bluetooth SPP Example" doc="Applications\SppApplication\Documents\Clarinox_C101_SPPApplicationUserManual.pdf" folder="Examples">
+      <description>Clarinox Bluetooth SPP example</description>
+      <board name="Koala EVM" vendor="Clarinox"/>
+      <project>
+        <environment name="uv" load="Applications\SppApplication\uCos_III\Clarinox_Koala_V2.0\Keil\SppApplication.uvprojx"/>
+      </project>
+      <attributes>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxSoftFrame"/>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxBlue"/>
+	  	<component Cclass="Clarinox" Cgroup="Koala EVM"/>
+	  	<component Cclass="Clarinox" Cgroup="RTOS" Csub="uCos" />
+	  </attributes>
+    </example>
+		<example name="Bluetooth Low Energy GATT Profile Peripheral Role example" doc="Applications\BleGattPeripheralApplication\Documents\README.txt" folder="Examples">
+      <description>Clarinox Bluetooth Low Energy GATT Profile Peripheral Role example</description>
+      <board name="Koala EVM" vendor="Clarinox"/>
+      <project>
+        <environment name="uv" load="Applications\BleGattPeripheralApplication\uCos_III\Clarinox_Koala_V2.0\Keil\BleGattPeripheralApplication.uvprojx"/>
+      </project>
+      <attributes>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxSoftFrame"/>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxBlue"/>
+	  	<component Cclass="Clarinox" Cgroup="Koala EVM"/>
+	  	<component Cclass="Clarinox" Cgroup="RTOS" Csub="uCos" />
+	  </attributes>
+    </example>
+	<example name="Bluetooth Low Energy GATT Profile Central Role example" doc="Applications\BleGattCentralApplication\Documents\README.txt" folder="Examples">
+      <description>Clarinox Bluetooth Low Energy GATT Profile Central Role example</description>
+      <board name="Koala EVM" vendor="Clarinox"/>
+      <project>
+        <environment name="uv" load="Applications\BleGattCentralApplication\uCos_III\Clarinox_Koala_V2.0\Keil\BleGattCentralApplication.uvprojx"/>
+      </project>
+      <attributes>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxSoftFrame"/>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxBlue"/>
+	  	<component Cclass="Clarinox" Cgroup="Koala EVM"/>
+	  	<component Cclass="Clarinox" Cgroup="RTOS" Csub="uCos" />
+	  </attributes>
+    </example>
+	
+	
+	<example name="WiFi AP/Station/P2P example" doc="Applications\WiFiApplicationLWIP\Documents\README.txt" folder="Examples">
+		<description>Clarinox WiFi AP/Station/P2P example</description>
+      <board name="Koala EVM" vendor="Clarinox"/>
+      <project>
+        <environment name="uv" load="Applications\WiFiApplicationLWIP\uCos_III\Clarinox_Koala_V2.0\Keil\WiFiApplicationLWIP.uvprojx"/>
+      </project>
+      <attributes>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxSoftFrame"/>
+	  	<component Cclass="Clarinox" Cgroup="ClarinoxBlue"/>
+	  	<component Cclass="Clarinox" Cgroup="Koala EVM"/>
+		<!--<component Cclass="Clarinox" Cgroup="ClarinoxWiFi"/>-->
+	  	<component Cclass="Clarinox" Cgroup="RTOS" Csub="uCos" />
+	  </attributes>
+    </example>
+
+	
+  </examples>
+  
+  <boards>
+    <board vendor="Clarinox" name="Koala EVM" revision="2.0" salesContact="http://www.clarinox.com/index.php?id=433" orderForm="http://www.clarinox.com/index.php?id=433">
+      <description>Koala EVM</description>
+      <image small="Images/KoalaEVM_small.jpg" large="Images/KoalaEVM_large.jpg"/>
+      <book category="overview"  name="http://www.clarinox.com/index.php?id=415" title="KoalaEVM Web Page"/>
+	  <book category="setup"  name="Docs/KoalaEVM_QuickStart.pdf" title="KoalaEVM Quick Start"/>
+	  <book category="manual"  name="Docs/KoalaEVM_SoftwareApplications.pdf" title="KoalaEVM Applications Manual"/>
+     <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F429II"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F407IG"/>
+	  <compatibleDevice deviceIndex="1" Dvendor="Freescale:78"/>
+	  <compatibleDevice deviceIndex="2" Dvendor="Renesas:117"/>
+	  <compatibleDevice deviceIndex="3" Dvendor="NXP:11"/>
+	  <feature type="PWR" n="5"/>
+	  <feature type="PWRSock" n="1"/>
+	  <feature type="RAM" n="1" name="256 kB SRAM"/>
+	  <feature type="ROM" n="1" name="2 MB NAND-Flash"/>
+	  <feature type="USB" n="1" name="USB 2.0 Full Speed / High Speed, Host/Device, OTG"/>
+	  <feature type="USB" n="1" name="USB 2.0 Debug, Mini"/>
+	  <feature type="USB" n="1" name="USB 2.0 Program, Mini"/>
+	  <feature type="CAN" n="1" name="DB9 Male Connector"/>
+	  <feature type="ETH" n="1" name="10/100 Ethernet Port"/>
+	  <feature type="Button" n="1" name="Push-buttons for Reset"/>
+	  <feature type="LED" n="3" name="LEDs: Power, Program/Debug and Ethernet link speed"/>
+	  <feature type="Camera" n="1" name="Digital VGA Camera"/>
+	  <feature type="LCD" n="1"/>
+	  <feature type="GLCD" n="1" name="240x320 pixel, 2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+	  <feature type="ConnOther" name="1 x COM8, 1 x WMI, 1 x 20-pin JTAG"/>
+    </board>
+  </boards>
+  
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	<condition id="CLX_SOFTFRAME_ARMCC">
+      <require condition="ARMCC"/>
+	  <require Cbundle="Clarinox" Cclass="Wireless" Cgroup="ClarinoxSoftFrame"/>
+    </condition>
+	<condition id="CLX_KOALA_ARMCC">
+      <require condition="ARMCC"/>
+	  <require Cclass="Board Support" Cbundle="Koala EVM" Cgroup="Common"/>
+    </condition>
+	<condition id="CLX_UCOS_ARMCC">
+      <require condition="ARMCC"/>
+	  <require Cbundle="Clarinox" Cclass="RTOS" Cgroup="uCos"/>
+    </condition>
+	<condition id="CLX_BLUETOOTH_ARMCC">
+      <require condition="ARMCC"/>
+	  <require Cbundle="Clarinox" Cclass="Wireless" Cgroup="ClarinoxBlue"/>
+    </condition>
+	<condition id="CLX_ARMCC">
+      <require condition="ARMCC"/>
+	  <!--<require condition="STM32F4xx"/>-->
+	  <require condition="CLX_SOFTFRAME_ARMCC"/>
+	  <require condition="CLX_BLUETOOTH_ARMCC"/>
+	  <require condition="CLX_KOALA_ARMCC"/>
+	  <require condition="CLX_UCOS_ARMCC"/>
+    </condition>
+   <condition id="STM32F429">
+      <description>STMicroelectronics F429 Series devices</description>
+      <require Dvendor="STMicroelectronics:13" DsubFamily="STM32F429"/>
+    </condition>
+    <condition id="STM32F407">
+        <description>STMicroelectronics F407 Series devices</description>
+      <require Dvendor="STMicroelectronics:13" DsubFamily="STM32F407"/>
+    </condition>
+
+
+	<condition id="STM32F4xx">
+		<description>STMicroelectronics F400 Series devices</description>
+      <accept condition="STM32F429"/>
+	  <accept condition="STM32F407"/>
+    </condition>
+	
+	<condition id="K60">
+		<description>Freescale K60 Series devices</description>
+      <require Dvendor="Freescale:78" DsubFamily="K60"/>
+    </condition>
+
+	<condition id="CLX_DEVICES">
+		      <accept condition="K60"/>
+      <accept condition="STM32F429"/>
+      <accept condition="STM32F407"/>
+
+	</condition>
+  </conditions>
+
+    <!-- component section (optional for all Software Packs)-->
+  <components>
+    <bundle Cbundle="Clarinox" Cclass="Wireless" Cversion="2.0.0">
+    <description>Clarinox Wireless Libraries</description>
+    <doc></doc>
+	<component Cgroup="ClarinoxSoftFrame" condition="CLX_DEVICES">
+		<description>Clarinox SoftFrame libraries</description>
+		<files>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\SoftFrameR.lib" condition="ARMCC"/>
+		</files>
+    </component>
+	<component Cgroup="ClarinoxBlue" condition="CLX_ARMCC">
+		<description>Clarinox Bluetooth libraries</description>
+		<files>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\BluetoothR.lib" condition="ARMCC"/>
+		</files>
+    </component>
+	
+	<component Cgroup="ClarinoxWiFi" condition="CLX_ARMCC">
+		<description>Clarinox WiFi libraries</description>
+		<files>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\WLANR.lib" condition="ARMCC"/>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\Wl18xxR.lib" condition="ARMCC"/>
+		</files>
+    </component>
+
+	
+    </bundle>
+    <bundle Cbundle="Koala EVM" Cclass="Board Support" Cversion="1.0.0">
+    <description>Koala EVM BSP</description>
+    <doc></doc>
+	<component Cgroup="Common" condition="STM32F4xx">
+		<description>Clarinox Koala EVM Common libraries</description>
+		<files>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\Clarinox_Koala_V20R.lib" condition="ARMCC"/>
+		</files>
+    </component>
+    </bundle>
+    <bundle Cbundle="Clarinox" Cclass="RTOS" Cversion="1.0.0">
+    <description>Clarinox implementation of uC/OS</description>
+    <doc></doc>
+	<component Cgroup="uCos" condition="CLX_ARMCC">
+		<description>Clarinox uCos libraries</description>
+		<files>
+			<file category="library" name="Examples\Build\uCos_III\Projects\Clarinox_Koala_V2.0\Keil\Lib\OS_LibR.lib" condition="ARMCC"/>
+		</files>
+    </component>
+    </bundle>
+</components>
+  
+  <!-- optional taxonomy section for defining new component Class and Group names -->
+  <!--
+  <taxonomy>
+  </taxonomy>
+  -->
+  
+</package>

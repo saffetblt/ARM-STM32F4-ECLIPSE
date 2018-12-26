@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>Microsemi</vendor>
+    <name>M2Sxxx</name>
+    <description>Microsemi M2Sxxx Series Device Support</description>
+    <url>http://cores.actel-ip.com/CMSIS-Pack</url>
+    <supportContact>soc_tech@microsemi.com</supportContact>  
+    <releases>
+        <release version="1.0.64" date="2017-12-06">
+         Fix for Package dependency issue with 1.0.61
+        </release>
+        <release version="1.0.61">
+         Initial release
+        </release>
+    </releases>    
+    <!--************************************************************************
+                                 Device Support
+    *************************************************************************-->
+    <devices>
+        <!--********************************************************************
+                                  SmartFusion 2 Device
+        *********************************************************************-->
+        <family Dfamily="SmartFusion2" Dvendor="Microsemi:112">
+            <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+            <description> 
+            Microsemi's SmartFusion2 SoC FPGAs are the only devices that address fundamental requirements for 
+            advanced security, high reliability and low power in critical industrial, military, aviation, 
+            communications and medical applications. SmartFusion2 integrates an inherently reliable 
+            flash-based FPGA fabric, a 166 megahertz (MHz) ARM Cortex-M3 processor, advanced security 
+            processing accelerators, DSP blocks, SRAM, eNVM, and industry-required high-performance communication 
+            interfaces all on a single chip.
+            </description>
+            <compile header="CMSIS/m2sxxx.h"/>
+            <book name="http://www.microsemi.com/index.php&#63;option=com_docman&amp;task=doc_download&amp;gid=130918" title="SmartFusion2 Microcontroller Subsystem User's Guide"/>   
+            
+            <!-- Common Features to all M2S devices -->
+            <feature type="NVIC"           n="83"                          name="NVIC"/>
+            <feature type="DMA"            n="8"                           name="DMA"/>
+            <feature type="MemoryOther"    n="64000"                       name="eSRAM(ECC)"/>
+            <feature type="MemoryOther"    n="80000"                       name="eSRAM(Non-ECC)"/>
+            <feature type="I2C"            n="2"                           name="MSS_I2C"/>
+            <feature type="SPI"            n="2"                           name="MSS_SPI"/>
+            <feature type="USART"          n="2"       m="921600"          name="Multi-mode USART"/>
+            <feature type="CAN"            n="1"                           name="CAN"/>
+            <feature type="WDT"            n="1"                           name="Watchdog"/>
+            <feature type="RTC"            n="32000"                       name="RTC"/>
+            <feature type="Timer"          n="1"       m="64"              name="Timer"/>
+            <feature type="IOs"            n="32"                          name="GPIO"/>
+            <feature type="USBOTG"         n="1"                           name="USB OTG"/>
+            
+            <!-- Preprocessor Macro required to remove relative path includes 
+                 from source files -->            
+            <environment name="uv">
+                <CMisc>-D MSCC_NO_RELATIVE_PATHS</CMisc>
+            </environment>
+            <!--****************************************************************
+                                      M2S005 Device
+            *****************************************************************-->
+            <device Dname="M2S005">
+                <processor Dclock="166000000"/>
+                <feature type="Memory"      n="128000"       name="eNVM"/>
+                <feature type="PLL"         n="2"       name="Internal PLL"/>
+                <debug svd="SVD/M2Sxxx.svd"/>
+                
+                <!-- Device IRAM/IROM Specifications -->  
+                <memory id="IROM1"                       start="0x00000000"      size="0x20000"      startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"      init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_128.FLM"   start="0x00000000"      size="0x20000"      default="1"/>
+            </device>                                                                                               
+
+            <!--****************************************************************
+                                      M2S010 Device
+            *****************************************************************-->
+            <device Dname="M2S010">                                                                                 
+                <processor Dclock="166000000"/>
+                <feature type="Memory"      n="256000"        name="eNVM"/>
+                <feature type="PLL"         n="2"        name="Internal PLL"/>
+                <debug svd="SVD/M2Sxxx.svd"/>
+                
+                <!-- Device IRAM/IROM Specifications -->   
+                <memory id="IROM1"                       start="0x00000000"      size="0x40000"      startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"      init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_256.FLM"   start="0x00000000"      size="0x40000"      default="1"/>
+            </device>                                                                                               
+
+            <!--****************************************************************
+                                      M2S025 Device
+            *****************************************************************-->
+            <device Dname="M2S025">                                                                                 
+                <processor Dclock="166000000"/>
+                <feature type="Memory"      n="256000"        name="eNVM"/>
+                <feature type="PLL"         n="6"        name="Internal PLL"/>                
+                <debug svd="SVD/M2Sxxx.svd"/>
+                
+                <!-- Device IRAM/IROM Specifications -->   
+                <memory id="IROM1"                       start="0x00000000"      size="0x40000"       startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"       init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_256.FLM"   start="0x00000000"      size="0x40000"       default="1"/>
+            </device>                                                                                               
+
+            <!--****************************************************************
+                                      M2S050 Device
+            *****************************************************************-->
+            <device Dname="M2S050">                                                                                 
+                <processor Dclock="166000000"/>
+                <feature type="Memory"      n="256000"        name="eNVM"/>
+                <feature type="PLL"         n="6"        name="Internal PLL"/>                                                                       
+                <debug svd="SVD/M2Sxxx.svd"/> 
+                
+                <!-- Device IRAM/IROM Specifications -->  
+                <memory id="IROM1"                       start="0x00000000"      size="0x40000"       startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"       init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_256.FLM"   start="0x00000000"      size="0x40000"       default="1"/>
+               
+            </device>                                                                                               
+
+            <!--****************************************************************
+                                      M2S090 Device
+            *****************************************************************-->
+            <device Dname="M2S090">                                                                                 
+                <processor Dclock="166000000"/> 
+                <feature type="Memory"      n="512000"        name="eNVM"/>
+                <feature type="PLL"         n="6"        name="Internal PLL"/>                 
+                <debug svd="SVD/M2Sxxx.svd"/>
+                
+                <!-- Device IRAM/IROM Specifications -->              
+                <memory id="IROM1"                       start="0x00000000"      size="0x80000"      startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"      init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_512.FLM"   start="0x00000000"      size="0x80000"      default="1"/>
+            </device>
+            
+            <!--****************************************************************
+                                      M2S150 Device
+            *****************************************************************-->
+            <device Dname="M2S150">                                                                                 
+                <processor Dclock="166000000"/>
+                <feature type="Memory"      n="512000"        name="eNVM"/>
+                <feature type="PLL"         n="8"        name="Internal PLL"/>  
+                <debug svd="SVD/M2Sxxx.svd"/> 
+                
+                <!-- Device IRAM/IROM Specifications -->                  
+                <memory id="IROM1"                       start="0x00000000"      size="0x80000"      startup="1"     default="1"/>
+                <memory id="IRAM1"                       start="0x20000000"      size="0x10000"      init="1"        default="1"/>
+                <algorithm name="Flash/M2Sxxx_512.FLM"   start="0x00000000"      size="0x80000"      default="1"/>
+            </device>
+        </family>
+    </devices>
+    <!--************************************************************************
+                                 Components
+    *************************************************************************-->
+    <components>
+        <component Cclass="Device" Cgroup="Startup" Cversion="2.3.105" condition="M2S Device">
+        <!--********************************************************************
+                                    CMSIS-HAL Files
+        *********************************************************************-->
+            <description>SmartFusion2 Startup files</description>
+                <files>
+                <file category="doc"        name="Docs/UserGuides/CMSIS/SmartFusion2_CMSIS_UG.pdf"                                 />
+                <!-- Include Paths - Paths to header files which aren't copied into the project environment. Referenced in C:\Keil\PACK folder-->
+                <file category="include"           name="CMSIS/"                                                                   />
+                <file category="include"           name="CMSIS/startup_arm/"                                                       />
+                <file category="include"           name="hal/"                                                                     />
+                <file category="include"           name="hal/CortexM3/"                                                            />
+                <file category="include"           name="hal/CortexM3/Keil/"                                                       />
+                <!-- CMSIS files -->               
+                <file category="header"            name="CMSIS/m2sxxx.h"                                                           />
+                <file category="header"            name="CMSIS/hw_reg_io.h"                                                        />
+                <file category="header"            name="CMSIS/mss_assert.h"                                                       />
+                <file category="source"            name="CMSIS/startup_arm/low_level_init.c"                          attr="config" version="2.3.105"/>
+                <file category="source"            name="CMSIS/startup_arm/retarget.c"                                attr="config" version="2.3.105"/>
+                <file category="source"            name="CMSIS/startup_arm/startup_m2sxxx.s"                          attr="config" version="2.3.105"/>
+                <file category="source"            name="CMSIS/system_m2sxxx.c"                                       attr="config" version="2.3.105"/>
+                <file category="header"            name="CMSIS/system_m2sxxx.h"                                                    />
+                
+                <!-- HAL files -->                                                                                    
+                <file category="source"            name="hal/CortexM3/cortex_nvic.c"                                  attr="config" version="2.3.105"/>
+                <file category="header"            name="hal/CortexM3/cortex_nvic.h"                                               />
+                <file category="header"            name="hal/CortexM3/Keil/cpu_types.h"                                            />
+                <file category="source"            name="hal/CortexM3/Keil/hal.s"                                     attr="config" version="2.3.105"/>
+                <file category="header"            name="hal/CortexM3/Keil/hw_macros.h"                                            />
+                <file category="source"            name="hal/CortexM3/Keil/hw_reg_access.s"                           attr="config" version="2.3.105"/>
+                <file category="header"            name="hal/hal.h"                                                                />
+                <file category="header"            name="hal/hal_assert.h"                                                         />
+                <file category="header"            name="hal/hw_reg_access.h"                                                      />
+                <!-- sys_config files -->                                                                             
+                <file category="source"            name="drivers_config/sys_config/sys_config.c"                      attr="config" version="2.3.105"/>
+                <file category="header"            name="drivers_config/sys_config/sys_config.h"                      attr="config" version="2.3.105"/>
+                <file category="header"            name="drivers_config/sys_config/sys_config_mss_clocks.h"           attr="config" version="2.3.105"/>
+                <!-- Debugger Initialization files -->                                                                
+                <file category="other"             name="debugger_init_scripts/M2Sxxx_esram.ini"                      attr="template" version="2.3.105" select="eSRAM Template"  />
+                <file category="other"             name="debugger_init_scripts/M2Sxxx_envm.ini"                       attr="template" version="2.3.105" select="eNVM Template"  />
+                <file category="other"             name="debugger_init_scripts/M2Sxxx_mddr_dev_kit.ini"               attr="template" version="2.3.105" select="Debug DDR Template"  />
+                <file category="other"             name="debugger_init_scripts/M2Sxxx_mddr_starter_kit.ini"           attr="template" version="2.3.105" select="Debug DDR Template"  />
+                <file category="other"             name="debugger_init_scripts/M2Sxxx_mddr_eval_kit.ini"              attr="template" version="2.3.105" select="Debug DDR Template"  />
+                <!-- Scatter files -->                                                                                
+                <file category="linkerScript"      name="CMSIS/startup_arm/smartfusion2_esram_debug.sct"              attr="template" version="2.3.105" select="eSRAM Template"/>
+                <file category="linkerScript"      name="CMSIS/startup_arm/smartfusion2_execute_in_place.sct"         attr="template" version="2.3.105" select="eNVM Template"/>
+                <file category="linkerScript"      name="CMSIS/startup_arm/smartfusion2_mddr_debug.sct"               attr="template" version="2.3.105" select="Debug DDR Template"/>
+                <file category="linkerScript"      name="CMSIS/startup_arm/smartfusion2_relocate_to_external_ram.sct" attr="template" version="2.3.105" select="DDR relocate Template"/>
+            </files>
+        </component>
+    </components>
+    <!--************************************************************************
+                                 Conditions
+    *************************************************************************-->
+    <conditions>
+        <condition id="M2S Device">
+            <description>SmartFusion2 devices,CMSIS-CORE and ARMCC compiler</description>
+            <require Dfamily="SmartFusion2"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+    </conditions>
+
+    <!--************************************************************************
+                                 Board Support
+    *************************************************************************-->
+    <boards>
+        <!--********************************************************************
+                             SmartFusion2 Development Kit
+        *********************************************************************-->
+        <board vendor="Microsemi" name="SF2_DEV_KIT" >
+            <description>SmartFusion2 Development Kit</description>
+            <image large="Images/sf2_dev_kit_large.png"/>
+            <book category="overview"   name="http://www.microsemi.com/products/fpga-soc/design-resources/dev-kits/smartfusion2/smartfusion2-development-kit"  title="SmartFusion2 Development Kit Web Page"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S050"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S005"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S010"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S025"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S090"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S150"/>
+        </board>
+        <!--********************************************************************
+                             SmartFusion2 Advanced Development Kit
+        *********************************************************************-->
+        <board vendor="Microsemi" name="SF2_ADV_DEV_KIT" >
+            <description>SmartFusion2 Advanced Development Kit</description>
+            <image large="Images/sf2_adv_dev_kit_large.png"/>
+            <book category="overview"   name="http://www.microsemi.com/products/fpga-soc/design-resources/dev-kits/smartfusion2/smartfusion2-advanced-development-kit"  title="SmartFusion2 Advanced Development Kit Web Page"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S150"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S005"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S010"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S025"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S050"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S090"/>
+        </board>
+        <!--********************************************************************
+                             SmartFusion2 Starter Kit
+        *********************************************************************-->
+        <board vendor="Microsemi" name="SF2_STARTER_KIT" >
+            <description>SmartFusion2 Advanced Development Kit</description>
+            <image large="Images/sf2_starter_kit_large.png"/>
+            <book category="overview"   name="http://www.microsemi.com/products/fpga-soc/design-resources/dev-kits/smartfusion2/smartfusion2-starter-kit"  title="SmartFusion2 Starter Kit Web Page"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S010"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S050"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S005"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S025"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S090"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S150"/>
+        </board>
+        <!--********************************************************************
+                             SmartFusion2 Evaluation Kit
+        *********************************************************************-->
+        <board vendor="Microsemi" name="SF2_EVAL_KIT" >
+            <description>SmartFusion2 Advanced Development Kit</description>
+            <image large="Images/sf2_eval_kit_large.png"/>
+            <book category="overview"   name="http://www.microsemi.com/products/fpga-soc/design-resources/dev-kits/smartfusion2/sf2-evaluation-kit"  title="SmartFusion2 Evaluation Kit Web Page"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S025"/>
+            <mountedDevice      Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S090"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S005"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S010"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S050"/>
+            <compatibleDevice   Dvendor="Microsemi:112"     Dfamily="SmartFusion2"    Dname="M2S150"/>
+        </board>
+    </boards>
+</package>

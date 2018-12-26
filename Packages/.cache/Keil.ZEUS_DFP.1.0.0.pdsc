@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>ZEUS_DFP</name>
+  <description>Maxim ZEUS Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.0.0">
+      First Release version of ZEUS Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Maxim</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Maxim</keyword>
+    <keyword>ZEUS</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="ZEUS Series" Dvendor="Maxim:23">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <processor Dclock="108000000"/>
+      <book    name="Documents\dui0552a_cortex_m3_dgug.pdf"                       title="Cortex-M3 Generic User Guide"/>
+      <book    name="http://www.maximintegrated.com/datasheet/index.mvp/id/7932"  title="ZEUS Overview"/>
+      <description>
+The MAX71616/MAX71617/MAX71636/MAX71637 are energy metering devices 
+capable of accuracy down to 0.1% over a dynamic range of 5000:1. 
+Each device contains three computing cores: 
+  a 32-bit fixed-point DSP compute engine 
+  a 32-bit MAXQ30 processor dedicated to sensitive metrology tasks
+  a robust ARM Cortex-M3 responsible for communications and other supervisory tasks
+
+This separation of tasks makes the device ideal for applications in which the integrity 
+of the energy measurement and reporting process is critical. No code fault or hardware 
+failure on the ARM core or its associated logic can interrupt or affect the accumulation 
+and recording of energy by the compute engine and the MAXQ30 processor. This enhanced 
+operational security makes the ZEUS family ideal for applications that demand 
+the highest reliability and data integrity.
+      </description>
+
+      <feature type="IOs"           n="40"                          name="Inputs/Outputs"/>
+      <feature type="Timer"         n="7"       m="32"/>
+	  <feature type="TimerOther"    n="1"                           name="Wakeup Timer"/>
+      <feature type="UART"          n="6"                           name="UART"/>
+      <feature type="SPI"           n="4"                           name="SPI"/>
+      <feature type="I2C"           n="1"                           name="I2C"/>
+      <feature type="WDT"           n="2"                           name="Watchdog"/>
+      <feature type="RTC"           n="32768"                       name="RTC"/>
+      <feature type="ADC"           n="5"       m="24"              name="ADC"/>
+	  <feature type="LCD"           n="1"       m="50.6"            name="LCD Controller"/>
+      <feature type="QFP"           n="120"                         name="Low-Profile QFP Package"/>
+      <feature type="VCC"           n="2.7"     m="3.6"/>
+      <feature type="Temp"          n="-40"     m="85"/>
+
+      <!-- *************************  Device 'MAX71616'  ***************************** -->
+      <device Dname="MAX71616">
+        <!--book       name="Documents\NotYetAvailable.PDF"   title="MAX71616 Data Sheet"/-->
+        <compile header="Device\Include\max716xx.h"  define="MAX71616"/>
+        <memory      id="IROM1"                       start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory      id="IRAM1"                       start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory      id="IRAM2"                       start="0x00400000"  size="0x10000"    init   ="0"   default="0"/>
+        <algorithm   name="Flash\MAX716xx_512KB.FLM"  start="0x00000000"  size="0x80000"                  default="1"/>
+
+        <feature type="ADC"           n="4"       m="24"              name="ADC"/>
+      </device>
+
+      <!-- *************************  Device 'MAX71617'  ***************************** -->
+      <device Dname="MAX71617">
+        <!--book       name="Documents\NotYetAvailable.PDF"   title="MAX71616 Data Sheet"/-->
+        <compile header="Device\Include\max716xx.h"  define="MAX71617"/>
+        <memory      id="IROM1"                       start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory      id="IRAM1"                       start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory      id="IRAM2"                       start="0x00400000"  size="0x10000"    init   ="0"   default="0"/>
+        <algorithm  name="Flash\MAX716xx_512KB.FLM"   start="0x00000000"  size="0x80000"                  default="1"/>
+
+        <feature type="ADC"           n="4"       m="24"              name="ADC"/>
+      </device>
+
+      <!-- *************************  Device 'MAX71636'  ***************************** -->
+      <device Dname="MAX71636">
+        <!--book       name="Documents\NotYetAvailable.PDF"   title="MAX71616 Data Sheet"/-->
+        <compile header="Device\Include\max716xx.h"  define="MAX71636"/>
+        <memory      id="IROM1"                       start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory      id="IRAM1"                       start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory      id="IRAM2"                       start="0x00400000"  size="0x10000"    init   ="0"   default="0"/>
+        <algorithm   name="Flash\MAX716xx_1MB.FLM"    start="0x00000000"  size="0x100000"                 default="1"/>
+
+        <feature type="ADC"           n="7"       m="24"              name="ADC"/>
+      </device>
+
+      <!-- *************************  Device 'MAX71637'  ***************************** -->
+      <device Dname="MAX71637">
+        <!--book       name="Documents\NotYetAvailable.PDF"   title="MAX71616 Data Sheet"/-->
+        <compile header="Device\Include\max716xx.h"  define="MAX71637"/>
+        <memory      id="IROM1"                       start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory      id="IRAM1"                       start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <memory      id="IRAM2"                       start="0x00400000"  size="0x10000"    init   ="0"   default="0"/>
+        <algorithm   name="Flash\MAX716xx_1MB.FLM"    start="0x00000000"  size="0x100000"                 default="1"/>
+
+        <feature type="ADC"           n="7"       m="24"              name="ADC"/>
+      </device>
+    </family>
+
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="MAX716xx Device">
+      <description>Maxim ZEUS devices</description>
+      <require Dvendor="Maxim:23" Dname="MAX716*"/>
+    </condition>
+
+    <condition id="MAX716xx CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>Maxim ZEUS devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="MAX716xx Device"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- START: Maxim MAX716xx Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MAX716xx CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Maxim ZEUS Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+
+      <files>
+        <!-- header path -->
+        <file category="include" name="Device\Include\"/>
+        <file category="header"  name="Device\Include\max716xx.h"/>
+        
+        <!-- startup/system files -->
+        <file category="source" name="Device\Source\ARM\startup_max716xx.s" attr="config"  condition="Compiler ARM"/>
+        <file category="source" name="Device\Source\system_max716xx.c"      attr="config"/>
+      </files>
+    </component>
+    <!-- END: Maxim MAX716xx Startup -->
+    
+  </components>
+ 
+  <boards>
+    <board vendor="Maxim" name="DB-MAX71637" revision="REV 1" salesContact="sales@maximintegrated.com" orderForm="http://www.maximintegrated.com/">
+      <description>Max71637 Demo Board</description>
+      <!-- book category="manual"    name="Documents\DBUM MAX71637.pdf" title="User Manual"/-->
+      <mountedDevice    deviceIndex="0" Dvendor="Maxim:23" Dname="MAX71637"/>
+      <feature type="XTAL"            n="32768"/>
+      <feature type="PWR"             n="3.0"     m="5.0"        name="External 3.3 VDC connector"/>
+	  <feature type="Memory"          n="131072"                 name="serial EEPROM"/>
+      <feature type="USB"             n="1"                      name="USB 2.0 Full Speed"/>
+      <feature type="LCD"             n="1"       m="60.5"       name="Segment LCD"/>
+      <feature type="Button"          n="3"                      name="Push-Buttons for Reset, Scroll, User (SW3)"/>
+      <feature type="LED"             n="2"                      name="LEDs directly connected to port pins"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG"    connector="10-pin MAXQ30 debug (0.1  inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- DB-MAX71637 -->
+    <example name="Hello" doc="Abstract.txt" folder="Boards\Maxim\DB-MAX71637\Hello">
+      <description>Hello World example</description>
+      <board name="DB-MAX71637" vendor="Maxim" Dvendor="Maxim:23" Dname="'MAX71637'"/>
+      <project>
+        <environment name="uv" load="Hello.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Maxim\DB-MAX71637\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="DB-MAX71637" vendor="Maxim" Dvendor="Maxim:23" Dname="'MAX71637'"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

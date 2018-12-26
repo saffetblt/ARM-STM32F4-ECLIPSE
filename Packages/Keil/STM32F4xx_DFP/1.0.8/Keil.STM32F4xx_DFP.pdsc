@@ -1,0 +1,2866 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>STM32F4xx_DFP</name>                                                       <!-- name of package -->
+  <description>STMicroelectronics STM32F4 Series Device Support, Drivers and Examples</description>
+  <url>http://www.keil.com/pack</url>
+
+  <releases>
+    <release version="1.0.8">
+      Device: Startup files for GCC added, conditions extended to reflect toolchain dependencies
+    </release>
+    <release version="1.0.7" date="2014-04-29">
+      Updated UART driver (Added UART7,UART8)
+      Updated GPIO driver (Added UART7/UART8 alternate function)
+      Updated I2C driver  (BUG Fix: 2 byte reception)
+      Device:StdPeriph Drivers:Framework Version: 1.3.1: added file misc.c
+      Device:Startup Version: 1.3.1: RTE_Device.h (Fixed preprocessor condition for ETH_MII_RX_ER Pin, Added UART7/UART8)
+    </release>
+    <release version="1.0.6">
+      Added MCBSTM32F400
+      Updated Features
+      Updated Flash Option Byte Programming
+      Added STM32F401C-Discovery Board Bundle
+      USB Device drivers update: multiple packet read, EP0 unconfiguration
+      Updated SPI driver (IRQ handling corrected)
+      Added STM Peripheral Library V1.3.0
+    </release>
+    <release version="1.0.5">
+      Added STM32F401 devices
+    </release>
+    <release version="1.0.4">
+      Updated drivers (namespace prefix ARM_ added)
+    </release>
+    <release version="1.0.3">
+      Added MCBSTM32F400 Board Support Bundle
+      Added STM32F4-Discovery Board Bundle
+    </release>
+    <release version="1.0.2">
+      Added emWin Example and GUIDemo for MCBSTM32F400
+      Added emWin LCD driver for MCBSTM32F400
+      Updated USBH Drivers (improved robustness)
+    </release>
+    <release version="1.0.1">
+      Generic Drivers moved to "Drivers" Class
+      Added UART and I2C Driver
+      Updated USBD and USBH Drivers
+      Added MCBSTM32F400 Demo example
+      Added MCBSTM32F400 USB Host Keyboard example
+      Added MCBSTM32F400 BSP Drivers: Joystick, Touchscreen, Accelerometer, Gyroscope, Camera
+      Updated MCBSTM32F400 BSP Driver: Keyboard
+      Updated STM32F4-Discovery BSP Driver: Keyboard
+      Updated all MCBSTM32F400 examples
+      Updated all STM32F4-Discovery examples
+      Minor corrections:
+      - SPI Driver
+      - DMA Driver
+      - MCI Driver
+    </release>
+    <release version="1.0.0">
+      Release version of STM32F4 Device Family Pack.
+    </release>
+    <release version="0.0.1">
+      Initial version of STM32F4 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>                                                                  <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>STM32F4</keyword>
+    <keyword>STM32F4xx</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="STM32F4 Series" Dvendor="STMicroelectronics:13">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <book    name="Documents\dui0553a_cortex_m4_dgug.pdf"           title="Cortex-M4 Generic User Guide"/>
+        <description>
+The STM32F4 family incorporates high-speed embedded memories and an extensive range of enhanced I/Os and peripherals connected to two APB buses, three AHB buses and a 32-bit multi-AHB bus matrix.
+
+  - 64-Kbyte of CCM (core coupled memory) data RAM
+  - LCD parallel interface, 8080/6800 modes
+  - Timer with quadrature (incremental) encoder input
+  - 5 V-tolerant I/Os
+  - Parallel camera interface
+  - True random number generator
+  - RTC: subsecond accuracy, hardware calendar
+  - 96-bit unique ID
+        </description>
+
+        <feature type="Timer"         n="2"       m="32"/>
+        <feature type="WDT"           n="2"/>
+        <feature type="RTC"           n="32768"/>
+        <feature type="I2S"           n="2"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="Temp"          n="-40"     m="105"/>
+
+
+      <!-- ************************  Subfamily 'STM32F401'  **************************** -->
+      <subFamily DsubFamily="STM32F401">
+        <feature type="Timer"         n="6"       m="16"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="USART"         n="3"       m="10500000"/>
+        <feature type="USBOTG"        n="1"/>
+        <feature type="VCC"           n="1.70"    m="3.60"/>
+        <feature type="VCC"           n="1.70"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F401CB'  ***************************** -->
+      <device Dname="STM32F401CB">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_128.FLM"  start="0x08000000"  size="0x20000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="10"      m="12"/>
+        <feature type="IOs"           n="36"/>
+        <feature type="SPI"           n="3"       m="42000000"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="CSP"           n="49"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401RB'  ***************************** -->
+      <device Dname="STM32F401RB">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_128.FLM"  start="0x08000000"  size="0x20000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="48"/>
+        <feature type="SPI"           n="3"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401VB'  ***************************** -->
+      <device Dname="STM32F401VB">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_128.FLM"  start="0x08000000"  size="0x20000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="100"/>
+        <feature type="BGA"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401CC'  ***************************** -->
+      <device Dname="STM32F401CC">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_256.FLM"  start="0x08000000"  size="0x40000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="10"      m="12"/>
+        <feature type="IOs"           n="36"/>
+        <feature type="SPI"           n="3"       m="42000000"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="CSP"           n="49"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401RC'  ***************************** -->
+      <device Dname="STM32F401RC">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_256.FLM"  start="0x08000000"  size="0x40000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="48"/>
+        <feature type="SPI"           n="3"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401VC'  ***************************** -->
+      <device Dname="STM32F401VC">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_256.FLM"  start="0x08000000"  size="0x40000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401_DS.PDF"                title="STM32F401 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="100"/>
+        <feature type="BGA"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401CD'  ***************************** -->
+      <device Dname="STM32F401CD">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_512.FLM"  start="0x08000000"  size="0x80000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="CSP"           n="49"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401RD'  ***************************** -->
+      <device Dname="STM32F401RD">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_512.FLM"  start="0x08000000"  size="0x80000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401VD'  ***************************** -->
+      <device Dname="STM32F401VD">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_512.FLM"  start="0x08000000"  size="0x80000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="100"/>
+        <feature type="BGA"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401CE'  ***************************** -->
+      <device Dname="STM32F401CE">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x60000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_384.FLM"  start="0x08000000"  size="0x60000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="CSP"           n="49"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401RE'  ***************************** -->
+      <device Dname="STM32F401RE">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x60000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_384.FLM"  start="0x08000000"  size="0x60000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F401VE'  ***************************** -->
+      <device Dname="STM32F401VE">
+        <processor Dclock="84000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F401xx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x60000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_384.FLM"  start="0x08000000"  size="0x60000"                  default="1"/>
+        <algorithm  name="Flash\STM32F401xx_OPT.FLM" start="0x1FFF7800" size="0x0210"                   default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F401xD_xE_DS.PDF"           title="STM32F401xD/xE Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="79"/>
+        <feature type="SPI"           n="4"       m="42000000"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="QFP"           n="100"/>
+        <feature type="BGA"           n="100"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F405'  **************************** -->
+      <subFamily DsubFamily="STM32F405">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="3"       m="37500000"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="2"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"                           name="Secure Digital IO"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F405RG'  ***************************** -->
+      <device Dname="STM32F405RG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F405 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="51"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F405VG'  ***************************** -->
+      <device Dname="STM32F405VG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F405 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F405ZG'  ***************************** -->
+      <device Dname="STM32F405ZG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F405 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F405OG'  ***************************** -->
+      <device Dname="STM32F405OG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F405 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="13"      m="12"/>
+        <feature type="IOs"           n="72"/>
+        <feature type="CSP"           n="90"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F405OE'  ***************************** -->
+      <device Dname="STM32F405OE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F405 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="13"      m="12"/>
+        <feature type="IOs"           n="72"/>
+        <feature type="CSP"           n="90"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F407'  **************************** -->
+      <subFamily DsubFamily="STM32F407">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="3"       m="37500000"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="2"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F407VG'  ***************************** -->
+      <device Dname="STM32F407VG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F407IG'  ***************************** -->
+      <device Dname="STM32F407IG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F407ZG'  ***************************** -->
+      <device Dname="STM32F407ZG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F407VE'  ***************************** -->
+      <device Dname="STM32F407VE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F407ZE'  ***************************** -->
+      <device Dname="STM32F407ZE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F407IE'  ***************************** -->
+      <device Dname="STM32F407IE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F40x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F40x_DS.PDF"                title="STM32F407 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F415'  **************************** -->
+      <subFamily DsubFamily="STM32F415">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="3"       m="37500000"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="2"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="Crypto"        n="1"                           name="Hardware acceleration for AES 128, 192, 256, Triple DES, HASH (MD5, SHA-1)"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F415RG'  ***************************** -->
+      <device Dname="STM32F415RG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F415 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="51"/>
+        <feature type="QFP"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F415VG'  ***************************** -->
+      <device Dname="STM32F415VG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F415 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F415ZG'  ***************************** -->
+      <device Dname="STM32F415ZG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F415 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F415OG'  ***************************** -->
+      <device Dname="STM32F415OG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F415 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="13"      m="12"/>
+        <feature type="IOs"           n="72"/>
+        <feature type="CSP"           n="90"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F417'  **************************** -->
+      <subFamily DsubFamily="STM32F417">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="3"       m="37500000"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="2"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="Crypto"        n="1"                           name="Hardware acceleration for AES 128, 192, 256, Triple DES, HASH (MD5, SHA-1)"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F417VG'  ***************************** -->
+      <device Dname="STM32F417VG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F417IG'  ***************************** -->
+      <device Dname="STM32F417IG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F417ZG'  ***************************** -->
+      <device Dname="STM32F417ZG">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F417VE'  ***************************** -->
+      <device Dname="STM32F417VE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F417ZE'  ***************************** -->
+      <device Dname="STM32F417ZE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F417IE'  ***************************** -->
+      <device Dname="STM32F417IE">
+        <processor Dclock="168000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/>
+        <debug      svd="SVD\STM32F41x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x80000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F40xxx_41xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F41x_DS.PDF"                title="STM32F417 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F427'  **************************** -->
+      <subFamily DsubFamily="STM32F427">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="6"       m="42000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="4"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F427VG'  ***************************** -->
+      <device Dname="STM32F427VG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F427ZG'  ***************************** -->
+      <device Dname="STM32F427ZG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F427IG'  ***************************** -->
+      <device Dname="STM32F427IG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F427VI'  ***************************** -->
+      <device Dname="STM32F427VI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F427ZI'  ***************************** -->
+      <device Dname="STM32F427ZI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F427II'  ***************************** -->
+      <device Dname="STM32F427II">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F427x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F427_DS.PDF"                title="STM32F427 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F429'  **************************** -->
+      <subFamily DsubFamily="STM32F429">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="6"       m="42000000"/>
+        <feature type="ComOther"      n="1"                           name="SAI Interface"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="USART"         n="4"       m="11250000"/>
+        <feature type="UART"          n="4"       m="11250000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F429VG'  ***************************** -->
+      <device Dname="STM32F429VG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429ZG'  ***************************** -->
+      <device Dname="STM32F429ZG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+        <feature type="CSP"           n="143"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429IG'  ***************************** -->
+      <device Dname="STM32F429IG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429VI'  ***************************** -->
+      <device Dname="STM32F429VI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429ZI'  ***************************** -->
+      <device Dname="STM32F429ZI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+        <feature type="CSP"           n="143"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429II'  ***************************** -->
+      <device Dname="STM32F429II">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429BG'  ***************************** -->
+      <device Dname="STM32F429BG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="QFP"           n="208"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429BI'  ***************************** -->
+      <device Dname="STM32F429BI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="QFP"           n="208"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429NI'  ***************************** -->
+      <device Dname="STM32F429NI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="BGA"           n="216"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F429NG'  ***************************** -->
+      <device Dname="STM32F429NG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F429x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F429_DS.PDF"                title="STM32F429 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="BGA"           n="216"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F437'  **************************** -->
+      <subFamily DsubFamily="STM32F437">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="6"       m="42000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="USART"         n="4"       m="10500000"/>
+        <feature type="UART"          n="4"       m="10500000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="Crypto"        n="1"                           name="Hardware acceleration for AES 128, 192, 256, Triple DES, HASH (MD5, SHA-1)"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F437VG'  ***************************** -->
+      <device Dname="STM32F437VG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F437ZG'  ***************************** -->
+      <device Dname="STM32F437ZG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="ComOther"      n="1"                           name="SAI Interface"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F437IG'  ***************************** -->
+      <device Dname="STM32F437IG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F437VI'  ***************************** -->
+      <device Dname="STM32F437VI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F437ZI'  ***************************** -->
+      <device Dname="STM32F437ZI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F437II'  ***************************** -->
+      <device Dname="STM32F437II">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F427_437xx"/>
+        <debug      svd="SVD\STM32F437x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F437_DS.PDF"                title="STM32F437 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32F439'  **************************** -->
+      <subFamily DsubFamily="STM32F439">
+        <feature type="Timer"         n="12"      m="16"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="SPI"           n="6"       m="42000000"/>
+        <feature type="ComOther"      n="1"                           name="SAI Interface"/>
+        <feature type="I2C"           n="3"/>
+        <feature type="USART"         n="4"       m="11250000"/>
+        <feature type="UART"          n="4"       m="11250000"/>
+        <feature type="USBOTG"        n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="SDIO"          n="1"       m="8"               name="Secure Digital IO"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="Crypto"        n="1"                           name="Hardware acceleration for AES 128, 192, 256, Triple DES, HASH (MD5, SHA-1)"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+        <feature type="Camera"        n="1"       m="14"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+      
+      <!-- *************************  Device 'STM32F439VI'  ***************************** -->
+      <device Dname="STM32F439VI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439VG'  ***************************** -->
+      <device Dname="STM32F439VG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="IOs"           n="82"/>
+        <feature type="QFP"           n="100"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439ZG'  ***************************** -->
+      <device Dname="STM32F439ZG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+        <feature type="CSP"           n="143"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439ZI'  ***************************** -->
+      <device Dname="STM32F439ZI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="114"/>
+        <feature type="QFP"           n="144"/>
+        <feature type="CSP"           n="143"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439IG'  ***************************** -->
+      <device Dname="STM32F439IG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439II'  ***************************** -->
+      <device Dname="STM32F439II">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="140"/>
+        <feature type="QFP"           n="176"/>
+        <feature type="BGA"           n="176"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439BG'  ***************************** -->
+      <device Dname="STM32F439BG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="QFP"           n="208"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439BI'  ***************************** -->
+      <device Dname="STM32F439BI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="QFP"           n="208"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439NI'  ***************************** -->
+      <device Dname="STM32F439NI">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x200000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_2048.FLM" start="0x08000000"  size="0x200000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="BGA"           n="216"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32F439NG'  ***************************** -->
+      <device Dname="STM32F439NG">
+        <processor Dclock="180000000"/>
+        <compile header="Device\Include\stm32f4xx.h"  define="STM32F429_439xx"/>
+        <debug      svd="SVD\STM32F439x.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x100000"   startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x10000"    init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000"  size="0x100000"                 default="1"/>
+        <algorithm  name="Flash\STM32F42xxx_43xxx_OPT.FLM" start="0x1FFF7800" size="0x0210"             default="0"/>
+        <algorithm  name="Flash\STM32F4xx_OTP.FLM"  start="0x1FFF7800"  size="0x0210"                   default="0"/>
+        <book       name="Documents\STM32F4xx_RM.PDF"                title="STM32F4 Series Reference Manual"/>
+        <book       name="Documents\STM32F439_DS.PDF"                title="STM32F439 Data Sheet"/>
+        <book       name="Documents\mcbstm32f200.chm"                title="MCBSTM32F400 User's Guide"/>
+        <book       name="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf"   title="STM32F401C Discovery Board"/>
+        <feature type="ADC"           n="24"      m="12"/>
+        <feature type="IOs"           n="168"/>
+        <feature type="BGA"           n="216"/>
+      </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <boards>
+    <board vendor="Keil" name="MCBSTM32F400" revision="Ver 1.2" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCBSTM32F400=ON">
+      <description>Keil MCBSTM32F400 Development Board</description>
+      <image small="Images\mcbstm32f400_board.jpg" large="Images\MCBSTM32F200_F400.png"/>
+      <book category="overview"  name="http://www.keil.com/mcbstm32f400/" title="MCBSTM32F400 Evaluation Board Web Page"/>
+      <book category="schematic" name="Documents\mcbstm32f400-schematics.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents\mcbstm32f200.chm" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F407IG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F407"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F417"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F405"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F415"/>
+      <feature type="XTAL"            n="8000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="PWR"             n="8"  m="12"      name="External Supply"/>
+      <feature type="RAM"             n="1"              name="2 MByte SRAM"/>
+      <feature type="ROM"             n="1"              name="8 MByte NOR Flash"/>
+      <feature type="ROM"             n="1"              name="512 MByte NAND Flash"/>
+      <feature type="ROM"             n="1"              name="8 kByte I2C EEPROM"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full Speed, Host/Device, OTG"/>
+      <feature type="USB"             n="1"              name="USB 2.0 High Speed, Host/Device, OTG"/>
+      <feature type="CAN"             n="1"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Gyro"            n="1"              name="3-axis digital output gyroscope"/>
+      <feature type="Joystick"        n="1"              name="5-position Joystick"/>
+      <feature type="Accelerometer"   n="1"              name="3-axis digital Accelerometer"/>
+      <feature type="Poti"            n="1"              name="Analog Voltage Control for ADC Input (potentiometer)"/>
+      <feature type="LineIn"          n="2"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="LineOut"         n="2"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="Other"           n="1"              name="Digital Microphone"/>
+      <feature type="Camera"          n="1"              name="Digital VGA Camera"/>
+      <feature type="Button"          n="4"              name="Push-Buttons for Reset, Wakeup, Tamper and User"/>
+      <feature type="LED"             n="8"              name="LEDs directly connected to port pins"/>      
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+    <board vendor="STMicroelectronics" name="STM32F401C-Discovery" revision="Rev.B.1" salesContact="http://www.st.com/stonline/contactus/contacts/index.php" orderForm="https://my.st.com/esample/app?page=basket&amp;pn=STM32F401C-DISCO">
+      <description>STMicroelectronics STM32F401C-Discovery Board Support and Examples</description>
+      <image small="Images\stm32f401c-disco_small.jpg" large="Images\stm32f401c-disco_large.jpg"/>
+      <book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF259098" title="STM32F401C-Discovery Web Page"/>
+      <book category="setup"     name="Documents\DM00092826.pdf" title="Getting Started"/>
+      <book category="schematic" name="Documents\stm32f401c-disco_sch.zip" title="Schematics"/>
+      <book category="manual"    name="Documents\DM00093902.pdf" title="User Manual"/>
+      <book category="other"     name="Documents\stm32f401c-disco_gerber.zip" title="Gerber Files"/>
+      <book category="other"     name="Documents\stm32f401c-disco_bom.zip" title="Bill of Materials"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F401VC"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F401"/>
+      <feature type="ODbg"      n="1"              name="On-board ST-LINK/V2"/>
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="DIO"       n="100"            name="Extension header: 4 x 25 for LQFP100 with 2.54 mm Pitch"/>
+      <feature type="USB"       n="1"              name="High-Speed USB OTG with micro-AB Connector"/>
+      <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="Gyro"      n="1"              name="L3GD20: motion sensor, 3-axis digital output gyroscope"/>
+      <feature type="Accelerometer" n="1"          name="LSM303DLHC: 3D digital linear acceleration sensor and a 3D digital magnetic sensor"/>
+      <feature type="LineOut"   n="1"              name="CS43L22: audio DAC with integrated class D speaker driver"/>
+      <feature type="ConnOther" n="1"              name="JP2 (Idd) for current measurement"/>
+      <feature type="ConnOther" n="1"              name="MP45DT02: audio sensor, omnidirectional digital microphone"/>
+      <feature type="LED"       n="8"              name="LEDs: USB COM, 3.3 V Power, Four user, Two USB OTG LEDs"/>
+      <feature type="CustomFF"  n="66" m="97"      name="Discovery Board Formfactor"/>
+      <debugInterface adapter="ST-Link" connector="Mini-USB"/>
+    </board>
+    <board vendor="STMicroelectronics" name="STM32F4-Discovery" revision="Rev.C.1" salesContact="http://www.st.com/stonline/contactus/contacts/index.php" orderForm="https://my.st.com/esample/app?page=basket&amp;pn=STM32F4DISCOVERY">
+      <description>STMicroelectronics STM32F4-Discovery Board Support and Examples</description>
+      <image small="Images\stm32f4_discovery_small.jpg" large="Images\stm32f4_discovery_large.jpg"/>
+      <book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/>
+      <book category="setup"     name="Documents\DM00037368.pdf" title="Getting Started"/>
+      <book category="schematic" name="Documents\stm32f4discovery_sch.zip" title="Schematics"/>
+      <book category="manual"    name="Documents\DM00039084.pdf" title="User Manual"/>
+      <book category="other"     name="Documents\stm32f4discovery_gerber.zip" title="Gerber Files"/>
+      <book category="other"     name="Documents\stm32f4discovery_bom.zip" title="Bill of Materials"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F407VG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F407"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F417"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F405"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F415"/>
+      <feature type="ODbg"      n="1"              name="On-board ST-LINK/V2"/>
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="DIO"       n="100"            name="Extension header: 4 x 25 for LQFP100 with 2.54 mm Pitch"/>
+      <feature type="USB"       n="1"              name="High-Speed USB OTG with micro-AB Connector"/>
+      <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="Accelerometer" n="1"          name="LIS302DL or LIS3DSH ST MEMS 3-axis accelerometer"/>
+      <feature type="LineOut"   n="1"              name="CS43L22: audio DAC with integrated class D speaker driver"/>
+      <feature type="ConnOther" n="1"              name="JP1 (Idd) for current measurement"/>
+      <feature type="ConnOther" n="1"              name="MP45DT02: audio sensor, omnidirectional digital microphone"/>
+      <feature type="LED"       n="8"              name="LEDs: USB COM, 3.3 V Power, Four user, Two USB OTG LEDs"/>
+      <feature type="CustomFF"  n="66" m="97"      name="Discovery Board Formfactor"/>
+      <debugInterface adapter="ST-Link" connector="Mini-USB"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <condition id="STM32F4">
+      <description>STMicroelectronics device from STM32F4 Series</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+    </condition>
+
+    <condition id="STM32F4_ARMCC">
+      <description>STMicroelectronics device from STM32F4 Series and ARM Compiler</description>
+      <require condition="STM32F4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32F401">
+      <description>STMicroelectronics device from STM32F40x Line</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F401??"/>
+    </condition>
+
+    <condition id="STM32F401_ARMCC">
+      <description>STMicroelectronics device from STM32F40x Line and ARM Compiler Toolchain</description>
+      <require condition="STM32F401"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32F401_GCC">
+      <description>STMicroelectronics device from STM32F40x Line and GNU Compiler Toolchain</description>
+      <require condition="STM32F401"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="STM32F40_41x">
+      <description>STMicroelectronics device from STM32F40x Line</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4[01][57]??"/>
+    </condition>
+
+    <condition id="STM32F40_41x_ARMCC">
+      <description>STMicroelectronics device from STM32F405/407 Line and ARM Compiler Toolchain</description>
+      <require condition="STM32F40_41x"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32F40_41x_GCC">
+      <description>STMicroelectronics device from STM32F405/407 Line and GNU Compiler Toolchain</description>
+      <require condition="STM32F40_41x"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+  
+    <condition id="STM32F427_437">
+      <description>STMicroelectronics device from STM32F427/37 Line</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4[23]7??"/>
+    </condition>
+
+    <condition id="STM32F427_437_ARMCC">
+      <description>STMicroelectronics device from STM32F427/437 Line and ARM Compiler Toolchain</description>
+      <require condition="STM32F427_437"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32F427_437_GCC">
+      <description>STMicroelectronics device from STM32F427/437 Line and GNU Compiler Toolchain</description>
+      <require condition="STM32F427_437"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="STM32F429_439">
+      <description>STMicroelectronics device from STM32F429/39 Line</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4[23]9??"/>
+    </condition>
+
+    <condition id="STM32F429_439_ARMCC">
+      <description>STMicroelectronics device from STM32F429/439 Line and ARM Compiler Toolchain</description>
+      <require condition="STM32F429_439"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32F429_439_GCC">
+      <description>STMicroelectronics device from STM32F429/439 Line and GNU Compiler Toolchain</description>
+      <require condition="STM32F429_439"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="STM32F4xx CMSIS Device">
+      <description>STMicroelectronics device from STM32F4 Series and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="STM32F4"/>
+    </condition>
+
+    <condition id="STM32F40_41x CMSIS">
+      <description>STMicroelectronics STM32F4 Flexible Static Memory Controller Driver</description>
+      <require condition="STM32F40_41x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="STM32F4 STDPERIPH">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers requirements</description>
+      <require condition="STM32F4"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+    </condition>
+
+    <condition id="STM32F4 STDPERIPH RCC">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers with RCC</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+    </condition>
+
+    <condition id="STM32F40_41x STDPERIPH RCC">
+      <description>STMicroelectronics STM32F40x and STM32F41x Standard Peripherals Drivers with RCC</description>
+      <require condition="STM32F40_41x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+    </condition>
+
+    <condition id="STM32F42x_43x STDPERIPH RCC">
+      <description>STMicroelectronics STM32F42x and STM32F43x Standard Peripherals Drivers with RCC</description>
+      <accept condition="STM32F427_437"/>
+      <accept condition="STM32F429_439"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+    </condition>
+
+    <condition id="STM32F429_439 STDPERIPH RCC">
+      <description>STMicroelectronics STM32F429 and STM32F439 Standard Peripherals Drivers with RCC</description>
+      <require condition="STM32F429_439"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+    </condition>
+
+    <condition id="STM32F4 STDPERIPH GPIO">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers with GPIO</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO"/>
+    </condition>
+
+    <condition id="STM32F4 DMA">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers with DMA</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="STM32F4 MCI">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers with DMA</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass="Device" Cgroup="DMA"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="STM32F4 SPI">
+      <description>STMicroelectronics STM32F4 Standard Peripherals Drivers with DMA</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass="Device" Cgroup="DMA"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI"/>
+    </condition>
+
+    <condition id="STM32F4 I2C">
+      <description>STMicroelectronics STM32F4 Series I2C Driver</description>
+      <require condition="STM32F4 STDPERIPH"/>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="DMA"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="I2C"/>
+    </condition>
+
+    <condition id="STM32F4xx CMSIS GPIO">
+      <description>STMicroelectronics STM32F4 Series GPIO Driver with CMSIS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+      <require Cclass ="Device" Cgroup="GPIO" />
+    </condition>
+
+    <condition id="STM32F4xx CMSIS GPIO DMA">
+      <description>STMicroelectronics STM32F4 Series GPIO and DMA Driver with CMSIS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+      <require Cclass ="Device" Cgroup="GPIO" />
+      <require Cclass ="Device" Cgroup="DMA" />
+    </condition>
+
+    <condition id="STM32F4xx CMSIS RTOS GPIO">
+      <description>STMicroelectronics STM32F4 Series GPIO Driver with CMSIS and RTOS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Cclass ="CMSIS" Cgroup="RTOS"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+      <require Cclass ="Device" Cgroup="GPIO" />
+    </condition>
+
+    <condition id="STM32F4xx CMSIS RTOS I2C">
+      <description>STMicroelectronics STM32F4 Series I2C Driver with CMSIS and RTOS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Cclass ="CMSIS" Cgroup="RTOS"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+      <require Cclass ="Drivers" Cgroup="I2C" />
+    </condition>
+    
+    <condition id="STM32F4xx CMSIS RTOS GPIO DMA">
+      <description>STMicroelectronics STM32F4 Series GPIO and DMA Driver with CMSIS and RTOS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Cclass ="CMSIS" Cgroup="RTOS"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32F4????"/>
+      <require Cclass ="Device" Cgroup="GPIO" />
+      <require Cclass ="Device" Cgroup="DMA" />
+    </condition>
+
+  </conditions>
+  
+  <examples>
+    <!-- STM32F401C Discovery Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards\ST\STM32F401C-Discovery\Blinky">
+      <description>Blinky example</description>
+      <board name="STM32F401C-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\ST\STM32F401C-Discovery\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="STM32F401C-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- STM32F4 Discovery Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards\ST\STM32F4-Discovery\Blinky">
+      <description>Blinky example</description>
+      <board name="STM32F4-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\ST\STM32F4-Discovery\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="STM32F4-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- MCBSTM32F400 Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Blinky">
+      <description>Blinky example</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Demo" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Demo">
+      <description>Demo example</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\emWin\Example">
+      <description>emWin Graphics simple example</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\emWin\GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\USB\Device\HID" version="1.0.1">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\USB\Device\MassStorage" version="1.0.1">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\USB\Device\VirtualCOM" version="1.0.1">
+      <description>Bridge between PC USB Virtual COM Port and UART port</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="CDC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Virtual COM</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\USB\Host\MassStorage" version="1.0.1">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format the storage device</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Mass Storage</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\USB\Host\Keyboard" version="1.0.1">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\FileSystem\File_Demo" version="1.0.1">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\BSD_Client" version="1.0.1">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\BSD_Server" version="1.0.1">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\FTP_Server" version="1.0.1">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\HTTP_Server" version="1.0.1">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\SMTP_Client" version="1.0.1">
+      <description>Example showing how to compose and send emails</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\SNMP_Agent" version="1.0.1">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards\Keil\MCBSTM32F400\Middleware\Network\Telnet_Server" version="1.0.1">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="MCBSTM32F400" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+  </examples>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.3.1" condition="STM32F4xx CMSIS Device">  <!-- Cversion is necessary -->
+      <description>System Startup for STMicroelectronics STM32F4 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_STM32F4xx    /* Device Startup for STM32F4 */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device\Include\"/>
+
+        <!-- Flash Option Bytes templates -->
+        <file category="source" condition="STM32F401_ARMCC"     name="Device\Source\ARM\STM32F401xx_OPT.s"       attr="template"  select="Flash Option Bytes Template"/>
+        <file category="source" condition="STM32F40_41x_ARMCC"  name="Device\Source\ARM\STM32F40xxx_41xxx_OPT.s" attr="template"  select="Flash Option Bytes Template"/>
+        <file category="source" condition="STM32F427_437_ARMCC"     name="Device\Source\ARM\STM32F42xxx_43xxx_OPT.s" attr="template"  select="Flash Option Bytes Template"/>
+        <file category="source" condition="STM32F429_439_ARMCC"     name="Device\Source\ARM\STM32F42xxx_43xxx_OPT.s" attr="template"  select="Flash Option Bytes Template"/>
+        <file category="source" condition="STM32F4_ARMCC"       name="Device\Source\ARM\STM32F4xx_OTP.s"         attr="template"  select="Flash One-Time programmable Bytes Template"/>
+        
+        <file category="header" name="Device\Include\stm32f4xx.h"/>
+        <!-- startup files -->
+        <!-- ARM Compiler Toolchain -->
+        <file category="source" condition="STM32F401_ARMCC"    name="Device\Source\ARM\startup_stm32f401xx.s"     attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F40_41x_ARMCC" name="Device\Source\ARM\startup_stm32f40_41xxx.s"  attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F427_437_ARMCC"    name="Device\Source\ARM\startup_stm32f427_437xx.s" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F429_439_ARMCC"    name="Device\Source\ARM\startup_stm32f429_439xx.s" attr="config" version="1.0.0"/>
+        <!-- GCC Toolchain -->
+        <file category="source" condition="STM32F401_GCC"      name="Device\Source\GCC\startup_stm32f401xx.S"     attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F40_41x_GCC"   name="Device\Source\GCC\startup_stm32f40_41xxx.S"  attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F427_437_GCC"      name="Device\Source\GCC\startup_stm32f427_437xx.S" attr="config" version="1.0.0"/>
+        <file category="source" condition="STM32F429_439_GCC"      name="Device\Source\GCC\startup_stm32f429_439xx.S" attr="config" version="1.0.0"/>
+        <!-- system file -->
+        <file category="source" name="Device\Source\system_stm32f4xx.c" attr="config" version="1.3.0"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header" name="RTE_Driver\Config\RTE_Device.h" attr="config" version="1.3.1"/>
+      </files>
+    </component>
+
+
+    <!-- START: STMicroelectronics Standard Peripherals Drivers -->
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cversion="1.3.1" condition="STM32F4 STDPERIPH">
+      <description>Standard Peripherals Drivers Framework</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FRAMEWORK
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Device\StdPeriph_Driver\Release_Notes.html"/>
+        <file category="include" name="Device\StdPeriph_Driver\inc\"/>
+        <file category="source"  name="Device\StdPeriph_Driver\src\misc.c"/>
+        <file category="source"  name="Device\StdPeriph_Driver\templates\stm32f4xx_conf.h" attr="config" version="1.3.0"/>
+        <file category="header"  name="Device\StdPeriph_Driver\templates\stm32f4xx_it.h" attr="template" select="Interrupt Service Routines"/>
+        <file category="source"  name="Device\StdPeriph_Driver\templates\stm32f4xx_it.c" attr="template" select="Interrupt Service Routines"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="ADC" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Analog-to-digital converter (ADC) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_adc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_adc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CAN" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Controller area network (CAN) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CAN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_can.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_can.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CRC" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>CRC calculation unit (CRC) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_crc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_crc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CRYP" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Cryptographic processor (CRYP) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CRYP
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_cryp.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_cryp.c"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_cryp_aes.c"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_cryp_des.c"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_cryp_tdes.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DAC" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Digital-to-analog converter (DAC) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_dac.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_dac.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DBGMCU" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>MCU debug component (DBGMCU) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DBGMCU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_dbgmcu.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DCMI" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Digital camera interface (DCMI) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DCMI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_dcmi.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_dcmi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>DMA controller (DMA) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_dma.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_dma.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA2D" Cversion="1.3.0" condition="STM32F42x_43x STDPERIPH RCC">
+      <description>Chrom-Art Accelerator (DMA2D) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DMA2D
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_dma2d.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_dma2d.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="EXTI" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>External interrupt/event controller (EXTI) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_exti.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_exti.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Flash" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>Embedded Flash memory driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_flash.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_flash.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="FSMC" Cversion="1.3.0" condition="STM32F40_41x STDPERIPH RCC">
+      <description>Flexible Static Memory Controller (FSMC) driver for STM32F40x/41x (but not STM32F401)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FSMC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_fsmc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_fsmc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="FMC" Cversion="1.3.0" condition="STM32F42x_43x STDPERIPH RCC">
+      <description>Flexible Memory Controller (FMC) driver for STM32F42x/43x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FMC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_fmc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_fmc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>General-purpose I/O (GPIO) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_gpio.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_gpio.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="HASH" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Hash processor (HASH) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_HASH
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_hash.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_hash.c"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_hash_md5.c"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_hash_sha1.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="I2C" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Inter-integrated circuit (I2C) interface driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_i2c.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_i2c.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="IWDG" Cversion="1.3.0" condition="STM32F4 STDPERIPH ">
+      <description>Independent watchdog (IWDG) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_IWDG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_iwdg.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_iwdg.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="LTDC" Cversion="1.3.0" condition="STM32F429_439 STDPERIPH RCC">
+      <description>LTDC driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_LTDC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_ltdc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_ltdc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="PWR" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Power controller (PWR) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_pwr.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_pwr.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>Reset and clock control (RCC) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_rcc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_rcc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RNG" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Random number generator (RNG) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_rng.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_rng.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RTC" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+      <description>Real-time clock (RTC) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_rtc.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_rtc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SAI" Cversion="1.3.0" condition="STM32F42x_43x STDPERIPH RCC">
+      <description>Serial audio interface (SAI) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_sai.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_sai.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SDIO" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Secure digital (SDIO) interface driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SDIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_sdio.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_sdio.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Serial peripheral interface (SPI) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_spi.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_spi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SYSCFG" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>System configuration controller (SYSCFG) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SYSCFG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_syscfg.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_syscfg.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="TIM" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Timers (TIM) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_tim.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_tim.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="USART" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_USART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_usart.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_usart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="WWDG" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+      <description>Window watchdog (WWDG) driver for STM32F4xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_WWDG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device\StdPeriph_Driver\inc\stm32f4xx_wwdg.h"/>
+        <file category="source" name="Device\StdPeriph_Driver\src\stm32f4xx_wwdg.c"/>
+      </files>
+    </component>
+
+    <!-- END: STMicroelectronics Standard Peripherals Drivers -->
+
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.0.1" condition="STM32F4xx CMSIS Device">
+      <description>GPIO driver used by RTE Drivers for STM32F4 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver\GPIO_STM32F4xx.h"/>
+        <file category="source" name="RTE_Driver\GPIO_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="DMA" Cversion="1.0.0" condition="STM32F4xx CMSIS Device">
+      <description>DMA driver used by RTE Drivers for STM32F4 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver\DMA_STM32F4xx.h"/>
+        <file category="source" name="RTE_Driver\DMA_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="EXTI" Cversion="1.0.0" condition="STM32F4xx CMSIS Device">
+      <description>EXTI driver used by RTE Drivers for STM32F4 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver\EXTI_STM32F4xx.h"/>
+        <file category="source" name="RTE_Driver\EXTI_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="FSMC" Cversion="1.0.0" condition="STM32F40_41x CMSIS">
+      <description>FSMC driver used by RTE Drivers for STM32F405/7 and STM32F415/7 Devices</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_FSMC                 /* Device FSMC */
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="RTE_Driver\FSMC_STM32F4xx.h"/>
+        <file category="source" name="RTE_Driver\FSMC_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="SPI" Cversion="1.02.0" condition="STM32F4xx CMSIS RTOS GPIO DMA">
+      <description>SPI Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+        #define RTE_Drivers_SPI3                /* Driver SPI3 */
+        #define RTE_Drivers_SPI4                /* Driver SPI4 */
+        #define RTE_Drivers_SPI5                /* Driver SPI5 */
+        #define RTE_Drivers_SPI6                /* Driver SPI6 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\SPI_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="UART" Cversion="1.02.0" condition="STM32F4xx CMSIS RTOS GPIO DMA">
+      <description>UART Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_UART1               /* Driver UART1 */
+        #define RTE_Drivers_UART2               /* Driver UART2 */
+        #define RTE_Drivers_UART3               /* Driver UART3 */
+        #define RTE_Drivers_UART4               /* Driver UART4 */
+        #define RTE_Drivers_UART5               /* Driver UART5 */
+        #define RTE_Drivers_UART6               /* Driver UART6 */
+        #define RTE_Drivers_UART7               /* Driver UART7 */
+        #define RTE_Drivers_UART8               /* Driver UART8 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\UART_STM32F4xx.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Drivers" Cgroup="I2C" Cversion="1.03.0" condition="STM32F4xx CMSIS RTOS GPIO DMA">
+      <description>I2C Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+        #define RTE_Drivers_I2C2                /* Driver I2C2 */
+        #define RTE_Drivers_I2C3                /* Driver I2C3 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\I2C_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="MCI" Cversion="1.01.0" condition="STM32F4xx CMSIS RTOS GPIO DMA">
+      <description>MCI Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0                /* Driver MCI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\MCI_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="Ethernet MAC" Cversion="1.02.0" condition="STM32F4xx CMSIS RTOS GPIO">
+      <description>Ethernet MAC Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_ETH_MAC0            /* Driver ETH_MAC0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\EMAC_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="USB Device" Csub="Full-speed" Cversion="1.03.0" condition="STM32F4xx CMSIS RTOS GPIO">
+      <description>USB Device Full-Speed Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\OTG_FS_STM32F4xx.c"/>
+        <file category="source" name="RTE_Driver\USBD_FS_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="USB Device" Csub="High-speed" Cversion="1.03.0" condition="STM32F4xx CMSIS RTOS GPIO">
+      <description>USB Device High-Speed Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD1               /* Driver USBD1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\OTG_HS_STM32F4xx.c"/>
+        <file category="source" name="RTE_Driver\USBD_HS_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="USB Host" Csub="Full-speed" Cversion="1.03.0" condition="STM32F4xx CMSIS RTOS GPIO">
+      <description>USB Host Full-Speed Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\OTG_FS_STM32F4xx.c"/>
+        <file category="source" name="RTE_Driver\USBH_FS_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Drivers" Cgroup="USB Host" Csub="High-speed" Cversion="1.03.0" condition="STM32F4xx CMSIS RTOS GPIO">
+      <description>USB Host High-Speed Driver for STM32F4 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH1               /* Driver USBH1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver\OTG_HS_STM32F4xx.c"/>
+        <file category="source" name="RTE_Driver\USBH_HS_STM32F4xx.c"/>
+      </files>
+    </component>
+
+    <!-- MCBSTM32F400 Development Board -->
+    <bundle Cbundle="MCBSTM32F400" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCBSTM32F400</description>
+      <doc>Documents\mcbstm32f200.chm</doc>
+      <component Cgroup="MCBSTM32F400" Csub="LED" condition="STM32F4xx CMSIS GPIO">
+        <description>LED driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\LED.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\LED.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Keyboard" condition="STM32F4xx CMSIS GPIO">
+        <description>Keyboard driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Keyboard.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Keyboard.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="A/D Converter" condition="STM32F4xx CMSIS Device">
+        <description>A/D Converter driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\ADC.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\ADC.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Joystick" condition="STM32F4xx CMSIS RTOS I2C">
+        <description>Joystick driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Joystick.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Joystick_STMPE811.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Touchscreen" condition="STM32F4xx CMSIS RTOS I2C">
+        <description>Touchscreen driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Touch.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Touch_STMPE811.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Accelerometer" condition="STM32F4xx CMSIS RTOS I2C">
+        <description>Accelerometer driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Accel.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Accel_LIS3DH.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Gyroscope" condition="STM32F4xx CMSIS RTOS I2C">
+        <description>Gyroscope driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Gyroscope.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Gyroscope_L3G4200D.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Camera" condition="STM32F4xx CMSIS RTOS I2C">
+        <description>Camera driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Camera.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\Camera_OVM7690.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="Graphic LCD" condition="STM32F4xx CMSIS Device">
+        <description>Graphic LCD driver for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Font_6x8_h.h"/>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\Font_16x24_h.h"/>
+          <file category="header" name="Boards\Keil\MCBSTM32F400\Common\GLCD.h"/>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\GLCD_16bitIF_STM32F4xx.c"/>
+        </files>
+      </component>
+      <component Cgroup="MCBSTM32F400" Csub="emWin LCD" Cvariant="16-bit IF" condition="STM32F4xx CMSIS Device">
+        <description>emWin LCD driver (16-bit Interface) for Keil MCBSTM32F400 Development Board</description>
+        <files>
+          <file category="source" name="Boards\Keil\MCBSTM32F400\Common\LCD_X_16bitIF_STM32F4xx.c"/>
+        </files>
+      </component>
+    </bundle>
+    
+    <!-- STM32F4-Discovery Board -->
+    <bundle Cbundle="STM32F4-Discovery" Cclass="Board Support" Cversion="1.0.0">
+      <description>STMicroelectronics STM32F4 Discovery Board</description>
+      <doc>http://www.st.com/stm32f4-discovery</doc>
+      <component Cgroup="STM32F4-Discovery" Csub="LED" condition="STM32F4xx CMSIS GPIO">
+      <description>LED driver for STMicroelectronics STM32F4-Discovery Board</description>
+      <files>
+        <file category="header" name="Boards\ST\STM32F4-Discovery\Common\LED.h"/>
+        <file category="source" name="Boards\ST\STM32F4-Discovery\Common\LED.c"/>
+      </files>
+    </component>
+      <component Cgroup="STM32F4-Discovery" Csub="Keyboard" condition="STM32F4xx CMSIS GPIO">
+      <description>Keyboard driver for the STMicroelectronics STM32F4-Discovery Board</description>
+      <files>
+        <file category="header" name="Boards\ST\STM32F4-Discovery\Common\Keyboard.h"/>
+        <file category="source" name="Boards\ST\STM32F4-Discovery\Common\Keyboard.c"/>
+      </files>
+    </component>
+    </bundle>
+
+    <!-- STM32F401C-Discovery Board -->
+    <bundle Cbundle="STM32F401C-Discovery" Cclass="Board Support" Cversion="1.0.0">
+      <description>STMicroelectronics STM32F401C-Discovery Board</description>
+      <doc>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00093902.pdf</doc>
+      <component Cgroup="STM32F401C-Discovery" Csub="LED" condition="STM32F4xx CMSIS GPIO">
+      <description>LED driver for STMicroelectronics STM32F401C-Discovery Board</description>
+      <files>
+        <file category="header" name="Boards\ST\STM32F401C-Discovery\Common\LED.h"/>
+        <file category="source" name="Boards\ST\STM32F401C-Discovery\Common\LED.c"/>
+      </files>
+    </component>
+      <component Cgroup="STM32F401C-Discovery" Csub="Keyboard" condition="STM32F4xx CMSIS GPIO">
+      <description>Keyboard driver for the STMicroelectronics STM32F401C-Discovery Board</description>
+      <files>
+        <file category="header" name="Boards\ST\STM32F401C-Discovery\Common\Keyboard.h"/>
+        <file category="source" name="Boards\ST\STM32F401C-Discovery\Common\Keyboard.c"/>
+      </files>
+    </component>
+    </bundle>
+
+  </components>
+</package>

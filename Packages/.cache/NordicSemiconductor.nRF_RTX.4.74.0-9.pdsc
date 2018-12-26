@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <name>nRF_RTX</name>
+    <description>Port of the ARM CMSIS-RTOS based RTX for Nordic Semiconductor nRF family.</description>
+    <vendor>NordicSemiconductor</vendor>
+    <url>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_RTX/</url>
+    <supportContact>http://www.nordicsemi.com/About-us/Contact-us</supportContact>
+
+    <releases>
+        <release version="4.74.0-9" date="2015-12-18">
+            This is a part of Nordic Semiconductor SDK version 11.0.0-2.alpha.
+        </release>
+        <release version="4.74.0-8" date="2015-11-09">
+            This is a part of Nordic Semiconductor SDK version 10.0.0.
+        </release>
+        <release version="4.74.0-7" date="2015-07-06">
+            This is a part of Nordic Semiconductor SDK version 9.0.0.
+        </release>
+        <release version="4.74.0-6" date="2015-04-30">
+            This is a part of Nordic Semiconductor SDK version 8.1.0.
+        </release>
+        <release version="4.74.0-5" date="2015-02-27">
+            This is a part of Nordic Semiconductor SDK version 8.0.0.
+        </release>
+        <release version="4.74.0-4" >
+            This is a part of Nordic Semiconductor SDK version 7.2.0.
+        </release>
+        <release version="4.74.0-3" >
+            This is a part of Nordic Semiconductor SDK version 7.1.0.
+        </release>
+        <release version="4.74.0-2" >
+            Fixed documentation issues.
+        </release>
+        <release version="4.74.0-1" >
+            This is a part of Nordic Semiconductor SDK version 7.0.0.
+This is the first release of RTX port for Nordic Semiconductor devices.
+Nordic Semiconductor nRF51 family is supported in both: usual mode which uses tick timer and ultra-low power, deep-sleep tickless mode.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>RTOS</keyword>
+        <keyword>RTX</keyword>
+    </keywords>
+
+    <boards>
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10028" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10028).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10031" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10031).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/>  
+            <feature type="Other"     n="1"              name="mbed Enabled"/>
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="USB"/>          
+        </board>
+		
+		<board vendor="NordicSemiconductor" name="nRF51 PCA20006" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA20006).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxaa"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+			<feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/> 
+            <feature type="Button"    n="2"              name="Push-buttons: 2 x User"/> 			
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="JTAG/SW"			 connector="6-pin 'No Legs' Cable with 20-pin Cortex connector"/>         
+		</board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10036" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10036).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10040" revision="V0.9.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10040).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="N5 Starter Kit">
+            <description>Dynastream N5 Starter Kit board (N5DK1).</description>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="4"              name="LEDs"/> 
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/>
+            <feature type="Other"     n="5"              name="Switches"/> 
+            <feature type="Other"     n="1"              name="On-board antenna"/>
+            <debugInterface adapter="J-Link"             connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link"             connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+    </boards>
+
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="nRF51 Series">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAC"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+        </condition>
+        
+        <condition id="nRF52 Series">
+            <description>Nordic Semiconductor Device from nRF52 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+        </condition>
+
+        <condition id="nRF51 Series CMSIS Device">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+            <accept condition="nRF51 Series"/>
+            <accept condition="nRF52 Series"/>
+        </condition>
+        <condition id="RTX_Cortex-m0_0">
+            <accept Cvendor="NordicSemiconductor" Csub="nrf51" Cgroup="Device" Cclass="None" />
+        </condition>
+        <condition id="RTX_Cortex-m0">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="11.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="bsp" Cclass="Board Support" />
+            <require condition="RTX_Cortex-m0_0" />
+            <deny Cvendor="NordicSemiconductor" Csub="nrf52" Cgroup="Device" Cclass="None" />
+        </condition>
+        <condition id="RTX_Cortex-m4_0">
+            <accept Cvendor="NordicSemiconductor" Csub="nrf52" Cgroup="Device" Cclass="None" />
+        </condition>
+        <condition id="RTX_Cortex-m4">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="11.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="bsp" Cclass="Board Support" />
+            <require condition="RTX_Cortex-m4_0" />
+            <deny Cvendor="NordicSemiconductor" Csub="nrf51" Cgroup="Device" Cclass="None" />
+        </condition>
+
+    </conditions>
+    <components>
+<component Cvendor="NordicSemiconductor" Cclass="Third Parties" Cgroup="RTOS" Csub="RTX" Cvariant="Cortex-m0" Cversion="4.74.0-9" condition="RTX_Cortex-m0">
+  <description>CMSIS-RTOS RTX implementation for nRF51</description>
+  <RTE_Components_h>
+  #define RTX
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="port\RTX_Conf_CM.c" attr="config"  version="4.74.0-9"/>
+    <file category="library" name="source\ARM\RTX_CM0.lib" />
+    <file category="header" name="include\cmsis_os.h" />
+    <file category="header" name="include\RTX_CM_lib.h" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/rtx.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="Third Parties" Cgroup="RTOS" Csub="RTX" Cvariant="Cortex-m4" Cversion="4.74.0-9" condition="RTX_Cortex-m4">
+  <description>CMSIS-RTOS RTX implementation for nRF51</description>
+  <RTE_Components_h>
+  #define RTX
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="port\RTX_Conf_CM.c" attr="config"  version="4.74.0-9"/>
+    <file category="library" name="source\ARM\RTX_CM3.lib" />
+    <file category="header" name="include\cmsis_os.h" />
+    <file category="header" name="include\RTX_CM_lib.h" />
+    <file category="include" name="include\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/rtx.html" />
+  </files>
+</component>
+    </components>
+</package>

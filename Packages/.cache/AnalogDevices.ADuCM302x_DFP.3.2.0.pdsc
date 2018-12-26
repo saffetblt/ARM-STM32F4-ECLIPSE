@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>ADuCM302x_DFP</name>
+  <description>Analog Devices ADuCM302x Device Support. (Subject to the Software License Agreement referred to in the Release Notes.)</description>
+  <url>http://download.analog.com/tools/EZBoards/CM302x/Releases/</url>
+  <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+  <license>License/2017-05-17-CM302xEZDFP Click Thru SLA.txt</license>
+
+  <releases>
+    <release version="3.2.0"  date="2018-08-03">
+      API extension for RTC driver.
+      Bug fixes for RTC, SPI and UART drivers.
+    </release>
+    <release version="3.1.2"  date="2018-04-11">
+      Unsupported crypto driver compilation error fixed
+      GPIO driver API extended with adi_gpio_GroupInterruptPolarityEnable to determine if the interrupts are generated
+      on the rising or falling edge of the corresponding GPIO pin.
+      RTC driver modified to eliminate the risks of counter overflows.
+      RTOS mapping extended with Micrium uC/OS-II.
+      UART driver updated for PIO Rx transfers to support all the FIFO trigger levels.
+    </release>
+    <release version="3.1.0"  date="2018-01-22">
+      Further version synchronization across IoT CMSIS Pack products
+      Flash controller driver default settings modified to enable ECC.
+      New APIs and fixes to drivers
+      - FLash driver API extended to support wait states configuration
+      - GPIO driver API extended to read group interrupt and output information, and
+        to enable/disable increased drive strength capability
+      - Fix issues in PWR driver
+      - RTC driver API extended with functions to get and clear interrupt status
+      - SPI driver API extended with functions to set clock phase and polarity
+    </release>
+    <release version="2.0.0" date="2017-05-31">
+      API Changes to suit IoT applications
+    </release>
+    <release version="1.0.6" date="2017-09-05">
+      Support release
+    </release>
+        <release version="1.0.5" date="2017-05-25">
+      Enables ECC during flash programming
+    </release>
+    <release version="1.0.4" date="2017-03-13">
+      Support release
+    </release>
+    <release version="1.0.3" date="2017-01-05">
+      Release supporting CrossCore Embedded Studio
+    </release>
+    <release version="1.0.2" date="2016-10-19">
+      Initial Release
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.3.0"/>
+    </packages>
+  </requirements>
+
+  <boards>
+    <board vendor="AnalogDevices" name="ADuCM3029 EZ-KIT" revision="Ver 1.0">
+      <description>Analog Devices ADuCM3029 Evaluation Board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM3029"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM302x Series"/>
+      <feature type="PWR"             n="5"              name="External 5.0VDC/3.6A power supply"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Analog Devices</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Analog Devices</keyword>
+    <keyword>ADuCM302x</keyword>
+    <keyword>ADuCM3027</keyword>
+    <keyword>ADuCM3029</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="ADuCM302x Series" Dvendor="Analog Devices:1">
+      <description>
+        The ADuCM302x is an ultra low-power integrated mixed-signal microcontroller system for processing, control and connectivity. The MCU system is based on an ARM Cortex(TM)-M3 processor, a collection of digital peripherals, embedded SRAM and flash memory, and an analog subsystem which provides clocking, reset and power management capability along with ADC.
+      </description>
+
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+        <AMisc>--cpreproc --cpreproc_opts=-U__STDC__,-D__ASSEMBLER__</AMisc>
+      </environment>
+
+      <environment name="cces">
+        <properties>
+          <property name="toolchain" value="arm.gcc.toolchain"/>
+          <property name="gdb-qemu" value="false"/>
+        </properties>
+
+        <silicon-revisions command-line-default="1.0">
+          <silicon revision="none"/>
+          <silicon revision="1.0"/>
+          <silicon revision="1.1"/>
+          <silicon revision="1.2"/>
+          <silicon revision="any"/>
+        </silicon-revisions>
+      </environment>
+
+      <!-- ******************************  ADuCM3027  ****************************** -->
+      <device Dname="ADuCM3027">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="26000000"/>
+        <environment name="iar">
+          <file category="i79file" name="ARM/config/devices/AnalogDevices/ADuCM3027.i79" />
+        </environment>
+        <debug      svd="SVD/ADuCM302x.svd"/>
+        <algorithm  name="Flash/ADuCM302x.FLM"      start="0x00000000"  size="0x20000"  default="1"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x20000"  startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x04000"  init   ="1"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20040000"  size="0x04000"  init   ="1"   default="1"/>
+        <compile header="Include/ADuCM3027.h"  define="__ADUCM3027__"/>
+      </device>
+
+      <!-- ******************************  ADuCM3029  ****************************** -->
+      <device Dname="ADuCM3029">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="26000000"/>
+        <environment name="iar">
+          <file category="i79file" name="ARM/config/devices/AnalogDevices/ADuCM3029.i79" />
+        </environment>
+        <debug      svd="SVD/ADuCM302x.svd"/>
+        <algorithm  name="Flash/ADuCM302x.FLM"      start="0x00000000"  size="0x40000"  default="1"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"  startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x04000"  init   ="1"   default="1"/>
+        <memory     id="IRAM2"                      start="0x20040000"  size="0x04000"  init   ="1"   default="1"/>
+        <compile header="Include/ADuCM3029.h"  define="__ADUCM3029__"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="ADuCM302x">
+      <description>ADuCM302x device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM3027"/>
+      <accept Dname="ADuCM3029"/>
+    </condition>
+    <condition id="ADuCM3027">
+      <description>ADuCM3027 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM3027"/>
+    </condition>
+    <condition id="ADuCM3029">
+      <description>ADuCM3029 device</description>
+      <require Dvendor="Analog Devices:1"/>
+      <accept Dname="ADuCM3029"/>
+    </condition>
+    <condition id="ADuCM302x CompilerIO">
+      <description>ADuCM302x Compiler I/O requirements</description>
+      <require condition="ADuCM302x"/>
+      <require condition="ARMCC"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDOUT" Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDERR" Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="STDIN"  Cvariant="User"/>
+      <require Cclass="Compiler" Cgroup="I/O" Csub="TTY"    Cvariant="User"/>
+    </condition>
+    <condition id="ADuCM302x Examples Support">
+      <description>ADuCM302x Examples Support requirements</description>
+      <require condition="ADuCM302x"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+    </condition>
+    <condition id="ADuCM302x Driver">
+      <description>Common ADuCM302x driver requirements</description>
+      <require condition="ADuCM302x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="Global Configuration"/>
+    </condition>
+    <condition id="ADuCM302x Cycle Count">
+      <description>ADuCM302x Cycle Count requirements</description>
+      <require condition="ADuCM302x"/>
+    </condition>
+    <condition id="ADuCM302x ADC">
+      <description>ADuCM302x ADC driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x BEEP">
+      <description>ADuCM302x BEEP driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x Crypto">
+      <description>ADuCM302x Crypto driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x Flash">
+      <description>ADuCM302x Flash driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x I2C">
+      <description>ADuCM302x I2C driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x SPI">
+      <description>ADuCM302x SPI driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x SPORT">
+      <description>ADuCM302x SPORT driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x UART">
+      <description>ADuCM302x UART driver requirements</description>
+      <require condition="ADuCM302x Driver"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+      <require Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+    </condition>
+    <condition id="ADuCM302x_ARM">
+      <description>ADuCM302x ARM (Keil) </description>
+      <require condition="ADuCM302x"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="ADuCM3027_ARM">
+      <description>ADuCM3027 ARM (Keil) </description>
+      <require condition="ADuCM3027"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="ADuCM3029_ARM">
+      <description>ADuCM3029 ARM (Keil) </description>
+      <require condition="ADuCM3029"/>
+      <require condition="ARMCC"/>
+    </condition>
+    <condition id="ADuCM302x_GCC">
+      <description>ADuCM302x GCC</description>
+      <require condition="ADuCM302x"/>
+      <require condition="GCC"/>
+    </condition>
+    <condition id="ADuCM3027_GCC">
+      <description>ADuCM3027 GCC</description>
+      <require condition="ADuCM3027"/>
+      <require condition="GCC"/>
+    </condition>
+    <condition id="ADuCM3029_GCC">
+      <description>ADuCM3029 GCC</description>
+      <require condition="ADuCM3029"/>
+      <require condition="GCC"/>
+    </condition>
+    <condition id="ADuCM302x_IAR">
+      <description>ADuCM3029 GCC</description>
+      <require condition="ADuCM302x"/>
+      <require condition="IAR"/>
+    </condition>
+    <condition id="ADuCM3027_IAR">
+      <description>ADuCM3029 GCC</description>
+      <require condition="ADuCM3027"/>
+      <require condition="IAR"/>
+    </condition>
+    <condition id="ADuCM3029_IAR">
+      <description>ADuCM3029 GCC</description>
+      <require condition="ADuCM3029"/>
+      <require condition="IAR"/>
+    </condition>
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Drivers" doc="Documents/html/index.html">Analog Devices driver components for ADuCM302x devices</description>
+  </taxonomy>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>System Startup for ADuCM302x</description>
+      <files>
+        <!-- additional include path -->
+        <file category="include" name="Include/"/>
+        <!-- startup files -->
+        <file category="source" name="Source/ARM/startup_ADuCM3029.s" version="3.2.0" attr="config" condition="ADuCM3029_ARM"/>
+        <file category="source" name="Source/GCC/startup_ADuCM3029.c" version="3.2.0" attr="config" condition="ADuCM3029_GCC"/>
+        <file category="source" name="Source/GCC/reset_ADuCM3029.S"   version="3.2.0" attr="config" condition="ADuCM3029_GCC"/>
+        <file category="source" name="Source/IAR/startup_ADuCM3029.s" version="3.2.0" attr="config" condition="ADuCM3029_IAR"/>
+        <!-- system files -->
+        <file category="source" name="Source/system_ADuCM3029.c" version="3.2.0" attr="config" condition="ADuCM3029"/>
+        <!-- linker scripts -->
+        <file category="linkerScript" name="Source/GCC/ADuCM3029.ld" version="3.2.0" attr="config" condition="ADuCM3029_GCC"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Retarget_UART" Cversion="3.2.0" condition="ADuCM302x CompilerIO">
+      <description>Compiler::IO support for ADuCM302x devices</description>
+      <files>
+        <file category="source" name="Source/retarget_uart.c" />
+        <file category="header" name="Include/retarget_uart_config.h" version="3.2.0" attr="config" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Examples Support" Cversion="3.2.0" condition="ADuCM302x Examples Support">
+      <description>Common utility functions for ADuCM302x examples</description>
+      <files>
+        <file category="source" name="Source/common.c"/>
+        <file category="header" name="Include/common.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Global Configuration" Cversion="3.2.0" condition="ADuCM302x">
+      <description>Global configuration files for ADuCM302x drivers</description>
+      <files>
+        <file category="header" name="Include/config/adi_cycle_counting_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Cycle Count" Cversion="3.2.0" condition="ADuCM302x Cycle Count">
+      <description>Common utility functions for ADuCM302x examples</description>
+      <files>
+        <file category="source" name="Source/adi_cyclecount.c"/>
+        <file category="header" name="Include/adi_cyclecount.h"/>
+        <file category="header" name="Include/config/adi_cycle_counting_config.h" version="3.2.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- Drivers -->
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="3.2.0" condition="ADuCM302x ADC">
+      <description>ADC</description>
+      <files>
+        <file category="source" name="Source/drivers/adc/adi_adc.c"/>
+        <file category="header" name="Include/drivers/adc/adi_adc.h"/>
+        <file category="header" name="Include/config/adi_adc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___a_d_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="BEEP" Cversion="3.2.0" condition="ADuCM302x BEEP">
+      <description>BEEP</description>
+      <files>
+        <file category="source" name="Source/drivers/beep/adi_beep.c"/>
+        <file category="header" name="Include/drivers/beep/adi_beep.h"/>
+        <file category="header" name="Include/config/adi_beep_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___b_e_e_p___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="CRC" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>CRC</description>
+      <files>
+        <file category="source" name="Source/drivers/crc/adi_crc.c"/>
+        <file category="header" name="Include/drivers/crc/adi_crc.h"/>
+        <file category="header" name="Include/config/adi_crc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___c_r_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Crypto" Cversion="3.2.0" condition="ADuCM302x Crypto">
+      <description>Crypto</description>
+      <files>
+        <file category="source" name="Source/drivers/crypto/adi_crypto.c"/>
+        <file category="header" name="Include/drivers/crypto/adi_crypto.h"/>
+        <file category="header" name="Include/config/adi_crypto_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___crypto___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="DMA" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>DMA</description>
+      <files>
+        <file category="source" name="Source/drivers/dma/adi_dma.c"/>
+        <file category="header" name="Include/drivers/dma/adi_dma.h"/>
+        <file category="doc" name="Documents/html/group___d_m_a___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Flash" Cversion="3.2.0" condition="ADuCM302x Flash">
+      <description>Flash Controller</description>
+      <files>
+        <file category="source" name="Source/drivers/flash/adi_flash.c"/>
+        <file category="header" name="Include/drivers/flash/adi_flash.h"/>
+        <file category="header" name="Include/config/adi_flash_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___flash___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="GPIO" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>GPIO</description>
+      <files>
+        <file category="source" name="Source/drivers/gpio/adi_gpio.c"/>
+        <file category="header" name="Include/drivers/gpio/adi_gpio.h"/>
+        <file category="doc" name="Documents/html/group___g_p_i_o___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="3.2.0" condition="ADuCM302x I2C">
+      <description>I2C</description>
+      <files>
+        <file category="source" name="Source/drivers/i2c/adi_i2c.c"/>
+        <file category="header" name="Include/drivers/i2c/adi_i2c.h"/>
+        <file category="header" name="Include/config/adi_i2c_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___i2_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Power" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>System Clock and Power Management</description>
+      <files>
+        <file category="source" name="Source/drivers/pwr/adi_pwr.c"/>
+        <file category="header" name="Include/drivers/pwr/adi_pwr.h"/>
+        <file category="header" name="Include/config/adi_pwr_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___power___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="RNG" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>Random Number Generator</description>
+      <files>
+        <file category="source" name="Source/drivers/rng/adi_rng.c"/>
+        <file category="header" name="Include/drivers/rng/adi_rng.h"/>
+        <file category="header" name="Include/config/adi_rng_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___r_n_g___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="RTC" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>RTC</description>
+      <files>
+        <file category="source" name="Source/drivers/rtc/adi_rtc.c"/>
+        <file category="header" name="Include/drivers/rtc/adi_rtc.h"/>
+        <file category="header" name="Include/config/adi_rtc_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___r_t_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="3.2.0" condition="ADuCM302x SPI">
+      <description>SPI</description>
+      <files>
+        <file category="source" name="Source/drivers/spi/adi_spi.c"/>
+        <file category="header" name="Include/drivers/spi/adi_spi.h"/>
+        <file category="header" name="Include/config/adi_spi_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___s_p_i___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPORT" Cversion="3.2.0" condition="ADuCM302x SPORT">
+      <description>SPORT</description>
+      <files>
+        <file category="source" name="Source/drivers/sport/adi_sport.c"/>
+        <file category="header" name="Include/drivers/sport/adi_sport.h"/>
+        <file category="header" name="Include/config/adi_sport_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___s_p_o_r_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="TMR" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>GP Timer</description>
+      <files>
+        <file category="source" name="Source/drivers/tmr/adi_tmr.c"/>
+        <file category="header" name="Include/drivers/tmr/adi_tmr.h"/>
+        <file category="header" name="Include/config/adi_tmr_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___t_m_r___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="3.2.0" condition="ADuCM302x UART">
+      <description>UART</description>
+      <files>
+        <file category="source" name="Source/drivers/uart/adi_uart.c"/>
+        <file category="header" name="Include/drivers/uart/adi_uart.h"/>
+        <file category="header" name="Include/config/adi_uart_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___u_a_r_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>WDT</description>
+      <files>
+        <file category="source" name="Source/drivers/wdt/adi_wdt.c"/>
+        <file category="header" name="Include/drivers/wdt/adi_wdt.h"/>
+        <file category="header" name="Include/config/adi_wdt_config.h" version="3.2.0" attr="config"/>
+        <file category="header" name="Include/config/adi_global_config.h" version="3.2.0" attr="config"/>
+        <file category="doc" name="Documents/html/group___w_d_t___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt" Cversion="3.2.0" condition="ADuCM302x Driver">
+      <description>External Interrupt</description>
+      <files>
+        <file category="source" name="Source/drivers/xint/adi_xint.c"/>
+        <file category="header" name="Include/drivers/xint/adi_xint.h"/>
+        <file category="doc" name="Documents/html/group___x_i_n_t___driver.html"/>
+      </files>
+    </component>
+
+  </components>
+
+  <examples>
+
+    <example name="HelloWorld" doc="ADuCM302x/Readme_HelloWorld.txt" folder="Boards/ADuCM3029-EZ-KIT/Examples/hello_world" version="3.2.0">
+      <description>Hello World</description>
+      <board name="ADuCM3029 EZ-KIT" vendor="AnalogDevices" Dname="ADuCM302x"/>
+        <project>
+            <environment name="uv" load="ADuCM302x/keil/HelloWorld.uvprojx"/>
+            <environment name="cces" load="ADuCM302x/cces/.project"/>
+            <environment name="iar" load="ADuCM302x/iar/HelloWorld.ewp"/>
+        </project>
+        <attributes>
+            <category>Getting Started</category>
+            <component Cclass="CMSIS"  Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="Retarget"/>
+            <component Cclass="Device" Cgroup="Examples Support" />
+        </attributes>
+    </example>
+
+  </examples>
+</package>

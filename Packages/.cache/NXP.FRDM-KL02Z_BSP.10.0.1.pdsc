@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>FRDM-KL02Z_BSP</name>
+  <description>Board Support Pack for FRDM-KL02Z</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="FRDM-KL02Z">
+      <description>The FRDM-KL02Z is an ultra-low-cost development platform enabled by the Kinetis(r) L series KL02 family built on the ARM(r) Cortex(r)-M0+ processor.
+
+Features include the open standard embedded serial and debug adapter (OpenSDA), providing easy access to MCU I/O, battery-ready, low-power operation, a standard-based form factor with expansion board options and a built-in debug interface for flash programming and run-control. The FRDM-KL02Z is supported by a range of NXP(r) and third-party development software.
+
+This hardware can be purchased through NXP distribution partners.</description>
+      <mountedDevice Dname="MKL02Z32xxx4" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.frdmkl02z">
+      <accept Dvendor="NXP:11" Dname="MKL02Z16???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL02Z32???4"/>
+      <accept Dvendor="NXP:11" Dname="MKL02Z8???4"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpsci"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="cmsis_i2c_int_b2b_transfer_master" folder="cmsis_driver_examples/i2c/int_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_int_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_int_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_int_b2b_transfer_slave" folder="cmsis_driver_examples/i2c/int_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_int_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_int_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_read_accel_value_transfer" folder="cmsis_driver_examples/i2c/read_accel_value_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_read_accel_value_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_read_accel_value_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/read accel value transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_lpsci_interrupt_transfer" folder="cmsis_driver_examples/lpsci/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_lpsci_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_lpsci_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/lpsci/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_spi_interrupt_b2b_transfer_master" folder="cmsis_driver_examples/spi/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_spi_interrupt_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_spi_interrupt_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/spi/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_spi_interrupt_b2b_transfer_slave" folder="cmsis_driver_examples/spi/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_spi_interrupt_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_spi_interrupt_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/spi/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="adc16_low_power" folder="demo_apps/adc16_low_power" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_low_power.ewp"/>
+        <environment name="uv" load="mdk/adc16_low_power.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/adc16 low power</category>
+      </attributes>
+    </example>
+    <example name="bubble" folder="demo_apps/bubble" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/bubble.ewp"/>
+        <environment name="uv" load="mdk/bubble.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/bubble</category>
+      </attributes>
+    </example>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/hello_world.ewp"/>
+        <environment name="uv" load="mdk/hello_world.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/hello world</category>
+      </attributes>
+    </example>
+    <example name="power_manager" folder="demo_apps/power_manager" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/power_manager.ewp"/>
+        <environment name="uv" load="mdk/power_manager.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/power manager</category>
+      </attributes>
+    </example>
+    <example name="power_mode_switch" folder="demo_apps/power_mode_switch" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/power_mode_switch.ewp"/>
+        <environment name="uv" load="mdk/power_mode_switch.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/power mode switch</category>
+      </attributes>
+    </example>
+    <example name="shell" folder="demo_apps/shell" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/shell.ewp"/>
+        <environment name="uv" load="mdk/shell.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/shell</category>
+      </attributes>
+    </example>
+    <example name="adc16_interrupt" folder="driver_examples/adc16/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_interrupt.ewp"/>
+        <environment name="uv" load="mdk/adc16_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/adc16/interrupt</category>
+      </attributes>
+    </example>
+    <example name="adc16_polling" folder="driver_examples/adc16/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_polling.ewp"/>
+        <environment name="uv" load="mdk/adc16_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/adc16/polling</category>
+      </attributes>
+    </example>
+    <example name="cmp_interrupt" folder="driver_examples/cmp/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmp_interrupt.ewp"/>
+        <environment name="uv" load="mdk/cmp_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cmp/interrupt</category>
+      </attributes>
+    </example>
+    <example name="cmp_polling" folder="driver_examples/cmp/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmp_polling.ewp"/>
+        <environment name="uv" load="mdk/cmp_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cmp/polling</category>
+      </attributes>
+    </example>
+    <example name="cop" folder="driver_examples/cop" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cop.ewp"/>
+        <environment name="uv" load="mdk/cop.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cop</category>
+      </attributes>
+    </example>
+    <example name="pflash" folder="driver_examples/flash/pflash" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pflash.ewp"/>
+        <environment name="uv" load="mdk/pflash.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flash/pflash</category>
+      </attributes>
+    </example>
+    <example name="gpio_led_output" folder="driver_examples/gpio/led_output" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/gpio_led_output.ewp"/>
+        <environment name="uv" load="mdk/gpio_led_output.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpio/led output</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt" folder="driver_examples/i2c/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt_b2b_transfer_master" folder="driver_examples/i2c/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt_b2b_transfer_slave" folder="driver_examples/i2c/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="i2c_polling_b2b_transfer_master" folder="driver_examples/i2c/polling_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_polling_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/i2c_polling_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="i2c_polling_b2b_transfer_slave" folder="driver_examples/i2c/polling_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_polling_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/i2c_polling_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="i2c_read_accel_value_transfer" folder="driver_examples/i2c/read_accel_value_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_read_accel_value_transfer.ewp"/>
+        <environment name="uv" load="mdk/i2c_read_accel_value_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/read accel value transfer</category>
+      </attributes>
+    </example>
+    <example name="lpsci_interrupt" folder="driver_examples/lpsci/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lpsci_interrupt.ewp"/>
+        <environment name="uv" load="mdk/lpsci_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lpsci/interrupt</category>
+      </attributes>
+    </example>
+    <example name="lpsci_interrupt_rb_transfer" folder="driver_examples/lpsci/interrupt_rb_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lpsci_interrupt_rb_transfer.ewp"/>
+        <environment name="uv" load="mdk/lpsci_interrupt_rb_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lpsci/interrupt rb transfer</category>
+      </attributes>
+    </example>
+    <example name="lpsci_interrupt_transfer" folder="driver_examples/lpsci/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lpsci_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/lpsci_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lpsci/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="lpsci_polling" folder="driver_examples/lpsci/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lpsci_polling.ewp"/>
+        <environment name="uv" load="mdk/lpsci_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lpsci/polling</category>
+      </attributes>
+    </example>
+    <example name="lptmr" folder="driver_examples/lptmr" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lptmr.ewp"/>
+        <environment name="uv" load="mdk/lptmr.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lptmr</category>
+      </attributes>
+    </example>
+    <example name="mcg_fee_blpe" folder="driver_examples/mcg/fee_blpe" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fee_blpe.ewp"/>
+        <environment name="uv" load="mdk/mcg_fee_blpe.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fee blpe</category>
+      </attributes>
+    </example>
+    <example name="mcg_fee_blpi" folder="driver_examples/mcg/fee_blpi" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fee_blpi.ewp"/>
+        <environment name="uv" load="mdk/mcg_fee_blpi.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fee blpi</category>
+      </attributes>
+    </example>
+    <example name="mcg_fei_blpi" folder="driver_examples/mcg/fei_blpi" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fei_blpi.ewp"/>
+        <environment name="uv" load="mdk/mcg_fei_blpi.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fei blpi</category>
+      </attributes>
+    </example>
+    <example name="spi_interrupt_b2b_master" folder="driver_examples/spi/interrupt_b2b/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_interrupt_b2b_master.ewp"/>
+        <environment name="uv" load="mdk/spi_interrupt_b2b_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/interrupt b2b/master</category>
+      </attributes>
+    </example>
+    <example name="spi_interrupt_b2b_slave" folder="driver_examples/spi/interrupt_b2b/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_interrupt_b2b_slave.ewp"/>
+        <environment name="uv" load="mdk/spi_interrupt_b2b_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/interrupt b2b/slave</category>
+      </attributes>
+    </example>
+    <example name="spi_interrupt_b2b_transfer_master" folder="driver_examples/spi/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_interrupt_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/spi_interrupt_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="spi_interrupt_b2b_transfer_slave" folder="driver_examples/spi/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_interrupt_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/spi_interrupt_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="spi_polling_b2b_transfer_master" folder="driver_examples/spi/polling_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_polling_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/spi_polling_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/polling b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="spi_polling_b2b_transfer_slave" folder="driver_examples/spi/polling_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/spi_polling_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/spi_polling_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/spi/polling b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="tpm_input_capture" folder="driver_examples/tpm/input_capture" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tpm_input_capture.ewp"/>
+        <environment name="uv" load="mdk/tpm_input_capture.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/tpm/input capture</category>
+      </attributes>
+    </example>
+    <example name="tpm_output_compare" folder="driver_examples/tpm/output_compare" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tpm_output_compare.ewp"/>
+        <environment name="uv" load="mdk/tpm_output_compare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/tpm/output compare</category>
+      </attributes>
+    </example>
+    <example name="tpm_pwm_twochannel" folder="driver_examples/tpm/pwm_twochannel" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tpm_pwm_twochannel.ewp"/>
+        <environment name="uv" load="mdk/tpm_pwm_twochannel.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/tpm/pwm twochannel</category>
+      </attributes>
+    </example>
+    <example name="tpm_simple_pwm" folder="driver_examples/tpm/simple_pwm" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tpm_simple_pwm.ewp"/>
+        <environment name="uv" load="mdk/tpm_simple_pwm.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/tpm/simple pwm</category>
+      </attributes>
+    </example>
+    <example name="tpm_timer" folder="driver_examples/tpm/timer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="FRDM-KL02Z" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tpm_timer.ewp"/>
+        <environment name="uv" load="mdk/tpm_timer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/tpm/timer</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="frdmkl02z" condition="project_template.frdmkl02z">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+      </files>
+    </component>
+  </components>
+</package>

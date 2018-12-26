@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>MCB1500_BSP</name>
+  <description>Keil MCB1500 Development Board Support Package</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.2.0" date="2016-06-30">
+      - Updated all examples to be compatible with LPC1500_DFP version 1.2.0
+    </release>
+    <release version="1.1.1" date="2014-11-18">
+      - fixed SET/CLR Register access in LED Board driver
+    </release>
+    <release version="1.1.0" date="2014-06-23">
+      - added CMSIS DAP firmware image (folder: CMSIS_DAP)
+      - added debugInterface descriptions for JTAG and SW.
+    </release>
+    <release version="1.0.1">
+      Corrected minor issues in PDSC file.
+    </release>
+    <release version="1.0.0">
+      First Release version of MCB1500 Board Support Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>LPC1500</keyword>
+    <keyword>LPC1549JBD100</keyword>
+    <keyword>MCB</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Keil" name="MCB1500" revision="v1.1" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1500=ON">
+      <description>Keil MCB1500 Board Support and Examples</description>
+      <image small="Images\MCB1500_small.png" large="Images\MCB1500_large.png"/>
+      <book category="overview"  name="http://www.keil.com/MCB1500" title="MCB1500 Web Page"/>
+      <book category="manual"    name="http://www.keil.com/support/man/docs/mcb1500/" title="Online User Manual" />
+      <book category="manual"    name="Documents\mcb1500.chm" title="User Manual" />
+      <book category="schematic" name="Documents\MCB1500schematics 1.1.PDF" title="Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1549JBD100"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="LPC1500 Series"/>
+      <feature type="ODbg"      n="1"              name="On-board CMSIS-DAP"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Batt"      n="1"              name="CR2032 Battery for RTC"/>
+      <feature type="Button"    n="2"              name="Push-buttons: DAP USB-ISP and Reset"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB device with USB Standard-B Connector"/>
+      <feature type="RS232"     n="1"              name="DB9 Female Connector"/>
+      <feature type="CAN"       n="1"              name="DB9 Male Connector"/>
+      <feature type="GLCD"      n="1"  m="240.320" name="2.4 inch QVGA Touchscreen Display"/>
+      <feature type="Proto"     n="4"  m="8"       name="PORT0 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="Proto"     n="4"  m="8"       name="PORT1 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="Proto"     n="4"  m="3"       name="PORT2 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="DIO"       n="76"             name="Digital IOs (shared with Analog IOs)"/>
+      <feature type="AIO"       n="24"             name="Analog IOs (shared with Digital IOs)"/>
+      <feature type="MemCard"   n="1"              name="Micro SD Card Holder"/>
+      <feature type="LED"       n="6"              name="LEDs: Four user, one USB PWR LED, one DAP PWR LED, one DAP UART LED, two DAP HID/MSD LEDs"/>
+      <feature type="Joystick"  n="1"              name="5-position Joystick"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug Interface"/>
+      <feature type="ConnOther" n="2"              name="Motor Control Connectors"/>
+      <feature type="CustomFF"  n="100" m="130"/>
+      <debugInterface adapter="JTAG/SW"   connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="CMSIS-DAP" connector="USB Standard-B"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="Blinky" doc="Abstract.txt" folder="Examples\Blinky">
+      <description>Blinky example</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Examples\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="RTX_Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Demo" doc="Abstract.txt" folder="Examples\Demo">
+      <description>Demo example</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Examples\emWin\GUIDemo">
+      <description>emWin Graphic Library Demo (emWin)</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="Core"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+    
+    <example name="USB Device HID" doc="Abstract.txt" folder="Examples\Middleware\USB\Device\HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Examples\Middleware\USB\Device\MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using RAM as storage media.</description>
+      <board name="MCB1500" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+  </examples>
+
+  <conditions>
+    <!-- Device Condition -->
+    <condition id="LPC15xx">
+      <description>NXP LPC15xx Devices</description>
+      <require Dvendor="NXP:11" Dname="LPC15*"/>
+    </condition>
+    
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC15xx CMSIS">
+      <description>NXP LPC15xx Devices and CMSIS-CORE</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + CMSIS + LPCOpen Conditions -->
+    <condition id="LPC15xx CMSIS LPCOPEN">
+      <description>NXP LPC15xx Devices and LPCOpen firmware</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="LPCOpen"/>
+    </condition>
+
+    <!-- Device + CMSIS Driver -->
+    <condition id="LPC15xx I2C">
+      <description>Requirement for components using CMSIS I2C driver</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+    </condition>
+
+    <condition id="LPC15xx SPI">
+      <description>Requirement for components using CMSIS SPI driver</description>
+      <require condition="LPC15xx"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+    </condition>
+
+    <condition id="Graphics Core and LCD_X">
+      <!-- conditions selecting peripherals -->
+      <description>Graphics CORE component and LCD driver</description>
+      <require Cclass="Graphics" Cgroup="CORE" />
+      <require Cclass="Board Support" Cgroup="?*?" Csub="emWin LCD"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <bundle Cbundle="MCB1500" Cclass="Board Support" Cversion="1.1.0">
+      <description>Keil Development Board MCB1500</description>
+      <doc></doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC15xx CMSIS LPCOPEN">
+        <description>A/D Converter interface for Keil MCB1500 Development Board</description>
+        <files>
+          <file category="source" name="Common/ADC_MCB1500.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC15xx CMSIS LPCOPEN">
+        <description>LED interface for Keil MCB1500 Development Board</description>
+        <files>
+          <file category="source" name="Common/LED_MCB1500.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.0.0" condition="LPC15xx I2C">
+        <description>Joystick interface for Keil MCB1500 Development Board</description>
+        <files>
+          <file category="source" name="Common/Joystick_MCB1500.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="LPC15xx SPI">
+        <description>Graphic LCD interface for Keil MCB1500 Development Board</description>
+        <files>
+          <file category="header" name="Common/GLCD_Config.h"/>
+          <file category="source" name="Common/GLCD_Fonts.c"/>
+          <file category="source" name="Common/GLCD_MCB1500.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1.0" Cvariant="SPI IF" condition="LPC15xx SPI">
+        <description>emWin LCD SPI Interface for Keil MCB1500 Development Board</description>
+        <files>
+          <file category="source" name="Common/LCD_X.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" Csub="STMPE811" condition="LPC15xx I2C">
+        <description>Touchscreen interface for STMPE811</description>
+        <files>
+          <file category="header" name="Common/STMPE811.h"/>
+          <file category="source" name="Common/Touch_STMPE811.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+  
+</package>

@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>EFM32GG_BSP</name>
+  <description>Silicon Labs EFM32 Giant Gecko CMSIS Drivers and Examples</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"         name="CMSIS"               version="5.1.0"/>
+      <package vendor="Keil"        name="ARM_Compiler"        version="1.3.0"/>
+      <package vendor="Keil"        name="MDK-Middleware"      version="7.4.0"/>
+      <package vendor="SiliconLabs" name="EFM32GG_DFP"         version="5.4.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="2.0.0" date="2018-03-23">
+      Initial Release version of of the board support pack for EFM32GG_DK3750
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>EFM32GG</keyword>
+    <keyword>EFM32</keyword>
+  </keywords>
+
+  <conditions>
+    <!-- Device Conditions -->
+    <condition id="EFM32GG">
+      <description>Silicon Labs EFM32GG devices</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32GG*"/>
+    </condition>
+    <condition id="EFM32GG990 Device">
+      <description>Silicon Labs EFM32GG990 devices</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32GG990*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="EFM32GG CMSIS">
+      <description>Silicon Labs EFM32GG devices, CMSIS Core</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- emlib Conditions -->
+    <condition id="emlib Framework">
+      <description>Silicon Labs emlib Framework</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+    </condition>
+    <condition id="emlib SYSTEM">
+      <description>Silicon Labs emlib with SYSTEM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib EMU">
+      <description>Silicon Labs emlib with EMU</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+    </condition>
+    <condition id="emlib CMU">
+      <description>Silicon Labs emlib with CMU</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM">
+      <description>Silicon Labs emlib with CMU, SYSTEM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM CORE">
+      <description>Silicon Labs emlib with CMU, SYSTEM, CORE</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+    </condition>
+    <condition id="emlib CMU GPIO">
+      <description>Silicon Labs emlib with CMU, GPIO</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+    </condition>
+
+    <condition id="emdrv DMADRV">
+      <description>Silicon Labs Driver DMADRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="DmaCtrl"/>
+    </condition>
+    <condition id="emdrv GPIOINT">
+      <description>Silicon Labs Driver GPIOINT</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+    </condition>
+    <condition id="emdrv NVM">
+      <description>Silicon Labs Driver NVM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+    </condition>
+    <condition id="emdrv RTCDRV">
+      <description>Silicon Labs Driver RTCDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="emdrv SLEEP">
+      <description>Silicon Labs Driver SLEEP</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+    </condition>
+    <condition id="emdrv SPIDRV">
+      <description>Silicon Labs Driver SPIDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="RTCDRV"/>
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="DMADRV"/>
+    </condition>
+    <condition id="emdrv TEMPDRV">
+      <description>Silicon Labs Driver TEMPDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+
+    <condition id="glib CORE">
+      <description>glib CORE</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver"/>
+    </condition>
+    <condition id="glib Driver DISPLAY">
+      <description>glib Display Driver</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Display"/>
+    </condition>
+    <condition id="glib Driver SSD2119 16-bit">
+      <description>glib Display Driver SSD2119 16-bit IF</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+  <!-- Not available on Giant Gecko DK and STK
+    <condition id="glib Driver SSD2119 18-bit">
+      <description>glib Display Driver SSD2119 18-bit IF</description>
+      <require condition="EFM32GG"/>
+    </condition>
+    <condition id="glib Driver SSD2119 SPI">
+      <description>glib Display Driver SSD2119 SPI IF</description>
+      <require condition="EFM32GG"/>
+    </condition>
+  -->
+    <condition id="glib Driver SSD2119 RGB">
+      <description>glib Display Driver SSD2119 RGB IF</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="RGB"/>
+    </condition>
+
+    <condition id="EFM32GG CMSIS GPIO CMU">
+      <description>EFM32GG with CMSIS and emlib: GPIO, CMU</description>
+      <require condition="EFM32GG CMSIS"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+    </condition>
+    <condition id="EFM32GG CMSIS GPIO CMU DMA">
+      <description>EFM32GG with CMSIS and emlib: GPIO, CMU, DMA</description>
+      <require condition="EFM32GG CMSIS"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+    </condition>
+
+    <!-- bsp Conditions -->
+    <condition id="EFM32GG DK3750">
+      <description>EFM32GG DK3750 Board Support Core</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+    <condition id="EFM32GG STK3700">
+      <description>EFM32GG STK3700 Board Support Core</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+
+    <condition id="EFM32GG BSP">
+      <description>EFM32GG Board Support Package</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="EFM32GG BSP ADC">
+      <description>EFM32GG BSP with ADC</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ADC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="EFM32GG BSP EEPROM">
+      <description>EFM32GG BSP with EEPROM</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Eeprom"/>
+    </condition>
+    <condition id="EFM32GG BSP TempSensor">
+      <description>EFM32GG BSP with TempSensor</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="TempSensor"/>
+    </condition>
+    <condition id="EFM32GG BSP Touch">
+      <description>EFM32GG BSP with Touch</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Touch"/>
+    </condition>
+    <condition id="EFM32GG BSP GLIB TFT">
+      <description>EFM32GG BSP with glib and TFT</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Graphics"      Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <accept  Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="EBI"/>
+      <accept  Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="RGB"/>
+    </condition>
+    <condition id="BSP Driver CapSense LE">
+      <description>BSP Driver CapSense (Low Energy)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ACMP"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="LESENSE"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Display">
+      <description>BSP Driver Display</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="PRS"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Udelay"/>
+    </condition>
+    <condition id="BSP Driver DmaCtrl">
+      <description>BSP Driver DmaCtrl</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+    </condition>
+    <condition id="BSP Driver Eeprom">
+      <description>BSP Driver Eeprom</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver I2cSpm">
+      <description>BSP Driver I2cSpm</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="I2C"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Ksz8851snl SPI">
+      <description>BSP Driver Ksz8851snl SPI</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+    <condition id="BSP Driver Ksz8851snl">
+      <description>BSP Driver Ksz8851snl</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Ksz8851snl_spi"/>
+    </condition>
+    <condition id="BSP Driver NandFlash">
+      <description>BSP Driver NandFlash</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="DmaCtrl"/>
+    </condition>
+    <condition id="BSP Driver NorFlash">
+      <description>BSP Driver NorFlash</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo Serial">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <accept  Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo TextDisplay">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="TextDisplay"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo Tft">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <accept  Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*-bit IF"/>
+      <accept  Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*SPI IF"/>
+    </condition>
+    <condition id="BSP Driver RtcDrv">
+      <description>BSP Driver RtcDrv</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="BSP Driver SegmentLcd">
+      <description>BSP Driver SegmentLcd</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="LCD"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Si114x">
+      <description>BSP Driver Si7013</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="RTCDRV"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver Si7013">
+      <description>BSP Driver Si7013</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver TempSensor">
+      <description>BSP Driver TempSensor</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver TextDisplay">
+      <description>BSP Driver TextDisplay</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Display"/>
+    </condition>
+    <condition id="BSP Driver Tft EBI">
+      <description>BSP Driver Tft (EBI)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*-bit IF"/>
+    </condition>
+    <condition id="BSP Driver Tft RGB">
+      <description>BSP Driver Tft (RGB)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*RGB IF"/>
+    </condition>
+    <condition id="BSP Driver Touch">
+      <description>BSP Driver Touch</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ADC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Eeprom"/>
+    </condition>
+    <condition id="BSP Driver Udelay">
+      <description>BSP Driver Udelay</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="BSP Driver VddCheck">
+      <description>BSP Driver VddCheck</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="VCMP"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- emlib -->
+    <component Cclass="Device" Cgroup="emlib" Csub="Framework" Cversion="5.3.5" condition="EFM32GG">
+      <description>emlib Framework</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_FRAMEWORK
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_common.h"/>
+        <file category="header"  name="SDK/platform/emlib/inc/em_chip.h"/>
+        <file category="header"  name="SDK/platform/emlib/inc/em_bus.h"/>
+        <file category="header"  name="SDK/platform/emlib/inc/em_version.h"/>
+        <file category="header"  name="SDK/platform/emlib/inc/em_assert.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ACMP"      Cversion="5.3.5" condition="emlib Framework">
+      <description>Analog comparator (ACMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ACMP
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_acmp.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_acmp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ADC"       Cversion="5.3.5" condition="emlib CMU">
+      <description>Analog to Digital Converter (ADC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_adc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="AES"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Advanced Encryption Standard Accelerator (AES) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_AES
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_aes.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_aes.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="BURTC"     Cversion="5.3.5" condition="emlib Framework">
+      <description>Backup Real Time Counter (BURTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_BURTC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_burtc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_burtc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="CMU"       Cversion="5.3.5" condition="emlib EMU">
+      <description>Clock management unit (CMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CMU
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_cmu.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_cmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="CORE"      Cversion="5.3.5" condition="emlib Framework">
+      <description>General purpose utilities and cross-compiler support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CORE
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_core.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_core.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYOTIMER" Cversion="5.3.5" condition="emlib Framework">
+      <description>Ultra Low Energy Timer/Counter (CRYOTIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOTIMER
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_cryotimer.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_cryotimer.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYPTO"    Cversion="5.3.5" condition="emlib Framework">
+      <description>Cryptography accelerator peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOPTO
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_crypto.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_crypto.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CSEN"      Cversion="5.3.5" condition="emlib CMU">
+      <description>Capacitive Sense (CSEN) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CSEN
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_csen.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_csen.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="DAC"       Cversion="5.3.5" condition="emlib CMU">
+      <description>Digital to Analog Converter (DAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_dac.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_dac.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DBG"       Cversion="5.3.5" condition="emlib CMU GPIO">
+      <description>Debug (DBG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DBG
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_dbg.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_dbg.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DMA"       Cversion="5.3.5" condition="emlib CMU">
+      <description>Direct Memory Access (DMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_dma.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EBI"       Cversion="5.3.5" condition="emlib Framework">
+      <description>EBI External Bus Interface (EBI) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EBI
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_ebi.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_ebi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EMU"       Cversion="5.3.5" condition="emlib CMU SYSTEM">
+      <description>Energy Management Unit (EMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EMU
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_emu.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_emu.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="GPCRC"     Cversion="5.3.5" condition="emlib Framework">
+      <description>General Purpose Cyclic Redundancy Check (GPCRC) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPCRC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_gpcrc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_gpcrc.c"/>
+      </files>
+    </component!-->
+    <component Cclass="Device" Cgroup="emlib" Csub="GPIO"      Cversion="5.3.5" condition="emlib Framework">
+      <description>General Purpose Input/Output (GPIO) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_gpio.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="I2C"       Cversion="5.3.5" condition="emlib CMU">
+      <description>Inter-integrated Circuit (I2C) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_i2c.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_i2c.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="IDAC"      Cversion="5.3.5" condition="emlib CMU">
+      <description>Current Digital to Analog Converter (IDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_IDAC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_idac.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_idac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="INT"       Cversion="5.3.5" condition="emlib Framework">
+      <deprecated>1</deprecated>
+      <description>Safe nesting interrupt disable/enable API (deprecated!)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_INT
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_int.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_int.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LCD"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Liquid Crystal Display (LCD) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LCD
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_lcd.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_lcd.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="LDMA"      Cversion="5.3.5" condition="emlib CMU SYSTEM CORE">
+      <description>Linked Direct Memory Access (LDMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LDMA
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_ldma.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_ldma.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="LESENSE"   Cversion="5.3.5" condition="emlib CMU">
+      <description>Low Energy Sensor (LESENSE) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LESENSE
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_lesense.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_lesense.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LETIMER"   Cversion="5.3.5" condition="emlib CMU">
+      <description>Low Energy Timer (LETIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LETIMER
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_letimer.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_letimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LEUART"    Cversion="5.3.5" condition="emlib CMU">
+      <description>Low Energy Universal Asynchronous Receiver/Transmitter (LEUART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LEUART
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_leuart.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_leuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MPU"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Memory Protection Unit (MPU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_mpu.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_mpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MSC"       Cversion="5.3.5" condition="emlib CMU SYSTEM">
+      <description>Flash controller (MSC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MSC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_msc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_msc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="OPAMP"     Cversion="5.3.5" condition="emlib SYSTEM">
+      <description>Operational Amplifier (OPAMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_OPAMP
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_opamp.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_opamp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="PCNT"      Cversion="5.3.5" condition="emlib CMU">
+      <description>Pulse Counter (PCNT) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PCNT
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_pcnt.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_pcnt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="PRS"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Peripheral Reflex System (PRS) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PRS
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_prs.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_prs.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RAMFUNC"   Cversion="5.3.5" condition="emlib Framework">
+      <description>RAM code support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RAMFUNC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_ramfunc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RMU"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Reset Management Unit (RMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RMU
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_rmu.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_rmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RTC"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Real Time Counter (RTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_rtc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_rtc.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="RTCC"      Cversion="5.3.5" condition="emlib Framework">
+      <description>Real Time Counter (RTCC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTCC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_rtcc.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_rtcc.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="SMU"       Cversion="5.3.5" condition="emlib Framework">
+      <description>Security Management Unit (SMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SMU
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_smu.h"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="SYSTEM"    Cversion="5.3.5" condition="emlib Framework">
+      <description>System API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SYSTEM
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_system.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_system.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="TIMER"     Cversion="5.3.5" condition="emlib Framework">
+      <description>Timer/Counter (TIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_TIMER
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_timer.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_timer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="USART"     Cversion="5.3.5" condition="emlib CMU">
+      <description>Universal Synchronous/Asynchronous Receiver/Transmitter (USART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_USART
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_usart.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="VCMP"      Cversion="5.3.5" condition="emlib Framework">
+      <description>Voltage Comparator (VCMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VCMP
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_vcmp.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_vcmp.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="VDAC"      Cversion="5.3.5" condition="emlib CMU">
+      <description>Digital to Analog Voltage Converter (VDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VDAC
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_vdac.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_vdac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="WDOG"      Cversion="5.3.5" condition="emlib Framework">
+      <description>Watchdog (WDOG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_WDOG
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="SDK/platform/emlib/inc/em_wdog.h"/>
+        <file category="source"  name="SDK/platform/emlib/src/em_wdog.c"/>
+      </files>
+    </component>
+
+    <!-- emdrv -->
+    <component Cclass="Device" Cgroup="emdrv" Csub="DMADRV"    Cversion="5.3.5" condition="emdrv DMADRV">
+      <description>DMADRV Direct Memory Access Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_DMADRV
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/dmadrv/inc/dmadrv.h"/>
+        <file category="source"  name="SDK/platform/emdrv/dmadrv/src/dmadrv.c"/>
+        <file category="header"  name="SDK/platform/emdrv/dmadrv/config/dmadrv_config.h" attr="config" version="5.3.5"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="GPIOINT"   Cversion="5.3.5" condition="emdrv GPIOINT">
+      <description>General Purpose Input/Output Interrupt dispatcher</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_GPIOINT
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/gpiointerrupt/inc/gpiointerrupt.h"/>
+        <file category="source"  name="SDK/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="NVM"       Cversion="5.3.5" condition="emdrv NVM">
+      <description>Non-volatile Memory Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_NVM
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/nvm/config/nvm_config.h" attr="config" version="5.3.5"/>
+        <file category="source"  name="SDK/platform/emdrv/nvm/config/nvm_config.c"/>
+        <file category="header"  name="SDK/platform/emdrv/nvm/inc/nvm.h"/>
+        <file category="source"  name="SDK/platform/emdrv/nvm/src/nvm.c"/>
+        <file category="source"  name="SDK/platform/emdrv/nvm/src/nvm_hal.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="RTCDRV"    Cversion="5.3.5" condition="emdrv RTCDRV">
+      <description>Real Time Clock Timer Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_RTCDRV
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/rtcdrv/config/rtcdrv_config.h" attr="config" version="5.3.5"/>
+        <file category="header"  name="SDK/platform/emdrv/rtcdrv/inc/rtcdriver.h"/>
+        <file category="source"  name="SDK/platform/emdrv/rtcdrv/src/rtcdriver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="SLEEP"     Cversion="5.3.5" condition="emdrv SLEEP">
+      <description>Sleep Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_SLEEP
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/sleep/inc/sleep.h"/>
+        <file category="source"  name="SDK/platform/emdrv/sleep/src/sleep.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="SPIDRV"    Cversion="5.3.5" condition="emdrv SPIDRV">
+      <description>Serial Peripheral Interface Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_SPIDRV
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/spidrv/config/spidrv_config.h" attr="config" version="5.3.5"/>
+        <file category="header"  name="SDK/platform/emdrv/spidrv/inc/spidrv.h"/>
+        <file category="source"  name="SDK/platform/emdrv/spidrv/src/spidrv.c"/>
+      </files>
+    </component>
+    <!-- (does not compile ) component Cclass="Device" Cgroup="emdrv" Csub="TEMPDRV"    Cversion="5.3.5" condition="emdrv TEMPDRV">
+      <description>Temperature Sensor Interface Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_TEMPDRV
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="SDK/platform/emdrv/common/inc/"/>
+        <file category="header"  name="SDK/platform/emdrv/tempdrv/config/tempdrv_config.h" attr="config" version="5.3.5"/>
+        <file category="header"  name="SDK/platform/emdrv/tempdrv/inc/tempdrv.h"/>
+        <file category="source"  name="SDK/platform/emdrv/tempdrv/src/tempdrv.c"/>
+      </files>
+    </component-->
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI"        Capiversion="2.1.0" Cversion="2.1.0" condition="EFM32GG CMSIS GPIO CMU DMA">
+      <description>SPI (USART in SPI mode) Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/DMA_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/SPI_EFM32GGxxx.c"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header"       name="RTE_Driver/Config/RTE_Device.h"              attr="config" version="2.0.2"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1.0" Cversion="2.4.0" condition="EFM32GG CMSIS GPIO CMU">
+      <description>USB Device Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/USB_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/USBD_EFM32GGxxx.c"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header"       name="RTE_Driver/Config/RTE_Device.h"              attr="config" version="2.0.2"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Host"   Capiversion="2.0.0" Cversion="2.6.0" condition="EFM32GG CMSIS GPIO CMU">
+      <description>USB Host Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/USB_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/USBH_EFM32GGxxx.c"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header"       name="RTE_Driver/Config/RTE_Device.h"              attr="config" version="2.0.2"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="EFM32GG BSP"     Cclass="Graphics"      Cversion="5.3.5">
+      <description>Silicon Labs Graphics Library</description>
+      <doc></doc>
+      <component Cgroup="CORE"                                        condition="glib CORE">
+        <description>glib CORE</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_CORE
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/"/>
+          <file category="header"  name="SDK/platform/middleware/glib/glib/glib.h"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_bitmap.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_circle.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_line.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_polygon.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_rectangle.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_string.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_font_narrow_6x8.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_font_normal_8x8.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/glib_font_number_16x20.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/glib/bmp.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="Display Driver" Cvariant="DISPLAY"           condition="glib Driver DISPLAY">
+        <description>glib Display Driver</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/"/>
+          <file category="include" name="SDK/platform/middleware/glib/dmd/"/>
+          <file category="source"  name="SDK/platform/middleware/glib/dmd/display/dmd_display.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display Driver" Cvariant="SSD2119 16-bit IF" condition="glib Driver SSD2119 16-bit">
+        <description>glib Display Driver SSD2119 16-bit Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_16
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/"/>
+          <file category="source"  name="SDK/platform/middleware/glib/dmd/ssd2119/dmd_ssd2119_16bit.c"/>
+          <file category="source"  name="SDK/platform/middleware/glib/dmd/ssd2119/dmdif_ssd2119_ebi16.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display Driver" Cvariant="SSD2119 RGB IF"    condition="glib Driver SSD2119 RGB">
+        <description>glib Display Driver SSD2119 RGB Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_RGB
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/"/>
+          <file category="source"  name="SDK/platform/middleware/glib/dmd/ssd2119/dmd_ssd2119_direct.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="EFM32GG-DK3750"  Cclass="Board Support" Cversion="5.3.5">
+      <description>Silicon Labs EFM32GG-DK3750 Development Kit</description>
+      <doc>Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750-ug.pdf</doc>
+      <component Cgroup="CORE"                                            condition="EFM32GG DK3750">
+        <description>Silicon Labs BSP Core</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DK3750
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/bsp/bsp.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_dk_3201.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_dk_leds.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_dk_mcuboard.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/bsp/bsp_trace.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_trace.c"/>
+          <file category="include" name="SDK/hardware/kit/EFM32GG_DK3750/config/"/>
+        </files>
+      </component>
+
+      <component Cgroup="Drivers" Csub="DmaCtrl"                          condition="BSP Driver DmaCtrl">
+        <description>DmaCtrl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DMACTRL
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/dmactrl.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/dmactrl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Eeprom"                           condition="BSP Driver Eeprom">
+        <description>Eeprom Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_EEPROM
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/eeprom.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/eeprom.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="I2cSpm"                           condition="BSP Driver I2cSpm">
+        <description>I2cSpm Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_I2C
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/i2cspm.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/i2cspm.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Ksz8851snl SPI"                   condition="BSP Driver Ksz8851snl SPI">
+        <description>Ksz8851snl SPI Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_KSZ8851SNL_SPI
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/ksz8851snl_spi.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/ksz8851snl_spi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Ksz8851snl"                       condition="BSP Driver Ksz8851snl">
+        <description>Ksz8851snl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_KSZ8851SNL
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/ksz8851snl.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/ksz8851snl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="NorFlash"                         condition="BSP Driver NorFlash">
+        <description>NorFlash Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_NORFLASH
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/norflash.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/norflash.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo"     Cvariant="Serial" condition="BSP Driver RetargetIo Serial">
+        <description>RetargetIo Driver (Serial)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_SERIAL
+        </RTE_Components_h>
+        <files>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargetio.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/retargetserial.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargetserial.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo"     Cvariant="Tft"    condition="BSP Driver RetargetIo Tft">
+        <description>RetargetIo Driver (Tft)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_TFT
+        </RTE_Components_h>
+        <files>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargetio.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/retargettft.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargettft.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Si114x"                           condition="BSP Driver Si114x">
+        <description>Si114x Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SI114X
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/si1147_i2c.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/si1147_i2c.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/si114x_algorithm.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/si114x_algorithm.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/si114x_functions.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Si7013"                           condition="BSP Driver Si7013">
+        <description>Si7013 Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SI7013
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/si7013.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/si7013.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="TempSensor"                       condition="BSP Driver TempSensor">
+        <description>TempSensor Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TEMPSENSOR
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/tempsens.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/tempsens.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Tft"            Cvariant="EBI"    condition="BSP Driver Tft EBI">
+        <description>Tft Driver (EBI)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TFT_EBI
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/tftamapped.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/tftamapped.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Tft"            Cvariant="RGB"    condition="BSP Driver Tft RGB">
+        <description>Tft Driver (RGB)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TFT_RGB
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/tftdirect.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/tftdirect.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/tftspi.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/tftspi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Touch"                            condition="BSP Driver Touch">
+        <description>Touch Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TOUCH
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/touch.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/touch.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/calibrate.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Udelay"                           condition="BSP Driver Udelay">
+        <description>Udelay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_UDELAY
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/udelay.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/udelay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="VddCheck"                         condition="BSP Driver VddCheck">
+        <description>VddCheck Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_VDDCHECK
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/vddcheck.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/vddcheck.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="A/D Converter" Capiversion="1.0.0"                      condition="EFM32GG BSP ADC">
+        <description>A/D Converter interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/ADC_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED"           Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>LED interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LED_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>Buttons interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Buttons_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick"      Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>Joystick interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Joystick_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD"   Capiversion="1.0.0"                      condition="EFM32GG BSP GLIB TFT">
+        <description>Graphic LCD interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="header"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_Fonts.c"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD"     Capiversion="1.0.0" Cvariant="16-bit IF" condition="EFM32GG BSP">
+        <description>emWin LCD 16-bit Interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/dmd/ssd2119/"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCDConf_16.c" attr="config" version="5.0.0"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCD_X_16.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD"     Capiversion="1.0.0" Cvariant="RGB IF"    condition="EFM32GG BSP">
+        <description>emWin LCD RGB Interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/dmd/ssd2119/"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCDConf_RGB.c" attr="config" version="5.0.0"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCD_X_RGB.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen"   Capiversion="1.0.0"                      condition="EFM32GG BSP Touch">
+        <description>Touchscreen interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Touch_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Thermometer"   Capiversion="1.0.0" Csub="DS75"          condition="EFM32GG BSP TempSensor">
+        <description>Thermometer interface for DS75</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Thermometer_DS75.c"/>
+        </files>
+      </component>
+      <component Cgroup="EEPROM"        Capiversion="1.0.0" Csub="24AA024"       condition="EFM32GG BSP EEPROM">
+        <description>EEPROM interface for 24AA024</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/EEPROM_24AA024.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="EFM32GG-STK3700" Cclass="Board Support" Cversion="5.3.5">
+      <description>Silicon Labs EFM32GG-STK3700 Development Kit</description>
+      <doc>Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700-ug.pdf</doc>
+      <component Cgroup="CORE"                                             condition="EFM32GG STK3700">
+        <description>Silicon Labs BSP Core</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_STK3700
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/bsp/bsp.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_bcc.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_stk.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_stk_leds.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/bsp/bsp_trace.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/bsp/bsp_trace.c"/>
+          <file category="include" name="SDK/hardware/kit/EFM32GG_STK3700/config/"/>
+        </files>
+      </component>
+
+      <component Cgroup="Drivers" Csub="CapSense"   Cvariant="Low Energy"  condition="BSP Driver CapSense LE">
+        <description>CapSense Driver (Low Energy)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_CAPSENSE_LE
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/caplesense.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/caplesense.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Display"                           condition="BSP Driver Display">
+        <description>Display Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="SDK/platform/middleware/glib/"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/display.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/display.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/displaypalemlib.c"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/displayls013b7dh03.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="DmaCtrl"                           condition="BSP Driver DmaCtrl">
+        <description>DmaCtrl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DMACTRL
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/dmactrl.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/dmactrl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="NandFlash"                         condition="BSP Driver NandFlash">
+        <description>NandFlash Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_NANDFLASH
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/nandflash.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/nandflash.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo" Cvariant="TextDisplay" condition="BSP Driver RetargetIo TextDisplay">
+        <description>RetargetIo Driver (TextDisplay)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_TEXTDISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargetio.c"/>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/retargettextdisplay.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/retargettextdisplay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="SegmentLcd"                        condition="BSP Driver SegmentLcd">
+        <description>SegmentLcd Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SEGMENTLCD
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/segmentlcd.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/segmentlcd.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="TextDisplay"                       condition="BSP Driver TextDisplay">
+        <description>TextDisplay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TEXTDISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/textdisplay.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/textdisplay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Udelay"                            condition="BSP Driver Udelay">
+        <description>Udelay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_UDELAY
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/udelay.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/udelay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="VddCheck"                          condition="BSP Driver VddCheck">
+        <description>VddCheck Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_VDDCHECK
+        </RTE_Components_h>
+        <files>
+          <file category="header"  name="SDK/hardware/kit/common/drivers/vddcheck.h"/>
+          <file category="source"  name="SDK/hardware/kit/common/drivers/vddcheck.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="LED"     Capiversion="1.0.0" condition="EFM32GG BSP">
+        <description>LED interface for Silicon Labs EFM32GG-STK3700 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_STK3700/Common/LED_STK3700.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="EFM32GG BSP">
+        <description>Buttons interface for Silicon Labs EFM32GG-STK3700 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_STK3700/Common/Buttons_STK3700.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board vendor="Silicon Labs" name="EFM32GG-DK3750"  revision="Ver 1.0">
+      <description>Silicon Labs EFM32GG-DK3750 Development Kit</description>
+      <image small="Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750_small.png"/>
+      <book category="overview" name="https://www.silabs.com/products/mcu/lowpower/Pages/efm32gg-dk3750.aspx" title="EFM32GG-DK3750 Web Page"/>
+      <book category="manual" name="Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750-ug.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Silicon Labs:21" Dname="EFM32GG990F1024"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Silicon Labs:21" DsubFamily="EFM32GG990"/>
+    </board>
+    <board vendor="Silicon Labs" name="EFM32GG-STK3700" revision="Ver 1.0">
+      <description>Silicon Labs EFM32GG-STK3700 Starter Kit</description>
+      <image small="Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700_small.png"/>
+      <book category="overview" name="https://www.silabs.com/products/mcu/lowpower/Pages/efm32gg-stk3700.aspx" title="EFM32GG-STK3700 Web Page"/>
+      <book category="manual"   name="Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700-ug.pdf"     title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Silicon Labs:21" Dname="EFM32GG990F1024"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Silicon Labs:21" DsubFamily="EFM32GG990"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- EFM32GG_DK3750 examples -->
+    <example name="CMSIS-RTOS2 Blinky"      doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Blinky">
+      <description>CMSIS-RTOS2 based Blinky example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="emWin Example"           doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+    <example name="emWin GUI Demo"          doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+    <example name="File System Demo"        doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/FileSystem/File_Demo"   version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+    <example name="HTTP Server"             doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/HTTP_Server"    version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+    <example name="HTTP Upload"             doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/HTTP_Upload"    version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+    <example name="Telnet Server"           doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/Telnet_Server"  version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+    <example name="USB Device HID"          doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Device/HID"         version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+    <example name="USB Host Mass Storage"   doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Host/MassStorage"   version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+    <example name="USB Host Keyboard"       doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Host/Keyboard"      version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <!-- EFM32GG_STK3700 examples -->
+    <example name="CMSIS-RTOS2 Blinky"      doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_STK3700/Blinky">
+      <description>CMSIS-RTOS2 based Blinky example</description>
+      <board name="EFM32GG-STK3700" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

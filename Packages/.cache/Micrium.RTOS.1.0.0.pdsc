@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Micrium</vendor>
+  <name>RTOS</name>
+  <description>Micrium software components</description>
+  <url>http://www.micrium.com/cmsis-pack/</url>
+  <supportContact>http://www.micrium.com</supportContact>
+  <!-- optional license file -->
+  <license>Docs\license.txt</license>
+  
+  <releases>
+    <release version="1.0.0">
+      Initial Release
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>Micrium</keyword>
+  </keywords>
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="CM">
+        <require Cclass="RTOS" Cgroup="uC/OS Common"/>
+    </condition>
+    <condition id="CM3-GCC">
+        <accept Tcompiler="GCC"/>
+        <accept Tcompiler="G++"/>
+        <require  Dcore="Cortex-M3"/>
+    </condition>
+    <condition id="CM3-RealView">
+        <require Tcompiler="ARMCC"/>
+        <require  Dcore="Cortex-M3"/>
+    </condition>
+    <condition id="CM4-GCC">
+        <accept Tcompiler="GCC"/>
+        <accept Tcompiler="G++"/>
+        <require  Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="CM4-RealView">
+        <require Tcompiler="ARMCC"/>
+        <require  Dcore="Cortex-M4"/>
+    </condition>
+  </conditions>
+  
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <bundle Cbundle="Micrium" Cclass="RTOS" Cversion="1.0.0">
+    <description>Micrium Real Time Kernel</description>
+    <doc></doc>
+    <component Cgroup="uC/OS Kernel" Cvariant="uCOS-II" condition="CM">
+        <description>Micrium uC/OS-II Real Time Kernel</description>
+        <files>
+            <file category="doc" name="Docs/doc.html"/>
+            <file category="header" name="cfg/app_cfg.h" attr="config" version="1.0.0"/>
+            <file category="header" name="cfg/uCOS-II/os_cfg.h" attr="config" version="1.0.0"/>
+            <file category="header" name="Software/uCOS-II/Source/os.h"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_core.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_dbg_r.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_flag.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_mbox.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_mem.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_mutex.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_q.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_sem.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_task.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_time.c"/>
+            <file category="sourceC" name="Software/uCOS-II/Source/os_tmr.c"/>
+            <file category="header" name="Software/uCOS-II/Source/ucos_ii.h"/>
+            
+            <file category="header"    condition="CM3-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu.h"/>
+            <file category="sourceAsm" condition="CM3-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu_a.S"/>
+            <file category="sourceC"   condition="CM3-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu_c.c"/>
+          
+            <file category="header"    condition="CM3-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu.h"/>
+            <file category="sourceAsm" condition="CM3-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu_a.asm"/>
+            <file category="sourceC"   condition="CM3-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu_c.c"/>
+          
+            <file category="header"    condition="CM4-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu.h"/>
+            <file category="sourceAsm" condition="CM4-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu_a.S"/>
+            <file category="sourceC"   condition="CM4-GCC" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu_c.c"/>
+          
+            <file category="header"    condition="CM4-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu.h"/>
+            <file category="sourceAsm" condition="CM4-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu_a.asm"/>
+            <file category="sourceC"   condition="CM4-RealView" name="Software/uCOS-II/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu_c.c"/>
+        </files>
+    </component>
+        
+    <component Cgroup="uC/OS Kernel" Cvariant="uCOS-III" condition="CM">
+        <description>Micrium uC/OS-III Real Time Kernel</description>
+        <files>
+          <file category="doc" name="Docs/doc.html"/>
+          <file category="header" name="cfg/app_cfg.h" attr="config" version="1.0.0"/>
+          <file category="header" name="cfg/uCOS-III/os_cfg.h" attr="config" version="1.0.0"/>
+          <file category="header" name="cfg/uCOS-III/os_cfg_app.h" attr="config" version="1.0.0"/>
+          <file category="header" name="Software/uCOS-III/Source/os.h"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_cfg_app.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_core.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_dbg.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_flag.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_int.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_mem.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_msg.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_mutex.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_pend_multi.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_prio.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_q.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_sem.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_stat.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_task.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_tick.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_time.c"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_tmr.c"/>
+          <file category="header" name="Software/uCOS-III/Source/os_type.h"/>
+          <file category="sourceC" name="Software/uCOS-III/Source/os_var.c"/>
+          
+          <file category="header"    condition="CM3-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu.h"/>
+          <file category="sourceAsm" condition="CM3-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu_a.S"/>
+          <file category="sourceC"   condition="CM3-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/GNU/os_cpu_c.c"/>
+          
+          <file category="header"    condition="CM3-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu.h"/>
+          <file category="sourceAsm" condition="CM3-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu_a.s"/>
+          <file category="sourceC"   condition="CM3-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M3/Generic/RealView/os_cpu_c.c"/>
+          
+          <file category="header"    condition="CM4-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu.h"/>
+          <file category="sourceAsm" condition="CM4-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu_a.S"/>
+          <file category="sourceC"   condition="CM4-GCC" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/GNU/os_cpu_c.c"/>
+          
+          <file category="header"    condition="CM4-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu.h"/>
+          <file category="sourceAsm" condition="CM4-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu_a.asm"/>
+          <file category="sourceC"   condition="CM4-RealView" name="Software/uCOS-III/Ports/ARM-Cortex-M4/Generic/RealView/os_cpu_c.c"/>
+          
+        </files>
+    </component>
+        
+    <component Cgroup="uC/OS Common" condition="CM">
+        <description>Micrium RTOS Common Components</description>
+        <files>
+          <file category="doc" name="Docs/doc.html"/>
+          <file category="header" name="cfg/cpu_cfg.h" attr="config" version="1.0.0"/>
+          <file category="header" name="Software/uC-CPU/cpu_cache.h"/>
+          <file category="sourceC" name="Software/uC-CPU/cpu_core.c"/>
+          <file category="header" name="Software/uC-CPU/cpu_core.h"/>
+          <file category="header" name="Software/uC-CPU/cpu_def.h"/>
+          
+          <file category="header"    condition="CM3-GCC" name="Software/uC-CPU/ARM-Cortex-M3/GNU/cpu.h"/>
+          <file category="sourceC"   condition="CM3-GCC" name="Software/uC-CPU/ARM-Cortex-M3/GNU/cpu_c.c"/>
+          <file category="sourceAsm" condition="CM3-GCC" name="Software/uC-CPU/ARM-Cortex-M3/GNU/cpu_a.S"/>
+          
+          <file category="header"    condition="CM3-RealView" name="Software/uC-CPU/ARM-Cortex-M3/RealView/cpu.h"/>
+          <file category="sourceC"   condition="CM3-RealView" name="Software/uC-CPU/ARM-Cortex-M3/RealView/cpu_c.c"/>
+          <file category="sourceAsm" condition="CM3-RealView" name="Software/uC-CPU/ARM-Cortex-M3/RealView/cpu_a.asm"/>
+          
+          <file category="header"    condition="CM4-GCC" name="Software/uC-CPU/ARM-Cortex-M4/GNU/cpu.h"/>
+          <file category="sourceC"   condition="CM4-GCC" name="Software/uC-CPU/ARM-Cortex-M4/GNU/cpu_c.c"/>
+          <file category="sourceAsm" condition="CM4-GCC" name="Software/uC-CPU/ARM-Cortex-M4/GNU/cpu_a.S"/>
+          
+          <file category="header"    condition="CM4-RealView" name="Software/uC-CPU/ARM-Cortex-M4/RealView/cpu.h"/>
+          <file category="sourceC"   condition="CM4-RealView" name="Software/uC-CPU/ARM-Cortex-M4/RealView/cpu_c.c"/>
+          <file category="sourceAsm" condition="CM4-RealView" name="Software/uC-CPU/ARM-Cortex-M4/RealView/cpu_a.asm"/>
+          
+          <file category="header" name="cfg/lib_cfg.h" attr="config"  version="1.0.0"/>
+          <file category="sourceC" name="Software/uC-LIB/lib_ascii.c"/>
+          <file category="header" name="Software/uC-LIB/lib_ascii.h"/>
+          <file category="header" name="Software/uC-LIB/lib_def.h"/>
+          <file category="sourceC" name="Software/uC-LIB/lib_math.c"/>
+          <file category="header" name="Software/uC-LIB/lib_math.h"/>
+          <file category="sourceC" name="Software/uC-LIB/lib_mem.c"/>
+          <file category="header" name="Software/uC-LIB/lib_mem.h"/>
+          <file category="sourceC" name="Software/uC-LIB/lib_str.c"/>
+          <file category="header" name="Software/uC-LIB/lib_str.h"/>
+        </files>
+    </component>
+        
+    </bundle>
+  </components>
+  
+  
+    <examples>
+    <!-- STM32F3 Discovery Board -->
+    <example name="uCOS-III Example" doc="Abstract.txt" folder="MDK\Boards\ST\STM32F3-Discovery\OS3">
+      <description>uCOS-III example project</description>
+      <board name="STM32F3-Discovery" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="OS3.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>Micrium</category>
+      </attributes>
+    </example>
+    </examples>
+  
+</package>

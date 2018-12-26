@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMDA0_DFP</name>
+  <description>Microchip SAM DA0 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.0.1" date="2018-05-15">
+      Updated device vendor from Atmel to Microchip.
+    </release>
+    <release version="1.0.0" date="2015-04-15">
+      Initial Release Version of SAM D A0 Device Family Pack (supporting SAMDA0).
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAM D</keyword>
+    <keyword>SAM DA0</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM D Series" Dvendor="Microchip:3">
+      <book name="Documents\dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The Microchip | SMART SAM D ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+The Microchip | SMART SAM D gives you a truly differentiated general-purpose microcontroller that is ideal for many low-power, cost-sensitive industrial and consumer applications.
+      </description>
+
+      <!-- ************************  Subfamily 'SAM DA0'  **************************** -->
+      <subFamily DsubFamily="SAM DA0">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+
+        <!--book name="Documents\Microchip-?????-SAM-DA0_Datasheet.pdf" title="SAM DA0 Datasheet"/-->
+        <description>
+ARM Cortex –M0+ microcontroller, 48MHz, 3.3V, 16 to 64kB of Flash, up to 8kB of SRAM, up to 2kB Read-While-Write Flash automotive qualified according AEC-Q100
+        </description>
+
+        <feature type="CoreOther"     n="12"                          name="Event System"/>
+        <feature type="AnalogOther"   n="2"                           name="Analog Comparator"/>
+        <feature type="DAC"           n="1"       m="10"              name="DAC"/>
+        <feature type="DMA"           n="8"                           name="DMA channel"/>
+        <feature type="Timer"         n="5"       m="32"              name="Timer/Counter"/>
+        <feature type="Timer"         n="3"       m="24"              name="Timer/Counter for Control"/>
+        <feature type="WDT"           n="1"                           name="Watchdog"/>
+        <feature type="RTC"           n="32768"                       name="RTC"/>
+        <feature type="ExtInt"        n="16"                          name="External Interrupts"/>
+        <feature type="Temp"          n="-40"     m="125"             name="Operating Temperature Range"/>
+        <feature type="VCC"           n="2.70"    m="3.63"/>
+
+        <!-- *************************  Device 'ATSAMDA0E14A'  **************************** -->
+        <device Dname="ATSAMDA0E14A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0E14A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0E14A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="26"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0E15A'  **************************** -->
+        <device Dname="ATSAMDA0E15A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0E15A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0E15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="26"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0E16A'  **************************** -->
+        <device Dname="ATSAMDA0E16A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0E16A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0E16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="ADC"           n="10"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="26"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="32"                          name="QFN Package"/>
+          <feature type="QFP"           n="32"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0G14A'  **************************** -->
+        <device Dname="ATSAMDA0G14A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0G14A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0G14A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="38"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0G15A'  **************************** -->
+        <device Dname="ATSAMDA0G15A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0G15A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0G15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="38"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0G16A'  **************************** -->
+        <device Dname="ATSAMDA0G16A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0G16A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0G16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="ADC"           n="14"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="38"                          name="General Purpose I/Os"/>
+          <feature type="QFN"           n="48"                          name="QFN Package"/>
+          <feature type="QFP"           n="48"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0J14A'  **************************** -->
+        <device Dname="ATSAMDA0J14A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0J14A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0J14A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="ADC"           n="20"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="52"                          name="General Purpose I/Os"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0J15A'  **************************** -->
+        <device Dname="ATSAMDA0J15A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0J15A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0J15A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="ADC"           n="20"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="52"                          name="General Purpose I/Os"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMDA0J16A'  **************************** -->
+        <device Dname="ATSAMDA0J16A">
+          <compile header="Device\SAMDA0\Include\samda0.h" define="__SAMDA0J16A__"/>
+          <debug svd="SVD\SAMDA0\ATSAMDA0J16A.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMDA0_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="ADC"           n="20"       m="12"             name="ADC"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="IOs"           n="52"                          name="General Purpose I/Os"/>
+          <feature type="QFP"           n="64"                          name="TQFP Package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMDA0 CMSIS">
+      <description>Microchip SAM DA0 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMDA0*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SAMDA0 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMDA0 CMSIS">
+      <description>System Startup for Microchip SAM DA0 Devices</description>
+      <files>
+        <file category="include"   name="Device\SAMDA0\Include\"/>
+        <file category="source"    name="Device\SAMDA0\Source\ARM\startup_SAMDA0.s" attr="config"   version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device\SAMDA0\Source\system_samda0.c"      attr="config"   version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

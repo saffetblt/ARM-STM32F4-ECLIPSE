@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>HEXIWEAR_BSP</name>
+  <description>Board Support Pack for HEXIWEAR</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.4" date="2018-07-18">NXP CMSIS packs based on MCUXpresso SDK 2.4.2</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1" date="2018-04-04">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0" date="2018-01-19">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0" date="2017-11-17">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="HEXIWEAR">
+      <description>Hexiwear platform combines the style and usability found in high-end consumer devices, with the functionality and expandability of sophisticated engineering development platforms, making Hexiwear the ideal form factor for the IoT edge node and wearable markets. Completely open-source and developed by MikroElektronika in partnership with NXP(r). the Hexiwear hardware includes the low power, high performance Kinetis(r) K6x Microcontroller based on ARM Cortex-M4 core, the Kinetis KW40Z multimode radio SoC, supporting BLE in Hexiwear. The Hardware features included 6 on-board sensors such as Optical Heart Rate Monitor, Accelerometer and Magnetometer, Gyroscope, Temperature, Humidity, light and Pressure sensors. Hexiwear also includes Color OLED Display, Rechargeable battery and External flash memory.
+
+Hexiwear is supported with its own application for Android and iOS, so customers can connect the device to the cloud straight out of the box, without any additional software development. Hexiwear uses FreeRTOS, the Kinetis software development kit (SDK) and the Kinetis Design Studio IDE.
+
+Eye-catching Smart Watch form factor with powerful, low power Kinetis(r) K6x MCU and 6 on-board sensors.
+Designed for wearable applications with the onboard rechargeable battery, OLED screen and onboard sensors such as optical heart rate, accelerometer, magnetometer and gyroscope.
+Designed for IoT end node applications with the onboard sensor&amp;#8217;s such as temperature, pressure, humidity and ambient light.
+Complete software solution with open source embedded software, cell phone apps and cloud connectivity. Flexibility to let you add the sensors of your choice nearly 200 additional sensors through click boards&amp;#8482;.</description>
+      <mountedDevice Dname="MK64FN1M0xxx12" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.hexiwear">
+      <accept Dvendor="NXP:11" Dname="MK64FN1M0???12"/>
+      <accept Dvendor="NXP:11" Dname="MK64FX512???12"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="adc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="hexiwear_accelerometer" folder="demo_apps/accelerometer" doc="readme.txt">
+      <description>The accelerometer bubble demo demonstrates basic usage of the on-board accelerometer to implement a bubble level. This is similar to the SDK bubble example. This demo utilizes two axes to visually show deviation from a level plane (0 degrees) on a given axis.Note: you must rotate the board to get the samples to change.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_accelerometer.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_accelerometer.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/accelerometer</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_ambient_light" folder="demo_apps/ambient_light" doc="readme.txt">
+      <description>The ambient light demo application demonstrates the use of the TSL2561 sensor. The ambient lightvalue can be read from this sensor.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_ambient_light.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_ambient_light.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/ambient light</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_bluetooth_connect" folder="demo_apps/bluetooth_connect" doc="readme.txt">
+      <description>The hexiwear bluetooth connectivity demo application provides a simple demo for users to use the hexiwear to connect to the mobile phone with blue tooth.Before run the demo, please install "BLE Reader" APP on your mobile phone.This demo shows how the mobile phone transmit notification data to hexiwear and hexiwearprint the notification on debug console on it's host mcu K64.First, user should press the right button on the main board to open the blue tooth.Then, search device named "HEXIWEAR" on your phone and connect to it with the key show on the hexiwear watch screen.Open the BLE Reader on your mobile phone and choose the HEXIWEAR device on BLE Reader list.Enter Alert/command Service with write attribute:Unkown00002030-0000-1000-8000-00805F9B34FBEnter the Alert in with UUID 0x2031 and  write a new data with 20-byte length following the message requirement. Then you will see the alert message received and print on the debug console.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_bluetooth_connect.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_bluetooth_connect.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/bluetooth connect</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_buzz_click" folder="demo_apps/buzz_click" doc="readme.txt">
+      <description>The hexiwear_buzz_click demo application provides a sanity demo for users to operate the buzzer. When the buttonof click board is pressed, the buzzer will play a piece of sound and the oled will display image on the screen. The demo will prints some information to the terminal by the debug console. The purpose of this demo is to show how to receive click information by the UART and trigger the buzzer by FTM, and to provide a simple project for debugging and further development. </description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_buzz_click.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_buzz_click.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/buzz click</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_gyroscope" folder="demo_apps/gyroscope" doc="readme.txt">
+      <description>The gyroscope demo application demonstrates the use of the FXAS21002 sensor. </description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_gyroscope.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_gyroscope.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/gyroscope</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_heartrate" folder="demo_apps/heartrate" doc="readme.txt">
+      <description>The hexiwear heartrate demo application provides a sanity demo for users to use the heartrate feature. When run the demo, please put your finger on the sensor which is under the watch and press the "Start" button on the watch to starts data sampling. The heart rate sensor will calculate many sampled data and then give use those sampling data to calculate the heart rate. So the heart rate value is updated on the screen every once a while.If you want to stop the heart rate sampling, just press the "Stop" button.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_heartrate.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_heartrate.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/heartrate</category>
+      </attributes>
+    </example>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description>The Hello World demo application provides a sanity check for the new SDK build environments and board bring up. The HelloWorld demo prints the "Hello World" string to the terminal using the SDK UART drivers. The purpose of this demo is toshow how to use the UART, and to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hello_world.uvprojx"/>
+        <environment name="iar" load="iar/hello_world.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/hello world</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_humidity" folder="demo_apps/humidity" doc="readme.txt">
+      <description>The humidity demo application demonstrates the use of the HTU21D sensor. The hunidity data can be read from this sensor.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_humidity.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_humidity.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/humidity</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_irthermo_click" folder="demo_apps/irthermo_click" doc="readme.txt">
+      <description>The hexiwear_irthermo_click demo application provides a sanity demo for users to read tempreature from external sensor. The temperature will be printed to the debug console by UART and the oled will display the temperatureon the screen. The purpose of this demo is to show how to read temperature from external sensor and drawthe text on the oled screen, and to provide a simple project for  debugging and further development. </description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_irthermo_click.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_irthermo_click.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/irthermo click</category>
+      </attributes>
+    </example>
+    <example name="led_blinky" folder="demo_apps/led_blinky" doc="readme.txt">
+      <description>The LED Blinky demo application provides a sanity check for the new SDK build environments and board bring up. The LED Blinky demo uses the systick interrupt to realize the function of timing delay. The example takes turns to shine the LED. The purpose of this demo is to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/led_blinky.uvprojx"/>
+        <environment name="iar" load="iar/led_blinky.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/led blinky</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_magnetometer" folder="demo_apps/magnetometer" doc="readme.txt">
+      <description>The magnetometer demo application demonstrates the use of the FXOS8700 sensor. The tilt-compensated algorithm calculatesall three angles (pitch, roll, and yaw or compass heading).</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_magnetometer.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_magnetometer.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/magnetometer</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_motion_click" folder="demo_apps/motion_click" doc="readme.txt">
+      <description>The hexiwear_motion_click demo application provides a sanity demo for users to trigger a motion detection by.Then the sensor will detect it and the oled will draw a image on the oled screen. The purpose of this demo is to show how to detect the trigger from external sensor and draw a image on the oled screen, and to provide a simpleproject for debugging and further development. </description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_motion_click.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_motion_click.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/motion click</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_nfc_click" folder="demo_apps/nfc_click" doc="readme.txt">
+      <description>The hexiwear_nfc_click demo application provides a sanity demo for users to use the nfc. The purpose of this demo is to show how to use the nfc (P2P mode, Read/Write mode, Card Emulation mode), and to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_nfc_click.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_nfc_click.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/nfc click</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_oled_display" folder="demo_apps/oled_display" doc="readme.txt">
+      <description>The hexiwear_oled_display demo shows how to display text and image on the oled with ssd graphic controller. In this demo we display a "Hello World" text  and a "NXP" image on hexiwear screen.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_oled_display.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_oled_display.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/oled display</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_pressure" folder="demo_apps/pressure" doc="readme.txt">
+      <description>The pressure demo application demonstrates the use of the MPL3115A2 sensor. Pressure data will be read from this sensor.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_pressure.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_pressure.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/pressure</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_relay_click" folder="demo_apps/relay_click" doc="readme.txt">
+      <description>The hexiwear_relay_click demo application provides a sanity demo for users to trigger the relays. When the left button on the main board is pressed, the demo will trigger the relay. If the right button is pressed, the demo will trigger another relay, and the button-pressed information is received by the UART. The purpose of this demo is to show how to receive the click board information and to trigger the relay, and to provide a simple project for debugging and further development.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_relay_click.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_relay_click.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/relay click</category>
+      </attributes>
+    </example>
+    <example name="hexiwear_spi_flash" folder="demo_apps/spi_flash" doc="readme.txt">
+      <description>The hexiwear_spi_flash demo application shows how to store some data in the SPI Flash typed by the user in the Hyperterminal via the Serial OpenSDA interface, read those data in the SPI Flash and display them in the Hyperterminal.</description>
+      <board Dvendor="NXP:11" name="HEXIWEAR" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="mdk/hexiwear_spi_flash.uvprojx"/>
+        <environment name="iar" load="iar/hexiwear_spi_flash.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/spi flash</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="hexiwear" condition="project_template.hexiwear">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+      </files>
+    </component>
+  </components>
+</package>

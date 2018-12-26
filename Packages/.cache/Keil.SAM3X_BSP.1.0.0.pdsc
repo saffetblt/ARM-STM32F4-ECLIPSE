@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>SAM3X_BSP</name>
+  <description>Microchip SAM3X Board Support Package</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"    name="CMSIS"        version="5.1.0"/>
+      <package vendor="Keil"   name="ARM_Compiler" version="1.3.0"/>
+      <package vendor="Atmel"  name="SAM3X_DFP"    version="1.0.50"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.0" date="2018-09-24">
+      Initial Release of SAM3X Board Support Pack, moving board examples from deprecated Keil pack here.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>SAM3X</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="SAM3X-EK CMSIS">
+       <require Dvendor="Microchip:3" Dname="ATSAM3X8H*"/>
+       <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- SAM3X-EK Board Support -->
+    <bundle Cbundle="SAM3X-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM3X-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED"         Capiversion="1.0.0" condition="SAM3X-EK CMSIS">
+      <description>LED driver for Microchip SAM3X-EK Board</description>
+        <files>
+          <file category="source" name="boards/Microchip/SAM3X-EK/Common/LED_SAM3X-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"     Capiversion="1.0.0" condition="SAM3X-EK CMSIS">
+      <description>Button driver for Microchip SAM3X-EK Board</description>
+        <files>
+          <file category="source" name="boards/Microchip/SAM3X-EK/Common/Buttons_SAM3X-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="SAM3X-EK CMSIS">
+        <description>Graphic LCD driver for Microchip SAM3X-EK Board</description>
+        <files>
+          <file category="header" name="boards/Microchip/SAM3X-EK/Common/GLCD_Config.h"/>
+          <file category="source" name="boards/Microchip/SAM3X-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="boards/Microchip/SAM3X-EK/Common/GLCD_SAM3X-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board vendor="Microchip" name="SAM3X-EK" revision="Rev.7" salesContact="https://www.microchipdirect.com">
+      <description>Microchip SAM3X Evaluation Kit</description>
+      <image large="boards/Microchip/SAM3X-EK/Documents/SAM3X-EK_large.jpg"
+             small="boards/Microchip/SAM3X-EK/Documents/SAM3X-EK_small.jpg"/>
+      <book category="overview"  name="http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ATSAM3X-EK" title="SAM3X-EK"/>
+      <book category="manual"    name="http://ww1.microchip.com/downloads/en/DeviceDoc/doc_11156.pdf"                   title="SAM3X-EK Development Board User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM3X8H"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dfamily="SAM3X"/>
+		<feature type="XTAL"      n="32768"/>
+		<feature type="XTAL"      n="12000000"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+        <feature type="RAM"       n="1"              name="4Mega x16 x4 banks SDRAM"/>
+        <feature type="ROM"       n="1"              name="NAND-Flash MT29F2G08AAD"/>
+	    <feature type="Button"    n="5"              name="Push-buttons: User Left and Right, NRST, NRSTB, FWUP"/>
+        <feature type="ConnOther" n="1"              name="ZigBee connector"/>
+        <feature type="ConnOther" n="6"              name="QTouch buttons: Up, Down, Left, Right, Valid and Slider"/>
+	    <feature type="LED"       n="4"              name="User LEDs, Power"/>
+        <feature type="MemCard"   n="1"              name="Micro SD"/>
+        <feature type="RS232"     n="1"              name="UART port with level shifter"/>
+        <feature type="RS232"     n="1"              name="USART port with level shifter"/>
+        <feature type="LCD"       n="1" m="240.320"  name="TFT color LCD display"/>
+        <feature type="LineIn"    n="1"              name="Microphone input"/>
+        <feature type="LineOut"   n="1"              name="Mono/stereo headphone jack output"/>
+        <feature type="Poti"      n="1"              name="User potentiometer connected to the ADC input"/>
+        <feature type="ETH"       n="1" m="10000000" name="RJ45 connector"/>
+        <feature type="CAN"       n="2"              name="CAN 2.0B via RJ12 connectors"/>
+        <feature type="USB"       n="1"              name="High-speed USB Host/Device port"/>
+        <feature type="Batt"      n="1"              name="Backup Battery"/>
+        <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAM3X-EK Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="boards/Microchip/SAM3X-EK/RTOS2_KeilRTX5_Blinky">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example</description>
+      <board name="SAM3X-EK" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

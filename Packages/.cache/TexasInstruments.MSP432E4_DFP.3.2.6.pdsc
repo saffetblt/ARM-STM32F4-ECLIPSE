@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>TexasInstruments</vendor>
+    <name>MSP432E4_DFP</name>
+    <description>Device Family Pack for Texas Instruments SimpleLink(TM) MSP432E4 Series</description>
+    <url>http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/</url>
+    <supportContact>http://e2e.ti.com/support/microcontrollers/msp430/</supportContact>
+    <license>license.txt</license>
+
+    <releases>
+        <release version="3.2.6" date="2018-10-31">
+        Bugfixes:
+            - Fix PDSC sequence to enable ETM trace for MSP432E4 with ULINKPro
+            - Using stack size as defined in linker file for EWARM
+        </release>
+        <release version="3.2.5" date="2017-04-25">
+        New features / changes:
+            - Updated IAR EWARM examples to support EWARM 8.30.1
+        </release>
+        <release version="3.2.3" date="2018-02-28">
+        New features / changes:
+            - Modify example to support period window update setting
+        Bugfixes:
+            - Adding Target.lin file
+            - Add ddf files to IAR EWARM DFP examples
+        </release>
+        <release version="3.2.2" date="2017-10-25">
+        Bugfixes:
+            - Fixing warning with ARM compiler 6
+            - Enabeling ETM Trace in IAR EWARM for Segger J-Trace and I-Jet Trace
+        </release>
+        <release version="3.2.1" date="2017-10-16">
+        Initial release
+        New device support:
+            - Added support for MSP432E411Y and MSP432E401Y
+        </release>
+    </releases>
+
+    <requirements>   
+        <packages>     
+            <package vendor="ARM" name="CMSIS" version="5.0.0"/>   
+        </packages> 
+    </requirements>
+  
+    <!-- devices section (mandatory for Device Family Packs) -->
+    <devices>
+        <family Dfamily="MSP432E4 Series" Dvendor="Texas Instruments:16">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+            <debugconfig default="swd" clock="10000000" swj="1"/>
+            <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+            <book name="http://www.ti.com/lit/pdf/slau723" title="MSP432E4 Family Technical Reference Manual"/>
+            <book name="http://www.ti.com/lit/pdf/slau590" title="ARM&#174; Keil&#174; MDK 5 IDE for SimpleLink&#8482; MSP432&#8482; User's Guide"/>
+            <description>
+                The SimpleLink(TM) MSP432E4(TM) Ethernet microcontrollers (MCUs) are high-performance ARM&#174; Cortex&#174;-M MCUs with integrated Ethernet MAC and PHY
+                and a wide variety of wired communication interfaces including universal serial bus (USB), controller area network (CAN), Quad-SPI (QSSI), I2C, SPI,
+                UART and other serial protocols. Featuring a 120MHz ARM Cortex-M4F CPU,  1MB of Flash and 256kB of SRAM, and advanced cryptography accelerators, 
+                MSP432E4 MCUs offer ample amount of processing resources for developers to implement wired and wireless connectivity stacks and processing algorithms to build IoT-ready intelligent industrial gateway applications.
+
+                More information on MSP432E4 MCUs at http://www.ti.com/msp432e4.
+            </description>
+       
+            <!-- features common for the whole family -->
+            <feature type="AnalogOther" n="3" name="Analog Comparator"/>
+            <feature type="Crypto" n="256" name="HW accelerated AES Encryption Engine"/>
+            <feature type="Crypto" n="192" name="HW accelerated DES Encryption Engine"/>
+            <feature type="Crypto" n="256" name="HW accelerated SHA/MD5 Encryption Engine"/>
+            <feature type="Timer" n="16" m="16" name="GP Timers - up to 8 32-bit Timer"/>
+            <feature type="ComOther" n="2" name="CAN"/>
+            <feature type="ComOther" n="8" name="UART"/>
+            <feature type="ComOther" n="4" name="SSI"/>
+            <feature type="ComOther" n="10" name="I2C"/>
+
+            <!-- debug sequences -->  
+            <sequences>
+                <sequence name="DebugDeviceUnlock">
+                    <block>
+                        __var DID0 = 0;
+                        __var DID1 = 0;
+                        __var isMSP432E401Y = 0;
+                        __var isMSP432E411Y = 0;
+                        __var isMSP432E4 = 0;
+                        DID0 = Read32(0x400FE000);
+                        DID1 = Read32(0x400FE004);
+                        isMSP432E401Y = 
+                            (DID0 == 0x180C0002) &amp;&amp;
+                            (DID1 == 0x102DC06E);
+                        isMSP432E411Y = 
+                            (DID0 == 0x180C0002) &amp;&amp;
+                            (DID1 == 0x1032E076);
+
+                        isMSP432E4 = isMSP432E401Y || isMSP432E411Y;
+                    </block>
+                    <!-- Check if the device is supported -->
+                    <control if="!isMSP432E4">
+                        <block>
+                            Query(0, "Device is not supported.", 0);
+                        </block>
+                    </control>
+                </sequence>
+                    
+                <!-- ***********************Enable Trace******************************* -->
+                <!-- TraceStart: Enable ETM Trace by setting GPIO pins                  -->
+                <sequence name="TraceStart">
+                    <block>
+                        __var value         = 0;
+                        __var clockEnabled  = 0;
+                        __var width         = (__traceout &amp; 0x003F0000) &gt;&gt; 16;        // TPIU Port Width
+                        
+                        value = Read32(0x400FE608);
+                        Write32(0x400FE608, value | 0x20);      // Enable clock for GPIO port F
+                    </block>
+                    <control while="clockEnabled == 0" timeout="50000">
+                        <block>
+                            // wait 50 ms to enable clock for GPIO F
+                            clockEnabled = (Read32(0x400FE608) &amp; 0x20);
+                        </block>
+                    </control>
+                    <control if="width == 1">
+                        <block>
+                            Write32(0x4005D520, 0x4C4F434B);        // Unlock GPIOLOCK F
+                            value = Read32(0x4005D524);
+                            Write32(0x4005D524, value | 0x0C);      // Set GPIOCR
+                            value = Read32(0x4005D400);
+                            Write32(0x4005D400, value | 0x0C);      // Set GPIODIR to output
+                            value = Read32(0x4005D51C);
+                            Write32(0x4005D51C, value | 0x0C);      // Set GPIODEN
+                            value = Read32(0x4005D508);
+                            Write32(0x4005D508, value | 0x0C);      // Set GPIODR8R
+                            value = Read32(0x4005D510);
+                            Write32(0x4005D510, value | 0x0C);      // Set GPIOPUR
+                            value = Read32(0x4005D52C);
+                            Write32(0x4005D52C, value | 0x0FF00);   // Set GPIOPCTL function to 0xF for trace pins
+                            value = Read32(0x4005D420);
+                            Write32(0x4005D420, value | 0x0C);      // Set GPIOAFSEL bit for trace pins
+                        </block>
+                    </control>
+                    <control if="width == 2">
+                        <block>
+                            Write32(0x4005D520, 0x4C4F434B);        // Unlock GPIOLOCK F
+                            value = Read32(0x4005D524);
+                            Write32(0x4005D524, 0x0000000E);        // Set GPIOCR
+                            value = Read32(0x4005D400);
+                            Write32(0x4005D400, value | 0x0E);      // Set GPIODIR to output
+                            value = Read32(0x4005D51C);
+                            Write32(0x4005D51C, value | 0x0E);      // Set GPIODEN
+                            value = Read32(0x4005D508);
+                            Write32(0x4005D508, value | 0x0E);      // Set GPIODR8R
+                            value = Read32(0x4005D510);
+                            Write32(0x4005D510, value | 0x0E);      // Set GPIOPUR
+                            value = Read32(0x4005D52C);
+                            Write32(0x4005D52C, value | 0x0FFF0);   // Set GPIOPCTL function to 0xF for trace pins
+                            value = Read32(0x4005D420);
+                            Write32(0x4005D420, value | 0x0E);      // Set GPIOAFSEL bit for trace pins
+                        </block>
+                    </control>
+                    <control if="width == 4">
+                        <block>
+                            Write32(0x4005D520, 0x4C4F434B);        // Unlock GPIOLOCK F
+                            value = Read32(0x4005D524);
+                            Write32(0x4005D524, value | 0x1F);      // Set GPIOCR
+                            value = Read32(0x4005D400);
+                            Write32(0x4005D400, value | 0x1F);      // Set GPIODIR to output
+                            value = Read32(0x4005D51C);
+                            Write32(0x4005D51C, value | 0x1F);      // Set GPIODEN
+                            value = Read32(0x4005D508);
+                            Write32(0x4005D508, value | 0x1F);      // Set GPIODR8R      
+                            value = Read32(0x4005D510);
+                            Write32(0x4005D510, value | 0x1F);      // Set GPIOPUR
+                            value = Read32(0x4005D52C);
+                            Write32(0x4005D52C, value | 0xFFFFF);    // Set GPIOPCTL function to 0xF for trace pins
+                            value = Read32(0x4005D420);
+                            Write32(0x4005D420, value | 0x1F);      // Set GPIOAFSEL bit for trace pins
+                        </block>
+                    </control>
+                </sequence>     
+            </sequences>
+        
+            <!-- ************************  Subfamily MSP432E4  **************************** -->
+            <subFamily DsubFamily="MSP432E4">
+                <processor  Dclock="120000000"/>
+                <book name="http://www.ti.com/lit/gpn/msp432e401y" title="MSP432E401Y Datasheet"/>
+                <book name="http://www.ti.com/lit/gpn/msp432e411y" title="MSP432E411Y Datasheet"/>
+                <compile    header="Device/Include/msp.h"/>
+                <!-- *************************  Device MSP432E401Y  ***************************** -->
+                <device Dname="MSP432E401Y">
+                    <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+                    <memory     id="IRAM1"      access="rwx" start="0x20000000" size="0x00040000" default="1"/>
+                    <algorithm  name="FlashARM/MSP432E4_MainFlash1024kB.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x0003E000" default="1"/>
+                    <algorithm  name="FlashIAR/FlashMSP432E401Y.flash"    start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+                    <compile    define="__MSP432E401Y__"/>
+                    <debug      svd="SVD/MSP432E401Y.svd"/>
+                    <feature type="ADC" n="20" m="12"/>
+                    <environment name="iar">
+                        <file category="ddffile" name=".iar/config/debugger/MSP432E401Y.ddf" />
+                        <debugger>
+                            <param name="xdsdevicename" value="MSP432"/>
+                            <file category="devicemacros" name=".iar/config/debugger/MSP432E401Y.dmac" />
+                            <file category="jlinkscriptfile" name=".iar/config/debugger/MSP432E4.JLinkScript" />
+                        </debugger>
+                    </environment>
+                </device>
+                <!-- *************************  Device MSP432E411Y  ***************************** -->
+                <device Dname="MSP432E411Y">
+                    <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+                    <memory     id="IRAM1"      access="rwx" start="0x20000000" size="0x00040000" default="1"/>
+                    <algorithm  name="FlashARM/MSP432E4_MainFlash1024kB.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x0003E000" default="1"/>
+                    <algorithm  name="FlashIAR/FlashMSP432E411Y.flash"    start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+                    <compile    define="__MSP432E411Y__"/>
+                    <debug      svd="SVD/MSP432E411Y.svd"/>
+                    <feature type="ADC" n="24" m="12"/>
+                    <feature type="LCD" n="1"/>
+                    <environment name="iar">
+                        <file category="ddffile" name=".iar/config/debugger/MSP432E411Y.ddf" />
+                        <debugger>
+                            <param name="xdsdevicename" value="MSP432"/>
+                            <file category="devicemacros" name=".iar/config/debugger/MSP432E411Y.dmac" />
+                            <file category="jlinkscriptfile" name=".iar/config/debugger/MSP432E4.JLinkScript" />
+                        </debugger>
+                    </environment>
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+
+    <conditions>
+        <condition id="MSP432 CMSIS-CORE">
+            <!-- conditions selecting Devices -->
+            <description>Texas Instruments MSP432E4 Family devices and CMSIS-CORE</description>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+            <require Dvendor="Texas Instruments:16" Dname="MSP432*"/>
+        </condition>
+        <condition id="isMSP432E401Y">
+            <description>Texas Instruments MSP432E401Y device</description>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+            <require Dvendor="Texas Instruments:16" Dname="MSP432E401Y"/>
+        </condition>
+        <condition id="isMSP432E411Y">
+            <description>Texas Instruments MSP432E411Y device</description>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+            <require Dvendor="Texas Instruments:16" Dname="MSP432E411Y"/>
+        </condition>
+        <condition id="Startup ARM">
+            <description>Startup assembler file for ARMCC</description>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="Startup GCC">
+            <description>Startup assembler file for GCC</description>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="Startup IAR">
+            <description>Startup assembler file for IAR</description>
+            <require Tcompiler="IAR"/>
+        </condition>  
+    </conditions>
+
+    <components>
+        <component Cclass="Device" Cgroup="Startup" Cversion="3.2.3" condition="isMSP432E401Y">
+            <description>System Startup for MSP432E401Y</description>
+            <files>
+                <file category="include" name="Device/Include/"/>
+                <file category="source"  name="Device/Source/startup_msp432e401y_uvision.s" attr="config" condition="Startup ARM" version="3.2.3"/>
+                <file category="source"  name="Device/Source/startup_msp432e401y_gcc.S" attr="config" condition="Startup GCC" version="3.2.3"/>
+                <file category="linkerScript"  name="Device/Source/msp432e401y.ld" attr="config" condition="Startup GCC" version="3.2.3"/>
+                <file category="source"  name="Device/Source/startup_msp432e401y_ewarm.c" attr="config" condition="Startup IAR" version="3.2.3"/>
+                <file category="source"  name="Device/Source/system_msp432e401y.c" attr="config" version="3.2.3"/>
+                <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.3"/>
+                <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.3"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Startup" Cversion="3.2.3" condition="isMSP432E411Y">
+            <description>System Startup for MSP432E411Y</description>
+            <files>
+                <file category="include" name="Device/Include/"/>
+                <file category="source"  name="Device/Source/startup_msp432e411y_uvision.s" attr="config" condition="Startup ARM" version="3.2.3"/>
+                <file category="source"  name="Device/Source/startup_msp432e411y_gcc.S" attr="config" condition="Startup GCC" version="3.2.3"/>
+                <file category="linkerScript"  name="Device/Source/msp432e411y.ld" attr="config" condition="Startup GCC" version="3.2.3"/>
+                <file category="source"  name="Device/Source/startup_msp432e411y_ewarm.c" attr="config" condition="Startup IAR" version="3.2.3"/>
+                <file category="source"  name="Device/Source/system_msp432e411y.c" attr="config" version="3.2.3"/>
+                <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.3"/>
+                <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.3"/>
+            </files>
+        </component>
+    </components>
+
+    <boards>
+        <board vendor="TexasInstruments" name="MSP-EXP432E401Y" salesContact="http://www.ti.com/general/docs/contact.tsp" orderForm="https://store.ti.com/MSP-EXP432E401Y-SimpleLink-Ethernet-MSP432E401Y-MCU-LaunchPad-Development-Kit-P53200.aspx">
+            <description>MSP432E401Y LaunchPad</description>
+            <image large="http://www.ti.com/diagrams/med_msp-exp432e401y_msp-exp432e401y.jpg" public="true" />
+            <book category="overview"  name="http://www.ti.com/tool/msp-exp432e401y" title="MSP432E401Y LaunchPad Web page"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432E401Y"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dfamily="MSP432E4 Series" DsubFamily="MSP432E4"/> 
+            <debugInterface adapter="XDS110" connector="XDS110 Onboard Emulator"/>  
+            <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+            <feature type="USB" n="1" name="USB Device,  Micro-B receptacle"/>
+            <feature type="Button" n="3" name="reset and tow user push-buttons"/>
+            <feature type="LED" n="4" name="LEDs for user interaction"/>    
+            <feature type="ConnOther" n="2" name="40 pin BoosterPack Connector and support for 20 pin BoosterPacks"/>
+            <feature type="Other" n="1" name="Back-channel UART via USB to PC"/>
+        </board>
+    </boards>
+
+    <examples>
+        <example name="BlinkLED" folder="Examples/BlinkLED" doc="Abstract.txt" version="3.2.3">
+            <description>This is a basic example demonstrating the development flow and making the LED on the board blink</description>
+            <board name="MSP-EXP432E401Y" vendor="TexasInstruments"/>
+            <project>
+                <environment name="uv"  load="ARM/BlinkLED.uvprojx"/>
+                <environment name="iar" load="IAR/BlinkLED/BlinkLED.ewp" />
+                <environment name="atollic" load="Atollic/.project" />
+            </project>
+            <attributes>
+                <component Cclass="CMSIS" Cgroup="CORE"/>
+                <component Cclass="Device" Cgroup="Startup"/>
+                <keyword>Blinky</keyword>
+                <keyword>Getting Started</keyword>
+            </attributes>
+        </example>
+        <example name="EmptyMain" folder="Examples/EmptyMain" doc="Abstract.txt" version="3.2.3">
+            <description>This is a basic example providing an empty main body</description>
+            <board name="MSP-EXP432E401Y" vendor="TexasInstruments"/>
+            <project>
+                <environment name="uv"  load="ARM/EmptyMain.uvprojx"/>
+                <environment name="iar" load="IAR/EmptyMain/EmptyMain.ewp" />
+                <environment name="atollic" load="Atollic/.project" />
+            </project>
+            <attributes>
+                <component Cclass="CMSIS" Cgroup="CORE"/>
+                <component Cclass="Device" Cgroup="Startup"/>
+                <keyword>Empty</keyword>
+                <keyword>Main</keyword>
+                <keyword>Getting Started</keyword>
+            </attributes>
+        </example>
+    </examples>
+</package>

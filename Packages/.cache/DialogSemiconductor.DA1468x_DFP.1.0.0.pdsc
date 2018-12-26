@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  
+    <name>DA1468x_DFP</name>
+    <description>Dialog Semiconductor BLE ARM devices Device Family Pack.</description>
+    <vendor>DialogSemiconductor</vendor>
+    <url>https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/CMSIS</url>
+    <supportContact>support.dialog-semiconductor.com</supportContact>
+	<license>License\license.txt</license>
+
+    <keywords>
+        <keyword>DeviceFamilyPack</keyword>
+        <keyword>Dialog</keyword>
+        <keyword>Dialog Semiconductor</keyword>
+        <keyword>DA14680</keyword>
+        <keyword>DA14681</keyword>
+        <keyword>DA14682</keyword>
+        <keyword>DA14683</keyword>
+        <keyword>BLE</keyword>
+        <keyword>ANT</keyword>
+    </keywords>
+
+  
+  <releases>
+    <release version="1.0.0">
+      Date: 04.12.2018
+      Added startup files
+    </release>
+  </releases>
+
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+
+  	   <family Dfamily="DA1468x Series" Dvendor="Dialog Semiconductor:113">
+
+		   <processor Dcore="Cortex-M0"
+					  DcoreVersion="r0p2"
+					  Dendian="Little-endian"
+					  Dclock="96000000"
+					  Dfpu="0"
+					  Dmpu="1" />
+					  
+			<description>The DA1468x series are a flexible System-on-Chip family combining an application processor, memories, cryptography engine, power management unit, digital and analog peripherals and a Bluetooth® Smart MAC engine and radio transceiver.</description>
+
+			<device Dname="DA14680">
+				<description>The DA14680 has upto 96 Mhz Cortex M0 core with 8 MByte FLASH, 64 kB OTP memory, SRAM of 144 kB (128 + 16) with retention capabilities, 128 kB ROM holding booter ans BLE 4.2 Stack and upto 37 Configurable GPIO pins</description>
+
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14680.pdf" title="DA14680 - Data Sheet"/>  
+				<debug svd="Device/SVD/DA14680.svd"/>
+                <compile header="Device/Include/DA14680.h"         define="DA14680"/>
+				<memory name="IRAM1" access ="rw" start="0x007FC000" size="0x24000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x80000" startup="1" default="1"/>
+				<memory name="IROM2" access ="rx" start="0x10000000" size="0x100000" startup="1" default="1"/>
+			</device>
+
+			<device Dname="DA14681">
+				<description>The DA14681 has upto 96 Mhz Cortex M0 core with 64 kB OTP memory, SRAM of 144 kB (128 + 16) with retention capabilities, 128 kB ROM holding booter and BLE 4.2 Stack and upto 37 Configurable GPIO pins</description>
+
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14681.pdf" title="DA14681 - Data Sheet"/>  
+				<debug svd="Device/SVD/DA14681.svd"/>
+                <compile header="Device/Include/DA14681.h"         define="DA14681"/>
+				<memory name="IRAM1" access ="rw" start="0x007FC000" size="0x24000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x20000" startup="1" default="1"/>
+            </device>
+
+			<device Dname="DA14682">
+				<description>The DA14682 has upto 96 Mhz Cortex M0 core with 8 MByte FLASH, 64 kB OTP memory, SRAM of 144 kB (128 + 16) with retention capabilities, 128 kB ROM holding booter and BLE 5.0 Stack,8 MB FLASH and upto 37 Configurable GPIO pins</description>
+                <compile header="Device/Include/DA14682.h"         define="DA14682"/>
+				<debug  svd="Device/SVD/DA14682.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x007FC000" size="0x24000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x80000" startup="1" default="1"/>
+				<memory name="IROM2" access ="rx" start="0x10000000" size="0x100000" startup="1" default="1"/>
+			</device>
+
+			<device Dname="DA14683">
+				<description>The DA14683 has upto 96 Mhz Cortex M0 core with 64 kB OTP memory, SRAM of 144 kB (128 + 16) with retention capabilities, 128 kB ROM holding booter and BLE 5.0 Stack,8 MB FLASH and upto 37 Configurable GPIO pins</description>
+                <compile header="Device/Include/DA14683.h"         define="DA14683"/>
+				<debug  svd="Device/SVD/DA14683.svd"/>
+				<memory name="IRAM1" access ="rw" start="0x80000000" size="0x24000" init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x80000" startup="1" default="1"/>
+			</device>
+        </family>
+        
+  </devices>
+  <!-- conditions section (optional for all Software Packs)-->
+  
+    <conditions>
+	<!-- Compiler Conditions -->
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+		<condition id="DA1468x">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA1468x Series devices</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14680"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14681"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14682"/>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14683"/>
+		</condition>		
+
+		<condition id="DA1468x CMSIS-Core">
+		<!-- conditions selecting Devices -->
+		<description>Dialog Semiconductor DA1468x Series devices and CMSIS-Core (Cortex-M)</description>
+		<require condition="DA1468x"/>
+		<require Cclass="CMSIS" Cgroup="CORE"/>
+		</condition>		
+		
+  	    <!-- DA14680 Conditions -->
+		<condition id="DA14680 device and CMSIS">
+			<description>Dialog Semiconductor DA14680 CMSIS device</description>
+            <require condition="DA1468x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1468*"/>
+        </condition>
+
+  	    <!-- DA14681 Conditions -->
+		<condition id="DA14681 device and CMSIS">
+			<description>Dialog Semiconductor DA14681 CMSIS device</description>
+            <require condition="DA1468x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1468*"/>
+        </condition>
+  	    <!-- DA14682 Conditions -->
+		<condition id="DA14682 device and CMSIS">
+			<description>Dialog Semiconductor DA14682 CMSIS device</description>
+            <require condition="DA1468x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1468*"/>
+        </condition>
+  	    <!-- DA14683 Conditions -->
+		<condition id="DA14683 device and CMSIS">
+			<description>Dialog Semiconductor DA14683 CMSIS device</description>
+            <require condition="DA1468x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1468*"/>
+        </condition>
+	
+    </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  
+	<components>
+
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14680 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14680 device</description>
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14680.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1468x.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1468x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1468x.h" 	                  version="1.0.0"/>
+
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14681 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14681 device</description>
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14681.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1468x.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1468x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1468x.h" 	                  version="1.0.0"/>
+
+			</files>		
+		</component>
+		
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14682 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14682 device</description>
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14682.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1468x.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1468x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1468x.h" 	                  version="1.0.0"/>
+
+			</files>		
+		</component>
+		
+
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14683 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14683 device</description>
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DA14683.h"                              version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA1468x.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/system_DA1468x.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1468x.h" 	                  version="1.0.0"/>
+
+			</files>		
+		</component>
+	</components>
+</package>

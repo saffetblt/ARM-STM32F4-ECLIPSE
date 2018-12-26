@@ -1,0 +1,2576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>Keil</vendor>
+    <url>http://www.keil.com/pack/</url>
+    <name>LPC4300_DFP</name>
+    <description>NXP LPC4300 Series Device Support, Drivers and Examples</description>
+
+    <releases>
+      <release version="2.8.0" date="2017-11-16">
+        Device Support:
+        - Updated system file with corrected SystemCoreClock initial value to match SystemInit function
+        Debug Description:
+        - Updated debug sequences: use read modify write operation on updating DEMCR_Addr to avoid side effects.
+        Board Examples:
+        - Updated Board Support LED_*.c files.
+        - Updated USB Device Audio example for Keil MCB4300 evaluation board
+        - Updated examples for MDK-Middleware Network using Cbundle="MDK-Pro Net_v6"
+        CMSIS-Driver:
+        - Updated CAN driver:
+        -- Corrected SetBitrate function
+        - Updated EMAC driver:
+        -- Added support for CMSIS-RTOS2
+      </release>
+      <release version="2.7.0" date="2016-11-08">
+        Updated device support:
+        - Added LPC43Sxx device support
+        - Added LPC436x device support
+        - Added Debug Description: -- Select JTAG as default protocol to enable multi-core debug with default settings
+        - Updated system file Correcting doxy comments
+        - Updated device documentation
+        Updated CMSIS drivers:
+        - Updated USART driver:
+        -- Corrected send_active flag handling in USART_Send function.
+        -- TX and RX pins can be configured as "not used"
+        - Updated SSP and SPI driver:
+        -- MISO and MOSI pins can be configured as "not used"
+        -- corrected PIN Configuration and Unconfiguration
+        - Updated USB Host drivers: Corrected over-current pin configuration
+        - Updated USB0 Device driver:
+        -- Corrected device status information
+        -- Added VBUS detection
+        -  Updated CAN driver:
+        -- corrected interrupt routine (status interrupt could case lockup)
+        -- corrected receive overrun clearing and signaling
+        -- corrected functionality when NULL pointer is provided for one or both signal callbacks in Initialize function call
+        -- corrected MessageSend function to return busy if transmission is in progress
+        Updated examples:
+        - Updated emWin examples to emWin V5.36f
+        - Updated USB Device CDC ACM VirtualCOM example (corrected initial UART receive size)
+        - Updated USB Host examples
+        - Updated documentation.
+        - Updated CAN example
+      </release>
+      <release version="2.6.0" date="2016-02-01">
+        CMSIS device:
+        - updated system_LPC43xx*.c file
+        Updated GPDMA driver to transfer data larger than 4k.
+        CMSIS driver:
+        - added CAN: driver and configuration options in RTE_Device.h
+        - updated all: corrected PowerControl function for conditional Power full state (driver must be initialized)
+        - updated USART, I2S, SSP: interwork with new GPDMA driver
+        - updated USB Device: removed unnecessary __packed specifier for GCC compliance
+        - updated EMAC: corrected return value of the ReadFrame function
+        Board examples for Keil MCB1800:
+        - added CAN Data and CAN RTR MDK projects
+      </release>
+      <release version="2.5.0" date="2015-06-19">
+        Updated CMSIS drivers:
+        - I2C, MCI, EMAC, I2S, SPI, USART, USB Device, USB Host: Updated initialization, uninitialization and power procedures
+        - I2S, SPI, USART, USB Device, USB Host: Corrected status bit-field race conditions
+        - MCI:
+        -- Interrupt processing optimized
+        -- Data timeout handling corrected
+        Updated example USB device VirtualCOM
+      </release>
+      <release version="2.4.0" date="2015-04-24">
+        Device support:
+        - updated device features
+        Updated CMSIS Driver:
+        - I2S: improved fs divider calculation
+        - MCI: avoid DMA buffer alignment issues
+        - USART:
+        -- corrected disabling of receive DMA channel when aborting Receive or Transfer
+        -- moved fract_div_lookup_table from header file to driver .c file
+        Updated Example for USB Device Mass Storage
+      </release>
+      <release version="2.3.0" date="2015-03-20">
+        Required PACKs: ARM.CMSIS.4.3.0.pack, Keil.MDK-Middleware.6.3.0.pack, Keil.ARM_Compiler.1.0.0.pack
+        Updated drivers:
+         - added support for Cortex-M0APP and Cortex-M0SUB
+         - RTE_Device.h (driver configuration):
+         -- corrected RTE_USB1_IND0_PIN_EN into RTE_USB1_IND1_PIN_EN
+         -- removed RTE_USB_USB0_DEV_EP and RTE_USB_USB1_DEV_EP
+         - EMAC: corrected return value of PHY_Read and PHY_Write functions
+         - MCI: enabled High speed capability and added block size handling
+         - SPI/SSP: corrected pin handling, ssp->info->mode handling
+         - USART: improved baudrate calculation
+         - USB Device:
+         -- corrected isochronous endpoint configuration
+         -- corrected transfer procedure
+         -- corrected CLK_M4_USB1_CFG into CLK_M4_USB0_CFG in USBD_PowerControl function
+        Updated examples:
+         - Compiler I/O software component is now used for I/O retargeting
+        Added:
+         - Startup file for Cortex-M0SUB Core
+         - System files for Cortex-M0APP and M0SUB Cores
+         - I2S driver
+         - USB Device Audio example
+         - Audio Board interface
+         - NGC LPC4330-Xplorer Board support with examples
+         - User Command for post build to flash devices in PDSC
+        Changed compile define to CORE_CM4, CORE_CM0 and CORE_CM0SUB
+      </release>
+      <release version="2.2.0" date="2014-12-11">
+        Updated for use with MDK-Middleware Version 6.2:
+        - File_Demo and USB Host MassStorage examples due to new fdelete() API in File System 6.2
+        - emWin GUIDemo example (corrected JOYSTICK orientation)
+        Corrected:
+        - peripheral reset
+        - system_LPC43xx.c and updated examples accordingly
+        - USBD0 driver corrected PORTSC1_D_PFSC into USB_PORTSC1_D_PFSC
+        - SCU driver SCU_SFSCLKx(clk_pin) and SCU_ENAIOx(n) macros
+        - USART driver modem lines handling
+        - SPI0/1 driver avoid stack corruption
+        - GPDMA driver initialization and uninitialization is done from drivers
+        - ETH driver GetMacAddress function implemented
+        Updated SVD file.
+      </release>
+      <release version="2.1.0" date="2014-07-15">
+        Corrected Touch calibration in GUIDemo example (for use with Keil.MDK-Middleware.6.1.0)
+        Corrected conditions for SPI drivers and ARM Compiler toolchain dependency
+        Updated USB Device drivers
+        Updated Flash Programming Algorithm
+      </release>
+      <release version="2.0.0" date="2014-06-12">
+        CMSIS Driver V2 compliant drivers (requires ARM.CMSIS.4.1.0)
+        - I2C, MCI, SSP, SPI, USART, USB Host and Device, Ethernet MAC
+        Examples for MCB4300 Evaluation Board (requires Keil.MDK-Middleware.6.0.0)
+        - USB, Network, Graphics and Filesystem
+        Board Support Interface drivers
+        - ADC, Buttons, Joystick, Graphic LCD, Touchscreen, EEPROM, Thermometer
+      </release>
+      <release version="1.0.1">
+        New device: LPC4370
+        Added Board description for Keil MCB4300
+      </release>
+      <release version="1.0.0">
+        Initial version of LPC4300 Device Family Pack.
+      </release>
+    </releases>
+
+    <keywords>
+      <!-- keywords for indexing -->
+      <keyword>NXP</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package NXP</keyword>
+      <keyword>LPC4300</keyword>
+      <keyword>LPC43xx</keyword>
+    </keywords>
+
+  <devices>
+    <family Dfamily="LPC4300 Series" Dvendor="NXP:11">
+      <processor Pname="Cortex-M4" Dcore="Cortex-M4" DcoreVersion="r0p1"          Dmpu="1" Dendian="Little-endian" Dclock="204000000"/>
+      <processor Pname="Cortex-M0" Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="204000000"/>
+
+      <!-- Select JTAG as default protocol to enable multi-core debug with default settings -->
+      <debugconfig default="jtag" swj="true"/>
+
+      <compile   Pname="Cortex-M4" define="CORE_M4"/>
+      <compile   Pname="Cortex-M0" define="CORE_M0"/>
+
+      <compile header="Device/Include/LPC43xx.h"/>
+
+      <book Pname="Cortex-M4" name="Documents/dui0553a_cortex_m4_dgug.pdf"            title="Cortex-M4 Generic User Guide"/>
+      <book Pname="Cortex-M0" name="Documents/dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+      <book                   name="Documents/UM10503.pdf"                            title="LPC43xx/LPC43Sxx User Manual"/>
+      <book                   name="Documents/ES_LPC43X0.pdf"                         title="LPC4370/50/30/20/10 Errata Sheet"/>
+      <book                   name="Documents/TN00006.pdf"                            title="LPC1800/LPC4300 Memory Map"/>
+
+      <description>
+NXP's LPC4300 Digital Signal Control (DSC) processors, offers high-performance signal processing capabilities. These DSC processors offer a high level of system integration, reducing system design cost and complexity, while simplifying the design cycle using a single tool chain.
+Typical applications include Motor control, Embedded audio applications, Power management, Industrial automation, White goods, e-metering, RFID readers
+
+  - Three PLLs
+  - Quad SPI Flash interface (SPIFI)
+  - State Configurable Timer (SCT)
+  - LCD Controller (1024x768) for STN and TFT
+  - Motor control PWM for three-phase motor
+  - Unique ID for each device
+      </description>
+
+      <feature type="CAN"           n="2"/>
+      <feature type="UART"          n="4"/>
+      <feature type="I2C"           n="2"/>
+      <feature type="Timer"         n="4"       m="32"/>
+
+      <!-- ************************  Debug Description  **************************** -->
+      <debug Pname="Cortex-M4" __dp="0" __ap="0" svd="SVD/LPC43xx.svd">
+        <!-- Make ETB always visible in ROM Table (otherwise only visible after clearing ETBCFG register) -->
+        <datapatch address="0xE00FF018" value="0xFFF43003" info="ROM Table Entry: ETB"/>
+      </debug>
+      <debug Pname="Cortex-M0" __dp="1" __ap="0" svd="SVD/LPC43xx.svd"/>
+      <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M4"/>
+      <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M0"/>
+
+      <debugport __dp="0">          <!-- Cortex-M4 DP-->
+        <jtag tapindex="0"/>
+        <swd/>
+      </debugport>
+      <debugport __dp="1">          <!-- Cortex-M0 DP-->
+        <jtag tapindex="1"/>
+        <!-- no SWD support for Cortex-M0 -->
+      </debugport>
+
+      <debugvars configfile="Debug/LPC43xx.dbgconf">
+        __var VecResetWithPeriph    = 1; // Reset peripherals on Vector Reset (similar to System Reset without M0 reset)
+        __var ReleaseM0OnConnect    = 1; // Release M0 from reset during connection to it
+        __var ReleaseM0SubOnConnect = 1; // Release M0-Subsystem from reset during connection to it (LPC437x only)
+
+        // TPIU Pin Routing (TRACECLK fixed on PF_4)
+        // - Bit 0: TRACEDATA[0]: 0 - PF_5, 1 - P7_4
+        // - Bit 1: TRACEDATA[1]: 0 - PF_6, 1 - P7_5
+        // - Bit 2: TRACEDATA[2]: 0 - PF_7, 1 - P7_6
+        // - Bit 3: TRACEDATA[3]: 0 - PF_8, 1 - P7_7
+        __var RoutingTPIU = 0x00000000;  // Default selection (MCB4300)
+      </debugvars>
+
+
+      <sequences>
+
+        <!-- Pre-defined Debug Access Sequences -->
+
+        <!-- Begin: ResetProcessor Sequence for Cortex-M4 -->
+        <!-- Be aware that this sequence only works when the target is stopped before the reset -->
+        <sequence name="ResetProcessor" Pname="Cortex-M4">
+          <block>
+            // Execute VECTRESET via AIRCR
+            Write32(0xE000ED0C, 0x05FA0001);
+
+            // Reset Cortex-M0 APP and SUB Core and all peripherals except BUS_RST, SCU_RST, EMC_RST, SPIFI
+            Write32(0x40053100, 0xFFDF1030);    // regiserAccess: RESET_CTRL0(0x40053100)
+            Write32(0x40053104, 0xFBDFFFFF);    // registerAccess: RESET_CTRL1(0x40053104)
+          </block>
+        </sequence>
+
+        <!-- Begin: ResetProcessor Sequence for Cortex-M0-->
+        <sequence name="ResetProcessor" Pname="Cortex-M0">
+          <block>
+            // Reset only Cortex-M0 APP Core
+            Write32(0x40053104, 0x01000000);
+
+            // Clear Exception States (safe, Core in reset)
+            Write32(0xE000ED0C, 0x05FA0002);
+
+            // Release from reset
+            Write32(0x40053104, 0);
+          </block>
+        </sequence>
+
+
+        <!-- Begin: DebugCoreStart Sequence for Cortex-M4 -->
+        <sequence name="DebugCoreStart" Pname="Cortex-M4">
+          <block>
+            // Default implementation
+
+            // Enable Core Debug via DHCSR
+            Write32(0xE000EDF0, 0xA05F0001);
+          </block>
+        </sequence>
+        <!-- End: DebugCoreStart Sequence for Cortex-M4 -->
+
+        <!-- Begin: DebugCoreStart Sequence for Cortex-M0 -->
+        <sequence name="DebugCoreStart" Pname="Cortex-M0">
+          <block>
+            // Default implementation
+
+            // Enable Core Debug via DHCSR
+            Write32(0xE000EDF0, 0xA05F0001);
+          </block>
+
+          <control if="ReleaseM0OnConnect">
+            <block>
+              // Release M0 from reset
+              Write32(0x40053104, 0x00000000);  // RESET_CTRL1: Clear M0APP_RST (Bit 24)
+            </block>
+          </control>
+        </sequence>
+        <!-- End: DebugCoreStart Sequence for Cortex-M0 -->
+
+
+        <!-- Begin: ResetCatchSet Sequence for Cortex-M4 -->
+        <sequence name="ResetCatchSet" Pname="Cortex-M4">
+          <block>
+            __var resetVecBankA = 0;
+            __var resetVecBankB = 0;
+
+            // Clear Reset Vector Catch
+            Write32(0xE000EDFC, Read32(0xE000EDFC) &amp; (~0x00000001));
+
+            // Read reset vector from bank A
+            resetVecBankA = Read32(0x1A000004);
+            // Read reset vector from bank B
+            resetVecBankB = Read32(0x1B000004);
+          </block>
+
+          <control if="resetVecBankA &lt; 0x20000000">
+            <!-- Reset Vector of bank A in HW Breakpoint range-->
+            <control if="(resetVecBankA &amp; 0x2) == 0">
+              <block>
+                // Even Address
+                Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 0
+              </block>
+            </control>
+            <control if="resetVecBankA &amp; 0x2">
+              <block>
+                // Odd Address
+                Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 0
+              </block>
+            </control>
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+          </control>
+
+          <control if="resetVecBankA &gt;= 0x20000000" info="Enable reset vector catch">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              Write32(0xE000EDFC, (Read32(0xE000EDFC) | 0x00000001));
+            </block>
+          </control>
+
+          <control if="resetVecBankB &lt; 0x20000000">
+            <!-- Reset Vector of bank B in HW Breakpoint range-->
+            <control if="(resetVecBankB &amp; 0x2) == 0">
+              <block>
+                // Even Address
+                Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 1
+              </block>
+            </control>
+            <control if="resetVecBankA &amp; 0x2">
+              <block>
+                // Odd Address
+                Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 1
+              </block>
+            </control>
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+          </control>
+
+          <control if="resetVecBankB &gt;= 0x20000000" info="Enable reset vector catch">
+            <block>
+              // Enable Reset Vector Catch in DEMCR
+              Write32(0xE000EDFC, (Read32(0xE000EDFC) | 0x00000001));
+            </block>
+          </control>
+        </sequence>
+        <!-- End: ResetCatchSet Sequence for Cortex-M4  -->
+
+        <!-- Begin: ResetCatchClear Sequence for Cortex-M4 -->
+        <sequence name="ResetCatchClear" Pname="Cortex-M4">
+          <block>
+            __var DEMCR_Addr = 0xE000EDFC;
+
+            // Clear FPB Comparators 0 and 1
+            Write32(0xE0002008, 0x00000000);
+            Write32(0xE000200C, 0x00000000);
+
+            // Disable FPB
+            Write32(0xE0002000, 0x00000002);
+
+            // Clear Reset Vector Catch
+            Write32(DEMCR_Addr, Read32(DEMCR_Addr) &amp; (~0x00000001));
+          </block>
+        </sequence>
+        <!-- End: ResetCatchClear Sequence for Cortex-M4 -->
+
+
+        <!-- Begin: ResetCatchSet Sequence for Cortex-M0 -->
+        <sequence name="ResetCatchSet" Pname="Cortex-M0">
+          <block>
+            __var DHCSR_Addr = 0xE000EDF0;
+            __var DEMCR_Addr = 0xE000EDFC;
+
+            // Enable Reset Vector Catch in DEMCR
+            Write32(DEMCR_Addr, (Read32(DEMCR_Addr) | 0x00000001));
+
+            // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+            Read32(DHCSR_Addr);
+          </block>
+        </sequence>
+        <!-- End: ResetCatchSet Sequence for Cortex-M0 -->
+
+        <!-- Begin: ResetCatchClear Sequence for Cortex-M0 -->
+        <sequence name="ResetCatchClear" Pname="Cortex-M0">
+          <block>
+            __var DEMCR_Addr = 0xE000EDFC;
+
+            // Disable Reset Vector Catch in DEMCR
+            Write32(DEMCR_Addr, (Read32(DEMCR_Addr) &amp; (~0x00000001)));
+          </block>
+        </sequence>
+        <!-- End: ResetCatchClear Sequence for Cortex-M0 -->
+
+
+
+       <!-- Begin: Pre-defined TraceStart Sequence -->
+        <sequence name="TraceStart">
+          <block>
+            // Nothing required for SWO Trace
+            __var traceTPIU   = (__traceout &amp; 0x2) != 0;
+            __var traceBuffer = (__traceout &amp; 0x4) != 0;
+          </block>
+
+          <control if="traceTPIU">
+            <block>
+              Sequence("EnableTraceTPIU");
+            </block>
+          </control>
+
+          <control if="traceBuffer">
+            <block>
+              Sequence("EnableTraceBuffer");
+            </block>
+          </control>
+
+        </sequence>
+        <!-- End: Pre-defined TraceStart Sequence -->
+
+        <!-- Begin: Pre-defined TraceStop Sequence -->
+        <sequence name="TraceStop">
+          <block>
+            // Nothing required for SWO Trace
+            __var traceTPIU   = (__traceout &amp; 0x2) != 0;
+            __var traceBuffer = (__traceout &amp; 0x4) != 0;
+          </block>
+
+          <control if="traceTPIU">
+            <block>
+              Sequence("DisableTraceTPIU");
+            </block>
+          </control>
+
+          <control if="traceBuffer">
+            <block>
+              Sequence("DisableTraceBuffer");
+            </block>
+          </control>
+
+        </sequence>
+        <!-- End: Pre-defined TraceStop Sequence -->
+
+
+        <!-- User-defined Debug Access Sequences -->
+
+        <!-- Begin: User-defined EnableTraceTPIU Sequence -->
+        <sequence name="EnableTraceTPIU">
+          <block>
+            __var tracePortWidth = (__traceout &amp; 0x003F0000) &gt;&gt; 16;
+
+            // Setup fixed TRACECLK pin
+            Write32(0x40086790, 0x000000B2); // LPC_SCU->SFSPF_4 : Func 2, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+          </block>
+
+          <!-- TRACEDATA[0]-->
+          <control if="(RoutingTPIU &amp; 0x1) == 0">
+            <!-- TRACEDATA[0]: PF_5 -->
+            <block>
+              Write32(0x40086794, 0x000000B3); // LPC_SCU->SFSPF_5 : Func 3, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+            </block>
+          </control>
+          <control if="(RoutingTPIU &amp; 0x1)">
+            <!-- TRACEDATA[0]: P7_4 -->
+            <block>
+              Write32(0x40086390, 0x000000B5); // LPC_SCU->SFSP7_4 : Func 5, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+            </block>
+          </control>
+
+
+          <control if="tracePortWidth &gt;= 2">
+            <!-- TRACEDATA[1]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[1]: PF_6 -->
+              <block>
+                Write32(0x40086798, 0x000000B3); // LPC_SCU->SFSPF_6 : Func 3, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[1]: P7_5 -->
+              <block>
+                Write32(0x40086394, 0x000000B5); // LPC_SCU->SFSP7_5 : Func 5, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+          </control>
+
+          <control if="tracePortWidth &gt;= 4">
+            <!-- TRACEDATA[2]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[2]: PF_7 -->
+              <block>
+                Write32(0x4008679C, 0x000000B3); // LPC_SCU->SFSPF_7 : Func 3, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[2]: P7_6 -->
+              <block>
+                Write32(0x40086398, 0x000000B5); // LPC_SCU->SFSP7_6 : Func 5, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+
+            <!-- TRACEDATA[3]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[3]: PF_8 -->
+              <block>
+                Write32(0x400867A0, 0x000000B3); // LPC_SCU->SFSPF_8 : Func 3, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[3]: P7_7 -->
+              <block>
+                Write32(0x4008639C, 0x000000B5); // LPC_SCU->SFSP7_7 : Func 5, EPD 0, EPUN 1, EHS 1, EZI 0, ZIF 1
+              </block>
+            </control>
+          </control>
+        </sequence>
+        <!-- End: User-defined EnableTraceTPIU Sequence -->
+
+        <!-- Begin: User-defined EnableTraceBuffer Sequence -->
+        <sequence name="EnableTraceBuffer">
+          <block>
+            // ETB accesses SRAM at 0x2000C000 - 0x2000FFFF.
+            //  This memory region is not available to application when using ETB.
+            Write32(0x40043128, 0x00000000); // ETBCFG: ETB bit
+          </block>
+        </sequence>
+        <!-- End: User-defined EnableTraceBuffer Sequence -->
+
+        <!-- Begin: User-defined DisableTraceTPIU Sequence -->
+        <sequence name="DisableTraceTPIU">
+          <block>
+            __var tracePortWidth = (__traceout &amp; 0x003F0000) &gt;&gt; 16;
+
+            // Setup fixed TRACECLK pin
+            Write32(0x40086790, 0x00000000); // LPC_SCU->SFSPF_4 : Reset Value 0x00000000
+          </block>
+
+          <!-- TRACEDATA[0]-->
+          <control if="(RoutingTPIU &amp; 0x1) == 0">
+            <!-- TRACEDATA[0]: PF_5 -->
+            <block>
+              Write32(0x40086794, 0x00000000); // LPC_SCU->SFSPF_5 : Reset Value 0x00000000
+            </block>
+          </control>
+          <control if="(RoutingTPIU &amp; 0x1)">
+            <!-- TRACEDATA[0]: P7_4 -->
+            <block>
+              Write32(0x40086390, 0x00000000); // LPC_SCU->SFSP7_4 : Reset Value 0x00000000
+            </block>
+          </control>
+
+
+          <control if="tracePortWidth &gt;= 2">
+            <!-- TRACEDATA[1]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[1]: PF_6 -->
+              <block>
+                Write32(0x40086798, 0x00000000); // LPC_SCU->SFSPF_6 : Reset Value 0x00000000
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[1]: P7_5 -->
+              <block>
+                Write32(0x40086394, 0x00000000); // LPC_SCU->SFSP7_5 : Reset Value 0x00000000
+              </block>
+            </control>
+          </control>
+
+          <control if="tracePortWidth &gt;= 4">
+            <!-- TRACEDATA[2]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[2]: PF_7 -->
+              <block>
+                Write32(0x4008679C, 0x00000000); // LPC_SCU->SFSPF_7 : Reset Value 0x00000000
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[2]: P7_6 -->
+              <block>
+                Write32(0x40086398, 0x00000000); // LPC_SCU->SFSP7_6 : Reset Value 0x00000000
+              </block>
+            </control>
+
+            <!-- TRACEDATA[3]-->
+            <control if="(RoutingTPIU &amp; 0x1) == 0">
+              <!-- TRACEDATA[3]: PF_8 -->
+              <block>
+                Write32(0x400867A0, 0x00000000); // LPC_SCU->SFSPF_8 : Reset Value 0x00000000
+              </block>
+            </control>
+            <control if="(RoutingTPIU &amp; 0x1)">
+              <!-- TRACEDATA[3]: P7_7 -->
+              <block>
+                Write32(0x4008639C, 0x00000000); // LPC_SCU->SFSP7_7 : Reset Value 0x00000000
+              </block>
+            </control>
+          </control>
+
+        </sequence>
+        <!-- End: User-defined DisableTraceTPIU Sequence -->
+
+        <!-- Begin: User-defined DisableTraceBuffer Sequence -->
+        <sequence name="DisableTraceBuffer">
+          <block>
+            // AHB accesses SRAM at 0x2000C000 - 0x2000FFFF.
+            Write32(0x40043128, 0x00000001); // ETBCFG: ETB bit
+          </block>
+        </sequence>
+        <!-- End: User-defined DisableTraceBuffer Sequence -->
+      </sequences>
+      <!-- ***********************  End Debug Description **************************** -->
+
+      <!-- ************************  Subfamily 'LPC4310'  **************************** -->
+      <subFamily DsubFamily="LPC431x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="SPI"           n="2"/>
+        <feature type="MPSerial"      n="2"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4310'  ***************************** -->
+        <device Dname="LPC4310">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x18000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+
+          <book name="Documents/LPC4350_30_20_10.pdf" title="LPC4350/30/20/10 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4312'  ***************************** -->
+        <device Dname="LPC4312">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4313'  ***************************** -->
+        <device Dname="LPC4313">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x40000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BA.FLM" start="0x1A000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BB.FLM" start="0x1B000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4315'  ***************************** -->
+        <device Dname="LPC4315">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x60000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x60000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_384_BA.FLM" start="0x1A000000" size="0x60000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_384_BB.FLM" start="0x1B000000" size="0x60000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4317'  ***************************** -->
+        <device Dname="LPC4317">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC4320'  **************************** -->
+      <subFamily DsubFamily="LPC432x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4320'  ***************************** -->
+        <device Dname="LPC4320">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x18000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC4350_30_20_10.pdf" title="LPC4350/30/20/10 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4322'  ***************************** -->
+        <device Dname="LPC4322">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4323'  ***************************** -->
+        <device Dname="LPC4323">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x40000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BA.FLM" start="0x1A000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BB.FLM" start="0x1B000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4325'  ***************************** -->
+        <device Dname="LPC4325">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x60000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x60000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_384_BA.FLM" start="0x1A000000" size="0x60000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_384_BB.FLM" start="0x1B000000" size="0x60000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4327'  ***************************** -->
+        <device Dname="LPC4327">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC4330'  **************************** -->
+      <subFamily DsubFamily="LPC433x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4330'  ***************************** -->
+        <device Dname="LPC4330">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC4350_30_20_10.pdf" title="LPC4350/30/20/10 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4333'  ***************************** -->
+        <device Dname="LPC4333">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x40000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BA.FLM" start="0x1A000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4337'  ***************************** -->
+        <device Dname="LPC4337">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC4350'  **************************** -->
+      <subFamily DsubFamily="LPC435x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="LCD"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4350'  ***************************** -->
+        <device Dname="LPC4350">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC4350_30_20_10.pdf" title="LPC4350/30/20/10 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4353'  ***************************** -->
+        <device Dname="LPC4353">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x40000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BA.FLM" start="0x1A000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_256_BB.FLM" start="0x1B000000" size="0x40000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC4357'  ***************************** -->
+        <device Dname="LPC4357">
+          <memory id="IROM1"                      start="0x1A000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                      start="0x1B000000"  size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                      start="0x10000000"  size="0x8000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC435X_3X_2X_1X.pdf" title="LPC435x/3x/2x/1x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC436x'  **************************** -->
+      <subFamily DsubFamily="LPC436x">
+        <processor Pname="Cortex-M4"                                          Dfpu="0"/>
+        <processor Pname="Cortex-M0Sub" Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="204000000"/>
+        <compile   Pname="Cortex-M0Sub" define="CORE_M0SUB"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="LCD"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Debug Description  ***************************** -->
+        <debug Pname="Cortex-M0Sub" __dp="2" __ap="0" svd="SVD/LPC43xx.svd"/>
+
+        <debugport __dp="1">          <!-- Redefinition of Cortex-M0 DP, uses different TAP index for this sub-family -->
+          <jtag tapindex="2"/>
+        </debugport>
+        <debugport __dp="2">          <!-- Cortex-M0Sub DP-->
+          <jtag tapindex="1"/>
+        </debugport>
+
+        <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M0Sub"/>
+
+        <sequences>
+          <!-- Begin: ResetProcessor Sequence for Cortex-M0Sub -->
+          <sequence name="ResetProcessor" Pname="Cortex-M0Sub">
+            <block>
+                // Reset only Cortex-M0Sub Core
+                Write32(0x40053100, 0x00001000);
+
+                // Clear Exception States (safe, Core in reset)
+                Write32(0xE000ED0C, 0x05FA0002);
+
+                // Release from reset
+                Write32(0x40053100, 0);
+            </block>
+          </sequence>
+          <!-- End: ResetProcessor Sequence for Cortex-M0Sub -->
+
+          <!-- Begin: Pre-defined ResetCatchSet Sequence -->
+          <sequence name="ResetCatchSet" Pname="Cortex-M0Sub">
+            <block>
+              __var resetVecBankA = 0;
+              __var resetVecBankB = 0;
+
+              // Clear Reset Vector Catch
+              Write32(0xE000EDFC, Read32(0xE000EDFC) &amp; (~0x00000001));
+
+              // Read reset vector from bank A
+              resetVecBankA = Read32(0x1A000004);
+              // Read reset vector from bank B
+              resetVecBankB = Read32(0x1B000004);
+            </block>
+
+            <control if="resetVecBankA &lt; 0x20000000">
+              <!-- Reset Vector of bank A in HW Breakpoint range-->
+              <control if="(resetVecBankA &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+            </control>
+
+            <control if="resetVecBankB &lt; 0x20000000">
+              <!-- Reset Vector of bank B in HW Breakpoint range-->
+              <control if="(resetVecBankB &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+            </control>
+
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+
+          </sequence>
+          <!-- End: Pre-defined ResetCatchSet Sequence -->
+
+          <!-- Begin: Pre-defined ResetCatchClear Sequence -->
+          <sequence name="ResetCatchClear" Pname="Cortex-M0Sub">
+            <block>
+              // Clear FPB Comparators 0 and 1
+              Write32(0xE0002008, 0x00000000);
+              Write32(0xE000200C, 0x00000000);
+
+              // Disable FPB
+              Write32(0xE0002000, 0x00000002);
+            </block>
+          </sequence>
+          <!-- End: Pre-defined ResetCatchClear Sequence -->
+
+          <!-- Begin: DebugCoreStart Sequence for Cortex-M0Sub -->
+          <sequence name="DebugCoreStart" Pname="Cortex-M0Sub">
+            <block>
+              // Default implementation
+
+              // Enable Core Debug via DHCSR
+              Write32(0xE000EDF0, 0xA05F0001);
+            </block>
+
+            <control if="ReleaseM0SubOnConnect">
+              <block>
+                // Release M0 from reset
+                Write32(0x40053100, 0x00000000);  // RESET_CTRL0: Clear M0_SUB_RST (Bit 12)
+              </block>
+            </control>
+          </sequence>
+          <!-- End: DebugCoreStart Sequence for Cortex-M0Sub  -->
+        </sequences>
+        <!-- **********************  End Debug Description  *************************** -->
+
+        <!-- *************************  Device 'LPC4367'  ***************************** -->
+        <device Dname="LPC4367">
+          <memory id="IROM1"                             start="0x1A000000" size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                             start="0x1B000000" size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                             start="0x10000000" size="0x08000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                             start="0x20000000" size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+          <book name="Documents/LPC436X.pdf" title="LPC436x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC4370'  **************************** -->
+      <subFamily DsubFamily="LPC437x">
+        <processor Pname="Cortex-M4"                                          Dfpu="1"/>
+        <processor Pname="Cortex-M0Sub" Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="204000000"/>
+        <compile   Pname="Cortex-M0Sub" define="CORE_M0SUB"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+
+        <!-- *************************  Debug Description  ***************************** -->
+        <debug Pname="Cortex-M0Sub" __dp="2" __ap="0" svd="SVD/LPC43xx.svd"/>
+
+        <debugport __dp="1">
+          <!-- Redefinition of Cortex-M0 DP, uses different TAP index for this sub-family -->
+          <jtag tapindex="2"/>
+        </debugport>
+        <debugport __dp="2">
+          <!-- Cortex-M0Sub DP-->
+          <jtag tapindex="1"/>
+        </debugport>
+
+        <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M0Sub"/>
+
+        <sequences>
+          <!-- Begin: ResetProcessor Sequence for Cortex-M0Sub -->
+          <sequence name="ResetProcessor" Pname="Cortex-M0Sub">
+            <block>
+              // Reset only Cortex-M0Sub Core
+              Write32(0x40053100, 0x00001000);
+
+              // Clear Exception States (safe, Core in reset)
+              Write32(0xE000ED0C, 0x05FA0002);
+
+              // Release from reset
+              Write32(0x40053100, 0);
+            </block>
+          </sequence>
+          <!-- End: ResetProcessor Sequence for Cortex-M0Sub -->
+
+          <!-- Begin: Pre-defined ResetCatchSet Sequence -->
+          <sequence name="ResetCatchSet" Pname="Cortex-M0Sub">
+            <block>
+              __var resetVecBankA = 0;
+              __var resetVecBankB = 0;
+
+              // Clear Reset Vector Catch
+              Write32(0xE000EDFC, Read32(0xE000EDFC) &amp; (~0x00000001));
+
+              // Read reset vector from bank A
+              resetVecBankA = Read32(0x1A000004);
+              // Read reset vector from bank B
+              resetVecBankB = Read32(0x1B000004);
+            </block>
+
+            <control if="resetVecBankA &lt; 0x20000000">
+              <!-- Reset Vector of bank A in HW Breakpoint range-->
+              <control if="(resetVecBankA &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+            </control>
+
+            <control if="resetVecBankB &lt; 0x20000000">
+              <!-- Reset Vector of bank B in HW Breakpoint range-->
+              <control if="(resetVecBankB &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+            </control>
+
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+
+          </sequence>
+          <!-- End: Pre-defined ResetCatchSet Sequence -->
+
+          <!-- Begin: Pre-defined ResetCatchClear Sequence -->
+          <sequence name="ResetCatchClear" Pname="Cortex-M0Sub">
+            <block>
+              // Clear FPB Comparators 0 and 1
+              Write32(0xE0002008, 0x00000000);
+              Write32(0xE000200C, 0x00000000);
+
+              // Disable FPB
+              Write32(0xE0002000, 0x00000002);
+            </block>
+          </sequence>
+          <!-- End: Pre-defined ResetCatchClear Sequence -->
+
+          <!-- Begin: DebugCoreStart Sequence for Cortex-M0Sub -->
+          <sequence name="DebugCoreStart" Pname="Cortex-M0Sub">
+            <block>
+              // Default implementation
+
+              // Enable Core Debug via DHCSR
+              Write32(0xE000EDF0, 0xA05F0001);
+            </block>
+
+            <control if="ReleaseM0SubOnConnect">
+              <block>
+                // Release M0 from reset
+                Write32(0x40053100, 0x00000000);  // RESET_CTRL0: Clear M0_SUB_RST (Bit 12)
+              </block>
+            </control>
+          </sequence>
+          <!-- End: DebugCoreStart Sequence for Cortex-M0Sub  -->
+        </sequences>
+        <!-- ***********************  End Debug Description  ************************** -->
+
+        <!-- *************************  Device 'LPC4370'  ***************************** -->
+        <device Dname="LPC4370">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC4370.pdf" title="LPC4370 Data Sheet"/>
+        </device>
+
+
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC43S2x'  *************************** -->
+      <subFamily DsubFamily="LPC43S2x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC4320'  ***************************** -->
+        <device Dname="LPC43S20">
+           <!-- RAM only device -->
+          <memory id="IRAM1"                      start="0x10000000" size="0x18000"    init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20000000" size="0x10000"    init   ="0" default="1"/>
+
+          <book name="Documents/LPC43S50_30_20.pdf" title="LPC43S50/S30/S20 Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC43S3x'  *************************** -->
+      <subFamily DsubFamily="LPC43S3x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="ETH"      n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC43S30'  ***************************** -->
+        <device Dname="LPC43S30">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC43S50_30_20.pdf" title="LPC43S50/S30/S20 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC43S37'  ***************************** -->
+        <device Dname="LPC43S37">
+          <memory id="IROM1"                             start="0x1A000000" size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                             start="0x1B000000" size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                             start="0x10000000" size="0x08000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                             start="0x20000000" size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC43S5X_S3X.pdf" title="LPC43S5x/S3x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC43S5x'  *************************** -->
+      <subFamily DsubFamily="LPC43S5x">
+        <processor Pname="Cortex-M4" Dfpu="1"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="LCD"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Device 'LPC43S50'  ***************************** -->
+        <device Dname="LPC43S50">
+          <memory id="IRAM1"                      start="0x10000000" size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000" size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC43S50_30_20.pdf" title="LPC43S50/S30/S20 Data Sheet"/>
+        </device>
+
+        <!-- *************************  Device 'LPC43S57'  ***************************** -->
+        <device Dname="LPC43S57">
+          <memory id="IROM1"                             start="0x1A000000" size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                             start="0x1B000000" size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                             start="0x10000000" size="0x08000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                             start="0x20000000" size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+
+          <book name="Documents/LPC43S5X_S3X.pdf" title="LPC43S5x/S3x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC43S6x'  *************************** -->
+      <subFamily DsubFamily="LPC43S6x">
+        <processor Pname="Cortex-M4"                                          Dfpu="0"/>
+        <processor Pname="Cortex-M0Sub" Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="204000000"/>
+        <compile   Pname="Cortex-M0Sub" define="CORE_M0SUB"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="LCD"           n="1"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+        <feature type="PWM"           n="6"/>
+
+        <!-- *************************  Debug Description  ***************************** -->
+        <debug Pname="Cortex-M0Sub" __dp="2" __ap="0" svd="SVD/LPC43xx.svd"/>
+
+        <debugport __dp="1">
+          <!-- Redefinition of Cortex-M0 DP, uses different TAP index for this sub-family -->
+          <jtag tapindex="2"/>
+        </debugport>
+        <debugport __dp="2">
+          <!-- Cortex-M0Sub DP-->
+          <jtag tapindex="1"/>
+        </debugport>
+
+
+        <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M0Sub"/>
+
+        <sequences>
+          <!-- Begin: ResetProcessor Sequence for Cortex-M0Sub -->
+          <sequence name="ResetProcessor" Pname="Cortex-M0Sub">
+            <block>
+              // Reset only Cortex-M0Sub Core
+              Write32(0x40053100, 0x00001000);
+
+              // Clear Exception States (safe, Core in reset)
+              Write32(0xE000ED0C, 0x05FA0002);
+
+              // Release from reset
+              Write32(0x40053100, 0);
+            </block>
+          </sequence>
+          <!-- End: ResetProcessor Sequence for Cortex-M0Sub -->
+
+          <!-- Begin: Pre-defined ResetCatchSet Sequence -->
+          <sequence name="ResetCatchSet" Pname="Cortex-M0Sub">
+            <block>
+              __var resetVecBankA = 0;
+              __var resetVecBankB = 0;
+
+              // Clear Reset Vector Catch
+              Write32(0xE000EDFC, Read32(0xE000EDFC) &amp; (~0x00000001));
+
+              // Read reset vector from bank A
+              resetVecBankA = Read32(0x1A000004);
+              // Read reset vector from bank B
+              resetVecBankB = Read32(0x1B000004);
+            </block>
+
+            <control if="resetVecBankA &lt; 0x20000000">
+              <!-- Reset Vector of bank A in HW Breakpoint range-->
+              <control if="(resetVecBankA &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+            </control>
+
+            <control if="resetVecBankB &lt; 0x20000000">
+              <!-- Reset Vector of bank B in HW Breakpoint range-->
+              <control if="(resetVecBankB &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+            </control>
+
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+
+          </sequence>
+          <!-- End: Pre-defined ResetCatchSet Sequence -->
+
+          <!-- Begin: Pre-defined ResetCatchClear Sequence -->
+          <sequence name="ResetCatchClear" Pname="Cortex-M0Sub">
+            <block>
+              // Clear FPB Comparators 0 and 1
+              Write32(0xE0002008, 0x00000000);
+              Write32(0xE000200C, 0x00000000);
+
+              // Disable FPB
+              Write32(0xE0002000, 0x00000002);
+            </block>
+          </sequence>
+          <!-- End: Pre-defined ResetCatchClear Sequence -->
+
+          <!-- Begin: DebugCoreStart Sequence for Cortex-M0Sub -->
+          <sequence name="DebugCoreStart" Pname="Cortex-M0Sub">
+            <block>
+              // Default implementation
+
+              // Enable Core Debug via DHCSR
+              Write32(0xE000EDF0, 0xA05F0001);
+            </block>
+
+            <control if="ReleaseM0SubOnConnect">
+              <block>
+                // Release M0 from reset
+                Write32(0x40053100, 0x00000000);  // RESET_CTRL0: Clear M0_SUB_RST (Bit 12)
+              </block>
+            </control>
+          </sequence>
+          <!-- End: DebugCoreStart Sequence for Cortex-M0Sub  -->
+        </sequences>
+        <!-- ************************  End Debug Description  ************************** -->
+
+        <!-- *************************  Device 'LPC43S67'  ***************************** -->
+        <device Dname="LPC43S67">
+          <memory id="IROM1"                             start="0x1A000000" size="0x80000"    startup="1"   default="1"/>
+          <memory id="IROM2"                             start="0x1B000000" size="0x80000"    startup="0"   default="1"/>
+          <memory id="IRAM1"                             start="0x10000000" size="0x08000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                             start="0x20000000" size="0x10000"    init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BA.FLM" start="0x1A000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <algorithm name="Flash/LPC18xx43xx_512_BB.FLM" start="0x1B000000" size="0x80000" RAMstart="0x10000000" RAMsize="0x0FE0" default="1"/>
+          <environment name="uv">
+            <postBuild1>$K/ARM/BIN/ElfDwT.exe !L BASEADDRESS(0x1A000000)</postBuild1>
+            <postRun1> 1 </postRun1>
+          </environment>
+          <book name="Documents/LPC43S6X.pdf" title="LPC43S6x Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC43S7x'  **************************** -->
+      <subFamily DsubFamily="LPC43S7x">
+        <processor Pname="Cortex-M4"                                          Dfpu="1"/>
+        <processor Pname="Cortex-M0Sub" Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="204000000"/>
+        <compile   Pname="Cortex-M0Sub" define="CORE_M0SUB"/>
+
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="USBD"          n="2"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="MPSerial"      n="1"                           name="SSP"/>
+
+        <!-- *************************  Debug Description  ***************************** -->
+        <debug Pname="Cortex-M0Sub" __dp="2" __ap="0" svd="SVD/LPC43xx.svd"/>
+
+        <debugport __dp="1">
+          <!-- Redefinition of Cortex-M0 DP, uses different TAP index for this sub-family -->
+          <jtag tapindex="2"/>
+        </debugport>
+        <debugport __dp="2">
+          <!-- Cortex-M0Sub DP-->
+          <jtag tapindex="1"/>
+        </debugport>
+
+        <debug defaultResetSequence="ResetProcessor" Pname="Cortex-M0Sub"/>
+        <sequences>
+          <!-- Begin: ResetProcessor Sequence for Cortex-M0Sub -->
+          <sequence name="ResetProcessor" Pname="Cortex-M0Sub">
+            <block>
+              // Reset only Cortex-M0Sub Core
+              Write32(0x40053100, 0x00001000);
+
+              // Clear Exception States (safe, Core in reset)
+              Write32(0xE000ED0C, 0x05FA0002);
+
+              // Release from reset
+              Write32(0x40053100, 0);
+            </block>
+          </sequence>
+          <!-- End: ResetProcessor Sequence for Cortex-M0Sub -->
+
+          <!-- Begin: Pre-defined ResetCatchSet Sequence -->
+          <sequence name="ResetCatchSet" Pname="Cortex-M0Sub">
+            <block>
+              __var resetVecBankA = 0;
+              __var resetVecBankB = 0;
+
+              // Clear Reset Vector Catch
+              Write32(0xE000EDFC, Read32(0xE000EDFC) &amp; (~0x00000001));
+
+              // Read reset vector from bank A
+              resetVecBankA = Read32(0x1A000004);
+              // Read reset vector from bank B
+              resetVecBankB = Read32(0x1B000004);
+            </block>
+
+            <control if="resetVecBankA &lt; 0x20000000">
+              <!-- Reset Vector of bank A in HW Breakpoint range-->
+              <control if="(resetVecBankA &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE0002008, (resetVecBankA &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 0
+                </block>
+              </control>
+            </control>
+
+            <control if="resetVecBankB &lt; 0x20000000">
+              <!-- Reset Vector of bank B in HW Breakpoint range-->
+              <control if="(resetVecBankB &amp; 0x2) == 0">
+                <block>
+                  // Even Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x40000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+              <control if="resetVecBankA &amp; 0x2">
+                <block>
+                  // Odd Address
+                  Write32(0xE000200C, (resetVecBankB &amp; 0x1FFFFFFC) | 0x80000001); // Write address to FPB Comparator 1
+                </block>
+              </control>
+            </control>
+
+            <block>
+              // Enable FPB
+              Write32(0xE0002000, 0x00000003);
+            </block>
+
+          </sequence>
+          <!-- End: Pre-defined ResetCatchSet Sequence -->
+
+          <!-- Begin: Pre-defined ResetCatchClear Sequence -->
+          <sequence name="ResetCatchClear" Pname="Cortex-M0Sub">
+            <block>
+              // Clear FPB Comparators 0 and 1
+              Write32(0xE0002008, 0x00000000);
+              Write32(0xE000200C, 0x00000000);
+
+              // Disable FPB
+              Write32(0xE0002000, 0x00000002);
+            </block>
+          </sequence>
+          <!-- End: Pre-defined ResetCatchClear Sequence -->
+
+          <!-- Begin: DebugCoreStart Sequence for Cortex-M0Sub -->
+          <sequence name="DebugCoreStart" Pname="Cortex-M0Sub">
+            <block>
+              // Default implementation
+
+              // Enable Core Debug via DHCSR
+              Write32(0xE000EDF0, 0xA05F0001);
+            </block>
+
+            <control if="ReleaseM0SubOnConnect">
+              <block>
+                // Release M0 from reset
+                Write32(0x40053100, 0x00000000);  // RESET_CTRL0: Clear M0_SUB_RST (Bit 12)
+              </block>
+            </control>
+          </sequence>
+          <!-- End: DebugCoreStart Sequence for Cortex-M0Sub  -->
+        </sequences>
+        <!-- **********************  End Debug Description  **************************** -->
+
+        <!-- *************************  Device 'LPC43S70'  ***************************** -->
+        <device Dname="LPC43S70">
+          <memory id="IRAM1"                      start="0x10000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+
+          <book name="Documents/LPC43S70.pdf" title="LPC43S70 Data Sheet"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <boards>
+    <board vendor="Keil" name="MCB4300" revision="Ver 1.3" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB4300=ON">
+      <description>Keil MCB4300 Development Board</description>
+      <image small="Images/mcb4300_small.jpg" large="Images/mcb4300_large.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcb4300/" title="MCB4300 Evaluation Board Web Page"/>
+      <book category="schematic" name="Documents/mcb4300v1-3-schematics.pdf" title="MCB4300 Schematics"/>
+      <book category="manual"    name="Documents/mcb1800.chm" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC4350"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC4357"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC435x"/>
+      <feature type="XTAL"            n="12000000"/>
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="PWR"             n="8" m="12"       name="External Power Supply"/>
+      <feature type="RAM"             n="1"              name="16 MB SDRAM"/>
+      <feature type="ROM"             n="1"              name="16 MB NOR Flash"/>
+      <feature type="ROM"             n="1"              name="4 MB Quad-SPI Flash"/>
+      <feature type="ROM"             n="1"              name="16 kB EEPROM"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="USB"             n="1"              name="USB 2.0 High-speed Host/Device/OTG interface (USB host + Micro USB Device/OTG connectors)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Host/Device interface (USB host + micro USB Device connectors)"/>
+      <feature type="CAN"             n="1"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="GLCD"            n="1"  m="240.320" name="2.4 inch Color QVGA TFT LCD with resistive touchscreen"/>
+      <feature type="Poti"            n="1"              name="Potentiometer for ADC Input"/>
+      <feature type="LineIn"          n="2"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="LineOut"         n="2"              name="Audio CODEC with Line-In/Out and Speaker/Microphone"/>
+      <feature type="ConnOther"       n="1"              name="On-board Speaker"/>
+      <feature type="Button"          n="6"              name="Push-Buttons: 3 x GPIO, Reset, ISP, WAKEUP"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <feature type="CustomFF"        n="124" m="170"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+    <board vendor="NGX" name="LPC4330-Xplorer" revision="v1.0" salesContact="sales@ngxtechnologies.com">
+      <description>NGX LPC4330-Xplorer Board Support and Examples</description>
+      <image small="Images/LPC4330-Xplorer_small.png" large="Images/LPC4330-Xplorer_large.png"/>
+      <book category="overview"  name="http://shop.ngxtechnologies.com/product_info.php?products_id=104" title="LPC4330-Xplorer Web Page"/>
+      <book category="setup"  name="Documents/LPC433x_xplorer_QSG.pdf" title="Quick Start Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC4330"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC433x"/>
+      <book category="setup"     name="Documents/NXP_Blinky_Lab.pdf" title="LPC4330 Xplorer: Blinky Lab"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Batt"      n="1"              name="CR2032 Battery for RTC"/>
+      <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB device with USB Standard-B Connector"/>
+      <feature type="Proto"     n="4"  m="8"       name="PORT0 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="Proto"     n="4"  m="8"       name="PORT1 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="Proto"     n="4"  m="3"       name="PORT2 Prototyping Area with 2.54 mm pitch"/>
+      <feature type="DIO"       n="76"             name="Digital IOs (shared with Analog IOs)"/>
+      <feature type="AIO"       n="24"             name="Analog IOs (shared with Digital IOs)"/>
+      <feature type="MemCard"   n="1"              name="Micro SD Card Holder"/>
+      <feature type="LED"       n="3"              name="LEDs: two User, one Power LED"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug Interface"/>
+      <feature type="CustomFF"  n="100" m="130"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <!-- conditions are dependency rules that can apply to a component or an individual file -->
+    <condition id="ARM Compiler">
+      <description>The ARM Compiler toolchain is required for the respective file or component</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="CM0">
+      <require Dcore="Cortex-M0"/>
+    </condition>
+
+    <condition id="CM4">
+      <require Dcore="Cortex-M4"/>
+    </condition>
+
+    <condition id="CM4 ARM Compiler">
+      <require condition="CM4"/>
+      <require condition="ARM Compiler"/>
+    </condition>
+
+    <condition id="CM0APP ARM Compiler">
+      <require condition="CM0"/>
+      <deny    Pname="Cortex-M0Sub"/>
+      <require condition="ARM Compiler"/>
+    </condition>
+    <condition id="CM0SUB ARM Compiler">
+      <require condition="CM0"/>
+      <require Pname="Cortex-M0Sub"/>
+      <require condition="ARM Compiler"/>
+    </condition>
+
+    <condition id="LPC4300">
+      <!-- conditions selecting Devices -->
+      <description>NXP LPC4300 Series devices</description>
+      <accept Dvendor="NXP:11" Dname="LPC43[123567]?*"/>
+      <accept Dvendor="NXP:11" Dname="LPC43S[123567]?*"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS">
+      <description>NXP LPC4300 Series devices and CMSIS-CORE and ARMCC compiler</description>
+      <require condition="LPC4300"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU">
+      <description>NXP LPC4300 with CMSIS and SCU</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS RTOS SCU">
+      <description>NXP LPC4300 with CMSIS, RTOS and SCU</description>
+      <require condition="LPC4300 CMSIS"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS2"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPIO">
+      <description>NXP LPC4300 with CMSIS, SCU and GPIO</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPDMA">
+      <description>NXP LPC4300 with CMSIS, SCU and GPDMA</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPIO GPDMA">
+      <description>NXP LPC4300 with CMSIS, SCU, GPIO and GPDMA</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="Device" Cgroup="GPDMA"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPIO SPI">
+      <description>NXP LPC4300 with CMSIS, SCU, GPIO and SPI</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.01"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPIO SPI Display">
+      <description>NXP LPC4300 with CMSIS, SCU, GPIO, SPI and Display</description>
+      <require condition="LPC4300 CMSIS SCU GPIO SPI"/>
+      <require Cclass="Graphics" Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="RGB IF"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS I2C Driver">
+      <description>NXP LPC4300 with CMSIS and I2C Driver</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.02"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS RTOS and I2C Driver">
+      <description>NXP LPC4300 with CMSIS, RTOS and I2C Driver</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="CMSIS" Cgroup="RTOS"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.02"/>
+    </condition>
+
+    <condition id="LPC4300 CMSIS SCU GPIO SAI/I2C Driver">
+      <description>NXP LPC4300 with CMSIS, SCU, GPIO and SAI/I2C Driver</description>
+      <require condition="LPC4300 CMSIS"/>
+      <require Cclass="Device" Cgroup="SCU"/>
+      <require Cclass="Device" Cgroup="GPIO"/>
+      <require Cclass="CMSIS Driver" Cgroup="SAI" Capiversion="1.00"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.02"/>
+    </condition>
+
+  </conditions>
+
+  <examples>
+    <!-- MCB4300 Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Blinky">
+      <description>Blinky example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky ULp" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Blinky_ULp">
+      <description>Blinky ULINKpro example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB4300/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Dual Core CM4 Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB4300/DualCore/CM4">
+      <description>Dual Core Cortex-M4 Blinky example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Dual Core CM0 Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB4300/DualCore/CM0">
+      <description>Dual Core Cortex-M0 Blinky example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Demo" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Demo">
+      <description>Demo example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Keil/MCB4300/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Keil/MCB4300/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="CAN" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/CAN/CAN">
+      <description>CAN example that sends and receives data messages</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="CAN.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <example name="CAN RTR" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/CAN/CAN_RTR">
+      <description>CAN example that demonstrates Remote Transmission Request (RTR) usage</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="CAN_RTR.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Middleware</category>
+        <category>CAN</category>
+      </attributes>
+    </example>
+
+    <example name="USB Device Audio" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Device/Audio" version="1.0.0">
+      <description>USB Audio Device demonstrating USB Headphone.</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Audio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="Audio"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Audio</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Device/MassStorage" version="1.0.1">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/BSD_Client" version="1.0.1">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/BSD_Server" version="1.0.1">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/HTTP_Server" version="1.0.1">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/SMTP_Client" version="1.0.1">
+      <description>Example showing how to compose and send emails</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/SNMP_Agent" version="1.0.1">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/Network/Telnet_Server" version="1.0.1">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/Keil/MCB4300/Middleware/FileSystem/File_Demo" version="1.0.1">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="MCB4300" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+    <!-- NGX LPC4330-Xplorer board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Blinky">
+      <description>Blinky example</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Blinky ULp" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Blinky_ULp">
+      <description>Blinky ULINKpro example</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons.</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/BSD_Client" version="1.0.0">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/BSD_Server" version="1.0.0">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/SNMP_Agent" version="1.0.0">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/Network/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/NGX/LPC4330-Xplorer/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card) and format each drive</description>
+      <board name="LPC4330-Xplorer" vendor="NGX"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC4300 CMSIS">
+      <!-- Cversion is necessary -->
+      <description>System Startup for NXP LPC4300 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_LPC43XX      /* Device Startup for NXP43XX */
+      </RTE_Components_h>
+
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Include/LPC43xx.h"/>
+        <!-- startup files -->
+        <file category="source" name="Device/Source/ARM/startup_LPC43xx.s"       attr="config" version="1.0.0" condition="CM4 ARM Compiler"/>
+        <file category="source" name="Device/Source/ARM/startup_LPC43xx_M0.s"    attr="config" version="1.0.0" condition="CM0APP ARM Compiler"/>
+        <file category="source" name="Device/Source/ARM/startup_LPC43xx_M0Sub.s" attr="config" version="1.0.0" condition="CM0SUB ARM Compiler"/>
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_LPC43xx.c"            attr="config" version="1.0.2" condition="CM4"/>
+        <file category="source" name="Device/Source/system_LPC43xx_M0.c"         attr="config" version="1.0.2" condition="CM0"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header" name="RTE_Driver/Config/RTE_Device.h"            attr="config" version="2.2.1"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="SCU" Cversion="1.1" condition="LPC4300 CMSIS">
+      <description>SCU driver used by RTE Drivers for LPC4300 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/SCU_LPC43xx.h"/>
+        <file category="source" name="RTE_Driver/SCU_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.0" condition="LPC4300 CMSIS">
+      <description>GPIO driver used by RTE Drivers for LPC4300 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPIO_LPC43xx.h"/>
+        <file category="source" name="RTE_Driver/GPIO_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="GPDMA" Cversion="1.5" condition="LPC4300 CMSIS">
+      <description>GPDMA driver used by RTE Drivers for LPC4300 Series</description>
+      <files>
+        <file category="header" name="RTE_Driver/GPDMA_LPC43xx.h"/>
+        <file category="source" name="RTE_Driver/GPDMA_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.0.0" Cversion="1.5.0" condition="LPC4300 CMSIS SCU">
+      <description>CAN Driver for LPC4300 series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN0                /* Driver CAN0 */
+        #define RTE_Drivers_CAN1                /* Driver CAN1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/CAN_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Csub="USB0" Capiversion="2.1" Cversion="2.11" condition="LPC4300 CMSIS SCU">
+      <description>USB0 Device Driver for the LPC4300 series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD0_LPC43xx.c"/>
+        <file category="source" name="RTE_Driver/USB0_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Csub="USB1" Capiversion="2.1" Cversion="2.8" condition="LPC4300 CMSIS SCU">
+      <description>USB1 Device Driver for the LPC4300 series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD1               /* Driver USBD1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBD1_LPC43xx.c"/>
+        <file category="source" name="RTE_Driver/USB1_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Csub="USB0" Capiversion="2.0" Cversion="2.5" condition="LPC4300 CMSIS SCU">
+      <description>USB0 EHCI Host Driver for the LPC4300 series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBH0_LPC43xx.c"/>
+        <file category="source" name="RTE_Driver/USB0_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USB Host" Csub="USB1" Capiversion="2.0" Cversion="2.5" condition="LPC4300 CMSIS SCU">
+      <description>USB1 EHCI Host Driver for the LPC4300 series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH1               /* Driver USBH1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USBH1_LPC43xx.c"/>
+        <file category="source" name="RTE_Driver/USB1_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Capiversion="2.1" Cversion="2.9" condition="LPC4300 CMSIS RTOS SCU">
+      <description>Ethernet MAC Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_ETH_MAC0            /* Driver ETH_MAC0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/EMAC_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.2" Cversion="2.6" condition="LPC4300 CMSIS SCU">
+      <description>MCI Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0                /* Driver MCI0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/MCI_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.2" Cversion="2.6" condition="LPC4300 CMSIS SCU">
+      <description>I2C Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2C_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SSP" Capiversion="2.1" Cversion="2.10" condition="LPC4300 CMSIS SCU GPIO GPDMA">
+      <description>SPI (SSP) Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SSP_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.1" Cversion="2.6" condition="LPC4300 CMSIS SCU GPIO">
+      <description>SPI Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/SPI_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1" Cversion="2.12" condition="LPC4300 CMSIS SCU GPDMA">
+      <description>USART Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/USART_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SAI" Csub="I2S" Capiversion="1.0" Cversion="1.5" condition="LPC4300 CMSIS SCU GPDMA">
+      <description>SAI (I2S) Driver for LPC4300 Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+        #define RTE_Drivers_SAI1                /* Driver SAI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="RTE_Driver/I2S_LPC43xx.c"/>
+      </files>
+    </component>
+
+    <!-- MCB4300 Development Board -->
+    <bundle Cbundle="MCB4300" Cclass="Board Support" Cversion="1.0.0">
+      <description>Keil Development Board MCB4300</description>
+      <doc>Documents/mcb1800.chm</doc>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU">
+        <description>A/D Converter interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/ADC_MCB4300.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO">
+        <description>LED interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/LED_MCB4300.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO">
+        <description>Buttons interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/Buttons_MCB4300.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO">
+        <description>Joystick interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/Joystick_MCB4300.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO SPI">
+        <description>Graphic LCD interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB4300/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/Keil/MCB4300/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Keil/MCB4300/Common/GLCD_MCB4300.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1" Cvariant="RGB IF" condition="LPC4300 CMSIS SCU GPIO SPI Display">
+        <description>emWin LCD RGB Interface for Keil MCB4300 Development Board</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/LCD_X.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" Csub="STMPE811" condition="LPC4300 CMSIS RTOS and I2C Driver">
+        <description>Touchscreen interface for STMPE811</description>
+        <files>
+          <file category="header" name="Boards/Keil/MCB4300/Common/STMPE811.h"/>
+          <file category="source" name="Boards/Keil/MCB4300/Common/Touch_STMPE811.c"/>
+        </files>
+      </component>
+      <component Cgroup="Thermometer" Capiversion="1.0.0" Csub="LM75" condition="LPC4300 CMSIS I2C Driver">
+        <description>Thermometer interface for LM75</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/Thermometer_LM75.c"/>
+        </files>
+      </component>
+      <component Cgroup="EEPROM" Capiversion="1.0.0" Csub="24LC128" condition="LPC4300 CMSIS I2C Driver">
+        <description>EEPROM interface for 24LC128</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/EEPROM_24LC128.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Capiversion="1.0.1" condition="LPC4300 CMSIS SCU GPIO SAI/I2C Driver">
+        <description>Audio interface for UDA1380</description>
+        <files>
+          <file category="source" name="Boards/Keil/MCB4300/Common/Audio_UDA1380.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- LPC4330-Xplorer Development Board -->
+    <bundle Cbundle="LPC4330-Xplorer" Cclass="Board Support" Cversion="1.0.0">
+      <description>NGX LPC4330-Xplorer Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO">
+        <description>LED interface for NGX LPC4330-Xplorer Development Board</description>
+        <files>
+          <file category="source" name="Boards/NGX/LPC4330-Xplorer/Common/LED_LPC4330-Xplorer.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="LPC4300 CMSIS SCU GPIO">
+        <description>Buttons interface for NGX LPC4330-Xplorer Development Board</description>
+        <files>
+          <file category="source" name="Boards/NGX/LPC4330-Xplorer/Common/Buttons_LPC4330-Xplorer.c"/>
+        </files>
+      </component>
+      <component Cgroup="Audio" Capiversion="1.0.1" condition="LPC4300 CMSIS SCU GPIO SAI/I2C Driver">
+        <description>Audio interface for UDA1380</description>
+        <files>
+          <file category="source" name="Boards/NGX/LPC4330-Xplorer/Common/Audio_UDA1380.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

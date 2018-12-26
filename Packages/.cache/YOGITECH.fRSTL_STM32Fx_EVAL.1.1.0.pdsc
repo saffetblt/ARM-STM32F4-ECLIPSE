@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>fRSTL_STM32Fx_EVAL</name>
+  <description>!!! DEPRECATED Product !!! YOGITECH fRSTL Functional Safety EVAL Software Pack for STM32Fx Microcontrollers</description>
+  <vendor>YOGITECH</vendor>
+  <url>http://www.keil.com/pack</url>
+  <supportContact>frstl_support@yogitech.com</supportContact>
+  <license>license\license.txt</license>
+
+  
+  <releases>
+    <release version="1.1.0" date="2016-08-31" deprecated="2016-08-31">
+      IMPORTANT NOTE: Yogitech no longer sells this product and the PACK is no longer available for download
+    </release>
+    <release version="1.0.0" date="2015-09-17">
+	    2015/09/17: Initial release
+    </release>
+  </releases>
+
+  <keywords>
+   <keyword>YOGITECH</keyword>
+   <keyword>EVAL fRSTL Functional Safety diagnostic library STM32F0 STM32F1 STM32F2 STM32F3 STM32F4 STM32L1 Microcontroller IEC61508 Certified SIL2(3)</keyword>
+  </keywords>
+
+<!-- 
+<boards>
+
+    <board vendor="STMicroelectronics" name="NUCLEO-F030R8" revision="Rev.C" salesContact="http://www.st.com/stonline/contactus/contacts/index.php" orderForm="https://my.st.com/esample/app?page=basket&amp;pn=NUCLEO-F030R8">
+      <description>STMicroelectronics NUCLEO-F030R8 Board Support and Examples</description>
+    </board>
+
+
+    <board vendor="STMicroelectronics" name="NUCLEO-F072RB" revision="Rev.C" salesContact="http://www.st.com/stonline/contactus/contacts/index.php" orderForm="https://my.st.com/esample/app?page=basket&amp;pn=NUCLEO-F072RB">
+      <description>STMicroelectronics NUCLEO-F072RB Board Support and Examples</description>
+    </board>
+</boards>
+-->
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <!--
+      
+  <devices>
+	  <family>ARM</family>
+	  <device>ARMCM4</device>
+  </devices>
+ --> 
+
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <!--
+        -->
+<conditions>
+	<condition id="STM32F0_COND">
+	  <description>STM32F0 Microcontroller</description>
+	  <require Dcore="Cortex-M0"/>
+	  <accept  DsubFamily="STM32F0"/>
+	  <require Tcompiler="ARMCC"/>
+  </condition>  
+ 	<condition id="STM32F1_COND">
+	  <description>STM32F0 Microcontroller</description>
+	  <require Dcore="Cortex-M3"/>
+	  <accept  DsubFamily="STM32F1"/>
+	  <accept  DsubFamily="STM32F2"/>
+	  <accept  DsubFamily="STM32L1"/>
+	  <require Tcompiler="ARMCC"/>
+  </condition>  
+  	<condition id="STM32F4_COND">
+	  <description>STM32F0 Microcontroller</description>
+	  <require Dcore="Cortex-M4"/>
+	  <accept  DsubFamily="STM32F4"/>
+          <accept  DsubFamily="STM32F3"/>
+	  <require Tcompiler="ARMCC"/>
+        </condition>  
+</conditions>
+ 
+  
+<components>
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F0" Cversion="1.0" condition="STM32F0_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_stm32_F0_EVAL\Docs\fRSTL_STM32Fx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\public_headers\user_api\frstl_user_api.h"         attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\public_headers\user_api\frstl_flash_config.h"     attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\public_headers\user_api\frstl_peripherals_PN.h"   attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\public_headers\user_config\frstl_config_PN.h"     attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\h\cmnType.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\h\frstl_armcmx_test_dummy.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\h\frstl_core.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\h\test_segments.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\c\frstl_core.c"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\c\frstl_status.c"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_core\c\TestSegments\frstl_armcmx_test_dummy.c"/>
+
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\h\frstl_flash_read_and_acc.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\h\frstl_flash_test.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\h\frstl_single_flash.h"/>
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\c\frstl_flash_read_and_acc.c"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\c\frstl_flash_test.c"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_flash\c\frstl_single_flash.c"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p_PN.h"/>
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals.c"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals_PN.c"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_sram\h\frstl_sram_config.h"/>
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_sram\h\frstl_sram_test_manager.h"/>
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_sram\c\frstl_sram_test_manager.c"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_top_level\h\cmnType_stm32.h"/>
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\Source\source\frstl_top_level\c\frstl_top_level.c"/>
+
+<file category="header" name="fRSTL_stm32_F0_EVAL\Source\source\private_config_h\frstl_part_number.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F0_EVAL\OOTBTB\OOTBTB_src\pfi_test_all.c"                            attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+<file category="source" name="fRSTL_stm32_F0_EVAL\OOTBTB\OOTBTB_src\flash_signatures_keil\flash_signatures.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+</files>
+</component>
+
+
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F1" Cversion="1.0" condition="STM32F1_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_stm32_F1_EVAL\Docs\fRSTL_STM32Fx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\public_headers\user_api\frstl_user_api.h"         attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\public_headers\user_api\frstl_flash_config.h"     attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\public_headers\user_api\frstl_peripherals_PN.h"   attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\public_headers\user_config\frstl_config_PN.h"     attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\h\cmnType.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\h\frstl_armcmx_test_dummy.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\h\frstl_core.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\h\test_segments.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\c\frstl_core.c"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\c\frstl_status.c"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_core\c\TestSegments\frstl_armcmx_test_dummy.c"/>
+
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\h\frstl_flash_read_and_acc.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\h\frstl_flash_test.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\h\frstl_single_flash.h"/>
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\c\frstl_flash_read_and_acc.c"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\c\frstl_flash_test.c"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_flash\c\frstl_single_flash.c"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p_PN.h"/>
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals.c"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals_PN.c"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_sram\h\frstl_sram_config.h"/>
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_sram\h\frstl_sram_test_manager.h"/>
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_sram\c\frstl_sram_test_manager.c"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_top_level\h\cmnType_stm32.h"/>
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\Source\source\frstl_top_level\c\frstl_top_level.c"/>
+
+<file category="header" name="fRSTL_stm32_F1_EVAL\Source\source\private_config_h\frstl_part_number.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F1_EVAL\OOTBTB\OOTBTB_src\pfi_test_all.c"                            attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+<file category="source" name="fRSTL_stm32_F1_EVAL\OOTBTB\OOTBTB_src\flash_signatures_keil\flash_signatures.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+</files>
+</component>
+
+
+<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F4" Cversion="1.0" condition="STM32F4_COND">
+<description>fRSTL Documentation</description>
+<files>
+	
+<file category="doc"    name="fRSTL_stm32_F4_EVAL\Docs\fRSTL_STM32Fx_EVAL_SM_UG_ptr.pdf"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\public_headers\user_api\frstl_user_api.h"         attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\public_headers\user_api\frstl_flash_config.h"     attr="config" version="1.0"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\public_headers\user_api\frstl_peripherals_PN.h"   attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\public_headers\user_config\frstl_config_PN.h"     attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\public_headers\frstl_user_if.h" attr="config" version="1.0"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\h\cmnType.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\h\frstl_fpu_includes.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\h\frstl_core.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\h\test_segments.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\h\timings.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\c\frstl_core.c"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\c\frstl_status.c"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_core\c\TestSegments\frstl_armcmx_test_dummy.c"/>
+
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\h\frstl_flash_read_and_acc.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\h\frstl_flash_test.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\h\frstl_single_flash.h"/>
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\c\frstl_flash_read_and_acc.c"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\c\frstl_flash_test.c"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_flash\c\frstl_single_flash.c"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_peripherals\h\frstl_periph_p_PN.h"/>
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals.c"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_peripherals\c\frstl_peripherals_PN.c"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_sram\h\frstl_sram_config.h"/>
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_sram\h\frstl_sram_test_manager.h"/>
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_sram\c\frstl_sram_test_manager.c"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_top_level\h\cmnType_stm32.h"/>
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\Source\source\frstl_top_level\c\frstl_top_level.c"/>
+
+<file category="header" name="fRSTL_stm32_F4_EVAL\Source\source\private_config_h\frstl_part_number.h"/>
+
+
+<file category="source" name="fRSTL_stm32_F4_EVAL\OOTBTB\OOTBTB_src\pfi_test_all.c"                            attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+<file category="source" name="fRSTL_stm32_F4_EVAL\OOTBTB\OOTBTB_src\flash_signatures_keil\flash_signatures.c"  attr="template" select="YOGITECH fRSTL Simulatable Testbench Template (OOTBTB)"/>
+
+</files>
+</component>
+</components>
+
+<examples>
+<example name="fRSTL_EVAL STM32F0" doc="Abstract.txt" folder="fRSTL_stm32_F0_EVAL\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL STM32F0 Simulatable Template (OOTBTB)</description>
+	<board name="NUCLEO-F030R8"  vendor="STMicroelectronics"/>
+	<project>
+		<environment name="uv" load="keil\OOTBTB_STM32F0.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F0"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL STM32F1" doc="Abstract.txt" folder="fRSTL_stm32_F1_EVAL\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL STM32F1 Simulatable Template (OOTBTB)</description>
+	<board name="NUCLEO-F103RB"  vendor="STMicroelectronics"/>
+	<project>
+		<environment name="uv" load="keil\OOTBTB_STM32F1.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F1"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL STM32F4" doc="Abstract.txt" folder="fRSTL_stm32_F4_EVAL\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL STM32F4 Simulatable Template (OOTBTB)</description>
+	<board name="NUCLEO-F401RE"  vendor="STMicroelectronics"/>
+	<project>
+		<environment name="uv" load="keil\OOTBTB_STM32F4.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F4"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL STM32F4" doc="Abstract.txt" folder="fRSTL_stm32_F4_EVAL\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL STM32F4 Simulatable Template (OOTBTB)</description>
+	<board name="STM32F401C-Discovery"  vendor="STMicroelectronics"/>
+	<project>
+		<environment name="uv" load="keil\OOTBTB_STM32F4.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F4"/>
+	</attributes>
+</example>
+
+<example name="fRSTL_EVAL STM32F4" doc="Abstract.txt" folder="fRSTL_stm32_F4_EVAL\OOTBTB\">
+	<description>YOGITECH fRSTL_EVAL STM32F4 Simulatable Template (OOTBTB)</description>
+	<board name="STM32F429I-Discovery"  vendor="STMicroelectronics"/>
+	<project>
+		<environment name="uv" load="keil\OOTBTB_STM32F4.uvprojx"/>
+	</project>
+	<attributes>
+		<component Cclass="Functional Safety" Cgroup="fRSTL" Csub="STM32F4"/>
+	</attributes>
+</example>
+
+</examples>
+
+<taxonomy>
+    <description Cclass="Functional Safety" doc="fRSTL_stm32_F4_EVAL\Docs\fRSTL_STM32Fx_EVAL_SM_UG_ptr.pdf">Yogitech fRSTL Safety Software Component</description>
+</taxonomy>
+
+  
+</package>

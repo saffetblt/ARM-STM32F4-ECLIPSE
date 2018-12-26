@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>EB_TMPM369FDFG_BSP</name>
+  <description>Yokogawa EB-TMPM369FDFG Board Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2015-01-12">
+      First Release version of the YDC EB_TMPM369FDFG Board Support PACK.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Board Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3</keyword>
+    <keyword>TX03</keyword>
+    <keyword>YDC</keyword>
+    <keyword>Yokogawa</keyword>
+  </keywords>
+
+  <boards>
+    <board vendor="Yokogawa" name="EB_TMPM369FDFG" revision="v1"> <!--- salesContact="" orderForm="" -->
+      <description>Yokogawa EB_TMPM369FDFG Board Support</description>
+      <image small="Images\EB_TMPM369FDFG_board_small.jpg" large="Images\EB_TMPM369FDFG_board_big.png"/>
+      <!-- book category="overview"  name="http://www.keil.com/" title="TMPM369FDFG Web Page"/ -->
+      <book category="schematic" name="Documents\EB_TMPM369FDFG_Schematic.pdf" title="Schematics"/>
+      <book category="manual"    name="Documents\EB_TMPM369FDFG Users Manual.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Toshiba:92" DsubFamily="M360"/>
+      <feature type="XTAL"      n="16000000"/>
+      <feature type="XTAL"      n="32768"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="6"              name="Push-buttons: PC0,1,2,3, NMI and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: Power, User: green: PC4,5,6,7"/>
+      <feature type="USB"       n="1"              name="USB 2.0 Host"/>
+      <feature type="USB"       n="1"              name="USB 2.0 Device"/>
+      <feature type="CAN"       n="1"              name="CAN 2.0B Interface"/>
+      <feature type="ETH"       n="1"              name="10/100Base-T"/>
+      <feature type="DIO"       n="120"/>
+      <feature type="Poti"      n="2"/>
+      <feature type="RS232"     n="2"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug &amp; Trace Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug Interface"/>
+      <feature type="CustomFF"  n="135" m="100"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <condition id="TMPM369FDFG CMSIS Device">
+      <description>Toshiba TMPM369FDFG devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Toshiba:92" Dname="TMPM369FDFG"/>
+    </condition>
+  </conditions>
+
+  <examples>
+    <!-- YDC EB_TMPM369FDFG Development Board -->
+    <example name="Blinky" doc="Abstract.txt" folder="Examples\Blinky">
+      <description>Blinky example</description>
+      <board name="EB_TMPM369FDFG" vendor="Yokogawa"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Examples\RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="EB_TMPM369FDFG" vendor="Yokogawa"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+  <components>
+    <bundle Cbundle="EB_TMPM369FDFG" Cclass="Board Support" Cversion="1.0.0">
+      <description>Yokogawa EB_TMPM369FDFG Development Board</description>
+      <doc>Documents\</doc>
+      <component Cgroup="LED" condition="TMPM369FDFG CMSIS Device">
+        <description>LED driver for YDC EB-TMPM369FDFG Development Board</description>
+        <files>
+          <file category="sourceC" name="Common\LED_EB_TMPM369FDFG.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" condition="TMPM369FDFG CMSIS Device">
+        <description>Button driver for YDC EB-TMPM369FDFG Development Board</description>
+        <files>
+          <file category="sourceC" name="Common\Buttons_EB_TMPM369FDFG.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+</package>

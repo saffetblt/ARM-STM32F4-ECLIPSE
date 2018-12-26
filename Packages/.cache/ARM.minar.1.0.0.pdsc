@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <name>minar</name>
+  <description>mbed OS Scheduler for Cortex-M devices</description>
+  <!-- web download link -->
+  <url>http://www.keil.com/pack/</url>
+  <releases>
+    <release version="1.0.0" date="2016-05-09">
+      Initial release
+    </release>
+  </releases>
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7, SC000 or SC3000</description>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="Cortex-M4"/>
+      <accept Dcore="Cortex-M7"/>
+      <accept Dcore="SC000"/>
+      <accept Dcore="SC300"/>
+    </condition>
+    <condition id="CM0_LE_ARMCC">
+      <description>Cortex-M0 or Cortex-M0+ or SC000 processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="SC000"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM0_BE_ARMCC">
+      <description>Cortex-M0 or Cortex-M0+ or SC000 processor based device in big endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="SC000"/>
+      <require Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM3_LE_ARMCC">
+      <description>Cortex-M3 or SC300 processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="SC300"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM3_BE_ARMCC">
+      <description>Cortex-M3 or SC300 processor based device in big endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="SC300"/>
+      <require Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4_LE_ARMCC">
+      <description>Cortex-M4 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="NO_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4_BE_ARMCC">
+      <description>Cortex-M4 processor based device in big endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="NO_FPU" Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4F_LE_ARMCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4F_BE_ARMCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in big endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7_LE_ARMCC">
+      <description>Cortex-M7 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M7" Dfpu="NO_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7_BE_ARMCC">
+      <description>Cortex-M7 processor based device in big endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M7" Dfpu="NO_FPU" Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7FSP_LE_ARMCC">
+      <description>Cortex-M7 processor based device using Floating Point Unit (Single Precision) in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M7" Dfpu="SP_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7FSP_BE_ARMCC">
+      <description>Cortex-M7 processor based device using Floating Point Unit (Single Precision) in big endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M7" Dfpu="SP_FPU" Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7FDP_LE_ARMCC">
+      <description>Cortex-M7 processor based device using Floating Point Unit (Double Precision) in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M7" Dfpu="DP_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7FDP_BE_ARMCC">
+      <description>Cortex-M7 processor based device using Floating Point Unit (Double Precision) in big endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M7" Dfpu="DP_FPU" Dendian="Big-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="mbed minar RTX">
+      <description>mbed minar RTX requirements</description>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="CMSIS" Cgroup="RTOS" Csub="Keil RTX"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="mbed" Cgroup="minar" Cvariant="CMSIS RTOS RTX" Cversion="1.0.0" condition="mbed minar RTX">
+      <description>mbed OS Scheduler emulator</description>
+      <RTE_Components_h>
+        #define RTE_mbed_minar_rtx              /* mbed minar (RTX) */
+      </RTE_Components_h>
+      <files>
+        <file category="include"                             name="core-util/"/>
+        <file category="include"                             name="minar/"/>
+        <file category="header"                              name="minar/minar/minar.h"/>
+        <file category="library" condition="CM0_LE_ARMCC"    name="minar/library/CM0_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM0_BE_ARMCC"    name="minar/library/CM0_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM3_LE_ARMCC"    name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM3_BE_ARMCC"    name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM4_LE_ARMCC"    name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM4_BE_ARMCC"    name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM4F_LE_ARMCC"   name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM4F_BE_ARMCC"   name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7_LE_ARMCC"    name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7_BE_ARMCC"    name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7FSP_LE_ARMCC" name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7FSP_BE_ARMCC" name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7FDP_LE_ARMCC" name="minar/library/CM3_LE/minar.lib" src="minar/source"/>
+        <file category="library" condition="CM7FDP_BE_ARMCC" name="minar/library/CM3_BE/minar.lib" src="minar/source"/>
+        <file category="source"  attr="template"             name="minar/template/main.cpp" select="'main' function"/>
+      </files>
+    </component>
+  </components>
+</package>

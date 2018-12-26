@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAMD20_DFP</name>
+  <description>Microchip SAM D20 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.1.1" date="2018-05-07">
+      Updated device vendor from Atmel to Microchip.
+      Updated RTX Blinky examples.
+    </release>
+    <release version="1.1.0" date="2015-04-15">
+      Splitting up of SAM D Device Family Pack (supporting SAMD20).
+      fixed: Conditions
+      added board: SAM D20 Xplained PRO
+      updated: Device descriptions
+    </release>
+    <release version="1.0.0">
+      First Release version of SAMD20 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAM D</keyword>
+    <keyword>SAM D20</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM D Series" Dvendor="Microchip:3">
+      <book name="Documents\dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The Microchip | SMART SAM D ARM Cortex-M0+ based microcontroller (MCU) series builds on decades of innovation and experience in embedded Flash microcontroller technology.
+It not only sets a new benchmark for flexibility and ease-of-use but also combines the performance and energy efficiency of an ARM Cortex-M0+ based MCU with an optimized architecture and peripheral set.
+The Microchip | SMART SAM D gives you a truly differentiated general-purpose microcontroller that is ideal for many low-power, cost-sensitive industrial and consumer applications.
+      </description>
+
+      <!-- ************************  Subfamily 'SAM D20'  **************************** -->
+      <subFamily DsubFamily="SAM D20">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+
+        <book name="Documents\Atmel-42129-SAM-D20_Datasheet.pdf" title="SAM D20 Datasheet"/>
+        <description>
+A rich set of peripherals, flexibility and ease-of-use combined with low power consumption make the Microchip SAM D20 ARM Cortex-M0+ based microcontroller series
+ideal for a wide range of home automation, consumer, metering and industrial applications.
+The SAM D20 is designed for simple and intuitive migration between SAM D devices with identical peripheral modules, hex compatible code and a linear address map.
+        </description>
+
+        <feature type="CoreOther"     n="8"                           name="Event System"/>
+        <feature type="Touch"         n="1"                           name="Capacitive Touch Inputs"/>
+        <feature type="AnalogOther"   n="2"                           name="Analog Comparator"/>
+        <feature type="DAC"           n="1"       m="10"              name="DAC"/>
+        <feature type="Temp"          n="-40"     m="85"              name="Operating Temperature Range"/>
+        <feature type="VCC"           n="1.62"    m="3.63"/>
+        <feature type="RTC"           n="32768"                       name="RTC"/>
+        <feature type="WDT"           n="1"                           name="Watchdog"/>
+        <feature type="DMA"           n="12"                          name="DMA channel"/>
+        <feature type="ExtInt"        n="16"                          name="External Interrupts"/>
+
+        <!-- *************************  Device 'ATSAMD20E14'  ***************************** -->
+        <device Dname="ATSAMD20E14">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20E14__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20E14.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="IOs"           n="26"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="6"       m="32"/>
+          <feature type="PWM"           n="10"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20E15'  ***************************** -->
+        <device Dname="ATSAMD20E15">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20E15__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20E15.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="26"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="6"       m="32"/>
+          <feature type="PWM"           n="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20E16'  ***************************** -->
+        <device Dname="ATSAMD20E16">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20E16__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20E16.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="26"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="6"       m="32"/>
+          <feature type="PWM"           n="10"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20E17'  ***************************** -->
+        <device Dname="ATSAMD20E17">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20E17__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20E17.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="26"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="6"       m="32"/>
+          <feature type="PWM"           n="10"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20E18'  ***************************** -->
+        <device Dname="ATSAMD20E18">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20E18__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20E18.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="26"/>
+          <feature type="MPSerial"      n="4"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="Timer"         n="6"       m="32"/>
+          <feature type="PWM"           n="10"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20G14'  ***************************** -->
+        <device Dname="ATSAMD20G14">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20G14__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20G14.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="IOs"           n="38"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20G15'  ***************************** -->
+        <device Dname="ATSAMD20G15">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20G15__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20G15.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="38"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20G16'  ***************************** -->
+        <device Dname="ATSAMD20G16">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20G16__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20G16.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="38"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20G17'  ***************************** -->
+        <device Dname="ATSAMD20G17">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20G17__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20G17.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="38"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20G18'  ***************************** -->
+        <device Dname="ATSAMD20G18">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20G18__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20G18.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="38"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="14"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20J14'  ***************************** -->
+        <device Dname="ATSAMD20J14">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20J14__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20J14.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_16.FLM"  start="0x00000000" size="0x00004000"             default="1"/>
+
+          <feature type="IOs"           n="52"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20J15'  ***************************** -->
+        <device Dname="ATSAMD20J15">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20J15__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20J15.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_32.FLM"  start="0x00000000" size="0x00008000"             default="1"/>
+
+          <feature type="IOs"           n="52"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20J16'  ***************************** -->
+        <device Dname="ATSAMD20J16">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20J16__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20J16.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_64.FLM"  start="0x00000000" size="0x00010000"             default="1"/>
+
+          <feature type="IOs"           n="52"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20J17'  ***************************** -->
+        <device Dname="ATSAMD20J17">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20J17__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20J17.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_128.FLM" start="0x00000000" size="0x00020000"             default="1"/>
+
+          <feature type="IOs"           n="52"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAMD20J18'  ***************************** -->
+        <device Dname="ATSAMD20J18">
+          <compile header="Device\SAMD20\Include\samd20.h" define="__SAMD20J18__"/>
+          <debug svd="SVD\SAMD20\ATSAMD20J18.svd"/>
+          <memory      id="IROM1"                  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory      id="IRAM1"                  start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash\ATSAMD20_256.FLM" start="0x00000000" size="0x00040000"             default="1"/>
+
+          <feature type="IOs"           n="52"/>
+          <feature type="MPSerial"      n="6"                           name="SERCOMM (I2C, USART, SPI)"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="8"       m="32"/>
+          <feature type="PWM"           n="16"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAMD20 CMSIS">
+      <description>Microchip SAM D20 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAMD20*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup SAMD20 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAMD20 CMSIS">
+      <description>System Startup for Microchip SAM D20 Devices</description>
+      <files>
+        <file category="include"   name="Device\SAMD20\Include\"/>
+        <file category="source"    name="Device\SAMD20\Source\ARM\startup_SAMD20.s" attr="config"   version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"    name="Device\SAMD20\Source\system_samd20.c"      attr="config"   version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAMD20-XPRO Board Support -->
+    <bundle Cbundle="SAMD20-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMD20-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAMD20 CMSIS">
+      <description>LED driver for Microchip SAMD20-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\SAMD20-XPRO\Common\LED_SAMD20-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAMD20 CMSIS">
+      <description>Button driver for Microchip SAMD20-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards\Atmel\SAMD20-XPRO\Common\Buttons_SAMD20-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAMD20-XPRO" revision="Rev.5" salesContact="http://www.atmel.com/buy/contact_us.aspx?contactType=Sales%20Representative" orderForm="http://store.atmel.com/product.ashx?sku=ATSAMD20-XPRO&amp;tool_id=">
+      <description>Microchip SAM D20 Xplained Pro Evaluation Kit</description>
+      <image small="Boards\Atmel\SAMD20-XPRO\Documents\SAMD20-XPRO_small.png"
+             large="Boards\Atmel\SAMD20-XPRO\Documents\SAMD20-XPRO_large.png"/>
+      <book category="overview"  name="http://www.atmel.com/tools/ATSAMD20-XPRO.aspx" title="SAM D20 Xplained Pro Evaluation Kit Web Page"/>
+      <book category="manual"    name="Boards\Atmel\SAMD20-XPRO\Documents\Atmel-42102-SAMD20-Xplained-Pro_User-Guide.pdf" title="User Guide"/>
+      <book category="other"     name="Boards\Atmel\SAMD20-XPRO\Documents\Atmel-42102-SAMD20-Xplained-Pro_User-Guide.zip" title="Schematics and Gerber files"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMD20J18"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dfamily="SAM D20"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="LED"       n="1"              name="Yellow User LED"/>
+	    <feature type="CustomFF"  n="60" m="100"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMD20-XPRO Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards\Atmel\SAMD20-XPRO\Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAMD20-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

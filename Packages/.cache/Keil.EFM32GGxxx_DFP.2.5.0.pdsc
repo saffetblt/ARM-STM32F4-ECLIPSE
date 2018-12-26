@@ -1,0 +1,2866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>EFM32GGxxx_DFP</name>
+  <description>Silicon Labs EFM32 Giant Gecko Series Device Support, Drivers and Examples</description>
+
+  <releases>
+    <release version="2.5.0" date="2018-01-15" deprecated="2018-01-15" replacement="SiliconLabs.EFM32GG_DFP">
+      The maintenance of this pack will be discontinued and SiliconLabs is providing the new pack SiliconLabs.EFM32GG_DFP.
+      Updated Board Examples:
+      - Updated USB Host examples thread stack settings
+      Updated emWin examples to emWin V5.42i.
+      Updated CMSIS Driver:
+      - USB Device and Host: Added support for CMSIS-RTOS2
+    </release>
+    <release version="2.4.0" date="2017-06-22">
+      Updated device support files to V5.1.3.
+      Updated Flash Algorithms to 5.2.0.
+      Updated SVD files to V5.2.1.
+      Updated emlib, emdrv to V5.1.3.
+      Updated documentation.
+      Updated examples:
+      - Updated emWin examples to emWin V5.36f
+      Updated CMSIS Driver:
+      - USB Device and Host: Corrected IRQ handler routine for Host and Device capable driver
+      - USB Host:
+      -- Corrected overcurrent pin functionality
+      -- Updated RTE_Device.h for USB Host VBUS and overcurrent pin selections
+    </release>
+    <release version="2.3.0" date="2016-04-22">
+      Updated device support files to V4.2.1.
+      Updated emlib, emdrv to V4.2.1.
+      Removed duplicate DMA Channel 3 configuration in RTE_Device.h
+      Updated CMSIS Driver USB Host:
+      - Removed interrupt priority handling
+      Updated Examples:
+      - USB Host examples for EFM32GG_DK3750 board
+      - USB Device MassStorage example (updated USBD_User_MSC_0.c)
+    </release>
+    <release version="2.2.0" date="2015-07-31">
+      Added EFM32GG900 devices.
+      Updated device support files to V4.0.0
+      Updated CMSIS drivers:
+      - USB Device, USB Host: Updated initialization, uninitialization and power procedures
+      - SPI:
+      -- Updated initialization, uninitialization and power procedures
+      -- Corrected status bit-field race conditions
+    </release>
+    <release version="2.1.0" date="2014-12-11">
+      Updated:
+      - SiliconLabs Content updated to Version 3.20.7
+      - USB Host Driver to CMSIS USB Host Driver API v2.01
+      Updated Examples:
+      - File System component's Configuration file to File System Version 6.2
+      - File_Demo and USB Host MassStorage examples updated to use new fdelete() API of File System 6.2
+    </release>
+    <release version="2.0.0" date="2014-09-09">
+      Added CMSIS Driver compatible to API Version 2.0 (SPI, USB Host and Device)
+      Added MDK-Middleware Examples for Filesystem, Network, USB and Graphics (EFM32GG_DK3750)
+      SiliconLabs Packages included:
+      - EM_CMSIS 3.20.6
+      - EFM32-CMSIS-SVD_Giant 3.20.5
+      - EM_BSP_COMMON 3.20.5
+      - emdrv 3.20.5
+      - glib_1.2 3.20.5
+      - EFM32GG_DK3750_BSP 3.20.5
+      - EFM32GG_STK3700_BSP 3.20.5
+      Added Debug Description for trace setup.
+    </release>
+    <release version="1.0.2" date="2014-02-20">
+      Updated emlib 3.20.2
+      USB Device driver update: multiple packet read, EP0 unconfiguration
+      SPI driver updated: corrected DMA transfer mode and IRQ handling - UART_ macros replaced with correct USART_ variant.
+    </release>
+    <release version="1.0.1">
+      Updated drivers (namespace prefix ARM_ added)
+    </release>
+    <release version="1.0.0">
+      First Release version of EFM32GG Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>EFM32GG</keyword>
+    <keyword>EFM32</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFM32GG Series" Dvendor="Silicon Labs:21">
+      <processor Dclock="48000000" Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <debugconfig swj="false" default="swd" clock="5000000"/>
+
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>
+
+
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <book name="Documents/EFM32-Cortex-M3-RM.pdf"      title="EFM32 Cortex-M3 Reference Manual"/>
+      <book name="Documents/EFM32GG-RM.pdf"              title="EFM32GG Reference Manual"/>
+
+      <description>
+Silicon Labs' EFM32™ Giant Gecko ARM Cortex-M3 based 32-bit microcontrollers (MCUs) provide flash memory configurations up to 1024 kB, 128 kB of RAM and CPU speeds up to 48 MHz, making them ideal for energy sensitive applications with high memory and connectivity requirements.
+The Giant Gecko MCUs are available in packages down to 7x7 mm, as well as full wafer options, and feature autonomous, low energy peripherals, including AES encryption, pulse counter, low energy UARTs, a low energy sensor interface and on-chip operational amplifiers.
+
+The USB connectivity option is USB 2.0 compliant at full speed (12 Mbps), integrating 2 kB endpoint buffers and handling up to 14 endpoints.
+The Giant Gecko MCUs provide support for USB host, device and on-the-go configurations, as well as bootloader over USB.
+      </description>
+
+      <feature type="AnalogOther"   n="3"                           name="Operational Amplifier"/>
+      <feature type="Other"         n="1"                           name="Low Energy Sensor Interface (LESENSE)"/>
+
+      <!-- <debug> not required, defaults to __dp="0" and __ap="0" -->
+      <trace>
+        <!-- SWO Trace Support -->
+        <serialwire/>
+        <!-- TPIU support: 1-bit, 2-bit, and 4-bit traceport -->
+        <traceport width="0x0000000B"/>
+      </trace>
+
+      <debugvars configfile="Device/EFM32GG/Debug/EFM32GGxxx.dbgconf"> <!-- version="0.0.1"> -->
+        __var TraceClkSrc     = 0;  // Clock source for trace clock (0 - System Clock, 1 - Aux Clock)
+        __var PinLocationSWO  = 0;  // Pin Locations for SWO pin
+        __var PinLocationTPIU = 0;  // Pin Locations for TPIU pins
+      </debugvars>
+
+      <sequences>
+
+        <!-- ResetHardware: A HW reset also resets the debug interface.
+             A debugger needs to be capable of restoring a debug connection.
+             Otherwise, the HW reset cannot be used. -->
+
+        <!-- Pre-defined Debug Access Sequences -->
+
+        <!-- Begin: TraceStart Sequence -->
+        <sequence name="TraceStart">
+          <block>
+            __var traceSWO  = (__traceout &amp; 0x1) != 0;
+            __var traceTPIU = (__traceout &amp; 0x2) != 0;
+          </block>
+
+          <control if="traceSWO">
+            <block>
+              Sequence("EnableTraceSWO");
+            </block>
+          </control>
+
+          <control if="traceTPIU">
+            <block>
+              Sequence("EnableTraceTPIU");
+            </block>
+          </control>
+        </sequence>
+        <!-- End: TraceStart Sequence -->
+
+        <!-- Begin: TraceStop Sequence -->
+        <sequence name="TraceStop">
+          <block>
+            __var traceSWO       = (__traceout &amp; 0x1) != 0;
+            __var traceTPIU      = (__traceout &amp; 0x2) != 0;
+          </block>
+
+          <control if="traceSWO">
+            <block>
+              Sequence("DisableTraceSWO");
+            </block>
+          </control>
+
+          <control if="traceTPIU">
+            <block>
+              Sequence("DisableTraceTPIU");
+            </block>
+          </control>
+        </sequence>
+        <!-- End: TraceStop Sequence -->
+
+
+        <!-- User-defined Debug Access Sequences -->
+
+        <!-- Begin: SelectTraceClock Sequence -->
+        <sequence name="SelectTraceClock">
+          <control if="TraceClkSrc == 0">
+            <block>
+              // Use System Clock for Trace
+              Write32(0x400C8000, (Read32(0x400C8000) | (1 &lt;&lt; 28)));  // Set CMU_CTRL.DBGCLK to HFCLK
+            </block>
+          </control>
+
+          <control if="TraceClkSrc == 1">
+            <block>
+              // Use AUXHFRCO for Trace
+              Write32(0x400C8000, (Read32(0x400C8000) &amp; ~(1 &lt;&lt; 28)));  // Set CMU_CTRL.DBGCLK to AUXHFRCO
+            </block>
+
+            <control if="((Read32(0x400C802C) &amp; (1 &lt;&lt; 5)) == 0)">
+              <block>
+                // Enable AUXHFRCO
+                Write32(0x400C8020, (1 &lt;&lt; 4));
+              </block>
+              <!-- Wait for AUXHFRCO selection to become stable -->
+              <control while="(Read32(0x400C802C) &amp; (1 &lt;&lt; 5)) == 0" timeout="1000000"/>
+            </control>
+
+          </control>
+        </sequence>
+        <!-- End: SelectTraceClock Sequence -->
+
+        <!-- Begin: EnableTraceSWO Sequence -->
+        <sequence name="EnableTraceSWO">
+          <block>
+            __var gpioRouteMask = 0x00000304; // (SWLOCATION|SWOPEN)
+
+            // Enable peripheral clocks (LE, GPIO)
+            Write32(0x400C8040, (Read32(0x400C8040) | (1 &lt;&lt;  4)));
+            Write32(0x400C8044, (Read32(0x400C8044) | (1 &lt;&lt; 13)));
+
+            Sequence("SelectTraceClock");  // Configure trace clock on device
+          </block>
+
+          <control if="PinLocationSWO == 0">
+            <block>
+              Write32(0x400060B8, (Read32(0x400060B8) &amp; ~0x00000F00) | 0x00000400); // GPIO_PF_MODEL Pin 2 - PUSHPULL: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 1">
+            <block>
+              Write32(0x40006050, (Read32(0x40006050) &amp; ~0xF0000000) | 0x40000000); // GPIO_PC_MODEH Pin 7 - PUSHPULL: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 2">
+            <block>
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0x0000000F) | 0x00000004); // GPIO_PD_MODEL Pin 0 - PUSHPULL: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 3">
+            <block>
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0x000000F0) | 0x00000040); // GPIO_PD_MODEL Pin 1 - PUSHPULL: SWO
+            </block>
+          </control>
+
+          <block>
+            // Set GPIO_ROUTE
+            Write32(0x40006120, (Read32(0x40006120) &amp; ~gpioRouteMask) | (0x1 &lt;&lt; 2) | (PinLocationSWO &lt;&lt; 8));
+          </block>
+
+        </sequence>
+        <!-- End: EnableTraceSWO Sequence -->
+
+        <!-- Begin: EnableTraceTPIU Sequence -->
+        <sequence name="EnableTraceTPIU">
+          <block>
+            __var tracePortWidth = (__traceout &amp; 0x003F0000) &gt;&gt; 16;
+            __var gpioRoute      = 0;
+            __var gpioRouteMask  = 0x0301F000;  // (ETMLOCATION|TCLKPEN|TD0PEN|TD1PEN|TD2PEN|TD3PEN)
+
+            // Enable peripheral clocks (LE, GPIO)
+            Write32(0x400C8040, (Read32(0x400C8040) | (1 &lt;&lt;  4)));
+            Write32(0x400C8044, (Read32(0x400C8044) | (1 &lt;&lt; 13)));
+
+            Sequence("SelectTraceClock");  // Configure trace clock on device
+
+            gpioRoute = (PinLocationTPIU &lt;&lt; 24);
+          </block>
+
+          <control if="tracePortWidth == 1">
+            <block>
+              gpioRoute |= 0x00003000;
+            </block>
+          </control>
+
+          <control if="tracePortWidth == 2">
+            <block>
+              gpioRoute |= 0x00007000;
+            </block>
+          </control>
+
+          <control if="tracePortWidth == 4">
+            <block>
+              gpioRoute |= 0x0001F000;
+            </block>
+          </control>
+
+          <control if="PinLocationTPIU == 0">
+            <block>
+              Write32(0x40006070, ((Read32(0x40006070) &amp; ~0xF0000000) | 0x40000000)); // GPIO_PD_MODEL Pin 7 - PUSHPULL: TRACECLK
+              Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x0F000000) | 0x04000000)); // GPIO_PD_MODEL Pin 6 - PUSHPULL: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x0000F000) | 0x00004000)); // GPIO_PD_MODEL Pin 3 - PUSHPULL: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x000F0000) | 0x00040000)); // GPIO_PD_MODEL Pin 4 - PUSHPULL: TRACEDATA2
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x00F00000) | 0x00400000)); // GPIO_PD_MODEL Pin 5 - PUSHPULL: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 1">
+            <block>
+              Write32(0x400060BC, ((Read32(0x400060BC) &amp; ~0x0000000F) | 0x00000004)); // GPIO_PF_MODEH Pin 0 - PUSHPULL: TRACECLK
+              Write32(0x400060BC, ((Read32(0x400060BC) &amp; ~0x000000F0) | 0x00000040)); // GPIO_PF_MODEH Pin 1 - PUSHPULL: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006074, ((Read32(0x40006074) &amp; ~0x00F00000) | 0x00400000)); // GPIO_PD_MODEH Pin 5 - PUSHPULL: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x4000602C, ((Read32(0x4000602C) &amp; ~0xF0000000) | 0x40000000)); // GPIO_PB_MODEH Pin 7 - PUSHPULL: TRACEDATA2
+                Write32(0x400060B8, ((Read32(0x400060B8) &amp; ~0x0000F000) | 0x00004000)); // GPIO_PF_MODEL Pin 3 - PUSHPULL: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 2">
+            <block>
+              Write32(0x4000604C, ((Read32(0x4000604C) &amp; ~0x0F000000) | 0x04000000)); // GPIO_PC_MODEL Pin 6 - PUSHPULL: TRACECLK
+              Write32(0x4000604C, ((Read32(0x4000604C) &amp; ~0xF0000000) | 0x40000000)); // GPIO_PC_MODEL Pin 7 - PUSHPULL: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x0000F000) | 0x00004000)); // GPIO_PD_MODEL Pin 3 - PUSHPULL: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x000F0000) | 0x00040000)); // GPIO_PD_MODEL Pin 4 - PUSHPULL: TRACEDATA2
+                Write32(0x40006070, ((Read32(0x40006070) &amp; ~0x00F00000) | 0x00400000)); // GPIO_PD_MODEL Pin 5 - PUSHPULL: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 3">
+            <block>
+              Write32(0x40006004, ((Read32(0x40006004) &amp; ~0x0F000000) | 0x04000000)); // GPIO_PA_MODEL Pin 6 - PUSHPULL: TRACECLK
+              Write32(0x40006004, ((Read32(0x40006004) &amp; ~0x00000F00) | 0x00000400)); // GPIO_PA_MODEL Pin 2 - PUSHPULL: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006004, ((Read32(0x40006004) &amp; ~0x0000F000) | 0x00004000)); // GPIO_PA_MODEL Pin 3 - PUSHPULL: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006004, ((Read32(0x40006004) &amp; ~0x000F0000) | 0x00040000)); // GPIO_PA_MODEL Pin 4 - PUSHPULL: TRACEDATA2
+                Write32(0x40006004, ((Read32(0x40006004) &amp; ~0x00F00000) | 0x00400000)); // GPIO_PA_MODEL Pin 5 - PUSHPULL: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <block>
+            Write32(0x40006120, (Read32(0x40006120) &amp; ~gpioRouteMask) | gpioRoute); // GPIO_ROUTE
+          </block>
+        </sequence>
+        <!-- End: EnableTraceTPIU Sequence -->
+
+
+        <!-- Begin: DisableTraceSWO Sequence -->
+        <sequence name="DisableTraceSWO">
+          <block>
+            // Disable GPIO_ROUTE.SWOPEN
+            Write32(0x40006120, (Read32(0x40006120) &amp; ~(1 &lt;&lt; 2)));
+          </block>
+
+          <control if="PinLocationSWO == 0">
+            <block>
+              Write32(0x400060B8, (Read32(0x400060B8) &amp; ~0x00000F00)); // GPIO_PF_MODEL Pin 2 - DISABLED: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 1">
+            <block>
+              Write32(0x40006050, (Read32(0x40006050) &amp; ~0xF0000000)); // GPIO_PC_MODEH Pin 7 - DISABLED: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 2">
+            <block>
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0x0000000F)); // GPIO_PD_MODEL Pin 0 - DISABLED: SWO
+            </block>
+          </control>
+
+          <control if="PinLocationSWO == 3">
+            <block>
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0x000000F0)); // GPIO_PD_MODEL Pin 1 - DISABLED: SWO
+            </block>
+          </control>
+        </sequence>
+        <!-- End: DisableTraceSWO Sequence -->
+
+        <!-- Begin: DisableTraceTPIU Sequence -->
+        <sequence name="DisableTraceTPIU">
+          <block>
+            __var tracePortWidth = (__traceout &amp; 0x003F0000) &gt;&gt; 16;
+
+            // Disable TPIU trace pins in GPIO_ROUTE
+            Write32(0x40006120, (Read32(0x40006120) &amp; ~(0x0001F000)));
+          </block>
+
+          <control if="PinLocationTPIU == 0">
+            <block>
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0xF0000000)); // GPIO_PD_MODEL Pin 7 - DISABLED: TRACECLK
+              Write32(0x40006070, (Read32(0x40006070) &amp; ~0x0F000000)); // GPIO_PD_MODEL Pin 6 - DISABLED: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x0000F000)); // GPIO_PD_MODEL Pin 3 - DISABLED: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x000F0000)); // GPIO_PD_MODEL Pin 4 - DISABLED: TRACEDATA2
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x00F00000)); // GPIO_PD_MODEL Pin 5 - DISABLED: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 1">
+            <block>
+              Write32(0x400060BC, (Read32(0x400060BC) &amp; ~0x0000000F)); // GPIO_PF_MODEH Pin 0 - DISABLED: TRACECLK
+              Write32(0x400060BC, (Read32(0x400060BC) &amp; ~0x000000F0)); // GPIO_PF_MODEH Pin 1 - DISABLED: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006074, (Read32(0x40006074) &amp; ~0x00F00000)); // GPIO_PD_MODEH Pin 5 - DISABLED: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x4000602C, (Read32(0x4000602C) &amp; ~0xF0000000)); // GPIO_PB_MODEH Pin 7 - DISABLED: TRACEDATA2
+                Write32(0x400060B8, (Read32(0x400060B8) &amp; ~0x0000F000)); // GPIO_PF_MODEL Pin 3 - DISABLED: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 2">
+            <block>
+              Write32(0x4000604C, (Read32(0x4000604C) &amp; ~0x0F000000)); // GPIO_PC_MODEL Pin 6 - DISABLED: TRACECLK
+              Write32(0x4000604C, (Read32(0x4000604C) &amp; ~0xF0000000)); // GPIO_PC_MODEL Pin 7 - DISABLED: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x0000F000)); // GPIO_PD_MODEL Pin 3 - DISABLED: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x000F0000)); // GPIO_PD_MODEL Pin 4 - DISABLED: TRACEDATA2
+                Write32(0x40006070, (Read32(0x40006070) &amp; ~0x00F00000)); // GPIO_PD_MODEL Pin 5 - DISABLED: TRACEDATA3
+              </block>
+            </control>
+          </control>
+
+          <control if="PinLocationTPIU == 3">
+            <block>
+              Write32(0x40006004, (Read32(0x40006004) &amp; ~0x0F000000)); // GPIO_PA_MODEL Pin 6 - DISABLED: TRACECLK
+              Write32(0x40006004, (Read32(0x40006004) &amp; ~0x00000F00)); // GPIO_PA_MODEL Pin 2 - DISABLED: TRACEDATA0
+            </block>
+            <control if="tracePortWidth &gt;= 2">
+              <block>
+                Write32(0x40006004, (Read32(0x40006004) &amp; ~0x0000F000)); // GPIO_PA_MODEL Pin 3 - DISABLED: TRACEDATA1
+              </block>
+            </control>
+            <control if="tracePortWidth &gt;= 4">
+              <block>
+                Write32(0x40006004, (Read32(0x40006004) &amp; ~0x000F0000)); // GPIO_PA_MODEL Pin 4 - DISABLED: TRACEDATA2
+                Write32(0x40006004, (Read32(0x40006004) &amp; ~0x00F00000)); // GPIO_PA_MODEL Pin 5 - DISABLED: TRACEDATA3
+              </block>
+            </control>
+          </control>
+        </sequence>
+        <!-- End: DisableTraceTPIU Sequence -->
+
+      </sequences>
+
+      <!-- ************************  Subfamily 'EFM32GG995'  **************************** -->
+      <subFamily DsubFamily="EFM32GG995">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="93"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG995.pdf"                title="EFM32GG995 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG995F1024'  ***************************** -->
+        <device Dname="EFM32GG995F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG995F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG995F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG995F512'  ***************************** -->
+        <device Dname="EFM32GG995F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG995F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG995F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG990'  **************************** -->
+      <subFamily DsubFamily="EFM32GG990">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="87"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG990.pdf"                title="EFM32GG990 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG990F1024'  ***************************** -->
+        <device Dname="EFM32GG990F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG990F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG990F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG990F512'  ***************************** -->
+        <device Dname="EFM32GG990F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG990F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG990F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG980'  **************************** -->
+      <subFamily DsubFamily="EFM32GG980">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="83"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG980.pdf"                title="EFM32GG980 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG980F1024'  ***************************** -->
+        <device Dname="EFM32GG980F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG980F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG980F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG980F512'  ***************************** -->
+        <device Dname="EFM32GG980F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG980F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG980F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG942'  **************************** -->
+      <subFamily DsubFamily="EFM32GG942">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="50"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG942.pdf"                title="EFM32GG942 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG942F1024'  ***************************** -->
+        <device Dname="EFM32GG942F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG942F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG942F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG942F512'  ***************************** -->
+        <device Dname="EFM32GG942F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG942F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG942F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG940'  **************************** -->
+      <subFamily DsubFamily="EFM32GG940">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="53"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG940.pdf"                title="EFM32GG940 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG940F1024'  ***************************** -->
+        <device Dname="EFM32GG940F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG940F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG940F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG940F512'  ***************************** -->
+        <device Dname="EFM32GG940F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG940F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG940F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG900'  **************************** -->
+      <subFamily DsubFamily="EFM32GG900">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="93"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG900.pdf"                title="EFM32GG940 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG900F1024'  ***************************** -->
+        <device Dname="EFM32GG900F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG900F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG900F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG900F512'  ***************************** -->
+        <device Dname="EFM32GG900F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG900F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG900F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG895'  **************************** -->
+      <subFamily DsubFamily="EFM32GG895">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="IOs"           n="93"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG895.pdf"                title="EFM32GG895 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG895F512'  ***************************** -->
+        <device Dname="EFM32GG895F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG895F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG895F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG895F1024'  ***************************** -->
+        <device Dname="EFM32GG895F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG895F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG895F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG890'  **************************** -->
+      <subFamily DsubFamily="EFM32GG890">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="IOs"           n="90"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG890.pdf"                title="EFM32GG890 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG890F1024'  ***************************** -->
+        <device Dname="EFM32GG890F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG890F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG890F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG890F512'  ***************************** -->
+        <device Dname="EFM32GG890F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG890F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG890F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG880'  **************************** -->
+      <subFamily DsubFamily="EFM32GG880">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="IOs"           n="86"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG880.pdf"                title="EFM32GG880 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG880F1024'  ***************************** -->
+        <device Dname="EFM32GG880F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG880F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG880F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG880F512'  ***************************** -->
+        <device Dname="EFM32GG880F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG880F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG880F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG842'  **************************** -->
+      <subFamily DsubFamily="EFM32GG842">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="IOs"           n="53"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG842.pdf"                title="EFM32GG842 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG842F1024'  ***************************** -->
+        <device Dname="EFM32GG842F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG842F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG842F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG842F512'  ***************************** -->
+        <device Dname="EFM32GG842F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG842F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG842F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG840'  **************************** -->
+      <subFamily DsubFamily="EFM32GG840">
+        <feature type="LCD"           n="1"                           name="Integrated LCD Controller for up to 8x {36|34|20|18|16} segments"/>
+        <feature type="IOs"           n="56"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG840.pdf"                title="EFM32GG840 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG840F1024'  ***************************** -->
+        <device Dname="EFM32GG840F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG840F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG840F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG840F512'  ***************************** -->
+        <device Dname="EFM32GG840F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG840F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG840F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG395'  **************************** -->
+      <subFamily DsubFamily="EFM32GG395">
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="93"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG395.pdf"                title="EFM32GG395 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG395F1024'  ***************************** -->
+        <device Dname="EFM32GG395F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG395F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG395F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG395F512'  ***************************** -->
+        <device Dname="EFM32GG395F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG395F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG395F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG390'  **************************** -->
+      <subFamily DsubFamily="EFM32GG390">
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="87"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG390.pdf"                title="EFM32GG390 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG390F1024'  ***************************** -->
+        <device Dname="EFM32GG390F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG390F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG390F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG390F512'  ***************************** -->
+        <device Dname="EFM32GG390F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG390F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG390F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG380'  **************************** -->
+      <subFamily DsubFamily="EFM32GG380">
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="83"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG380.pdf"                title="EFM32GG380 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG380F1024'  ***************************** -->
+        <device Dname="EFM32GG380F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG380F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG380F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG380F512'  ***************************** -->
+        <device Dname="EFM32GG380F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG380F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG380F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG332'  **************************** -->
+      <subFamily DsubFamily="EFM32GG332">
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="50"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG332.pdf"                title="EFM32GG332 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG332F1024'  ***************************** -->
+        <device Dname="EFM32GG332F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG332F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG332F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG332F512'  ***************************** -->
+        <device Dname="EFM32GG332F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG332F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG332F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG330'  **************************** -->
+      <subFamily DsubFamily="EFM32GG330">
+        <feature type="USBD"          n="1"/>
+        <feature type="IOs"           n="53"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG330.pdf"                title="EFM32GG330 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG330F1024'  ***************************** -->
+        <device Dname="EFM32GG330F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG330F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG330F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG330F512'  ***************************** -->
+        <device Dname="EFM32GG330F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG330F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG330F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG295'  **************************** -->
+      <subFamily DsubFamily="EFM32GG295">
+        <feature type="IOs"           n="93"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG295.pdf"                title="EFM32GG295 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG295F1024'  ***************************** -->
+        <device Dname="EFM32GG295F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG295F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG295F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG295F512'  ***************************** -->
+        <device Dname="EFM32GG295F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG295F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG295F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG290'  **************************** -->
+      <subFamily DsubFamily="EFM32GG290">
+        <feature type="IOs"           n="90"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG290.pdf"                title="EFM32GG290 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG290F1024'  ***************************** -->
+        <device Dname="EFM32GG290F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG290F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG290F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG290F512'  ***************************** -->
+        <device Dname="EFM32GG290F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG290F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG290F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG280'  **************************** -->
+      <subFamily DsubFamily="EFM32GG280">
+        <feature type="IOs"           n="86"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG280.pdf"                title="EFM32GG280 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG280F1024'  ***************************** -->
+        <device Dname="EFM32GG280F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG280F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG280F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG280F512'  ***************************** -->
+        <device Dname="EFM32GG280F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG280F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG280F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG232'  **************************** -->
+      <subFamily DsubFamily="EFM32GG232">
+        <feature type="IOs"           n="53"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG232.pdf"                title="EFM32GG232 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG232F1024'  ***************************** -->
+        <device Dname="EFM32GG232F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG232F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG232F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG232F512'  ***************************** -->
+        <device Dname="EFM32GG232F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG232F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG232F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'EFM32GG230'  **************************** -->
+      <subFamily DsubFamily="EFM32GG230">
+        <feature type="IOs"           n="56"                          name="General Purpose I/O pins"/>
+
+        <book name="Documents/EFM32GG230.pdf"                title="EFM32GG230 Data Sheet"/>
+
+        <!-- *************************  Device 'EFM32GG230F1024'  ***************************** -->
+        <device Dname="EFM32GG230F1024">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG230F1024"/>
+          <debug svd="SVD/EFM32GG/EFM32GG230F1024.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32GG230F512'  ***************************** -->
+        <device Dname="EFM32GG230F512">
+          <compile header="Device/EFM32GG/Include/em_device.h"  define="EFM32GG230F512"/>
+          <debug svd="SVD/EFM32GG/EFM32GG230F512.svd"/>
+          <memory id="IROM1"                  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                  start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/EFM32GG.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x8000" default="1"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFM32GG">
+      <description>Silicon Labs EFM32GG devices</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32GG*"/>
+    </condition>
+    <condition id="EFM32GG990 Device">
+      <description>Silicon Labs EFM32GG990 devices</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32GG990*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="EFM32GG CMSIS">
+      <description>Silicon Labs EFM32GG devices, CMSIS Core</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- Device + CMSIS + Compiler Conditions -->
+    <condition id="EFM32GG CMSIS GCC">
+      <description>Silicon Labs EFM32GG devices, CMSIS Core, GCC compiler</description>
+      <require condition="EFM32GG CMSIS"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+
+    <!-- emlib Conditions -->
+    <condition id="emlib Framework">
+      <description>Silicon Labs emlib Framework</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+    </condition>
+    <condition id="emlib SYSTEM">
+      <description>Silicon Labs emlib with SYSTEM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib EMU">
+      <description>Silicon Labs emlib with EMU</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+    </condition>
+    <condition id="emlib CMU">
+      <description>Silicon Labs emlib with CMU</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM">
+      <description>Silicon Labs emlib with CMU, SYSTEM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+    <condition id="emlib CMU SYSTEM CORE">
+      <description>Silicon Labs emlib with CMU, SYSTEM, CORE</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+    </condition>
+    <condition id="emlib CMU GPIO">
+      <description>Silicon Labs emlib with CMU, GPIO</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="Framework"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+    </condition>
+
+    <condition id="emdrv DMADRV">
+      <description>Silicon Labs Driver DMADRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="DmaCtrl"/>
+    </condition>
+    <condition id="emdrv GPIOINT">
+      <description>Silicon Labs Driver GPIOINT</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+    </condition>
+    <condition id="emdrv NVM">
+      <description>Silicon Labs Driver NVM</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+    </condition>
+    <condition id="emdrv RTCDRV">
+      <description>Silicon Labs Driver RTCDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="emdrv SLEEP">
+      <description>Silicon Labs Driver SLEEP</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+    </condition>
+    <condition id="emdrv SPIDRV">
+      <description>Silicon Labs Driver SPIDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="RTCDRV"/>
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="DMADRV"/>
+    </condition>
+    <condition id="emdrv TEMPDRV">
+      <description>Silicon Labs Driver TEMPDRV</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="SYSTEM"/>
+    </condition>
+
+    <condition id="glib CORE">
+      <description>glib CORE</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver"/>
+    </condition>
+    <condition id="glib Driver DISPLAY">
+      <description>glib Display Driver</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Display"/>
+    </condition>
+    <condition id="glib Driver SSD2119 16-bit">
+      <description>glib Display Driver SSD2119 16-bit IF</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+  <!-- Not available on Giant Gecko DK and STK
+    <condition id="glib Driver SSD2119 18-bit">
+      <description>glib Display Driver SSD2119 18-bit IF</description>
+      <require condition="EFM32GG"/>
+    </condition>
+    <condition id="glib Driver SSD2119 SPI">
+      <description>glib Display Driver SSD2119 SPI IF</description>
+      <require condition="EFM32GG"/>
+    </condition>
+  -->
+    <condition id="glib Driver SSD2119 RGB">
+      <description>glib Display Driver SSD2119 RGB IF</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="RGB"/>
+    </condition>
+
+    <condition id="EFM32GG CMSIS GPIO CMU">
+      <description>EFM32GG with CMSIS and emlib: GPIO, CMU</description>
+      <require condition="EFM32GG CMSIS"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+    </condition>
+    <condition id="EFM32GG CMSIS GPIO CMU DMA">
+      <description>EFM32GG with CMSIS and emlib: GPIO, CMU, DMA</description>
+      <require condition="EFM32GG CMSIS"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+    </condition>
+
+    <!-- bsp Conditions -->
+    <condition id="EFM32GG DK3750">
+      <description>EFM32GG DK3750 Board Support Core</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+    <condition id="EFM32GG STK3700">
+      <description>EFM32GG STK3700 Board Support Core</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="MSC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+
+    <condition id="EFM32GG BSP">
+      <description>EFM32GG Board Support Package</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="EFM32GG BSP ADC">
+      <description>EFM32GG BSP with ADC</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ADC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="EFM32GG BSP EEPROM">
+      <description>EFM32GG BSP with EEPROM</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Eeprom"/>
+    </condition>
+    <condition id="EFM32GG BSP TempSensor">
+      <description>EFM32GG BSP with TempSensor</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="TempSensor"/>
+    </condition>
+    <condition id="EFM32GG BSP Touch">
+      <description>EFM32GG BSP with Touch</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Touch"/>
+    </condition>
+    <condition id="EFM32GG BSP GLIB TFT">
+      <description>EFM32GG BSP with glib and TFT</description>
+      <require condition="EFM32GG990 Device"/>
+      <require Cclass="Graphics"      Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <accept  Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="EBI"/>
+      <accept  Cclass="Board Support" Cgroup="Drivers" Csub="Tft" Cvariant="RGB"/>
+    </condition>
+
+  <!-- Not available on Giant Gecko DK and STK
+    <condition id="BSP Driver CapSense">
+      <description>BSP Driver CapSense</description>
+      <require condition="EFM32GG"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ACMP"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+  -->
+    <condition id="BSP Driver CapSense LE">
+      <description>BSP Driver CapSense (Low Energy)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ACMP"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="LESENSE"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Display">
+      <description>BSP Driver Display</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="PRS"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Udelay"/>
+    </condition>
+    <condition id="BSP Driver DmaCtrl">
+      <description>BSP Driver DmaCtrl</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+    </condition>
+    <condition id="BSP Driver Eeprom">
+      <description>BSP Driver Eeprom</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver I2cSpm">
+      <description>BSP Driver I2cSpm</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="I2C"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Ksz8851snl SPI">
+      <description>BSP Driver Ksz8851snl SPI</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+    </condition>
+    <condition id="BSP Driver Ksz8851snl">
+      <description>BSP Driver Ksz8851snl</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Ksz8851snl_spi"/>
+    </condition>
+    <condition id="BSP Driver NandFlash">
+      <description>BSP Driver NandFlash</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="DMA"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="DmaCtrl"/>
+    </condition>
+    <condition id="BSP Driver NorFlash">
+      <description>BSP Driver NorFlash</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo Serial">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <accept  Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo TextDisplay">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="TextDisplay"/>
+    </condition>
+    <condition id="BSP Driver RetargetIo Tft">
+      <description>BSP Driver RetargetIo (Serial)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <accept  Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*-bit IF"/>
+      <accept  Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*SPI IF"/>
+    </condition>
+    <condition id="BSP Driver RtcDrv">
+      <description>BSP Driver RtcDrv</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="BSP Driver SegmentLcd">
+      <description>BSP Driver SegmentLcd</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="LCD"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+    </condition>
+    <condition id="BSP Driver Si114x">
+      <description>BSP Driver Si7013</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emdrv"   Csub="RTCDRV"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver Si7013">
+      <description>BSP Driver Si7013</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver TempSensor">
+      <description>BSP Driver TempSensor</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+    </condition>
+    <condition id="BSP Driver TextDisplay">
+      <description>BSP Driver TextDisplay</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: STK3700 -->
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Display"/>
+    </condition>
+    <condition id="BSP Driver Tft EBI">
+      <description>BSP Driver Tft (EBI)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*-bit IF"/>
+    </condition>
+    <condition id="BSP Driver Tft RGB">
+      <description>BSP Driver Tft (RGB)</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="EBI"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="USART"/>
+      <require Cclass="Board Support" Cgroup="CORE"/>
+      <require Cclass="Graphics"      Cgroup="Display Driver" Cvariant="*RGB IF"/>
+    </condition>
+    <condition id="BSP Driver Touch">
+      <description>BSP Driver Touch</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="ADC"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="GPIO"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="I2cSpm"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Eeprom"/>
+    </condition>
+    <condition id="BSP Driver Udelay">
+      <description>BSP Driver Udelay</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CORE"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="RTC"/>
+    </condition>
+    <condition id="BSP Driver VddCheck">
+      <description>BSP Driver VddCheck</description>
+      <require condition="EFM32GG990 Device"/> <!-- EFM32GG990: DK3750, STK3700 -->
+      <require Cclass="Device"        Cgroup="emlib"   Csub="CMU"/>
+      <require Cclass="Device"        Cgroup="emlib"   Csub="VCMP"/>
+    </condition>
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Device"        Cgroup="emlib"   doc="emdoc/efm32gg/html/group__emlib.html" >Silicon Labs Low-level peripheral library</description>
+    <description Cclass="Device"        Cgroup="emdrv"   doc="emdoc/efm32gg/html/group__emdrv.html" >Silicon Labs energyAware drivers</description>
+    <description Cclass="Board Support" Cgroup="Drivers" doc="emdoc/efm32gg/html/group__kitdrv.html">Silicon Labs Kit support and drivers</description>
+  </taxonomy>
+
+  <components>
+    <!-- Startup -->
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="5.1.3" condition="EFM32GG CMSIS">
+      <description>System Startup for Silicon Labs EFM32GG device series</description>
+      <files>
+        <file category="doc"          name="emdoc/efm32gg/html/index.html"/>
+
+        <file category="include"      name="Device/EFM32GG/Include/"/>
+        <file category="sourceAsm"    name="Device/EFM32GG/Source/ARM/startup_efm32gg.s" attr="config" version="5.1.3" condition="Compiler ARMCC"/>
+        <file category="sourceC"      name="Device/EFM32GG/Source/GCC/startup_efm32gg.S" attr="config" version="5.1.3" condition="Compiler GCC"  />
+        <file category="linkerScript" name="Device/EFM32GG/Source/GCC/efm32gg.ld"        attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="sourceC"      name="Device/EFM32GG/Source/system_efm32gg.c"      attr="config" version="5.1.3"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header"       name="RTE_Driver/Config/RTE_Device.h"              attr="config" version="2.0.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="5.1.3" condition="EFM32GG CMSIS GCC">
+      <description>System Startup for Silicon Labs EFM32GG device series</description>
+      <files>
+        <file category="doc"          name="emdoc/efm32gg/html/index.html"/>
+
+        <file category="include"      name="Device/EFM32GG/Include/"/>
+        <file category="sourceC"      name="Device/EFM32GG/Source/GCC/startup_efm32gg.c" attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="linkerScript" name="Device/EFM32GG/Source/GCC/efm32gg.ld"        attr="config" version="5.1.3" condition="Compiler GCC"/>
+        <file category="sourceC"      name="Device/EFM32GG/Source/system_efm32gg.c"      attr="config" version="5.1.3"/>
+        <!-- device configuration required by drivers at the moment -->
+        <file category="header"       name="RTE_Driver/Config/RTE_Device.h"              attr="config" version="2.0.2"/>
+      </files>
+    </component>
+
+    <!-- emlib -->
+    <component Cclass="Device" Cgroup="emlib" Csub="Framework" Cversion="5.1.3" condition="EFM32GG">
+      <description>emlib Framework</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_FRAMEWORK
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__emlib.html"/>
+        <file category="header"  name="emlib/inc/em_common.h"/>
+        <file category="header"  name="emlib/inc/em_chip.h"/>
+        <file category="header"  name="emlib/inc/em_bus.h"/>
+        <file category="header"  name="emlib/inc/em_version.h"/>
+        <file category="header"  name="emlib/inc/em_assert.h"/>
+        <file category="source"  name="emlib/src/em_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ACMP"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Analog comparator (ACMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ACMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__ACMP.html"/>
+        <file category="header"  name="emlib/inc/em_acmp.h"/>
+        <file category="source"  name="emlib/src/em_acmp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="ADC"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Analog to Digital Converter (ADC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__ADC.html"/>
+        <file category="header"  name="emlib/inc/em_adc.h"/>
+        <file category="source"  name="emlib/src/em_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="AES"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Advanced Encryption Standard Accelerator (AES) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_AES
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__AES.html"/>
+        <file category="header"  name="emlib/inc/em_aes.h"/>
+        <file category="source"  name="emlib/src/em_aes.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="BURTC"     Cversion="5.1.3" condition="emlib Framework">
+      <description>Backup Real Time Counter (BURTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_BURTC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__BURTC.html"/>
+        <file category="header"  name="emlib/inc/em_burtc.h"/>
+        <file category="source"  name="emlib/src/em_burtc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="CMU"       Cversion="5.1.3" condition="emlib EMU">
+      <description>Clock management unit (CMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__CMU.html"/>
+        <file category="header"  name="emlib/inc/em_cmu.h"/>
+        <file category="source"  name="emlib/src/em_cmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="CORE"      Cversion="5.1.3" condition="emlib Framework">
+      <description>General purpose utilities and cross-compiler support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CORE
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__CORE.html"/>
+        <file category="header"  name="emlib/inc/em_core.h"/>
+        <file category="source"  name="emlib/src/em_core.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYOTIMER" Cversion="5.1.3" condition="emlib Framework">
+      <description>Ultra Low Energy Timer/Counter (CRYOTIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOTIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__CRYOTIMER.html"/>
+        <file category="header"  name="emlib/inc/em_cryotimer.h"/>
+        <file category="source"  name="emlib/src/em_cryotimer.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CRYPTO"    Cversion="5.1.3" condition="emlib Framework">
+      <description>Cryptography accelerator peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CRYOPTO
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__CRYPTO.html"/>
+        <file category="header"  name="emlib/inc/em_crypto.h"/>
+        <file category="source"  name="emlib/src/em_crypto.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="CSEN"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Capacitive Sense (CSEN) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_CSEN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__CSEN.html"/>
+        <file category="header"  name="emlib/inc/em_csen.h"/>
+        <file category="source"  name="emlib/src/em_csen.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="DAC"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Digital to Analog Converter (DAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__DAC.html"/>
+        <file category="header"  name="emlib/inc/em_dac.h"/>
+        <file category="source"  name="emlib/src/em_dac.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DBG"       Cversion="5.1.3" condition="emlib CMU GPIO">
+      <description>Debug (DBG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DBG
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__DBG.html"/>
+        <file category="header"  name="emlib/inc/em_dbg.h"/>
+        <file category="source"  name="emlib/src/em_dbg.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="DMA"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Direct Memory Access (DMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__DMA.html"/>
+        <file category="header"  name="emlib/inc/em_dma.h"/>
+        <file category="source"  name="emlib/src/em_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EBI"       Cversion="5.1.3" condition="emlib Framework">
+      <description>EBI External Bus Interface (EBI) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EBI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__EBI.html"/>
+        <file category="header"  name="emlib/inc/em_ebi.h"/>
+        <file category="source"  name="emlib/src/em_ebi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="EMU"       Cversion="5.1.3" condition="emlib CMU SYSTEM">
+      <description>Energy Management Unit (EMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_EMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__EMU.html"/>
+        <file category="header"  name="emlib/inc/em_emu.h"/>
+        <file category="source"  name="emlib/src/em_emu.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="GPCRC"     Cversion="5.1.3" condition="emlib Framework">
+      <description>General Purpose Cyclic Redundancy Check (GPCRC) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPCRC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__GPCRC.html"/>
+        <file category="header"  name="emlib/inc/em_gpcrc.h"/>
+        <file category="source"  name="emlib/src/em_gpcrc.c"/>
+      </files>
+    </component!-->
+    <component Cclass="Device" Cgroup="emlib" Csub="GPIO"      Cversion="5.1.3" condition="emlib Framework">
+      <description>General Purpose Input/Output (GPIO) API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__GPIO.html"/>
+        <file category="header"  name="emlib/inc/em_gpio.h"/>
+        <file category="source"  name="emlib/src/em_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="I2C"       Cversion="5.1.3" condition="emlib CMU">
+      <description>Inter-integrated Circuit (I2C) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__I2C.html"/>
+        <file category="header"  name="emlib/inc/em_i2c.h"/>
+        <file category="source"  name="emlib/src/em_i2c.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="IDAC"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Current Digital to Analog Converter (IDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_IDAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__IDAC.html"/>
+        <file category="header"  name="emlib/inc/em_idac.h"/>
+        <file category="source"  name="emlib/src/em_idac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="INT"       Cversion="5.1.3" condition="emlib Framework">
+      <deprecated>1</deprecated>
+      <description>Safe nesting interrupt disable/enable API (deprecated!)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_INT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__INT.html"/>
+        <file category="header"  name="emlib/inc/em_int.h"/>
+        <file category="source"  name="emlib/src/em_int.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LCD"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Liquid Crystal Display (LCD) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LCD
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__LCD.html"/>
+        <file category="header"  name="emlib/inc/em_lcd.h"/>
+        <file category="source"  name="emlib/src/em_lcd.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="LDMA"      Cversion="5.1.3" condition="emlib CMU SYSTEM CORE">
+      <description>Linked Direct Memory Access (LDMA) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LDMA
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__LDMA.html"/>
+        <file category="header"  name="emlib/inc/em_ldma.h"/>
+        <file category="source"  name="emlib/src/em_ldma.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="LESENSE"   Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Sensor (LESENSE) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LESENSE
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__LESENSE.html"/>
+        <file category="header"  name="emlib/inc/em_lesense.h"/>
+        <file category="source"  name="emlib/src/em_lesense.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LETIMER"   Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Timer (LETIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LETIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__LETIMER.html"/>
+        <file category="header"  name="emlib/inc/em_letimer.h"/>
+        <file category="source"  name="emlib/src/em_letimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="LEUART"    Cversion="5.1.3" condition="emlib CMU">
+      <description>Low Energy Universal Asynchronous Receiver/Transmitter (LEUART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_LEUART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__LEUART.html"/>
+        <file category="header"  name="emlib/inc/em_leuart.h"/>
+        <file category="source"  name="emlib/src/em_leuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MPU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Memory Protection Unit (MPU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__MPU.html"/>
+        <file category="header"  name="emlib/inc/em_mpu.h"/>
+        <file category="source"  name="emlib/src/em_mpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="MSC"       Cversion="5.1.3" condition="emlib CMU SYSTEM">
+      <description>Flash controller (MSC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_MSC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__MSC.html"/>
+        <file category="header"  name="emlib/inc/em_msc.h"/>
+        <file category="source"  name="emlib/src/em_msc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="OPAMP"     Cversion="5.1.3" condition="emlib SYSTEM">
+      <description>Operational Amplifier (OPAMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_OPAMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__OPAMP.html"/>
+        <file category="header"  name="emlib/inc/em_opamp.h"/>
+        <file category="source"  name="emlib/src/em_opamp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="PCNT"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Pulse Counter (PCNT) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PCNT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__PCNT.html"/>
+        <file category="header"  name="emlib/inc/em_pcnt.h"/>
+        <file category="source"  name="emlib/src/em_pcnt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="PRS"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Peripheral Reflex System (PRS) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_PRS
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__PRS.html"/>
+        <file category="header"  name="emlib/inc/em_prs.h"/>
+        <file category="source"  name="emlib/src/em_prs.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RAMFUNC"   Cversion="5.1.3" condition="emlib Framework">
+      <description>RAM code support</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RAMFUNC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__RAMFUNC.html"/>
+        <file category="header"  name="emlib/inc/em_ramfunc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RMU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Reset Management Unit (RMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__RMU.html"/>
+        <file category="header"  name="emlib/inc/em_rmu.h"/>
+        <file category="source"  name="emlib/src/em_rmu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="RTC"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Real Time Counter (RTC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__RTC.html"/>
+        <file category="header"  name="emlib/inc/em_rtc.h"/>
+        <file category="source"  name="emlib/src/em_rtc.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="RTCC"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Real Time Counter (RTCC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_RTCC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__RTCC.html"/>
+        <file category="header"  name="emlib/inc/em_rtcc.h"/>
+        <file category="source"  name="emlib/src/em_rtcc.c"/>
+      </files>
+    </component-->
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="SMU"       Cversion="5.1.3" condition="emlib Framework">
+      <description>Security Management Unit (SMU) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SMU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__SMU.html"/>
+        <file category="header"  name="emlib/inc/em_smu.h"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="SYSTEM"    Cversion="5.1.3" condition="emlib Framework">
+      <description>System API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_SYSTEM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__SYSTEM.html"/>
+        <file category="header"  name="emlib/inc/em_system.h"/>
+        <file category="source"  name="emlib/src/em_system.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="TIMER"     Cversion="5.1.3" condition="emlib Framework">
+      <description>Timer/Counter (TIMER) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_TIMER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__TIMER.html"/>
+        <file category="header"  name="emlib/inc/em_timer.h"/>
+        <file category="source"  name="emlib/src/em_timer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="USART"     Cversion="5.1.3" condition="emlib CMU">
+      <description>Universal Synchronous/Asynchronous Receiver/Transmitter (USART) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_USART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__USART.html"/>
+        <file category="header"  name="emlib/inc/em_usart.h"/>
+        <file category="source"  name="emlib/src/em_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emlib" Csub="VCMP"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Voltage Comparator (VCMP) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VCMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__VCMP.html"/>
+        <file category="header"  name="emlib/inc/em_vcmp.h"/>
+        <file category="source"  name="emlib/src/em_vcmp.c"/>
+      </files>
+    </component>
+    <!-- (not available) component Cclass="Device" Cgroup="emlib" Csub="VDAC"      Cversion="5.1.3" condition="emlib CMU">
+      <description>Digital to Analog Voltage Converter (VDAC) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_VDAC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__VDAC.html"/>
+        <file category="header"  name="emlib/inc/em_vdac.h"/>
+        <file category="source"  name="emlib/src/em_vdac.c"/>
+      </files>
+    </component-->
+    <component Cclass="Device" Cgroup="emlib" Csub="WDOG"      Cversion="5.1.3" condition="emlib Framework">
+      <description>Watchdog (WDOG) Peripheral API</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMLIB_WDOG
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__WDOG.html"/>
+        <file category="header"  name="emlib/inc/em_wdog.h"/>
+        <file category="source"  name="emlib/src/em_wdog.c"/>
+      </files>
+    </component>
+
+    <!-- emdrv -->
+    <component Cclass="Device" Cgroup="emdrv" Csub="DMADRV"    Cversion="5.1.3" condition="emdrv DMADRV">
+      <description>DMADRV Direct Memory Access Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_DMADRV
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__DMADRV.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/dmadrv/inc/dmadrv.h"/>
+        <file category="source"  name="emdrv/dmadrv/src/dmadrv.c"/>
+        <file category="header"  name="emdrv/dmadrv/config/dmadrv_config.h" attr="config" version="5.1.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="GPIOINT"   Cversion="5.1.3" condition="emdrv GPIOINT">
+      <description>General Purpose Input/Output Interrupt dispatcher</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_GPIOINT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__GPIOINT.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/gpiointerrupt/inc/gpiointerrupt.h"/>
+        <file category="source"  name="emdrv/gpiointerrupt/src/gpiointerrupt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="NVM"       Cversion="5.1.3" condition="emdrv NVM">
+      <description>Non-volatile Memory Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_NVM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__NVM.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/nvm/config/nvm_config.h" attr="config" version="5.1.3"/>
+        <file category="source"  name="emdrv/nvm/config/nvm_config.c"/>
+        <file category="header"  name="emdrv/nvm/inc/nvm.h"/>
+        <file category="source"  name="emdrv/nvm/src/nvm.c"/>
+        <file category="source"  name="emdrv/nvm/src/nvm_hal.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="RTCDRV"    Cversion="5.1.3" condition="emdrv RTCDRV">
+      <description>Real Time Clock Timer Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_RTCDRV
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__RTCDRV.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/rtcdrv/config/rtcdrv_config.h" attr="config" version="5.1.3"/>
+        <file category="header"  name="emdrv/rtcdrv/inc/rtcdriver.h"/>
+        <file category="source"  name="emdrv/rtcdrv/src/rtcdriver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="SLEEP"     Cversion="5.1.3" condition="emdrv SLEEP">
+      <description>Sleep Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_SLEEP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__SLEEP.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/sleep/inc/sleep.h"/>
+        <file category="source"  name="emdrv/sleep/src/sleep.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="emdrv" Csub="SPIDRV"    Cversion="5.1.3" condition="emdrv SPIDRV">
+      <description>Serial Peripheral Interface Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_SPIDRV
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__SPIDRV.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/spidrv/config/spidrv_config.h" attr="config" version="5.1.3"/>
+        <file category="header"  name="emdrv/spidrv/inc/spidrv.h"/>
+        <file category="source"  name="emdrv/spidrv/src/spidrv.c"/>
+      </files>
+    </component>
+    <!-- (does not compile ) component Cclass="Device" Cgroup="emdrv" Csub="TEMPDRV"    Cversion="5.1.3" condition="emdrv TEMPDRV">
+      <description>Temperature Sensor Interface Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_EMDRV_TEMPDRV
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="emdoc/efm32gg/html/group__TEMPDRV.html"/>
+        <file category="include" name="emdrv/common/inc/"/>
+        <file category="header"  name="emdrv/tempdrv/config/tempdrv_config.h" attr="config" version="5.1.3"/>
+        <file category="header"  name="emdrv/tempdrv/inc/tempdrv.h"/>
+        <file category="source"  name="emdrv/tempdrv/src/tempdrv.c"/>
+      </files>
+    </component-->
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI"        Capiversion="2.1" Cversion="2.1" condition="EFM32GG CMSIS GPIO CMU DMA">
+      <description>SPI (USART in SPI mode) Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+        #define RTE_Drivers_SPI2                /* Driver SPI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/DMA_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/SPI_EFM32GGxxx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.1" Cversion="2.4" condition="EFM32GG CMSIS GPIO CMU">
+      <description>USB Device Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBD0               /* Driver USBD0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/USB_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/USBD_EFM32GGxxx.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USB Host"   Capiversion="2.0" Cversion="2.6" condition="EFM32GG CMSIS GPIO CMU">
+      <description>USB Host Driver for EFM32GG Series</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USBH0               /* Driver USBH0 */
+      </RTE_Components_h>
+      <files>
+        <file category="source"  name="RTE_Driver/USB_EFM32GGxxx.c"/>
+        <file category="source"  name="RTE_Driver/USBH_EFM32GGxxx.c"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="EFM32GG DFP" Cclass="Graphics" Cversion="5.1.3">
+      <description>Silicon Labs Graphics Library</description>
+      <doc></doc>
+      <component Cgroup="CORE" condition="glib CORE">
+        <description>glib CORE</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_CORE
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="header"  name="glib/glib/glib.h"/>
+          <file category="source"  name="glib/glib/glib.c"/>
+          <file category="source"  name="glib/glib/glib_bitmap.c"/>
+          <file category="source"  name="glib/glib/glib_circle.c"/>
+          <file category="source"  name="glib/glib/glib_line.c"/>
+          <file category="source"  name="glib/glib/glib_polygon.c"/>
+          <file category="source"  name="glib/glib/glib_rectangle.c"/>
+          <file category="source"  name="glib/glib/glib_string.c"/>
+          <file category="source"  name="glib/glib/glib_font_narrow_6x8.c"/>
+          <file category="source"  name="glib/glib/glib_font_normal_8x8.c"/>
+          <file category="source"  name="glib/glib/glib_font_number_16x20.c"/>
+          <file category="source"  name="glib/glib/bmp.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display Driver" Cvariant="DISPLAY" condition="glib Driver DISPLAY">
+        <description>glib Display Driver</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="include" name="glib/dmd/"/>
+          <file category="source"  name="glib/dmd/display/dmd_display.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display Driver" Cvariant="SSD2119 16-bit IF" condition="glib Driver SSD2119 16-bit">
+        <description>glib Display Driver SSD2119 16-bit Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_16
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmd_ssd2119_16bit.c"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmdif_ssd2119_ebi16.c"/>
+        </files>
+      </component>
+<!-- Not available on Giant Gecko DK and STK
+      <component Cgroup="Display Driver" Cvariant="SSD2119 18-bit IF" condition="glib Driver SSD2119 18-bit">
+        <description>glib Display Driver SSD2119 18-bit Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_18
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmd_ssd2119.c"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmdif_ssd2119_ebi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display Driver" Cvariant="SSD2119 SPI IF" condition="glib Driver SSD2119 SPI">
+        <description>glib Display Driver SSD2119 SPI Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_SPI
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmd_ssd2119.c"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmdif_ssd2119_spi.c"/>
+        </files>
+      </component>
+-->
+      <component Cgroup="Display Driver" Cvariant="SSD2119 RGB IF" condition="glib Driver SSD2119 RGB">
+        <description>glib Display Driver SSD2119 RGB Interface</description>
+        <RTE_Components_h>
+          #define RTE_GLIB_DISPLAY_DRIVER_SSD2119_RGB
+        </RTE_Components_h>
+        <files>
+          <file category="include" name="glib/"/>
+          <file category="source"  name="glib/dmd/ssd2119/dmd_ssd2119_direct.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="EFM32GG-DK3750" Cclass="Board Support" Cversion="5.1.3">
+      <description>Silicon Labs EFM32GG-DK3750 Development Kit</description>
+      <doc>Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750-ug.pdf</doc>
+
+      <component Cgroup="CORE" condition="EFM32GG DK3750">
+        <description>Silicon Labs BSP Core</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DK3750
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__kitdrv.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/bsp/bsp.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_dk_3201.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_dk_leds.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_dk_mcuboard.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/bsp/bsp_trace.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_trace.c"/>
+          <file category="include" name="Boards/SiliconLabs/EFM32GG_DK3750/config/"/>
+        </files>
+      </component>
+
+<!-- Not available on Giant Gecko DK and STK
+      <component Cgroup="Drivers" Csub="CapSense" Cvariant="Standard" condition="BSP Driver CapSense">
+        <description>CapSense Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_CAPSENSE
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__CapSense.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/capsense.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/capsense.c"/>
+        </files>
+      </component>
+-->
+      <component Cgroup="Drivers" Csub="DmaCtrl"                          condition="BSP Driver DmaCtrl">
+        <description>DmaCtrl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DMACTRL
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__DmaCtrl.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/dmactrl.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/dmactrl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Eeprom"                           condition="BSP Driver Eeprom">
+        <description>Eeprom Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_EEPROM
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Eeprom.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/eeprom.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/eeprom.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="I2cSpm"                           condition="BSP Driver I2cSpm">
+        <description>I2cSpm Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_I2C
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__I2CSPM.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/i2cspm.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/i2cspm.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Ksz8851snl SPI"                   condition="BSP Driver Ksz8851snl SPI">
+        <description>Ksz8851snl SPI Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_KSZ8851SNL_SPI
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__ksz8851snl.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/ksz8851snl_spi.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/ksz8851snl_spi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Ksz8851snl"                       condition="BSP Driver Ksz8851snl">
+        <description>Ksz8851snl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_KSZ8851SNL
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__ksz8851snl.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/ksz8851snl.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/ksz8851snl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="NorFlash"                         condition="BSP Driver NorFlash">
+        <description>NorFlash Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_NORFLASH
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__NorFlash.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/norflash.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/norflash.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo"     Cvariant="Serial" condition="BSP Driver RetargetIo Serial">
+        <description>RetargetIo Driver (Serial)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_SERIAL
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__RetargetIo.html"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargetio.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/retargetserial.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargetserial.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo"     Cvariant="Tft"    condition="BSP Driver RetargetIo Tft">
+        <description>RetargetIo Driver (Tft)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_TFT
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__RetargetIo.html"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargetio.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/retargettft.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargettft.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Si114x"                           condition="BSP Driver Si114x">
+        <description>Si114x Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SI114X
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Si114x.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/si1147_i2c.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/si1147_i2c.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/si114x_algorithm.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/si114x_algorithm.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/si114x_functions.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Si7013"                           condition="BSP Driver Si7013">
+        <description>Si7013 Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SI7013
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Si7013.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/si7013.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/si7013.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="TempSensor"                       condition="BSP Driver TempSensor">
+        <description>TempSensor Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TEMPSENSOR
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__TempSensor.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/tempsens.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/tempsens.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Tft"            Cvariant="EBI"    condition="BSP Driver Tft EBI">
+        <description>Tft Driver (EBI)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TFT_EBI
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Tft.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/tftamapped.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/tftamapped.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Tft"            Cvariant="RGB"    condition="BSP Driver Tft RGB">
+        <description>Tft Driver (RGB)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TFT_RGB
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Tft.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/tftdirect.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/tftdirect.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/tftspi.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/tftspi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Touch"                            condition="BSP Driver Touch">
+        <description>Touch Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TOUCH
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Touch.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/touch.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/touch.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/calibrate.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Udelay"                           condition="BSP Driver Udelay">
+        <description>Udelay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_UDELAY
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Udelay.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/udelay.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/udelay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="VddCheck"                         condition="BSP Driver VddCheck">
+        <description>VddCheck Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_VDDCHECK
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__VddCheck.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/vddcheck.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/vddcheck.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="A/D Converter" Capiversion="1.0.0"                      condition="EFM32GG BSP ADC">
+        <description>A/D Converter interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/ADC_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED"           Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>LED interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LED_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>Buttons interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Buttons_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Joystick"      Capiversion="1.0.0"                      condition="EFM32GG BSP">
+        <description>Joystick interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Joystick_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD"   Capiversion="1.0.0"                      condition="EFM32GG BSP GLIB TFT">
+        <description>Graphic LCD interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="header"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_Fonts.c"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/GLCD_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD"     Capiversion="1.0.0" Cvariant="16-bit IF" condition="EFM32GG BSP">
+        <description>emWin LCD 16-bit Interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="include" name="glib/dmd/ssd2119/"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCDConf_16.c" attr="config" version="5.00"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCD_X_16.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD"     Capiversion="1.0.0" Cvariant="RGB IF"    condition="EFM32GG BSP">
+        <description>emWin LCD RGB Interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="include" name="glib/dmd/ssd2119/"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCDConf_RGB.c" attr="config" version="5.00"/>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/LCD_X_RGB.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen"   Capiversion="1.0.0"                      condition="EFM32GG BSP Touch">
+        <description>Touchscreen interface for Silicon Labs EFM32GG-DK3750 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Touch_DK3750.c"/>
+        </files>
+      </component>
+      <component Cgroup="Thermometer"   Capiversion="1.0.0" Csub="DS75"          condition="EFM32GG BSP TempSensor">
+        <description>Thermometer interface for DS75</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/Thermometer_DS75.c"/>
+        </files>
+      </component>
+      <component Cgroup="EEPROM"        Capiversion="1.0.0" Csub="24AA024"       condition="EFM32GG BSP EEPROM">
+        <description>EEPROM interface for 24AA024</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_DK3750/Common/EEPROM_24AA024.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="EFM32GG-STK3700" Cclass="Board Support" Cversion="5.1.3">
+      <description>Silicon Labs EFM32GG-STK3700 Development Kit</description>
+      <doc>Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700-ug.pdf</doc>
+
+      <component Cgroup="CORE" condition="EFM32GG STK3700">
+        <description>Silicon Labs BSP Core</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_STK3700
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__BSP.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/bsp/bsp.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_bcc.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_stk.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_stk_leds.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/bsp/bsp_trace.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/bsp/bsp_trace.c"/>
+          <file category="include" name="Boards/SiliconLabs/EFM32GG_STK3700/config/"/>
+        </files>
+      </component>
+
+<!-- Not available on Giant Gecko DK and STK
+      <component Cgroup="Drivers" Csub="CapSense" Cvariant="Standard" condition="BSP Driver CapSense">
+        <description>CapSense Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_CAPSENSE
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__CapSense.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/capsense.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/capsense.c"/>
+        </files>
+      </component>
+-->
+      <component Cgroup="Drivers" Csub="CapSense"   Cvariant="Low Energy"  condition="BSP Driver CapSense LE">
+        <description>CapSense Driver (Low Energy)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_CAPSENSE_LE
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__CapSense.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/caplesense.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/caplesense.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Display"                           condition="BSP Driver Display">
+        <description>Display Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Display.html"/>
+          <file category="include" name="glib/"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/display.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/display.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/displaypalemlib.c"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/displayls013b7dh03.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="DmaCtrl"                           condition="BSP Driver DmaCtrl">
+        <description>DmaCtrl Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_DMACTRL
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__DmaCtrl.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/dmactrl.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/dmactrl.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="NandFlash"                         condition="BSP Driver NandFlash">
+        <description>NandFlash Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_NANDFLASH
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__NandFlash.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/nandflash.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/nandflash.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="RetargetIo" Cvariant="TextDisplay" condition="BSP Driver RetargetIo TextDisplay">
+        <description>RetargetIo Driver (TextDisplay)</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_RETARGETIO_TEXTDISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__RetargetIo.html"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargetio.c"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/retargettextdisplay.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/retargettextdisplay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="SegmentLcd"                        condition="BSP Driver SegmentLcd">
+        <description>SegmentLcd Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_SEGMENTLCD
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__SegmentLcd.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/segmentlcd.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/segmentlcd.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="TextDisplay"                       condition="BSP Driver TextDisplay">
+        <description>TextDisplay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_TEXTDISPLAY
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Textdisplay.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/textdisplay.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/textdisplay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="Udelay"                            condition="BSP Driver Udelay">
+        <description>Udelay Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_UDELAY
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__Udelay.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/udelay.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/udelay.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="VddCheck"                          condition="BSP Driver VddCheck">
+        <description>VddCheck Driver</description>
+        <RTE_Components_h>
+          #define RTE_BOARD_SUPPORT_DRIVERS_VDDCHECK
+        </RTE_Components_h>
+        <files>
+          <file category="doc"     name="emdoc/efm32gg/html/group__VddCheck.html"/>
+          <file category="header"  name="Boards/SiliconLabs/common/drivers/vddcheck.h"/>
+          <file category="source"  name="Boards/SiliconLabs/common/drivers/vddcheck.c"/>
+        </files>
+      </component>
+
+      <component Cgroup="LED"     Capiversion="1.0.0" condition="EFM32GG BSP">
+        <description>LED interface for Silicon Labs EFM32GG-STK3700 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_STK3700/Common/LED_STK3700.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="EFM32GG BSP">
+        <description>Buttons interface for Silicon Labs EFM32GG-STK3700 Development Kit</description>
+        <files>
+          <file category="source"  name="Boards/SiliconLabs/EFM32GG_STK3700/Common/Buttons_STK3700.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board vendor="Silicon Labs" name="EFM32GG-DK3750" revision="Ver 1.0">
+      <description>Silicon Labs EFM32GG-DK3750 Development Kit</description>
+      <image small="Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750_small.png"/>
+      <book category="overview" name="https://www.silabs.com/products/mcu/lowpower/Pages/efm32gg-dk3750.aspx" title="EFM32GG-DK3750 Web Page"/>
+      <book category="manual" name="Boards/SiliconLabs/EFM32GG_DK3750/Documents/efm32gg-dk3750-ug.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Silicon Labs:21" Dname="EFM32GG990F1024"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Silicon Labs:21" DsubFamily="EFM32GG990"/>
+    </board>
+
+    <board vendor="Silicon Labs" name="EFM32GG-STK3700" revision="Ver 1.0">
+      <description>Silicon Labs EFM32GG-STK3700 Starter Kit</description>
+      <image small="Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700_small.png"/>
+      <book category="overview" name="https://www.silabs.com/products/mcu/lowpower/Pages/efm32gg-stk3700.aspx" title="EFM32GG-STK3700 Web Page"/>
+      <book category="manual"   name="Boards/SiliconLabs/EFM32GG_STK3700/Documents/efm32gg-stk3700-ug.pdf"     title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Silicon Labs:21" Dname="EFM32GG990F1024"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Silicon Labs:21" DsubFamily="EFM32GG990"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <example name="File System Demo" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/FileSystem/File_Demo" version="1.0.0">
+      <description>File manipulation example: create, read, copy, delete files on any enabled drive (SD/MMC Card, NOR/NAND Flash, RAM) and format each drive</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="File_Demo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="File System" Cgroup="Drive"/>
+        <category>Middleware</category>
+        <category>File System</category>
+        <keyword>SD/MMC Card</keyword>
+      </attributes>
+    </example>
+
+
+    <example name="BSD Client" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/BSD_Client" version="1.0.0">
+      <description>Example using BSD sockets to send commands to remote server</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="BSD_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="BSD Server" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/BSD_Server" version="1.0.0">
+      <description>Example using BSD sockets to accept commands from remote clients</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="BSD_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>BSD</keyword>
+      </attributes>
+    </example>
+
+    <example name="FTP Server" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/FTP_Server" version="1.0.0">
+      <description>File Server using FTP protocol with SD/MMC Memory Card as storage media</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="FTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="FTP Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>FTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Server" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/HTTP_Server" version="1.0.0">
+      <description>Compact Web Server with CGI interface</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HTTP_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server Compact"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="HTTP Upload" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/HTTP_Upload" version="1.0.0">
+      <description>Web Server with CGI interface and SD/MMC Memory Card as storage media</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HTTP_Upload.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Web Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Web Server</keyword>
+        <keyword>HTTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SMTP Client" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/SMTP_Client" version="1.0.0">
+      <description>Example showing how to compose and send emails</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="SMTP_Client.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SMTP Client"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SMTP</keyword>
+      </attributes>
+    </example>
+
+    <example name="SNMP Agent" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/SNMP_Agent" version="1.0.0">
+      <description>Example showing how to use a Simple Network Management Protocol (SNMP)</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="SNMP_Agent.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="SNMP Agent"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>SNMP</keyword>
+      </attributes>
+    </example>
+
+    <example name="Telnet Server" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/Network/Telnet_Server" version="1.0.0">
+      <description>Command-line Host service example using Telnet protocol</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Telnet_Server.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Network" Cgroup="Service" Csub="Telnet Server"/>
+        <category>Middleware</category>
+        <category>Network</category>
+        <keyword>Telnet</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Device/HID" version="1.0.0">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Device/MassStorage" version="1.0.0">
+      <description>USB Mass Storage Device using SD/MMC Memory Card or RAM as storage media</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+  <!--
+    <example name="USB Device Virtual COM" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Device/VirtualCOM" version="1.0.0">
+      <description>Virtual COM Port example: bridges UART port of the eval board to a Virtual COM Port on the PC using the Communication Device Class (CDC) of USB Device</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="VirtualCOM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>USB Device CDC</keyword>
+        <keyword>Virtual COM Port</keyword>
+      </attributes>
+    </example>
+  -->
+
+     <example name="USB Host Mass Storage" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Host/MassStorage" version="1.0.0">
+      <description>USB Host file manipulation example: create, read, copy, delete files from USB Mass Storage Device and format storage device</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Host Keyboard" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_DK3750/Middleware/USB/Host/Keyboard" version="1.0.0">
+      <description>Measure example using USB HID Keyboard as input device</description>
+      <board name="EFM32GG-DK3750" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Keyboard.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Host" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Host</category>
+        <keyword>Keyboard</keyword>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/SiliconLabs/EFM32GG_STK3700/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="EFM32GG-STK3700" vendor="Silicon Labs"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

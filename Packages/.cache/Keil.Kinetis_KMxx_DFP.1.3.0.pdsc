@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KMxx_DFP</name>
+  <description>NXP Kinetis KMxx Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.3.0" date="2016-07-12">
+      Reworked KMxx_DFP.
+       - changed vendor to NXP.
+       - updated documentation.
+       - updated boards description.
+       - changed device vendor to NXP in projects.
+    </release>
+    <release version="1.2.0" date="2015-06-03">
+      Added Device Support for: MKM34Z2567.
+      Added TWR-KM34Z50MV3 board support.
+      Updated RTX Blinky examples.
+      Reworked conditions.
+    </release>
+    <release version="1.1.0" date="2014-11-03">
+      Added Device Support for: KM14Z64A  KM14Z128A  KM33Z64A  KM33Z128A  KM34Z128A.
+      SRAM range correction.
+    </release>
+    <release version="1.0.1">
+      Added Device Support for: MKM13Z64xxx5, MKM32Z64xxx5, MKM38Z128xxx5.
+    </release>
+    <release version="1.0.0">
+      First Release version of KMxx Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KMxx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KMxx Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+Kinetis M series MCUs are based upon the low-power ARM® Cortex®-M0+ core and are designed for single-chip 1, 2 and 3 -phase electricity meters as well as flow meter and other precision measurement applications.
+      </description>
+
+      <!-- ******************************  KM1x  ****************************** -->
+      <subFamily DsubFamily="KM1x">
+        <description>
+Kinetis KM1x MCUs enable single-chip one-, two-, and three-phase electricity meters, as well as flow meter and other precision measurement applications.
+ - Includes a powerful analog front end
+ - Provides security, including memory protection, tamper detection, and protection of supplier/user data
+ - Supports high-precision internal voltage reference with low temperature drift
+ - Features a comprehensive enablement suite including reference designs
+        </description>
+
+        <!-- ******************************  MKM13Z64xxx5  ****************************** -->
+        <device Dname="MKM13Z64xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM13Z5.h" define="MKM13Z64xxx5"/>
+          <debug svd="SVD/MKM13Z5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+        </device>
+
+        <!-- ******************************  MKM14Z128xxx5  ****************************** -->
+        <device Dname="MKM14Z128xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM14Z5.h" define="MKM14Z128xxx5"/>
+          <debug svd="SVD/MKM14Z5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxCxx5RM.pdf" title="MKM14Z128xxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxCxx5.pdf"   title="MKM14Z128xxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM14Z64xxx5  ****************************** -->
+        <device Dname="MKM14Z64xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM14Z5.h" define="MKM14Z64xxx5"/>
+          <debug svd="SVD/MKM14Z5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxCxx5RM.pdf" title="MKM14Z64xxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxCxx5.pdf"   title="MKM14Z64xxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM14Z64Axxx5  ****************************** -->
+        <device Dname="MKM14Z64Axxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM14ZA5.h" define="MKM14Z64Axxx5"/>
+          <debug svd="SVD/MKM14ZA5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxACxx5RM.pdf" title="MKM34Z128Axxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z128Axxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM14Z128Axxx5  ****************************** -->
+        <device Dname="MKM14Z128Axxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM14ZA5.h" define="MKM14Z128Axxx5"/>
+          <debug svd="SVD/MKM14ZA5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxACxx5RM.pdf" title="MKM34Z128Axxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z128Axxx5 Device Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KM3x  ****************************** -->
+      <subFamily DsubFamily="KM3x">
+        <description>
+Kinetis KM3x MCUs enable single-chip one-, two-, and three-phase electricity meters, as well as flow meters and other precision measurement applications.
+ - Provides security with active and passive tamper detection with time stamping
+ - Supports high-precision internal voltage reference with low temperature drift
+ - Features a comprehensive enablement suite including reference designs
+        </description>
+
+        <!-- ******************************  MKM32Z64xxx5  ****************************** -->
+        <device Dname="MKM32Z64xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM32Z5.h" define="MKM32Z64xxx5"/>
+          <debug svd="SVD/MKM32Z5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+        </device>
+
+        <!-- ******************************  MKM33Z128xxx5  ****************************** -->
+        <device Dname="MKM33Z128xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM33Z5.h" define="MKM33Z128xxx5"/>
+          <debug svd="SVD/MKM33Z5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxCxx5RM.pdf" title="MKM33Z128xxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxCxx5.pdf"   title="MKM33Z128xxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM33Z64xxx5  ****************************** -->
+        <device Dname="MKM33Z64xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM33Z5.h" define="MKM33Z64xxx5"/>
+          <debug svd="SVD/MKM33Z5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxCxx5RM.pdf" title="MKM33Z64xxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxCxx5.pdf"   title="MKM33Z64xxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM34Z128xxx5  ****************************** -->
+        <device Dname="MKM34Z128xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM34Z5.h" define="MKM34Z128xxx5"/>
+          <debug svd="SVD/MKM34Z5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxCxx5RM.pdf" title="MKM34Z128xxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxCxx5.pdf"   title="MKM34Z128xxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM38Z128xxx5  ****************************** -->
+        <device Dname="MKM38Z128xxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM38Z5.h" define="MKM38Z128xxx5"/>
+          <debug svd="SVD/MKM38Z5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+        </device>
+
+        <!-- ******************************  MKM33Z64Axxx5  ****************************** -->
+        <device Dname="MKM33Z64Axxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM33ZA5.h" define="MKM33Z64Axxx5"/>
+          <debug svd="SVD/MKM33ZA5.svd"/>
+          <memory id="IROM1"                     start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP64_1KB.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxACxx5RM.pdf" title="MKM34Z128Axxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z128Axxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM33Z128Axxx5  ****************************** -->
+        <device Dname="MKM33Z128Axxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM33ZA5.h" define="MKM33Z128Axxx5"/>
+          <debug svd="SVD/MKM33ZA5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxACxx5RM.pdf" title="MKM34Z128Axxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z128Axxx5 Device Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKM34Z128Axxx5  ****************************** -->
+        <device Dname="MKM34Z128Axxx5">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="50000000"/>
+          <compile header="Device/Include/MKM34ZA5.h" define="MKM34Z128Axxx5"/>
+          <debug svd="SVD/MKM34ZA5.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP128_1KB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/MKMxxZxxACxx5RM.pdf" title="MKM34Z128Axxx5 Device Reference Manual"/>
+          <book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z128Axxx5 Device Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KM3x_256 ************************* -->
+      <subFamily DsubFamily="KM3x_256">
+        <description>
+The Kinetis KM3x_256 MCUs are based on 32-bit ARM Cortex  M0+ core with integrated Analog Front End (AFE). CPU clock rates on these devices can reach up to 75 MHz.
+The KM3x_256 family of devices includes memory-mapped arithmetic unit (MMAU), highly accurate Sigma Delta (SD) ADC, Programmable Gain Amplifier (PGA), high precision internal voltage reference, flash, RAM, phase compensation logic block and other peripherals.
+KM3x_256 family also provides tamper detection and accurate real time clock on all devices.
+        </description>
+
+        <!-- ******************************  MKM34Z256xxx7  ****************************** -->
+        <device Dname="MKM34Z256xxx7">
+          <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="75000000"/>
+          <compile header="Device/Include/MKM34Z7.h" define="MKM34Z256xxx7"/>
+          <debug svd="SVD/MKM34Z7.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFE000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MKMP256_2KB.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+
+          <book name="Documents/rev2RC_KM3x256_RM.pdf" title="MKM34Z256xxx7 Device Reference Manual"/>
+          <!-- book name="Documents/MKMxxZxxACxx5.pdf"   title="MKM34Z256xxx7 Device Data Sheet"/-->
+        </device>
+      </subFamily>
+
+      </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MKM13Z5 CMSIS">
+      <description>NXP Kinetis KM13 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM13Z64xxx5"/>
+    </condition>
+
+    <condition id="MKM14Z5 CMSIS">
+      <description>NXP Kinetis KM14 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM14Z64xxx5"/>
+      <accept Dname="MKM14Z128xxx5"/>
+    </condition>
+
+    <condition id="MKM14ZA5 CMSIS">
+      <description>NXP Kinetis KM14A 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM14Z64Axxx5"/>
+      <accept Dname="MKM14Z128Axxx5"/>
+    </condition>
+
+    <condition id="MKM32Z5 CMSIS">
+      <description>NXP Kinetis KM32 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM32Z64xxx5"/>
+    </condition>
+
+    <condition id="MKM33Z5 CMSIS">
+      <description>NXP Kinetis KM33 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM33Z64xxx5"/>
+      <accept Dname="MKM33Z128xxx5"/>
+    </condition>
+
+    <condition id="MKM33ZA5 CMSIS">
+      <description>NXP Kinetis KM33A 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM33Z64Axxx5"/>
+      <accept Dname="MKM33Z128Axxx5"/>
+    </condition>
+
+    <condition id="MKM34Z5 CMSIS">
+      <description>NXP Kinetis KM33 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM34Z128xxx5"/>
+    </condition>
+
+    <condition id="MKM34ZA5 CMSIS">
+      <description>NXP Kinetis KM34A 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM34Z128Axxx5"/>
+    </condition>
+
+    <condition id="MKM38Z5 CMSIS">
+      <description>NXP Kinetis KM38 50MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM38Z128xxx5"/>
+    </condition>
+
+    <condition id="MKM34Z7 CMSIS">
+      <description>NXP Kinetis KM34 75MHz Devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKM34Z256xxx7"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup MKM13Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM13Z5 CMSIS">
+      <description>System Startup for Kinetis KM13 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source" name="Device/Source/ARM/startup_MKM13Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source" name="Device/Source/system_MKM13Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM14Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM14Z5 CMSIS">
+      <description>System Startup for Kinetis KM14 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM14Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM14Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM14ZA5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM14ZA5 CMSIS">
+      <description>System Startup for Kinetis KM14A 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM14ZA5.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM14ZA5.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKM14ZA5.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM32Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM32Z5 CMSIS">
+      <description>System Startup for Kinetis KM32 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM32Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM32Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM33Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM33Z5 CMSIS">
+      <description>System Startup for Kinetis KM33 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM33Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM33Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM33ZA5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM33ZA5 CMSIS">
+      <description>System Startup for Kinetis KM33A 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM33ZA5.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM33ZA5.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKM33ZA5.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM34Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM34Z5 CMSIS">
+      <description>System Startup for Kinetis KM34 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM34Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM34Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM34ZA5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM34ZA5 CMSIS">
+      <description>System Startup for Kinetis KM34A 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM34ZA5.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM34ZA5.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKM34ZA5.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM38Z5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM38Z5 CMSIS">
+      <description>System Startup for Kinetis KM38 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM38Z5.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM38Z5.c"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup MKM34Z7 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKM34Z7 CMSIS">
+      <description>System Startup for Kinetis KM34A 50MHz Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKM34Z7.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKM34Z7.c"      attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MKM34Z7.h"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="TWR-KM34Z50MV3" Cclass="Board Support" Cversion="1.0.0">
+      <description>TWR-KM34Z50MV3 Board Support</description>
+      <doc></doc>
+      <component Cgroup="A/D Converter" Capiversion="1.00" condition="MKM34ZA5 CMSIS">
+        <description>A/D Converter interface for NXP TWR-KM34Z50MV3 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KM34Z50MV3/Common/ADC_TWR-KM34Z50MV3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="MKM34ZA5 CMSIS">
+      <description>Button driver for NXP TWR-KM34Z50MV3 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KM34Z50MV3/Common/Buttons_TWR-KM34Z50MV3.c"/>
+        </files>
+      </component>
+      <component Cgroup="LED" Capiversion="1.00" condition="MKM34ZA5 CMSIS">
+      <description>LED driver for NXP TWR-KM34Z50MV3 board</description>
+        <files>
+          <file category="source" name="Boards/NXP/TWR-KM34Z50MV3/Common/LED_TWR-KM34Z50MV3.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board name="TWR-KM34Z50" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKM34Z128xxx5"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KMxx Series" DsubFamily="KM3x"/>
+      <description>TWR-KM34Z50M: Kinetis M Series Tower System Module.</description>
+      <book category="overview"  name="http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/m-series-metrology-m0-plus/kinetis-m-series-tower-system-module:TWR-KM34Z50M"  title="TWR-KM34Z50M: Kinetis M Series Tower System Module"/>
+      <book category="manual"    name="Boards/NXP/TWR-KM34Z50/Documents/TWRKM34Z50UM.pdf" title="TWR-KM34Z50 Tower Module User Manual"/>
+      <feature type="ODbg"           n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"            n="5"              name="USB Powered"/>
+      <feature type="Button"         n="4"              name="Reset, Tamper, two user button"/>
+      <feature type="LED"            n="4"              name="user-controllable LEDs"/>
+      <feature type="Accelerometer"  n="1"              name="MMA8491Q Three-axis accelerometer"/>
+      <feature type="Poti"           n="1"              name="Potentiometer"/>
+      <feature type="ContOther"      n="1"              name="NTC temperature sensor"/>
+      <feature type="IrDA"           n="1"              name="IrDA support"/>
+    </board>
+    
+    <board name="TWR-KM34Z50MV3" vendor="NXP" revision="Rev. A2" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKM34Z128Axxx5"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KMxx Series" DsubFamily="KM3x"/>
+      <description>TWR-KM34Z50MV3: Kinetis M Series Tower System Module.</description>
+      <image small="Boards/NXP/TWR-KM34Z50MV3/Documents/TWR-KM34Z50MV3_small.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/m-series-metrology-m0-plus/kinetis-m-series-tower-system-module:TWR-KM34Z50M"  title="TWR-KM34Z50M: Kinetis M Series Tower System Module"/>
+      <book category="manual"    name="Boards/NXP/TWR-KM34Z50MV3/Documents/TWRKM34Z50UM.pdf" title="TWR-KM34Z50MV3 Tower Module User Manual"/>
+      <feature type="ODbg"           n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"            n="5"              name="USB Powered"/>
+      <feature type="Button"         n="4"              name="Reset, Tamper, two user button"/>
+      <feature type="LED"            n="4"              name="user-controllable LEDs"/>
+      <feature type="Accelerometer"  n="1"              name="MMA8491Q Three-axis accelerometer"/>
+      <feature type="Poti"           n="1"              name="Potentiometer"/>
+      <feature type="ContOther"      n="1"              name="NTC temperature sensor"/>
+      <feature type="IrDA"           n="1"              name="IrDA support"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- TWR-KM34Z50 Tower Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-KM34Z50/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-KM34Z50" vendor="NXP" Dvendor="NXP:11" Dname="MKM34Z128xxx5"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- TWR-KM34Z50MV3 Tower Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/TWR-KM34Z50MV3/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="TWR-KM34Z50MV3" vendor="NXP" Dvendor="NXP:11" Dname="MKM34Z128Axxx5"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

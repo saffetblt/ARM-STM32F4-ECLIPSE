@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>TMPM4_DFP</name>
+  <description>Toshiba TX04 Series Device Support</description>
+
+  <releases>
+    <release version="1.2.0" date="2015-04-17">
+      - Added TMPM470, TMPM475 and TMPM46B device support.
+      - Added new device data sheets.
+      - Renamed Flash Algorithms (keeping old FLM files for backward compatibility).
+    </release>
+    <release version="1.1.0" date="2015-01-22">
+      - Added TMPM411F20XBG Device Support
+      - fixed TMPM46x_1024.FLM Flash Programming Algorithm timeout
+    </release>
+    <release version="1.0.0">
+      First Release version of TX04 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM4</keyword>
+    <keyword>TX04</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="TX04 Series" Dvendor="Toshiba:92">
+      <book name="Documents\dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+      <description>
+The ARM Cortex-M4F core-based TX04 Series supports the Thumb-2 and Thumb instruction sets and
+provides DSP extensions and a floating-point unit (FPU) in order to deliver high energy efficiency.
+The TX04 Series includes microcontrollers that also integrate a selection of peripheral circuits
+such as high-speed NANO FLASH-100 (M440 Group) and high-performance coprocessors,
+making them ideal for high-speed data processing.
+      </description>
+
+
+      <!-- ************************  Subfamily 'M410'  **************************** -->
+      <subFamily DsubFamily="M410">
+        <processor Pname="unitA" Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <processor Pname="unitB" Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="80000000"/>
+        <!-- book name="Documents\??.pdf" title="M410 User Manual"/-->
+
+        <!-- *************************  Device 'TMPM411F20XBG'  ***************************** -->
+        <device Dname="TMPM411F20XBG">
+          <!--processor Dclock="80000000"/-->
+          <compile   Pname="unitA" header="Device\Include\TMPM411_unitA.h"  define="TMPM411F20XBG"/>
+          <debug     Pname="unitA" svd="SVD\M411_unitA.svd"/>
+          <memory    Pname="unitA" id="IROM1"                     start="0x00000000" size="0x80000"  startup="1" default="1"/>
+          <memory    Pname="unitA" id="IRAM1"                     start="0x20000000" size="0x8000"   init   ="0" default="1"/>
+          <memory    Pname="unitA" id="IRAM2"                     start="0x20008000" size="0x800"    init   ="0" default="0"/>
+          <algorithm Pname="unitA" name="Flash\TMPM41xA_512.FLM"  start="0x00000000" size="0x80000"              default="1"/>
+
+          <feature Pname="unitA" type="DMA"           n="16"/>
+          <feature Pname="unitA" type="IOs"           n="50"/>
+          <feature Pname="unitA" type="Timer"         n="3"       m="16"       name="16-bit timer (interval timer mode, event counter mode, PPG output)"/>
+          <feature Pname="unitA" type="Timer"         n="2"       m="16"       name="16-bit timer (Compare interrupt, rectangular wave output)"/>
+          <feature Pname="unitA" type="RTC"           n="1"       m="32768"/>
+          <feature Pname="unitA" type="WDT"           n="1"/>
+          <feature Pname="unitA" type="UART"          n="2"                    name="UART/SIO"/>
+          <feature Pname="unitA" type="UART"          n="1"                    name="Full UART"/>
+          <feature Pname="unitA" type="I2C"           n="1"/>
+          <feature Pname="unitA" type="ComOther"      n="3"                    name="Enhanced Serial I/O (SPI, SS, Microwire)"/>
+          <feature Pname="unitA" type="ADC"           n="4"       m="12"/>
+          <feature Pname="unitA" type="Other"         n="1"                    name="LCD driver"/>
+
+
+          <compile   Pname="unitB" header="Device\Include\TMPM411_unitB.h"  define="TMPM411F20XBG"/>
+          <debug     Pname="unitB" svd="SVD\M411_unitB.svd"/>
+          <memory    Pname="unitB" id="IROM1"                     start="0x00000000" size="0x180000" startup="1" default="1"/>
+          <memory    Pname="unitB" id="IRAM1"                     start="0x20000000" size="0x40000"  init   ="0" default="1"/>
+          <algorithm Pname="unitB" name="Flash\TMPM41xB_1536.FLM" start="0x00000000" size="0x180000"             default="1"/>
+
+          <feature Pname="unitB" type="DMA"           n="18"/>
+          <feature Pname="unitB" type="IOs"           n="43"/>
+          <feature Pname="unitB" type="Timer"         n="2"       m="16"       name="16-bit timer (interval timer mode, event counter mode, PPG output)"/>
+          <feature Pname="unitB" type="Timer"         n="2"       m="16"       name="16-bit timer (Compare interrupt, rectangular wave output)"/>
+          <feature Pname="unitB" type="WDT"           n="1"/>
+          <feature Pname="unitB" type="UART"          n="4"                    name="UART/SIO"/>
+          <feature Pname="unitB" type="UART"          n="1"                    name="Full UART"/>
+          <feature Pname="unitB" type="ComOther"      n="1"                    name="Enhanced Serial I/O (SPI, SS, Microwire)"/>
+          <feature Pname="unitB" type="ADC"           n="5"       m="12"/>
+          <feature Pname="unitB" type="Other"         n="1"                    name="AES processor"/>
+          <feature Pname="unitB" type="Other"         n="1"                    name="Secure hash processor"/>
+          <feature Pname="unitB" type="Other"         n="1"                    name="Entropy seed generator"/>
+          <feature Pname="unitB" type="Other"         n="1"                    name="Multiple length arithmetic coprocessor"/>
+
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="BGA"           n="193"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M440'  **************************** -->
+      <subFamily DsubFamily="M440">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Configurable"/>
+        <!-- book name="Documents\??.pdf" title="M440 User Manual"/-->
+
+        <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+        <feature type="DMA"           n="6"/>
+        <feature type="UART"          n="6"                           name="UART/SIO"/>
+        <feature type="UART"          n="2"                           name="Full UART"/>
+        <feature type="I2C"           n="1"/>
+        <feature type="ComOther"      n="3"                           name="Enhanced Serial I/O"/>
+        <feature type="ADC"           n="20"      m="12"/>
+        <feature type="DAC"           n="2"       m="10"/>
+        <feature type="Timer"         n="20"      m="16"/>
+        <feature type="Timer"         n="1"       m="32"/>
+        <feature type="Timer"         n="1"       m="16"              name="Hi-resolution 16Bit Timer"/>
+        <feature type="Timer"         n="1"                           name="2-phase pulse counter(PHC)"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="Other"         n="1"                           name="Servo/Sequence Controller"/>
+        <feature type="ExtInt"        n="24"/>
+        <feature type="IOs"           n="228"/>
+        <feature type="VCC"           n="2.70"    m="3.60"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="BGA"           n="289"/>
+
+
+        <!-- *************************  Device 'TMPM440FEXBG'  ***************************** -->
+        <device Dname="TMPM440FEXBG">
+          <processor Dclock="100000000"/>
+          <compile header="Device\Include\TMPM440.h"  define="TMPM440FEXBG"/>
+<!--  ignore because of errors
+          <debug      svd="SVD\M440.svd"/>
+-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0xC0000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\TMPM440_768.FLM"    start="0x00000000"  size="0xC0000"                  default="1"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM440F10XBG'  ***************************** -->
+        <device Dname="TMPM440F10XBG">
+          <processor Dclock="100000000"/>
+          <compile header="Device\Include\TMPM440.h"  define="TMPM440F10XBG"/>
+<!--  ignore because of errors
+          <debug      svd="SVD\M440.svd"/>
+-->
+          <memory     id="IROM1"                      start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash\TMPM440_1024.FLM"   start="0x00000000"  size="0x100000"                 default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M460'  **************************** -->
+      <subFamily DsubFamily="M460">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+        <!-- book name="Documents\??.pdf" title="M460 User Manual"/-->
+
+        <feature type="DMA"           n="32"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="VCC"           n="2.70"    m="3.60"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+
+        <!-- *************************  Device 'TMPM461F10FG'  ***************************** -->
+        <device Dname="TMPM461F10FG">
+          <processor Dclock="120000000"/>
+          <book  name="Documents\TMPM461F10FG_datasheet_en_20141110.pdf"  title="TMPM461F15/F10FG Data Sheet"/>
+          <compile header="Device\Include\TMPM461.h"  define="TMPM461F10FG"/>
+          <debug      svd="SVD\M461.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM461_1024.FLM"   start="0x00000000"  size="0x100000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="6"                           name="UART/SIO"/>
+          <feature type="IOs"           n="111"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM461F15FG'  ***************************** -->
+        <device Dname="TMPM461F15FG">
+          <processor Dclock="120000000"/>
+          <book  name="Documents\TMPM461F10FG_datasheet_en_20141110.pdf"  title="TMPM461F15/F10FG Data Sheet"/>
+          <compile header="Device\Include\TMPM461.h"  define="TMPM461F15FG"/>
+          <debug svd="SVD\M461.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x180000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM461_1536.FLM"   start="0x00000000"  size="0x180000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="6"                           name="UART/SIO"/>
+          <feature type="IOs"           n="111"/>
+          <feature type="QFP"           n="144"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM462F10FG'  ***************************** -->
+        <device Dname="TMPM462F10FG">
+          <processor Dclock="120000000"/>
+          <book  name="Documents\TMPM462F10FG_datasheet_en_20141110.pdf"  title="TMPM462F15/F10FG Data Sheet"/>
+          <compile header="Device\Include\TMPM462.h"  define="TMPM462F10FG"/>
+          <debug svd="SVD\M462.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM462_1024.FLM"   start="0x00000000"  size="0x100000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="10"                          name="UART/SIO"/>
+          <feature type="IOs"           n="139"/>
+          <feature type="QFP"           n="176"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM462F15FG'  ***************************** -->
+        <device Dname="TMPM462F15FG">
+          <processor Dclock="120000000"/>
+          <book  name="Documents\TMPM462F10FG_datasheet_en_20141110.pdf"  title="TMPM462F15/F10FG Data Sheet"/>
+          <compile header="Device\Include\TMPM462.h"  define="TMPM462F15FG"/>
+          <debug svd="SVD\M462.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x180000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM462_1536.FLM"   start="0x00000000"  size="0x180000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="10"                          name="UART/SIO"/>
+          <feature type="IOs"           n="139"/>
+          <feature type="QFP"           n="176"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM462F10XBG'  **************************** -->
+        <device Dname="TMPM462F10XBG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM462.h"  define="TMPM462F10XBG"/>
+          <debug svd="SVD\M462.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM462_1024.FLM"   start="0x00000000"  size="0x100000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="10"                          name="UART/SIO"/>
+          <feature type="IOs"           n="139"/>
+          <feature type="BGA"           n="189"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM462F15XBG'  **************************** -->
+        <device Dname="TMPM462F15XBG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM462.h"  define="TMPM462F15XBG"/>
+          <debug svd="SVD\M462.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x180000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x30000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20030000"  size="0x00400"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM462_1536.FLM"   start="0x00000000"  size="0x180000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                          name="External Bus Interface for SRAM Communication"/>
+          <feature type="UART"          n="2"                           name="Full UART"/>
+          <feature type="I2C"           n="5"/>
+          <feature type="ComOther"      n="3"                           name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="16"      m="16"/>
+          <feature type="Timer"         n="2"       m="16"              name="Multi Purpose Timer"/>
+          <feature type="Other"         n="1"                           name="Remote Control Signal Preprocessor"/>
+          <feature type="UART"          n="10"                          name="UART/SIO"/>
+          <feature type="IOs"           n="139"/>
+          <feature type="BGA"           n="189"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM46BF10FG'  **************************** -->
+        <device Dname="TMPM46BF10FG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM46B.h"  define="TMPM46BF10FG"/>
+          <debug svd="SVD\M46B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x80000"    init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x20080000"  size="0x00800"    init   ="0"   default="0"/>
+          <algorithm  name="Flash\TMPM46B_1024.FLM"   start="0x00000000"  size="0x100000"                 default="1"/>
+
+          <feature type="ExtBus"        n="16"                   name="External Bus Interface"/>
+          <feature type="Other"         n="1"                    name="SLC NAND flash Controller"/>
+          <feature type="Other"         n="1"                    name="AES processor"/>
+          <feature type="Other"         n="1"                    name="Secure hash processor"/>
+          <feature type="Other"         n="1"                    name="Entropy seed generator"/>
+          <feature type="Other"         n="1"                    name="Multiple length arithmetic coprocessor"/>
+          <feature type="IOs"           n="72"/>
+          <feature type="Timer"         n="8"       m="16"       name="16-bit timer (interval timer mode, event counter mode, PPG output)"/>
+          <feature type="Timer"         n="4"       m="16"       name="Multi Purpose Timer"/>
+          <feature type="UART"          n="4"                    name="UART/SIO"/>
+          <feature type="UART"          n="2"                    name="Full UART"/>
+          <feature type="I2C"           n="3"/>
+          <feature type="ComOther"      n="3"                    name="Synchronous Serial interface"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="Other"         n="1"                    name="Low Voltage detection"/>
+          <feature type="QFP"           n="100"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'M470'  **************************** -->
+      <subFamily DsubFamily="M470">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+        <!-- book name="Documents\??.pdf" title="M460 User Manual"/-->
+
+        <feature type="DMA"           n="32"/>
+        <feature type="ExtInt"        n="16"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="VCC"           n="4.50"    m="5.50"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+
+        <!-- *************************  Device 'TMPM470FYFG'  **************************** -->
+        <device Dname="TMPM470FYFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM470.h"  define="TMPM470FYFG"/>
+          <debug svd="SVD\M470.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_256.FLM" start="0x00000000" size="0x00040000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM470FZFG'  **************************** -->
+        <device Dname="TMPM470FZFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM470.h"  define="TMPM470FZFG"/>
+          <debug svd="SVD\M470.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00060000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_384.FLM" start="0x00000000" size="0x00060000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM470FDFG'  **************************** -->
+        <device Dname="TMPM470FDFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM470.h"  define="TMPM470FDFG"/>
+          <debug svd="SVD\M470.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_512.FLM" start="0x00000000" size="0x00080000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM475FYFG'  **************************** -->
+        <device Dname="TMPM475FYFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM475.h"  define="TMPM475FYFG"/>
+          <debug svd="SVD\M475.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00040000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_256.FLM" start="0x00000000" size="0x00040000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="CAN"           n="1"                           name="CAN controller"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM475FZFG'  **************************** -->
+        <device Dname="TMPM475FZFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM475.h"  define="TMPM475FZFG"/>
+          <debug svd="SVD\M475.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00060000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_384.FLM" start="0x00000000" size="0x00060000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="CAN"           n="1"                           name="CAN controller"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+
+        <!-- *************************  Device 'TMPM475FDFG'  **************************** -->
+        <device Dname="TMPM475FDFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device\Include\TMPM475.h"  define="TMPM475FDFG"/>
+          <debug svd="SVD\M475.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00080000" startup="1"   default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0"   default="1"/>
+          <memory id="IRAM2"                      start="0x20008000" size="0x00000800" init   ="0"   default="0"/>
+          <algorithm name="Flash\TMPM470_512.FLM" start="0x00000000" size="0x00080000"               default="1"/>
+
+          <feature type="ADC"           n="20"      m="12"/>
+          <feature type="Timer"         n="10"      m="16"/>
+          <feature type="UART"          n="4"                           name="UART/SIO"/>
+          <feature type="CAN"           n="1"                           name="CAN controller"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="QFP"           n="100"                         name="LQFP package"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM411_unitA CMSIS">
+      <description>Toshiba TMPM411 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM411*" Pname="unitA"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM411_unitB CMSIS">
+      <description>Toshiba TMPM411 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM411*" Pname="unitB"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM440 CMSIS">
+      <description>Toshiba TMPM440 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM440*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM461 CMSIS">
+      <description>Toshiba TMPM461 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM461*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM462 CMSIS">
+      <description>Toshiba TMPM462 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM462*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM46B CMSIS">
+      <description>Toshiba TMPM46B Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM46B*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM470 CMSIS">
+      <description>Toshiba TMPM470 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM470*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="TMPM475 CMSIS">
+      <description>Toshiba TMPM475 Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM475*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup TMPM411 unitA -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM411_unitA CMSIS">
+      <description>System Startup for Toshiba TMPM411 unitA Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM411_unitA.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM411_unitA.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup TMPM411 unitB -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM411_unitB CMSIS">
+      <description>System Startup for Toshiba TMPM411 unitB Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM411_unitB.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM411_unitB.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM440 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM440 CMSIS">
+      <description>System Startup for Toshiba TMPM440 Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM440.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM440.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM461 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM461 CMSIS">
+      <description>System Startup for Toshiba TMPM461 Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM461.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM461.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM462 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM462 CMSIS">
+      <description>System Startup for Toshiba TMPM462 Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM462.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM462.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM46B -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM46B CMSIS">
+      <description>System Startup for Toshiba TMPM46B Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM46B.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM46B.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM470 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM470 CMSIS">
+      <description>System Startup for Toshiba TMPM470 Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM470.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM470.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM475 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM475 CMSIS">
+      <description>System Startup for Toshiba TMPM475 Devices</description>
+      <files>
+        <file category="include" name="Device\Include\"/>
+        <file category="source"  name="Device\Source\ARM\startup_TMPM475.s"    attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device\Source\system_TMPM475.c"         attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>

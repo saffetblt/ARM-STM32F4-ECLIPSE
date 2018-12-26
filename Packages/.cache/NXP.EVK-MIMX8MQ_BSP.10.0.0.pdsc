@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>EVK-MIMX8MQ_BSP</name>
+  <description>Board Support Pack for EVK-MIMX8MQ</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="EVK-MIMX8MQ">
+      <description>The i.MX 8MQuad family of boards provides a powerful and flexible development system for NXP(r)'s Cortex-M4 MCUs.</description>
+      <mountedDevice Dname="MIMX8MQ6xxxJZ" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.evkmimx8mq">
+      <accept Dname="MIMX8MQ6DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6xxxJZ" Dvariant="MIMX8MQ6DVAJZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6CVAHZ" Dvendor="NXP:11"/>
+      <accept Dname="MIMX8MQ6xxxHZ" Dvariant="MIMX8MQ6CVAHZ" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rdc"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="cmsis_ecspi_int_loopback_transfer" folder="cmsis_driver_examples/ecspi/int_loopback_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_ecspi_int_loopback_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/ecspi/int loopback transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_ii2c_int_b2b_transfer_master" folder="cmsis_driver_examples/i2c/int_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_ii2c_int_b2b_transfer_master.ewp"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_ii2c_int_b2b_transfer_slave" folder="cmsis_driver_examples/i2c/int_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_ii2c_int_b2b_transfer_slave.ewp"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_iuart_interrupt_transfer" folder="cmsis_driver_examples/uart/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_iuart_interrupt_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/uart/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/hello_world.ewp"/>
+      </project>
+      <attributes>
+        <category>demo apps/hello world</category>
+      </attributes>
+    </example>
+    <example name="ecspi_loopback" folder="driver_examples/ecspi/ecspi_loopback" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ecspi_loopback.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/ecspi/ecspi loopback</category>
+      </attributes>
+    </example>
+    <example name="igpio_led_output" folder="driver_examples/gpio/led_output" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/igpio_led_output.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpio/led output</category>
+      </attributes>
+    </example>
+    <example name="gpt_capture" folder="driver_examples/gpt/capture" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/gpt_capture.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpt/capture</category>
+      </attributes>
+    </example>
+    <example name="gpt_timer" folder="driver_examples/gpt/timer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/gpt_timer.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpt/timer</category>
+      </attributes>
+    </example>
+    <example name="ii2c_interrupt_b2b_transfer_master" folder="driver_examples/i2c/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ii2c_interrupt_b2b_transfer_master.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="ii2c_interrupt_b2b_transfer_slave" folder="driver_examples/i2c/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ii2c_interrupt_b2b_transfer_slave.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="ii2c_polling_b2b_transfer_master" folder="driver_examples/i2c/polling_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ii2c_polling_b2b_transfer_master.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="ii2c_polling_b2b_transfer_slave" folder="driver_examples/i2c/polling_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ii2c_polling_b2b_transfer_slave.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="ipwm" folder="driver_examples/pwm" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ipwm.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/pwm</category>
+      </attributes>
+    </example>
+    <example name="qspi_polling_transfer" folder="driver_examples/qspi/polling_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/qspi_polling_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/qspi/polling transfer</category>
+      </attributes>
+    </example>
+    <example name="rdc" folder="driver_examples/rdc" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rdc.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/rdc</category>
+      </attributes>
+    </example>
+    <example name="sai_interrupt_transfer" folder="driver_examples/sai/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sai_interrupt_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/sai/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="sema4_uboot" folder="driver_examples/sema4/uboot" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sema4_uboot.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/sema4/uboot</category>
+      </attributes>
+    </example>
+    <example name="tmu_monitor_report" folder="driver_examples/tmu/tmu_monitor_report" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/tmu_monitor_report.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/tmu/tmu monitor report</category>
+      </attributes>
+    </example>
+    <example name="iuart_auto_baudrate_detect" folder="driver_examples/uart/auto_baudrate_detect" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/iuart_auto_baudrate_detect.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/auto baudrate detect</category>
+      </attributes>
+    </example>
+    <example name="iuart_interrupt" folder="driver_examples/uart/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/iuart_interrupt.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt</category>
+      </attributes>
+    </example>
+    <example name="iuart_interrupt_rb_transfer" folder="driver_examples/uart/interrupt_rb_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/iuart_interrupt_rb_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt rb transfer</category>
+      </attributes>
+    </example>
+    <example name="iuart_interrupt_transfer" folder="driver_examples/uart/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/iuart_interrupt_transfer.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="iuart_polling" folder="driver_examples/uart/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/iuart_polling.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/polling</category>
+      </attributes>
+    </example>
+    <example name="wdog01" folder="driver_examples/wdog" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/wdog01.ewp"/>
+      </project>
+      <attributes>
+        <category>driver examples/wdog</category>
+      </attributes>
+    </example>
+    <example name="freertos_ecspi_loopback" folder="rtos_examples/freertos_ecspi/ecspi_loopback" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_ecspi_loopback.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos ecspi/ecspi loopback</category>
+      </attributes>
+    </example>
+    <example name="freertos_event" folder="rtos_examples/freertos_event" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_event.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos event</category>
+      </attributes>
+    </example>
+    <example name="freertos_generic" folder="rtos_examples/freertos_generic" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_generic.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos generic</category>
+      </attributes>
+    </example>
+    <example name="freertos_hello" folder="rtos_examples/freertos_hello" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_hello.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos hello</category>
+      </attributes>
+    </example>
+    <example name="freertos_i2c" folder="rtos_examples/freertos_i2c" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_i2c.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos i2c</category>
+      </attributes>
+    </example>
+    <example name="freertos_mutex" folder="rtos_examples/freertos_mutex" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_mutex.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos mutex</category>
+      </attributes>
+    </example>
+    <example name="freertos_queue" folder="rtos_examples/freertos_queue" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_queue.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos queue</category>
+      </attributes>
+    </example>
+    <example name="freertos_sem" folder="rtos_examples/freertos_sem" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_sem.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos sem</category>
+      </attributes>
+    </example>
+    <example name="freertos_swtimer" folder="rtos_examples/freertos_swtimer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_swtimer.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos swtimer</category>
+      </attributes>
+    </example>
+    <example name="freertos_tickless" folder="rtos_examples/freertos_tickless" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_tickless.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos tickless</category>
+      </attributes>
+    </example>
+    <example name="freertos_uart" folder="rtos_examples/freertos_uart" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="EVK-MIMX8MQ" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/freertos_uart.ewp"/>
+      </project>
+      <attributes>
+        <category>rtos examples/freertos uart</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="evkmimx8mq" condition="project_template.evkmimx8mq">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+        <file name="project_template/fsl_iomuxc.h" category="header"/>
+      </files>
+    </component>
+  </components>
+</package>

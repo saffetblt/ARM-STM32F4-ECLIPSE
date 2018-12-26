@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SONiX</vendor>
+  <url>http://liveupdate.sonix.com.tw/sonix/develop_tool/MCU/DFP/</url>
+  <name>SN32F1_DFP</name>
+  <description>SONiX SN32F1 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.1.0" date="2018-10-05">
+      Remove Code option related files.
+    </release>
+    <release version="1.0.2" date="2018-02-07">
+      Remove the User Manuals.
+      Add FLM related files and descriptions for setting Code option.
+      Update SN32F100.svd, SN32F100.h, SN32F100_Def.h and system_SN32F100.c
+    </release>
+    <release version="1.0.1" date="2016-07-22">
+      Update SN32F100 User Manual to V1.8
+      Update system_SN32F100.c and SN32F100.h
+    </release>
+    <release version="1.0.0" date="2015-05-06">
+      First Release version of SN32F1 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>SONiX</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package SONiX</keyword>
+    <keyword>SN32F1</keyword>
+    <keyword>SN32</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="SN32F1 Series" Dvendor="SONiX:110">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book    name="Documents\dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+        <description>
+SN32F1 series 32-bit micro-controller is a new series of extremely Low Power Consumption and High Performance MCU powered by ARM Cortex M0 processor with Flash ROM architecture.
+        </description>
+        <feature type="ExtInt"        n="6"/>
+        <feature type="Other"         n="1"                           name="Boot Loader"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="ADC"           n="1"       m="16"/>
+        <feature type="DAC"           n="1"       m="16"/>
+        <feature type="RTC"           n="1"/>
+        <feature type="VCC"           n="1.80"    m="3.60"/>
+
+
+      <!-- ************************  Subfamily 'SN32F100'  **************************** -->
+      <subFamily DsubFamily="SN32F100">
+        <feature type="Timer"         n="2"       m="32"/>
+      
+      <!-- *************************  Device 'SN32F107F'  ***************************** -->
+      <device Dname="SN32F107F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F100.h"  define="SN32F100"/>
+        <debug      svd="SVD\SN32F100.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F100_64.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>
+        <feature type="IOs"           n="32"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="PWM"           n="4"/>
+        <feature type="UART"	      n="1"/>
+        <feature type="Other"         n="8"                           name="CMP"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F108F'  ***************************** -->
+      <device Dname="SN32F108F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F100.h"  define="SN32F100"/>
+        <debug      svd="SVD\SN32F100.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F100_64.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>
+        <feature type="IOs"           n="46"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="PWM"           n="6"/>
+        <feature type="UART"	      n="2"/>
+        <feature type="Other"         n="17"                           name="CMP"/>
+        <feature type="QFN"           n="64"/>
+      </device>
+      
+      <!-- *************************  Device 'SN32F109F'  ***************************** -->
+      <device Dname="SN32F109F">
+        <processor Dclock="50000000"/>
+        <compile header="Device\Include\SN32F100.h"  define="SN32F100"/>
+        <debug      svd="SVD\SN32F100.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\SN32F100_64.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>
+        <feature type="IOs"           n="62"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="PWM"           n="6"/>
+        <feature type="UART"	      n="2"/>
+        <feature type="I2S"           n="1"/>
+        <feature type="Other"         n="24"                           name="CMP"/>
+        <feature type="QFP"           n="80"/>
+      </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="SN32F1">
+      <description>SONiX SN32F1 Series devices</description>
+      <require Dname="SN32F1*"/>
+    </condition>
+
+    <condition id="SN32F1 CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>SONiX SN32F1 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="SONiX:110" Dname="SN32F1*"/>
+    </condition>
+    
+    <condition id="SN32F1 ARMCC">
+      <description>ARM Compiler for SN32F1 devices</description>
+      <require condition="Compiler ARM"/>
+      <require condition="SN32F1 CMSIS Device"/>
+    </condition>
+  </conditions>
+
+  <boards>
+    <board vendor="SONiX" name="SN32F100 Starter Kit" revision="v1.2" salesContact="sales@sonix.com.tw" orderForm="http://www.sonix.com.tw/article-tw-155-15299">
+      <description>SONiX SN32F100 Starter Kit</description>
+      <book category="schematic" name="Documents\SN32F100_STARTKIT_V1.2.pdf" title="Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="SONiX:110" Dname="SN32F10*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="SONiX:110" Dfamily="SN32F100"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Button"    n="3"              name="Push-buttons: User and Reset"/>
+      <feature type="USB"       n="1"              name="USB device with USB Standard-B Connector"/>
+      <feature type="RS232"     n="1"              name="DB9 Female Connector"/>
+      <feature type="DIO"       n="62"             name="Digital IOs (shared with Analog IOs)"/>
+      <feature type="LED"       n="2"              name="LEDs: One user, one PWR LED"/>
+      <feature type="ConnOther" n="1"              name="JTAG Interface"/>
+    </board>
+  </boards>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.2" condition="SN32F1 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for SONiX SN32F1 Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device\Include\"/>
+              
+        <!-- startup files -->
+        <file category="source" name="Device\Source\ARM\startup_SN32F100.s"   attr="config"    condition="SN32F1 ARMCC" version="1.0.0"/>
+
+        <!-- system file -->
+        <file category="source" name="Device\Source\system_SN32F100.c"        attr="config"    condition="SN32F1" version="1.0.2"/>
+
+      </files>
+    </component> 
+  </components>
+</package>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>Jansson</name>
+  <description>Jansson is a C library for encoding, decoding and manipulating JSON data</description>
+  <!-- web download link -->
+  <url>http://www.keil.com/pack/</url>
+  <license>doc\license.txt</license>
+
+  <releases>
+    <release version="1.0.0">
+      Initial release of Jansson in a PACK containing Jansson 2.7
+    </release>
+  </releases>
+
+  <taxonomy>
+    <description Cclass="Data Exchange">Software Components for Data Exchange</description>
+    <description Cclass="Data Exchange" Cgroup="JSON">JSON Software Components</description>
+  </taxonomy>
+  
+  <conditions>
+    <condition id="ARMCC">
+      <description>Use only with the ARM compiler</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="Cortex-M ARMv6M Device">
+      <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, SC000</description>
+      <require Tcompiler="ARMCC"/>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="SC000"/>
+      <accept Dcore="SC300"/>
+    </condition>
+
+    <condition id="Cortex-M ARMv7M Device">
+      <description>Cortex-M processor based device: Cortex-M3, Cortex-M4, Cortex-M7</description>
+      <require Tcompiler="ARMCC"/>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="Cortex-M4"/>
+      <accept Dcore="Cortex-M7"/>
+      <accept Dcore="SC300"/>
+    </condition>
+  </conditions>
+  
+
+
+  <components>
+   <component Cclass="Data Exchange" Cgroup="JSON" Csub="Jansson" Cversion="2.7.0" condition="ARMCC">
+      <description>Jansson library Version 2.7 for Cortex-M, SC000, and SC300</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define JANSSON          
+      </RTE_Components_h>
+      <files>
+        <!-- CPU independent -->
+        <file category="doc" name="doc\index.html"/>
+        <file category="header" name="src\jansson.h"/>
+        <file category="source" attr="config" name="src\jansson_config.c" version="2.7.0"/>
+
+
+        <!-- CPU and Compiler dependent -->
+        <!-- ARMCC -->
+        <file category="library" condition="Cortex-M ARMv6M Device"      name="lib\jansson_CM0LE.lib"      src="src"/>
+        <file category="library" condition="Cortex-M ARMv7M Device"      name="lib\jansson_CM3LE.lib"      src="src"/>
+      </files>
+    </component>
+  </components>
+  
+  <examples>
+    <example name="Jansson Example" doc="Abstract.txt" folder="example">
+      <description>Jansson Example</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="jansson_example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Utilities" Cgroup="JSON" Csub="Jansson"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

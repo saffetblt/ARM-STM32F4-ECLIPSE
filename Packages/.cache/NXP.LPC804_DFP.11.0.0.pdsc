@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC804_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for LPC804</description>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="11.0.0">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="LPC804" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="0"/>
+      <sequences>
+        <sequence name="ResetProcessor" disable="true"/>
+        <sequence name="ForceCoreHalt">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+      __var DCRSR_Addr = SCS_Addr + 0xDF4;
+      __var DCRDR_Addr = SCS_Addr + 0xDF8;
+      __var DHCSR_Val  = 0;
+    </block>
+          <control while="((DHCSR_Val = Read32(DHCSR_Addr)) &amp; 0x00020000) == 0" timeout="100000"/>
+          <control if="(DHCSR_Val &amp; 0x00020000) == 0">
+            <block info="Halt core">
+        Write32(DHCSR_Addr,0xA05F0003);                                  // halt core
+      </block>
+            <!-- wait until core has stopped -->
+            <control while="(Read32(DHCSR_Addr) &amp; 0x00020000) == 0" timeout="1000"/>
+          </control>
+        </sequence>
+        <sequence name="ResetSystem" info="SYSRESETREQ">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+      __errorcontrol = 1;                                              // ignore errors
+      Write32(AIRCR_Addr, 0x05FA0004);                                 // Execute SYSRESETREQ via AIRCR
+      __errorcontrol = 0;                                              // check errors
+
+      DAP_Delay(1000);                                                 // time for reset
+    </block>
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="100000"/>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetProcessor" info="VECTRESET">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+      __errorcontrol = 1;                                              // ignore errors
+      Write32(AIRCR_Addr, 0x05FA0001);                                 // Execute VECTRESET via AIRCR
+      __errorcontrol = 0;                                              // check errors
+    </block>
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="100000"/>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetHardware" info="HW RESET">
+          <block>
+      __var nReset      = 0x80;
+      __var canReadPins = 0;
+
+      canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);     // Deassert nRESET line
+    </block>
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+          <control if="!canReadPins">
+            <block>
+        DAP_SWJ_Pins(nReset, nReset, 0);                               // Assert nRESET line
+      </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetCatchSet">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+      __var DEMCR_Addr = SCS_Addr + 0xDFC;
+      __var value      = 0;
+      __var FPB_BKPT_H = 0x80000000;
+      __var FPB_BKPT_L = 0x40000000;
+      __var FPB_COMP_M = 0x1FFFFFFC;
+      __var FPB_KEY    = 0x00000002;
+      __var FPB_ENABLE = 0x00000001;
+    </block>
+          <!-- read reset vector from Flash -->
+          <block>
+      value = Read32(DEMCR_Addr);
+      Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                // Disable Reset Vector Catch in DEMCR
+    </block>
+          <!-- set BreakPoint regardless whether reset vector is valid or not -->
+          <block>
+      Write32(0x40048000, 0x00000002);                                 // Map Flash to Vectors
+      value = Read32 (0x00000004);                                     // Read Reset Vector
+
+      value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+      Write32(0xE0002008, value);                                      // Set BP0 to Reset Vector
+      Write32(0xE0002000, (FPB_KEY | FPB_ENABLE));                     // Enable FPB
+    </block>
+          <block>
+      Read32(DHCSR_Addr);                                              // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+    </block>
+        </sequence>
+        <sequence name="ResetCatchClear">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var DEMCR_Addr = SCS_Addr + 0xDFC;
+      __var value      = 0;
+
+      value = Read32(DEMCR_Addr);
+      Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                // Disable Reset Vector Catch in DEMCR
+
+      Write32(0xE0002008, 0x00000000);                                 // Clear BP0
+      Write32(0xE0002000, 0x00000002);                                 // Disable FPB
+    </block>
+        </sequence>
+      </sequences>
+      <description>The LPC80x are an ARM Cortex-M0+ based, low-cost 32-bit MCU family operating at CPU frequencies of up to 15 MHz. The LPC804 support up to 32 KB of flash memory and4 KB of SRAM.The peripheral complement of the LPC80x includes a CRC engine, two I2C-bus interfaces, two USARTs, one SPI interface, Capacitive Touch Interface (Cap Touch), onemulti-rate timer, self-wake-up timer, one general purpose 32-bit counter/timer, one 12-bit ADC, one10-bit DAC, one analog comparator, function-configurable I/O ports through aswitch matrix, an input pattern match engine, Programmable Logic Unit (PLU), and up to 30 general-purpose I/O pins.</description>
+      <device Dname="LPC804">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="30000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/LPC804_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x8000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x10000000" size="0x1000" access="rw" default="1"/>
+        <algorithm name="arm/LPC80x_32.FLM" start="0x00000000" size="0x00008000" RAMstart="0x10000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="LPC804.xml"/>
+        <variant Dvariant="LPC804M101JDH24">
+          <compile header="fsl_device_registers.h" define="CPU_LPC804M101JDH24"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC804M101JDH24/LPC804_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="LPC804M101JDH20">
+          <compile header="fsl_device_registers.h" define="CPU_LPC804M101JDH20"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC804M101JDH20/LPC804_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="LPC804M111JDH24">
+          <compile header="fsl_device_registers.h" define="CPU_LPC804M111JDH24"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC804M111JDH24/LPC804_flash.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="LPC804M101JHI33">
+          <compile header="fsl_device_registers.h" define="CPU_LPC804M101JHI33"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/LPC804M101JHI33/LPC804_flash.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_MCUXpressoConfigTools">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.LPC804_AND_utility.debug_console_lite">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.LPC804_AND_driver.lpc_miniusart">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+    </condition>
+    <condition id="device.LPC804">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.LPC804_AND_driver.common">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.LPC804_AND_driver.common_AND_driver.syscon_connections">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections"/>
+    </condition>
+    <condition id="device.LPC804_AND_driver.common_AND_driver.swm_connections">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections"/>
+    </condition>
+    <condition id="device.LPC804_AND_driver.common_AND_driver.power_no_lib">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+    </condition>
+    <condition id="device.LPC804_AND_device.LPC804_CMSIS_AND_driver.clock_AND_driver.reset">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC804_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+    </condition>
+    <condition id="device.LPC804_AND_component.miniusart_adapter_AND_device.LPC804_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_AND_driver.lpc_iocon_lite_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.rom_api_AND_driver.swm_AND_driver.swm_AND_utility.debug_console_lite">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="LPC804_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+    </condition>
+    <condition id="device.LPC804_AND_CMSIS_Include_core_cm0plus">
+      <accept Dname="LPC804*" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="device.LPC804_AND_utility.debug_console_lite">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter" Cversion="1.0.0" condition="device.LPC804_AND_driver.lpc_miniusart">
+      <description/>
+      <files>
+        <file category="header" name="components/uart/uart.h"/>
+        <file category="sourceC" name="components/uart/miniusart_adapter.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="device.LPC804">
+      <description/>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console_lite/fsl_debug_console.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.0" condition="device.LPC804_AND_driver.common">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wwdt.h"/>
+        <file category="sourceC" name="drivers/fsl_wwdt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wkt" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>WKT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_wkt.h"/>
+        <file category="sourceC" name="drivers/fsl_wkt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>Syscon_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_syscon_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon" Cversion="2.0.0" condition="device.LPC804_AND_driver.common_AND_driver.syscon_connections">
+      <description>SYSCON Driver</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_syscon.c"/>
+        <file category="header" name="drivers/fsl_syscon.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>Swm_connections Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_swm_connections.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm" Cversion="2.0.0" condition="device.LPC804_AND_driver.common_AND_driver.swm_connections">
+      <description>SWM Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_swm.h"/>
+        <file category="sourceC" name="drivers/fsl_swm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>Rom_api Driver</description>
+      <files>
+        <file category="header" name="drivers/rom_api.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_reset.h"/>
+        <file category="sourceC" name="drivers/fsl_reset.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>Power Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_power.h"/>
+        <file category="sourceC" name="drivers/fsl_power.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="plu" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>PLU Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_plu.h"/>
+        <file category="sourceC" name="drivers/fsl_plu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pint" Cversion="2.0.3" condition="device.LPC804_AND_driver.common">
+      <description>PINT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_pint.h"/>
+        <file category="sourceC" name="drivers/fsl_pint.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>MRT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_mrt.h"/>
+        <file category="sourceC" name="drivers/fsl_mrt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iocon" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>IOCON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_iocon.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.2" condition="device.LPC804_AND_driver.common">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_spi.h"/>
+        <file category="sourceC" name="drivers/fsl_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_usart.h"/>
+        <file category="sourceC" name="drivers/fsl_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.2" condition="device.LPC804_AND_driver.common">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>DAC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_dac.h"/>
+        <file category="sourceC" name="drivers/fsl_dac.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer" Cversion="2.0.2" condition="device.LPC804_AND_driver.common">
+      <description>CTimer Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_ctimer.h"/>
+        <file category="sourceC" name="drivers/fsl_ctimer.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>CRC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_crc.h"/>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.1.0" condition="device.LPC804_AND_driver.common_AND_driver.power_no_lib">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.0.1" condition="device.LPC804_AND_device.LPC804_CMSIS_AND_driver.clock_AND_driver.reset">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="capt" Cversion="2.0.0" condition="device.LPC804_AND_driver.common">
+      <description>CAPT Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_capt.h"/>
+        <file category="sourceC" name="drivers/fsl_capt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.2.0" condition="device.LPC804_AND_driver.common">
+      <description>ADC Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_adc.h"/>
+        <file category="sourceC" name="drivers/fsl_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_acomp" Cversion="2.0.1" condition="device.LPC804_AND_driver.common">
+      <description>LPC_ACOMP Driver</description>
+      <files>
+        <file category="header" name="drivers/fsl_acomp.h"/>
+        <file category="sourceC" name="drivers/fsl_acomp.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="LPC804" Cversion="1.0.0" condition="device.LPC804_AND_component.miniusart_adapter_AND_device.LPC804_startup_AND_driver.clock_AND_driver.common_AND_driver.lpc_gpio_AND_driver.lpc_iocon_lite_AND_driver.lpc_miniusart_AND_driver.power_no_lib_AND_driver.rom_api_AND_driver.swm_AND_driver.swm_AND_utility.debug_console_lite" isDefaultVariant="1">
+      <description/>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h"/>
+        <file category="sourceC" attr="config" name="project_template/board.c"/>
+        <file category="header" attr="config" name="project_template/clock_config.h"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c"/>
+        <file category="header" attr="config" name="project_template/peripherals.h"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="LPC804_startup" Cversion="1.0.0" condition="device.LPC804_AND_CMSIS_Include_core_cm0plus">
+      <description/>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_LPC804.s"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_LPC804.s"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/LPC804_flash.scf"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/LPC804_ram.scf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/LPC804_flash.icf"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/LPC804_ram.icf"/>
+        <file category="header" attr="config" name="fsl_device_registers.h"/>
+        <file category="header" attr="config" name="LPC804.h"/>
+        <file category="header" attr="config" name="LPC804_features.h"/>
+        <file category="sourceC" attr="config" name="system_LPC804.c"/>
+        <file category="header" attr="config" name="system_LPC804.h"/>
+      </files>
+    </component>
+  </components>
+</package>

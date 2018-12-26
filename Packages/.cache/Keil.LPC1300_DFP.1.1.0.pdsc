@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>LPC1300_DFP</name>
+  <description>NXP LPC1300 Series Device Support</description>
+
+  <releases>
+    <release version="1.1.0" date="2016-09-21">
+      Updated SVD file LPC13xx.svd.
+      Corrected doxy comments is system file.
+      Updated documentation.
+    </release>
+    <release version="1.0.1">
+      File name consistency.
+    </release>
+    <release version="1.0.0">
+      First Release version of LPC1300 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>LPC1300</keyword>
+    <keyword>LPC13xx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="LPC1300 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+        <description>
+The LPC1300 series is designed for embedded applications featuring a high level of integration and low power consumption.
+Equipped with a highly flexible and configurable Full-Speed USB 2.0 device controller available on the LPC1345/46/47, this series brings unparalleled design flexibility and seamless integration to today's demanding connectivity solutions.
+Typical applications include Consumer peripherals, Handheld scanners, Medical, USB audio devices, Industrial control, eMetering, Lighting, Alarm systems and White goods.
+
+  - Non Maskable Interrupt (NMI) input selectable from several input sources
+  - Four reduced power modes: Sleep, Deep-sleep, Power-down, and Deep power-down.
+  - Unique device serial number for identification.
+  - 16 kB boot ROM with API support for USB API, power control, EEPROM, and flash IAP/ISP.
+  - Programmable Windowed WatchDog Timer (WWDT) with a internal low-power WatchDog Oscillator (WDO).
+  - Code Read Protection (CRP) with different security levels.
+        </description>
+
+        <feature type="I2C"           n="1"/>
+        <feature type="ADC"           n="8"       m="12"/>
+        <feature type="WDT"           n="1"                           name="Windowed Watchdog Timer"/>
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="DMA"           n="1"/>
+        <feature type="Timer"         n="1"                           name="Repetitive Interrupt Timer (RI Timer)"/>
+        <feature type="USART"         n="1"       m="3125000"/>
+        <feature type="Timer"         n="1"       m="32"/>
+        <feature type="Timer"         n="1"       m="16"/>
+        <feature type="Temp"          n="-40"     m="85"/>
+        <feature type="VCC"           n="2.00"    m="3.60"/>
+
+
+      <!-- ************************  Subfamily 'LPC131x'  **************************** -->
+      <subFamily DsubFamily="LPC131x">
+
+        <!-- *************************  Device 'LPC1311FHN33'  ***************************** -->
+        <device Dname="LPC1311FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_8.FLM"  start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1311FHN33/01'  ***************************** -->
+        <device Dname="LPC1311FHN33/01">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x2000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_8.FLM"  start="0x00000000"  size="0x2000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="PowerOther"    n="1"                           name="Power profiles"/>
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1313FHN33'  ***************************** -->
+        <device Dname="LPC1313FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1313FHN33/01'  ***************************** -->
+        <device Dname="LPC1313FHN33/01">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="PowerOther"    n="1"                           name="Power profiles"/>
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1313FBD48'  ***************************** -->
+        <device Dname="LPC1313FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1313FBD48/01'  ***************************** -->
+        <device Dname="LPC1313FBD48/01">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1311_13_ES.pdf"       title="LPC1311/13 Erratasheet"/>
+
+          <feature type="PowerOther"    n="1"                           name="Power profiles"/>
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1315FHN33'  ***************************** -->
+        <device Dname="LPC1315FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1315FBD48'  ***************************** -->
+        <device Dname="LPC1315FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1316FHN33'  ***************************** -->
+        <device Dname="LPC1316FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_48.FLM" start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1316FBD48'  ***************************** -->
+        <device Dname="LPC1316FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_48.FLM" start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1317FHN33'  ***************************** -->
+        <device Dname="LPC1317FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="28"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1317FBD48'  ***************************** -->
+        <device Dname="LPC1317FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1317FBD64'  ***************************** -->
+        <device Dname="LPC1317FBD64">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'LPC134x'  **************************** -->
+      <subFamily DsubFamily="LPC134x">
+        <feature type="USBD"          n="1"/>
+
+        <!-- *************************  Device 'LPC1342FHN33'  ***************************** -->
+        <device Dname="LPC1342FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_16.FLM" start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1342_43_ES.pdf"       title="LLPC1342/43 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1342FBD48'  ***************************** -->
+        <device Dname="LPC1342FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x1000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_16.FLM" start="0x00000000"  size="0x4000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1342_43_ES.pdf"       title="LLPC1342/43 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1343FHN33'  ***************************** -->
+        <device Dname="LPC1343FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1342_43_ES.pdf"       title="LLPC1342/43 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="33"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1343FBD48'  ***************************** -->
+        <device Dname="LPC1343FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13xx/LPC13xx.h"/>
+          <debug svd="SVD/LPC13xx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1311_13_42_43_UM.pdf" title="LPC1311/13/42/43 Reference Manual"/>
+          <book name="Documents/LPC1311_13_42_43_DS.pdf" title="LPC1311/13/42/43 Datasheet"/>
+          <book name="Documents/LPC1342_43_ES.pdf"       title="LLPC1342/43 Erratasheet"/>
+
+          <feature type="SPI"           n="1"       m="25000000"/>
+          <feature type="MPSerial"      n="1"/>
+          <feature type="IOs"           n="48"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1345FHN33'  ***************************** -->
+        <device Dname="LPC1345FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1345FBD48'  ***************************** -->
+        <device Dname="LPC1345FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_32.FLM" start="0x00000000"  size="0x8000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="2kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1346FHN33'  ***************************** -->
+        <device Dname="LPC1346FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_48.FLM" start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1346FBD48'  ***************************** -->
+        <device Dname="LPC1346FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0xC000"     startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_48.FLM" start="0x00000000"  size="0xC000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1347FHN33'  ***************************** -->
+        <device Dname="LPC1347FHN33">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="26"/>
+          <feature type="QFN"           n="33"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1347FBD48'  ***************************** -->
+        <device Dname="LPC1347FBD48">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="40"/>
+          <feature type="QFP"           n="48"/>
+        </device>
+
+        <!-- *************************  Device 'LPC1347FBD64'  ***************************** -->
+        <device Dname="LPC1347FBD64">
+          <processor Dclock="72000000"/>
+          <compile header="Device/Include/LPC13Uxx/LPC13Uxx.h"/>
+          <debug svd="SVD/LPC13Uxx.svd"/>
+          <memory id="IROM1"                     start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory id="IRAM1"                     start="0x10000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory id="IRAM2"                     start="0x20000000"  size="0x0800"     init   ="0"   default="1"/>
+          <algorithm name="Flash/LPC1xxx_64.FLM" start="0x00000000"  size="0x10000"  RAMstart="0x10000000"  RAMsize="0x0FE0"  default="1"/>
+
+          <book name="Documents/LPC1315_16_17_45_46_47_UM.pdf" title="LPC1315/16/17/45/46/47 Reference Manual"/>
+          <book name="Documents/LPC1315_16_17_45_46_47_DS.pdf" title="LPC1315/16/17/45/46/47 Datasheet"/>
+          <book name="Documents/ES_LPC131X_4X.pdf"             title="LPC1315/16/17/45/46/47 Erratasheet"/>
+
+          <feature type="MemoryOther"   n="1"                           name="4kB EEPROM"/>
+          <feature type="SPI"           n="2"       m="25000000"/>
+          <feature type="MPSerial"      n="2"/>
+          <feature type="IOs"           n="51"/>
+          <feature type="QFP"           n="64"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="LPC13Uxx">
+      <description>NXP LPC1300 Series devices</description>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="LPC1345*"/>
+      <accept Dname="LPC1346*"/>
+      <accept Dname="LPC1347*"/>
+      <accept Dname="LPC1315*"/>
+      <accept Dname="LPC1316*"/>
+      <accept Dname="LPC1317*"/>
+    </condition>
+
+    <condition id="LPC13xx">
+      <description>NXP LPC1300 Series devices</description>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="LPC1311*"/>
+      <accept Dname="LPC1313*"/>
+      <accept Dname="LPC1342*"/>
+      <accept Dname="LPC1343*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="LPC13Uxx CMSIS">
+      <description>NXP LPC1300 Series devices and CMSIS-CORE</description>
+      <require condition="LPC13Uxx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="LPC13xx CMSIS">
+      <description>NXP LPC1300 Series devices and CMSIS-CORE</description>
+      <require condition="LPC13xx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup LPC13Uxx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC13Uxx CMSIS">
+      <description>System Startup for NXP LPC13Uxx Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/Include/LPC13Uxx/"/>
+        <!-- startup / system file -->
+        <file category="source"  name="Device/Source/ARM/startup_LPC13Uxx.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_LPC13Uxx.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup LPC13xx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="LPC13xx CMSIS">
+      <description>System Startup for NXP LPC13xx Devices</description>
+      <files>
+        <!-- include folder / file -->
+        <file category="include" name="Device/Include/LPC13xx/"/>
+        <!-- startup / system file -->
+        <file category="source"  name="Device/Source/ARM/startup_LPC13xx.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_LPC13xx.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board vendor="Keil" name="MCB1313" revision="Ver 2.0" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1000=ON">
+      <description>Keil MCB1000 Board Support and Examples</description>
+      <image small="Boards/Keil/MCB1313/Documents/mcb1000.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcb1000/" title="MCB1000 Web Page"/>
+      <book category="schematic" name="Boards/Keil/MCB1313/Documents/mcb1000-schematics.pdf" title="Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1313FBD48"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC1313"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB device with USB Standard-B Connector"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="RS232"     n="1"              name="DB9 Female Connector"/>
+      <feature type="CAN"       n="1"              name="DB9 Male Connector"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="LED"       n="9"              name="LEDs: eight user, one PWR LED"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 2 GPIO, ISP and Reset"/>
+      <feature type="ConnOther" n="1"              name="10pin Cortex Debug Interface"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="CustomFF"  n="80" m="80"/>
+    </board>
+
+    <board vendor="Keil" name="MCB1343" revision="Ver 2.0" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp?MCB1000=ON">
+      <description>Keil MCB1000 Board Support and Examples</description>
+      <image small="Boards/Keil/MCB1313/Documents/mcb1000.jpg"/>
+      <book category="overview"  name="http://www.keil.com/mcb1000/" title="MCB1000 Web Page"/>
+      <book category="schematic" name="Boards/Keil/MCB1313/Documents/mcb1000-schematics.pdf" title="Schematics"/>
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="LPC1343FBD48"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="LPC1343"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB device with USB Standard-B Connector"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="RS232"     n="1"              name="DB9 Female Connector"/>
+      <feature type="CAN"       n="1"              name="DB9 Male Connector"/>
+      <feature type="Poti"      n="1"/>
+      <feature type="LED"       n="9"              name="LEDs: eight user, one PWR LED"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 2 GPIO, ISP and Reset"/>
+      <feature type="ConnOther" n="1"              name="10pin Cortex Debug Interface"/>
+      <feature type="XTAL"      n="12000000"/>
+      <feature type="CustomFF"  n="80" m="80"/>
+    </board>
+
+  </boards>
+
+
+  <examples>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB1313/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB1313" vendor="Keil" Dvendor="NXP:11" Dname="LPC1313FBD48"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Keil/MCB1343/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="MCB1343" vendor="Keil" Dvendor="NXP:11" Dname="LPC1343FBD48"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+
+</package>

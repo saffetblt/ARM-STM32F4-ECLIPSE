@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>MIMXRT1051_A0_DFP</name>
+  <description>Device Family Pack for MIMXRT1051 A0 silicon</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">First version of the MIMXRT1050 A0 silicon device family pack</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Device Startup</description>
+  </taxonomy>
+  <devices>
+    <family Dfamily="MIMXRT1051" Dvendor="NXP:11">
+      <description>The MIMXRT1051 are ARM Cortex-M7 based microcontrollers for embedded applications.</description>
+      <device Dname="MIMXRT1051xxxxA">
+        <processor Dcore="Cortex-M7" Dfpu="DP_FPU" Dendian="Little-endian" Dclock="600000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MIMXRT1051xxxxx_ram.icf"/>
+        </environment>
+        <memory name="SRAM_DTC" access="rw" start="0x20000000" size="0x020000"/>
+        <memory name="SRAM_ITC" access="rw" start="0x00000000" size="0x020000"/>
+        <memory name="SRAM_OC" access="rw" start="0x20200000" size="0x040000" default="1"/>
+        <algorithm name="arm/MIMXRT105x_HYPER_256KB_SEC.FLM" start="0x60000000" size="0x4000000" default="1"/>
+        <algorithm name="arm/MIMXRT105x_QuadSPI_4KB_SEC.FLM" start="0x60000000" size="0x800000" default="1"/>
+        <debug svd="MIMXRT1051.xml"/>
+        <variant Dvariant="MIMXRT1051CVL5A">
+          <compile header="fsl_device_registers.h" define="CPU_MIMXRT1051CVL5A"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MIMXRT1051CVL5A/MIMXRT1051xxxxx_ram.scf"</LMisc>
+          </environment>
+        </variant>
+        <variant Dvariant="MIMXRT1051DVL6A">
+          <compile header="fsl_device_registers.h" define="CPU_MIMXRT1051DVL6A"/>
+          <environment name="uv">
+            <CMisc>--C99</CMisc>
+            <LMisc>--scatter "./RTE/Device/MIMXRT1051DVL6A/MIMXRT1051xxxxx_ram.scf"</LMisc>
+          </environment>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device.MIMXRT1051">
+      <accept Dname="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.MIMXRT1051_platform.Include_core_cm7">
+      <accept Dname="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+    </condition>
+    <condition id="devices.MIMXRT1051xxxxA_mdk">
+      <require Tcompiler="ARMCC"/>
+      <accept Dname="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="devices.MIMXRT1051xxxxA_iar">
+      <require Tcompiler="IAR"/>
+      <accept Dname="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="devices.MIMXRT1051">
+      <accept Dname="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051xxxxA" Dvariant="MIMXRT1051DVL6A" Dvendor="NXP:11"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="devices.MIMXRT1051_platform.Include_core_cm7">
+      <description></description>
+      <files>
+        <file name="arm/startup_MIMXRT1051.s" category="sourceAsm" condition="mdk" attr="config"/>
+        <file name="iar/startup_MIMXRT1051.s" category="sourceAsm" condition="iar" attr="config"/>
+        <file name="MIMXRT1051.h" category="header" attr="config"/>
+        <file name="MIMXRT1051_features.h" category="header" attr="config"/>
+        <file name="fsl_device_registers.h" category="header" attr="config"/>
+        <file name="arm/MIMXRT1051xxxxx_flexspi_nor.scf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1051xxxxx_flexspi_nor_sdram.scf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1051xxxxx_ram.scf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1051xxxxx_sdram.scf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_mdk" attr="config"/>
+        <file name="arm/MIMXRT1051xxxxx_sdram_txt.scf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_mdk" attr="config"/>
+        <file name="iar/MIMXRT1051xxxxx_flexspi_nor.icf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1051xxxxx_flexspi_nor_sdram.icf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1051xxxxx_ram.icf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1051xxxxx_sdram.icf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_iar" attr="config"/>
+        <file name="iar/MIMXRT1051xxxxx_sdram_txt.icf" category="linkerScript" condition="devices.MIMXRT1051xxxxA_iar" attr="config"/>
+        <file name="system_MIMXRT1051.c" category="sourceC" attr="config"/>
+        <file name="system_MIMXRT1051.h" category="header" attr="config"/>
+      </files>
+    </component>
+  </components>
+</package>

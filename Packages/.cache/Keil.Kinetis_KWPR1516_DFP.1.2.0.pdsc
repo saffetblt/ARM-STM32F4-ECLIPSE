@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KWPR1516_DFP</name>
+  <description>NXP Kinetis WPR1516 Series Device Support</description>
+
+  <releases>
+    <release version="1.2.0" date="2017-07-13">
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+      Reworked KWPR1516_DFP.
+       - changed vendor to NXP.
+       - updated documentation.
+    </release>
+    <release version="1.1.0" date="2015-01-08">
+      Corrected Dcore from Cortex-M4 to Cortex-M0+ in device description.
+    </release>
+    <release version="1.0.0" date="2014-11-03">
+      First Release version of WPR1516 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>WPR1516</keyword>
+  </keywords>
+
+  <devices>
+
+    <family Dfamily="WPR1516 Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+The MWPR1516 wireless charging IC and reference platform, based on the ARM® Cortex®-M0+ core, extends our wireless charging portfolio to support up to 15 watt charging power.
+ - Ideal for industrial and consumer applications, the MWPR1516 supports larger form factors that require faster charging times
+ - The high level of integration enables the MWPR1516 IC to drive smaller PCB form factor designs and offer the possibility for applications to do thermal design based on the application requirement
+ - This family adheres to the Wireless Power Consortium (WPC) and Medium Power Working Group (MPWG) specifications
+      </description>
+
+      <!-- ******************************  MWPR1516xxx  ****************************** -->
+      <device Dname="MWPR1516xxx">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device/Include/MWPR1516.h" define="MWPR1516xxx"/>
+        <debug svd="SVD/MWPR1516.svd"/>
+        <memory id="IROM1"                         start="0x00000000" size="0x00004000" startup="1" default="1"/>
+        <memory id="IRAM1"                         start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+        <algorithm name="Flash/MKPR1516_P16KB.FLM" start="0x00000000" size="0x00004000" RAMstart="0x20000000" RAMsize="0x800" default="1"/>
+
+        <book name="Documents/WPR1516RM.pdf" title="WPR1516 Sub-Family Reference Manual"/>
+        <book name="Documents/WPR1516.pdf"   title="WPR1516 Data Sheet"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="MWPR1516">
+      <description>NXP Kinetis WPR1516 Device</description>
+      <require Dvendor="NXP:11" Dname="MWPR1516*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="MWPR1516 CMSIS">
+      <description>NXP Kinetis WPR1516 Device and CMSIS-CORE</description>
+      <require condition="MWPR1516"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup MWPR1516 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MWPR1516 CMSIS">
+      <description>System Startup for Kinetis WPR1516 Device</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MWPR1516.s"  attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MWPR1516.c"       attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Source/system_MWPR1516.h"       attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>

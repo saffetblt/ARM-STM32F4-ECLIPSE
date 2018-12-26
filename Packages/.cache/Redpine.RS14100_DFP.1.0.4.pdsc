@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Redpine</vendor>
+  <url>http://www.redpinesignals.com/downloads/keil_packs/RS14100_DFP/</url>
+  <name>RS14100_DFP</name>
+  <description>Redpine RS14100 Series Device Support</description>
+
+  <releases>
+    <release version="1.0.4" date="2018-10-12">
+      Fixed pack related issues.
+    </release>
+	
+    <release version="1.0.3" date="2018-09-20">
+      Update the pack with ADC,DAC and CMSIS SPI peripheral examples
+    </release>
+	
+    <release version="1.0.2" date="2018-04-20">
+      Second Release version of RS14100 Device Family Pack,this release give the optimize flashing algorithm
+	  "RS14100_SF_1MB.FLM" file and "RS14100_SF_4MB.FLM" for flash execution.
+    </release>
+	
+    <release version="1.0.1" date="2018-04-12">
+      First Release version of RS14100 Device Family Pack.
+    </release>
+  </releases>  
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Redpine</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Redpine</keyword>
+    <keyword>RS14100</keyword>
+  </keywords>
+
+ <devices> 
+    <family Dfamily="RS14100 Series" Dvendor="Redpine Signals:125 ">
+      <processor Dcore="Cortex-M4" DcoreVersion="r2p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="200000000"/>  
+      <debugvars configfile="Debug/RS14100.dbgconf">
+        __var VecResetWithPeriph    = 1; // Reset peripherals on Vector Reset
+        // TPIU Pin Routing (TRACECLK fixed on PF_4)
+        // - Bit 0: TRACEDATA[0]: 0 - PF_5, 1 - P7_4
+        // - Bit 1: TRACEDATA[1]: 0 - PF_6, 1 - P7_5
+        // - Bit 2: TRACEDATA[2]: 0 - PF_7, 1 - P7_6
+        // - Bit 3: TRACEDATA[3]: 0 - PF_8, 1 - P7_7
+        __var RoutingTPIU = 0x00000000;  // Default selection ()
+      </debugvars>
+ 
+	  <description>
+       Redpine Signals RS14100 WiSeMCU family of chips and modules device is the industry’s first Wireless Secure MCU family with a comprehensive multi-protocol wireless sub-system. It has an integrated ultra-low-power microcontroller, a built-in wireless subsystem, advanced security, high performance mixed-signal peripherals and integrated power-management.
+      </description>
+	  <feature type="USART"         n="4"/>
+      <feature type="I2C"           n="2"/>
+      <feature type="SPI"           n="2"/>
+      <feature type="Timer"         n="4"       m="32"/>
+      <feature type="ADC"           n="8"       m="10"/>
+      <feature type="CAN"           n="2"/>
+        <device Dname="RS14100_1MB">
+          <compile header="Driver/Common/chip/inc/RS1xxxx.h"/>
+          <debug      svd="SVD/RS1xxxx.svd"/>
+          <memory     id="IROM1"                      start="0x08012000"  size="0xEE000"  startup="1" default="1"/>
+          <memory     id="IRAM1"                      start="0x000000C"  size="0x2FFF4"  init   ="0" default="1"/>
+          <algorithm  name="Flash/RS14100_SF_1MB.FLM"   start="0x08012000"  size="0xEE000" RAMstart="0x00000000"  RAMsize="0x4000" default="1"/>		  
+        </device>
+		
+        <device Dname="RS14100_4MB">
+          <compile header="Driver/Common/chip/inc/RS1xxxx.h"/>
+          <debug      svd="SVD/RS1xxxx.svd"/>
+          <memory     id="IROM1"                      start="0x08012000"  size="0x3EE000"  startup="1" default="1"/>
+          <memory     id="IRAM1"                      start="0x000000C"  size="0x2FFF4"  init   ="0" default="1"/>
+          <algorithm  name="Flash/RS14100_SF_4MB.FLM"   start="0x08012000"  size="0x3EE000" RAMstart="0x00000000"  RAMsize="0x4000" default="1"/>		  
+        </device>		   
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="ARM Compiler">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="RS14100">
+      <!-- conditions selecting Devices -->
+      <description>RS14100 Series devices</description>
+      <accept Dvendor="Redpine Signals:125 " Dname="RS14100_1MB"/>
+      <accept Dvendor="Redpine Signals:125 " Dname="RS14100_4MB"/>
+    </condition>
+	
+    <condition id="RS14100 CMSIS">
+      <description>RS14100 Series devices and CMSIS-CORE and ARMCC compiler</description>
+      <require condition="RS14100"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+	
+    <condition id="RS14100 CMSIS Startup">
+      <description>RS14100 CMSIS and Startup</description>
+      <require condition="RS14100 CMSIS"/>
+	  <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+	
+    <condition id="RS14100 CMSIS Startup board">
+      <description>RS14100 CMSIS and Startup</description>
+      <require condition="RS14100 CMSIS"/>
+	  <require Cclass="Device" Cgroup="Startup"/>
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  
+    </condition>	
+	
+    <condition id="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>RS14100 with CMSIS,CLOCK,POWER_INIT,IPMU ,Startup board </description>
+      <require condition="RS14100 CMSIS"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/>	  
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  
+    </condition>
+
+    <condition id="RS14100 CMSIS CLOCK POWER_INIT IPMU board">
+      <description>RS14100 CMSIS CLOCK POWER_INIT and IPMU</description>
+      <require condition="RS14100 CMSIS"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>		  
+    </condition>
+	
+    <condition id="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board">
+      <description>RS14100 with EGPIO,CLOCK,POWER_INIT,IPMU,Startup ,uDMA and board</description>
+      <require condition="RS14100 CMSIS"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/>
+	  <require Cclass="RSI_Driver" Cgroup="UDMA"/>
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  	  
+	</condition>
+
+    <condition id="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board TIMERS"> 
+      <description>RS14100 with RSI Driver,CLOCK,POWER_INIT,IPMU Startup board and TIMERS</description>
+      <require condition="RS14100 CMSIS"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/>
+	  <require Cclass="RSI_Driver" Cgroup="TIMERS"/>	  
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  
+	</condition>
+	
+    <condition id="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board"> 
+      <description>RS14100 with RSI Driver,CLOCK,POWER_INIT,IPMU Startup and board</description>
+      <require condition="RS14100 CMSIS"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/>  
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  
+	</condition>
+	
+    <condition id="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board BOD"> 
+      <description>RS14100 with RSI Driver,CLOCK,POWER_INIT,IPMU Startup board and BOD</description>
+      <require condition="RS14100 CMSIS"/>
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/> 
+	  <require Cclass="RSI_Driver" Cgroup="BOD"/>	    
+	  <require Cclass="Board Support" Cgroup="Redpine Board"/>	  
+	</condition>
+    
+	<condition id="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup USART"> 
+      <description>RS14100 CLOCK EGPIO POWER_INIT IPMU Startup and USART</description>
+      <require condition="RS14100 CMSIS"/>	  
+      <require Cclass="Device" Cgroup="CLOCK"/>
+	  <require Cclass="Device" Cgroup="EGPIO"/>
+	  <require Cclass="Device" Cgroup="POWER_INIT"/>
+	  <require Cclass="Device" Cgroup="IPMU"/>
+	  <require Cclass="Device" Cgroup="Startup"/>	
+	  <require Cclass="CMSIS Driver" Cgroup="USART" Csub="usart"/>		  
+	</condition>	
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0"  condition="RS14100 CMSIS CLOCK POWER_INIT IPMU board">
+      <description>System Startup API for Cortex-M</description>
+       <files>
+        <file category="include" name="Driver/Common/board/inc/"/>
+        <file category="include" name="Driver/Common/chip/inc/"/>		
+        <file category="include" name="Driver/Peripheral_Library/driver/inc/"/>	
+        <file category="include" name="Driver/Peripheral_Library/systemlevel/inc/"/>		
+        <file category="include" name="Driver/Peripheral_Library/rom_driver/inc/"/>
+        <file category="include" name="Driver/Peripheral_Library/cmsis_driver/"/>		
+        <file category="source"  name="Device/startup_RS1xxxx.s" attr="config" version="1.0" condition="ARM Compiler"/>
+        <file category="source"  name="Driver/Common/chip/src/system_RS1xxxx.c"      attr="config" version="1.0"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="POWER_INIT" Csub="power" Cversion="1.0.0"  condition="RS14100 CMSIS Startup">
+      <description>power_init driver API for Cortex-M</description>
+      <files> 
+		<file category="source"  name="Driver/Common/chip/src/rsi_ps_ram_func.c"/>
+		<file category="source"  name="Driver/Peripheral_Library/systemlevel/src/rsi_power_save.c"/>	
+        <file category="source"  name="Driver/Common/chip/src/rsi_system_config.c"/>		
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="IPMU" Csub="impu" Cversion="1.0.0"  condition="RS14100 CMSIS Startup">
+      <description>IPMU driver API for Cortex-M</description>
+      <files>
+		<file category="source"  name="Driver/Peripheral_Library/systemlevel/src/rsi_ipmu.c"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="CLOCK" Csub="clock" Cversion="1.0.0"  condition="RS14100 CMSIS Startup">
+      <description>CLOCK driver API for Cortex-M</description>
+      <files>
+		<file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_ulpss_clk.c"/>
+		<file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_pll.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="EGPIO" Csub="egpio" Cversion="1.0.0"  condition="RS14100 CMSIS Startup board">
+      <description>EGPIO driver API for Cortex-M</description>
+      <files>	  
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_egpio.c"/>			
+      </files>
+    </component>
+	
+    <component Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.2.0" Cversion="1.0.0" condition="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>CAN Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_CAN0                /* Driver CAN0 */
+        #define RTE_Drivers_CAN1                /* Driver CAN1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/CAN.c"/>		
+		<file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>
+      </files>
+    </component>
+	
+    <component Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.3.0" Cversion="1.0.0"  condition="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup board" maxInstances="3" >
+      <description>MCI Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_MCI0                /* Driver MCI0 */
+		#define RTE_Drivers_MCI1                /* Driver MCI1 */
+		#define RTE_Drivers_MCI2                /* Driver MCI2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/MCI.c"/>	
+	   <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>				
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0" Cversion="1.0.0"  condition="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board" maxInstances="3">
+      <description>I2C Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_I2C0                /* Driver I2C0 */
+        #define RTE_Drivers_I2C1                /* Driver I2C1 */
+		#define RTE_Drivers_I2C2                /* Driver I2C2 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/I2C.c"/>	
+	    <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>		
+	  </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="SSP" Capiversion="2.2.0" Cversion="1.0.0"  condition="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board" maxInstances="3">
+      <description>SPI (SSP) Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SPI0                /* Driver SPI0 */
+        #define RTE_Drivers_SPI1                /* Driver SPI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/SPI.c"/>	
+	    <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>			
+      </files>
+    </component>
+	
+    <component Cclass="CMSIS Driver" Cgroup="GSPI" Csub="gspi" Capiversion="2.2.0" Cversion="1.0.0"  condition="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board" >
+      <description>GSPI Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_GSPI              /* Driver GSPI */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/GSPI.c"/>
+	    <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>				
+      </files>
+    </component>
+    
+	<component Cclass="CMSIS Driver" Cgroup="USART" Csub="usart" Capiversion="2.3.0" Cversion="1.0.0"  condition="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board" maxInstances="4">
+      <description>USART Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_USART0              /* Driver USART0 */
+        #define RTE_Drivers_USART1              /* Driver USART1 */
+        #define RTE_Drivers_USART2              /* Driver USART2 */
+        #define RTE_Drivers_USART3              /* Driver USART3 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/USART.c"/>
+	    <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>				
+      </files>
+    </component>
+
+    <component Cclass="CMSIS Driver" Cgroup="SAI" Csub="I2S" Capiversion="1.1.0" Cversion="1.0.0"  condition="RS14100 EGPIO CLOCK POWER_INIT IPMU Startup UDMA board" maxInstances="2">
+      <description>SAI (I2S) Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_SAI0                /* Driver SAI0 */
+        #define RTE_Drivers_SAI1                /* Driver SAI1 */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/SAI.c"/>		
+	  <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>			
+      </files>
+    </component>
+
+    <component Cclass="RSI_Driver" Cgroup="UDMA" Csub="udma" Cversion="1.0.0"  condition="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup board" maxInstances="2">
+      <description>uDMA Driver API for Cortex-M</description>
+      <RTE_Components_h>  <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Drivers_UDMA0                /* Driver UDMA0 */
+        #define RTE_Drivers_UDMA1                /* Driver UDMA1 */		
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/cmsis_driver/UDMA.c"/>	
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_udma.c"/>		
+	  <file category="header" name="Driver/Peripheral_Library/cmsis_driver/config/RTE_Device.h"/>		
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="PWM"  Csub="pwm" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>PWM Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_pwm.c"/>
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="RNG"  Csub="rng" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>RNG Driver API for Cortex-M</description>
+      <files>  
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_rng.c"/>
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="GPDMA"  Csub="gpdma" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>RPDMA Driver API for Cortex-M</description>
+      <files>
+		<file category="source" name="Driver/Peripheral_Library/driver/src/rsi_gpdma.c"/>	
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="SIO"  Csub="sio" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>SIO Driver API for Cortex-M</description>
+      <files>
+		<file category="source" name="Driver/Peripheral_Library/driver/src/rsi_sio.c"/>	
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="WWDT"  Csub="wwdt" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>WDT Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_wwdt.c"/>
+		<file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_time_period.c"/>		
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="TIMERS"  Csub="timers" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board TIMERS" maxInstances="4">
+      <description>TIMERS Driver API for Cortex-M</description>
+      <files>
+		<file category="source" name="Driver/Peripheral_Library/driver/src/rsi_timers.c"/>	
+      </files>
+    </component>
+
+      <component Cclass="RSI_Driver" Cgroup="RTC"  Csub="rtc" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>RTC Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_rtc.c"/>
+		<file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_time_period.c"/>
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="QSPI"  Csub="qspi" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board TIMERS">
+      <description>QSPI Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_qspi.c"/>
+      </files>
+    </component>		
+
+	<component Cclass="RSI_Driver" Cgroup="CONFIG_TIMERS"  Csub="ct" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board" maxInstances="4">
+      <description>Timer Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_ct.c"/>	
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="QEI"  Csub="qei" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>QEI Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_qei.c"/>	
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="EFUSE"  Csub="efuse" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>EFUSE Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_efuse.c"/>		          
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="IR-Decoder"  Csub="ir-decoder" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>IR-Decoder Driver API for Cortex-M</description>
+      <files>	
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_ir.c"/>	   
+	  </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="CRC"  Csub="crc" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>CRC Driver API for Cortex-M</description>
+      <files>
+		<file category="source" name="Driver/Peripheral_Library/driver/src/rsi_crc.c"/>	
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="CCI"  Csub="cci" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>Companion Chip Interface Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_cci.c"/>		
+      </files>
+    </component>
+	
+	<component Cclass="RSI_Driver" Cgroup="FIM"  Csub="fim" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>FIM Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_fim.c"/>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_fim_filterScalar.c"/>		
+      </files>
+    </component>	
+	
+	<component Cclass="RSI_Driver" Cgroup="COMPARATOR"  Csub="comparator" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>Comparator Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_comparator.c"/>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_adc.c"/>		
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="OPAMP"  Csub="opamp" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>OPAMP Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_opamp.c"/>	
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_adc.c"/>			
+      </files>
+    </component>	
+	
+	<component Cclass="RSI_Driver" Cgroup="BOD"  Csub="bod" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>BOD Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/systemlevel/src/rsi_bod.c"/>		
+      </files>
+    </component>
+
+	<component Cclass="RSI_Driver" Cgroup="CTS"  Csub="cts" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>Capacitive touch sensor Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_cts.c"/>		
+      </files>
+    </component>
+	
+	<component Cclass="RSI_Driver" Cgroup="WURX"  Csub="wurx" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>Wake-up receiver Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_wurx.c"/>		
+      </files>
+    </component>	
+
+	<component Cclass="RSI_Driver" Cgroup="ADC"  Csub="adc" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board BOD">
+      <description>Wake-up receiver Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_adc.c"/>		
+      </files>
+    </component>	
+
+	<component Cclass="RSI_Driver" Cgroup="DAC"  Csub="dac" Cversion="1.0.0"  condition="RS14100 RSI_Driver CLOCK EGPIO POWER_INIT IPMU Startup board">
+      <description>Wake-up receiver Driver API for Cortex-M</description>
+      <files>
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_dac.c"/>	
+        <file category="source" name="Driver/Peripheral_Library/driver/src/rsi_adc.c"/>		
+      </files>
+    </component>		
+
+    <component Cclass="Board Support" Cgroup="Redpine Board" Cversion="1.0.0"  condition="RS14100 CMSIS CLOCK EGPIO POWER_INIT IPMU Startup USART">
+      <description>Redpine board driver apis.</description>
+      <files>
+      <file category="source" name="Driver/Common/board/src/rsi_board.c"/>	
+      <file category="source" name="Driver/Common/board/inc/rsi_board.h"/>	  				  
+      </files>
+    </component>		
+    </components>
+	
+	<apis>
+	<!-- CMSIS Driver API -->
+    <api Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0" exclusive="0">
+      <description>USART Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_USART.h" />
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0" exclusive="0">
+      <description>SPI Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_SPI.h" />		
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="GSPI" Capiversion="2.2.0" exclusive="0">
+      <description>GSPI Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_SPI.h" />		
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="GSPI" Capiversion="2.2.0" exclusive="0">
+      <description>SPI Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_SPI.h" />		
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="SAI" Capiversion="1.1.0" exclusive="0">
+      <description>SAI Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_SAI.h" />	
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0" exclusive="0">
+      <description>I2C Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_I2C.h" />	
+      </files>
+    </api>
+    <api Cclass="CMSIS Driver" Cgroup="CAN" Capiversion="1.2.0" exclusive="0">
+      <description>CAN Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_CAN.h" />	
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="MCI" Capiversion="2.3.0" exclusive="0">
+      <description>MCI Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_MCI.h" />	
+      </files>
+    </api>	
+
+    <api Cclass="CMSIS Driver" Cgroup="USB Device" Capiversion="2.2.0" exclusive="0">
+      <description>USB Device Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_USBD.h" />	
+      </files>
+    </api>
+	
+    <api Cclass="CMSIS Driver" Cgroup="USB Host" Capiversion="2.2.0" exclusive="0">
+      <description>USB Host Driver API for Cortex-M</description>
+      <files>
+        <file category="header" name="Driver/Peripheral_Library/cmsis_driver/CMSIS/Driver/Include/Driver_USBH.h" />
+      </files>
+    </api>
+	</apis>
+ 
+   <boards>
+    <board vendor="Redpine" name="RS14100" revision="1.0">
+      <description>Redpine RS14100 Development Board</description>
+      <book category="overview"  name="Documents/DUI0553A_cortex_m4_dgug.pdf"  title="Cortex-m4 device"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Redpine Signals:125" Dname="RS14100_4MB"/>	  
+      <compatibleDevice deviceIndex="0" Dvendor="Redpine Signals:125" Dfamily="RS14100"/>	  
+      <feature type="PWR"             n="5"              name="USB Powered"/>
+      <feature type="PWR"             n="8" m="12"       name="External Power Supply"/>
+      <feature type="ROM"             n="1"              name="4 MB Quad-SPI Flash"/>
+      <feature type="MemCard"         n="1"              name="microSD Card Holder"/>
+      <feature type="USB"             n="1"              name="USB 2.0 High-speed Host/Device/OTG interface (USB host + Micro USB Device/OTG connectors)"/>
+      <feature type="USB"             n="1"              name="USB 2.0 Full-speed Host/Device interface (USB host + micro USB Device connectors)"/>
+      <feature type="CAN"             n="1"/>
+      <feature type="RS232"           n="1"/>
+      <feature type="ETH"             n="1"              name="10/100 Ethernet Port"/>
+      <feature type="Button"          n="6"              name="Push-Buttons: 3 x GPIO, Reset, ISP, WAKEUP"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>	  
+    </board>
+   </boards>	
+  <examples>
+    <example name="Blinky" doc="readme.txt" folder="Boards/Redpine/blinky">
+      <description>This example demonstrates Led blinky functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Redpine/RTOS Blinky">
+      <description>CMSIS-RTOS based Blinky example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="RTOS_Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>	
+	
+    <example name="CAN" doc="readme.txt" folder="Boards/Redpine/can">
+      <description>This example demonstrates CAN functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="can.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+	
+    <example name="CCI_MASTER" doc="readme.txt" folder="Boards/Redpine/cci_master">
+      <description>This example demonstrates CCI_MASTER functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="cci_master.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="COMPARATOR" doc="readme.txt" folder="Boards/Redpine/comparator">
+      <description>This example demonstrates COMPARATOR functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="comparator.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="CRC" doc="readme.txt" folder="Boards/Redpine/crc">
+      <description>This example demonstrates CRC functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="crc.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="CT" doc="readme.txt" folder="Boards/Redpine/ct">
+      <description>This example demonstrates CT functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="ct.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>		
+
+    <example name="EFUSE" doc="readme.txt" folder="Boards/Redpine/efuse">
+      <description>This example demonstrates EFUSE functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="efuse.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>		
+
+    <example name="FIM" doc="readme.txt" folder="Boards/Redpine/fim">
+      <description>Matrix example demonstrates the use of Matrix Multiplication.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="fim.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>		
+
+    <example name="I2C" doc="readme.txt" folder="Boards/Redpine/i2c">
+      <description>This example demonstrates I2C functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="i2c.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="I2S" doc="readme.txt" folder="Boards/Redpine/i2s">
+      <description>This example demonstrates I2S master functionality with loop-back mode</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="i2s.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+	
+    <example name="IR_DECODER" doc="readme.txt" folder="Boards/Redpine/ir_decoder">
+      <description>This example demonstrates the decoding IR signal pattern and read the receiving data pattern.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="ir_decoder.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="M4_PIN_INTERRUPT" doc="readme.txt" folder="Boards/Redpine/m4_pin_interrupt">
+      <description>This example will configures a pin to contribute for pin interrupt</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="m4_pin_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>		
+	
+    <example name="OPAMP" doc="readme.txt" folder="Boards/Redpine/opamp">
+      <description>This example demonstrates opamp functionality .</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="opamp.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="PWM" doc="readme.txt" folder="Boards/Redpine/pwm">
+      <description>This example demonstrates PWM functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="pwm.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="QEI" doc="readme.txt" folder="Boards/Redpine/qei">
+      <description>This example demonstrates QEI module functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="qei.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>		
+
+    <example name="RNG" doc="readme.txt" folder="Boards/Redpine/rng">
+      <description>This example demonstrates random number generation functionality. </description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="rng.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="SIO" doc="readme.txt" folder="Boards/Redpine/sio">
+      <description>This example emulating the serial peripheral in SIO peripheral like SPI,I2C etc</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="sio.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="SPI" doc="Readme.txt" folder="Boards/Redpine/spi">
+      <description>This example explain SSI master functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="spi.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="TIMERS" doc="readme.txt" folder="Boards/Redpine/timers">
+      <description>This Timer example uses two timers to blink two LEDs at different rates.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="timers.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="UART" doc="Readme.txt" folder="Boards/Redpine/uart">
+      <description> The UART example shows how to use the UART in DMA mode.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="uart.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+	
+    <example name="UDMA" doc="readme.txt" folder="Boards/Redpine/udma">
+      <description>This example demonstrates UDMA functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="udma.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="ULP_PIN_INTERRUPT" doc="readme.txt" folder="Boards/Redpine/ulp_pin_interrupt">
+      <description>This example demonstrates Ulp pin interrupt functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="ulp_pin_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+
+    <example name="ULP_GROUP_INTERRUPT" doc="readme.txt" folder="Boards/Redpine/ulp_group_interrupt">
+      <description>This example demonstrates Ulp pin interrupt functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="ulp_group_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+	
+    <example name="USART_MASTER" doc="Readme.txt" folder="Boards/Redpine/usart_master">
+      <description>This example demonstrates USART MASTER functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="usart_master.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+    <example name="USART_SLAVE" doc="Readme.txt" folder="Boards/Redpine/usart_slave">
+      <description>This example demonstrates USART SLAVE functionality.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="usart_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+    <example name="WWDT" doc="readme.txt" folder="Boards/Redpine/wwdt">
+      <description>Windowed Watchdog Timer example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="wwdt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="BATTERY_STATUS" doc="readme.txt" folder="Boards/Redpine/battery_status">
+      <description>battery status example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="battery_status.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+    <example name="BOD" doc="readme.txt" folder="Boards/Redpine/bod">
+      <description>BOD example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="bod.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="BUTTON" doc="readme.txt" folder="Boards/Redpine/button">
+      <description>Button example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="button.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>	
+	
+    <example name="CTS" doc="Readme.txt" folder="Boards/Redpine/cts/continuous_mode">
+      <description>CTS example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="cts.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+    <example name="ADC" doc="Readme.txt" folder="Boards/Redpine/adc">
+      <description>Analog to digital converter example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="adc.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="DAC" doc="readme.txt" folder="Boards/Redpine/dac">
+      <description>Digital to Analog converter example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="dac.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="GSPI" doc="Readme.txt" folder="Boards/Redpine/gspi">
+      <description>Generic SPI example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="gspi.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="M4_GPIO_GROUP_INTERRUPT" doc="readme.txt" folder="Boards/Redpine/m4_gpio_group_interrupt">
+      <description>M4 GPIO group interrupt example.</description>
+      <board name="RS14100" vendor="Redpine"/>
+      <project>
+        <environment name="uv" load="m4_gpio_group_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>  
+</package>

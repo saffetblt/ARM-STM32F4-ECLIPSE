@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>LAPISSemiconductor</vendor>
+  <name>ML630Q46x_DFP</name>
+  <description>LAPIS Semiconductor ML630Q46x Device Support</description>
+  <url>http://www.lapis-semi.com/en/data/sample-file_db/miconlp</url>
+
+  <releases>
+    <release version="1.0.0">
+	Initial version
+    </release>
+  </releases>
+
+  <keywords>
+	    <keyword>LAPIS Semiconductor</keyword>
+	    <keyword>ML630Q464</keyword>
+	    <keyword>ML630Q466</keyword>
+	    <keyword>ML630Q46x</keyword>
+	    <keyword>Device Family Package LAPIS Semiconductor</keyword>
+  </keywords>
+
+  <devices>
+	<family Dfamily="ML630Q46x" Dvendor="Lapis Semiconductor:10">
+	  <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+      <book name="Documents/FJDL630Q464-01.pdf"          title="ML630Q46x Data Sheets(JP)"/>
+      <book name="Documents/FEDL630Q464-01.pdf"          title="ML630Q46x Data Sheets(EN)"/>
+
+	    <!-- *****  ML630Q464  ***** -->
+	    <device Dname="ML630Q464">
+		<processor Dclock="24000000"/>
+		<compile header="Device/Include/ML630Q464.h"/>
+		<debug      svd="SVD/ML630Q464.svd"/>
+		<memory     id="IROM1"                      start="0x00000000"  size="0x00010000"    startup="1"   default="1"/>
+		<memory     id="IRAM1"                      start="0x20000000"  size="0x00002000"    init="0"   default="1"/>
+		<algorithm  name="Flash/ML630Q464.FLM"      start="0x00000000"  size="0x20000"  RAMsize="0x400" default="1"/>
+		<description>
+		  ARM Cortex-M0+ based Microcontroller 'ML630Q464' device of LAPIS Semiconductor Co., Ltd.
+		</description>
+	    </device>
+
+	    <!-- *****  ML630Q466  ***** -->
+	    <device Dname="ML630Q466">
+		<processor Dclock="24000000"/>
+		<compile header="Device/Include/ML630Q466.h"/>
+		<debug      svd="SVD/ML630Q466.svd"/>
+		<memory     id="IROM1"                      start="0x00000000"  size="0x00020000"    startup="1"   default="1"/>
+		<memory     id="IRAM1"                      start="0x20000000"  size="0x00004000"    init="0"   default="1"/>
+		<algorithm  name="Flash/ML630Q466.FLM"      start="0x00000000"  size="0x20000"  RAMsize="0x400" default="1"/>
+		<description>
+		  ARM Cortex-M0+ based Microcontroller 'ML630Q466' device of LAPIS Semiconductor Co., Ltd.
+		</description>
+	    </device>
+	</family>
+  </devices>
+
+  <conditions>
+
+    <condition id="ARM Compiler">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="ML630Q464">
+	<description>ML630Q464</description>
+	<require Dvendor="Lapis Semiconductor:10" Dname="ML630Q464"/>
+    </condition>
+
+    <condition id="CMSIS Core ML630Q464">
+	<description>CMSIS Core</description>
+	<require Cclass="CMSIS" Cgroup="CORE"/>
+	<require condition="ML630Q464"/>
+    </condition>
+
+    <condition id="StartUp ML630Q464">
+	<description>StartUp</description>
+	<require condition="CMSIS Core ML630Q464"/>
+	<require condition="ML630Q464"/>
+    </condition>
+
+    <condition id="ML630Q466">
+	<description>ML630Q466</description>
+	<require Dvendor="Lapis Semiconductor:10" Dname="ML630Q466"/>
+    </condition>
+
+    <condition id="CMSIS Core ML630Q466">
+	<description>CMSIS Core</description>
+	<require Cclass="CMSIS" Cgroup="CORE"/>
+	<require condition="ML630Q466"/>
+    </condition>
+
+    <condition id="StartUp ML630Q466">
+	<description>StartUp</description>
+	<require condition="CMSIS Core ML630Q466"/>
+	<require condition="ML630Q466"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="StartUp ML630Q464">
+	<description>System Startup</description>
+	<RTE_Components_h>
+	  #define RTE_STARTUP_USE       /* Device Startup */
+	</RTE_Components_h>
+
+	<files>
+	  <file category="include" name="Device/Include/"/>
+	  <file category="header"  name="Device/Include/ML630Q464.h"/>
+	  <file category="source"  name="Device/Source/startup_ML630Q464.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+	  <file category="source"  name="Device/Source/system_ML630Q464.c"  attr="config" version="1.0.0"/>
+	  <file category="header"  name="RTE_Driver/Config/mcu.h"/>
+	</files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="StartUp ML630Q466">
+	<description>System Startup</description>
+	<RTE_Components_h>
+	  #define RTE_STARTUP_USE       /* Device Startup */
+	</RTE_Components_h>
+
+	<files>
+	  <file category="include" name="Device/Include/"/>
+	  <file category="header"  name="Device/Include/ML630Q466.h"/>
+	  <file category="source"  name="Device/Source/startup_ML630Q466.s" attr="config" version="1.0.0" condition="ARM Compiler"/>
+	  <file category="source"  name="Device/Source/system_ML630Q466.c"  attr="config" version="1.0.0"/>
+	  <file category="header"  name="RTE_Driver/Config/mcu.h"/>
+	</files>
+    </component>
+
+  </components>
+</package>
+
+

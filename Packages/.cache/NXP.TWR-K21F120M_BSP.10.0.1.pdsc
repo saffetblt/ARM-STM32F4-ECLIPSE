@@ -1,0 +1,1093 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>TWR-K21F120M_BSP</name>
+  <description>Board Support Pack for TWR-K21F120M</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.1">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Board Support Pack</keyword>
+  </keywords>
+  <boards>
+    <board vendor="NXP" name="TWR-K21F120M">
+      <description>The TWR-K21F120MA is a development board for the Kinetis(r) K21 and K22 120 MHz 32-bit ARM(r) Cortex(r)-M4 MCUs with floating point unit.
+
+The board provides rapid prototyping for applications requiring high feature integration, as low as 240uA/MHz low-power consumption and mid/high flash memory density (up to 1 MB) that need to support multiple communication stacks.</description>
+      <mountedDevice Dname="MK21FN1M0Axxx12" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="project_template.twrk21f120m">
+      <accept Dvendor="NXP:11" Dname="MK21FN1M0A???12"/>
+      <accept Dvendor="NXP:11" Dname="MK21FX512A???12"/>
+      <accept Dvendor="NXP:11" Dname="MK21FN1M0A???12WS"/>
+      <accept Dvendor="NXP:11" Dname="MK21FX512A???12WS"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="cmsis_dspi_edma_b2b_transfer_master" folder="cmsis_driver_examples/dspi/edma_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_edma_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_edma_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/edma b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_dspi_edma_b2b_transfer_slave" folder="cmsis_driver_examples/dspi/edma_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_edma_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_edma_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/edma b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_dspi_edma_transfer" folder="cmsis_driver_examples/dspi/edma_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_edma_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_edma_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/edma transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_dspi_int_b2b_transfer_master" folder="cmsis_driver_examples/dspi/int_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_int_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_int_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/int b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_dspi_int_b2b_transfer_slave" folder="cmsis_driver_examples/dspi/int_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_int_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_int_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/int b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_dspi_interrupt_transfer" folder="cmsis_driver_examples/dspi/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_dspi_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_dspi_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/dspi/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_edma_b2b_transfer_master" folder="cmsis_driver_examples/i2c/edma_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_edma_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_edma_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/edma b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_edma_b2b_transfer_slave" folder="cmsis_driver_examples/i2c/edma_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_edma_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_edma_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/edma b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_int_b2b_transfer_master" folder="cmsis_driver_examples/i2c/int_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_int_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_int_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_int_b2b_transfer_slave" folder="cmsis_driver_examples/i2c/int_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_int_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_int_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/int b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="cmsis_i2c_read_accel_value_transfer" folder="cmsis_driver_examples/i2c/read_accel_value_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_i2c_read_accel_value_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_i2c_read_accel_value_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/i2c/read accel value transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_uart_edma_transfer" folder="cmsis_driver_examples/uart/edma_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_uart_edma_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_uart_edma_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/uart/edma transfer</category>
+      </attributes>
+    </example>
+    <example name="cmsis_uart_interrupt_transfer" folder="cmsis_driver_examples/uart/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmsis_uart_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/cmsis_uart_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>cmsis driver examples/uart/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="adc16_low_power" folder="demo_apps/adc16_low_power" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_low_power.ewp"/>
+        <environment name="uv" load="mdk/adc16_low_power.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/adc16 low power</category>
+      </attributes>
+    </example>
+    <example name="bubble" folder="demo_apps/bubble" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/bubble.ewp"/>
+        <environment name="uv" load="mdk/bubble.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/bubble</category>
+      </attributes>
+    </example>
+    <example name="dac_adc" folder="demo_apps/dac_adc" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dac_adc.ewp"/>
+        <environment name="uv" load="mdk/dac_adc.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/dac adc</category>
+      </attributes>
+    </example>
+    <example name="hello_world" folder="demo_apps/hello_world" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/hello_world.ewp"/>
+        <environment name="uv" load="mdk/hello_world.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/hello world</category>
+      </attributes>
+    </example>
+    <example name="power_manager" folder="demo_apps/power_manager" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/power_manager.ewp"/>
+        <environment name="uv" load="mdk/power_manager.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/power manager</category>
+      </attributes>
+    </example>
+    <example name="power_mode_switch" folder="demo_apps/power_mode_switch" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/power_mode_switch.ewp"/>
+        <environment name="uv" load="mdk/power_mode_switch.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/power mode switch</category>
+      </attributes>
+    </example>
+    <example name="rtc_func" folder="demo_apps/rtc_func" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rtc_func.ewp"/>
+        <environment name="uv" load="mdk/rtc_func.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/rtc func</category>
+      </attributes>
+    </example>
+    <example name="shell" folder="demo_apps/shell" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/shell.ewp"/>
+        <environment name="uv" load="mdk/shell.uvprojx"/>
+      </project>
+      <attributes>
+        <category>demo apps/shell</category>
+      </attributes>
+    </example>
+    <example name="adc16_continuous_edma" folder="driver_examples/adc16/continuous_edma" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_continuous_edma.ewp"/>
+        <environment name="uv" load="mdk/adc16_continuous_edma.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/adc16/continuous edma</category>
+      </attributes>
+    </example>
+    <example name="adc16_interrupt" folder="driver_examples/adc16/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_interrupt.ewp"/>
+        <environment name="uv" load="mdk/adc16_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/adc16/interrupt</category>
+      </attributes>
+    </example>
+    <example name="adc16_polling" folder="driver_examples/adc16/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/adc16_polling.ewp"/>
+        <environment name="uv" load="mdk/adc16_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/adc16/polling</category>
+      </attributes>
+    </example>
+    <example name="cmp_interrupt" folder="driver_examples/cmp/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmp_interrupt.ewp"/>
+        <environment name="uv" load="mdk/cmp_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cmp/interrupt</category>
+      </attributes>
+    </example>
+    <example name="cmp_polling" folder="driver_examples/cmp/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmp_polling.ewp"/>
+        <environment name="uv" load="mdk/cmp_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cmp/polling</category>
+      </attributes>
+    </example>
+    <example name="cmt" folder="driver_examples/cmt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/cmt.ewp"/>
+        <environment name="uv" load="mdk/cmt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/cmt</category>
+      </attributes>
+    </example>
+    <example name="crc" folder="driver_examples/crc" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/crc.ewp"/>
+        <environment name="uv" load="mdk/crc.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/crc</category>
+      </attributes>
+    </example>
+    <example name="dac_basic" folder="driver_examples/dac/basic" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dac_basic.ewp"/>
+        <environment name="uv" load="mdk/dac_basic.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dac/basic</category>
+      </attributes>
+    </example>
+    <example name="dac_buffer_interrupt" folder="driver_examples/dac/buffer_interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dac_buffer_interrupt.ewp"/>
+        <environment name="uv" load="mdk/dac_buffer_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dac/buffer interrupt</category>
+      </attributes>
+    </example>
+    <example name="dac_continuous_pdb_edma" folder="driver_examples/dac/continuous_pdb_edma" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dac_continuous_pdb_edma.ewp"/>
+        <environment name="uv" load="mdk/dac_continuous_pdb_edma.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dac/continuous pdb edma</category>
+      </attributes>
+    </example>
+    <example name="dspi_edma_b2b_transfer_master" folder="driver_examples/dspi/edma_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_edma_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_edma_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/edma b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_edma_b2b_transfer_slave" folder="driver_examples/dspi/edma_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_edma_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_edma_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/edma b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_edma_master" folder="driver_examples/dspi/half_duplex_transfer/edma/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_edma_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_edma_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/edma/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_edma_slave" folder="driver_examples/dspi/half_duplex_transfer/edma/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_edma_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_edma_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/edma/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_int_master" folder="driver_examples/dspi/half_duplex_transfer/int/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_int_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_int_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/int/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_int_slave" folder="driver_examples/dspi/half_duplex_transfer/int/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_int_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_int_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/int/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_polling_master" folder="driver_examples/dspi/half_duplex_transfer/polling/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_polling_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_polling_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/polling/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_half_duplex_polling_slave" folder="driver_examples/dspi/half_duplex_transfer/polling/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_half_duplex_polling_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_half_duplex_polling_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/half duplex transfer/polling/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_interrupt" folder="driver_examples/dspi/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_interrupt.ewp"/>
+        <environment name="uv" load="mdk/dspi_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/interrupt</category>
+      </attributes>
+    </example>
+    <example name="dspi_interrupt_b2b_master" folder="driver_examples/dspi/interrupt_b2b/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_interrupt_b2b_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_interrupt_b2b_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/interrupt b2b/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_interrupt_b2b_slave" folder="driver_examples/dspi/interrupt_b2b/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_interrupt_b2b_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_interrupt_b2b_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/interrupt b2b/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_interrupt_b2b_transfer_master" folder="driver_examples/dspi/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_interrupt_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_interrupt_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_interrupt_b2b_transfer_slave" folder="driver_examples/dspi/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_interrupt_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_interrupt_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="dspi_polling_b2b_transfer_master" folder="driver_examples/dspi/polling_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_polling_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/dspi_polling_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/polling b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="dspi_polling_b2b_transfer_slave" folder="driver_examples/dspi/polling_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/dspi_polling_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/dspi_polling_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/dspi/polling b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="edma_memory_to_memory" folder="driver_examples/edma/memory_to_memory" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/edma_memory_to_memory.ewp"/>
+        <environment name="uv" load="mdk/edma_memory_to_memory.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/edma/memory to memory</category>
+      </attributes>
+    </example>
+    <example name="edma_scatter_gather" folder="driver_examples/edma/scatter_gather" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/edma_scatter_gather.ewp"/>
+        <environment name="uv" load="mdk/edma_scatter_gather.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/edma/scatter gather</category>
+      </attributes>
+    </example>
+    <example name="ewm" folder="driver_examples/ewm" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ewm.ewp"/>
+        <environment name="uv" load="mdk/ewm.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ewm</category>
+      </attributes>
+    </example>
+    <example name="pflash" folder="driver_examples/flash/pflash" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pflash.ewp"/>
+        <environment name="uv" load="mdk/pflash.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flash/pflash</category>
+      </attributes>
+    </example>
+    <example name="flexbus" folder="driver_examples/flexbus" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/flexbus.ewp"/>
+        <environment name="uv" load="mdk/flexbus.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flexbus</category>
+      </attributes>
+    </example>
+    <example name="flexcan_interrupt_transfer" folder="driver_examples/flexcan/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/flexcan_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/flexcan_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flexcan/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="flexcan_loopback" folder="driver_examples/flexcan/loopback" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/flexcan_loopback.ewp"/>
+        <environment name="uv" load="mdk/flexcan_loopback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flexcan/loopback</category>
+      </attributes>
+    </example>
+    <example name="flexcan_loopback_transfer" folder="driver_examples/flexcan/loopback_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/flexcan_loopback_transfer.ewp"/>
+        <environment name="uv" load="mdk/flexcan_loopback_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/flexcan/loopback transfer</category>
+      </attributes>
+    </example>
+    <example name="ftm_combine_pwm" folder="driver_examples/ftm/combine_pwm" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_combine_pwm.ewp"/>
+        <environment name="uv" load="mdk/ftm_combine_pwm.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/combine pwm</category>
+      </attributes>
+    </example>
+    <example name="ftm_dual_edge_capture" folder="driver_examples/ftm/dual_edge_capture" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_dual_edge_capture.ewp"/>
+        <environment name="uv" load="mdk/ftm_dual_edge_capture.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/dual edge capture</category>
+      </attributes>
+    </example>
+    <example name="ftm_input_capture" folder="driver_examples/ftm/input_capture" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_input_capture.ewp"/>
+        <environment name="uv" load="mdk/ftm_input_capture.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/input capture</category>
+      </attributes>
+    </example>
+    <example name="ftm_output_compare" folder="driver_examples/ftm/output_compare" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_output_compare.ewp"/>
+        <environment name="uv" load="mdk/ftm_output_compare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/output compare</category>
+      </attributes>
+    </example>
+    <example name="ftm_pwm_twochannel" folder="driver_examples/ftm/pwm_twochannel" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_pwm_twochannel.ewp"/>
+        <environment name="uv" load="mdk/ftm_pwm_twochannel.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/pwm twochannel</category>
+      </attributes>
+    </example>
+    <example name="ftm_simple_pwm" folder="driver_examples/ftm/simple_pwm" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_simple_pwm.ewp"/>
+        <environment name="uv" load="mdk/ftm_simple_pwm.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/simple pwm</category>
+      </attributes>
+    </example>
+    <example name="ftm_timer" folder="driver_examples/ftm/timer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/ftm_timer.ewp"/>
+        <environment name="uv" load="mdk/ftm_timer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/ftm/timer</category>
+      </attributes>
+    </example>
+    <example name="gpio_input_interrupt" folder="driver_examples/gpio/input_interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/gpio_input_interrupt.ewp"/>
+        <environment name="uv" load="mdk/gpio_input_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpio/input interrupt</category>
+      </attributes>
+    </example>
+    <example name="gpio_led_output" folder="driver_examples/gpio/led_output" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/gpio_led_output.ewp"/>
+        <environment name="uv" load="mdk/gpio_led_output.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/gpio/led output</category>
+      </attributes>
+    </example>
+    <example name="i2c_edma_b2b_transfer_master" folder="driver_examples/i2c/edma_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_edma_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/i2c_edma_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/edma b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="i2c_edma_b2b_transfer_slave" folder="driver_examples/i2c/edma_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_edma_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/i2c_edma_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/edma b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt" folder="driver_examples/i2c/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt_b2b_transfer_master" folder="driver_examples/i2c/interrupt_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="i2c_interrupt_b2b_transfer_slave" folder="driver_examples/i2c/interrupt_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_interrupt_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/i2c_interrupt_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/interrupt b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="i2c_polling_b2b_transfer_master" folder="driver_examples/i2c/polling_b2b_transfer/master" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_polling_b2b_transfer_master.ewp"/>
+        <environment name="uv" load="mdk/i2c_polling_b2b_transfer_master.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/master</category>
+      </attributes>
+    </example>
+    <example name="i2c_polling_b2b_transfer_slave" folder="driver_examples/i2c/polling_b2b_transfer/slave" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_polling_b2b_transfer_slave.ewp"/>
+        <environment name="uv" load="mdk/i2c_polling_b2b_transfer_slave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/polling b2b transfer/slave</category>
+      </attributes>
+    </example>
+    <example name="i2c_read_accel_value_transfer" folder="driver_examples/i2c/read_accel_value_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/i2c_read_accel_value_transfer.ewp"/>
+        <environment name="uv" load="mdk/i2c_read_accel_value_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/i2c/read accel value transfer</category>
+      </attributes>
+    </example>
+    <example name="lptmr" folder="driver_examples/lptmr" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/lptmr.ewp"/>
+        <environment name="uv" load="mdk/lptmr.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/lptmr</category>
+      </attributes>
+    </example>
+    <example name="mcg_fee_blpe" folder="driver_examples/mcg/fee_blpe" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fee_blpe.ewp"/>
+        <environment name="uv" load="mdk/mcg_fee_blpe.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fee blpe</category>
+      </attributes>
+    </example>
+    <example name="mcg_fee_blpi" folder="driver_examples/mcg/fee_blpi" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fee_blpi.ewp"/>
+        <environment name="uv" load="mdk/mcg_fee_blpi.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fee blpi</category>
+      </attributes>
+    </example>
+    <example name="mcg_fei_blpi" folder="driver_examples/mcg/fei_blpi" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_fei_blpi.ewp"/>
+        <environment name="uv" load="mdk/mcg_fei_blpi.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/fei blpi</category>
+      </attributes>
+    </example>
+    <example name="mcg_pee_blpe" folder="driver_examples/mcg/pee_blpe" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_pee_blpe.ewp"/>
+        <environment name="uv" load="mdk/mcg_pee_blpe.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/pee blpe</category>
+      </attributes>
+    </example>
+    <example name="mcg_pee_blpi" folder="driver_examples/mcg/pee_blpi" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/mcg_pee_blpi.ewp"/>
+        <environment name="uv" load="mdk/mcg_pee_blpi.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/mcg/pee blpi</category>
+      </attributes>
+    </example>
+    <example name="pdb_adc16_trigger" folder="driver_examples/pdb/adc16_trigger" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pdb_adc16_trigger.ewp"/>
+        <environment name="uv" load="mdk/pdb_adc16_trigger.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/pdb/adc16 trigger</category>
+      </attributes>
+    </example>
+    <example name="pdb_dac_trigger" folder="driver_examples/pdb/dac_trigger" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pdb_dac_trigger.ewp"/>
+        <environment name="uv" load="mdk/pdb_dac_trigger.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/pdb/dac trigger</category>
+      </attributes>
+    </example>
+    <example name="pdb_delay_interrupt" folder="driver_examples/pdb/delay_interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pdb_delay_interrupt.ewp"/>
+        <environment name="uv" load="mdk/pdb_delay_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/pdb/delay interrupt</category>
+      </attributes>
+    </example>
+    <example name="pit" folder="driver_examples/pit" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/pit.ewp"/>
+        <environment name="uv" load="mdk/pit.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/pit</category>
+      </attributes>
+    </example>
+    <example name="rnga_random" folder="driver_examples/rnga/random" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rnga_random.ewp"/>
+        <environment name="uv" load="mdk/rnga_random.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/rnga/random</category>
+      </attributes>
+    </example>
+    <example name="rtc" folder="driver_examples/rtc" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/rtc.ewp"/>
+        <environment name="uv" load="mdk/rtc.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/rtc</category>
+      </attributes>
+    </example>
+    <example name="sai_edma_transfer" folder="driver_examples/sai/edma_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sai_edma_transfer.ewp"/>
+        <environment name="uv" load="mdk/sai_edma_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/sai/edma transfer</category>
+      </attributes>
+    </example>
+    <example name="sai_interrupt" folder="driver_examples/sai/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sai_interrupt.ewp"/>
+        <environment name="uv" load="mdk/sai_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/sai/interrupt</category>
+      </attributes>
+    </example>
+    <example name="sai_interrupt_transfer" folder="driver_examples/sai/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sai_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/sai_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/sai/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="smartcard" folder="driver_examples/smartcard" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/smartcard.ewp"/>
+        <environment name="uv" load="mdk/smartcard.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/smartcard</category>
+      </attributes>
+    </example>
+    <example name="sysmpu" folder="driver_examples/sysmpu" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/sysmpu.ewp"/>
+        <environment name="uv" load="mdk/sysmpu.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/sysmpu</category>
+      </attributes>
+    </example>
+    <example name="uart_edma_transfer" folder="driver_examples/uart/edma_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/uart_edma_transfer.ewp"/>
+        <environment name="uv" load="mdk/uart_edma_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/edma transfer</category>
+      </attributes>
+    </example>
+    <example name="uart_interrupt" folder="driver_examples/uart/interrupt" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/uart_interrupt.ewp"/>
+        <environment name="uv" load="mdk/uart_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt</category>
+      </attributes>
+    </example>
+    <example name="uart_interrupt_rb_transfer" folder="driver_examples/uart/interrupt_rb_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/uart_interrupt_rb_transfer.ewp"/>
+        <environment name="uv" load="mdk/uart_interrupt_rb_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt rb transfer</category>
+      </attributes>
+    </example>
+    <example name="uart_interrupt_transfer" folder="driver_examples/uart/interrupt_transfer" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/uart_interrupt_transfer.ewp"/>
+        <environment name="uv" load="mdk/uart_interrupt_transfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/interrupt transfer</category>
+      </attributes>
+    </example>
+    <example name="uart_polling" folder="driver_examples/uart/polling" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/uart_polling.ewp"/>
+        <environment name="uv" load="mdk/uart_polling.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/uart/polling</category>
+      </attributes>
+    </example>
+    <example name="wdog" folder="driver_examples/wdog" doc="readme.txt">
+      <description></description>
+      <board Dvendor="NXP:11" name="TWR-K21F120M" vendor="NXP"/>
+      <project>
+        <environment name="iar" load="iar/wdog.ewp"/>
+        <environment name="uv" load="mdk/wdog.uvprojx"/>
+      </project>
+      <attributes>
+        <category>driver examples/wdog</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cversion="1.0.0" Cvariant="twrk21f120m" condition="project_template.twrk21f120m">
+      <description></description>
+      <files>
+        <file name="project_template/board.c" category="sourceC" attr="config"/>
+        <file name="project_template/board.h" category="header" attr="config"/>
+        <file name="project_template/clock_config.c" category="sourceC" attr="config"/>
+        <file name="project_template/clock_config.h" category="header" attr="config"/>
+        <file name="project_template/pin_mux.c" category="sourceC" attr="config"/>
+        <file name="project_template/pin_mux.h" category="header" attr="config"/>
+        <file name="project_template/peripherals.c" category="sourceC" attr="config"/>
+        <file name="project_template/peripherals.h" category="header" attr="config"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAM3_DFP</name>
+  <description>Microchip SAM3 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.2.2" date="2018-09-25" deprecated="2018-09-25">
+      This pack is going to be deprecated. Device Support is maintained by Microchip going forward.
+      Updated MDK Examples have been moved to respective board support packs (BSP) from Keil.
+      Please remove this pack and install one of the following pairs of packs:
+      - Atmel.SAM3A_DFP.1.0.50.atpack
+      - Atmel.SAM3N_DFP.1.0.62.atpack and Keil.SAM3N_BSP.1.0.0
+      - Atmel.SAM3S_DFP.1.0.70.atpack and Keil.SAM3S_BSP.1.0.0
+      - Atmel.SAM3U_DFP.1.0.49.atpack and Keil.SAM3U_BSP.1.0.0
+      - Atmel.SAM3X_DFP.1.0.50.atpack and Keil.SAM3X_BSP.1.0.0
+    </release>
+    <release version="1.2.1" date="2018-05-04">
+      Updated Dvendor from Atmel to Microchip.
+      Updated system file with corrected SystemCoreClock initial value to value set by SystemInit function.
+    </release>  
+    <release version="1.2.0" date="2016-07-12">
+      Added Debug Description for all devices.
+    </release>  
+    <release version="1.1.0" date="2016-02-01">
+      Updated SAM3 device support files.
+      Reworked Sub families.
+      Reworked section conditions, startup.
+    </release>
+    <release version="1.0.1">
+      Updated device descriptions with features.
+    </release>
+    <release version="1.0.0">
+      First Release version of SAM3 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Microchip</keyword>
+    <keyword>SAM3</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="SAM3 Series" Dvendor="Microchip:3">
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <description>
+The SAM3 Series is designed for cost-sensitive, high-performance and power-efficient embedded applications,as well as those requiring more memory for code and data storage or multi-tasking operations.
+Typical applications include industrial automation, smart grids, medical equipment, building and home control, test and measurement systems,and computer and consumer peripherals.
+
+  - Dual-bank Flash and SRAM
+  - Safe in-system firmware upgrades
+  - enhanced protection of external memories, i.e. on-the-fly external memory scrambling
+  - Quadrature Decoder Logic and 2-bit Gray Up/Down Counter for Stepper Motor
+  - WriteProtectedRegisters
+      </description>
+
+      <!-- ************************  Debug Description  **************************** -->
+
+      <debug defaultResetSequence="ResetSystem" />
+
+      <sequences>
+
+          <!-- Begin: ResetSystem Sequence -->
+          <!-- Be aware that this sequence only works when the target is stopped before the reset -->
+          <!-- When the target is running, if we reset the CPU then it continues to run after reset -->
+          <!-- at that point we attempt to reset the peripherals which can cause in best case hardfault -->          
+          <sequence name="ResetSystem">
+            <block>
+              __var SCS_Addr   = 0xE000E000;
+              __var AIRCR_Addr = SCS_Addr + 0xD0C;
+              __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+              // Execute VECTRESET via AIRCR
+              Write32(AIRCR_Addr, 0x05FA0001);
+
+              // Reset Peripherals and assert External Reset
+              Write32 (0x400E1200, 0xA500000C);
+            </block>
+          </sequence>
+          <!-- End: ResetSystem Sequence -->
+
+          <!-- Begin: DebugDeviceUnlock Sequence -->
+          <sequence name="DebugDeviceUnlock">
+            <block>
+              //Enable User Reset
+              Write32(0x400E1208, 0xA5000001);
+            </block>
+          </sequence>
+          <!-- End: DebugDeviceUnlock Sequence -->
+
+          <!-- Begin: ResetHardwareAssert Sequence -->
+          <sequence name="ResetHardwareAssert">
+            <block>
+              __var nReset = 0x80;
+
+              //Enable User Reset
+              Write32(0x400E1208, 0xA5000001);
+
+              // Deassert nRESET line to activate the hardware reset
+              DAP_SWJ_Pins(0, nReset, 0);
+            </block>
+          </sequence>
+          <!-- End: ResetHardwareAssert Sequence -->
+
+        
+          <!-- Begin: ResetHardware Sequence -->
+          <sequence name="ResetHardware">
+            <block>
+              //Enable User Reset
+              Write32(0x400E1208, 0xA5000001);
+            </block>
+            
+            <block>
+              __var nReset      = 0x80;
+              __var canReadPins = 0;
+
+              // Deassert nRESET line
+              canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);
+            </block>
+
+            <!-- Keep reset active for 50 ms -->
+            <control while="1" timeout="50000"/>
+
+            <control if="canReadPins">
+
+              <!-- Assert nRESET line and wait for recovery -->
+              <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+
+            </control>
+
+            <control if="!canReadPins">
+
+              <block>
+                // Assert nRESET line
+                DAP_SWJ_Pins(nReset, nReset, 0);
+              </block>
+
+              <!-- Wait 100ms for recovery if nRESET not readable -->
+              <control while="1" timeout="100000"/>
+
+            </control>
+
+          </sequence>
+          <!-- End: ResetHardware Sequence -->
+
+
+        </sequences>
+
+        <!-- ************************  Debug Description  **************************** -->
+      
+      
+      
+
+      <!-- ************************  Subfamily 'ATSAM3N'  **************************** -->
+      <subFamily DsubFamily="ATSAM3N">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+        <compile header="Device/SAM3N/Include/sam3n.h"/>
+        <algorithm name="Flash/ATSAM3N_GPNVM.FLM" start="0x1FFFFFF0" size="0x00000010" default="0"/>
+
+        <book name="Documents/Atmel-11011-32-bit-Cortex-M3-Microcontroller-SAM3N_Datasheet.pdf" title="SAM3N Datasheet"/>
+        <description>
+The Microchip | SMART SAM3N ARM Cortex M3-based series combines a high-performance architecture, peripherals and power–saving techniques to deliver uncompromised performance.
+Available in multiple memory densities, pin counts and package types, the SAM3N offers a scalable solution to meet application requirements.
+It is supported by a full set of software libraries, project examples, tools and a worldwide ecosystem to shorten development cycle time.
+Pin-to-pin compatible with the SAM7S and the SAM3S, the SAM3N facilitates migration within the family.
+        </description>
+
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="Timer"         n="6"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM3N00A'  ***************************** -->
+        <device Dname="ATSAM3N00A">
+          <compile define="__SAM3N00A__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N00A.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_16.FLM" start="0x00400000" size="0x00004000"             default="1"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N00B'  ***************************** -->
+        <device Dname="ATSAM3N00B">
+          <compile define="__SAM3N00B__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N00B.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_16.FLM" start="0x00400000" size="0x00004000"             default="1"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="10"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N0A'  ***************************** -->
+        <device Dname="ATSAM3N0A">
+          <compile define="__SAM3N0A__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N0A.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_32.FLM" start="0x00400000" size="0x00008000"             default="1"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N0B'  ***************************** -->
+        <device Dname="ATSAM3N0B">
+          <compile define="__SAM3N0B__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N0B.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_32.FLM" start="0x00400000" size="0x00008000"             default="1"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="10"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N0C'  ***************************** -->
+        <device Dname="ATSAM3N0C">
+          <compile define="__SAM3N0C__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N0C.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_32.FLM" start="0x00400000" size="0x00008000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N1A'  ***************************** -->
+        <device Dname="ATSAM3N1A">
+          <compile define="__SAM3N1A__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N1A.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N1B'  ***************************** -->
+        <device Dname="ATSAM3N1B">
+          <compile define="__SAM3N1B__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N1B.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="10"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N1C'  ***************************** -->
+        <device Dname="ATSAM3N1C">
+          <compile define="__SAM3N1C__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N1C.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N2A'  ***************************** -->
+        <device Dname="ATSAM3N2A">
+          <compile define="__SAM3N2A__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N2A.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N2B'  ***************************** -->
+        <device Dname="ATSAM3N2B">
+          <compile define="__SAM3N2B__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N2B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="10"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N2C'  ***************************** -->
+        <device Dname="ATSAM3N2C">
+          <compile define="__SAM3N2C__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N2C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N4A'  ***************************** -->
+        <device Dname="ATSAM3N4A">
+          <compile define="__SAM3N4A__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N4A.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_256.FLM" start="0x00400000" size="0x00040000"             default="1"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N4B'  ***************************** -->
+        <device Dname="ATSAM3N4B">
+          <compile define="__SAM3N4B__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N4B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00006000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_256.FLM" start="0x00400000" size="0x00040000"             default="1"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="10"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3N4C'  ***************************** -->
+        <device Dname="ATSAM3N4C">
+          <compile define="__SAM3N4C__"/>
+          <debug svd="SVD/SAM3N/ATSAM3N4C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x40000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x06000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3N_256.FLM" start="0x00400000" size="0x40000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="16"      m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'ATSAM3S'  **************************** -->
+      <subFamily DsubFamily="ATSAM3S">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="64000000"/>
+        <algorithm name="Flash/ATSAM3S_GPNVM.FLM" start="0x1FFFFFF0" size="0x00000010" default="0"/>
+
+        <description>
+The Microchip | SMART SAM3S Cortex M3 Flash MCU integrates features to simplify system design and reduce power consumption down to 2.3 mW at 1 MHz, 1.45mW/MHz at 64 MHz operation and 1.6 uA in backup mode with the RTC running.
+Inspired by the best-selling SAM7S series, the SAM3S is the ideal migration path to a more powerful and feature-rich MCU.
+A renewed peripheral set provides system control, sensor interfaces, an optional external parallel bus interface, connectivity and user interface support.
+        </description>
+
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="ComOther"      n="1"                           name="SSC Interface"/>
+        <feature type="AnalogOther"   n="1"                           name="Analog Comparators"/>
+        <feature type="TempSens"      n="1"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM3S1A'  ***************************** -->
+        <device Dname="ATSAM3S1A">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S1A__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S1A.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S1B'  ***************************** -->
+        <device Dname="ATSAM3S1B">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S1B__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S1B.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S1C'  ***************************** -->
+        <device Dname="ATSAM3S1C">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S1C__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S1C.svd"/>
+          <memory id="IROM1"                     start="0x00400000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_64.FLM" start="0x00400000" size="0x00010000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S2A'  ***************************** -->
+        <device Dname="ATSAM3S2A">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S2A__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S2A.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S2B'  ***************************** -->
+        <device Dname="ATSAM3S2B">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S2B__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S2B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S2C'  ***************************** -->
+        <device Dname="ATSAM3S2C">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S2C__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S2C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_128.FLM" start="0x00400000" size="0x00020000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S4A'  ***************************** -->
+        <device Dname="ATSAM3S4A">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S4A__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S4A.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_256.FLM" start="0x00400000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="17"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S4B'  ***************************** -->
+        <device Dname="ATSAM3S4B">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S4B__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S4B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_256.FLM" start="0x00400000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S4C'  ***************************** -->
+        <device Dname="ATSAM3S4C">
+          <compile header="Device/SAM3S/Include/sam3s.h" define="__SAM3S4C__"/>
+          <debug svd="SVD/SAM3S/ATSAM3S4C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x0000C000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_256.FLM" start="0x00400000" size="0x00040000"             default="1"/>
+
+          <book name="Documents/Atmel-6500-32-bit-Cortex-M3-Microcontroller-SAM3S4-SAM3S2-SAM3S1_Datasheet.pdf" title="SAM3S Datasheet"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S8B'  ***************************** -->
+        <device Dname="ATSAM3S8B">
+          <compile header="Device/SAM3SD8/Include/sam3sd8.h" define="__SAM3S8B__"/>
+          <debug svd="SVD/SAM3SD8/ATSAM3S8B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_512.FLM" start="0x00400000" size="0x00080000"             default="1"/>
+
+          <book name="Documents/Atmel-11090-32-bit Cortex-M3-Microcontroller-SAM-3S8-SD8_Datasheet.pdf" title="SAM3S8 / SAM3SD8 Datasheet"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3S8C'  ***************************** -->
+        <device Dname="ATSAM3S8C">
+          <compile header="Device/SAM3SD8/Include/sam3sd8.h" define="__SAM3S8C__"/>
+          <debug svd="SVD/SAM3SD8/ATSAM3S8C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x80000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x10000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_512.FLM" start="0x00400000" size="0x80000"             default="1"/>
+
+          <book name="Documents/Atmel-11090-32-bit Cortex-M3-Microcontroller-SAM-3S8-SD8_Datasheet.pdf" title="SAM3S8 / SAM3SD8 Datasheet"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3SD8B'  ***************************** -->
+        <device Dname="ATSAM3SD8B">
+          <compile header="Device/SAM3SD8/Include/sam3sd8.h" define="__SAM3SD8B__"/>
+          <debug svd="SVD/SAM3SD8/ATSAM3SD8B.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x40000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x00440000" size="0x40000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x10000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_512.FLM" start="0x00400000" size="0x80000"             default="1"/>
+
+          <book name="Documents/Atmel-11090-32-bit Cortex-M3-Microcontroller-SAM-3S8-SD8_Datasheet.pdf" title="SAM3S8 / SAM3SD8 Datasheet"/>
+
+          <feature type="Touch"         n="23"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="4"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="10"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3SD8C'  ***************************** -->
+        <device Dname="ATSAM3SD8C">
+          <compile header="Device/SAM3SD8/Include/sam3sd8.h" define="__SAM3SD8C__"/>
+          <debug svd="SVD/SAM3SD8/ATSAM3SD8C.svd"/>
+          <memory id="IROM1"                      start="0x00400000" size="0x40000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x00440000" size="0x40000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x10000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3S_512.FLM" start="0x00400000" size="0x80000"             default="1"/>
+
+          <book name="Documents/Atmel-11090-32-bit Cortex-M3-Microcontroller-SAM-3S8-SD8_Datasheet.pdf" title="SAM3S8 / SAM3SD8 Datasheet"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="UART"          n="5"/>
+          <feature type="SDIO"          n="1"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="1"                           name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'ATSAM3U'  **************************** -->
+      <subFamily DsubFamily="ATSAM3U">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/SAM3U/Include/sam3u.h"/>
+        <algorithm name="Flash/ATSAM3U_GPNVM.FLM" start="0x1FFFFFF0" size="0x00000010" default="0"/>
+
+        <book name="Documents/Atmel-6430-32-bit-Cortex-M3-Microcontroller-SAM3U4-SAM3U2-SAM3U1_Datasheet.pdf" title="SAM3U Datasheet"/>
+        <description>
+The Microchip | SMART SAM3U is the industry’s first ARM Cortex M3 Flash microcontroller with on-chip high speed USB Device-and-Transceiver, SDIO/SDCard/MMC and SPI interfaces.
+This connectivity, together with the SAM3U’s 96 MHz/1.25 DMIPS/MHz operating frequency, makes the SAM3U the unique Cortex M3 device suited to applications with intensive communications requirements, such high speed gateways in industrial, medical, data processing and consumer applications.
+For rapid evaluation and code development, industry-leading third parties provide a full range of dev tools, RTOS, middleware and support services to reduce time-to-market to a minimum.
+        </description>
+
+
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+        <feature type="ComOther"      n="1"                           name="SSC Interface"/>
+        <feature type="SDIO"          n="1"/>
+        <feature type="Timer"         n="3"/>
+        <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM3U1C'  ***************************** -->
+        <device Dname="ATSAM3U1C">
+          <compile define="__SAM3U1C__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U1C.svd"/>
+          <memory id="IROM1"                     start="0x00080000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <memory id="IRAM2"                     start="0x20080000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_64.FLM" start="0x00080000" size="0x00010000"             default="1"/>
+
+          <feature type="Touch"         n="28"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="57"/>
+          <feature type="ExtInt"        n="57"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="8"       m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3U1E'  ***************************** -->
+        <device Dname="ATSAM3U1E">
+          <compile define="__SAM3U1E__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U1E.svd"/>
+          <memory id="IROM1"                     start="0x00080000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                     start="0x20000000" size="0x00002000" init   ="0" default="1"/>
+          <memory id="IRAM2"                     start="0x20080000" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_64.FLM" start="0x00080000" size="0x00010000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="96"/>
+          <feature type="ExtInt"        n="96"/>
+          <feature type="SPI"           n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="5"/>
+          <feature type="ADC"           n="16"      m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3U2C'  ***************************** -->
+        <device Dname="ATSAM3U2C">
+          <compile define="__SAM3U2C__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U2C.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x000020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x000004000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x000004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_128.FLM" start="0x00080000" size="0x000020000"             default="1"/>
+
+          <feature type="Touch"         n="28"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="57"/>
+          <feature type="ExtInt"        n="57"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="8"       m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3U2E'  ***************************** -->
+        <device Dname="ATSAM3U2E">
+          <compile define="__SAM3U2E__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U2E.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_128.FLM" start="0x00080000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="96"/>
+          <feature type="ExtInt"        n="96"/>
+          <feature type="SPI"           n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="5"/>
+          <feature type="ADC"           n="16"      m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3U4C'  ***************************** -->
+        <device Dname="ATSAM3U4C">
+          <compile define="__SAM3U4C__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U4C.svd"/>
+          <memory id="IROM1"                         start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                         start="0x00100000" size="0x00020000" startup="0" default="1"/>
+          <memory id="IRAM1"                         start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <memory id="IRAM2"                         start="0x20080000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_128.FLM"    start="0x00080000" size="0x00020000"             default="1"/>
+          <algorithm name="Flash/ATSAM3U_128_B1.FLM" start="0x00100000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="28"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="57"/>
+          <feature type="ExtInt"        n="57"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="I2C"           n="1"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="8"       m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3U4E'  ***************************** -->
+        <device Dname="ATSAM3U4E">
+          <compile define="__SAM3U4E__"/>
+          <debug svd="SVD/SAM3U/ATSAM3U4E.svd"/>
+          <memory id="IROM1"                         start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                         start="0x00100000" size="0x00020000" startup="0" default="1"/>
+          <memory id="IRAM1"                         start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <memory id="IRAM2"                         start="0x20080000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3U_128.FLM"    start="0x00080000" size="0x00020000"             default="1"/>
+          <algorithm name="Flash/ATSAM3U_128_B1.FLM" start="0x00100000" size="0x00020000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="96"/>
+          <feature type="ExtInt"        n="96"/>
+          <feature type="SPI"           n="5"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="5"/>
+          <feature type="ADC"           n="16"      m="12"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'ATSAM3A'  **************************** -->
+      <subFamily DsubFamily="ATSAM3A">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="84000000"/>
+        <compile header="Device/SAM3XA/Include/sam3xa.h"/>
+        <algorithm name="Flash/ATSAM3X_GPNVM.FLM" start="0x1FFFFFF0" size="0x00000010" default="0"/>
+
+        <book name="Documents/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf" title="SAM3X / SAM3A Datasheet"/>
+        <description>
+The Atmel | SMART SAM3A ARM Cortex-M3 Flash-based microcontroller (MCU) features connectivity peripherals including a dual CAN interface and high-speed USB (HS USB) MiniHost and device with on-chip physical layer (PHY).
+Devices are available in a dual-bank configuration of 256KB and 512KB Flash total and in 100-pin QFP and BGA package options.
+The architecture is designed to support high-speed data transfers and includes a multi-layer bus matrix plus dual SRAM banks, direct memory access (DMA) channels and peripheral DMA controller (PDC) for applications supporting multi-task operations.
+The SAM3A series is ideal for networking applications in the industrial embedded market and in home and building automation, smart grids and industrial automation.
+        </description>
+
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+        <feature type="SPI"           n="4"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="LIN"           n="3"/>
+        <feature type="ComOther"      n="1"                           name="SSC Interface"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="SDIO"          n="1"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="TempSens"      n="1"/>
+        <feature type="Timer"         n="9"/>
+        <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+
+        <!-- *************************  Device 'ATSAM3A4C'  ***************************** -->
+        <device Dname="ATSAM3A4C">
+          <compile define="__SAM3A4C__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3A4C.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000A0000" size="0x00020000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_256.FLM" start="0x00080000" size="0x00040000"             default="1"/>
+
+          <feature type="Touch"         n="31"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="63"/>
+          <feature type="ExtInt"        n="63"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="4"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3A8C'  ***************************** -->
+        <device Dname="ATSAM3A8C">
+          <compile define="__SAM3A8C__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3A8C.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000C0000" size="0x00040000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_512.FLM" start="0x00080000" size="0x00080000"             default="1"/>
+
+          <feature type="Touch"         n="31"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="63"/>
+          <feature type="ExtInt"        n="63"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="4"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'ATSAM3X'  **************************** -->
+      <subFamily DsubFamily="ATSAM3X">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="84000000"/>
+        <compile header="Device/SAM3XA/Include/sam3xa.h"/>
+        <algorithm name="Flash/ATSAM3X_GPNVM.FLM" start="0x1FFFFFF0" size="0x00000010" default="0"/>
+
+        <book name="Documents/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf" title="SAM3X / SAM3A Datasheet"/>
+        <description>
+The Atmel | SMART SAM3X ARM Cortex M3-based Flash-based microcontroller (MCU) brings more connectivity to the SAM3 family by adding Ethernet, dual CAN and high-speed USB (HS USB) MiniHost and device with on-chip physical layer (PHY).
+Devices feature a dual-bank configuration of 256KB and 512KB Flash total and are available in 100-pin and 144-pin QFP and BGA package options.
+The architecture is designed to support high-speed data transfers and includes a multi-layer bus matrix plus dual SRAM banks, direct memory access (DMA) channels and peripheral DMA controller (PDC) for applications supporting multi-task operations.
+The SAM3X series is ideal for networking applications in the industrial embedded market and in home and building automation, smart grids and industrial automation.
+        </description>
+
+        <feature type="RTC"           n="1"       m="32768"/>
+        <feature type="USBD"          n="1"/>
+        <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+        <feature type="SPI"           n="4"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="CAN"           n="2"/>
+        <feature type="LIN"           n="3"/>
+        <feature type="ComOther"      n="1"                           name="SSC Interface"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="SDIO"          n="1"/>
+        <feature type="ADC"           n="16"      m="12"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="TempSens"      n="1"/>
+        <feature type="Timer"         n="9"/>
+        <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+
+        <!-- *************************  Device 'ATSAM3X4C'  ***************************** -->
+        <device Dname="ATSAM3X4C">
+          <compile define="__SAM3X4C__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3X4C.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000A0000" size="0x00020000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_256.FLM" start="0x00080000" size="0x00040000"             default="1"/>
+
+          <feature type="Touch"         n="31"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="63"/>
+          <feature type="ExtInt"        n="63"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="4"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3X4E'  ***************************** -->
+        <device Dname="ATSAM3X4E">
+          <compile define="__SAM3X4E__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3X4E.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000A0000" size="0x00020000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00008000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_256.FLM" start="0x00080000" size="0x00040000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="103"/>
+          <feature type="ExtInt"        n="103"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="8"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3X8C'  ***************************** -->
+        <device Dname="ATSAM3X8C">
+          <compile define="__SAM3X8C__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3X8C.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000C0000" size="0x00040000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_512.FLM" start="0x00080000" size="0x00080000"             default="1"/>
+
+          <feature type="Touch"         n="31"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="63"/>
+          <feature type="ExtInt"        n="63"/>
+          <feature type="UART"          n="4"/>
+          <feature type="PWM"           n="4"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3X8E'  ***************************** -->
+        <device Dname="ATSAM3X8E">
+          <compile define="__SAM3X8E__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3X8E.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000C0000" size="0x00040000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_512.FLM" start="0x00080000" size="0x00080000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="103"/>
+          <feature type="ExtInt"        n="103"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="8"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM3X8H'  ***************************** -->
+        <device Dname="ATSAM3X8H">
+          <compile define="__SAM3X8H__"/>
+          <debug svd="SVD/SAM3XA/ATSAM3X8H.svd"/>
+          <memory id="IROM1"                      start="0x00080000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IROM2"                      start="0x000C0000" size="0x00040000" startup="0" default="1"/>
+          <memory id="IRAM1"                      start="0x20000000" size="0x00010000" init   ="0" default="1"/>
+          <memory id="IRAM2"                      start="0x20080000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/ATSAM3X_512.FLM" start="0x00080000" size="0x00080000"             default="1"/>
+
+          <feature type="Touch"         n="32"                          name="Number of Touch Channels"/>
+          <feature type="IOs"           n="103"/>
+          <feature type="ExtInt"        n="103"/>
+          <feature type="UART"          n="5"/>
+          <feature type="PWM"           n="8"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAM3N CMSIS">
+      <description>Microchip SAM3N devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM3N[0124][ABC]"/>
+      <accept  Dname="ATSAM3N00[AB]"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM3S CMSIS">
+      <description>Microchip SAM3S devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM3S[124][ABC]"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM3SD8 CMSIS">
+      <description>Microchip SAM3SD8 devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM3S8[BC]"/>
+      <accept  Dname="ATSAM3SD8[BC]"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM3U CMSIS">
+      <description>Microchip SAM3U devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM3U[124][CE]"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM3XA CMSIS">
+      <description>Microchip SAM3X/SAM3A devices and CMSIS-CORE</description>
+      <require Dvendor="Microchip:3"  Dname="ATSAM3[AX][48][CEH]"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup SAM3N -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAM3N CMSIS">
+      <description>System Startup for Microchip SAM D10 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM3N/Include/"/>
+        <file category="source"  name="Device/SAM3N/Source/ARM/startup_SAM3N.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM3N/Source/system_SAM3N.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM3S -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAM3S CMSIS">
+      <description>System Startup for Microchip SAM D10 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM3S/Include/"/>
+        <file category="source"  name="Device/SAM3S/Source/ARM/startup_SAM3S.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM3S/Source/system_SAM3S.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM3SD8 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAM3SD8 CMSIS">
+      <description>System Startup for Microchip SAM D10 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM3SD8/Include/"/>
+        <file category="source"  name="Device/SAM3SD8/Source/ARM/startup_SAM3SD8.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM3SD8/Source/system_SAM3SD8.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM3U -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAM3U CMSIS">
+      <description>System Startup for Microchip SAM D10 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM3U/Include/"/>
+        <file category="source"  name="Device/SAM3U/Source/ARM/startup_SAM3U.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM3U/Source/system_SAM3U.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM3XA -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SAM3XA CMSIS">
+      <description>System Startup for Microchip SAM D10 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM3XA/Include/"/>
+        <file category="source"  name="Device/SAM3XA/Source/ARM/startup_SAM3XA.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM3XA/Source/system_SAM3XA.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAM3N-EK Board Support -->
+    <bundle Cbundle="SAM3N-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM3N-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAM3N CMSIS">
+      <description>LED driver for Microchip SAM3N-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3N-EK/Common/LED_SAM3N-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAM3N CMSIS">
+      <description>Button driver for Microchip SAM3N-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3N-EK/Common/Buttons_SAM3N-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM3S-EK Board Support -->
+    <bundle Cbundle="SAM3S-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM3S-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAM3S CMSIS">
+      <description>LED driver for Microchip SAM3S-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3S-EK/Common/LED_SAM3S-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAM3S CMSIS">
+      <description>Button driver for Microchip SAM3S-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3S-EK/Common/Buttons_SAM3S-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" condition="SAM3S CMSIS">
+        <description>Graphic LCD driver for Microchip SAM3S-EK Board</description>
+        <files>
+          <file category="header"  name="Boards/Atmel/SAM3S-EK/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/Atmel/SAM3S-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Atmel/SAM3S-EK/Common/GLCD_SAM3S-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM3U-EK Board Support -->
+    <bundle Cbundle="SAM3U-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM3U-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAM3U CMSIS">
+      <description>LED driver for Microchip SAM3U-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3U-EK/Common/LED_SAM3U-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAM3U CMSIS">
+      <description>Button driver for Microchip SAM3U-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3U-EK/Common/Buttons_SAM3U-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" condition="SAM3U CMSIS">
+        <description>Graphic LCD driver for Microchip SAMUS-EK Board</description>
+        <files>
+          <file category="header"  name="Boards/Atmel/SAM3U-EK/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/Atmel/SAM3U-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Atmel/SAM3U-EK/Common/GLCD_SAM3U-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM3X-EK Board Support -->
+    <bundle Cbundle="SAM3X-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Atmel SAM3X-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.00" condition="SAM3XA CMSIS">
+      <description>LED driver for Atmel SAM3X-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3X-EK/Common/LED_SAM3X-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.00" condition="SAM3XA CMSIS">
+      <description>Button driver for Atmel SAM3X-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM3X-EK/Common/Buttons_SAM3X-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.00" condition="SAM3XA CMSIS">
+        <description>Graphic LCD driver for Microchip SAMUS-EK Board</description>
+        <files>
+          <file category="header"  name="Boards/Atmel/SAM3X-EK/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/Atmel/SAM3X-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Atmel/SAM3X-EK/Common/GLCD_SAM3X-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAM3N-EK" revision="Rev A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM D20 Xplained Pro Evaluation Kit</description>
+      <book category="overview" name="http://www.atmel.com/tools/sam3n-ek.aspx"     title="SAM3N-EK Web Page"/>
+      <book category="manual"   name="Boards/Atmel/SAM3N-EK/Documents/doc11080.pdf" title="SAM3N-EK User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM3N4C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="ATSAM3N"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM3S-EK" revision="Rev B" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM D20 Xplained Pro Evaluation Kit</description>
+      <book category="overview" name="http://www.atmel.com/tools/sam3s-ek.aspx"     title="SAM3S-EK Web Page"/>
+      <book category="manual"   name="Boards/Atmel/SAM3S-EK/Documents/doc11031.pdf" title="SAM3S-EK User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM3S4C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="ATSAM3S"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM3U-EK" revision="Rev B" salesContact="http://www.Microchip.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM D20 Xplained Pro Evaluation Kit</description>
+      <book category="overview" name="http://www.atmel.com/tools/sam3u-ek.aspx"     title="SAM3U-EK Web Page"/>
+      <book category="manual"   name="Boards/Atmel/SAM3U-EK/Documents/doc6478.pdf"  title="SAM3U-EK User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM3U4E"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="ATSAM3U"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM3X-EK" revision="Rev A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM D20 Xplained Pro Evaluation Kit</description>
+      <book category="overview" name="http://www.atmel.com/tools/sam3x-ek.aspx"      title="SAM3X-EK Web Page"/>
+      <book category="manual"   name="Boards/Atmel/SAM3X-EK/Documents/doc_11156.pdf" title="SAM3X-EK User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM3X8H"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="ATSAM3X"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAM3N-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3N-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM3N-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAM3S-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3S-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM3S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3S-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example using GLCD</description>
+      <board name="SAM3S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAM3U-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3U-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM3U-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3U-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example using GLCD</description>
+      <board name="SAM3U-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAM3X-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3X-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM3X-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM3X-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example using GLCD</description>
+      <board name="SAM3X-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

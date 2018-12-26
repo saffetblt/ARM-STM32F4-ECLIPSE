@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <name>nRF_Drivers</name>
+    <description>Drivers for Nordic Semiconductor nRF family.</description>
+    <vendor>NordicSemiconductor</vendor>
+    <url>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/</url>
+    <supportContact>http://www.nordicsemi.com/About-us/Contact-us</supportContact>
+
+    <releases>
+        <release version="4.0.0-2.alpha" date="2015-12-18">
+            This is a part of Nordic Semiconductor SDK version 11.0.0-2.alpha.
+        </release>
+        <release version="3.1.0" date="2015-11-09">
+            This is a part of Nordic Semiconductor SDK version 10.0.0.
+        </release>
+        <release version="3.0.1" date="2015-07-06">
+            This is a part of Nordic Semiconductor SDK version 9.0.0.
+        </release>
+        <release version="3.0.0" date="2015-04-30">
+            This is a part of Nordic Semiconductor SDK version 8.1.0.
+        </release>
+        <release version="2.0.0" >
+            This is a part of Nordic Semiconductor SDK version 8.0.0.
+        </release>
+        <release version="1.2.1" >
+            This is a part of Nordic Semiconductor SDK version 7.2.0.
+        </release>
+        <release version="1.2.0" >
+            This is a part of Nordic Semiconductor SDK version 7.1.0.
+        </release>
+        <release version="1.1.0" >
+            Added all the register and bitfields for the SPIM peripheral (present in the nRF51802 device) to the HAL header files.
+Fixed documentation issues.
+        </release>
+        <release version="1.0.0" >
+            This is a part of Nordic Semiconductor SDK version 7.0.0.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>Drivers</keyword>
+        <keyword>drv</keyword>
+    </keywords>
+
+    <boards>
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10028" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10028).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10031" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10031).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/>  
+            <feature type="Other"     n="1"              name="mbed Enabled"/>
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="USB"/>          
+        </board>
+		
+		<board vendor="NordicSemiconductor" name="nRF51 PCA20006" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA20006).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxaa"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+			<feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/> 
+            <feature type="Button"    n="2"              name="Push-buttons: 2 x User"/> 			
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="JTAG/SW"			 connector="6-pin 'No Legs' Cable with 20-pin Cortex connector"/>         
+		</board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10036" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10036).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10040" revision="V0.9.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10040).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="N5 Starter Kit">
+            <description>Dynastream N5 Starter Kit board (N5DK1).</description>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="4"              name="LEDs"/> 
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/>
+            <feature type="Other"     n="5"              name="Switches"/> 
+            <feature type="Other"     n="1"              name="On-board antenna"/>
+            <debugInterface adapter="J-Link"             connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link"             connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+    </boards>
+
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="nRF51 Series">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAC"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+        </condition>
+        
+        <condition id="nRF52 Series">
+            <description>Nordic Semiconductor Device from nRF52 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+        </condition>
+
+        <condition id="nRF51 Series CMSIS Device">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+            <accept condition="nRF51 Series"/>
+            <accept condition="nRF52 Series"/>
+        </condition>
+        <condition id="nrf_saadc">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_delay">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_gpio">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="ble_flash_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+            <accept Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="ble_flash">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require condition="ble_flash_0" />
+        </condition>
+
+        <condition id="nrf_drv_lpcomp">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_lpcomp" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_nvmc">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_saadc">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_saadc" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_pdm">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_pdm" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="spi_5W_master">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_soc" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_error" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_ppi">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_pwm">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_rng">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_rng" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_fifo" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="radio_config">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_gpiote">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_clock">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_rng">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_spis">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_i2s">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_i2s" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_qdec">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_uart">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_error_default_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <accept Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s212" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="nrf_error_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require condition="nrf_error_default_0" />
+        </condition>
+        <condition id="nrf_error_No_softdevice">
+            <require condition="nRF51 Series CMSIS Device" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <deny Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <deny Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <deny Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s212" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+        </condition>
+
+        <condition id="nrf_lpcomp">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_rtc">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_rtc" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_spi">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_spis">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_error" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_timer">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_pwm">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_pwm" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_spim">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_temp">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_rtc">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_drv_clock">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_clock" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_soc" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_twis">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_twis" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_ecb">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_i2s">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_uarte">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_twi">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_drv_spi">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_spi" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_spim" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_twim">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_pdm">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="pstorage_default_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="pstorage_default_1">
+            <accept Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="pstorage_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require condition="pstorage_default_0" />
+            <require condition="pstorage_default_1" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <deny Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="dfu_bootloader" Cgroup="DFU" Cclass="nRF_Libraries" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="cunit" Cclass="Framework" />
+        </condition>
+        <condition id="pstorage_Raw_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="pstorage_Raw_1">
+            <accept Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="pstorage_Raw">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require condition="pstorage_Raw_0" />
+            <require condition="pstorage_Raw_1" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="dfu_bootloader" Cgroup="DFU" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="cunit" Cclass="Framework" />
+        </condition>
+        <condition id="pstorage_No_softdevice">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="ble_flash" Cclass="nRF_Drivers" />
+            <deny Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="cunit" Cclass="Framework" />
+        </condition>
+
+        <condition id="nrf_drv_uart">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_uart" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_uarte" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_twis">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="twi_master_Hardware">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+        </condition>
+        <condition id="twi_master_Software">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_swi">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_egu" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_timer">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_timer" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_twi">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_twi" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_soc_default_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <accept Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s212" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="nrf_soc_default_1">
+            <accept Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="nrf_soc_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require condition="nrf_soc_default_0" />
+            <require condition="nrf_soc_default_1" />
+        </condition>
+        <condition id="nrf_soc_Serialized_0">
+            <accept Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <accept Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <accept Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s212" Cclass="nRF_SoftDevice" />
+            <accept Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+        </condition>
+        <condition id="nrf_soc_Serialized">
+            <require condition="nRF51 Series CMSIS Device" />
+            <deny Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+            <require condition="nrf_soc_Serialized_0" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+        </condition>
+        <condition id="nrf_soc_No_softdevice">
+            <require condition="nRF51 Series CMSIS Device" />
+            <deny Cversion="2.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="softdevice_present" Cgroup="Internal" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s110" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s1xx_iot" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s120" Cclass="nRF_SoftDevice" />
+            <deny Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s130" Cclass="nRF_SoftDevice" />
+            <deny Cversion="2.0.0-7.alpha" Cvendor="NordicSemiconductor" Cgroup="s132" Cclass="nRF_SoftDevice" />
+            <deny Cversion="5.0.2" Cvendor="NordicSemiconductor" Cgroup="s210" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s212" Cclass="nRF_SoftDevice" />
+            <deny Cvendor="NordicSemiconductor" Cgroup="s310" Cclass="nRF_SoftDevice" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_egu">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_wdt">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nrf_drv_gpiote">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpiote" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="sdio">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_gpio" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_common">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_ppi">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_ppi" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nrf_drv_wdt">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_wdt" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_drv_qdec">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_qdec" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nordic_common" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_common" Cclass="nRF_Drivers" />
+        </condition>
+
+        <condition id="nrf_adc">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+    </conditions>
+    <components>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_saadc" Cversion="4.0.0-2.alpha" condition="nrf_saadc">
+  <description>SAADC Hardware Abstraction Layer</description>
+  <files>
+    <file category="source" name="hal\nrf_saadc.c" />
+    <file category="header" name="hal\nrf_saadc.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_delay" Cversion="4.0.0-2.alpha" condition="nrf_delay">
+  <description>simple delay module</description>
+  <files>
+    <file category="source" name="delay\nrf_delay.c" />
+    <file category="header" name="delay\nrf_delay.h" />
+    <file category="include" name="delay\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_gpio" Cversion="4.0.0-2.alpha" condition="nrf_gpio">
+  <description>GPIO Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_gpio.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="ble_flash" Cversion="4.0.0-2.alpha" condition="ble_flash">
+  <description>Flash driver for BLE examples</description>
+  <files>
+    <file category="source" name="ble_flash\ble_flash.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="ble_flash\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_lpcomp" Cversion="4.0.0-2.alpha" condition="nrf_drv_lpcomp">
+  <description>LPCOMP Drvier</description>
+  <RTE_Components_h>
+  #define LPCOMP_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="lpcomp\nrf_drv_lpcomp.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="lpcomp\nrf_drv_lpcomp.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="lpcomp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_nvmc" Cversion="4.0.0-2.alpha" condition="nrf_nvmc">
+  <description>Non-volatile Memory Controller (NVMC) driver</description>
+  <files>
+    <file category="source" name="hal\nrf_nvmc.c" />
+    <file category="header" name="hal\nrf_nvmc.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_saadc" Cversion="4.0.0-2.alpha" condition="nrf_drv_saadc">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define SAADC_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="saadc\nrf_drv_saadc.c" />
+    <file category="header" name="saadc\nrf_drv_saadc.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="saadc\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_pdm" Cversion="4.0.0-2.alpha" condition="nrf_drv_pdm">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define PDM_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="pdm\nrf_drv_pdm.c" />
+    <file category="header" name="pdm\nrf_drv_pdm.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="pdm\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="spi_5W_master" Cversion="4.0.0-2.alpha" condition="spi_5W_master">
+  <description>SPI 5W Master driver</description>
+  <files>
+    <file category="source" name="spi_master\spi_5W_master.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="spi_master\spi_5W_master.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="spi_master\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_ppi" Cversion="4.0.0-2.alpha" condition="nrf_ppi">
+  <description>Software Component</description>
+  <files>
+    <file category="header" name="hal\nrf_ppi.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_pwm" Cversion="4.0.0-2.alpha" condition="nrf_pwm">
+  <description>PWM Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_pwm.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_rng" Cversion="4.0.0-2.alpha" condition="nrf_drv_rng">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define RNG_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="rng\nrf_drv_rng.c" />
+    <file category="header" name="rng\nrf_drv_rng.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="rng\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="radio_config" Cversion="4.0.0-2.alpha" condition="radio_config">
+  <description>Radio configuration for simple transmission.</description>
+  <files>
+    <file category="source" name="radio_config\radio_config.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="radio_config\radio_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="radio_config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_gpiote" Cversion="4.0.0-2.alpha" condition="nrf_gpiote">
+  <description>GPIOTE Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_gpiote.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_clock" Cversion="4.0.0-2.alpha" condition="nrf_clock">
+  <description>Software Component</description>
+  <files>
+    <file category="header" name="hal\nrf_clock.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_rng" Cversion="4.0.0-2.alpha" condition="nrf_rng">
+  <description>Software Component</description>
+  <files>
+    <file category="header" name="hal\nrf_rng.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_spis" Cversion="4.0.0-2.alpha" condition="nrf_spis">
+  <description>SPIS Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_spis.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_i2s" Cversion="4.0.0-2.alpha" condition="nrf_drv_i2s">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="i2s\nrf_drv_i2s.c" />
+    <file category="header" name="i2s\nrf_drv_i2s.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="i2s\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_qdec" Cversion="4.0.0-2.alpha" condition="nrf_qdec">
+  <description>Software Component</description>
+  <files>
+    <file category="header" name="hal\nrf_qdec.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_uart" Cversion="4.0.0-2.alpha" condition="nrf_uart">
+  <description>UART Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_uart.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_error" Cvariant="default" Cversion="4.0.0-2.alpha" condition="nrf_error_default">
+  <description>Definitions of error codes.</description>
+  <files>
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_error" Cvariant="No_softdevice" Cversion="4.0.0-2.alpha" condition="nrf_error_No_softdevice">
+  <description>Definitions of error codes.</description>
+  <files>
+    <file category="include" name="nrf_soc_nosd\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_lpcomp" Cversion="4.0.0-2.alpha" condition="nrf_lpcomp">
+  <description>LPCOMP Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_lpcomp.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_rtc" Cversion="4.0.0-2.alpha" condition="nrf_drv_rtc">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="rtc\nrf_drv_rtc.c" />
+    <file category="header" name="rtc\nrf_drv_rtc.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="rtc\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_spi" Cversion="4.0.0-2.alpha" condition="nrf_spi">
+  <description>SPI Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_spi.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_spis" Cversion="4.0.0-2.alpha" condition="nrf_drv_spis">
+  <description>SPI Slave driver</description>
+  <files>
+    <file category="source" name="spi_slave\nrf_drv_spis.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="spi_slave\nrf_drv_spis.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="spi_slave\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_timer" Cversion="4.0.0-2.alpha" condition="nrf_timer">
+  <description>Timer Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_timer.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_pwm" Cversion="4.0.0-2.alpha" condition="nrf_drv_pwm">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="pwm\nrf_drv_pwm.c" />
+    <file category="header" name="pwm\nrf_drv_pwm.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="pwm\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_spim" Cversion="4.0.0-2.alpha" condition="nrf_spim">
+  <description>SPIM Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_spim.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_temp" Cversion="4.0.0-2.alpha" condition="nrf_temp">
+  <description>TEMP Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_temp.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_rtc" Cversion="4.0.0-2.alpha" condition="nrf_rtc">
+  <description>Timer Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_rtc.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_clock" Cversion="4.0.0-2.alpha" condition="nrf_drv_clock">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define CLOCK_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="clock\nrf_drv_clock.c" />
+    <file category="header" name="clock\nrf_drv_clock.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="clock\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_twis" Cversion="4.0.0-2.alpha" condition="nrf_drv_twis">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="twis_slave\nrf_drv_twis.c" />
+    <file category="header" name="twis_slave\nrf_drv_twis.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="twis_slave\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_ecb" Cversion="4.0.0-2.alpha" condition="nrf_ecb">
+  <description>ECB Hardware Abstraction Layer</description>
+  <files>
+    <file category="source" name="hal\nrf_ecb.c" />
+    <file category="header" name="hal\nrf_ecb.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_i2s" Cversion="4.0.0-2.alpha" condition="nrf_i2s">
+  <description>I2S Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_i2s.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_uarte" Cversion="4.0.0-2.alpha" condition="nrf_uarte">
+  <description>UARTE Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_uarte.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_twi" Cversion="4.0.0-2.alpha" condition="nrf_twi">
+  <description>TWI Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_twi.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_spi" Cversion="4.0.0-2.alpha" condition="nrf_drv_spi">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="spi_master\nrf_drv_spi.c" />
+    <file category="header" name="spi_master\nrf_drv_spi.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="spi_master\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_twim" Cversion="4.0.0-2.alpha" condition="nrf_twim">
+  <description>TWIM Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_twim.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_pdm" Cversion="4.0.0-2.alpha" condition="nrf_pdm">
+  <description>PDM Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_pdm.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="default" Cversion="4.0.0-2.alpha" condition="pstorage_default">
+  <description>Persistent Storage module</description>
+  <files>
+    <file category="source" name="pstorage\pstorage.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\pstorage.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\config\pstorage_platform.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="pstorage\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="Raw" Cversion="4.0.0-2.alpha" condition="pstorage_Raw">
+  <description>Persistent Storage module</description>
+  <files>
+    <file category="source" name="pstorage\pstorage_raw.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\pstorage.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\config\pstorage_platform.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="pstorage\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="No_softdevice" Cversion="4.0.0-2.alpha" condition="pstorage_No_softdevice">
+  <description>Persistent Storage module</description>
+  <files>
+    <file category="source" name="pstorage\pstorage_nosd.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\pstorage.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="pstorage\config\pstorage_platform.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="pstorage\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_uart" Cversion="4.0.0-2.alpha" condition="nrf_drv_uart">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define UART0_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="uart\nrf_drv_uart.c" />
+    <file category="header" name="uart\nrf_drv_uart.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="uart\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_twis" Cversion="4.0.0-2.alpha" condition="nrf_twis">
+  <description>TWIS Hardware Access Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_twis.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="twi_master" Cvariant="Hardware" Cversion="4.0.0-2.alpha" condition="twi_master_Hardware">
+  <description>2-wire serial interface driver</description>
+  <files>
+    <file category="source" name="twi_master\deprecated\twi_hw_master.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="twi_master\deprecated\twi_master.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="twi_master\deprecated\config\twi_master_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="twi_master\deprecated\" />
+    <file category="include" name="twi_master\deprecated\config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="twi_master" Cvariant="Software" Cversion="4.0.0-2.alpha" condition="twi_master_Software">
+  <description>2-wire serial interface driver</description>
+  <files>
+    <file category="source" name="twi_master\deprecated\twi_sw_master.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="twi_master\deprecated\twi_master.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="twi_master\deprecated\config\twi_master_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="twi_master\deprecated\" />
+    <file category="include" name="twi_master\deprecated\config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_swi" Cversion="4.0.0-2.alpha" condition="nrf_drv_swi">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="swi\nrf_drv_swi.c" />
+    <file category="header" name="swi\nrf_drv_swi.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="swi\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_timer" Cversion="4.0.0-2.alpha" condition="nrf_drv_timer">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="timer\nrf_drv_timer.c" />
+    <file category="header" name="timer\nrf_drv_timer.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="timer\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_twi" Cversion="4.0.0-2.alpha" condition="nrf_drv_twi">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="twi_master\nrf_drv_twi.c" />
+    <file category="header" name="twi_master\nrf_drv_twi.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="twi_master\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_soc" Cvariant="default" Cversion="4.0.0-2.alpha" condition="nrf_soc_default">
+  <description>SOC related low level functions</description>
+  <files>
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_soc" Cvariant="Serialized" Cversion="4.0.0-2.alpha" condition="nrf_soc_Serialized">
+  <description>SOC related low level functions</description>
+  <files>
+    <file category="source" name="nrf_soc_nosd\nrf_soc.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_soc" Cvariant="No_softdevice" Cversion="4.0.0-2.alpha" condition="nrf_soc_No_softdevice">
+  <description>SOC related low level functions</description>
+  <files>
+    <file category="source" name="nrf_soc_nosd\nrf_soc.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="nrf_soc_nosd\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_egu" Cversion="4.0.0-2.alpha" condition="nrf_egu">
+  <description>EGU HAL</description>
+  <files>
+    <file category="header" name="hal\nrf_egu.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_wdt" Cversion="4.0.0-2.alpha" condition="nrf_wdt">
+  <description>WDT Hardware Abstraction Layer</description>
+  <files>
+    <file category="header" name="hal\nrf_wdt.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_gpiote" Cversion="4.0.0-2.alpha" condition="nrf_drv_gpiote">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define GPIOTE_ENABLED
+  #define GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="gpiote\nrf_drv_gpiote.c" />
+    <file category="header" name="gpiote\nrf_drv_gpiote.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="gpiote\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="sdio" Cversion="4.0.0-2.alpha" condition="sdio">
+  <description>software 2-wire serial interface driver</description>
+  <files>
+    <file category="source" name="sdio\sdio.c" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="sdio\sdio.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="header" name="sdio\config\sdio_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="sdio\" />
+    <file category="include" name="sdio\config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_common" Cversion="4.0.0-2.alpha" condition="nrf_drv_common">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="common\nrf_drv_common.c" />
+    <file category="header" name="common\nrf_drv_common.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="common\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_ppi" Cversion="4.0.0-2.alpha" condition="nrf_drv_ppi">
+  <description>Software Component</description>
+  <files>
+    <file category="source" name="ppi\nrf_drv_ppi.c" />
+    <file category="header" name="ppi\nrf_drv_ppi.h" />
+    <file category="include" name="ppi\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_wdt" Cversion="4.0.0-2.alpha" condition="nrf_drv_wdt">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define WDT_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="wdt\nrf_drv_wdt.c" />
+    <file category="header" name="wdt\nrf_drv_wdt.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="wdt\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_drv_qdec" Cversion="4.0.0-2.alpha" condition="nrf_drv_qdec">
+  <description>Software Component</description>
+  <RTE_Components_h>
+  #define QDEC_ENABLED
+  </RTE_Components_h>
+  <files>
+    <file category="source" name="qdec\nrf_drv_qdec.c" />
+    <file category="header" name="qdec\nrf_drv_qdec.h" />
+    <file category="header" name="config\nrf_drv_config.h" attr="config"  version="4.0.0-2.alpha"/>
+    <file category="include" name="qdec\" />
+    <file category="include" name="config\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_Drivers" Cgroup="nrf_adc" Cversion="4.0.0-2.alpha" condition="nrf_adc">
+  <description>ADC Hardware Abstraction Layer</description>
+  <files>
+    <file category="source" name="hal\nrf_adc.c" />
+    <file category="header" name="hal\nrf_adc.h" />
+    <file category="include" name="hal\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/hardware_drivers.html" />
+  </files>
+</component>
+    </components>
+</package>

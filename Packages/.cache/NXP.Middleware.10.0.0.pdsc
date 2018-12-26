@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <vendor>NXP</vendor>
+  <name>Middleware</name>
+  <description>NXP Kinetis SDK Middleware Software Pack</description>
+  <license>Licenses.txt</license>
+  <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <releases>
+    <release version="10.0.0">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+  </releases>
+  <keywords>
+    <keyword>FREERTOS Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Operating System" Cgroup="FreeRTOS Operating System">FreeRTOS, Real Time Operating System</description>
+  </taxonomy>
+  <conditions>
+    <condition id="driver.gpt">
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpt"/>
+    </condition>
+    <condition id="platform.utilities.misc_utilities">
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.0.1"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="devices.core.Cortex-M4F_iar">
+      <require Tcompiler="IAR"/>
+      <require Dcore="Cortex-M4" Dfpu="1"/>
+    </condition>
+    <condition id="devices.core.Cortex-M4F">
+      <require Dcore="Cortex-M4" Dfpu="1"/>
+    </condition>
+    <condition id="middleware.template_application.freertos">
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="freertos"/>
+      <require Cclass="Operating System" Cgroup="FreeRTOS Operating System" Csub="template_application.freertos"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="MCUXpresso SDK Operating System" Cclass="Operating System" Cversion="9.0.0">
+      <description>FreeRTOS, Real Time Operating System</description>
+      <doc></doc>
+      <component Cgroup="FreeRTOS Operating System" Csub="freertos" Cversion="9.0.0" condition="middleware.template_application.freertos">
+        <description>FreeRTOS, Real Time Operating System</description>
+        <RTE_Components_h>
+#define FSL_RTOS_FREE_RTOS 
+#define SDK_OS_FREE_RTOS 
+		</RTE_Components_h>
+        <files>
+          <file name="freertos/License/license.txt" category="doc"/>
+          <file name="freertos/Source/include/FreeRTOS.h" category="header"/>
+          <file name="freertos/Source/include/StackMacros.h" category="header"/>
+          <file name="freertos/Source/include/croutine.h" category="header"/>
+          <file name="freertos/Source/include/deprecated_definitions.h" category="header"/>
+          <file name="freertos/Source/include/event_groups.h" category="header"/>
+          <file name="freertos/Source/include/freertos_tasks_c_additions.h" category="header"/>
+          <file name="freertos/Source/include/list.h" category="header"/>
+          <file name="freertos/Source/include/mpu_wrappers.h" category="header"/>
+          <file name="freertos/Source/include/portable.h" category="header"/>
+          <file name="freertos/Source/include/projdefs.h" category="header"/>
+          <file name="freertos/Source/include/queue.h" category="header"/>
+          <file name="freertos/Source/include/semphr.h" category="header"/>
+          <file name="freertos/Source/include/stdint.readme" category="other"/>
+          <file name="freertos/Source/include/task.h" category="header"/>
+          <file name="freertos/Source/include/timers.h" category="header"/>
+          <file name="freertos/Source/portable/IAR/ARM_CM4F/fsl_tickless_generic.h" category="header" condition="devices.core.Cortex-M4F_iar"/>
+          <file name="freertos/Source/portable/IAR/ARM_CM4F/fsl_tickless_systick.c" category="sourceC" condition="devices.core.Cortex-M4F_iar"/>
+          <file name="freertos/Source/portable/IAR/ARM_CM4F/port.c" category="sourceC" condition="devices.core.Cortex-M4F_iar"/>
+          <file name="freertos/Source/portable/IAR/ARM_CM4F/portasm.s" category="sourceAsm" condition="devices.core.Cortex-M4F_iar"/>
+          <file name="freertos/Source/portable/IAR/ARM_CM4F/portmacro.h" category="header" condition="devices.core.Cortex-M4F_iar"/>
+          <file name="freertos/Source/portable/readme.txt" category="doc"/>
+          <file name="freertos/Source/croutine.c" category="sourceC"/>
+          <file name="freertos/Source/event_groups.c" category="sourceC"/>
+          <file name="freertos/Source/list.c" category="sourceC"/>
+          <file name="freertos/Source/queue.c" category="sourceC"/>
+          <file name="freertos/Source/readme.txt" category="doc"/>
+          <file name="freertos/Source/tasks.c" category="sourceC"/>
+          <file name="freertos/Source/timers.c" category="sourceC"/>
+          <file name="freertos/FreeRTOS_for_MCUXpresso_SDK_v2.0.txt" category="doc"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="freertos_tickless_gpt" Cversion="1.0.0" condition="driver.gpt">
+        <description>FreeRTOS gpt tickless</description>
+        <files>
+          <file name="freertos/Source/portable/low_power_tickless/fsl_tickless_gpt.c" category="sourceC" condition="devices.core.Cortex-M4F"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="heap" Cversion="1.0.0" Cvariant="heap_1">
+        <description>FreeRTOS heap_1 allocator</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_1.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="heap" Cversion="1.0.0" Cvariant="heap_2">
+        <description>FreeRTOS heap_2 allocator</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_2.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="heap" Cversion="1.0.0" Cvariant="heap_3" condition="platform.utilities.misc_utilities">
+        <description>FreeRTOS heap_3 allocator</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_3.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="heap" Cversion="1.0.0" Cvariant="heap_4" isDefaultVariant="1">
+        <description>FreeRTOS heap_4 allocator</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_4.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="heap" Cversion="1.0.0" Cvariant="heap_5">
+        <description>FreeRTOS heap_5 allocator</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_5.c" category="sourceC"/>
+        </files>
+      </component>
+      <component Cgroup="FreeRTOS Operating System" Csub="template_application.freertos" Cversion="9.0.0" condition="middleware.template_application.freertos">
+        <description>FreeRTOS template application</description>
+        <files>
+          <file name="freertos/Source/portable/MemMang/heap_4.c" category="sourceC"/>
+          <file name="freertos/Source/portable/MemMang/heap_1.c" category="sourceC"/>
+          <file name="freertos/Source/portable/MemMang/heap_2.c" category="sourceC"/>
+          <file name="freertos/Source/portable/MemMang/heap_3.c" category="sourceC"/>
+          <file name="freertos/Source/portable/MemMang/heap_5.c" category="sourceC"/>
+          <file name="freertos/template_application/ARM_CM4F/FreeRTOSConfig.h" category="header" condition="devices.core.Cortex-M4F" attr="config"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>redlogix</vendor>
+  <url>http://downloads.redblocks.de/pack/</url>
+  <name>redBlocks-Simulator</name>
+  <description>C Target Library for the redBlocks WYSIWYG SiL Simulator (supports flexible hardware simulation and automated integration tests)</description>
+
+  <releases>
+    <release version="1.1.1" date="2018-05-29">
+        redBlocks Simulator's C Target Simulation Library that corresponds to the redBlocks Eval Package Version 2.10.1 and later
+    </release>
+    <release version="1.0.0" date="2017-08-03">
+        First standalone release of the redBlocks Simulator's C Target Simulation Library
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>Simulator</keyword>
+    <keyword>SiL</keyword>
+    <keyword>Test Automation</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="Compiler ARM">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="rbSimCLibCore">
+      <require Cclass="Simulation" Cgroup="redBlocks Simulator" Csub="C Target Library Core" />
+      <require Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+  </conditions>
+  
+  <examples>
+    <example name="redBlocks Simulator HelloWorldC" doc="Abstract.txt" folder="redBlocks/PrjTemplates/HelloWorldC">
+      <description>Example which interacts with the redBlocks Simulator</description>
+      <board name="uVision Simulator" vendor="Keil"/>
+      <project>
+        <environment name="uv" load="project/sim/host/uVision/HelloWorldC.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Simulation" Cgroup="redBlocks Simulator"/>
+        <category>Basic Example</category>
+      </attributes>
+    </example>
+    <example name="redBlocks Simulator HelloWorldRtxC" doc="Abstract.txt" folder="redBlocks/PrjTemplates/HelloWorldRtxC">
+      <description>Example which uses RTX-RTOS and interacts with the redBlocks Simulator</description>
+      <board name="uVision Simulator" vendor="Keil"/>        
+      <project>
+        <environment name="uv" load="project/sim/host/uVision/HelloWorldRtxC.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Simulation" Cgroup="redBlocks Simulator"/>
+        <category>Basic Example</category>
+      </attributes>
+    </example>
+  </examples>
+
+   <taxonomy>
+     <description Cclass="Simulation">Components used for simulation purposes</description>
+     <description Cclass="Simulation" Cgroup="redBlocks Simulator" doc="http://www.redblocks.de/simulator_pack/">redBlocks WYSIWYG SiL-Simulator Target Libraries</description>
+   </taxonomy>
+ 
+  <components>    
+    <component Cclass="Simulation" Cgroup="redBlocks Simulator" Csub="C Target Library Core" condition="Compiler ARM" Cversion="2.10.1">
+      <description>redBlocks WYSIWYG Simulator C Target Library Core</description>
+      <files>
+        <file category="doc" name="readme.txt"/>
+        <file category="library" name="redBlocks/libredBlocks_uVision.lib" condition="Compiler ARM"/>
+        <file category="include" name="redBlocks/src/"/>
+        <file category="header" name="redBlocks/src/libredBlocks_sim.h"/>
+        <file category="header" name="redBlocks/src/libredBlocks_sim_uvision.h"/>
+      </files>
+    </component>
+    <component Cclass="Simulation" Cgroup="redBlocks Simulator" Csub="C Target Library RTX5" condition="rbSimCLibCore" Cversion="2.10.1">
+      <description>redBlocks WYSIWYG Simulator C Target Library for RTX5</description>
+      <files>
+        <file category="doc" name="readme_rtx.txt"/>
+        <file category="library" name="redBlocks/libredBlocks_uVision_rtx.lib" condition="Compiler ARM"/>
+        <file category="header" name="redBlocks/src/libredBlocks_sim_uvision_rtx.h"/>
+      </files>
+    </component>
+  </components>
+</package>

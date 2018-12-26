@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <name>AMP</name>
+  <description>Software components for inter processor communication (Asymmetric Multi Processing AMP)</description>
+  <url>http://www.keil.com/pack</url>
+  <supportContact>http://silver.arm.com/support</supportContact>
+  
+  <releases>
+    <release version="1.0.0" date="2017-07-12">
+      Initial release of the Asymmetric Multi Processing (AMP) pack.
+      Support for CMSIS-RTOS, CMSIS-RTOS2 or baremetal applications.
+      OpenAMP platform support for NXP iMX7D, iMX6SX and VF6xx.
+      RPMsg-Lite platform support for NXP iMX7D and iMX6SX.
+      CMSIS-Driver Ethernet component for Cortex-M access to Linux network device via RPMSG.
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>ARM</keyword>
+    <keyword>AMP</keyword>
+    <keyword>Asymmetric Multiprocessing</keyword>
+  </keywords>
+
+  <taxonomy>
+    <description Cclass="AMP" doc="Documents/AMP/html/index.html">Asymmetric Multiprocessing</description>
+  </taxonomy>  
+  
+  <conditions>
+     
+    <!-- Platform conditions --> 
+    <condition id="iMX7D">
+      <description>iMX7D platform</description>
+      <require Cclass="Device" Cgroup="iMX7D HAL" Csub="MU"/>
+    </condition>    
+    
+    <condition id="iMX6SX">
+      <description>iMX6SX platform</description>
+      <require Cclass="Device" Cgroup="iMX6SX HAL" Csub="MU"/>
+    </condition> 
+
+    <condition id="VF6xx">
+      <description>VF6xx platform</description>
+      <require Cclass="Device" Cgroup="VF6xx HAL" Csub="CCM"/>
+      <require Cclass="Device" Cgroup="VF6xx HAL" Csub="SEMA4"/>
+    </condition> 
+
+    <condition id="OpenAMP Support">
+      <description>OpenAMP Supported Platforms</description>
+      <accept condition="iMX7D"/>
+      <accept condition="iMX6SX"/>
+      <accept condition="VF6xx"/>
+    </condition> 
+
+    <condition id="RPMsg-Lite Support">
+      <description>RPMsg-Lite Supported Platforms</description>
+      <accept condition="iMX7D"/>
+      <accept condition="iMX6SX"/>
+    </condition> 
+
+    <!-- RTOS conditions --> 
+    <condition id="CMSIS-RTOS">
+      <description>CMSIS-RTOS</description>
+      <require Cclass="CMSIS" Cgroup="RTOS"/>
+    </condition>
+
+    <condition id="CMSIS-RTOS2">
+      <description>CMSIS-RTOS</description>
+      <require Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+
+    <condition id="CMSIS-RTOS or CMSIS-RTOS2">
+      <description>CMSIS-RTOS</description>
+      <accept condition="CMSIS-RTOS"/>
+      <accept condition="CMSIS-RTOS2"/>
+    </condition>
+
+    <condition id="Bare-Metal">
+      <description>Bare-Metal</description>
+      <deny Cclass="CMSIS" Cgroup="RTOS"/>
+      <deny Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+    
+    <!-- CMSIS Driver conditions --> 
+    <condition id="CMSIS-Driver ETH">
+      <description>CMSIS-Driver Ethernet</description>
+      <require Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+
+    <component Cclass="AMP" Cgroup="RPMSG" Cvariant="OpenAMP" Cversion="1.0.0" condition="OpenAMP Support">
+      <description>Remote Processor Messaging - OpenAMP</description>
+      <files>     
+      
+        <!--file category="header"  name="OpenAMP_Config.h" attr="config" version = "1.0.0"/-->
+        <file category="doc"     name="Documents/AMP/html/openamp.html"/>
+      
+        <!-- Common files -->  
+        <file category="source"  name="open-amp/porting/config/config.c"/>
+        <file category="header"  name="open-amp/porting/config/config.h"/>
+                                  
+        <file category="source"  name="open-amp/common/hil/hil.c"/>
+        <file category="header"  name="open-amp/common/hil/hil.h"/>
+        <file category="source"  name="open-amp/common/llist/llist.c"/>
+        <file category="header"  name="open-amp/common/llist/llist.h"/>
+        <file category="source"  name="open-amp/common/shm/sh_mem.c"/>
+        <file category="header"  name="open-amp/common/shm/sh_mem.h"/>
+                                  
+        <file category="source"  name="open-amp/rpmsg/remote_device.c"/>
+        <file category="source"  name="open-amp/rpmsg/rpmsg.c"/>
+        <file category="source"  name="open-amp/rpmsg/rpmsg_core.c"/>
+        <file category="header"  name="open-amp/rpmsg/rpmsg.h"/>
+        <file category="header"  name="open-amp/rpmsg/rpmsg_core.h"/>
+                            
+        <file category="source"  name="open-amp/virtio/virtio.c"/>
+        <file category="source"  name="open-amp/virtio/virtqueue.c"/>
+        <file category="header"  name="open-amp/virtio/virtio.h"/>
+        <file category="header"  name="open-amp/virtio/virtio_ring.h"/>
+        <file category="header"  name="open-amp/virtio/virtqueue.h"/>
+                                      
+        <file category="header"  name="open-amp/porting/env/env.h"/>
+        
+        <!-- iMX7D platform -->
+        <file category="source"  name="open-amp/porting/imx7d_m4/platform.c"                condition="iMX7D"/>
+        <file category="source"  name="open-amp/porting/imx7d_m4/platform_info.c"           condition="iMX7D"/>
+        <file category="header"  name="open-amp/porting/imx7d_m4/platform.h"                condition="iMX7D"/>
+        <file category="header"  name="open-amp/porting/imx7d_m4/rpmsg_platform_porting.h"  condition="iMX7D"/>
+                        
+        <!-- iMX6SX platform -->
+        <file category="source"  name="open-amp/porting/imx6sx_m4/platform.c"               condition="iMX6SX"/>
+        <file category="source"  name="open-amp/porting/imx6sx_m4/platform_info.c"          condition="iMX6SX"/>
+        <file category="header"  name="open-amp/porting/imx6sx_m4/platform.h"               condition="iMX6SX"/>
+        <file category="header"  name="open-amp/porting/imx6sx_m4/rpmsg_platform_porting.h" condition="iMX6SX"/>
+
+        <!-- VF6xx platform -->
+        <file category="source"  name="open-amp/porting/vf6xx_m4/platform.c"                condition="VF6xx"/>
+        <file category="source"  name="open-amp/porting/vf6xx_m4/platform_info.c"           condition="VF6xx"/>
+        <file category="header"  name="open-amp/porting/vf6xx_m4/platform.h"                condition="VF6xx"/>
+        <file category="header"  name="open-amp/porting/vf6xx_m4/rpmsg_platform_porting.h"  condition="VF6xx"/>
+
+        <!-- Bare-metal porting -->   
+        <file category="source"  name="open-amp/porting/env/bm/rpmsg_porting.c"             condition="Bare-Metal"/>
+        <file category="header"  name="open-amp/porting/env/bm/rpmsg_porting.h"             condition="Bare-Metal"/>
+                                                                                           
+        <!-- CMSIS-RTOS porting -->                                                        
+        <file category="source"  name="open-amp/porting/env/cmsis-rtos/rpmsg_porting.c"     condition="CMSIS-RTOS"/>
+        <file category="header"  name="open-amp/porting/env/cmsis-rtos/rpmsg_porting.h"     condition="CMSIS-RTOS"/>
+                                                                                           
+        <!-- CMSIS-RTOS2 porting -->                                                       
+        <file category="source"  name="open-amp/porting/env/cmsis_rtos2/rpmsg_porting.c"    condition="CMSIS-RTOS2"/>
+        <file category="header"  name="open-amp/porting/env/cmsis_rtos2/rpmsg_porting.h"    condition="CMSIS-RTOS2"/>
+                                                                                           
+        <!-- RTOS extension -->                                                            
+        <file category="source"  name="open-amp/rpmsg/rpmsg_ext.c"                          condition="CMSIS-RTOS or CMSIS-RTOS2"/>   
+        <file category="source"  name="open-amp/rpmsg/rpmsg_rtos.c"                         condition="CMSIS-RTOS or CMSIS-RTOS2"/>
+        <file category="header"  name="open-amp/rpmsg/rpmsg_ext.h"                          condition="CMSIS-RTOS or CMSIS-RTOS2"/>
+        <file category="header"  name="open-amp/rpmsg/rpmsg_rtos.h"                         condition="CMSIS-RTOS or CMSIS-RTOS2"/>
+        
+      </files>
+    </component>
+        
+    <component Cclass="AMP" Cgroup="RPMSG" Cvariant="RPMsg-Lite" Cversion="1.0.0" condition="RPMsg-Lite Support">
+      <description>Remote Processor Messaging - RPMsg-Lite</description>
+      <files>          
+        <!--file category="header"  name="RPMsg-Lite_Config.h" attr="config" version = "1.0.0"/-->
+        <file category="doc"     name="Documents/AMP/html/rpmsg_lite.html"/>
+
+        <!-- Common files -->  
+        <file category="source"  name="rpmsg-lite/common/llist.c"/>
+        <file category="header"  name="rpmsg-lite/include/llist.h"/>
+
+        <file category="source"  name="rpmsg-lite/rpmsg/rpmsg_lite.c"/>
+        <file category="source"  name="rpmsg-lite/rpmsg/rpmsg_ns.c"/>
+        <file category="source"  name="rpmsg-lite/rpmsg/rpmsg_queue.c"/>
+        <file category="header"  name="rpmsg-lite/include/rpmsg_lite.h"/>
+        <file category="header"  name="rpmsg-lite/include/rpmsg_ns.h"/>
+        <file category="header"  name="rpmsg-lite/include/rpmsg_queue.h"/>
+        <file category="header"  name="rpmsg-lite/include/rpmsg_default_config.h"/>
+
+        <file category="source"  name="rpmsg-lite/virtio/virtqueue.c"/>
+        <file category="header"  name="rpmsg-lite/include/virtqueue.h"/>
+        <file category="header"  name="rpmsg-lite/include/virtio_ring.h"/>
+
+        <file category="header"  name="rpmsg-lite/include/env.h"/>
+        <file category="header"  name="rpmsg-lite/include/compiler.h"/>
+
+        <!-- iMX7D platform -->  
+        <file category="source"  name="rpmsg-lite/rpmsg/porting/platform/imx7d_m4/platform.c"              condition="iMX7D"/>
+        <file category="header"  name="rpmsg-lite/include/platform/imx7d_m4/platform.h"                    condition="iMX7D"/>
+
+        <!-- iMX6SX platform -->                         
+        <file category="source"  name="rpmsg-lite/rpmsg/porting/platform/imx6sx_m4/platform.c"             condition="iMX6SX"/>
+        <file category="header"  name="rpmsg-lite/include/platform/imx6sx_m4/platform.h"                   condition="iMX6SX"/>
+
+        <!-- Bare-metal porting -->   
+        <file category="source"  name="rpmsg-lite/rpmsg/porting/environment/bm/rpmsg_porting.c"            condition="Bare-Metal"/>
+
+        <!-- CMSIS-RTOS porting -->                                                        
+        <file category="source"  name="rpmsg-lite/rpmsg/porting/environment/cmsis-rtos/rpmsg_porting.c"    condition="CMSIS-RTOS"/>
+
+        <!-- CMSIS-RTOS2 porting -->                                                        
+        <file category="source"  name="rpmsg-lite/rpmsg/porting/environment/cmsis-rtos2/rpmsg_porting.c"   condition="CMSIS-RTOS2"/>
+      </files>
+    </component>
+    
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet" Csub="ETH_RPMSG" Capiversion="1.0.0" Cversion="1.0" condition="CMSIS-Driver ETH">
+      <description>Ethernet over RPMSG Driver</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_Ethernet
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="Documents/AMP/html/openamp.html#openamp_Ethernet"/>
+        <file category="source" name="CMSIS/Driver/ETH_RPMSG.c"/>
+      </files>
+    </component>
+    
+  </components> <!-- end of components sections -->
+</package>

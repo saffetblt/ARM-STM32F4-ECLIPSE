@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>CM4xx_DFP</name>
+  <url>http://download.analog.com/tools/EZBoards/CM41x/Releases/</url>
+  <description>Analog Devices ARM Cortex-M4 and ARM Cortex-M0 CM41x Family Device Support</description>
+
+  <releases>
+    <release version="1.4.0">
+      Added Enhancements to debugger script file.
+	  Updated low level peripheral drivers.
+    </release>
+    <release version="1.3.0">
+      Added low level peripheral drivers.
+    </release>
+    <release version="1.2.0">
+	  Merged the Cortex-M4 and Cortex-M0 packs as one single pack.
+      Added low level peripheral drivers.
+    </release>
+  </releases>
+  <license>License/2016-03-29-CM41xKP Click Thru SLA.rtf</license>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Analog Devices</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Analog Devices</keyword>
+    <keyword>CM41x</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section -->
+
+    <family Dfamily="CM41x Mixed Signal Control Processors" Dvendor="Analog Devices:1">
+      <description>
+The ADSP-CM41x Mixed Signal Control Processors utilize the ARM Cortex-M4 and ARM Cortex-M0 processor cores
+integrated with high precision ADCs, digital accelerators and filters, SRAM and flash
+memories and a rich set of peripherals.
+      </description>
+	  
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>
+	  
+	    <feature type="VCC"          n="3.13"   m="3.47"/>
+        <feature type="Temp"         n="-40"    m="105"        name="Extended Operating Temperature Range"/>
+		
+	    <device Dname="ADSP-CM419F">
+		  <processor Dcore="Cortex-M4" Pname="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="240000000"/>
+          <processor Dcore="Cortex-M0" Pname="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+          <memory  Pname="Cortex-M4" id="IROM1"  start="0x11000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory  Pname="Cortex-M4" id="IROM2"  start="0x11080000"  size="0x00080000"  startup="0"   default="1"/>
+          <memory  Pname="Cortex-M4" id="IRAM1"  start="0x20010000"  size="0x00018000"  init   ="1"   default="1"/>
+          <memory  Pname="Cortex-M4" id="IRAM2"  start="0x10000000"  size="0x00010000"  init   ="0"   default="1"/>
+		  <memory  Pname="Cortex-M0" id="IRAM1"  start="0x200F0000"  size="0x00008000"  startup="1" init   ="1"   default="1"/>
+          <algorithm  Pname="Cortex-M4" name="Flash/CM41x_FlashA_512.FLM"  start="0x11000000"  size="0x00080000"  RAMstart="0x10008000"  RAMsize="0x10000"  default="1"/>
+          <algorithm  Pname="Cortex-M4" name="Flash/CM41x_FlashB_512.FLM"  start="0x11080000"  size="0x00080000"  RAMstart="0x10008000"  RAMsize="0x10000"  default="1"/>
+		  <compile Pname="Cortex-M4" header="Device/inc/M4/CM41x_M4_device.h"/>
+		  <compile Pname="Cortex-M0" header="Device/inc/M0/CM41x_M0_device.h"/>
+          <debug Pname="Cortex-M4" svd="SVD/CM41x_M4.svd"/>
+		  <debug Pname="Cortex-M0" svd="SVD/CM41x_M0.svd"/>
+        </device>
+		
+    </family>
+  </devices>
+
+ <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+	
+	<condition id="CM41x M4/M0 Device">
+    <description>Analog Devices CM41x devices</description>
+    <accept Dvendor="Analog Devices:1"  Dcore="Cortex-M4"/>
+    <accept Dvendor="Analog Devices:1"  Dcore="Cortex-M0" />
+    </condition>
+	
+	<condition id="CM41x M4 Device">
+    <description>Analog Devices CM41x devices</description>
+    <require Dvendor="Analog Devices:1"  Dcore="Cortex-M4" />
+    </condition>
+	
+	<condition id="CM41x M0 Device">
+    <description>Analog Devices CM41x devices</description>
+    <require Dvendor="Analog Devices:1"  Dcore="Cortex-M0" />
+    </condition>
+	
+	<condition id="Compiler ARM/M4">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+	  <require Dvendor="Analog Devices:1"  Dcore="Cortex-M4" />
+    </condition>
+	
+    <condition id="Compiler ARM/M0">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+	  <require Dvendor="Analog Devices:1"  Dcore="Cortex-M0" />
+    </condition>
+	
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="CM41x CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>Analog Devices CM41x devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    <accept Dvendor="Analog Devices:1"  Dcore="Cortex-M4" />
+    <accept Dvendor="Analog Devices:1"  Dcore="Cortex-M0" />
+    </condition>
+
+	<condition id="CM41x CMSIS Device + OSAL">
+	  <require condition="CM41x CMSIS Device"/>
+	  <require Cclass="Device" Cgroup="OSAL" Csub="PORTS"/>
+	  <require Cclass="Device" Cgroup="OSAL" Csub="Source"/>
+	</condition>
+	
+	<condition id="CM41x CMSIS Device + Interrupt">
+	  <require condition="CM41x CMSIS Device"/>
+	  <require Cclass="Device" Cgroup="Services" Csub="Interrupt"/>
+	</condition>
+	
+	<condition id="CM41x CMSIS Device + Power">
+	  <require condition="CM41x CMSIS Device"/>
+	  <require Cclass="Device" Cgroup="Services" Csub="Power"/>
+	</condition>
+
+  </conditions>
+  
+  <taxonomy>
+    <description Cclass="Device" Cgroup="OSAL" doc="Documents/html/index.html" >Analog Devices OS (no OS) component for CM41x Devices</description>
+    <description Cclass="Device" Cgroup="Services" doc="Documents/html/index.html" >Analog Devices Services component for CM41x Devices</description>
+    <description Cclass="Device" Cgroup="Drivers" doc="Documents/html/index.html" >Analog Devices driver components for CM41x Devices</description>
+  </taxonomy>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.4.0" condition="CM41x CMSIS Device + Power">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Analog Devices CM41x device series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+      </RTE_Components_h>
+
+      <files>
+        <!-- header path -->
+        <file category="include" name="Device/inc/M4/"                  condition="CM41x M4 Device"/>
+        <file category="header"  name="Device/inc/M4/CM41x_M4_device.h" condition="CM41x M4 Device"/>
+		
+        <file category="include" name="Device/inc/M0/"                  condition="CM41x M0 Device"/>
+        <file category="header"  name="Device/inc/M0/CM41x_M0_device.h" condition="CM41x M0 Device"/>
+
+        <!-- startup/system files -->
+        <file category="source"  name="Device/src/M4/startup_CM41x_M4.s" attr="config"  condition="Compiler ARM/M4" version="1.4.0"/>
+        <file category="source"  name="Device/src/M4/system_CM41x_M4.c"  attr="config"  condition="Compiler ARM/M4" version="1.4.0"/>
+		
+		<file category="source"  name="Device/src/M0/startup_CM41x_M0.s" attr="config"  condition="Compiler ARM/M0" version="1.4.0"/>
+        <file category="source"  name="Device/src/M0/system_CM41x_M0.c"  attr="config"  condition="Compiler ARM/M0" version="1.4.0"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Retarget" Cversion="1.4.0" condition="CM41x CMSIS Device + Interrupt">
+      <description>Retargeting for CM41x Devices</description>
+      <files>
+        <file category="source" name="Device/src/Retarget.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="Interrupt" Cversion="1.4.0" condition="CM41x CMSIS Device + OSAL">
+      <description>Interrupt</description>
+      <files>
+        <file category="source" name="Device/src/services/int/adi_int.c"/>
+        <file category="source" name="Device/src/services/int/adi_nvic.c"/>
+        <file category="header" name="Device/inc/services/int/adi_int.h"/>
+        <file category="header" name="Device/inc/adi_nvic.h"/>
+        <file category="doc" name="Documents/html/group___i_n_t_e_r_r_u_p_t_s.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="Power" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>Power</description>
+      <files>
+        <file category="source" name="Device/src/services/pwr/adi_pwr.c"/>
+        <file category="header" name="Device/inc/services/pwr/adi_pwr.h"/>
+        <file category="doc" name="Documents/html/group___power___service.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="DMA" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>DMA </description>
+      <files>
+        <file category="source" name="Device/src/services/dma/adi_dma.c"/>
+        <file category="header" name="Device/inc/services/dma/adi_dma.h"/>
+        <file category="doc" name="Documents/html/group___d_m_a___manager.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="TRU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>TRU </description>
+      <files>
+        <file category="source" name="Device/src/services/tru/adi_tru.c"/>
+        <file category="header" name="Device/inc/services/tru/adi_tru.h"/>
+        <file category="doc" name="Documents/html/group___t_r_u___manager.html"/>
+      </files>
+    </component>
+    
+
+    <component Cclass="Device" Cgroup="Services" Csub="SMPU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>SMPU </description>
+      <files>
+        <file category="source" name="Device/src/services/smpu/adi_smpu.c"/>
+        <file category="header" name="Device/inc/services/smpu/adi_smpu.h"/>
+        <file category="doc" name="Documents/html/group___s_m_p_u___service.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="Timer" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>Timer</description>
+      <files>
+        <file category="source" name="Device/src/services/tmr/adi_tmr.c"/>
+        <file category="header" name="Device/inc/services/tmr/adi_tmr.h"/>
+        <file category="doc" name="Documents/html/group___timer___service.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Services" Csub="GPIO" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>GPIO</description>
+      <files>
+        <file category="source" name="Device/src/services/gpio/adi_gpio.c"/>
+        <file category="header" name="Device/inc/services/gpio/adi_gpio.h"/>
+        <file category="doc" name="Documents/html/group___g_p_i_o___service.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Services" Csub="MBOX" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>MBOX</description>
+      <files>
+        <file category="source" name="Device/src/services/mbox/adi_mbox.c"/>
+        <file category="header" name="Device/inc/services/mbox/adi_mbox.h"/>
+        <file category="doc" name="Documents/html/group___m_b_o_x___manager.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Services" Csub="PWM" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>PWM</description>
+      <files>
+        <file category="source" name="Device/src/services/pwm/adi_pwm.c"/>
+        <file category="header" name="Device/inc/services/pwm/adi_pwm.h"/>
+        <file category="doc" name="Documents/html/group___p_w_m___service.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Services" Csub="CPT" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>PWM</description>
+      <files>
+        <file category="source" name="Device/src/services/cpt/adi_cpt_v1.c"/>
+        <file category="header" name="Device/inc/services/cpt/adi_cpt_v1.h"/>
+        <file category="doc" name="Documents/html/group___c_p_t___driver.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Services" Csub="WD" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>WD</description>
+      <files>
+        <file category="source" name="Device/src/services/wd/adi_wd.c"/>
+        <file category="header" name="Device/inc/services/wd/adi_wd.h"/>
+        <file category="doc" name="Documents/html/group___watchdog___service.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Services" Csub="SPU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>WD</description>
+      <files>
+        <file category="source" name="Device/src/services/spu/adi_spu.c"/>
+        <file category="header" name="Device/inc/services/spu/adi_spu.h"/>
+        <file category="doc" name="Documents/html/group___s_p_u___service.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADCC" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>ADCC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/adcc/adi_adcc.c"/>
+        <file category="header" name="Device/inc/drivers/adcc/adi_adcc.h"/>
+        <file category="doc" name="Documents/html/group___a_d_c_c___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="DACC" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>DACC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/dacc/adi_dacc.c"/>
+        <file category="header" name="Device/inc/drivers/dacc/adi_dacc.h"/>
+        <file category="doc" name="Documents/html/group___d_a_c_c___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>SPI</description>
+      <files>
+        <file category="source" name="Device/src/drivers/spi/adi_spi.c"/>
+        <file category="header" name="Device/inc/drivers/spi/adi_spi.h"/>
+        <file category="doc" name="Documents/html/group___s_p_i___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="TTU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>TTU</description>
+      <files>
+        <file category="source" name="Device/src/drivers/ttu/adi_ttu.c"/>
+        <file category="header" name="Device/inc/drivers/ttu/adi_ttu.h"/>
+        <file category="doc" name="Documents/html/group___t_t_u___driver.html"/>
+      </files>
+    </component>    
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="VMU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>VMU</description>
+      <files>
+        <file category="source" name="Device/src/drivers/vmu/adi_vmu.c"/>
+        <file category="header" name="Device/inc/drivers/vmu/adi_vmu.h"/>
+        <file category="doc" name="Documents/html/group___v_m_u___driver.html"/>
+      </files>
+    </component>    
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="CRC" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>CRC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/crc/adi_crc.c"/>
+        <file category="header" name="Device/inc/drivers/crc/adi_crc.h"/>
+        <file category="doc" name="Documents/html/group___c_r_c___driver.html"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="MATH UNIT" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>MATH UNIT</description>
+      <files>
+        <file category="source" name="Device/src/drivers/math_unit/adi_math.c"/>
+        <file category="header" name="Device/inc/drivers/math_unit/adi_math.h"/>
+        <file category="doc" name="Documents/html/group___m_a_t_h___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPORT" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>SPORT</description>
+      <files>
+        <file category="source" name="Device/src/drivers/sport/adi_sport.c"/>
+        <file category="header" name="Device/inc/drivers/sport/adi_sport.h"/>
+        <file category="doc" name="Documents/html/group___s_p_o_r_t___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>UART</description>
+      <files>
+        <file category="source" name="Device/src/drivers/uart/adi_uart.c"/>
+        <file category="header" name="Device/inc/drivers/uart/adi_uart.h"/>
+        <file category="doc" name="Documents/html/group___u_a_r_t___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="TWI" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>TWI</description>
+      <files>
+        <file category="source" name="Device/src/drivers/twi/adi_twi.c"/>
+        <file category="header" name="Device/inc/drivers/twi/adi_twi.h"/>
+        <file category="doc" name="Documents/html/group___t_w_i___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="Flash" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>Flash</description>
+      <files>
+        <file category="source" name="Device/src/drivers/flash/adi_flash.c"/>
+        <file category="header" name="Device/inc/drivers/flash/adi_flash.h"/>
+        <file category="doc" name="Documents/html/group___f_l_a_s_h___driver___c_m41x.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Drivers" Csub="LCD" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>LCD</description>
+      <files>
+        <file category="source" name="Device/src/drivers/lcd/adafruit/adi_ili9340.c"/>
+	    <file category="source" name="Device/src/drivers/lcd/adafruit/adi_ili9340_def.h"/>
+        <file category="header" name="Device/inc/drivers/lcd/adafruit/adi_ili9340.h"/>
+        <file category="doc" name="Documents/html/group___l_c_d___i_l_i9340.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Drivers" Csub="Rotary" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>Rotary</description>
+      <files>
+        <file category="source" name="Device/src/drivers/rotary/adi_counter.c"/>
+        <file category="header" name="Device/inc/drivers/rotary/adi_counter.h"/>
+        <file category="doc" name="Documents/html/group__rotary__counter___driver.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Drivers" Csub="HAE" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>HAE</description>
+      <files>
+        <file category="source" name="Device/src/drivers/hae/adi_hae.c"/>
+        <file category="header" name="Device/inc/drivers/hae/adi_hae.h"/>
+        <file category="doc" name="Documents/html/group___h_a_e___driver.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Drivers" Csub="SINC" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>SINC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/sinc/adi_sinc.c"/>
+        <file category="header" name="Device/inc/drivers/sinc/adi_sinc.h"/>
+        <file category="doc" name="Documents/html/group___s_i_n_c___driver.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="Drivers" Csub="DBC" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>SINC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/dbc/adi_dbc.c"/>
+        <file category="header" name="Device/inc/drivers/dbc/adi_dbc.h"/>
+        <file category="doc" name="Documents/html/group___d_b_c___driver.html"/>
+      </files>
+    </component>
+	
+	<component Cclass="Device" Cgroup="Drivers" Csub="OCU" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>SINC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/ocu/adi_ocu.c"/>
+        <file category="header" name="Device/inc/drivers/ocu/adi_ocu.h"/>
+        <file category="doc" name="Documents/html/group___o_c_u___driver.html"/>
+      </files>
+    </component>
+	
+	<component Cclass="Device" Cgroup="Drivers" Csub="FOCP" Cversion="1.4.0" condition="CM41x M4 Device">
+      <description>SINC</description>
+      <files>
+        <file category="source" name="Device/src/drivers/focp/adi_focp.c"/>
+        <file category="header" name="Device/inc/drivers/focp/adi_focp.h"/>
+        <file category="doc" name="Documents/html/group___f_o_c_p___driver.html"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="Drivers" Csub="FFTB" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>FFTB</description>
+      <files>
+        <file category="source" name="Device/src/drivers/fftb/adi_fftb.c"/>
+        <file category="header" name="Device/inc/drivers/fftb/adi_fftb.h"/>
+        <file category="doc" name="Documents/html/group___f_f_t_b___driver.html"/>
+      </files>
+    </component>
+	
+    <component Cclass="Device" Cgroup="OSAL" Csub="PORTS" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>OSAL-port</description>
+      <files>
+        <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M4/KEIL/adi_osal_arch_c.c"         condition="CM41x M4 Device"/>
+        <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M4/KEIL/adi_osal_arch_int_table.c" condition="CM41x M4 Device"/>
+        <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M4/KEIL/adi_osal_noos_arch_c.c"    condition="CM41x M4 Device"/>
+        <file category="header" name="Device/osal/noos/Ports/ARM-Cortex-M4/KEIL/adi_osal_arch.h"           condition="CM41x M4 Device"/>
+	    <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M0/KEIL/adi_osal_arch_c.c "        condition="CM41x M0 Device"/>
+        <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M0/KEIL/adi_osal_arch_int_table.c" condition="CM41x M0 Device"/>
+        <file category="source" name="Device/osal/noos/Ports/ARM-Cortex-M0/KEIL/adi_osal_noos_arch_c.c"    condition="CM41x M0 Device"/>
+        <file category="header" name="Device/osal/noos/Ports/ARM-Cortex-M0/KEIL/adi_osal_arch.h"           condition="CM41x M0 Device"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="OSAL" Csub="Source" Cversion="1.4.0" condition="CM41x M4/M0 Device">
+      <description>OSAL-source</description>
+      <files>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_active.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_critical.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_event.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_init.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_mutex.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_prof.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_rtl_lock.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_sem.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_thread.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_timing.c"/>
+        <file category="source" name="Device/osal/noos/Source/adi_osal_noos_tls.c"/>
+        <file category="header" name="Device/osal/noos/Source/adi_osal.h"/>
+        <file category="header" name="Device/osal/noos/Source/osal_common.h"/>
+        <file category="header" name="Device/osal/noos/Source/osal_noos.h"/>
+        <file category="header" name="Device/osal/noos/Source/version.h"/>
+      </files>
+    </component>
+    
+  </components>
+  <boards>
+    <board vendor="AnalogDevices" name="ADSP-CM419F EZ-BOARD" revision="Ver 1.0">
+      <description>Analog Devices CM419F_EZ-KIT Evaluation Board</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADSP-CM419F"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADSP-CM419F"/>
+      <feature type="PWR"             n="5"              name="External 5.0VDC/3.6A power supply"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Cortex debug + ETM Trace (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- ADSP-CM419F EZ-BOARD -->
+    
+    <!-- ADCC -->
+    <example name="ADCC_Circular_M4" doc="Readme_ADCC_Circular.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/adcc/ADCC_CIRCULAR" version="1.4.0">
+      <description>ADCC (circular)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/adcc_circular.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="ADCC"/>
+      </attributes>
+    </example>
+    
+    <example name="ADCC_Linear_M4" doc="Readme_ADCC_Linear.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/adcc/ADCC_LINEAR" version="1.4.0">
+      <description>ADCC (linear)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/adcc_linear.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="ADCC"/>
+      </attributes>
+    </example>
+
+    <!-- DACC -->
+    <example name="DACC_Circular_M4" doc="Readme_DACC_Circular.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/dacc/DACC_Circular" version="1.4.0">
+      <description>DACC (circular)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/dacc_circular.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DACC"/>
+      </attributes>
+    </example>
+    
+    <example name="DACC_Linear_M4" doc="Readme_DACC_Linear.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/dacc/DACC_Linear" version="1.4.0">
+      <description>ADCC (linear)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/dacc_linear.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DACC"/>
+      </attributes>
+    </example>
+    
+    <!-- CRC -->
+    <example name="CrcDmaDataCompare_M4" doc="Readme_CrcDmaDataCompare.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataCompare" version="1.4.0">
+      <description>CrcDmaDataCompare</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/CrcDmaDataCompare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataFill_M4" doc="Readme_CrcDmaDataFill.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataFill" version="1.4.0">
+      <description>CrcDmaDataFill</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/CrcDmaDataFill.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataTransfer_M4" doc="Readme_CrcDmaDataTransfer.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataTransfer" version="1.4.0">
+      <description>CrcDmaDataTransfer</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/CrcDmaDataTransfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataVerify_M4" doc="Readme_CrcDmaDataVerify.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataVerify" version="1.4.0">
+      <description>CrcDmaDataVerify</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/CrcDmaDataVerify.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <!-- GPIO -->
+    <example name="Button_LED_callback_M4" doc="Readme_Button_LED_GPIO.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/gpio/Button_LED_callback" version="1.4.0">
+      <description>Button_LED_callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/Button_LED_callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="GPIO"/>
+      </attributes>
+    </example>
+    
+    <example name="Button_LED_polled_M4" doc="Readme_Button_LED_GPIO_polled.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/gpio/Button_LED_polled" version="1.4.0">
+      <description>Button_LED_polled</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/Button_LED_polled.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="GPIO"/>
+      </attributes>
+    </example>
+    
+    <!-- MDMA -->
+    <example name="MemCopyArrayMode_M4" doc="Readme_MemCopyArrayMode.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/MDMA/MemCopyArrayMode" version="1.4.0">
+      <description>MemCopyArrayMode</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/MemCopyArrayMode.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="DMA"/>
+      </attributes>
+    </example>
+    
+    <example name="MemCopyListMode_M4" doc="Readme_MemCopyListMode.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/MDMA/MemCopyListMode" version="1.4.0">
+      <description>MemCopyListMode</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/MemCopyListMode.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="DMA"/>
+      </attributes>
+    </example>
+    
+    <example name="MemCopyOneShot1D_M4" doc="Readme_MemCopyOneShot1D.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/MDMA/MemCopyOneShot1D" version="1.4.0">
+      <description>MemCopyOneShot1D</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/MemCopyOneShot1D.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="DMA"/>
+      </attributes>
+    </example>
+    
+    <example name="MemCopyOneShot2D_M4" doc="Readme_MemCopyOneShot2D.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/MDMA/MemCopyOneShot2D" version="1.4.0">
+      <description>MemCopyOneShot2D</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/MemCopyOneShot2D.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="DMA"/>
+      </attributes>
+    </example>
+    
+    <example name="MemCopyOneToMany_M4" doc="Readme_MemCopyOneToMany.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/MDMA/MemCopyOneToMany" version="1.4.0">
+      <description>MemCopyOneToMany</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/MemCopyOneToMany.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="DMA"/>
+      </attributes>
+    </example>
+    
+    <!-- SMPU -->
+    <example name="CM41x_region_protection_M4" doc="M4/Readme_SMPU_Example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/smpu/CM41x_region_protection" version="1.4.0">
+      <description>CM41x_region_protection</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/region_protection.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="SMPU"/>
+      </attributes>
+    </example>
+    
+    <!-- SPI -->
+    <example name="spi_flashread_M4" doc="Readme_spi_flashreadback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/spi/spi_flashread" version="1.4.0">
+      <description>spi_flashread</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/spi_flashreadback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+      </attributes>
+    </example>
+    
+    <!-- SPORT -->
+    <example name="SPORT_loopback_M4" doc="Readme_SPORT_loopback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/sport/SPORT_loopback" version="1.4.0">
+      <description>SPORT_loopback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/sport_loopback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPORT"/>
+      </attributes>
+    </example>
+    
+    <!-- SysTick -->
+    <example name="SysTick_M4" doc="readme.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/SysTick" version="1.4.0">
+      <description>SysTick test</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/SysTick.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="Interrupt"/>
+      </attributes>
+    </example>
+    
+    <example name="SysTick-NoFlash_M4" doc="readme.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/SysTick" version="1.4.0">
+      <description>SysTick test(running on RAM)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4-NoFlash/Systick_M4_NoFlash.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="Interrupt"/>
+      </attributes>
+    </example>
+    
+    <!-- Timer -->
+    <example name="Timer_Callback_M4" doc="Readme_timer_with_callback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/timers/Timer_Callback" version="1.4.0">
+      <description>timer with callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/timer_with_callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="Timer"/>
+      </attributes>
+    </example>
+    
+    <!-- MATH UNIT -->    
+    <example name="math functions_M4" doc="Readme_math_functions.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/math_unit/math_functions" version="1.4.0">
+      <description>math functions</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/math_unit.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="MATH UNIT"/>
+      </attributes>
+    </example>
+    
+    <!-- TRU -->
+    <example name="SwTriggerMemDma_M4" doc="Readme_SwTriggerMemDma.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/tru/SwTriggerMemDma" version="1.4.0">
+      <description>SwTriggerMemDma</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/tru.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="TRU"/>
+      </attributes>
+    </example>
+
+    <!-- TTU -->
+    <example name="trigger_chain_M4" doc="Readme_ttu_trigger_chain.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/ttu/trigger_chain" version="1.4.0">
+      <description>trigger_chain</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/ttu.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TTU"/>
+      </attributes>
+    </example>
+
+    <!-- UART -->
+    <example name="UART loopback_M4" doc="Readme_uart_loopback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/uart/loopback" version="1.4.0">
+      <description>UART loopback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/uart_loopback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+      </attributes>
+    </example>
+    
+    <!-- MBOX -->
+    <example name="Mbox Example_M4" doc="Readme_Mbox_Example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/mbox/Mbox_Example" version="1.4.0">
+      <description>Mbox Example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/Mbox_Example_M4.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="MBOX"/>
+      </attributes>
+    </example>
+	
+	<!-- Mbox_SemaMutex -->
+    <example name="Mbox_SemaMutex_M4" doc="Readme_Mbox_SemaMutex.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/mbox/Mbox_SemaMutex" version="1.4.0">
+      <description>Mbox_SemaMutex</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/Mbox_SemaMutex_M4.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="MBOX"/>
+      </attributes>
+    </example>
+
+    <!-- PWM -->
+    <example name="PWM Servo_M4" doc="Readme_PWM_Servo.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/pwm/PWM_Servo" version="1.4.0">
+      <description>PWM Servo</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/pwm_servo.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="PWM"/>
+      </attributes>
+    </example>
+
+    <!-- ProgramInfoSpace -->
+    <example name="ProgramInfoSpace_M4" doc="Readme_ProgramInfoSpace.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/ProgramInfoSpace" version="1.4.0">
+      <description>ProgramInfoSpace</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="report/M4/report.uvprojx"/>
+      </project>
+      <attributes>
+        <keyword>Security</keyword>
+        <keyword>Configuration</keyword>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	
+	<!-- LCD -->
+    <example name="lcd_graphics_M4" doc="lcd_graphics/Readme_lcd_graphics.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/lcd/adafruit1480" version="1.4.0">
+      <description>lcd_graphics</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="lcd_graphics/M4/lcd_graphics.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="LCD"/>
+      </attributes>
+    </example>
+	
+	<example name="lcd_text_M4" doc="lcd_text/Readme_lcd_text.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/lcd/adafruit1480" version="1.4.0">
+      <description>lcd_text</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="lcd_text/M4/lcd_text.uvprojx"/>
+      </project>
+    <attributes>
+      <category>Getting Started</category>
+      <component Cclass="Device" Cgroup="Drivers" Csub="LCD"/>
+    </attributes>
+  </example>
+  
+    <!-- UNIQUE ID -->
+    <example name="Get_Unique_ID_M4" doc="Readme_Get_Unique_ID.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/uniqueid/Get_Unique_ID" version="1.4.0">
+      <description>Get_Unique_ID</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/Get_Unique_ID.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    
+    <!-- Rotary -->
+    <example name="rotary_trigger_up_down_M4" doc="Readme_rotary_trigger_up_down.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/rotary/rotary_trigger_up_down" version="1.4.0">
+      <description>rotary_trigger_up_down</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/rotary_trigger_up_down.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Rotary"/>
+      </attributes>
+    </example>
+	
+    <!-- HAE -->
+    <example name="HAE_Callback_M4" doc="Readme_HAE_Callback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/hae/HAE_Callback" version="1.4.0">
+      <description>HAE_Callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/HAE_Callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="HAE"/>
+      </attributes>
+    </example>
+	
+    <example name="HAE_Dma_M4" doc="Readme_HAE_Dma.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/hae/HAE_Dma" version="1.4.0">
+      <description>HAE_Dma</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/HAE_Dma.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="HAE"/>
+      </attributes>
+    </example>
+	
+    <example name="HAE_Parity_M4" doc="Readme_HAE_Parity.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/hae/HAE_Parity" version="1.4.0">
+      <description>HAE_Parity</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/HAE_Parity.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="HAE"/>
+      </attributes>
+    </example>
+	
+    <!-- SINC -->
+    <example name="SINC_Config_M4" doc="Readme_SINC_Config.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/sinc/SINC_Config" version="1.4.0">
+      <description>SINC_Config</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/SINC_Config.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SINC"/>
+      </attributes>
+    </example>
+	
+    <!-- DBC -->
+    <example name="DBC_Glitch_M4" doc="Readme_DBC_Glitch.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/dbc/DBC_Glitch" version="1.4.0">
+      <description>DBC_Glitch</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/DBC_Glitch.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DBC"/>
+      </attributes>
+    </example>
+	
+    <!-- WD -->
+    <example name="watchdog_M4" doc="Readme_watchdog.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/wd/watchdog" version="1.4.0">
+      <description>watchdog</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/watchdog.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="WD"/>
+      </attributes>
+    </example>
+	
+	<!-- CPT -->
+    <example name="cpt_count_M4" doc="Readme_cpt_count.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/cpt/cpt_count" version="1.4.0">
+      <description>cpt_count</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/cpt_count.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="CPT"/>
+      </attributes>
+    </example>
+	
+	<!-- SPU -->
+    <example name="spu_example_M4" doc="Readme_spu_example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/spu/spu_example" version="1.4.0">
+      <description>spu_example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/spu_example.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="SPU"/>
+      </attributes>
+    </example>
+	
+	<!-- FOCP -->
+    <example name="focp_example_M4" doc="Readme_FOCP_example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/focp/focp_example" version="1.4.0">
+      <description>focp_example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/focp_example.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FOCP"/>
+      </attributes>
+    </example>
+	
+	<!-- FFTB -->
+    <example name="fftb_core_M4" doc="Readme_fftb_core.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_Core" version="1.4.0">
+      <description>fftb_core</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_core.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_avg_M4" doc="Readme_fftb_avg.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_Avg" version="1.4.0">
+      <description>fftb_avg</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_avg.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_comb_M4" doc="Readme_fftb_comb.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_Comb" version="1.4.0">
+      <description>fftb_comb</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_comb.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_comp_M4" doc="Readme_fftb_compare.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_Comp" version="1.4.0">
+      <description>fftb_comp</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_compare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_dma_M4" doc="Readme_fftb_dma.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_DMA" version="1.4.0">
+      <description>fftb_dma</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_dma.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_fmtconv_M4" doc="Readme_fftb_fmtconv.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_FMTConv" version="1.4.0">
+      <description>fftb_fmtconv</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_fmtconv.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_oneshottrig_M4" doc="Readme_fftb_oneshottrig.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_OneshotTrig" version="1.4.0">
+      <description>fftb_oneshottrig</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_oneshottrig.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="fftb_wind_M4" doc="Readme_fftb_wind.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/fftb/FFTB_Wind" version="1.4.0">
+      <description>fftb_wind</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/fftb_wind.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+	<example name="flash_example_M4" doc="Readme_flash_example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/flash/flash_example" version="1.4.0">
+      <description>flash_example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M4"/>
+      <project>
+        <environment name="uv" load="M4/flash_example.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Flash"/>
+      </attributes>
+    </example>
+    <!-- ADSP-CM419F EZ-BOARD -->
+    
+    <!-- ADCC -->
+    <example name="ADCC_Circular_M0" doc="Readme_ADCC_Circular.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/adcc/ADCC_CIRCULAR" version="1.4.0">
+      <description>ADCC (circular)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/adcc_circular.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="ADCC"/>
+      </attributes>
+    </example>
+    
+    <example name="ADCC_Linear_M0" doc="Readme_ADCC_Linear.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/adcc/ADCC_LINEAR" version="1.4.0">
+      <description>ADCC (linear)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/adcc_linear.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="ADCC"/>
+      </attributes>
+    </example>
+	
+    <!-- GPIO -->
+    <example name="Button_LED_callback_M0" doc="Readme_Button_LED_GPIO.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/gpio/Button_LED_callback" version="1.4.0">
+      <description>Button_LED_callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/Button_LED_callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="GPIO"/>
+      </attributes>
+    </example>
+    
+    <example name="Button_LED_polled_M0" doc="Readme_Button_LED_GPIO_polled.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/gpio/Button_LED_polled" version="1.4.0">
+      <description>Button_LED_polled</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/Button_LED_polled.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="GPIO"/>
+      </attributes>
+    </example>
+	
+    <!-- Systick -->
+    <example name="SysTick_M0" doc="readme.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/SysTick" version="1.4.0">
+      <description>SysTick test</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/SysTick.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="Interrupt"/>
+      </attributes>
+    </example>
+    
+    <!-- Timer -->
+    <example name="Timer_Callback_M0" doc="Readme_timer_with_callback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/timers/Timer_Callback" version="1.4.0">
+      <description>timer with callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/timer_with_callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="Timer"/>
+      </attributes>
+    </example>
+    
+    <!-- TRU -->
+    <example name="SwTriggerMemDma_M0" doc="Readme_SwTriggerMemDma.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/tru/SwTriggerMemDma" version="1.4.0">
+      <description>SwTriggerMemDma</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/tru.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="TRU"/>
+      </attributes>
+    </example>
+
+  
+    <!-- UART -->
+    <example name="UART loopback_M0" doc="Readme_uart_loopback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/uart/loopback" version="1.4.0">
+      <description>UART loopback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/uart_loopback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+      </attributes>
+    </example>
+
+    <!-- MBOX -->
+    <example name="Mbox Example_M0" doc="Readme_Mbox_Example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/mbox/Mbox_Example" version="1.4.0">
+      <description>Mbox Example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/Mbox_Example_M0.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="MBOX"/>
+      </attributes>
+    </example>
+	
+	<!-- Mbox_SemaMutex -->
+    <example name="Mbox_SemaMutex_M0" doc="Readme_Mbox_SemaMutex.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/mbox/Mbox_SemaMutex" version="1.4.0">
+      <description>Mbox_SemaMutex</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/Mbox_SemaMutex_M0.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="MBOX"/>
+      </attributes>
+    </example>
+
+    <!-- SMPU -->
+    <example name="CM41x_region_protection_M0" doc="M0/Readme_SMPU_Example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/smpu/CM41x_region_protection" version="1.4.0">
+      <description>CM41x_region_protection</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/region_protection.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="SMPU"/>
+      </attributes>
+    </example>
+	
+    <!-- HAE -->
+    <example name="HAE_Callback_M0" doc="Readme_HAE_Callback.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/hae/HAE_Callback" version="1.4.0">
+      <description>HAE_Callback</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/HAE_Callback.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="HAE"/>
+      </attributes>
+    </example>
+	
+    <example name="HAE_Parity_M0" doc="Readme_HAE_Parity.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/hae/HAE_Parity" version="1.4.0">
+      <description>HAE_Parity</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/HAE_Parity.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="HAE"/>
+      </attributes>
+    </example>
+
+    <!-- WD -->	
+    <example name="watchdog_M0" doc="Readme_watchdog.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/wd/watchdog" version="1.4.0">
+      <description>HAE_Parity</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/watchdog.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="WD"/>
+      </attributes>
+    </example>
+	
+    <!-- TTU -->
+    <example name="trigger_chain_M0" doc="M0/Readme_ttu.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/ttu/trigger_chain" version="1.4.0">
+      <description>trigger_chain</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/ttu.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TTU"/>
+      </attributes>
+    </example>
+	
+    <!-- SPU -->
+    <example name="spu_example_M0" doc="Readme_spu_example.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/spu/spu_example" version="1.4.0">
+      <description>spu_example</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/spu_example.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Services" Csub="SPU"/>
+      </attributes>
+    </example>
+	
+	<!-- CRC -->
+    <example name="CrcDmaDataCompare_M0" doc="Readme_CrcDmaDataCompare.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataCompare" version="1.4.0">
+      <description>CrcDmaDataCompare</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/CrcDmaDataCompare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataFill_M0" doc="Readme_CrcDmaDataFill.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataFill" version="1.4.0">
+      <description>CrcDmaDataFill</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/CrcDmaDataFill.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataTransfer_M0" doc="Readme_CrcDmaDataTransfer.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataTransfer" version="1.4.0">
+      <description>CrcDmaDataTransfer</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/CrcDmaDataTransfer.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+    
+    <example name="CrcDmaDataVerify_M0" doc="Readme_CrcDmaDataVerify.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/crc/CrcDmaDataVerify" version="1.4.0">
+      <description>CrcDmaDataVerify</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/CrcDmaDataVerify.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="CRC"/>
+      </attributes>
+    </example>
+	
+	<!-- DACC -->
+    <example name="DACC_Circular_M0" doc="Readme_DACC_Circular.txt" folder="Boards/AnalogDevices/ADSP-CM419x-EZ-BOARD/dacc/DACC_Circular" version="1.4.0">
+      <description>DACC (circular)</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/dacc_circular.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DACC"/>
+      </attributes>
+    </example>
+	
+	<!-- FFTB -->
+    <example name="FFTB_Avg_M0" doc="Readme_fftb_avg.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_Avg" version="1.4.0">
+      <description>FFTB_Avg</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_avg.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_Comb_M0" doc="Readme_fftb_comb.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_Comb" version="1.4.0">
+      <description>FFTB_Comb</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_comb.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_Comp_M0" doc="Readme_fftb_compare.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_Comp" version="1.4.0">
+      <description>FFTB_Comp</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_compare.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_Core_M0" doc="Readme_fftb_core.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_Core" version="1.4.0">
+      <description>FFTB_Core</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_core.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_DMA_M0" doc="Readme_fftb_dma.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_DMA" version="1.4.0">
+      <description>FFTB_DMA</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_dma.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_FMTConv_M0" doc="Readme_fftb_fmtconv.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_FMTConv" version="1.4.0">
+      <description>FFTB_FMTConv</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_fmtconv.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+	
+    <example name="FFTB_Wind_M0" doc="Readme_fftb_wind.txt" folder="Boards\AnalogDevices\ADSP-CM419x-EZ-BOARD\fftb\FFTB_Wind" version="1.4.0">
+      <description>FFTB_Wind</description>
+      <board name="ADSP-CM419F EZ-BOARD" vendor="AnalogDevices" Dname="ADSP-CM419F-BCZ_M0"/>
+      <project>
+        <environment name="uv" load="M0/fftb_wind.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+        <component Cclass="Device" Cgroup="Drivers" Csub="FFTB"/>
+      </attributes>
+    </example>
+  </examples>
+
+</package>
+

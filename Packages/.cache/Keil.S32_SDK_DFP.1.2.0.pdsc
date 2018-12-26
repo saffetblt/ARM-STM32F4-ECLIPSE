@@ -1,0 +1,2401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>S32_SDK_DFP</name>
+  <description>NXP S32 SDK including S32K144HFT0VLLT, S32K144LFT0MLLT basic CMSIS Device Support</description>
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.2.0" date="2018-01-16">
+      Added S32K146 device support.
+      Added DFlash Algorithm for SK148 device.
+      Reworked examples.
+    </release>
+    <release version="1.1.0" date="2017-09-19">
+      NOTE: Only linking with scatter/linker-descripton files supported!
+      Only copy linker scatter files for selected ARM Compiler Version 5 vs. 6
+      Updated S32_SDK.
+      Added S32K142, S32K148 device support.
+      Added S32K148-EVB board support.
+      Updated ETM trace example.
+      Updated ADC board support files.
+    </release>
+    <release version="1.0.0" date="2017-04-19">
+      Initial version of NXP S32 Device Family Pack
+      - based on the NXP Software Development Kit for S32 Version 1.0.0.
+      - renamed *.SCF files to *.SCT (Scatter Files for ARM Linker).
+      - example project for S32K144-EVB FRDM Board
+      - patched device include file (CMSIS also for ARMCC, GCC, IAR).
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>S32</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="S32K Series" Dvendor="NXP:11">
+      <description>
+The NXP S32K product series of 32-bit automotive microcontrollers provides a highly integrated, low-power, safe and secure single-chip solution.
+The combination of fast CPU with flexible low-power modes and the low-leakage technology process will not force any compromises on performance relative to low-power.
+Our combined Cortex® M0+ and M4-based automotive MCU offerings span a broad memory space and include package options from 8 K to 2 MByte with 16 to 176 pins initially.
+The ARM® Cortex M4 core architecture includes an IEEE-754 compliant single precision Floating Point Unit (FPU) with DSP functions unleashing the full potential of model-based design flows.
+      </description>
+
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>
+
+      <!-- ******************************  Subfamily 'S32K14x'  ****************************** -->
+      <subFamily DsubFamily="S32K14x">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="MPU" Dendian="Little-endian"/>
+
+        <book name="addon_mdk/Documents/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="addon_mdk/Documents/S32K-RM.pdf"                 title="S32K1xx Series Reference Manual"/>
+        <book name="addon_mdk/Documents/S32K-DS.pdf"                 title="S32K1xx Data Sheet"/>
+
+        <!-- ******************************  Device 'S32K142'  ****************************** -->
+        <device Dname="S32K142">
+          <compile header="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+          <compile define="CPU_S32K142"/>
+          <debug  svd="platform/devices/S32K142/S32K142.svd"/>
+          <memory id="IROM1"                                           start="0x00000000" size="0x00040000" default="1" startup="1"/>
+          <algorithm name="addon_cmsis/Flash/S32K142_P256_2KB_SEC.FLM" start="0x00000000" size="0x00040000" default="1"/>
+
+          <!-- *********************** -->
+          <!-- 64MHz 64LQFP -->
+          <variant Dvariant="S32K142MRxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142MFxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142MSxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142MAxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 80MHz 64LQFP -->
+          <variant Dvariant="S32K142HRxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142HFxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142HSxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142HAxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 112MHz 64LQFP -->
+          <variant Dvariant="S32K142URxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142UFxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142USxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K142UAxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 100LQFP -->
+          <variant Dvariant="S32K142MRxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142MFxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142MSxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142MAxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 80MHz 100LQFP -->
+          <variant Dvariant="S32K142HRxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142HFxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142HSxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142HAxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100LQFP -->
+          <variant Dvariant="S32K142URxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142UFxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142USxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K142UAxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00003000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFFC000" size="0x00004000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+        </device>
+
+        <!-- ******************************  Device 'S32K144'  ****************************** -->
+        <device Dname="S32K144">
+          <compile header="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+          <compile define="CPU_S32K144HFT0VLLT"/>
+          <debug  svd="platform/devices/S32K144/S32K144.svd"/>
+          <memory id="IROM1"                                           start="0x00000000" size="0x00080000" default="1" startup="1"/>
+          <algorithm name="addon_cmsis/Flash/S32K144_P512_4KB_SEC.FLM" start="0x00000000" size="0x00080000" default="1"/>
+
+          <!-- *********************** -->
+          <!-- 64MHz 64LQFP -->
+          <variant Dvariant="S32K144MNxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144MRxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144MFxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144MSxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144MAxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 80MHz 64LQFP -->
+          <variant Dvariant="S32K144HNxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144HRxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144HFxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144HSxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144HAxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 112MHz 64LQFP -->
+          <variant Dvariant="S32K144UNxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144URxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144UFxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144USxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K144UAxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 100LQFP -->
+          <variant Dvariant="S32K144MNxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MRxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MFxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MSxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MAxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 80MHz 100LQFP -->
+          <variant Dvariant="S32K144HNxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HRxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HFxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HSxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HAxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100LQFP -->
+          <variant Dvariant="S32K144UNxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144URxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144UFxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144USxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144UAxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 100MAPBGA -->
+          <variant Dvariant="S32K144MNxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MRxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MFxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MSxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144MAxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+
+          <!-- 80MHz 100MAPBGA -->
+          <variant Dvariant="S32K144HNxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HRxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HFxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HSxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144HAxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100MAPBGA -->
+          <variant Dvariant="S32K144UNxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00004000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF9000" size="0x00007000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144URxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144UFxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144USxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K144UAxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00007000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF8000" size="0x00008000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+        </device>
+
+        <!-- ******************************  Device 'S32K146'  ****************************** -->
+        <device Dname="S32K146">
+          <compile header="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+          <compile define="CPU_S32K146"/>
+          <debug  svd="platform/devices/S32K146/S32K146.svd"/>
+          <memory id="IROM1"                                            start="0x00000000" size="0x00100000" default="1" startup="1"/>
+          <algorithm name="addon_cmsis/Flash/S32K146_P1024_4KB_SEC.FLM" start="0x00000000" size="0x00100000" default="1"/>
+
+          <!-- *********************** -->
+          <!-- 64MHz 64LQFP -->
+          <variant Dvariant="S32K146MNxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146MRxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146MFxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146MSxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146MAxxxLHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 80MHz 64LQFP -->
+          <variant Dvariant="S32K146HNxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146HRxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146HFxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146HSxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146HAxxxLHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- 112MHz 64LQFP -->
+          <variant Dvariant="S32K146UNxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146URxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146UFxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146USxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+          <variant Dvariant="S32K146UAxxxLHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="64"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 100LQFP -->
+          <variant Dvariant="S32K146MNxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MRxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MFxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MSxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MAxxxLLx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 80MHz 100LQFP -->
+          <variant Dvariant="S32K146HNxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HRxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HFxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HSxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HAxxxLLx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100LQFP -->
+          <variant Dvariant="S32K146UNxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146URxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146UFxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146USxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146UAxxxLLx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="100"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 144LQFP -->
+          <variant Dvariant="S32K146MNxxxLQx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146MRxxxLQx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146MFxxxLQx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146MSxxxLQx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146MAxxxLQx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+
+          <!-- 80MHz 144LQFP -->
+          <variant Dvariant="S32K146HNxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146HRxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146HFxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146HSxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146HAxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+
+          <!-- 112MHz 144LQFP -->
+          <variant Dvariant="S32K146UNxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146URxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146UFxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146USxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K146UAxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 64MHz 100MAPBGA -->
+          <variant Dvariant="S32K146MNxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MRxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MFxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MSxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146MAxxxMHx">
+            <processor Dclock="64000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+
+          <!-- 80MHz 100MAPBGA -->
+          <variant Dvariant="S32K146HNxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HRxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HFxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HSxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146HAxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100MAPBGA -->
+          <variant Dvariant="S32K146UNxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146URxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146UFxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146USxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K146UAxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0000F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFF0000" size="0x00010000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+        </device>
+
+        <!-- ******************************  Device 'S32K148'  ****************************** -->
+        <device Dname="S32K148">
+          <compile header="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+          <compile define="CPU_S32K148"/>
+          <debug  svd="platform/devices/S32K148/S32K148.svd"/>
+          <memory id="IROM1"                                            start="0x00000000" size="0x00180000" default="1" startup="1"/>
+          <memory id="IROM2"                                            start="0x10000000" size="0x00080000" default="0" startup="1"/>
+          <algorithm name="addon_cmsis/Flash/S32K148_P1536_4KB_SEC.FLM" start="0x00000000" size="0x00180000" default="1"/>
+          <algorithm name="addon_cmsis/Flash/S32K148_D512_4KB_SEC.FLM"  start="0x10000000" size="0x00080000" default="0"/>
+
+          <!-- *********************** -->
+          <!-- 80MHz 144LQFP -->
+          <variant Dvariant="S32K148HNxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HRxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HFxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HSxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HAxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HExxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148HJxxxLQx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+
+          <!-- 112MHz 144LQFP -->
+          <variant Dvariant="S32K148UNxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148URxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148UFxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148USxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148UAxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148UExxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+          <variant Dvariant="S32K148UJxxxLQx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="144"/>
+          </variant>
+
+          <!-- *********************** -->
+          <!-- 80MHz 176LQFP -->
+          <variant Dvariant="S32K148HNxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HRxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HFxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HSxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HAxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HExxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148HJxxxLUx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+
+          <!-- 112MHz 176LQFP -->
+          <variant Dvariant="S32K148UNxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148URxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148UFxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148USxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148UAxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148UExxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+          <variant Dvariant="S32K148UJxxxLUx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="QFP" n="176"/>
+          </variant>
+
+
+          <!-- *********************** -->
+          <!-- 80MHz 100MAPBGA -->
+          <variant Dvariant="S32K148HNxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HRxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HFxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HSxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HAxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HExxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148HJxxxMHx">
+            <processor Dclock="80000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+
+          <!-- 112MHz 100MAPBGA -->
+          <variant Dvariant="S32K148UNxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00017000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE8000" size="0x00018000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148URxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148UFxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148USxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148UAxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148UExxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+          <variant Dvariant="S32K148UJxxxMHx">
+            <processor Dclock="112000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x0001F000" init   ="0" default="1"/>
+            <memory id="IRAM2" start="0x1FFE0000" size="0x00020000" init   ="0" default="0"/>
+            <feature type="BGA" n="100"/>
+          </variant>
+        </device>
+
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- one condition for each device -->
+    <condition id="S32K142">
+      <description>NXP S32K142 device</description>
+      <accept Dvendor="NXP:11" Dname="S32K142*"/>
+    </condition>
+    <condition id="S32K142_32">
+      <description>NXP S32K142 device with 32K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K142[MHU][RFSA]*"/>
+    </condition>
+
+    <condition id="S32K144">
+      <description>NXP S32K144 device</description>
+      <accept Dvendor="NXP:11" Dname="S32K144*"/>
+    </condition>
+    <condition id="S32K144_48">
+      <description>NXP S32K144 device with 48K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K144[MHU]N*"/>
+    </condition>
+    <condition id="S32K144_64">
+      <description>NXP S32K144 device with 64K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K144[MHU][RFSA]*"/>
+    </condition>
+
+    <condition id="S32K146">
+      <description>NXP S32K146 device</description>
+      <accept Dvendor="NXP:11" Dname="S32K146*"/>
+    </condition>
+    <condition id="S32K146_128">
+      <description>NXP S32K146 device with 128K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K146[MHU][NRFSA]*"/>
+    </condition>
+
+    <condition id="S32K148">
+      <description>NXP S32K148 device</description>
+      <accept Dvendor="NXP:11" Dname="S32K148*"/>
+    </condition>
+    <condition id="S32K148_192">
+      <description>NXP S32K144 device with 192K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K148[MHU]N*"/>
+    </condition>
+    <condition id="S32K148_256">
+      <description>NXP S32K144 device with 256K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K148[MHU][RFSAEJ]*"/>
+    </condition>
+
+    <!-- one condition for each device group with same coreclock/Startup -->
+    <condition id="S32K14x">
+      <description>NXP S32K14x devices</description>
+      <accept condition="S32K142"/>
+      <accept condition="S32K144"/>
+      <accept condition="S32K146"/>
+      <accept condition="S32K148"/>
+      <!--accept condition="next device with same coreclock"/-->
+    </condition>
+
+    <!-- one condition for device subfamily + CMSIS -->
+    <condition id="S32K14x_CMSIS">
+      <description>NXP S32K14x devices and CMSIS-CORE</description>
+      <accept condition="S32K14x"/>
+       <!--accept condition="next devices group within same subfamily"/-->
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- one condition for all devices in this pack -->
+    <condition id="S32K">
+      <description>NXP S32K device and CMSIS-CORE</description>
+      <accept condition="S32K14x_CMSIS"/>
+      <!--accept condition="next subfamily"/-->
+    </condition>
+
+    <!--condition id="S32K Unknown">
+      <description>NXP S32K unknown device and CMSIS-CORE</description>
+      <require Dvendor="NXP:11" Dname="S32Kxxx"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition-->
+
+    <condition id="S32K_ARMCC_AC5">
+      <description>NXP S32K and the ARM compiler</description>
+      <require condition="S32K"/>
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+    <condition id="S32K_ARMCC_AC6">
+      <description>NXP S32K and the ARM compiler</description>
+      <require condition="S32K"/>
+      <require Tcompiler="ARMCC" Toptions="AC6"/>
+    </condition>
+    <condition id="S32K_GCC">
+      <description>NXP S32K and the GCC compiler</description>
+      <require condition="S32K"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="S32K_IAR">
+      <description>NXP S32K and the IAR compiler</description>
+      <require condition="S32K"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- bundle dependencies -->
+    <condition id="S32K144 DRV_CLOCK_PINS">
+      <description>NXP S32K Driver Clock Pins dependency</description>
+      <require condition="S32K144"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+    </condition>
+    <condition id="S32K144 DRV_CLOCK_PINS_ADC">
+      <description>NXP S32K Driver Clock Pins ADC dependency</description>
+      <require condition="S32K144"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="ADC"/>
+    </condition>
+    <condition id="S32K148 DRV_CLOCK_PINS">
+      <description>NXP S32K Driver Clock Pins dependency</description>
+      <require condition="S32K148"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+    </condition>
+    <condition id="S32K148 DRV_CLOCK_PINS_ADC">
+      <description>NXP S32K Driver Clock Pins ADC dependency</description>
+      <require condition="S32K148"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="ADC"/>
+    </condition>
+
+    <condition id="S32K DRV_ADC">
+      <description>NXP S32K Driver ADC dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_Clock">
+      <description>NXP S32K System Clock dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_CMP">
+      <description>NXP S32K Driver CMP dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_CRC">
+      <description>NXP S32K Driver CRC dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_CSEC">
+      <description>NXP S32K Driver CSEC dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_EDMA">
+      <description>NXP S32K Driver eDMA dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_EIM">
+      <description>NXP S32K Driver EIM dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K148 DRV_ENET">
+      <description>NXP S32K Driver ENET dependency</description>
+      <require condition="S32K148"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_ERM">
+      <description>NXP S32K Driver ERM dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_EWM">
+      <description>NXP S32K Driver EWM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_FLASH_MX25">
+      <description>NXP S32K Driver FLASH MX25l6433F dependency</description>
+      <require condition="S32K148"/>
+      <!--require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/-->
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="QSPI"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_FTM">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_FTM_IC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K DRV_FTM_MC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K DRV_FTM_OC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K DRV_FTM_PWM">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K DRV_FTM_QD">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K DRV_FlexCAN">
+      <description>NXP S32K Driver FlexCAN dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_FlexIO">
+      <description>NXP S32K Driver FLEXIO dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_FlexIO_I2C">
+      <description>NXP S32K Driver FLEXIO I2C dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K DRV_FlexIO_I2S">
+      <description>NXP S32K Driver FLEXIO I2S dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K DRV_FlexIO_SPI">
+      <description>NXP S32K Driver FLEXIO SPI dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K DRV_FlexIO_UART">
+      <description>NXP S32K Driver FLEXIO UART dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K DRV_LIN">
+      <description>NXP S32K Driver LIN dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"/>
+    </condition>
+    <condition id="S32K DRV_LPI2C">
+      <description>NXP S32K Driver LPI2C dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_LPIT">
+      <description>NXP S32K Driver LPIT dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_LPSPI">
+      <description>NXP S32K Driver LPSPI dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_LPTMR">
+      <description>NXP S32K Driver LPTMR dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K DRV_LPUART">
+      <description>NXP S32K Driver LPUART IRQ dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_MPU">
+      <description>NXP S32K Driver MPU dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_PDB">
+      <description>NXP S32K Driver PDB dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K DRV_PINS">
+      <description>NXP S32K Driver PINS dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_Power">
+      <description>NXP S32K System Power dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K148 DRV_QSPI">
+      <description>NXP S32K Driver QSPI dependency</description>
+      <require condition="S32K148"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_RTC">
+      <description>NXP S32K Driver RTC dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K DRV_SAI">
+      <description>NXP S32K Driver SAI dependency</description>
+      <require condition="S32K148"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K DRV_TRGMUX">
+      <description>NXP S32K Driver TRGMUX dependency</description>
+      <require condition="S32K"/>
+    </condition>
+    <condition id="S32K DRV_WDOG">
+      <description>NXP S32K Driver WDOG dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+
+    <condition id="S32K PAL_SPI">
+      <description>NXP S32K PAL SPI dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPSPI"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (SPI)"/>
+    </condition>
+    <condition id="S32K PAL_UART">
+      <description>NXP S32K PAL UART dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (UART)"/>
+    </condition>
+
+
+    <condition id="S32K OSIF_BM">
+      <description>NXP S32K OSIF Bare Metal dependency</description>
+      <require condition="S32K"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="SDK HAL">S32 SDK Hardware Abstraction Layer (HAL)</description>
+    <description Cclass="Device" Cgroup="SDK Driver">S32 SDK Peripheral Drivers</description>
+  </taxonomy>
+
+  <apis>
+    <api Cclass="Device" Cgroup="SDK API"               exclusive="1">
+      <description>S32 SDK API</description>
+      <files>
+        <file category="doc" name="doc/S32_SDK_Documentation.pdf"/>
+      </files>
+    </api>
+    <api Cclass="Device" Cgroup="SDK Quick Start Guide" exclusive="1">
+      <description>S32 SDK Quick Start Guide</description>
+      <files>
+        <file category="doc" name="doc/S32SDKQSG.pdf"/>
+      </files>
+    </api>
+  </apis>
+
+  <components>
+    <!-- Startup for toolchain ARMCC V5 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="S32K_ARMCC_AC5">
+      <description>System Startup for NXP S32K Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folders -->
+        <file category="header"  name="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+        <file category="include" name="platform/devices/"/>
+        <file category="include" name="platform/devices/common/"/>
+
+        <!-- startup files -->
+        <file category="source" name="platform/devices/startup.c"/>
+        <file category="source" name="platform/devices/S32K142/startup/arm/startup_S32K142.s"              attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K144/startup/arm/startup_S32K144.s"              attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K146/startup/arm/startup_S32K146.s"              attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K148/startup/arm/startup_S32K148.s"              attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- system files -->
+        <file category="header" name="platform/devices/S32K142/startup/system_S32K142.h"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K142/startup/system_S32K142.c"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="header" name="platform/devices/S32K144/startup/system_S32K144.h"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K144/startup/system_S32K144.c"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="header" name="platform/devices/S32K146/startup/system_S32K146.h"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K146/startup/system_S32K146.c"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="header" name="platform/devices/S32K148/startup/system_S32K148.h"                   attr="config" version="1.0.0" condition="S32K148"/>
+        <file category="source" name="platform/devices/S32K148/startup/system_S32K148.c"                   attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- linker scripts -->  <!-- RAM linker scripts have the category "other": Files are copied but not treated automatically as linker scripts -->
+        <file category="linkerScript" name="platform/devices/S32K142/linker/arm/S32K142_32_flash.sct"      attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K142/linker/arm/S32K142_32_ram.sct"        attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_48_flash.sct"      attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_48_ram.sct"        attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_64_flash.sct"      attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_64_ram.sct"        attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/arm/S32K146_128_flash.sct"     attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/arm/S32K146_128_ram.sct"       attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_192_flash.sct"     attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_192_ram.sct"       attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_256_flash.sct"     attr="config" version="1.0.0" condition="S32K148_256"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_256_ram.sct"       attr="config" version="1.0.0" condition="S32K148_256"/>
+      </files>
+    </component>
+
+    <!-- Startup for toolchain ARMCC V6 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="S32K_ARMCC_AC6">
+      <description>System Startup for NXP S32K Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folders -->
+        <file category="header"  name="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+        <file category="include" name="platform/devices/"/>
+        <file category="include" name="platform/devices/common/"/>
+
+        <!-- startup files -->
+        <file category="source" name="platform/devices/startup.c"/>
+        <file category="source" name="platform/devices/S32K142/startup/arm/startup_S32K142.s"              attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K144/startup/arm/startup_S32K144.s"              attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K146/startup/arm/startup_S32K146.s"              attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K148/startup/arm/startup_S32K148.s"              attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- system files -->
+        <file category="header" name="platform/devices/S32K142/startup/system_S32K142.h"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K142/startup/system_S32K142.c"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="header" name="platform/devices/S32K144/startup/system_S32K144.h"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K144/startup/system_S32K144.c"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="header" name="platform/devices/S32K146/startup/system_S32K146.h"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K146/startup/system_S32K146.c"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="header" name="platform/devices/S32K148/startup/system_S32K148.h"                   attr="config" version="1.0.0" condition="S32K148"/>
+        <file category="source" name="platform/devices/S32K148/startup/system_S32K148.c"                   attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- linker scripts -->  <!-- RAM linker scripts have the category "other": Files are copied but not treated automatically as linker scripts -->
+        <file category="linkerScript" name="platform/devices/S32K142/linker/arm/S32K142_32_flash_AC6.sct"  attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K142/linker/arm/S32K142_32_ram_AC6.sct"    attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_48_flash_AC6.sct"  attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_48_ram_AC6.sct"    attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_64_flash_AC6.sct"  attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/arm/S32K144_64_ram_AC6.sct"    attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/arm/S32K146_128_flash_AC6.sct" attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/arm/S32K146_128_ram_AC6.sct"   attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_192_flash_AC6.sct" attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_192_ram_AC6.sct"   attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_256_flash_AC6.sct" attr="config" version="1.0.0" condition="S32K148_256"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/arm/S32K148_256_ram_AC6.sct"   attr="config" version="1.0.0" condition="S32K148_256"/>
+      </files>
+    </component>
+
+    <!-- Startup for toolchain GCC -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="S32K_GCC">
+      <description>System Startup for NXP S32K Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folders -->
+        <file category="header"  name="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+        <file category="include" name="platform/devices/"/>
+        <file category="include" name="platform/devices/common/"/>
+
+        <!-- startup files -->
+        <file category="source" name="platform/devices/startup.c"/>
+        <file category="source" name="platform/devices/S32K142/startup/gcc/startup_S32K142.S"              attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K144/startup/gcc/startup_S32K144.S"              attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K146/startup/gcc/startup_S32K146.S"              attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K148/startup/gcc/startup_S32K148.S"              attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- system files -->
+        <file category="header" name="platform/devices/S32K142/startup/system_S32K142.h"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K142/startup/system_S32K142.c"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="header" name="platform/devices/S32K144/startup/system_S32K144.h"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K144/startup/system_S32K144.c"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="header" name="platform/devices/S32K146/startup/system_S32K146.h"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K146/startup/system_S32K146.c"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="header" name="platform/devices/S32K148/startup/system_S32K148.h"                   attr="config" version="1.0.0" condition="S32K148"/>
+        <file category="source" name="platform/devices/S32K148/startup/system_S32K148.c"                   attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- linker scripts -->  <!-- RAM linker scripts have the category "other": Files are copied but not treated automatically as linker scripts -->
+        <file category="linkerScript" name="platform/devices/S32K142/linker/gcc/S32K142_32_flash.ld"       attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K142/linker/gcc/S32K142_32_ram.ld"         attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/gcc/S32K144_48_flash.ld"       attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/gcc/S32K144_48_ram.ld"         attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/gcc/S32K144_64_flash.ld"       attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/gcc/S32K144_64_ram.ld"         attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/gcc/S32K146_128_flash.ld"      attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/gcc/S32K146_128_ram.ld"        attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/gcc/S32K148_192_flash.ld"      attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/gcc/S32K148_192_ram.ld"        attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/gcc/S32K148_256_flash.ld"      attr="config" version="1.0.0" condition="S32K148_256"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/gcc/S32K148_256_ram.ld"        attr="config" version="1.0.0" condition="S32K148_256"/>
+      </files>
+    </component>
+
+    <!-- Startup for toolchain IAR -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="S32K_IAR">
+      <description>System Startup for NXP S32K Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folders -->
+        <file category="header"  name="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+        <file category="include" name="platform/devices/"/>
+        <file category="include" name="platform/devices/common/"/>
+
+        <!-- startup files -->
+        <file category="source" name="platform/devices/startup.c"/>
+        <file category="source" name="platform/devices/S32K142/startup/iar/startup_S32K142.s"              attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K144/startup/iar/startup_S32K144.s"              attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K146/startup/iar/startup_S32K146.s"              attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K148/startup/iar/startup_S32K148.s"              attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- system files -->
+        <file category="header" name="platform/devices/S32K142/startup/system_S32K142.h"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="source" name="platform/devices/S32K142/startup/system_S32K142.c"                   attr="config" version="1.0.0" condition="S32K142"/>
+        <file category="header" name="platform/devices/S32K144/startup/system_S32K144.h"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="source" name="platform/devices/S32K144/startup/system_S32K144.c"                   attr="config" version="2.0.0" condition="S32K144"/>
+        <file category="header" name="platform/devices/S32K146/startup/system_S32K146.h"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="source" name="platform/devices/S32K146/startup/system_S32K146.c"                   attr="config" version="1.0.0" condition="S32K146"/>
+        <file category="header" name="platform/devices/S32K148/startup/system_S32K148.h"                   attr="config" version="1.0.0" condition="S32K148"/>
+        <file category="source" name="platform/devices/S32K148/startup/system_S32K148.c"                   attr="config" version="1.0.0" condition="S32K148"/>
+
+        <!-- linker scripts -->  <!-- RAM linker scripts have the category "other": Files are copied but not treated automatically as linker scripts -->
+        <file category="linkerScript" name="platform/devices/S32K142/linker/iar/S32K142_32_flash.icf"      attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K142/linker/iar/S32K142_32_ram.icf"        attr="config" version="1.0.0" condition="S32K142_32"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/iar/S32K144_48_flash.icf"      attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/iar/S32K144_48_ram.icf"        attr="config" version="2.0.0" condition="S32K144_48"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/iar/S32K144_64_flash.icf"      attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K144/linker/iar/S32K144_64_ram.icf"        attr="config" version="2.0.0" condition="S32K144_64"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/iar/S32K146_128_flash.icf"     attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K146/linker/iar/S32K146_128_ram.icf"       attr="config" version="1.0.0" condition="S32K146_128"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/iar/S32K148_192_flash.icf"     attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/iar/S32K148_192_ram.icf"       attr="config" version="1.0.0" condition="S32K148_192"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/iar/S32K148_256_flash.icf"     attr="config" version="1.0.0" condition="S32K148_256"/>
+        <file category="linkerScript" name="platform/devices/S32K148/linker/iar/S32K148_256_ram.icf"       attr="config" version="1.0.0" condition="S32K148_256"/>
+      </files>
+    </component>
+
+    <!-- SDK PAL -->
+    <component Cclass="Device" Cgroup="SDK PAL" Csub="UART"  Cversion="1.0.0" condition="S32K PAL_UART">
+      <description>UART Peripheral Abstraction Layer (UART PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_UART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__uart__pal.html"/>
+        <file category="header" name="platform/pal/uart/inc/uart_pal.h"/>
+        <file category="source" name="platform/pal/uart/src/uart_pal.c"/>
+
+        <file category="header" name="platform/pal/uart/cfg/uart_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL" Csub="SPI"   Cversion="1.0.0" condition="S32K PAL_SPI">
+      <description>SPI Peripheral Abstraction Layer (SPI PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__spi__pal.html"/>
+        <file category="header" name="platform/pal/spi/inc/spi_pal.h"/>
+        <file category="source" name="platform/pal/spi/src/spi_pal.c"/>
+
+        <file category="header" name="platform/pal/spi/cfg/spi_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+
+    <!-- SDK Driver -->
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="ADC"           Cversion="1.0.0" condition="S32K DRV_ADC">
+      <description>ADC Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__adc__driver.html"/>
+        <file category="header" name="platform/drivers/inc/adc_driver.h"/>
+        <file category="source" name="platform/drivers/src/adc/adc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Clock"         Cversion="1.0.0" condition="S32K DRV_Clock">
+      <description>Clock Manager Driver (SK32K1xx)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CLOCK
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__clock__manager.html"/>
+        <file category="header" name="platform/drivers/inc/clock_manager.h"/>
+        <file category="source" name="platform/drivers/src/clock/clock_manager.c"/>
+        <file category="header" name="platform/drivers/src/clock/S32K1xx/clock_S32K1xx.h"/>
+        <file category="source" name="platform/drivers/src/clock/S32K1xx/clock_S32K1xx.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CMP"           Cversion="1.0.0" condition="S32K DRV_CMP">
+      <description>Comparator Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CMP
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__cmp__driver.html"/>
+        <file category="header" name="platform/drivers/inc/cmp_driver.h"/>
+        <file category="source" name="platform/drivers/src/cmp/cmp_driver.c"/>
+        <file category="source" name="platform/drivers/src/cmp/cmp_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CRC"           Cversion="1.0.0" condition="S32K DRV_CRC">
+      <description>CRC Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__crc__driver.html"/>
+        <file category="header" name="platform/drivers/inc/crc_driver.h"/>
+        <file category="source" name="platform/drivers/src/crc/crc_driver.c"/>
+        <file category="source" name="platform/drivers/src/crc/crc_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CSEC"          Cversion="1.0.0" condition="S32K DRV_CSEC">
+      <description>CSEc Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CSEC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__csec__driver.html"/>
+        <file category="header" name="platform/drivers/inc/csec_driver.h"/>
+        <file category="source" name="platform/drivers/src/csec/csec_driver.c"/>
+        <file category="source" name="platform/drivers/src/csec/csec_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"          Cversion="1.0.0" condition="S32K DRV_EDMA">
+      <description>eDMA Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EDMA
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__edma__driver.html"/>
+        <file category="header" name="platform/drivers/inc/edma_driver.h"/>
+        <file category="source" name="platform/drivers/src/edma/edma_driver.c"/>
+        <file category="source" name="platform/drivers/src/edma/edma_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/edma/edma_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="EIM"           Cversion="1.0.0" condition="S32K DRV_EIM">
+      <description>EIM Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EIM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__eim__drv.html"/>
+        <file category="header" name="platform/drivers/inc/eim_driver.h"/>
+        <file category="source" name="platform/drivers/src/eim/eim_driver.c"/>
+        <file category="source" name="platform/drivers/src/eim/eim_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="ENET"          Cversion="1.0.0" condition="S32K148 DRV_ENET">
+      <description>ENET Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ENET
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__enet__driver.html"/>
+        <file category="header" name="platform/drivers/inc/enet_driver.h"/>
+        <file category="source" name="platform/drivers/src/enet/enet_driver.c"/>
+        <file category="source" name="platform/drivers/src/enet/enet_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/enet/enet_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="ERM"           Cversion="1.0.0" condition="S32K DRV_ERM">
+      <description>ERM Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ERM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__erm__driver.html"/>
+        <file category="header" name="platform/drivers/inc/erm_driver.h"/>
+        <file category="source" name="platform/drivers/src/erm/erm_driver.c"/>
+        <file category="source" name="platform/drivers/src/erm/erm_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="EWM"           Cversion="1.0.0" condition="S32K DRV_EWM">
+      <description>EWM Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EWM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ewm__drv.html"/>
+        <file category="header" name="platform/drivers/inc/ewm_driver.h"/>
+        <file category="source" name="platform/drivers/src/ewm/ewm_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Flash"         Cversion="1.0.0" condition="S32K">
+      <description>Flash Memory (Flash)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flash__driver.html"/>
+        <file category="header" name="platform/drivers/inc/flash_driver.h"/>
+        <file category="source" name="platform/drivers/src/flash/flash_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Flash (MX25l6433F)" Cversion="1.0.0" condition="S32K DRV_FLASH_MX25">
+      <description>Flash MX25l6433F Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLASH_MX25l6433F
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flash__mx25l6433f__drv.html"/>
+        <file category="header" name="platform/drivers/inc/flash_mx25l6433f_driver.h"/>
+        <file category="source" name="platform/drivers/src/flash_mx25l6433f/flash_mx25l6433f_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexCAN"       Cversion="1.0.0" condition="S32K DRV_FlexCAN">
+      <description>FlexCAN Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXCAN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexcan__driver.html"/>
+        <file category="header" name="platform/drivers/inc/flexcan_driver.h"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_driver.c"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"        Cversion="1.0.0" condition="S32K DRV_FlexIO">
+      <description>FlexIO Common Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexio__drv.html"/>
+        <file category="header" name="platform/drivers/inc/flexio.h"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2C)"  Cversion="1.0.0" condition="S32K DRV_FlexIO_I2C">
+      <description>FlexIO I2C Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexio__i2c__drv.html"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_i2c_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2S)"  Cversion="1.0.0" condition="S32K DRV_FlexIO_I2S">
+      <description>FlexIO I2S Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_I2S
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexio__i2s__drv.html"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_i2s_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (SPI)"  Cversion="1.0.0" condition="S32K DRV_FlexIO_SPI">
+      <description>FlexIO SPI Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexio__spi__drv.html"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_spi_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (UART)" Cversion="1.0.0" condition="S32K DRV_FlexIO_UART">
+      <description>FlexIO UART Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_UART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__flexio__uart__drv.html"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_uart_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM"           Cversion="1.0.0" condition="S32K DRV_FTM">
+      <description>FTM Common Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="doc/html/group__ftm__common.html"/>
+        <file category="header"  name="platform/drivers/inc/ftm_common.h"/>
+        <file category="source"  name="platform/drivers/src/ftm/ftm_common.c"/>
+        <file category="source"  name="platform/drivers/src/ftm/ftm_hw_access.c"/>
+        <file category="include" name="platform/drivers/src/ftm/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (IC)"      Cversion="1.0.0" condition="S32K DRV_FTM_IC">
+      <description>FTM Input Capture Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_IC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ftm__ic__driver.html"/>
+        <file category="header" name="platform/drivers/inc/ftm_ic_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_ic_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (MC)"      Cversion="1.0.0" condition="S32K DRV_FTM_MC">
+      <description>FTM Module Counter Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_MC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ftm__mc__driver.html"/>
+        <file category="header" name="platform/drivers/inc/ftm_mc_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_mc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (OC)"      Cversion="1.0.0" condition="S32K DRV_FTM_OC">
+      <description>FTM Output Compare Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_OC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ftm__oc__driver.html"/>
+        <file category="header" name="platform/drivers/inc/ftm_oc_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_oc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (PWM)"     Cversion="1.0.0" condition="S32K DRV_FTM_PWM">
+      <description>FTM Pulse Width Modulation Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_PWM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ftm__pwm__driver.html"/>
+        <file category="header" name="platform/drivers/inc/ftm_pwm_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_pwm_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (QD)"      Cversion="1.0.0" condition="S32K DRV_FTM_QD">
+      <description>FTM Quadrature Decoder Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_QD
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__ftm__qd__driver.html"/>
+        <file category="header" name="platform/drivers/inc/ftm_qd_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_qd_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"     Cversion="1.0.0" condition="S32K">
+      <description>Interrupt Manager (Interrupt)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_INTERRUPT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__interrupt__manager.html"/>
+        <file category="header" name="platform/drivers/inc/interrupt_manager.h"/>
+        <file category="source" name="platform/drivers/src/interrupt/interrupt_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LIN (LPUART)"  Cversion="1.0.0" condition="S32K DRV_LIN">
+      <description>LIN Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LIN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lin__driver.html"/>
+        <file category="header" name="platform/drivers/inc/lin_driver.h"/>
+        <file category="source" name="platform/drivers/src/lin/lin_common.c"/>
+        <file category="source" name="platform/drivers/src/lin/lin_driver.c"/>
+        <file category="source" name="platform/drivers/src/lin/lin_irq.c"/>
+
+        <file category="include" name="platform/drivers/src/lpuart/"/>
+        <file category="source" name="platform/drivers/src/lpuart/lin_lpuart_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPI2C"         Cversion="1.0.0" condition="S32K DRV_LPI2C">
+      <description>LPI2C Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPI2C
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lpi2c__drv.html"/>
+        <file category="header" name="platform/drivers/inc/lpi2c_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPIT"          Cversion="1.0.0" condition="S32K DRV_LPIT">
+      <description>LPIT Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPIT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lpit__drv.html"/>
+        <file category="header" name="platform/drivers/inc/lpit_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpit/lpit_driver.c"/>
+        <!--file category="source" name="platform/drivers/src/lpit/lpit_hw_access.c"/-->
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPSPI"         Cversion="1.0.0" condition="S32K DRV_LPSPI">
+      <description>LPSPI Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPSPI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lpspi__driver.html"/>
+        <file category="header" name="platform/drivers/inc/lpspi_master_driver.h"/>
+        <file category="header" name="platform/drivers/inc/lpspi_slave_driver.h"/>
+        <file category="header" name="platform/drivers/inc/lpspi_shared_function.h"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_master_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_slave_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_shared_function.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_irq.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPTMR"         Cversion="1.0.0" condition="S32K DRV_LPTMR">
+      <description>LPTMR Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPTMR
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lptmr__driver.html"/>
+        <file category="header" name="platform/drivers/inc/lptmr_driver.h"/>
+        <file category="source" name="platform/drivers/src/lptmr/lptmr_driver.c"/>
+        <file category="source" name="platform/drivers/src/lptmr/lptmr_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"        Cversion="1.0.0" condition="S32K DRV_LPUART">
+      <description>LPUART Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPUART
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__lpuart__driver.html"/>
+        <file category="header" name="platform/drivers/inc/lpuart_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="MPU"           Cversion="1.0.0" condition="S32K DRV_MPU">
+      <description>MPU Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__mpu__drv.html"/>
+        <file category="header" name="platform/drivers/inc/mpu_driver.h"/>
+        <file category="source" name="platform/drivers/src/mpu/mpu_driver.c"/>
+        <file category="source" name="platform/drivers/src/mpu/mpu_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="PDB"           Cversion="1.0.0" condition="S32K DRV_PDB">
+      <description>PDB Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PDB
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__pdb__driver.html"/>
+        <file category="header" name="platform/drivers/inc/pdb_driver.h"/>
+        <file category="source" name="platform/drivers/src/pdb/pdb_driver.c"/>
+        <file category="source" name="platform/drivers/src/pdb/pdb_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="PINS"          Cversion="1.0.0" condition="S32K DRV_PINS">
+      <description>PINS Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PINS
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__pins__driver.html"/>
+        <file category="header" name="platform/drivers/inc/pins_driver.h"/>
+        <file category="source" name="platform/drivers/src/pins/pins_driver.c"/>
+        <file category="source" name="platform/drivers/src/pins/pins_port_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Power"         Cversion="1.0.0" condition="S32K DRV_Power">
+      <description>Power Manager (SK32K1xx)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_POWER
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__power__manager.html"/>
+        <file category="header" name="platform/drivers/inc/power_manager.h"/>
+        <file category="source" name="platform/drivers/src/power/power_manager.c"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_manager_S32K1xx.c"/>
+        <file category="header" name="platform/drivers/src/power/S32K1xx/power_manager_S32K1xx.h"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_pmc_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_rcm_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_smc_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="QSPI"          Cversion="1.0.0" condition="S32K148 DRV_QSPI">
+      <description>QSPI Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_QSPI
+      </RTE_Components_h>
+      <files>
+        <!--file category="doc"    name="doc/html/group__qspi__drv.html"/-->
+        <file category="header" name="platform/drivers/inc/quadspi_driver.h"/>
+        <file category="source" name="platform/drivers/src/quadspi/quadspi_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="RTC"           Cversion="1.0.0" condition="S32K DRV_RTC">
+      <description>Real Time Clock Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__rtc__driver.html"/>
+        <file category="header" name="platform/drivers/inc/rtc_driver.h"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_driver.c"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="SAI"           Cversion="1.0.0" condition="S32K DRV_SAI">
+      <description>SAI Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="doc/html/group__sai__driver.html"/>
+        <file category="header"  name="platform/drivers/inc/sai_driver.h"/>
+        <file category="include" name="platform/drivers/src/sai/"/>
+        <file category="source"  name="platform/drivers/src/sai/sai_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="TRGMUX"        Cversion="1.0.0" condition="S32K DRV_TRGMUX">
+      <description>TRGMUX Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__trgmux__driver.html"/>
+        <file category="header" name="platform/drivers/inc/trgmux_driver.h"/>
+        <file category="source" name="platform/drivers/src/trgmux/trgmux_driver.c"/>
+        <file category="source" name="platform/drivers/src/trgmux/trgmux_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="WDOG"          Cversion="1.0.0" condition="S32K DRV_WDOG">
+      <description>WDOG Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_WDOG
+      </RTE_Components_h>
+      <files>
+         <file category="doc"    name="doc/html/group__wdog__drv.html"/>
+        <file category="header" name="platform/drivers/inc/wdog_driver.h"/>
+        <file category="source" name="platform/drivers/src/wdog/wdog_driver.c"/>
+        <file category="source" name="platform/drivers/src/wdog/wdog_hw_access.c"/>
+      </files>
+    </component>
+
+    <!-- SDK OSA -->
+    <component Cclass="Device" Cgroup="SDK OSIF" Csub="OSIF" Cvariant="Bare Metal" Cversion="1.0.0" condition="S32K OSIF_BM">
+      <description>Bare Metal Abstraction Layer (no RTOS)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_OSIF_BM
+      </RTE_Components_h>
+      <files>
+        <file category="doc"    name="doc/html/group__osif.html"/>
+        <file category="header" name="rtos/osif/osif.h"/>
+        <file category="source" name="rtos/osif/osif_baremetal.c"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="S32K144-EVB" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP S32K144-EVB Development Board</description>
+      <doc>http://www.nxp.com/assets/documents/data/en/quick-start-guide/S32K144EVB-QSG.pdf</doc>
+      <component Cgroup="LED"           Capiversion="1.0.0" condition="S32K144 DRV_CLOCK_PINS">
+        <description>LED Interface for S32K144-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K144-EVB/Common/LED_S32K144-EVB.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0" condition="S32K144 DRV_CLOCK_PINS">
+        <description>Buttons Interface for S32K144-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K144-EVB/Common/Buttons_S32K144-EVB.c"/>
+        </files>
+      </component>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="S32K144 DRV_CLOCK_PINS_ADC">
+        <description>A/D Converter Interface for S32K144-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K144-EVB/Common/ADC_S32K144-EVB.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="S32K148-EVB" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP S32K148-EVB Development Board</description>
+      <doc></doc>
+      <component Cgroup="LED"           Capiversion="1.0.0" condition="S32K148 DRV_CLOCK_PINS">
+        <description>LED Interface for S32K148-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K148-EVB/Common/LED_S32K148-EVB.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0" condition="S32K148 DRV_CLOCK_PINS">
+        <description>Buttons Interface for S32K148-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K148-EVB/Common/Buttons_S32K148-EVB.c"/>
+        </files>
+      </component>
+      <component Cgroup="A/D Converter" Capiversion="1.0.0" condition="S32K148 DRV_CLOCK_PINS_ADC">
+        <description>A/D Converter Interface for S32K148-EVB</description>
+        <files>
+          <file category="source" name="addon_mdk/Boards/NXP/S32K148-EVB/Common/ADC_S32K148-EVB.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board name="S32K144-EVB" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="S32K144UAT0xxxx"/>
+      <!--compatibleDevice deviceIndex="0" Dvendor="NXP:11" DsubFamily="S32K14x"/-->
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="S32K144*"/>
+      <image small="addon_mdk/Boards/NXP/S32K144-EVB/Documents/S32K144-EVB_small.png"
+             large="addon_mdk/Boards/NXP/S32K144-EVB/Documents/S32K144-EVB_large.png"/>
+      <description>
+        The S32K144-EVB is a development board for the S32K144 32-bit ARM® Cortex™-M4 MCUs.
+      </description>
+      <book category="overview"  name="http://www.nxp.com/products/automotive-products/microcontrollers-and-processors/arm-mcus-and-mpus/s32-processors-microcontrollers/s32k144-evaluation-board:S32K144EVB" title="S32K144 Evaulation Board"/>
+      <book category="setup"     name="http://www.nxp.com/assets/documents/data/en/quick-start-guide/S32K144EVB-QSG.pdf" title="Getting Started Guide"/>
+      <book category="schematic" name="http://www.nxp.com/assets/downloads/data/en/schematics/S32K144EVB-SCH.pdf" title="S32K144EVB-Q100 Schematics"/>
+      <book category="manual"    name="http://www.nxp.com/assets/downloads/data/en/board-support-packages/S32K144EVB-QSP.zip" title="S32K144EVB Quick Start Package"/>
+      <feature type="ODbg"          n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"           n="5"              name="USB Powered"/>
+      <feature type="Button"        n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="Button"        n="2"              name="2x capacitive touch"/>
+      <feature type="LED"           n="1"              name="RGB LED"/>
+      <feature type="Poti"          n="1"              name="Potentiometer for voltage and analog measurement"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="SDA 10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+    <board name="S32K148-EVB" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="S32K148UAxxxLQx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="S32K148*"/>
+      <description>
+        The S32K148-EVB is a development board for the S32K148 32-bit ARM® Cortex™-M4 MCUs.
+      </description>
+    </board>
+
+  </boards>
+
+  <examples>
+    <!-- S32K144-EVB FRDM Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="addon_mdk/Boards/NXP/S32K144-EVB/RTX5_Blinky/">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="S32K144-EVB" vendor="NXP" Dvendor="NXP:11" Dname="S32K144UAT0xxxx"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- S32K148-EVB FRDM Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="addon_mdk/Boards/NXP/S32K148-EVB/RTX5_Blinky/">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="S32K148-EVB" vendor="NXP" Dvendor="NXP:11" Dname="S32K148UAxxxLQx"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

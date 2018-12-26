@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <name>nRF_NFC</name>
+    <description>NFC services and data modelling support modules.</description>
+    <vendor>NordicSemiconductor</vendor>
+    <url>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_NFC/</url>
+    <supportContact>http://www.nordicsemi.com/About-us/Contact-us</supportContact>
+
+    <releases>
+        <release version="1.0.0-2.alpha" date="2015-12-18">
+            This is a part of Nordic Semiconductor SDK version 11.0.0-2.alpha.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>NFC</keyword>
+        <keyword>NDEF</keyword>
+    </keywords>
+
+    <boards>
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10028" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10028).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF51 PCA10031" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA10031).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10031/V1.0.0/images/nRF51_PCA10031_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/>  
+            <feature type="Other"     n="1"              name="mbed Enabled"/>
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="J-Link" connector="USB"/>          
+        </board>
+		
+		<board vendor="NordicSemiconductor" name="nRF51 PCA20006" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF51 Development Kit board (PCA20006).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca20006/V1.0.0/images/nRF51_PCA20006_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxaa"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF51 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+			<feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="3"              name="RGB LEDs"/> 
+            <feature type="Button"    n="2"              name="Push-buttons: 2 x User"/> 			
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <debugInterface adapter="JTAG/SW"			 connector="6-pin 'No Legs' Cable with 20-pin Cortex connector"/>         
+		</board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10036" revision="V1.0.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10036).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="nRF52 PCA10040" revision="V0.9.0" salesContact="http://www.nordicsemi.com/eng/About-us/Contact-us" orderForm="http://www.nordicsemi.com/eng/Buy-Online">
+            <description>Nordic Semiconductor nRF52 Development Kit board (PCA10040).</description>
+            <image small="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_small.jpg" large="http://developer.nordicsemi.com/boards/nRF51/pca10028/V1.0.0/images/nRF51_PCA10028_top_large.jpg"/>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dfamily="nRF52 Series"/>
+
+            <feature type="CoreOther" n="1"              name="Bluetooth Low Energy (Bluetooth Smart) support"/>
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="CoreOther" n="1"              name="NFC tag support"/>
+            <feature type="ODbg"      n="1"              name="On-board J-Link"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWR"       n="5"              name="USB Powered"/>
+            <feature type="PWR"       n="1.8"  m="3.6"   name="External power supply"/>
+            <feature type="PWRSock"   n="1"              name="USB"/>
+            <feature type="PWRSock"   n="2"              name="Pins for an external power supply"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="DIO"       n="31"             name="IOs available on extension headers with 2.54 mm pitch"/>
+            <feature type="USB"       n="1"              name="USB"/>
+            <feature type="ConnOther" n="1"              name="Connector for current measurement"/>
+            <feature type="ConnOther" n="1"              name="Connector for RF measurement"/>
+            <feature type="ConnOther" n="1"              name="Virtual COM port via UART"/>
+            <feature type="LED"       n="4"              name="LEDs"/>
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/> 
+            <feature type="ArduinoFF" n="1"/> 
+            <feature type="Other"     n="1"              name="mbed Enabled"/>  
+            <feature type="Other"     n="1"              name="On-board PCB antenna"/> 
+            <feature type="Other"     n="1"              name="External NFC antenna"/> 
+            <debugInterface adapter="J-Link" connector="Micro-USB"/>
+            <debugInterface adapter="J-Link" connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+
+        <board vendor="NordicSemiconductor" name="N5 Starter Kit">
+            <description>Dynastream N5 Starter Kit board (N5DK1).</description>
+            <mountedDevice    deviceIndex="0" Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+
+            <feature type="CoreOther" n="1"              name="ANT/ANT+ support"/>
+            <feature type="XTAL"      n="16000000"/>
+            <feature type="XTAL"      n="32768"/>
+            <feature type="PWRSock"   n="1"              name="CR2032 coin cell battery socket"/>
+            <feature type="LED"       n="4"              name="LEDs"/> 
+            <feature type="Button"    n="5"              name="Push-buttons: IF BOOT/RESET, 4 x User"/>
+            <feature type="Other"     n="5"              name="Switches"/> 
+            <feature type="Other"     n="1"              name="On-board antenna"/>
+            <debugInterface adapter="J-Link"             connector="Debug in: 10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link"             connector="Debug out: 10-pin Cortex Debug Connector"/>
+        </board>
+    </boards>
+
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+        <condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="nRF51 Series">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51822_xxAC"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAA"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAB"/>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF51422_xxAC"/>
+        </condition>
+        
+        <condition id="nRF52 Series">
+            <description>Nordic Semiconductor Device from nRF52 Series</description>
+            <accept Dvendor="Nordic Semiconductor:54" Dname="nRF52832_xxAA"/>
+        </condition>
+
+        <condition id="nRF51 Series CMSIS Device">
+            <description>Nordic Semiconductor Device from nRF51 Series</description>
+            <require Cclass ="CMSIS" Cgroup="CORE" Csub=""/>
+            <accept condition="nRF51 Series"/>
+            <accept condition="nRF52 Series"/>
+        </condition>
+        <condition id="nfc_uri_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_uri_rec_Test">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+        </condition>
+
+        <condition id="nfc_launchapp_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_launchapp_rec_Test">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+        </condition>
+
+        <condition id="hal_nfc">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_drv_clock" Cclass="nRF_Drivers" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="hal_nfc_logger_universal" Cclass="nRF_NFC" />
+        </condition>
+
+        <condition id="nfc_type_2_tag_parser_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+        </condition>
+        <condition id="nfc_type_2_tag_parser_File_inclu">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_error" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_delay" Cclass="nRF_Drivers" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_util" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nfc_launchapp_msg_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_launchapp_rec" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_launchapp_msg_Test">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nfc_ep_oob_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="ble_advdata" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_record" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_ep_oob_rec_File_included_by_">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="ble_advdata" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+        </condition>
+
+        <condition id="hal_nfc_logger_universal">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="app_trace" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_log" Cclass="nRF_Libraries" />
+            <require Cversion="1.2.1-2.alpha" Cvendor="NordicSemiconductor" Cgroup="segger_rtt" Cclass="nRF_Libraries" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="retarget" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nfc_le_oob_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="ble_advdata" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_record" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_le_oob_rec_File_included_by_">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="ble_advdata" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+        </condition>
+
+        <condition id="nfc_ndef_record_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+        <condition id="nfc_ndef_record_File_included_by">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nfc_uri_msg_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_uri_rec" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_uri_msg_Test">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nfc_lib">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="hal_nfc" Cclass="nRF_NFC" />
+        </condition>
+
+        <condition id="nfc_ble_pair_msg_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Csub="ble_advdata" Cgroup="BLE_Modules" Cclass="nRF_BLE" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_le_oob_rec" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ep_oob_rec" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ac_rec" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_hs_rec" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_ble_pair_msg_File_included_b">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+        <condition id="nfc_ndef_msg_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_record" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_ndef_msg_File_included_by_te">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="4.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nrf_assert" Cclass="nRF_Libraries" />
+        </condition>
+
+        <condition id="nfc_hs_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ac_rec" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_record" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_hs_rec_File_included_by_test">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_msg" Cclass="nRF_NFC" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ac_rec" Cclass="nRF_NFC" />
+        </condition>
+
+        <condition id="nfc_ac_rec_default">
+            <require condition="nRF51 Series CMSIS Device" />
+            <require Cversion="1.0.0-2.alpha" Cvendor="NordicSemiconductor" Cgroup="nfc_ndef_record" Cclass="nRF_NFC" />
+        </condition>
+        <condition id="nfc_ac_rec_File_included_by_test">
+            <require condition="nRF51 Series CMSIS Device" />
+        </condition>
+
+    </conditions>
+    <components>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_uri_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_uri_rec_default">
+  <description>Encoding data for a URI record for NFC Tag.</description>
+  <files>
+    <file category="source" name="ndef\uri\nfc_uri_rec.c" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="ndef\uri\nfc_uri_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\uri\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_uri_rec" Cvariant="Test" Cversion="1.0.0-2.alpha" condition="nfc_uri_rec_Test">
+  <description>Encoding data for a URI record for NFC Tag.</description>
+  <files>
+    <file category="header" name="ndef\uri\nfc_uri_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\uri\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_launchapp_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_launchapp_rec_default">
+  <description>Encoding data for a URI record for NFC Tag.</description>
+  <files>
+    <file category="source" name="ndef\launchapp\nfc_launchapp_rec.c" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="ndef\launchapp\nfc_launchapp_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\launchapp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_launchapp_rec" Cvariant="Test" Cversion="1.0.0-2.alpha" condition="nfc_launchapp_rec_Test">
+  <description>Encoding data for a URI record for NFC Tag.</description>
+  <files>
+    <file category="header" name="ndef\launchapp\nfc_launchapp_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\launchapp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="hal_nfc" Cversion="1.0.0-2.alpha" condition="hal_nfc">
+  <description>Hardware Abstraction Layer for NFC library.</description>
+  <files>
+    <file category="source" name="t2t_lib\hal_t2t\hal_nfc_t2t.c" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="t2t_lib\hal_t2t\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_type_2_tag_parser" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_type_2_tag_parser_default">
+  <description>Parser for decoding Type 2 Tag data.</description>
+  <files>
+    <file category="source" name="t2t_parser\nfc_t2t_parser.c" />
+    <file category="header" name="t2t_parser\nfc_t2t_parser.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="t2t_parser\nfc_tlv_block.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="t2t_parser\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_type_2_tag_parser" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_type_2_tag_parser_File_inclu">
+  <description>Parser for decoding Type 2 Tag data.</description>
+  <files>
+    <file category="header" name="t2t_parser\nfc_t2t_parser.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="t2t_parser\nfc_tlv_block.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="t2t_parser\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_launchapp_msg" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_launchapp_msg_default">
+  <description>Encoding data for a Launchapp record for NFC Tag.</description>
+  <files>
+    <file category="source" name="ndef\launchapp\nfc_launchapp_msg.c" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="ndef\launchapp\nfc_launchapp_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\launchapp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_launchapp_msg" Cvariant="Test" Cversion="1.0.0-2.alpha" condition="nfc_launchapp_msg_Test">
+  <description>Encoding data for a Launchapp record for NFC Tag.</description>
+  <files>
+    <file category="header" name="ndef\launchapp\nfc_launchapp_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\launchapp\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ep_oob_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_ep_oob_rec_default">
+  <description>Declaring record in NFC NDEF format for Bluetooth EP pairing over NFC.</description>
+  <files>
+    <file category="source" name="ndef\connection_handover\ep_oob_rec\nfc_ep_oob_rec.c" />
+    <file category="header" name="ndef\connection_handover\ep_oob_rec\nfc_ep_oob_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\ep_oob_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ep_oob_rec" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_ep_oob_rec_File_included_by_">
+  <description>Declaring record in NFC NDEF format for Bluetooth EP pairing over NFC.</description>
+  <files>
+    <file category="header" name="ndef\connection_handover\ep_oob_rec\nfc_ep_oob_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\ep_oob_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="hal_nfc_logger_universal" Cversion="1.0.0-2.alpha" condition="hal_nfc_logger_universal">
+  <description>Components to support app_tarce and RTT logging</description>
+  <files>
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_le_oob_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_le_oob_rec_default">
+  <description>Declaring record in NFC NDEF format for Bluetooth LE pairing over NFC.</description>
+  <files>
+    <file category="source" name="ndef\connection_handover\le_oob_rec\nfc_le_oob_rec.c" />
+    <file category="header" name="ndef\connection_handover\le_oob_rec\nfc_le_oob_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\le_oob_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_le_oob_rec" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_le_oob_rec_File_included_by_">
+  <description>Declaring record in NFC NDEF format for Bluetooth LE pairing over NFC.</description>
+  <files>
+    <file category="header" name="ndef\connection_handover\le_oob_rec\nfc_le_oob_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\le_oob_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ndef_record" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_ndef_record_default">
+  <description>NFC NDEF Record generator module</description>
+  <files>
+    <file category="source" name="ndef\generic\record\nfc_ndef_record.c" />
+    <file category="header" name="ndef\generic\record\nfc_ndef_record.h" />
+    <file category="include" name="ndef\generic\record\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ndef_record" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_ndef_record_File_included_by">
+  <description>NFC NDEF Record generator module</description>
+  <files>
+    <file category="header" name="ndef\generic\record\nfc_ndef_record.h" />
+    <file category="include" name="ndef\generic\record\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_uri_msg" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_uri_msg_default">
+  <description>Encoding data for NDEF message with URI record for NFC Tag.</description>
+  <files>
+    <file category="source" name="ndef\uri\nfc_uri_msg.c" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="ndef\uri\nfc_uri_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\uri\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_uri_msg" Cvariant="Test" Cversion="1.0.0-2.alpha" condition="nfc_uri_msg_Test">
+  <description>Encoding data for NDEF message with URI record for NFC Tag.</description>
+  <files>
+    <file category="header" name="ndef\uri\nfc_uri_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\uri\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_lib" Cversion="1.0.0-2.alpha" condition="nfc_lib">
+  <description>NFC library implements a part of Type 2 Tag Operation Technical Specification.</description>
+  <files>
+    <file category="library" name="t2t_lib\nfc_t2t_lib_keil.lib" />
+    <file category="header" name="t2t_lib\nfc_t2t_lib.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="header" name="t2t_lib\nfc_fixes.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="t2t_lib\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ble_pair_msg" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_ble_pair_msg_default">
+  <description>Encoding message in NFC NDEF format for Bluetooth LE pairing over NFC.</description>
+  <files>
+    <file category="source" name="ndef\connection_handover\nfc_ble_pair_msg.c" />
+    <file category="header" name="ndef\connection_handover\nfc_ble_pair_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ble_pair_msg" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_ble_pair_msg_File_included_b">
+  <description>Encoding message in NFC NDEF format for Bluetooth LE pairing over NFC.</description>
+  <files>
+    <file category="header" name="ndef\connection_handover\nfc_ble_pair_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ndef_msg" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_ndef_msg_default">
+  <description>NFC NDEF Message generator module</description>
+  <files>
+    <file category="source" name="ndef\generic\message\nfc_ndef_msg.c" />
+    <file category="header" name="ndef\generic\message\nfc_ndef_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\generic\message\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ndef_msg" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_ndef_msg_File_included_by_te">
+  <description>NFC NDEF Message generator module</description>
+  <files>
+    <file category="header" name="ndef\generic\message\nfc_ndef_msg.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\generic\message\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_hs_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_hs_rec_default">
+  <description>Declaration of NFC NDEF Handover Select record.</description>
+  <files>
+    <file category="source" name="ndef\connection_handover\hs_rec\nfc_hs_rec.c" />
+    <file category="header" name="ndef\connection_handover\hs_rec\nfc_hs_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\hs_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_hs_rec" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_hs_rec_File_included_by_test">
+  <description>Declaration of NFC NDEF Handover Select record.</description>
+  <files>
+    <file category="header" name="ndef\connection_handover\hs_rec\nfc_hs_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\hs_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+<component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ac_rec" Cvariant="default" Cversion="1.0.0-2.alpha" condition="nfc_ac_rec_default">
+  <description>Declaration of NFC NDEF Alternative Carrier record.</description>
+  <files>
+    <file category="source" name="ndef\connection_handover\ac_rec\nfc_ac_rec.c" />
+    <file category="header" name="ndef\connection_handover\ac_rec\nfc_ac_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\ac_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component><component Cvendor="NordicSemiconductor" Cclass="nRF_NFC" Cgroup="nfc_ac_rec" Cvariant="File_included_by_test" Cversion="1.0.0-2.alpha" condition="nfc_ac_rec_File_included_by_test">
+  <description>Declaration of NFC NDEF Alternative Carrier record.</description>
+  <files>
+    <file category="header" name="ndef\connection_handover\ac_rec\nfc_ac_rec.h" attr="config"  version="1.0.0-2.alpha"/>
+    <file category="include" name="ndef\connection_handover\ac_rec\" />
+    <file category="other" name="license\license.txt" />
+    <file category="doc" name="http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/library_nfc.html" />
+  </files>
+</component>
+    </components>
+</package>

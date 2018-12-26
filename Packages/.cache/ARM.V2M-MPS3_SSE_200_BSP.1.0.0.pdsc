@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2018 ARM Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>V2M-MPS3_SSE_200_BSP</name>
+  <description>
+  ARM V2M-MPS3 Board Support PACK for CoreLink SSE-200 - TrustZone enabled subsystem for embedded. This version only supports one Cortex-M33, core 0, from the 2 cores in the system.
+  </description>
+  <releases>
+    <release version="1.0.0" date="2018-02-27">
+      First version of V2M-MPS3 Board Support Pack for CoreLink SSE-200 - TrustZone enabled subsystem including device definition.
+    This version only supports one Cortex-M33, core 0, from the 2 cores in the system.
+    The flag __DOMAIN_NS is used in the internal files to distinguish between secure and non-secure application.
+    Please, use the flag as follow:
+    -> secure application uses -D__DOMAIN_NS=0
+    -> non-secure application uses -D__DOMAIN_NS=1
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package ARM CMSDK</keyword>
+    <keyword>Board Support Package for V2M-MPS3</keyword>
+    <keyword>SSE-200-MPS3</keyword>
+  </keywords>
+  <devices>
+    <!-- ****************************** ARM V2M-MPS3 SSE-200 Cortex-M33  *********************** -->
+    <family Dfamily="ARM Cortex M33 (MPS3)" Dvendor="ARM:82">
+      <!-- Select JTAG as default protocol -->
+      <debugconfig default="jtag" clock="1000000" swj="true"/>
+      <!-- The text below is formatted to be displayed correctly in the device description box. -->
+      <description>
+    SSE-200 for MPS3 (TrustZone enabled subsystem).
+
+This version only supports one Cortex-M33, core 0, from the 2 cores in the system.
+
+The flag __DOMAIN_NS is used in the internal files to distinguish between secure and non-secure application. Please, use the flag as follow:
+-> secure application uses -D__DOMAIN_NS=0
+-> non-secure application uses -D__DOMAIN_NS=1
+      </description>
+      <book name="Documents/DAI0524B_example_cortex_m33_sse200_subsystem_for_mps3.pdf" title ="Application Note AN524"/>
+      <book name="Documents/DDI0574B_corelink_sse_200_subsystem_technical_reference_manual.pdf" title ="ARM CoreLink™ SSE-200 Subsystem for Embedded - Technical Reference Manual"/>
+
+      <memory id="IROM1" start="0x10000000" size="0x00400000" startup="1" default="1"/>
+      <memory id="IROM2" start="0x00000000" size="0x00400000" startup="0" default="0"/>
+      <memory id="IRAM1" start="0x30000000" size="0x00200000" init   ="0" default="1"/>
+      <memory id="IRAM2" start="0x20000000" size="0x00200000" init   ="0" default="0"/>
+
+      <debugvars configfile="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Debug/CM33.dbgconf">
+        // Debug Authentication Variables
+        __var DAuthFixed  = 0x1;     // 1 - Use fixed authentication, 0 - Ask for user input
+        __var DAuthConfig = 0xF;     // Authentication Value (MPS3 Security Control Block)
+        // Bit 0 - Invasive Debug (Hardwired to 1)
+        // Bit 1 - Non-Invasive Debug (Hardwired to 1)
+        // Bit 2 - Invasive Secure Debug
+        // Bit 3 - Non-Invasive Secure Debug
+      </debugvars>
+
+      <sequences>
+        <!-- Local processor reset not avaialable in ARMv8-M -->
+        <sequence name="ResetProcessor" disable="true"/>
+
+        <sequence name="DebugDeviceUnlock">
+          <block>
+            __var DAuthUserInput  = 0;
+            __var DAUTHSTATUS_Val = 0;
+            __var DHCSR_Val       = 0;
+            __var SecureDebugEna   = 0;
+            __var SecureDebugAvail = 0;
+            __var DAuthVal         = 0;
+            __var SECDBGSTAT_Val   = 0;
+            __var SECDBGSET_Val    = 0;
+            __var SECDBGCLR_Val    = 0;
+            __var RESET_MASK       = 0;
+
+            DAUTHSTATUS_Val  = Read32(0xE000EE04);
+            DHCSR_Val        = Read32(0xE000EDF0);
+            SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000020) ? 1 : 0;  // SID: Secure Invasive Debug Implemented
+
+            RESET_MASK  = Read32(0x50021104);
+            RESET_MASK |= (1 &lt;&lt; 4) | (1 &lt;&lt; 6);   // RESET_MASK: Enable SYSRESETREQ0_EN and LOCKUP0_EN
+            Write32(0x50021104, RESET_MASK);
+          </block>
+
+          <control if="SecureDebugAvail" info="Configure Debug Authentication if Security Extensions available">
+            <block>
+              SecureDebugEna = ((DHCSR_Val &amp; 0x00100000) || ((DAUTHSTATUS_Val &amp; 0x00000030) == 0x00000030)) ? 1 : 0;
+            </block>
+
+            <control if="DAuthFixed">
+              <block>
+                // Debug Authentication as per Debug Configuration File
+                DAuthVal = DAuthConfig;
+              </block>
+            </control>
+            <control if="DAuthFixed == 0">
+              <block>
+                DAuthUserInput = Query(1, "Enable Secure Debug?", 3);
+              </block>
+              <control if="DAuthUserInput == 3">
+                <block>
+                  // Enable Secure Debug
+                  DAuthVal = 0xF;
+                </block>
+              </control>
+              <control if="DAuthUserInput != 3">
+                <block>
+                  // Disable Secure Debug
+                  DAuthVal = 0x3;
+                </block>
+              </control>
+            </control>
+
+            <control if="SecureDebugEna">
+              <block>
+                // Read Secure Debug Authentication Status
+                SECDBGSTAT_Val = Read32(0x50021000);
+
+                // Assemble SECDBGSET and SECDBGCLR Values
+                SECDBGSET_Val  = 0x000000AA;                                // Use internal signals:
+                                                                            // DBGEN_SEL_SET   - 1,
+                                                                            // NIDEN_SEL_SET   - 1,
+                                                                            // SPIDEN_SEL_SET  - 1,
+                                                                            // SPNIDEN_SEL_SET - 1
+
+                SECDBGSET_Val |=  DAuthVal &amp; 0x1;                       // DBGEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x2) &lt;&lt; 1;           // NIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x4) &lt;&lt; 2;           // SPIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x8) &lt;&lt; 3;           // SPNIDEN_I_SET
+
+                SECDBGCLR_Val |=   (DAuthVal ^ 0x1) &amp; 0x1;              // DBGEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x2) &amp; 0x2) &lt;&lt; 1); // NIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x4) &amp; 0x4) &lt;&lt; 2); // SPIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x8) &amp; 0x8) &lt;&lt; 3); // SPNIDEN_I_SET
+
+                // Write Secure Debug Authentication Set Register
+                Write32(0x50021004, SECDBGSET_Val);
+
+                // Write Secure Debug Authentication Clear Register
+                Write32(0x50021008, SECDBGCLR_Val);
+              </block>
+            </control>
+            <control if="SecureDebugEna == 0">
+              <control if="DAuthVal &amp; 0x4">
+                <block>
+                  Query(0, "Cannot configure Debug Authentication, secure debug disabled! Please reboot FPGA!", 1);
+                </block>
+              </control>
+            </control>
+
+          </control>
+        </sequence>
+      </sequences>
+
+      <device Dname="SSE-200-MPS3">
+      <processor Dcore="Cortex-M33" DcoreVersion="r0p2" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dtz="TZ" Dendian="Configurable" Dclock="50000000" />
+        <debug svd="SVD/MPS3_SSE_200.svd" __dp="0" __ap="1"/>
+        <compile header="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Include/mps3_sse_200.h" />
+        <feature type="IOs"           n="60"/>
+        <feature type="USART"         n="6"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="I2C"           n="4"/>
+      </device>
+    </family>
+  </devices>
+
+  <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="SSE-200-MPS3 Device">
+      <description>ARM SSE-200 Device and CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="SSE-200-MPS3"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CMSDK Native Device">
+      <description>ARM Native Device for MPS3 SSE-200</description>
+      <accept  condition="SSE-200-MPS3 Device"/>
+    </condition>
+    <condition id="CMSDK CMSIS Device">
+      <description>ARM CMSIS Device for MPS3 SSE-200</description>
+      <accept  condition="SSE-200-MPS3 Device"/>
+    </condition>
+    <condition id="V2M-MPS3-SSE-200 Common">
+      <description>V2M-MPS3-SSE-200 Common Include files</description>
+      <require condition="CMSDK CMSIS Device"/>
+      <require Cclass="Board Support" Cgroup="Common"/>
+    </condition>
+    <condition id="SSE-200-MPS3 CMSIS SPI Device">
+      <description>V2M-MPS3-SSE-200 CMSIS SPI Device</description>
+    <require condition="V2M-MPS3-SSE-200 Common"/>
+      <require Cclass="Native Driver" Cgroup="Native SPI"/>
+    </condition>
+    <condition id="SSE-200-MPS3 CMSIS I2C Device">
+      <description>V2M-MPS3-SSE-200 CMSIS I2C Device</description>
+    <require condition="V2M-MPS3-SSE-200 Common"/>
+      <require Cclass="Native Driver" Cgroup="Native I2C"/>
+    </condition>
+    <condition id="SSE-200-MPS3 CMSIS USART Device">
+      <description>V2M-MPS3-SSE-200 CMSIS USART Device</description>
+    <require condition="V2M-MPS3-SSE-200 Common"/>
+      <require Cclass="Native Driver" Cgroup="Native UART"/>
+    </condition>
+    <condition id="SSE-200-MPS3 CMSIS MPC Device">
+      <description>V2M-MPS3-SSE-200 CMSIS MPC Device</description>
+    <require condition="V2M-MPS3-SSE-200 Common"/>
+      <require Cclass="Native Driver" Cgroup="Native MPC"/>
+    </condition>
+    <condition id="SSE-200-MPS3 CMSIS PPC Device">
+      <description>V2M-MPS3-SSE-200 CMSIS PPC Device</description>
+    <require condition="V2M-MPS3-SSE-200 Common"/>
+      <require Cclass="Native Driver" Cgroup="Native PPC"/>
+    </condition>
+  </conditions>
+  <components>
+    <!--  V2M-MPS3 Board support  -->
+    <bundle Cbundle="V2M-MPS3-SSE-200" Cclass="Board Support" Cversion="1.0.0">
+      <description>ARM V2M_MPS3-SSE-200 Board Support</description>
+      <doc></doc>
+      <component Cgroup="Common" Cversion="1.0.0" condition="CMSDK CMSIS Device">
+      <description>Common Include files for ARM V2M_MPS3-SSE-200 Development Board</description>
+      <files>
+        <file category="header" name="Boards/ARM/V2M-MPS3/Common/smm_mps3.h"/>
+      </files>
+      </component>
+      <component Cgroup="MPS3 FPGA_IO" Cversion="1.0.0" condition="CMSDK CMSIS Device">
+      <description>FPGA IO driver for ARM V2M_MPS3 Board</description>
+      <files>
+        <file category="source" name="Boards/ARM/V2M-MPS3/Common/arm_mps3_io_drv.c"/>
+        <file category="header" name="Boards/ARM/V2M-MPS3/Common/arm_mps3_io_drv.h"/>
+      </files>
+      </component>
+    </bundle>
+    <!-- SSE-200 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>System and Startup for ARM SSE-200-MPS3 device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Include/"/>
+        <!-- Device configuration -->
+        <file category="header" condition="SSE-200-MPS3 Device" name="RTE_Driver/Config/RTE_Device.h" attr="config" version="1.0.0"/>
+    <!-- startup / system file -->
+        <file category="source" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Source/ARM/startup_cmsdk_mps3_sse_200.s" attr="config" version="1.0.0" condition="ARMCC"/>
+        <file category="source" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Source/system_cmsdk_mps3_sse_200.c"      attr="config" version="1.0.0"/>
+        <!-- SAU configuration -->
+        <file category="header" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Include/partition_mps3_sse_200.h" version="1.0.0" attr="config"/>
+        <!-- Retarget files -->
+        <file category="header" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Config/device_cfg.h" version="1.0.0" attr="config"/>
+        <file category="include" name="Native_Drivers/"/>
+        <file category="source" name="Device/V2M-MPS3-SSE-200/SMM-SSE-200/Source/platform_retarget_dev.c" attr="config" version="1.0.0"/>
+        <file category="source" name="Boards/ARM/V2M-MPS3/Common/mps3_time.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Cversion="1.0.0" Capiversion="2.2.0" condition="SSE-200-MPS3 CMSIS SPI Device">
+      <description>SPI driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="RTE_Driver/Driver_SPI.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Cversion="1.0.0" Capiversion="2.2.0" condition="SSE-200-MPS3 CMSIS I2C Device">
+      <description>I2C driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="RTE_Driver/Driver_I2C.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Cversion="1.0.0" Capiversion="2.2.0" condition="SSE-200-MPS3 CMSIS USART Device">
+      <description>USART driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="RTE_Driver/Driver_USART.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="MPC" Cversion="1.0.0" condition="SSE-200-MPS3 CMSIS MPC Device">
+      <description>MPC (Memory Protection Controller) driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="RTE_Driver/Driver_MPC.c"/>
+        <file category="header" name="RTE_Driver/Include/Driver_MPC.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="PPC" Cversion="1.0.0" condition="SSE-200-MPS3 CMSIS PPC Device">
+      <description>PPC (Peripheral Protection Controller) driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="RTE_Driver/Driver_PPC.c"/>
+        <file category="header" name="RTE_Driver/Include/Driver_PPC.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native SPI" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native SPI driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/spi_pl022_drv.c"/>
+        <file category="header" name="Native_Drivers/spi_pl022_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native I2C" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native I2C driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/i2c_sbcon_drv.c"/>
+        <file category="header" name="Native_Drivers/i2c_sbcon_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native UART" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native UART driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/uart_cmsdk_drv.c"/>
+        <file category="header" name="Native_Drivers/uart_cmsdk_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native MPC" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native MPC driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/mpc_sie200_drv.c"/>
+        <file category="header" name="Native_Drivers/mpc_sie200_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native PPC" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native PPC driver used by RTE Drivers for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/ppc_sse200_drv.c"/>
+        <file category="header" name="Native_Drivers/ppc_sse200_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native GPIO" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native GPIO driver for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/arm_gpio_drv.c"/>
+        <file category="header" name="Native_Drivers/arm_gpio_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native Watchdog" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native Watchdog driver for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/arm_watchdog_drv.c"/>
+        <file category="header" name="Native_Drivers/arm_watchdog_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native CMSDK Timer" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native CMSDK Timer driver for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/timer_cmsdk_drv.c"/>
+        <file category="header" name="Native_Drivers/timer_cmsdk_drv.h"/>
+      </files>
+    </component>
+    <component Cclass="Native Driver" Cgroup="Native CMSDK Dualtimer" Cversion="1.0.0" condition="SSE-200-MPS3 Device">
+      <description>Native CMSDK Dualtimer driver for SSE-200</description>
+      <files>
+        <file category="source" name="Native_Drivers/dualtimer_cmsdk_drv.c"/>
+        <file category="header" name="Native_Drivers/dualtimer_cmsdk_drv.h"/>
+      </files>
+    </component>
+  </components>
+  <boards>
+    <board name="V2M-MPS3-SSE-200" vendor="ARM" revision="B" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp">
+      <description>ARM Versatile Express Cortex-M Prototyping System Board</description>
+      <book category="overview" name="https://developer.arm.com/products/system-design/development-boards/fpga-prototyping-boards/mps3" title="Arm MPS3 FPGA protoyping Board (web page)"/>
+      <mountedDevice    deviceIndex="0" Dvendor="ARM:82" Dname="SSE-200-MPS3"/>
+      <!-- <compatibleDevice    deviceIndex="0" Dvendor="ARM:82" Dname="CMSDK_IOTSS"/> -->
+      <feature type="XTAL"      n="40000000"/>
+      <feature type="PWR"       n="12"             name="12V DC power jack"/>
+      <feature type="Batt"      n="1"              name="3V battery"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 2 FPGA User, Hardware RESET, ON/OFF soft RESET"/>
+      <feature type="ContOther" n="8"              name="Switches: 8 MCC User switches"/>
+      <feature type="USB"       n="2"              name="USB 2.0 configuration port"/>
+      <feature type="RS232"     n="1"              name="General purpose UART Connector"/>
+      <feature type="SPI"       n="3"              name="SPI Header"/>
+      <feature type="Other"     n="1"              name="VGA Connector"/>
+      <feature type="GLCD"      n="1"  m="240.320" name="2.4 inch QVGA Touchscreen Display"/>
+      <feature type="LineIn"    n="1"              name="Stereo line audio IN"/>
+      <feature type="LineOut"   n="1"              name="Stereo line audio OUT"/>
+      <feature type="ETH"       n="1" m="10000000" name="RJ45 Ethernet Connector"/>
+      <feature type="ConnOther" n="1"              name="ARM JTAG 20 Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (20 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (10 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="MICTOR 38 Interface"/>
+
+      <debugInterface adapter="JTAG/SW"   connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="20 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+  <!-- Examples -->
+  <examples>
+      <example name="Blink LEDs" doc="README.md" folder="Boards/ARM/V2M-MPS3/Examples/Blinky" version="1.0.0">
+      <description>"Blink the LEDs. This example is a secure code only.</description>
+      <board name="V2M-MPS3-SSE-200" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Board Support" Cgroup="Common"/>
+        <component Cclass="Board Support" Cgroup="MPS3 FPGA_IO"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

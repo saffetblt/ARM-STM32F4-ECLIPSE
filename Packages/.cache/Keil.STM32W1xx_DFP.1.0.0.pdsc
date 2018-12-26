@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>STM32W1xx_DFP</name>
+  <description>STMicroelectronics STM32W1 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.0.0">
+      First Release version of STM32W1 Device Family Pack.
+    </release>
+  </releases>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="STM32W1 Series" Dvendor="STMicroelectronics:13">
+      <processor Dcore="Cortex-M3" DcoreVersion="r1p1"/>
+      <book    name="Documents\dui0552a_cortex_m3_dgug.pdf"           title="Cortex-M3 Generic User Guide"/>
+        <description>
+STMicroelectronics' STM32W108 is a fully integrated System-on-Chip that integrates a 2.4 GHz, IEEE 802.15.4-compliant transceiver.
+The transceiver utilizes an efficient architecture that exceeds the dynamic range requirements imposed by the IEEE 802.15.4-2003 standard by over 15 dB. The integrated receive channel filtering allows for robust co-existence with other communication standards in the 2.4 GHz spectrum, such as IEEE 802.11 and Bluetooth. The integrated regulator, VCO, loop filter, and power amplifier keep the external component count low. An optional high performance radio mode (boost mode) is software-selectable to boost dynamic range.
+Typical applications include RF4CE products and remote controls, 6LoWPAN and custom protocols, 802.15.4 based network protocols (standard and proprietary)
+        </description>
+
+        <feature type="ComOther"      n="1"                           name="2.4 GHz IEEE 802.15.4 transceiver &amp; lower MAC"/>
+        <feature type="Crypto"        n="1"                           name="AES128 encryption accelerator"/>
+        <feature type="ADC"           n="6"       m="12"/>
+        <feature type="SPI"           n="2"       m="6000000"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="UART"          n="1"       m="921600"/>
+        <feature type="Timer"         n="2"       m="16"/>
+        <feature type="IOs"           n="24"                          name="24 highly configurable GPIOs with Schmitt trigger inputs"/>
+        <feature type="IntRC"         n="1"/>
+        <feature type="DMA"           n="2"/>
+        <feature type="VCC"           n="2.10"    m="3.60"/>
+
+
+      <!-- ************************  Subfamily 'STM32W1'  **************************** -->
+      <subFamily DsubFamily="STM32W1">
+      
+      <!-- *************************  Device 'STM32W108C8'  ***************************** -->
+      <device Dname="STM32W108C8">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device\Include\stm32w108xx.h"  define="STM32W108C8"/>
+        <debug      svd="SVD\STM32W108.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32W108_64.FLM"   start="0x08000000"  size="0x10000"                  default="1"/>
+        <algorithm  name="Flash\STM32W108_OPT.FLM"  start="0x08000000"  size="0x0010"                   default="0"/>
+        <book    name="Documents\STM32W108C8.pdf"            title="STM32W108C8 Data Sheet"/>
+        <feature type="QFP"           n="48"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32W108CB'  ***************************** -->
+      <device Dname="STM32W108CB">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device\Include\stm32w108xx.h"  define="STM32W108CB"/>
+        <debug      svd="SVD\STM32W108.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32W108_128.FLM"  start="0x08000000"  size="0x20000"                  default="1"/>
+        <algorithm  name="Flash\STM32W108_OPT.FLM"  start="0x08000000"  size="0x0010"                   default="0"/>
+        <book    name="Documents\STM32W108HB.pdf"            title="STM32W108HB Data Sheet"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="QFP"           n="40"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32W108CC'  ***************************** -->
+      <device Dname="STM32W108CC">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device\Include\stm32w108xx.h"  define="STM32W108CC"/>
+        <debug      svd="SVD\STM32W108.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32W108_256.FLM"  start="0x08000000"  size="0x40000"                  default="1"/>
+        <algorithm  name="Flash\STM32W108_OPT.FLM"  start="0x08000000"  size="0x0010"                   default="0"/>
+        <book    name="Documents\STM32W108HB.pdf"            title="STM32W108HB Data Sheet"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="QFP"           n="40"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32W108CZ'  ***************************** -->
+      <device Dname="STM32W108CZ">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device\Include\stm32w108xx.h"  define="STM32W108CZ"/>
+        <debug      svd="SVD\STM32W108.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x30000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x3000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32W108_192.FLM"  start="0x08000000"  size="0x30000"                  default="1"/>
+        <algorithm  name="Flash\STM32W108_OPT.FLM"  start="0x08000000"  size="0x0010"                   default="0"/>
+        <book    name="Documents\STM32W108HB.pdf"            title="STM32W108HB Data Sheet"/>
+        <feature type="QFP"           n="48"/>
+        <feature type="QFP"           n="40"/>
+      </device>
+      
+      <!-- *************************  Device 'STM32W108HB'  ***************************** -->
+      <device Dname="STM32W108HB">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="24000000"/>
+        <compile header="Device\Include\stm32w108xx.h"  define="STM32W108HB"/>
+        <debug      svd="SVD\STM32W108.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash\STM32W108_128.FLM"  start="0x08000000"  size="0x20000"                  default="1"/>
+        <algorithm  name="Flash\STM32W108_OPT.FLM"  start="0x08000000"  size="0x0010"                   default="0"/>
+        <book    name="Documents\STM32W108HB.pdf"            title="STM32W108HB Data Sheet"/>
+        <feature type="QFP"           n="40"/>
+        <feature type="QFP"           n="40"/>
+      </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+    <condition id="Compiler ARM">
+      <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="STM32W1">
+      <description>STMicroelectronics STM32W1 Series devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32W1*"/>
+    </condition>
+
+    <condition id="STM32W1 CMSIS Device">
+      <!-- conditions selecting Devices -->
+      <description>STMicroelectronics STM32W1 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32W1*"/>
+    </condition>
+
+  </conditions>
+
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="STM32W1 CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for STMicroelectronics STM32W1 Series</description>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device\Include\"/>
+
+        <!-- Flash Option Bytes templates -->
+        <file category="source" name="Device\Source\ARM\STM32W108_OPT.s"          attr="template"  select="Flash Option Bytes Template"   condition="STM32W1"/>
+        
+        <!-- header files -->
+        <file category="header" name="Device\Include\stm32w108xx.h"                                                                         condition="STM32W1"/>
+
+        <!-- startup files -->
+        <file category="source" name="Device\Source\ARM\startup_stm32w108xx.s"   attr="config"                                            condition="STM32W1"/>
+
+        <!-- system file -->
+        <file category="source" name="Device\Source\system_stm32w108xx.c"        attr="config"                                            condition="STM32W1"/>
+        
+      </files>
+    </component>
+    
+  </components>
+</package>

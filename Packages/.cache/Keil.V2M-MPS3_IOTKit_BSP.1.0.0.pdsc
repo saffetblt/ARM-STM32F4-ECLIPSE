@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>V2M-MPS3_IOTKit_BSP</name>
+  <description>ARM V2M-MPS3 Device Family Pack for IOT-Kit devices</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="CMSIS" version="5.0.1-0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.0" date="2017-08-10">
+      First Release of V2M-MPS3 Device Family Pack for IOT-Kit devices.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>Device Family Pack for V2M-MPS3</keyword>
+    <keyword>IOT-Kit</keyword>
+  </keywords>
+
+  <devices>
+    <!-- ******************************  IOTKit Cortex-M33 *********************** -->
+    <family Dfamily="ARM Cortex M33 (MPS3)" Dvendor="ARM:82">
+      <!-- Select JTAG as default protocol -->
+      <debugconfig default="jtag" swj="true"/>
+
+      <!--book name="Device/Documents/ARMv8MML_dgug.pdf"       title="ARMv8MML Device Generic Users Guide"/-->
+      <description>
+IOT-Kit: Cortex-M33 based device.
+      </description>
+
+      <memory id="IROM1" start="0x10000000" size="0x00200000" startup="1" default="1"/>
+      <memory id="IROM2" start="0x00200000" size="0x00200000" startup="0" default="0"/>
+      <memory id="IRAM1" start="0x38000000" size="0x00200000" init   ="0" default="1"/>
+      <memory id="IRAM2" start="0x28200000" size="0x00200000" init   ="0" default="0"/>
+
+      <debugvars configfile="Device/IOTKit_CM33/Debug/CM33.dbgconf">
+        // Debug Authentication Variables
+        __var DAuthFixed  = 0x1;     // 1 - Use fixed authentication, 0 - Ask for user input
+        __var DAuthConfig = 0xF;     // Authentication Value (MPS3 Security Control Block)
+        // Bit 0 - Invasive Debug (Hardwired to 1)
+        // Bit 1 - Non-Invasive Debug (Hardwired to 1)
+        // Bit 2 - Invasive Secure Debug
+        // Bit 3 - Non-Invasive Secure Debug
+      </debugvars>
+
+      <sequences>
+        <!-- Local processor reset not avaialable in ARMv8-M -->
+        <sequence name="ResetProcessor" disable="true"/>
+
+        <sequence name="DebugDeviceUnlock">
+          <block>
+            __var DAuthUserInput  = 0;
+            __var DAUTHSTATUS_Val = 0;
+            __var DHCSR_Val       = 0;
+            __var SecureDebugEna   = 0;
+            __var SecureDebugAvail = 0;
+            __var DAuthVal         = 0;
+            __var SECDBGSTAT_Val   = 0;
+            __var SECDBGSET_Val    = 0;
+            __var SECDBGCLR_Val    = 0;
+            __var RESET_MASK       = 0;
+
+            DAUTHSTATUS_Val  = Read32(0xE000EFB8);
+            DHCSR_Val        = Read32(0xE000EDF0);
+            SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000020) ? 1 : 0;  // SID: Secure Invasive Debug Implemented
+
+            RESET_MASK  = Read32(0x50021104);
+            RESET_MASK |= (1 &lt;&lt; 4) | (1 &lt;&lt; 6);   // RESET_MASK: Enable SYSRESETREQ0_EN and LOCKUP0_EN
+            Write32(0x50021104, RESET_MASK);
+          </block>
+
+          <control if="SecureDebugAvail" info="Configure Debug Authentication if Security Extensions available">
+            <block>
+              SecureDebugEna = ((DHCSR_Val &amp; 0x00100000) || ((DAUTHSTATUS_Val &amp; 0x00000030) == 0x00000030)) ? 1 : 0;
+            </block>
+
+            <control if="DAuthFixed">
+              <block>
+                // Debug Authentication as per Debug Configuration File
+                DAuthVal = DAuthConfig;
+              </block>
+            </control>
+            <control if="DAuthFixed == 0">
+              <block>
+                DAuthUserInput = Query(1, "Enable Secure Debug?", 3);
+              </block>
+              <control if="DAuthUserInput == 3">
+                <block>
+                  // Enable Secure Debug
+                  DAuthVal = 0xF;
+                </block>
+              </control>
+              <control if="DAuthUserInput != 3">
+                <block>
+                  // Disable Secure Debug
+                  DAuthVal = 0x3;
+                </block>
+              </control>
+            </control>
+
+            <control if="SecureDebugEna">
+              <block>
+                // Read Secure Debug Authentication Status
+                SECDBGSTAT_Val = Read32(0x50021000);
+
+                // Assemble SECDBGSET and SECDBGCLR Values
+                SECDBGSET_Val  = 0x000000AA;                                // Use internal signals:
+                                                                            // DBGEN_SEL_SET   - 1,
+                                                                            // NIDEN_SEL_SET   - 1,
+                                                                            // SPIDEN_SEL_SET  - 1,
+                                                                            // SPNIDEN_SEL_SET - 1
+
+                SECDBGSET_Val |=  DAuthVal &amp; 0x1;                       // DBGEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x2) &lt;&lt; 1;           // NIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x4) &lt;&lt; 2;           // SPIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x8) &lt;&lt; 3;           // SPNIDEN_I_SET
+
+                SECDBGCLR_Val |=   (DAuthVal ^ 0x1) &amp; 0x1;              // DBGEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x2) &amp; 0x2) &lt;&lt; 1); // NIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x4) &amp; 0x4) &lt;&lt; 2); // SPIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x8) &amp; 0x8) &lt;&lt; 3); // SPNIDEN_I_SET
+
+                // Write Secure Debug Authentication Set Register
+                Write32(0x50021004, SECDBGSET_Val);
+
+                // Write Secure Debug Authentication Clear Register
+                Write32(0x50021008, SECDBGCLR_Val);
+              </block>
+            </control>
+            <control if="SecureDebugEna == 0">
+              <control if="DAuthVal &amp; 0x4">
+                <block>
+                  Query(0, "Cannot configure Debug Authentication, secure debug disabled! Please reboot FPGA!", 1);
+                </block>
+              </control>
+            </control>
+
+          </control>
+        </sequence>
+      </sequences>
+
+      <device Dname="IOTKit_CM33_MPS3">
+        <processor Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Little-endian" Dclock="25000000"/>
+        <debug svd="SVD/IOTKit_CM33.svd"/>
+        <compile header="Device/IOTKit_CM33/Include/IOTKit_CM33.h" define="IOTKit_CM33"/>
+      </device>
+
+      <device Dname="IOTKit_CM33_FP_MPS3">
+        <processor Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Little-endian" Dclock="25000000"/>
+        <debug svd="SVD/IOTKit_CM33.svd"/>
+        <compile header="Device/IOTKit_CM33/Include/IOTKit_CM33_FP.h" define="IOTKit_CM33_FP"/>
+      </device>
+    </family>
+
+  </devices>
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="IOTKit_CM33 CMSIS Device">
+      <description>ARM IOT-Kit Cortex-M33 Device and CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="IOTKit_CM33*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="IOTKit CMSIS Device">
+      <description>ARM IOT-Kit Device</description>
+      <accept  condition="IOTKit_CM33 CMSIS Device"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!--  V2M-MPS3 Board support  -->
+    <bundle Cbundle="V2M-MPS3 IOT-Kit" Cclass="Board Support" Cversion="2.0.0">
+      <description>ARM V2M_MPS3 Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED"         Capiversion="1.0.0" condition="IOTKit CMSIS Device">
+      <description>LED driver for ARM V2M_MPS3 Board</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS3/Common/LED_V2M-MPS3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"     Capiversion="1.0.0" condition="IOTKit CMSIS Device">
+      <description>Button driver for ARM V2M_MPS3 Board</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS3/Common/Buttons_V2M-MPS3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="IOTKit CMSIS Device">
+        <description>Graphic LCD driver for ARM V2M_MPS3 Board</description>
+        <files>
+          <file category="header" name="Boards/ARM/V2M-MPS3/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/ARM/V2M-MPS3/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/ARM/V2M-MPS3/Common/GLCD_V2M-MPS3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" condition="IOTKit CMSIS Device">
+        <description>Touchscreen driver for ARM V2M_MPS3 Board</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS3/Common/Touch_V2M-MPS3.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1.0" Cversion="1.0.0" condition="IOTKit CMSIS Device">
+      <description>USART Driver for ARM V2M_MPS3 Board</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/USART_V2M-MPS3.c"/>
+      </files>
+    </component>
+
+    <!-- IOTKit_CM33 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="IOTKit_CM33 CMSIS Device">
+      <description>System and Startup for ARM IOTKit_CM33 device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include"      name="Device/IOTKit_CM33/Include/"/>
+
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/IOTKit_CM33/Source/ARM/startup_IOTKit_CM33.s" version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/IOTKit_CM33/Source/GCC/startup_IOTKit_CM33.S" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="linkerScript" name="Device/IOTKit_CM33/Source/GCC/gcc_arm.ld"            version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/IOTKit_CM33/Source/system_IOTKit_CM33.c"      version="1.0.0" attr="config"/>
+
+        <!-- SAU configuration -->
+        <file category="header" name="Device/IOTKit_CM33/Include/Template/partition_IOTKit_CM33.h" attr="config" version="1.0.0"/>
+
+        <!-- device configuration -->
+        <file category="header"  name="CMSIS/Config/RTE_Device.h"                                  attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="V2M-MPS3 (IoT)" vendor="ARM" revision="HPI-0309B" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp">
+      <description>ARM Versatile Express Cortex-M Prototyping System Board</description>
+      <!--image small="Boards/ARM/V2M-MPS3/Documents/V2M-MPS3_revB_colour_thumb.png"
+             large="Boards/ARM/V2M-MPS3/Documents/V2M-MPS3_revB_colour_medium.png"/-->
+      <!--book category="overview" name="http://www.arm.com/products/tools/development-boards/versatile-express/cortex-m-prototyping-system.php" title="Cortex-M Prototyping System (web page)"/-->
+      <!--book category="manual"   name="Boards/ARM/V2M-MPS3/Documents/DDI0479C_cortex_m_system_design_kit_r1p0_trm.pdf"                         title="Cortex-M System Design Kit Technical Reference Manual"/-->
+      <mountedDevice    deviceIndex="0" Dvendor="ARM:82" Dname="IOTKit_CM33_MPS3"/>
+      <compatibleDevice deviceIndex="0" Dvendor="ARM:82" Dname="IOTKit_CM33_FP_MPS3"/>
+      <feature type="XTAL"      n="50000000"/>
+      <feature type="PWR"       n="12"             name="12V DC power jack"/>
+      <feature type="Batt"      n="1"              name="3V battery"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 2 FPGA User, Hardware RESET, ON/OFF soft RESET"/>
+      <feature type="ContOther" n="8"              name="Switches: 8 MCC User switches"/>
+      <feature type="USB"       n="1"              name="USB 2.0 configuration port"/>
+      <feature type="RS232"     n="1"              name="General purpose UART Connector"/>
+      <feature type="SPI"       n="1"              name="SPI Header"/>
+      <feature type="Other"     n="1"              name="VGA Connector"/>
+      <feature type="GLCD"      n="1"  m="240.320" name="2.4 inch QVGA Touchscreen Display"/>
+	  <feature type="LineIn"    n="1"              name="Stereo line audio IN"/>
+	  <feature type="LineOut"   n="1"              name="Stereo line audio OUT"/>
+      <feature type="ETH"       n="1" m="10000000" name="RJ45 Ethernet Connector"/>
+      <feature type="ConnOther" n="1"              name="ARM JTAG 20 Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (20 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (10 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="MICTOR 38 Interface"/>
+
+      <debugInterface adapter="JTAG/SW"   connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="20 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!--  V2M-MPS3 Board CMSDK_IOT Examples  -->
+    <example name="IOT-Kit CM33 Blinky" doc="Abstract.txt" folder="Boards/ARM/V2M-MPS3/IOTKit_CM33/Blinky">
+      <!-- Image: AN522 -->
+      <description>IOT-Kit CM33 Blinky example</description>
+      <board name="V2M-MPS3 (IoT)" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="IOT-Kit CM33 Secure/Non-Secure" doc="Abstract.txt" folder="Boards/ARM/V2M-MPS3/IOTKit_CM33/IOTKit_CM33_S_NS">
+      <!-- Image: AN522 -->
+      <description>IOT-Kit CM33 Secure/Non-Secure example</description>
+      <board name="V2M-MPS3 (IoT)" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="IOTKit_CM33_s_ns.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+    
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>SharkSSL-Lite</name>                                                     <!-- name of package -->
+  <description>
+    SharkSSL-Lite is a super small and super fast pre-compiled SharkSSL TLS library for Cortex-M3 and up.
+  </description>  <!-- brief description of PACK -->
+  <vendor>RealTimeLogic</vendor>                                                 <!-- unique vendor/distributor of PACK -->
+  <url>https://realtimelogic.com/downloads/arm-mdk-packs/</url>
+  <license>SharkSSL/License.txt</license>
+
+  <releases>                                                                <!-- contains complete release history of available releases (put most recent first) -->
+    <release version="38.9.8">
+      June/20/2016,  First MDK release
+    </release>
+  </releases>
+  
+  <keywords>                                                                 <!-- PACK related keywords for search indexing (automatic are vendor and pack name) -->
+    <keyword>SharkSSL</keyword>
+    <keyword>Security</keyword>
+    <keyword>SSL</keyword>
+    <keyword>TLS</keyword>
+    <keyword>Crypt</keyword>
+    <keyword>Cipher</keyword>
+    <keyword>MQTT</keyword>
+    <keyword>WebSocket</keyword>
+    <keyword>Internet of Things</keyword>
+    <keyword>IoT</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="Cond-SharkSSL">
+      <require Cclass="SharkSSL" Cgroup="Lib"/>
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Cortex-M">
+      <description>Pre-compiled SharkSSL lib is available for M3 and up</description>
+      <require Tcompiler="ARMCC"/>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="Cortex-M4"/>
+      <accept Dcore="Cortex-M7"/>
+      <accept Dcore="SC300"/>
+      <accept Dcore="Cortex-R4"/>
+      <accept Dcore="Cortex-R5"/>
+      <accept Dcore="Cortex-A8"/>
+      <accept Dcore="Cortex-A9"/>
+      <accept Dcore="Cortex-A15"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="SharkSSL" Cgroup="Lib" Cversion="38.9.8" condition="Cortex-M">
+      <description>SharkSSL Library</description>
+      <files>
+        <file category="doc"     name="SharkSSL/doc/SharkSSL-Lite.html"/>
+        <file category="include" name="SharkSSL/inc/"/>
+        <file category="source"  name="SharkSSL/src/umm_malloc.c" />
+        <file category="library"  name="SharkSSL/lib/SharkSSL-Lite.lib"/>
+      </files>
+    </component>
+
+    <component Cclass="SharkSSL" Cgroup="Examples" Csub="SMQ" Cversion="38.9.8" condition="Cond-SharkSSL">
+      <description>Secure SMQ Example</description>
+      <files>
+        <file category="doc"     name="SharkSSL/doc/m2m-led-SharkMQ.html"/>
+        <file category="source"  name="SharkSSL/examples/m2m-led-SharkMQ.c" />
+      </files>
+    </component>
+
+    <component Cclass="SharkSSL" Cgroup="Examples" Csub="MQTT" Cversion="38.9.8" condition="Cond-SharkSSL">
+      <description>Secure MQTT Example</description>
+      <files>
+        <file category="doc"     name="SharkSSL/doc/chat-SharkMQTT.html"/>
+        <file category="source"  name="SharkSSL/examples/chat-SharkMQTT.c" />
+      </files>
+    </component>
+
+    <component Cclass="SharkSSL" Cgroup="Examples" Csub="WebSocket" Cversion="38.9.8" condition="Cond-SharkSSL">
+      <description>Secure WebSocket Client Example</description>
+      <files>
+        <file category="doc"     name="SharkSSL/doc/WsEchoClient.html"/>
+        <file category="source"  name="SharkSSL/examples/WsEchoClient.c" />
+      </files>
+    </component>
+
+  </components>
+
+  <examples>
+
+      <example name="SharkMQ LED Example" doc="Abstract.txt" folder="Boards/ST/STM32F746G_Discovery/SharkMQ-LED">
+      <description>Secure SMQ IoT pub/sub LED Example (control LEDs via cloud server)</description>
+      <board name="STM32F746G-Discovery" vendor="STMicroelectronics" Dvendor="STMicroelectronics:13"/>
+      <project>
+        <environment name="uv" load="SMQ.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="SharkSSL" Cgroup="Lib"/>
+        <component Cclass="SharkSSL" Cgroup="Example"/>
+        <category>Security</category>
+        <category>IoT</category>
+        <category>Middleware</category>
+        <keyword>IoT</keyword>
+        <keyword>Internet of Things</keyword>
+        <keyword>Security</keyword>
+        <keyword>SSL</keyword>
+        <keyword>TLS</keyword>
+        <keyword>SMQ</keyword>
+        <keyword>MQTT</keyword>
+      </attributes>
+    </example>
+
+      <example name="SharkMQ LED Example" doc="Abstract.txt" folder="Boards/NXP/FRDM-K64F/SharkMQ-LED">
+      <description>Secure SMQ IoT pub/sub LED Example (control LEDs via cloud server)</description>
+      <board name="FRDM-K64F" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="SMQ.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="SharkSSL" Cgroup="Lib"/>
+        <component Cclass="SharkSSL" Cgroup="Example"/>
+        <category>Security</category>
+        <category>IoT</category>
+        <category>Middleware</category>
+        <keyword>IoT</keyword>
+        <keyword>Internet of Things</keyword>
+        <keyword>Security</keyword>
+        <keyword>SSL</keyword>
+        <keyword>TLS</keyword>
+        <keyword>SMQ</keyword>
+        <keyword>MQTT</keyword>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>
+
+

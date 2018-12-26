@@ -1,0 +1,2075 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>SAM4_DFP</name>
+  <description>Microchip SAM4 Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.6.1" date="2018-05-07">
+      Updated device vendor from Atmel to Microchip.
+      Updated emWin examples to emWin V5.46e.
+      Updated Board Support LED_*.c files.
+      Updated system file with corrected SystemCoreClock initial value to value set by SystemInit function
+    </release>
+    <release version="1.6.0" date="2017-02-06">
+      Updated flash algorithms:
+       - Added GPNVM Bytes templates (SAM4xGPNVM.s).
+       - Added ATSAM4C_GPNVM.FLM.
+       - Updated ATSAM4C_*.FLM.
+      Updated SAM4C-EK examples
+      Updated emWin examples to emWin V5.36f
+      Updated system_SAM4S.c.
+    </release>
+    <release version="1.5.0" date="2016-07-12">
+      emWin:
+      - Updated emWin examples to emWin V5.32.
+    </release>
+    <release version="1.4.0" date="2015-08-28">
+      Device Support:
+      - Added SAM4CMS4C device support
+      - Updated SAM4CM* device support
+      - Reorganized SM4CM* folder structure
+    </release>
+    <release version="1.3.0" date="2015-06-22">
+      Device Support:
+      - Added SAM4C4C and SAM4CP16C
+      - Updated SAM4C device support files and user manual.
+      - Corrected ATSAM4C32_2048 Flash algorithm:
+        -- set/clear GPNVM bits did not work as expected on this device.
+      - Device feature descriptions corrected
+      Board Support:
+      - Added SAM4S-EK board support
+      - Added SAM4S-EK, SAN4E-EK emWin examples.
+      - Added emWin LCD Configuration file for FTM280C34D (8-bit Interface).
+    </release>
+    <release version="1.2.0" date="2014-12-05">
+      Added ATSAM4S devices:
+      - ATSAM4S2A, ATSAM4S2B, ATSAM4S2C,ATSAM4S4A, ATSAM4S4B, ATSAM4S4C
+      Added Board Support bundles
+      Corrected ATSAM4N, ATSAM4E flash algorithm
+      Updated device support files
+    </release>
+    <release version="1.1.0" date="2014-09-18">
+      Updated flash programming algorithms to use internal oscillator.
+    </release>
+    <release version="1.0.2" date="2014-03-12">
+      New Devices: SAM4C32 and SAM4CM32 Series
+    </release>
+    <release version="1.0.1" date="2014-02-20">
+      New Devices: SAM4CP and SAM4CM Series
+      Updated: SAM4C Device Support files
+    </release>
+    <release version="1.0.0">
+      First Release version of SAM4 Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Microchip</keyword>
+    <keyword>SAM4</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="SAM4 Series" Dvendor="Microchip:3">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+
+      <feature type="TempSens"      n="1"/>
+      <feature type="RTC"           n="1"       m="32768"/>
+
+      <!-- ************************  Subfamily 'SAM4LC'  **************************** -->
+      <subFamily DsubFamily="SAM4LC">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="48000000"/>
+        <compile header="Device/Include/SAM4L/sam4l.h"/>
+        <book name="Documents/Atmel-42023-ARM-Microcontroller-ATSAM4L-Low-Power-LCD_Datasheet.pdf" title="SAM4L Datasheet"/>
+        <description>
+The SAM4LC Cortex-M4 processor-based Flash microcontrollers offer the industry’s lowest power consumption
+and fastest wake-up. The devices feature an LCD controller with up to 4x40 segments, an embedded capacitive
+touch module supported by Microchip QTouch technology, USB host, and multiple serial communication interfaces.
+They are ideal for a wide range of industrial, healthcare and consumer applications.
+        </description>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="Touch"         n="1"                           name="Hardware QTouch Acquisition"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="DAC"           n="1"       m="10"/>
+        <feature type="Crypto"        n="1"       m="128"/>
+
+        <!-- *************************  Device 'ATSAM4LC2A'  ***************************** -->
+        <device Dname="ATSAM4LC2A">
+          <compile    define="__SAM4LC2A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC2A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="27"/>
+          <feature type="ExtInt"        n="27"/>
+          <feature type="Touch"         n="13"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="LCD"           n="13"/>
+          <feature type="ADC"           n="3"       m="12"/>
+          <feature type="AnalogOther"   n="1"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC2B'  ***************************** -->
+        <device Dname="ATSAM4LC2B">
+          <compile    define="__SAM4LC2B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC2B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="43"/>
+          <feature type="ExtInt"        n="43"/>
+          <feature type="Touch"         n="21"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="23"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC2C'  ***************************** -->
+        <device Dname="ATSAM4LC2C">
+          <compile    define="__SAM4LC2C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC2C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="75"/>
+          <feature type="ExtInt"        n="75"/>
+          <feature type="Touch"         n="32"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="40"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC4A'  ***************************** -->
+        <device Dname="ATSAM4LC4A">
+          <compile    define="__SAM4LC4A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC4A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="27"/>
+          <feature type="ExtInt"        n="27"/>
+          <feature type="Touch"         n="13"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="LCD"           n="13"/>
+          <feature type="ADC"           n="3"       m="12"/>
+          <feature type="AnalogOther"   n="1"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC4B'  ***************************** -->
+        <device Dname="ATSAM4LC4B">
+          <compile    define="__SAM4LC4B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC4B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="43"/>
+          <feature type="ExtInt"        n="43"/>
+          <feature type="Touch"         n="21"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="23"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC4C'  ***************************** -->
+        <device Dname="ATSAM4LC4C">
+          <compile    define="__SAM4LC4C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC4C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="75"/>
+          <feature type="ExtInt"        n="75"/>
+          <feature type="Touch"         n="32"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="40"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC8A'  ***************************** -->
+        <device Dname="ATSAM4LC8A">
+          <compile    define="__SAM4LC8A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC8A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="43"/>
+          <feature type="ExtInt"        n="43"/>
+          <feature type="Touch"         n="21"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="23"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC8B'  ***************************** -->
+        <device Dname="ATSAM4LC8B">
+          <compile    define="__SAM4LC8B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC8B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="43"/>
+          <feature type="ExtInt"        n="43"/>
+          <feature type="Touch"         n="21"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="23"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LC8C'  ***************************** -->
+        <device Dname="ATSAM4LC8C">
+          <compile    define="__SAM4LC8C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LC8C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="75"/>
+          <feature type="ExtInt"        n="75"/>
+          <feature type="Touch"         n="32"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="LCD"           n="40"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'SAM4LS'  **************************** -->
+      <subFamily DsubFamily="SAM4LS">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="48000000"/>
+        <compile header="Device/Include/SAM4L/sam4l.h"/>
+        <book name="Documents/Atmel-42023-ARM-Microcontroller-ATSAM4L-Low-Power-LCD_Datasheet.pdf" title="SAM4L Datasheet"/>
+        <description>
+The SAM4LS Cortex-M4 processor-based Flash microcontrollers offer the industry’s lowest power consumption
+and fastest wake-up. The devices feature an embedded capacitive touch module supported by Microchip QTouch
+technology, USB device, and multiple serial communication interfaces. They are ideal for a wide range of
+industrial, healthcare and consumer applications.
+        </description>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="Touch"         n="32"/>
+        <feature type="Touch"         n="1"                           name="Hardware QTouch Acquisition"/>
+        <feature type="SPI"           n="1"/>
+        <feature type="DAC"           n="1"       m="10"/>
+
+        <!-- *************************  Device 'ATSAM4LS2A'  ***************************** -->
+        <device Dname="ATSAM4LS2A">
+          <compile    define="__SAM4LS2A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS2A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="32"/>
+          <feature type="ExtInt"        n="32"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="3"       m="12"/>
+          <feature type="AnalogOther"   n="1"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS2B'  ***************************** -->
+        <device Dname="ATSAM4LS2B">
+          <compile    define="__SAM4LS2B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS2B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="48"/>
+          <feature type="ExtInt"        n="48"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS2C'  ***************************** -->
+        <device Dname="ATSAM4LS2C">
+          <compile    define="__SAM4LS2C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS2C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_128.FLM"    start="0x00000000"  size="0x20000"                  default="1"/>
+
+          <feature type="IOs"           n="80"/>
+          <feature type="ExtInt"        n="80"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS4A'  ***************************** -->
+        <device Dname="ATSAM4LS4A">
+          <compile    define="__SAM4LS4A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS4A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="32"/>
+          <feature type="ExtInt"        n="32"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="3"       m="12"/>
+          <feature type="AnalogOther"   n="1"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS4B'  ***************************** -->
+        <device Dname="ATSAM4LS4B">
+          <compile    define="__SAM4LS4B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS4B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="48"/>
+          <feature type="ExtInt"        n="48"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS4C'  ***************************** -->
+        <device Dname="ATSAM4LS4C">
+          <compile    define="__SAM4LS4C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS4C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x8000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_256.FLM"    start="0x00000000"  size="0x40000"                  default="1"/>
+
+          <feature type="IOs"           n="80"/>
+          <feature type="ExtInt"        n="80"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS8A'  ***************************** -->
+        <device Dname="ATSAM4LS8A">
+          <compile    define="__SAM4LS8A__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS8A.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="32"/>
+          <feature type="ExtInt"        n="32"/>
+          <feature type="I2C"           n="2"/>
+          <feature type="UART"          n="3"/>
+          <feature type="ADC"           n="3"       m="12"/>
+          <feature type="AnalogOther"   n="1"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS8B'  ***************************** -->
+        <device Dname="ATSAM4LS8B">
+          <compile    define="__SAM4LS8B__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS8B.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="48"/>
+          <feature type="ExtInt"        n="48"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="7"       m="12"/>
+          <feature type="AnalogOther"   n="2"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4LS8C'  ***************************** -->
+        <device Dname="ATSAM4LS8C">
+          <compile    define="__SAM4LS8C__"/>
+          <debug      svd="SVD/SAM4L/ATSAM4LS8C.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4L_512.FLM"    start="0x00000000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="80"/>
+          <feature type="ExtInt"        n="80"/>
+          <feature type="I2C"           n="4"/>
+          <feature type="UART"          n="4"/>
+          <feature type="ADC"           n="15"      m="12"/>
+          <feature type="AnalogOther"   n="4"/>
+          <feature type="Timer"         n="6"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'SAM4N'  **************************** -->
+      <subFamily DsubFamily="SAM4N">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="100000000"/>
+        <compile header="Device/Include/SAM4N/sam4n.h"/>
+        <book name="Documents/Atmel_11158_32-bit-Cortex-M4-Microcontroller_SAM4N_Datasheet.pdf" title="SAM4N Datasheet"/>
+        <description>
+The Microchip SAM4N series comprises the entry point into our portfolio of Flash microcontrollers
+based on the ARM Cortex-M4 core.
+These microcontrollers feature a 100MHz operating frequency and offer up to 1MB of Flash,
+multiple serial communication peripherals and analog capability. This combination of
+features—plus low power consumption—makes the Microchip SAM4N series ideal for a wide range
+of applications in industrial automation, consumer and appliance, and energy metering markets.
+        </description>
+
+        <feature type="I2C"           n="3"/>
+        <feature type="Timer"         n="6"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM4N16B'  ***************************** -->
+        <device Dname="ATSAM4N16B">
+          <compile    define="__SAM4N16B__"/>
+          <debug      svd="SVD/SAM4N/ATSAM4N16B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x14000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4N_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="6"/>
+          <feature type="ADC"           n="1"       m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4N16C'  ***************************** -->
+        <device Dname="ATSAM4N16C">
+          <compile    define="__SAM4N16C__"/>
+          <debug      svd="SVD/SAM4N/ATSAM4N16C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x14000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4N_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="UART"          n="7"/>
+          <feature type="ADC"           n="1"       m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4N8A'  ***************************** -->
+        <device Dname="ATSAM4N8A">
+          <compile    define="__SAM4N8A__"/>
+          <debug      svd="SVD/SAM4N/ATSAM4N8A.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4N_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="SPI"           n="2"/>
+          <feature type="UART"          n="5"/>
+          <feature type="ADC"           n="8"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4N8B'  ***************************** -->
+        <device Dname="ATSAM4N8B">
+          <compile    define="__SAM4N8B__"/>
+          <debug      svd="SVD/SAM4N/ATSAM4N8B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4N_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="3"/>
+          <feature type="UART"          n="6"/>
+          <feature type="ADC"           n="1"       m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4N8C'  ***************************** -->
+        <device Dname="ATSAM4N8C">
+          <compile    define="__SAM4N8C__"/>
+          <debug      svd="SVD/SAM4N/ATSAM4N8C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4N_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="Other"         n="2"                           name="Quadrature Decoder Channels"/>
+          <feature type="SPI"           n="4"/>
+          <feature type="UART"          n="7"/>
+          <feature type="ADC"           n="1"       m="10"/>
+          <feature type="DAC"           n="1"       m="10"/>
+          <feature type="TimerOther"    n="18"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="12"                          name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'SAM4S'  **************************** -->
+      <subFamily DsubFamily="SAM4S">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/SAM4S/sam4s.h"/>
+        <book name="Documents/Atmel-11100-32-bit-Cortex-M4-Microcontroller_Datasheet.pdf" title="SAM4S Datasheet"/>
+        <description>
+Based on the powerful ARM Cortex-M4 core, the Micochip SAM4S series extends the Microchip Cortex-M portfolio to offer:
+ - Increased performance and power efficiency
+ - Higher memory densities: up to 2MB of Flash and 160KB of SRAM
+ - And a rich peripheral set for connectivity, system control and analog interfacing.
+        </description>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="UART"          n="4"/>
+        <feature type="ComOther"      n="1"                           name="SSC Interface"/>
+        <feature type="SDIO"          n="1"/>
+        <feature type="AnalogOther"   n="1"/>
+        <feature type="Timer"         n="6"                           name="Timer Counter Channels"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM4S16B'  ***************************** -->
+        <device Dname="ATSAM4S16B">
+          <compile    define="__SAM4S16B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S16B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S16C'  ***************************** -->
+        <device Dname="ATSAM4S16C">
+          <compile    define="__SAM4S16C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S16C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S2A'  ***************************** -->
+        <device Dname="ATSAM4S2A">
+          <compile    define="__SAM4S2A__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S2A.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_128.FLM"    start="0x00400000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="ADC"           n="8"       m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S2B'  ***************************** -->
+        <device Dname="ATSAM4S2B">
+          <compile    define="__SAM4S2B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S2B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_128.FLM"    start="0x00400000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S2C'  ***************************** -->
+        <device Dname="ATSAM4S2C">
+          <compile    define="__SAM4S2C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S2C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_128.FLM"    start="0x00400000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S4A'  ***************************** -->
+        <device Dname="ATSAM4S4A">
+          <compile    define="__SAM4S4A__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S4A.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_256.FLM"    start="0x00400000"  size="0x40000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="34"/>
+          <feature type="ExtInt"        n="34"/>
+          <feature type="ADC"           n="8"       m="12"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S4B'  ***************************** -->
+        <device Dname="ATSAM4S4B">
+          <compile    define="__SAM4S4B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S4B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_256.FLM"    start="0x00400000"  size="0x40000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S4C'  ***************************** -->
+        <device Dname="ATSAM4S4C">
+          <compile    define="__SAM4S4C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S4C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x10000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_256.FLM"    start="0x00400000"  size="0x40000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="8"       m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S8B'  ***************************** -->
+        <device Dname="ATSAM4S8B">
+          <compile    define="__SAM4S8B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S8B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4S8C'  ***************************** -->
+        <device Dname="ATSAM4S8C">
+          <compile    define="__SAM4S8C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4S8C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SA16B'  ***************************** -->
+        <device Dname="ATSAM4SA16B">
+          <compile    define="__SAM4SA16B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SA16B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00480000"  size="0x80000"    startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SA16C'  ***************************** -->
+        <device Dname="ATSAM4SA16C">
+          <compile    define="__SAM4SA16C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SA16C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00480000"  size="0x80000"    startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4S_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SD16B'  ***************************** -->
+        <device Dname="ATSAM4SD16B">
+          <compile    define="__SAM4SD16B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SD16B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00480000"  size="0x80000"    startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4SD_1024.FLM"  start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SD16C'  ***************************** -->
+        <device Dname="ATSAM4SD16C">
+          <compile    define="__SAM4SD16C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SD16C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00480000"  size="0x80000"    startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4SD_1024.FLM"  start="0x00400000"  size="0x100000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SD32B'  ***************************** -->
+        <device Dname="ATSAM4SD32B">
+          <compile    define="__SAM4SD32B__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SD32B.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00500000"  size="0x100000"   startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4SD_2048.FLM"  start="0x00400000"  size="0x200000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="47"/>
+          <feature type="ExtInt"        n="47"/>
+          <feature type="ADC"           n="11"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4SD32C'  ***************************** -->
+        <device Dname="ATSAM4SD32C">
+          <compile    define="__SAM4SD32C__"/>
+          <debug      svd="SVD/SAM4S/ATSAM4SD32C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00500000"  size="0x100000"   startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4SD_2048.FLM"  start="0x00400000"  size="0x200000"                 default="1"/>
+          <algorithm  name="Flash/ATSAM4S_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="ADC"           n="16"      m="12"/>
+          <feature type="DAC"           n="2"       m="12"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="ComOther"      n="1"                           name="High Speed MCI"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM4SP  ****************************** -->
+      <subFamily DsubFamily="SAM4SP">
+        <processor Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/SAM4SP/sam4sp.h"/>
+        <book name="Documents/doc43020.pdf" title="SAM4SP32A Datasheet"/>
+        <description>
+With an unprecedented level of integration and performance, the Microchip SAM4SP32A
+system-on-chip (SoC) solution is the first ARM Cortex-M4 processor-based device
+for the power line communications (PLC) smart metering market.
+The SAM4SP32A SoC, a pure digital implementation, complies with the latest Power Line
+Intelligent Metering Evolution (PRIME) PLC specification.
+
+The compact SAM4SP32A merges the advantages of a Cortex-M4 processor-based microcontroller (MCU)
+with an integrated PLC modem. Take advantage of the powerful Cortex-M4 core, as well as 2MB
+of dual-bank Flash memory, 160KB SRAM and operating frequency up to 120MHz.
+        </description>
+        <!-- ******************************  SAM4SP32A  ****************************** -->
+        <device Dname="ATSAM4SP32A">
+          <compile    define="__SAM4SP32A__"/>
+          <debug      svd="SVD/SAM4SP/ATSAM4SP32A.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IROM2"                      start="0x00500000"  size="0x100000"   startup="0"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x28000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4SP_2048.FLM"  start="0x00400000"  size="0x200000"                 default="1"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'SAM4E'  **************************** -->
+      <subFamily DsubFamily="SAM4E">
+        <processor Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <compile header="Device/Include/SAM4E/sam4e.h"/>
+        <book name="Documents/Atmel_11157_32-bit-Cortex-M4-Microcontroller_SAM4E8-SAM4E16_Datasheet.pdf" title="SAM4E Datasheet"/>
+        <description>
+The Microchip SAM4E series of Flash microcontrollers (MCUs) is based on the high-performance
+32-bit ARM Cortex-M4 RISC processor with floating point unit (FPU).
+It operates at a maximum speed of 120MHz and features up to 1024KB of Flash,
+2KB of cache memory and up to 128KB of SRAM.
+The SAM4E series offers a rich set of advanced connectivity peripherals including
+10/100Mbps Ethernet MAC supporting IEEE 1588 and dual CAN. With a single-precision FPU,
+advanced analog features as well as a full set of timing and control functions, SAM4E MCUs
+are ideal for industrial automation and building control applications.
+        </description>
+
+        <feature type="USBD"          n="1"/>
+        <feature type="Other"         n="1"                           name="Quadrature Decoder Channels"/>
+        <feature type="SPI"           n="3"/>
+        <feature type="I2C"           n="2"/>
+        <feature type="UART"          n="4"/>
+        <feature type="ETH"           n="1"       m="100000000"/>
+        <feature type="SDIO"          n="1"/>
+        <feature type="AnalogOther"   n="1"/>
+        <feature type="DAC"           n="2"       m="12"/>
+        <feature type="Crypto"        n="1"       m="256"/>
+        <feature type="PWM"           n="4"/>
+
+        <!-- *************************  Device 'ATSAM4E16C'  ***************************** -->
+        <device Dname="ATSAM4E16C">
+          <compile    define="__SAM4E16C__"/>
+          <debug      svd="SVD/SAM4E/ATSAM4E16C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4E_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="ADC"           n="10"      m="16"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4E16E'  ***************************** -->
+        <device Dname="ATSAM4E16E">
+          <compile    define="__SAM4E16E__"/>
+          <debug      svd="SVD/SAM4E/ATSAM4E16E.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x100000"   startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4E_1024.FLM"   start="0x00400000"  size="0x100000"                 default="1"/>
+
+          <feature type="IOs"           n="117"/>
+          <feature type="ExtInt"        n="117"/>
+          <feature type="CAN"           n="2"/>
+          <feature type="ADC"           n="24"      m="16"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="Timer"         n="9"/>
+          <feature type="TimerOther"    n="24"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="18"                          name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4E8C'  ***************************** -->
+        <device Dname="ATSAM4E8C">
+          <compile    define="__SAM4E8C__"/>
+          <debug      svd="SVD/SAM4E/ATSAM4E8C.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4E_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="79"/>
+          <feature type="ExtInt"        n="79"/>
+          <feature type="CAN"           n="1"/>
+          <feature type="ADC"           n="10"      m="16"/>
+          <feature type="Timer"         n="3"/>
+          <feature type="TimerOther"    n="9"                           name="Output Compare channels"/>
+          <feature type="TimerOther"    n="6"                           name="Input Capture Channels"/>
+        </device>
+
+        <!-- *************************  Device 'ATSAM4E8E'  ***************************** -->
+        <device Dname="ATSAM4E8E">
+          <compile    define="__SAM4E8E__"/>
+          <debug      svd="SVD/SAM4E/ATSAM4E8E.svd"/>
+          <memory     id="IROM1"                      start="0x00400000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <algorithm  name="Flash/ATSAM4E_512.FLM"    start="0x00400000"  size="0x80000"                  default="1"/>
+
+          <feature type="IOs"           n="117"/>
+          <feature type="ExtInt"        n="117"/>
+          <feature type="CAN"           n="2"/>
+          <feature type="ADC"           n="24"      m="16"/>
+          <feature type="ExtBus"        n="1"/>
+          <feature type="Timer"         n="9"/>
+          <feature type="TimerOther"    n="24"                          name="Output Compare channels"/>
+          <feature type="TimerOther"    n="18"                          name="Input Capture Channels"/>
+        </device>
+      </subFamily>
+    </family>
+
+    <family Dfamily="SAM4 Dualcore Series" Dvendor="Microchip:3">
+      <processor Pname="CM4_P0" Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <processor Pname="CM4_P1" Dcore="Cortex-M4" DcoreVersion="r0p1"/>
+      <book name="Documents/dui0553a_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+
+      <!-- ******************************  SAM4C  ****************************** -->
+      <subFamily DsubFamily="SAM4C">
+        <processor Pname="CM4_P0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <processor Pname="CM4_P1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile   header="Device/Include/SAM4C/sam4c.h"/>
+        <book name="Documents/Atmel-11102-32-bit-Cortex-M4-Microcontroller-SAM4C32-SAM4C16-SAM4C8-SAM4C4_Datasheet.pdf" title="SAM4C Datasheet"/>
+        <description>
+Symmetrical/Asynchronous Dual Core Architecture
+  - Interrupt-based Interprocessor Communication
+  - Cryptography
+  - Physical Anti-tamper Detection I/O
+  - Security bit for Device Protection
+  - Segmented LCD Controller
+  - SW Controlled On-Chip Reference ranging from 1.6V to 3.4V
+  - Temperature Sensor and Backup Battery Voltage Measurement Channel
+        </description>
+
+        <!-- ******************************  SAM4C4C  ****************************** -->
+        <device Dname="ATSAM4C4C">
+          <compile   Pname="CM4_P0" define="__SAM4C4C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4C4C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4C/ATSAM4C4C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4C/ATSAM4C4C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_256.FLM"    start="0x01000000"  size="0x40000"                  default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+        </device>
+
+        <!-- ******************************  SAM4C8C  ****************************** -->
+        <device Dname="ATSAM4C8C">
+          <compile   Pname="CM4_P0" define="__SAM4C8C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4C8C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4C/ATSAM4C8C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4C/ATSAM4C8C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_512.FLM"    start="0x01000000"  size="0x80000"                  default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+        </device>
+
+        <!-- ******************************  SAM4C16C  ****************************** -->
+        <device Dname="ATSAM4C16C">
+          <compile   Pname="CM4_P0" define="__SAM4C16C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4C16C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4C/ATSAM4C16C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4C/ATSAM4C16C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_1024.FLM"   start="0x01000000"  size="0x100000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_GPNVM.FLM"  start="0x1FFFFFF0"  size="0x0010"                   default="0"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM4C32  **************************** -->
+      <subFamily DsubFamily="SAM4C32">
+        <processor Pname="CM4_P0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <processor Pname="CM4_P1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile   header="Device/Include/SAM4C32/sam4c32.h"/>
+        <book name="Documents/Atmel-11102-32-bit-Cortex-M4-Microcontroller-SAM4C32-SAM4C16-SAM4C8-SAM4C4_Datasheet.pdf" title="SAM4C Datasheet"/>
+        <description>
+Symmetrical/Asynchronous Dual Core Architecture
+  - Interrupt-based Interprocessor Communication
+  - Cryptography
+  - Physical Anti-tamper Detection I/O
+  - Security bit for Device Protection
+  - Segmented LCD Controller
+  - SW Controlled On-Chip Reference ranging from 1.6V to 3.4V
+  - Temperature Sensor and Backup Battery Voltage Measurement Channel
+        </description>
+
+        <feature type="ExtBus"        n="16"                     name="External Bus Interface"/>
+        <feature type="UART"          n="2"                      name="UART Interface"/>
+        <feature type="USART"         n="5"                      name="USART Interface"/>
+        <feature type="SPI"           n="7"                      name="SPI Interface"/>
+        <feature type="ComOther"      n="2"                      name="TWI Two-wire Interface"/>
+        <feature type="ADC"           n="8"       m="10"         name="ADC"/>
+        <feature type="Timer"         n="6"       m="16"         name="Timer"/>
+        <feature type="PWM"           n="4"       m="16"         name="Pulse Width Modulation"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Crypto"        n="1"       m="128"        name="AES, CPKCC, ICM (SHA), TRNG"/>
+        <feature type="LCD"           n="1"       m="50.6"       name="Segment LCD Controller"/>
+
+        <!-- ******************************  SAM4C32C  **************************** -->
+        <device Dname="ATSAM4C32C">
+          <compile   Pname="CM4_P0" define="__SAM4C32C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4C32C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4C32/ATSAM4C32C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4C32/ATSAM4C32C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IROM2"                      start="0x01100000"  size="0x100000"   startup="0"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x40000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C32_2048.FLM" start="0x01000000"  size="0x200000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <feature type="IOs"           n="74"                     name="General Purpose I/Os"/>
+          <feature type="QFP"           n="100"                    name="LQFP Package"/>
+        </device>
+
+        <!-- ******************************  SAM4C32E  **************************** -->
+        <device Dname="ATSAM4C32E">
+          <compile   Pname="CM4_P0" define="__SAM4C32E_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4C32E_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4C32/ATSAM4C32E_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4C32/ATSAM4C32E_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IROM2"                      start="0x01100000"  size="0x100000"   startup="0"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x40000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C32_2048.FLM" start="0x01000000"  size="0x200000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <feature type="IOs"           n="106"                    name="General Purpose I/Os"/>
+          <feature type="USBD"          n="1"                      name="USB Device"/>
+          <feature type="USBH"          n="1"                      name="USB Host"/>
+          <feature type="QFP"           n="144"                    name="LQFP Package"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM4CM  ****************************** -->
+      <subFamily DsubFamily="SAM4CM">
+        <processor Pname="CM4_P0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <processor Pname="CM4_P1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile   header="Device/SAM4CM/Include/sam4cm.h"/>
+        <book name="Documents/Atmel-11203-32-bit-Cortex-M4-Microcontroller-SAM4CM32-SAM4CM16-SAM4CM8-SAM4CM4.pdf" title="SAM4CM Datasheet"/>
+        <description>
+Symmetrical/Asynchronous Dual Core Architecture
+  - Interrupt-based Interprocessor Communication
+  - Cryptography
+  - Physical Anti-tamper Detection I/O
+  - Security bit for Device Protection
+  - Segmented LCD Controller
+  - Two-phase (SAM4CMS) or three-phase (SAM4CMP) Energy Metering Analog-Front-End
+  - SW Controlled On-Chip Reference ranging from 1.6V to 3.4V
+  - Temperature Sensor and Backup Battery Voltage Measurement Channel
+        </description>
+
+        <!-- ******************************  SAM4CMP8C  ****************************** -->
+        <device Dname="ATSAM4CMP8C">
+          <compile   Pname="CM4_P0" define="__SAM4CMP8C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMP8C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM/ATSAM4CMP8C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM/ATSAM4CMP8C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_512.FLM"    start="0x01000000"  size="0x80000"                  default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+        </device>
+
+        <!-- ******************************  SAM4CMP16C  ****************************** -->
+        <device Dname="ATSAM4CMP16C">
+          <compile   Pname="CM4_P0" define="__SAM4CMP16C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMP16C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM/ATSAM4CMP16C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM/ATSAM4CMP16C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_1024.FLM"   start="0x01000000"  size="0x100000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+        </device>
+
+        <!-- ******************************  SAM4CMS4C  ****************************** -->
+        <device Dname="ATSAM4CMS4C">
+          <compile   Pname="CM4_P0" define="__SAM4CMS4C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMS4C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM/ATSAM4CMS4C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM/ATSAM4CMS4C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_256.FLM"    start="0x01000000"  size="0x40000"                  default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+        </device>
+
+        <!-- ******************************  SAM4CMS8C  ****************************** -->
+        <device Dname="ATSAM4CMS8C">
+          <compile   Pname="CM4_P0" define="__SAM4CMS8C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMS8C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM/ATSAM4CMS8C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM/ATSAM4CMS8C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_512.FLM"    start="0x01000000"  size="0x80000"                  default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+        </device>
+
+        <!-- ******************************  SAM4CMS16C  ****************************** -->
+        <device Dname="ATSAM4CMS16C">
+          <compile   Pname="CM4_P0" define="__SAM4CMS16C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMS16C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM/ATSAM4CMS16C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM/ATSAM4CMS16C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_1024.FLM"   start="0x01000000"  size="0x100000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM4CM32  *************************** -->
+      <subFamily DsubFamily="SAM4CM32">
+        <processor Pname="CM4_P0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <processor Pname="CM4_P1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile   header="Device/SAM4CM32/Include/sam4cm32.h"/>
+        <book name="Documents/Atmel-11203-32-bit-Cortex-M4-Microcontroller-SAM4CM32-SAM4CM16-SAM4CM8-SAM4CM4.pdf" title="SAM4CM Datasheet"/>
+        <description>
+Symmetrical/Asynchronous Dual Core Architecture
+  - Interrupt-based Interprocessor Communication
+  - Cryptography
+  - Physical Anti-tamper Detection I/O
+  - Security bit for Device Protection
+  - Segmented LCD Controller
+  - Two-phase (SAM4CMS) or three-phase (SAM4CMP) Energy Metering Analog-Front-End
+  - SW Controlled On-Chip Reference ranging from 1.6V to 3.4V
+  - Temperature Sensor and Backup Battery Voltage Measurement Channel
+        </description>
+
+        <feature type="ExtBus"        n="8"                      name="External Bus Interface"/>
+        <feature type="UART"          n="2"                      name="UART Interface"/>
+        <feature type="SPI"           n="1"                      name="SPI Interface"/>
+        <feature type="ComOther"      n="2"                      name="TWI Two-wire Interface"/>
+        <feature type="ADC"           n="8"       m="10"         name="ADC"/>
+        <feature type="Timer"         n="6"       m="16"         name="Timer"/>
+        <feature type="PWM"           n="3"       m="16"         name="Pulse Width Modulation"/>
+        <feature type="WDT"           n="1"/>
+        <feature type="Crypto"        n="1"       m="128"        name="AES, CPKCC, ICM (SHA), TRNG"/>
+        <feature type="QFP"           n="100"                    name="LQFP Package"/>
+
+        <!-- ******************************  SAM4CMP32C  ************************** -->
+        <device Dname="ATSAM4CMP32C">
+          <compile   Pname="CM4_P0" define="__SAM4CMP32C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMP32C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM32/ATSAM4CMP32C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM32/ATSAM4CMP32C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IROM2"                      start="0x01100000"  size="0x100000"   startup="0"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x40000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C32_2048.FLM" start="0x01000000"  size="0x200000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <feature type="USART"         n="3"                      name="USART Interface"/>
+          <feature type="AnalogOther"   n="7"                      name="Energy Metering Analog-Front -End"/>
+          <feature type="LCD"           n="1"       m="33.6"       name="Segment LCD Controller"/>
+          <feature type="IOs"           n="52"                     name="General Purpose I/Os"/>
+        </device>
+
+        <!-- ******************************  SAM4CMS32C  ************************** -->
+        <device Dname="ATSAM4CMS32C">
+          <compile   Pname="CM4_P0" define="__SAM4CMS32C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CMS32C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CM32/ATSAM4CMS32C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CM32/ATSAM4CMS32C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IROM2"                      start="0x01100000"  size="0x100000"   startup="0"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x40000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x4000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C32_2048.FLM" start="0x01000000"  size="0x200000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <feature type="USART"         n="4"                      name="USART Interface"/>
+          <feature type="AnalogOther"   n="4"                      name="Energy Metering Analog-Front -End"/>
+          <feature type="LCD"           n="1"       m="38.6"       name="Segment LCD Controller"/>
+          <feature type="IOs"           n="57"                     name="General Purpose I/Os"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  SAM4CP  ****************************** -->
+      <subFamily DsubFamily="SAM4CP">
+        <processor Pname="CM4_P0" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+        <processor Pname="CM4_P1" Dfpu="1" Dmpu="0" Dendian="Little-endian" Dclock="120000000"/>
+        <compile   header="Device/Include/SAM4CP/sam4cp.h"/>
+        <description>
+Symmetrical/Asynchronous Dual Core Architecture
+  - Interrupt-based Interprocessor Communication
+  - Cryptography
+  - 4 Physical Anti-tamper Detection I/O
+  - Security bit for Device Protection
+  - Segmented LCD Controller
+  - PRIME 1.4.0 PLC Modem
+  - SW Controlled On-Chip Reference ranging from 1.6V to 3.4V
+  - Temperature Sensor and Backup Battery Voltage Measurement Channel
+        </description>
+
+        <!-- ******************************  SAM4CP16B  ****************************** -->
+        <device Dname="ATSAM4CP16B">
+          <compile   Pname="CM4_P0" define="__SAM4CP16B_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CP16B_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CP/ATSAM4CP16B_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CP/ATSAM4CP16B_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_1024.FLM"   start="0x01000000"  size="0x100000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <book name="Documents/doc43051h.pdf" title="SAM4CP16B Datasheet"/>
+        </device>
+
+        <!-- ******************************  SAM4CP16C  ****************************** -->
+        <device Dname="ATSAM4CP16C">
+          <compile   Pname="CM4_P0" define="__SAM4CP16C_0__"/>
+          <compile   Pname="CM4_P1" define="__SAM4CP16C_1__"/>
+          <debug     Pname="CM4_P0" svd="SVD/SAM4CP/ATSAM4CP16C_0.svd"/>
+          <debug     Pname="CM4_P1" svd="SVD/SAM4CP/ATSAM4CP16C_1.svd"/>
+          <memory    Pname="CM4_P0" id="IROM1"                      start="0x01000000"  size="0x100000"   startup="1"   default="1"/>
+          <memory    Pname="CM4_P0" id="IRAM1"                      start="0x20000000"  size="0x20000"    init   ="0"   default="1"/>
+          <memory    Pname="CM4_P1" id="IROM1"                      start="0x00000000"  size="0x4000"     startup="1"   default="1"/>
+          <memory    Pname="CM4_P1" id="IRAM1"                      start="0x20100000"  size="0x2000"     init   ="0"   default="1"/>
+          <algorithm Pname="CM4_P0" name="Flash/ATSAM4C_1024.FLM"   start="0x01000000"  size="0x100000"                 default="1"/>
+          <!-- P1 has no Flash Alg, because IROM1 is RAM, ROM Code for P1 gets copied from P0 to SRAM for P1 -->
+
+          <book name="Documents/doc43080f.pdf" title="SAM4CP16C Datasheet"/>
+        </device>
+      </subFamily>
+    </family>
+
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="SAM4E">
+      <description>Microchip SAM4E Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4E*"/>
+    </condition>
+
+    <condition id="SAM4L">
+      <description>Microchip SAM4L Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4L*"/>
+    </condition>
+
+    <condition id="SAM4N">
+      <description>Microchip SAM4N Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4N*"/>
+    </condition>
+
+    <condition id="SAM4S">
+      <description>Microchip SAM4S Devices</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM4S16*"/>
+      <accept  Dname="ATSAM4S8*"/>
+      <accept  Dname="ATSAM4S2*"/>
+      <accept  Dname="ATSAM4S4*"/>
+      <accept  Dname="ATSAM4SA16*"/>
+      <accept  Dname="ATSAM4SD16*"/>
+      <accept  Dname="ATSAM4SD32*"/>
+    </condition>
+
+    <condition id="SAM4SP">
+      <description>Microchip SAM4SP Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4SP32*"/>
+    </condition>
+
+    <condition id="SAM4C">
+      <description>Microchip SAM4C Devices</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM4C4*"/>
+      <accept  Dname="ATSAM4C8*"/>
+      <accept  Dname="ATSAM4C16*"/>
+    </condition>
+
+    <condition id="SAM4C32">
+      <description>Microchip SAM4C32 Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4C32*"/>
+    </condition>
+
+    <condition id="SAM4CM">
+      <description>Microchip SAM4CM Devices</description>
+      <require Dvendor="Microchip:3"/>
+      <accept  Dname="ATSAM4CMP8*"/>
+      <accept  Dname="ATSAM4CMP16*"/>
+      <accept  Dname="ATSAM4CMS4*"/>
+      <accept  Dname="ATSAM4CMS8*"/>
+      <accept  Dname="ATSAM4CMS16*"/>
+    </condition>
+
+    <condition id="SAM4CM32">
+      <description>Microchip SAM4CM32 Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4CM[PS]32*"/>
+    </condition>
+
+    <condition id="SAM4CP">
+      <description>Microchip SAM4CP Devices</description>
+      <require Dvendor="Microchip:3" Dname="ATSAM4CP*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="SAM4E CMSIS">
+      <description>Microchip SAM4E Devices and CMSIS-CORE</description>
+      <require condition="SAM4E"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4L CMSIS">
+      <description>Microchip SAM4L Devices and CMSIS-CORE</description>
+      <require condition="SAM4L"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4N CMSIS">
+      <description>Microchip SAM4N Devices and CMSIS-CORE</description>
+      <require condition="SAM4N"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4S CMSIS">
+      <description>Microchip SAM4S Devices and CMSIS-CORE</description>
+      <require condition="SAM4S"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4SP CMSIS">
+      <description>Microchip SAM4SP Devices and CMSIS-CORE</description>
+      <require condition="SAM4SP"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4C CMSIS">
+      <description>Microchip SAM4C Devices and CMSIS-CORE</description>
+      <require condition="SAM4C"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4C32 CMSIS">
+      <description>Microchip SAM4C32 Devices and CMSIS-CORE</description>
+      <require condition="SAM4C32"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4CM CMSIS">
+      <description>Microchip SAM4CM Devices and CMSIS-CORE</description>
+      <require condition="SAM4CM"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4CM32 CMSIS">
+      <description>Microchip SAM4CM32 Devices and CMSIS-CORE</description>
+      <require condition="SAM4CM32"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="SAM4CP CMSIS">
+      <description>Microchip SAM4CP Devices and CMSIS-CORE</description>
+      <require condition="SAM4CP"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="Graphics Core and LCD 8-bit IF">
+      <description>Graphics CORE component and LCD driver (8-bit Interface)</description>
+      <accept condition="SAM4E CMSIS"/>             <!-- display mounted on SAM4E-EK -->
+      <accept condition="SAM4S CMSIS"/>             <!-- display mounted on SAM4S-EK -->
+      <require Cclass="Graphics" Cgroup="CORE"/>
+      <require Cclass="Board Support" Cgroup="emWin LCD" Cvariant="8-bit IF"/>
+    </condition>
+
+    <condition id="SAM4E CMSIS and LCD_8-bit">
+      <description>Microchip SAM4E Devices and CMSIS-CORE and LCD (8-bit IF)</description>
+      <require condition="SAM4E CMSIS"/>
+      <require Cclass="Graphics" Cgroup="CORE"/>
+      <require Cclass="Graphics Display" Cgroup="FTM280C34D" Cvariant="8-bit IF"/>
+    </condition>
+
+    <condition id="SAM4S CMSIS and LCD_8-bit">
+      <description>Microchip SAM4S Devices and CMSIS-CORE and LCD (8-bit IF)</description>
+      <require condition="SAM4S CMSIS"/>
+      <require Cclass="Graphics" Cgroup="CORE"/>
+      <require Cclass="Graphics Display" Cgroup="FTM280C34D" Cvariant="8-bit IF"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- Startup SAM4E -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.2" condition="SAM4E CMSIS">
+      <description>System Startup for Microchip SAM4E Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4E/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4E.s"    attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SAM4E.c"         attr="config" version="1.0.2"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4L -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAM4L CMSIS">
+      <description>System Startup for Microchip SAM4L Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4L/"/>
+        <file category="source"  name="Device/Source/ARM/startup_sam4l.s"    attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_sam4l.c"         attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4N -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.2" condition="SAM4N CMSIS">
+      <description>System Startup for Microchip SAM4N Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4N/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4N.s"    attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SAM4N.c"         attr="config" version="1.0.2"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4S -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.2" condition="SAM4S CMSIS">
+      <description>System Startup for Microchip SAM4S Devices</description>
+      <files>
+        <!-- GPNVM Bytes templates -->
+        <file category="source" name="Device/Source/ARM/SAM4xGPNVM.s"        attr="template"               condition="Compiler ARMCC" select="GPNVM Bytes Template"/>
+
+        <file category="include" name="Device/Include/SAM4S/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4S.s"    attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SAM4S.c"         attr="config" version="1.1.2"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4SP -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="SAM4SP CMSIS">
+      <description>System Startup for Microchip SAM4SP Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4SP/"/>
+        <file category="source"  name="Device/Source/ARM/startup_sam4sp.s"   attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_sam4sp.c"        attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4C -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.3" condition="SAM4C CMSIS">
+      <description>System Startup for Microchip SAM4C Devices</description>
+      <files>
+        <!-- GPNVM Bytes templates -->
+        <file category="source" name="Device/Source/ARM/SAM4xGPNVM.s"        attr="template"               condition="Compiler ARMCC" select="GPNVM Bytes Template"/>
+
+        <file category="include" name="Device/Include/SAM4C/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4C.s"    attr="config" version="1.0.3" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_SAM4C.c"         attr="config" version="1.0.2"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4C32 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAM4C32 CMSIS">
+      <description>System Startup for Microchip SAM4C32 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4C32/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4C32.s"  attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_sam4c32.c"       attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4CM -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.2" condition="SAM4CM CMSIS">
+      <description>System Startup for Microchip SAM4CM Devices</description>
+      <files>
+        <file category="include" name="Device/SAM4CM/Include/"/>
+        <file category="source"  name="Device/SAM4CM/Source/ARM/startup_SAM4CM.s"   attr="config" version="1.0.2" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM4CM/Source/system_sam4cm.c"        attr="config" version="1.0.2"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4CM32 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAM4CM32 CMSIS">
+      <description>System Startup for Microchip SAM4CM32 Devices</description>
+      <files>
+        <file category="include" name="Device/SAM4CM32/Include/"/>
+        <file category="source"  name="Device/SAM4CM32/Source/ARM/startup_SAM4CM32.s" attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/SAM4CM32/Source/system_sam4cm32.c"      attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- Startup SAM4CP -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="SAM4CP CMSIS">
+      <description>System Startup for Microchip SAM4CP Devices</description>
+      <files>
+        <file category="include" name="Device/Include/SAM4CP/"/>
+        <file category="source"  name="Device/Source/ARM/startup_SAM4CP.s"   attr="config" version="1.0.1" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_sam4cp.c"        attr="config" version="1.0.1"/>
+      </files>
+    </component>
+
+    <!-- emWin Graphics Library -->
+    <component Cclass="Graphics Display" Cgroup="FTM280C34D" Cvariant="8-bit IF" Cversion="1.0.0" condition="Graphics Core and LCD 8-bit IF">
+      <description>LCD Configuration for FTM280C34D (8-bit Interface)</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_Graphics_LCD_FTM280C34D_8  /* Graphics LCD SAM4E-EK 8-bit IF */
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Boards/Atmel/Display/LCDConf_FTM280C34D.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SAM4C-EK Board Support -->
+    <bundle Cbundle="SAM4C-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM4C-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4C CMSIS">
+      <description>LED driver for Microchip SAM4C-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4C-EK/Common/LED_SAM4C-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4C CMSIS">
+      <description>Button driver for Microchip SAM4C-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4C-EK/Common/Buttons_SAM4C-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM4E-EK Board Support -->
+    <bundle Cbundle="SAM4E-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM44-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4E CMSIS">
+      <description>LED driver for Microchip SAM4E-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4E-EK/Common/LED_SAM4E-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4E CMSIS">
+      <description>Button driver for Microchip SAM4E-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4E-EK/Common/Buttons_SAM4E-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="SAM4E CMSIS">
+        <description>Graphic LCD driver for Microchip SAM4E-EK Board</description>
+        <files>
+          <file category="header"  name="Boards/Atmel/SAM4E-EK/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/Atmel/SAM4E-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Atmel/SAM4E-EK/Common/GLCD_SAM4E-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" condition="SAM4E CMSIS">
+        <description>Touchscreen Interface for ADS7843</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4E-EK/Common/Touch_ADS7843.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1" Cvariant="8-bit IF" condition="SAM4E CMSIS and LCD_8-bit">
+        <description>emWin LCD 8-bit Interface for Microchip SAM4E-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4E-EK/Common/LCD_X.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM4S-EK Board Support -->
+    <bundle Cbundle="SAM4S-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM4S-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4S CMSIS">
+      <description>LED driver for Microchip SAM4S-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-EK/Common/LED_SAM4S-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4S CMSIS">
+      <description>Button driver for Microchip SAM4S-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-EK/Common/Buttons_SAM4S-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="SAM4S CMSIS">
+        <description>Graphic LCD driver for Microchip SAM4S-EK Board</description>
+        <files>
+          <file category="header"  name="Boards/Atmel/SAM4S-EK/Common/GLCD_Config.h"/>
+          <file category="source"  name="Boards/Atmel/SAM4S-EK/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/Atmel/SAM4S-EK/Common/GLCD_SAM4S-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" condition="SAM4S CMSIS">
+        <description>Touchscreen Interface for ADS7843</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-EK/Common/Touch_ADS7843.c"/>
+        </files>
+      </component>
+      <component Cgroup="emWin LCD" Capiversion="1.1" Cvariant="8-bit IF" condition="SAM4S CMSIS and LCD_8-bit">
+        <description>emWin LCD 8-bit Interface for Microchip SAM4S-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-EK/Common/LCD_X.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM4L-EK Board Support -->
+    <bundle Cbundle="SAM4L-EK" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM4L-EK Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4L CMSIS">
+      <description>LED driver for Microchip SAM4L-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4L-EK/Common/LED_SAM4L-EK.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4L CMSIS">
+      <description>Button driver for Microchip SAM4L-EK Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4L-EK/Common/Buttons_SAM4L-EK.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM4L-XPRO Board Support -->
+    <bundle Cbundle="SAM4L-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM4L-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4L CMSIS">
+      <description>LED driver for Microchip SAM4L-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4L-XPRO/Common/LED_SAM4L-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4L CMSIS">
+      <description>Button driver for Microchip SAM4L-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4L-XPRO/Common/Buttons_SAM4L-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- SAM4S-XPRO Board Support -->
+    <bundle Cbundle="SAM4S-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAM4S-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="SAM4S CMSIS">
+      <description>LED driver for Microchip SAM4S-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-XPRO/Common/LED_SAM4S-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAM4S CMSIS">
+      <description>Button driver for Microchip SAM4S-XPRO Board</description>
+        <files>
+          <file category="source" name="Boards/Atmel/SAM4S-XPRO/Common/Buttons_SAM4S-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board vendor="Atmel" name="SAM4C-EK"   revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM4C-EK Evaluation Kit (ATSAM4C-EK)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/SAM4C-EK.aspx"  title="SAM4C-EK Evaluation Kit for the Atmel SAM4C"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM4C16C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4C"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM4E-EK"   revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.Microchip.com/">
+      <description>Microchip SAM4E-EK (ATSAM4E-EK)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/sam4e-ek.aspx"  title="SAM4E-EK Evaluation Kit for the Atmel SAM4E"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="SAM4E16C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4E"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM4S-EK"   revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM4S-EK (ATSAM4S-EK)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/sam4s-ek.aspx"  title="SAM4S-EK Evaluation Kit for the Atmel SAM4E"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="SAM4S16C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4S"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM4L-EK"   revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM4L-EK (ATSAM4L-EK)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/sam4l-ek.aspx"  title="SAM4L-EK Evaluation Kit for the Atmel SAM4L"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM4LC4C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4L"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM4L-XPRO" revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM4L Xplained Pro Evaluation Kit (ATSAM4L-XPRO)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/atsam4l-xpro.aspx"  title="SAM4L Xplained Pro Evaluation Kit"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM4LC4C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4L"/>
+    </board>
+
+    <board vendor="Atmel" name="SAM4S-XPRO" revision="Rev. A" salesContact="http://www.atmel.com/about/contact/distributors/default.aspx" orderForm="http://store.atmel.com/">
+      <description>Microchip SAM4S Xplained Pro Evaluation Kit (ATSAM4S-XPRO)</description>
+      <book category="overview"  name="http://www.atmel.com/tools/atsam4s-xpro.aspx"  title="SAM4S Xplained Pro Evaluation Kit "/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAM4SD32C"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" DsubFamily="SAM4S"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAM4C-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4C-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4C-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4C-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4C-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="DualCore Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4C-EK/DualCore">
+      <description>DualCore based Blinky example</description>
+      <board name="SAM4C-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="DualCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- SAM4E-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4E-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4E-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4E-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4E-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Atmel/SAM4E-EK/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="SAM4E-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Atmel/SAM4E-EK/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="SAM4E-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAM4S-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="emWin Example" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-EK/emWin/Example">
+      <description>emWin Graphics simple example</description>
+      <board name="SAM4S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Example.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+    <example name="emWin GUI Demo" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-EK/emWin/GUIDemo">
+      <description>emWin Graphics Demo example</description>
+      <board name="SAM4S-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="GUIDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="Graphics" Cgroup="CORE"/>
+        <category>Middleware</category>
+        <category>Graphics</category>
+        <keyword>emWin</keyword>
+      </attributes>
+    </example>
+
+    <!-- SAM4L-EK Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4L-EK/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4L-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4L-EK/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4L-EK" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAM4L-XPRO Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4L-XPRO/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4L-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4L-XPRO/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4L-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <!-- SAM4S-XPRO Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-XPRO/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4S-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+    <example name="CMSIS-RTOS RTX_Blinky" doc="Abstract.txt" folder="Boards/Atmel/SAM4S-XPRO/RTX_Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="SAM4S-XPRO" vendor="Atmel"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

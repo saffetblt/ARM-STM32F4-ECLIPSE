@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>AnalogDevices</vendor>
+    <name>EVAL-ADICUP3029_BSP</name>
+    <description>Analog Devices ADICUP3029 Off-Chip Drivers and Examples</description>
+    <url>http://download.analog.com/tools/EZBoards/ADICUP3029/Releases/</url>
+    <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+    <license>License/license.txt</license>
+
+    <releases>
+        <release version="1.1.0" date="2017-08-11">
+            Move BLE software to ADI-BleSoftware. Add ESP8266 example.
+        </release>
+        <release version="1.0.0" date="2017-05-31">
+            Initial Release
+        </release>        
+    </releases>
+
+    <requirements>
+        <packages>
+            <package name="ADuCM302x_DFP" vendor="AnalogDevices" version="2.0.0"/>
+            <package name="ADI-SensorSoftware" vendor="AnalogDevices" version="1.1.0"/>
+            <package name="ADI-BleSoftware" vendor="AnalogDevices" version="1.0.0"/>
+            <package name="ADI-WifiSoftware" vendor="AnalogDevices" version="1.0.0"/>
+        </packages>
+    </requirements>
+
+    <keywords>
+        <keyword>Analog Devices</keyword>
+        <keyword>Examples</keyword>
+        <keyword>Board Support Package</keyword>
+        <keyword>ADICUP3029</keyword>
+        <keyword>ADuCM302x</keyword>
+    </keywords>    
+
+    <boards>
+        <board vendor="AnalogDevices" name="EVAL-ADICUP3029" revision="Ver 1.0" orderForm="http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/eval-adicup3029.html#eb-buy">
+            <description>Analog Devices ADICUP3029 Evaluation Board</description>
+
+            <image small="Documents/eval-adicup3029-image.jpg" />
+            
+            <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM3029"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM302x Series"/>
+
+            <feature type="Batt"   n="2"        name="AAA batteries"/>
+            <feature type="PWR"    n="7" m="12" name="+7V to +12V DC power supply"/>
+            <feature type="Button" n="3"        name="Push-buttons: Reset, WiFi Reset, and Boot" />
+            <feature type="SPI"    n="2"        name="4-Pin Header (1 PMOD and 1 Arduino Shield)" />             
+            <feature type="I2C"    n="2"        name="2-Pin Header (1 PMOD and 1 Arduino Shield)" />
+            <feature type="LED"    n="4"        name="2 Debug LEDs and 2 User LEDs" />
+            <feature type="USB"    n="1"        name="UART over USB for serial input/output" />
+
+            <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+            <debugInterface adapter="CMSIS-DAP" connector="10-pin Cortex Debug Connector"/>
+            <debugInterface adapter="J-Link" connector="10-pin Cortex Debug Connector"/>
+        </board>
+    </boards>    
+ 
+  <examples>
+
+<example name="data_exchange_hello_world_noos" folder="Boards/EVAL-ADICUP3029/Examples/communication/ble/data_exchange/hello_world/noos" doc="EVAL-ADICUP3029/Readme_hello_world.txt" version="1.1.0">
+<description>Demonstrates how to use the Data Exchange Bluetooth profile on the EM9304</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="findme_target_noos" folder="Boards/EVAL-ADICUP3029/Examples/communication/ble/findme/findme_target/noos" doc="EVAL-ADICUP3029/Readme_findme_target.txt" version="1.1.0">
+<description>Demonstrates FindmeTarget Bluetooth profile on the EM9304</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="proximity_reporter_noos" folder="Boards/EVAL-ADICUP3029/Examples/communication/ble/proximity/proximity_reporter/noos" doc="EVAL-ADICUP3029/Readme_proximity_reporter.txt" version="1.1.0">
+<description>Demonstrates how to use the Proximity Reporter Bluetooth profile on the EM9304</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="mqtt_publisher_adxl362" folder="Boards/EVAL-ADICUP3029/Examples/communication/wifi/mqtt_publisher/Accelerometer/adxl362/noos" doc="EVAL-ADICUP3029/Readme_mqtt_publisher_adxl362.txt" version="1.1.0">
+<description>Demonstrates how to use the ESP8266 wifi chip using MQTT as a publisher to send ADXL362 data to the broker</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Wi-Fi" Cgroup="ESP8266 Wi-Fi" />
+        <keyword>wifi, mqtt, publisher, thingworx, adxl362</keyword>
+    </attributes>
+</example>
+    <example name="blinky_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/gpio/blinky_example" doc="EVAL-ADICUP3029/Readme_blinky_example.txt" version="1.0.0">
+    <description>Example demonstrating the GPIO driver blinking LEDs</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="rtc_alarm_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/rtc/rtc_alarm_example" doc="EVAL-ADICUP3029/Readme_rtc_alarm.txt" version="1.0.0">
+    <description>Example demonstrating the RTC alarm feature</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+        <keyword>RTC, Alarm</keyword>
+        </attributes>
+    </example>
+    <example name="spi_loopback_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/spi/spi_loopback_example" doc="EVAL-ADICUP3029/Readme_spi_loopback.txt" version="1.0.0">
+    <description>Basic example demonstrating the SPI driver (Loopback)</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>SPI</keyword>
+        </attributes>
+    </example>
+    <example name="systick" folder="Boards/EVAL-ADICUP3029/Examples/drivers/systick/systick_example" doc="EVAL-ADICUP3029/Readme_systick.txt" version="1.0.0">
+    <description>Example to demonstrate systick timer to generate specific number of interrupts</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+            <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+            <category>Driver Examples</category>
+            <component Cclass="CMSIS"  Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Examples Support" />
+            <component Cclass="Device" Cgroup="Global Configuration"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+            <keyword>SysTick</keyword>
+        </attributes>
+    </example>
+    <example name="tmr_example_gp" folder="Boards/EVAL-ADICUP3029/Examples/drivers/tmr/tmr_example_gp" doc="EVAL-ADICUP3029/Readme_tmr_example_gp.txt" version="1.0.0">
+    <description>Example demonstrating the GP timer to generate a periodic interrupt and event capture</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="uart_autobaud_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/uart/uart_autobaud_example" doc="EVAL-ADICUP3029/Readme_uart_autobaud.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Autobaud mode</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_callback_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/uart/uart_callback_example" doc="EVAL-ADICUP3029/Readme_uart_callback.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Callback mode</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_loopback_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/uart/uart_loopback_example" doc="EVAL-ADICUP3029/Readme_uart_loopback.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Loopback </description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_interrupt" folder="Boards/EVAL-ADICUP3029/Examples/drivers/wdt/wdt_example_interrupt" doc="EVAL-ADICUP3029/Readme_wdt_example_interrupt.txt" version="1.0.0">
+    <description>Example demonstrating the WDT driver(configured to interrupt on timeout)</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_reset" folder="Boards/EVAL-ADICUP3029/Examples/drivers/wdt/wdt_example_reset" doc="EVAL-ADICUP3029/Readme_wdt_example_reset.txt" version="1.0.0">
+    <description>Example demonstrating the WDT driver(configured to reset on timeout)</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="xint_example" folder="Boards/EVAL-ADICUP3029/Examples/drivers/xint/xint_example" doc="EVAL-ADICUP3029/Readme_xint_example.txt" version="1.0.0">
+    <description>Example demonstrating external pin interrupt (XINT)</description>
+    <board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="XINT"/>
+        <keyword>XINT</keyword>
+        </attributes>
+    </example>
+<example name="adxl362_example_noos" folder="Boards/EVAL-ADICUP3029/Examples/sensor/axl/adxl362/noos" doc="EVAL-ADICUP3029/Readme_adxl362.txt" version="1.1.0">
+<description>Demonstrates ADXL362 accelerometer function using Bluetooth</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="Accelerometer" Csub="adxl362" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="cn0357_example_noos" folder="Boards/EVAL-ADICUP3029/Examples/sensor/gas/cn0357/noos" doc="EVAL-ADICUP3029/Readme_cn0357.txt" version="1.1.0">
+<description>Demonstrates CN0357 Carbon Monoxide Sensor Using Bluetooth</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="ADC" Csub="ad7790" />
+        <component Cclass="Sensors" Cgroup="Gas" Csub="cn0357" />
+        <keyword>CN0357</keyword>
+    </attributes>
+</example>
+<example name="adt7420_example_noos" folder="Boards/EVAL-ADICUP3029/Examples/sensor/temp/adt7420/noos" doc="EVAL-ADICUP3029/Readme_adt7420.txt" version="1.1.0">
+<description>Demonstrates ADT7420 temperature sensor functionality using Bluetooth</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="I2C"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="Temperature" Csub="adt7420" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="template_example_noos" folder="Boards/EVAL-ADICUP3029/Examples/sensor/template_sensor/template_sensor/noos" doc="EVAL-ADICUP3029/Readme_template_sensor.txt" version="1.1.0">
+<description>Demonstrates a template sensor using Bluetooth</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="cn0397_example_noos" folder="Boards/EVAL-ADICUP3029/Examples/sensor/visible_light/cn0397/noos" doc="EVAL-ADICUP3029/Readme_cn0397.txt" version="1.1.0">
+<description>Demonstrates CN0397 visible light sensor functionality using Bluetooth</description>
+<board name="EVAL-ADICUP3029" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EVAL-ADICUP3029/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="ADC" Csub="ad7798" />
+        <component Cclass="Sensors" Cgroup="Visible Light" Csub="cn0397" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+
+
+  </examples>
+</package>

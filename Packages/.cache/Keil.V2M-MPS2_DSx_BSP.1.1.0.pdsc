@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>V2M-MPS2_DSx_BSP</name>
+  <description>ARM V2M-MPS2 Board Support PACK for DesignStart Devices</description>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="CMSIS" version="5.0.1-0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.1.0" date="2017-12-15">
+      Examples:
+      - Added RTOS2 FreeRTOS Blinky example.
+      - Added native FreeRTOS Blinky example.
+      - Updated RTOS2 KeilRTX5 Blinky example.
+    </release>
+    <release version="1.0.0" date="2017-06-20">
+      Initial Release version of V2M-MPS2 DesignStart Board Support Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package ARM DesignStart</keyword>
+    <keyword>Board Support Package for V2M-MPS2</keyword>
+    <keyword>Cortex-M3 DesignStart</keyword>
+  </keywords>
+
+  <devices>
+    <!-- ******************************  Cortex-M3  ****************************** -->
+    <family Dfamily="ARM Cortex M3" Dvendor="ARM:82">
+      <debugconfig default="jtag" swj="true"/>     <!-- Select JTAG as default protocol -->
+
+      <book name="Documents/DUI0552A_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+      <description>
+Cortex-M3 DesignStart: ARM Cortex-M3 and SSE-050 based device.
+      </description>
+
+      <memory id="IROM1" start="0x00000000" size="0x00400000" startup="1" default="1"/>
+      <memory id="IRAM1" start="0x20000000" size="0x00400000" init   ="0" default="1"/>
+
+      <device Dname="DS_CM3">
+        <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Dclock="25000000"/>
+        <debug svd="SVD/DS_CM3.svd"/>
+        <compile header="Device/DS_CM3/Include/DS_CM3.h" define="DS_CM3"/>
+      </device>
+    </family>
+
+  </devices>
+
+  <conditions>
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="DS_CM3 CMSIS Device">
+      <description>ARM DS_M3 Device and CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="DS_CM3"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!--  V2M-MPS2 DS_CM3 Board support  -->
+    <bundle Cbundle="V2M-MPS2" Cclass="Board Support" Cversion="2.0.0">
+      <description>ARM V2M_MPS2 Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="DS_CM3 CMSIS Device">
+      <description>LED driver for ARM V2M_MPS2 Board with DS_CM3</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS2/Common/LED_MPS2_DS_CM3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="DS_CM3 CMSIS Device">
+      <description>Button driver for ARM V2M_MPS2 Board with DS_CM3</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS2/Common/Buttons_MPS2_DS_CM3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Graphic LCD" Capiversion="1.0.0" condition="DS_CM3 CMSIS Device">
+        <description>Graphic LCD driver for ARM V2M_MPS2 Board with DS_CM3</description>
+        <files>
+          <file category="header" name="Boards/ARM/V2M-MPS2/Common/GLCD_Config.h"/>
+          <file category="source" name="Boards/ARM/V2M-MPS2/Common/GLCD_Fonts.c"/>
+          <file category="source" name="Boards/ARM/V2M-MPS2/Common/GLCD_MPS2_DS_CM3.c"/>
+        </files>
+      </component>
+      <component Cgroup="Touchscreen" Capiversion="1.0.0" condition="DS_CM3 CMSIS Device">
+        <description>Touchscreen driver for ARM V2M_MPS2 Board with DS_CM3</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-MPS2/Common/Touch_MPS2_DS_CM3.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1.0" Cversion="1.0.0" condition="DS_CM3 CMSIS Device">
+      <description>USART Driver for ARM V2M_MPS2 Board DS_CM3</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/USART_MPS2_DS_CM3.c"/>
+      </files>
+    </component>
+
+    <!-- DesignStart Cortex-M3 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DS_CM3 CMSIS Device">
+      <description>System and Startup for Generic ARM DesignStart Cortex-M3 device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include"      name="Device/DS_CM3/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/DS_CM3/Source/ARM/startup_DS_CM3.s" version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/DS_CM3/Source/GCC/startup_DS_CM3.S" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="linkerScript" name="Device/DS_CM3/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/DS_CM3/Source/system_DS_CM3.c"      version="1.0.0" attr="config"/>
+
+        <!-- device configuration -->
+        <file category="header"  name="CMSIS/Config/RTE_Device.h"                                      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="DS_CM3 CMSIS Device">
+      <description>System and Startup for Generic ARM DesignStart Cortex-M3 device</description>
+      <files>
+        <!-- device include path -->
+        <file category="include"      name="Device/DS_CM3/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceC"      name="Device/DS_CM3/Source/GCC/startup_DS_CM3.c" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="linkerScript" name="Device/DS_CM3/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/DS_CM3/Source/system_DS_CM3.c"      version="1.0.0" attr="config"/>
+
+        <!-- device configuration -->
+        <file category="header"  name="CMSIS/Config/RTE_Device.h"                                      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <board name="V2M-MPS2" vendor="ARM" revision="B" salesContact="sales.intl@keil.com" orderForm="http://www.keil.com/product/prices.asp">
+      <description>ARM Versatile Express Cortex-M Prototyping System Board</description>
+      <image small="Boards/ARM/V2M-MPS2/Documents/V2M-MPS2_revB_colour_thumb.png"
+             large="Boards/ARM/V2M-MPS2/Documents/V2M-MPS2_revB_colour_medium.png"/>
+      <book category="overview" name="http://www.arm.com/products/tools/development-boards/versatile-express/cortex-m-prototyping-system.php" title="Cortex-M Prototyping System (web page)"/>
+      <book category="manual"   name="Boards/ARM/V2M-MPS2/Documents/versatile_express_cortex_m_prototyping_systems_v2m_mps2_and_v2m_mps2plus_technical_reference_100112_0200_06_en.pdf"
+                                title="ARM Versatile Express Cortex-M Prototyping Systems (V2M-MPS2 and V2M-MPS2+) Technical Reference Manual"/>
+      <book category="manual"   name="Boards/ARM/V2M-MPS2/Documents/Datasheet_V2M-MPS2plus.pdf"
+                                title="Cortex-M Prototyping System (MPS2+) Datasheet"/>
+      <mountedDevice    deviceIndex="0" Dvendor="ARM:82" Dname="DS_CM3"/>
+      <feature type="XTAL"      n="50000000"/>
+      <feature type="PWR"       n="12"             name="12V DC power jack"/>
+      <feature type="Batt"      n="1"              name="3V battery"/>
+      <feature type="Button"    n="4"              name="Push-buttons: 2 FPGA User, Hardware RESET, ON/OFF soft RESET"/>
+      <feature type="ContOther" n="8"              name="Switches: 8 MCC User switches"/>
+      <feature type="USB"       n="1"              name="USB 2.0 configuration port"/>
+      <feature type="RS232"     n="1"              name="General purpose UART Connector"/>
+      <feature type="SPI"       n="1"              name="SPI Header"/>
+      <feature type="Other"     n="1"              name="VGA Connector"/>
+      <feature type="GLCD"      n="1"  m="240.320" name="2.4 inch QVGA Touchscreen Display"/>
+      <feature type="LineIn"    n="1"              name="Stereo line audio IN"/>
+      <feature type="LineOut"   n="1"              name="Stereo line audio OUT"/>
+      <feature type="ETH"       n="1" m="10000000" name="RJ45 Ethernet Connector"/>
+      <feature type="ConnOther" n="1"              name="ARM JTAG 20 Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (20 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="Cortex Debug (10 Pin) Interface"/>
+      <feature type="ConnOther" n="1"              name="MICTOR 38 Interface"/>
+
+      <debugInterface adapter="JTAG/SW"   connector="20 pin JTAG (0.1 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="20 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW"   connector="10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!--  V2M-MPS2 Board DS_CM3 Examples  -->
+    <!-- Image: AN511 -->
+    <example name="DS_CM3 Blinky"                         doc="Abstract.txt" folder="Boards/ARM/V2M-MPS2/DS_CM3/Blinky">
+      <description>Blinky example</description>
+      <board name="V2M-MPS2" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="DS_CM3 CMSIS-RTOS2 (Keil RTX5) Blinky" doc="Abstract.txt" folder="Boards/ARM/V2M-MPS2/DS_CM3/RTOS2_KeilRTX5_Blinky">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example</description>
+      <board name="V2M-MPS2" vendor="ARM" Dname="DS_CM3"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DS_CM3 CMSIS-RTOS2 (FreeRTOS) Blinky"  doc="Abstract.txt" folder="Boards/ARM/V2M-MPS2/DS_CM3/RTOS2_FreeRTOS_Blinky">
+      <description>CMSIS-RTOS2 (FreeRTOS) based Blinky example</description>
+      <board name="V2M-MPS2" vendor="ARM" Dname="DS_CM3"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="DS_CM3 FreeRTOS Blinky"                doc="Abstract.txt" folder="Boards/ARM/V2M-MPS2/DS_CM3/FreeRTOS_Blinky">
+      <description>Native FreeRTOS based Blinky example</description>
+      <board name="V2M-MPS2" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>FreeRTOS</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

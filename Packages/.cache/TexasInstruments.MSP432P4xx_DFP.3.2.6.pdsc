@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>TexasInstruments</vendor>
+  <name>MSP432P4xx_DFP</name>
+  <description>Device Family Pack for Texas Instruments SimpleLink(TM) MSP432 Series</description>
+  <url>http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/</url>
+  <supportContact>http://e2e.ti.com/support/microcontrollers/msp430/</supportContact>
+  <license>license.txt</license>
+
+  <releases>
+    <release version="3.2.6" date="2018-10-31">
+  New features / changes:
+  - Using stack size as defined in linker file for EWARM
+    </release>
+    <release version="3.2.5" date="2017-04-25">
+  New features / changes:
+  - Adding MSP-EXP432P4111 description to boards section
+  - Updated IAR EWARM examples to support EWARM 8.30.1
+  Bugfixes:
+  - MSP432P401V was not correctly recognized
+    </release>
+    <release version="3.2.3" date="2017-02-28">
+  New features / changes:
+  - Deprecate MSP432P401R Rev B
+  - Modify example to support period window update setting
+  Bugfixes:
+  - Adding Target.lin file back
+      </release>
+    <release version="3.2.2" date="2017-10-25">
+  New device support:
+  - Added support for MSP432P4011, MSP432P401Y and MSP432P411Y
+    </release>
+    <release version="3.2.1" date="2017-10-16">
+  New features / changes:
+  - Header file fixes for ARM compiler 6
+    </release>
+    <release version="3.2.0" date="2017-08-31">
+  New device support:
+  - Added support for MSP432P411Y and MSP432P411V
+    </release>
+    <release version="3.1.0" date="2017-04-28">
+  New device support:
+  - Added support for MSP432P4111
+  MSP432 Header and Support Files Changes:
+  - Fixed project creation bugs in IAR EWARM and Atollic TrueSTUDIO
+  - Minor enhancements to pdsc file
+    </release>
+    <release version="3.0.0" date="2017-02-22">
+  This pack adds support for IAR EWARM and Atollic TrueSTUDIO.
+  
+  MSP432 Header and Support Files Changes:
+  - Adding linker and startup files for Atollic
+  - Adding flash loaders for IAR
+  - Minor fixes to pdsc file
+  - Fixing copyright in startup file for KEIL
+    </release>
+    <release version="2.2.1" date="2016-08-25">
+  MSP432 Header and Support Files Changes:
+  - Minor fixes to pdsc file
+  - Adding board images linkes to pdsc
+    </release>
+    <release version="2.2.0" date="2016-06-02">
+  New device support:
+  - Added support for MSP432P401M
+    </release>
+  <release version="2.1.1">
+  New device support:
+  - Enabled support of RevB material with revision id 0x4100
+    </release>
+    <release version="2.1.0">
+  New device support:
+  - Flash loader supports upcoming RevC silicon material of MSP432P401R
+
+  MSP432 Header and Support Files Changes:
+  - Included definition for MSP432 mailbox structure into device header file
+    </release>
+    <release version="2.0.0">
+  This device family pack replaces TexasInstruments.MSP432
+
+  New device support:
+  - MSP432P401R RevC
+  - MSP432P401R ES/ES2 revisions are no longer supported
+
+  Bug fixes in KEIL Flash Loader:
+  - Support restore of clock settings after flash programming
+
+  MSP432 Header and Support Files Changes:
+  - Adapted device specific header file coding style to CMSIS
+    = Replaced repeated structs with generic structs
+    = Removed bit fields and Hungarian notation from CMSIS structs
+    = Removed HWREG #defines
+    = Added explicit IP prefix to all bit definitions
+    = Moved MSP430 style registers to msp432p401r_classic.h
+    = Added doxygen style comments
+  - Bugfix: Added HAS_PORT definitions to device header file
+  - Bugfix: Corrected wrong MPU_RASR bit fields in device header file
+  - Added CMSIS compliant system_msp432p401r.c source
+  - Renamed msp432_startup.s to startup_msp432p401r_uvision.s
+    </release>
+  </releases>
+
+  <requirements>   
+    <packages>     
+      <package vendor="ARM" name="CMSIS" version="4.5.0"/>   
+    </packages> 
+  </requirements>
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <family Dfamily="MSP432P4xx Series" Dvendor="Texas Instruments:16">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <debugconfig default="swd" clock="10000000" swj="1"/>
+      <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/DUI0553A_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+      <book name="http://www.ti.com/lit/pdf/slau356" title="MSP432P4xx Family Technical Reference Manual"/>
+      <book name="http://www.ti.com/lit/pdf/slau590" title="ARM&#174; Keil&#174; MDK 5 IDE for SimpleLink&#8482; MSP432&#8482; User's Guide"/>
+      <description>
+The SimpleLink(TM) MSP432P4xx microcontrollers (MCUs) are optimized wireless host MCUs with an integrated 14-bit analog-to-digital converter (ADC) capable of up to 16 ENOB delivering ultra-low-power performance including 80 &#181;A/MHz in active power and 660 nA in standby power with FPU and DSP extensions. 
+As an optimized wireless host MCU, the MSP432P4xx allows developers to add high-precision analog and memory extension to applications based on SimpleLink wireless connectivity solutions. 
+More information on MSP432 MCUs at http://www.ti.com/msp432.
+      </description>
+       
+      <!-- features common for the whole family -->
+      <feature type="ADC" n="24" m="14"/>
+      <feature type="VCC" n="1.62" m="3.7"/>
+      <feature type="AnalogOther" n="2" name="Analog Comparator"/>
+      <feature type="Crypto" n="128.256" name="HW accelerated AES Encryption Engine"/>
+      <feature type="TempSens" n="1"/>
+      <feature type="Timer" n="4" m="16" name="Up to 4 timers/PWM/CCP"/>
+      <feature type="Timer" n="2" m="32" name="GP Timers"/>
+      <feature type="ComOther" n="4" name="UART or SPI"/>
+      <feature type="ComOther" n="4" name="I2C or SPI"/>
+
+      <!-- debug sequences -->  
+      <sequences>
+      <!-- Unlock a device which has been secured -->
+        <sequence name="DebugDeviceUnlock">
+          <block>
+            __var securityIsEnabled = 0;
+            __var unlockDevice = 0;
+            DAP_Delay(100000);
+            Write32(0xE0044000, 0x0000695A);
+            securityIsEnabled = Read32(0xE0044020);
+          </block>
+          <control if="securityIsEnabled &amp; 0x38">
+            <block>
+              unlockDevice = Query(1, "Device is locked. Erase all memory and unlock device?", 1);
+            </block>
+            <control if="unlockDevice">
+              <block>
+                // Write reboot sequence to SYSCTL registers
+                Write32(0xE0044000, 0x0000695A);
+                Write32(0xE0044004, 0x00000001);
+                Write32(0xE0044008, 0x00000000);
+                Write32(0xE0044010, 0x00006902);
+                Sequence("DebugDeviceUnlock");
+              </block>
+            </control>
+          </control>
+        </sequence>
+        <!-- <control if="!(securityIsEnabled &amp; 0x38)"> -->
+        <sequence name="DebugCodeMemRemap">
+          <block>
+            __var deviceId = 0;
+            __var hwRevision = 0;
+            __var isMSP432P401M = 0;
+            __var isMSP432P401R = 0;
+            __var isMSP432P4111 = 0;
+            __var isMSP432P411Y = 0;
+            __var isMSP432P411V = 0;
+            __var isMSP432P4011 = 0;
+            __var isMSP432P401Y = 0;
+            __var isMSP432P401V = 0;
+            __var isMSP432P4xx_FLCTL = 0;
+            __var isMSP432P4xx_FLCTL_A = 0;
+            __var isMSP432P4xx_FLCTL_Production = 0;
+            __var qResult = 0;
+            deviceId =   Read32(0x0020100C);
+            hwRevision = Read32(0x00201010);
+            isMSP432P401M = 
+                  (deviceId == 0x0000A001) ||
+                  (deviceId == 0x0000A003) ||
+                  (deviceId == 0x0000A005);
+            isMSP432P401R = 
+                  (deviceId == 0x0000A000) ||
+                  (deviceId == 0x0000A002) ||
+                  (deviceId == 0x0000A004);
+            isMSP432P4111 =
+                  (deviceId == 0x0000A010) ||
+                  (deviceId == 0x0000A020);
+            isMSP432P411Y =
+                  (deviceId == 0x0000A012) ||
+                  (deviceId == 0x0000A022);
+            isMSP432P411V =
+                  (deviceId == 0x0000A016) ||
+                  (deviceId == 0x0000A026);
+            isMSP432P4011 =
+                  (deviceId == 0x0000A019) ||
+                  (deviceId == 0x0000A029);
+            isMSP432P401Y =
+                  (deviceId == 0x0000A01B) ||
+                  (deviceId == 0x0000A02B);
+            isMSP432P401V =
+                  (deviceId == 0x0000A01F) ||
+                  (deviceId == 0x0000A02F);  
+            isMSP432P4xx_FLCTL = isMSP432P401M || isMSP432P401R;
+            isMSP432P4xx_FLCTL_A = isMSP432P4111 || isMSP432P411Y || isMSP432P411V || isMSP432P4011 || isMSP432P401Y || isMSP432P401V;
+            isMSP432P4xx_FLCTL_Production= isMSP432P4xx_FLCTL&amp;&amp;
+                  (
+                    (hwRevision &gt;= 0x00000043) &amp;&amp;
+                    (hwRevision &lt;= 0x00000049)
+                  );
+          </block>
+
+          <!-- Check if the device is old material -->
+          <control if="!isMSP432P4xx_FLCTL_Production &amp;&amp; !isMSP432P4xx_FLCTL_A">
+            <block>
+              Query(0, "Your XMS432P401R material is no longer supported. We recommend you moving to production-quality MSP432P401R/M silicon by ordering samples at www.ti.com/product/MSP432P401R.", 0);
+            </block>
+          </control>
+      </sequence>
+                    
+          <!-- ***********************Enable Trace******************************* -->
+          <!-- TraceStart: Set PJ.5 as SWO by setting function select registers(PJSEL0 and PJSEL1) -->
+        <sequence name="TraceStart">
+          <block>
+            __var value      = 0;
+
+            //Enable SWO 
+            value = Read8(0x40004D2A);
+            Write8(0x40004D2A, (value | 0x20));         //Set the register PJSEL0.5=1
+            value = Read8(0x40004D2C);
+            Write8(0x40004D2C, (value &amp; (~0x20)));  //Clear the register PJSEL1.5=0 
+          </block>
+        </sequence>     
+        <!-- TraceStop: Set function select registers(PJSEL0 and PJSEL1) to default value-->
+        <sequence name="TraceStop">
+          <block>
+            __var value      = 0;
+
+            //Set PJ.5 pin functionality as default(TD0/SWO Mode)
+            value = Read8(0x40004D2A);
+            Write8(0x40004D2A, (value | 0x20));         //Set the register PJSEL0.5=1
+            value = Read8(0x40004D2C);
+            Write8(0x40004D2C, (value &amp; (~0x20)));  //Clear the register PJSEL1.5=0 
+          </block>
+        </sequence>
+      </sequences>
+      
+      <environment name="iar">
+          <compile    define="ewarm"/><!-- needed for driver library -->
+      </environment>
+        
+      <!-- ************************  Subfamily MSP432P4xx  **************************** -->
+      <subFamily DsubFamily="MSP432P4xx">
+        <processor  Dclock="48000000"/>
+        <book name="http://www.ti.com/lit/pdf/slas826" title="MSP432P4xx Datasheet"/>
+        <book name="http://www.keil.com/appnotes/docs/apnt_276.asp" title="Keil Examples"/>
+
+        <!-- features common for the sub family -->
+        <feature type="PowerOther" n="1" name="Active Mode 90 &#181;A/MHz"/>
+        <feature type="PowerOther" n="1" name="Low-Frequency Active: 90 &#181;A (at 128 kHz)"/>
+        <feature type="PowerOther" n="1" name="LPM3 (With RTC): 850 nA"/>
+        <feature type="PowerOther" n="1" name="LPM3.5 (With RTC): 800 nA"/>
+        <feature type="PowerOther" n="1" name="LPM4.5: 25 nA"/>
+
+        <compile    header="Device/Include/msp.h"/>
+
+        <!-- *************************  Device MSP432P401R  ***************************** -->
+        <device Dname="MSP432P401R">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00004000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00010000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00010000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash256kB.FLM" start="0x00000000" size="0x00040000" RAMstart="0x01000000" RAMsize="0x0000E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash.FLM"      start="0x00200000" size="0x00004000" RAMstart="0x01000000" RAMsize="0x0000E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401R.flash"        start="0x00000000" size="0x00040000" RAMstart="0x01000000" RAMsize="0x0000E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401R_info.flash"   start="0x00200000" size="0x00004000" RAMstart="0x01000000" RAMsize="0x0000E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P401R__"/>
+          <debug      svd="SVD/MSP432P401R.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P401M  ***************************** -->
+        <device Dname="MSP432P401M">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00004000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00008000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00008000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash128kB.FLM" start="0x00000000" size="0x00020000" RAMstart="0x01000000" RAMsize="0x00006000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash.FLM"      start="0x00200000" size="0x00004000" RAMstart="0x01000000" RAMsize="0x00006000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401M.flash"        start="0x00000000" size="0x00020000" RAMstart="0x01000000" RAMsize="0x00006000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401M_info.flash"   start="0x00200000" size="0x00004000" RAMstart="0x01000000" RAMsize="0x00006000" default="0" style="IAR"/>
+          <compile    define="__MSP432P401M__"/>
+          <debug      svd="SVD/MSP432P401M.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P4111  ***************************** -->
+        <device Dname="MSP432P4111">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00040000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00040000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash2048kB.FLM" start="0x00000000" size="0x00200000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash_A.FLM"     start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P4111.flash"        start="0x00000000" size="0x00200000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P4111_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P4111__"/>
+          <debug      svd="SVD/MSP432P4111.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P411Y  ***************************** -->
+        <device Dname="MSP432P411Y">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00040000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00040000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash1024kB.FLM" start="0x00000000" size="0x00100000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash_A.FLM"     start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P411Y.flash"        start="0x00000000" size="0x00100000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P411Y_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P411Y__"/>
+          <debug      svd="SVD/MSP432P411Y.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P411V  ***************************** -->
+        <device Dname="MSP432P411V">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00020000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00020000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash512kB.FLM" start="0x00000000" size="0x00080000" RAMstart="0x01000000" RAMsize="0x0001E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash_A.FLM"    start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0001E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P411V.flash"        start="0x00000000" size="0x00080000" RAMstart="0x01000000" RAMsize="0x0001E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P411V_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0001E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P411V__"/>
+          <debug      svd="SVD/MSP432P411V.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P4011  ***************************** -->
+        <device Dname="MSP432P4011">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00040000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00040000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash2048kB.FLM" start="0x00000000" size="0x00200000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash.FLM"      start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P4011.flash"        start="0x00000000" size="0x00200000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P4011_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P4011__"/>
+          <debug      svd="SVD/MSP432P4011.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P401Y  ***************************** -->
+        <device Dname="MSP432P401Y">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00040000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00040000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash1024kB.FLM" start="0x00000000" size="0x00100000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash.FLM"      start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401Y.flash"        start="0x00000000" size="0x00100000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401Y_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0003E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P401Y__"/>
+          <debug      svd="SVD/MSP432P401Y.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+        <!-- *************************  Device MSP432P401V  ***************************** -->
+        <device Dname="MSP432P401V">
+          <memory     id="IROM1"      access="rx"  start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory     id="IROM2"      access="rx"  start="0x00200000" size="0x00008000" startup="0" default="1"/>
+          <memory     id="IRAM1"      access="rw"  start="0x20000000" size="0x00020000" default="1"/>
+          <memory     id="IRAM2"      access="rwx" start="0x01000000" size="0x00020000" default="0" alias="IRAM1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_MainFlash512kB.FLM" start="0x00000000" size="0x00080000" RAMstart="0x01000000" RAMsize="0x0001E000" default="1"/>
+          <algorithm  name="FlashARM/MSP432P4xx_InfoFlash.FLM"      start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0001E000" default="1"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401V.flash"        start="0x00000000" size="0x00080000" RAMstart="0x01000000" RAMsize="0x0001E000" default="0" style="IAR"/>
+          <algorithm  name="FlashIAR/FlashMSP432P401V_info.flash"   start="0x00200000" size="0x00008000" RAMstart="0x01000000" RAMsize="0x0001E000" default="0" style="IAR"/>
+          <compile    define="__MSP432P401V__"/>
+          <debug      svd="SVD/MSP432P401V.svd"/>
+          <environment name="iar">
+            <debugger>
+              <param name="xdsdevicename" value="MSP432"/>
+            </debugger>
+          </environment>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+ <conditions>
+    <condition id="MSP432 CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>Texas Instruments MSP432 Family devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432*"/>
+    </condition>
+    <condition id="isMSP432P401R">
+      <description>Texas Instruments MSP432P401R device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P401R"/>
+    </condition>
+    <condition id="isMSP432P401M">
+      <description>Texas Instruments MSP432P401R device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P401M"/>
+    </condition>
+    <condition id="isMSP432P4111">
+      <description>Texas Instruments MSP432P4111 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P4111"/>
+    </condition>
+    <condition id="isMSP432P411Y">
+      <description>Texas Instruments MSP432P411Y device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P411Y"/>
+    </condition>
+    <condition id="isMSP432P411V">
+      <description>Texas Instruments MSP432P411V device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P411V"/>
+    </condition>
+    <condition id="isMSP432P4011">
+      <description>Texas Instruments MSP432P4011 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P4011"/>
+    </condition>
+    <condition id="isMSP432P401Y">
+      <description>Texas Instruments MSP432P401Y device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P401Y"/>
+    </condition>
+    <condition id="isMSP432P401V">
+      <description>Texas Instruments MSP432P401V device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="MSP432P401V"/>
+    </condition>
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Startup GCC">
+      <description>Startup assembler file for GCC</description>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Startup IAR">
+      <description>Startup assembler file for IAR</description>
+      <require Tcompiler="IAR"/>
+    </condition>  
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P401R">
+      <description>System Startup for MSP432P401R</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401r_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401r_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p401r.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401r_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p401r.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P401M">
+      <description>System Startup for MSP432P401M</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401m_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401m_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p401m.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401m_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p401m.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P4111">
+      <description>System Startup for MSP432P4111</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4111_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4111_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p4111.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4111_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p4111.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P411Y">
+      <description>System Startup for MSP432P411Y</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411y_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411y_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p411y.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411y_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p411y.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P411V">
+      <description>System Startup for MSP432P411V</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411v_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411v_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p411v.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p411v_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p411v.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P4011">
+      <description>System Startup for MSP432P4011</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4011_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4011_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p4011.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p4011_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p4011.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P401Y">
+      <description>System Startup for MSP432P401Y</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401y_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401y_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p401y.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401y_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p401y.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.2.2" condition="isMSP432P401V">
+      <description>System Startup for MSP432P401V</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="header"  name="Device/Include/msp_compatibility.h" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401v_uvision.s" attr="config" condition="Startup ARM" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401v_gcc.S" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="linkerScript"  name="Device/Source/msp432p401v.ld" attr="config" condition="Startup GCC" version="3.2.2"/>
+        <file category="source"  name="Device/Source/startup_msp432p401v_ewarm.c" attr="config" condition="Startup IAR" version="3.2.2"/>
+        <file category="source"  name="Device/Source/system_msp432p401v.c" attr="config" version="3.2.2"/>
+        <file category="source"  name="Examples/EmptyMain/main.c" attr="template" select="Empty C main" version="3.2.2"/>
+        <file category="source"  name="Examples/BlinkLED/blinkLED.c" attr="template" select="BlinkLED example" version="3.2.2"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+  <board vendor="TexasInstruments" name="MSP-EXP432P401R" salesContact="http://www.ti.com/general/docs/contact.tsp" orderForm="https://store.ti.com/msp-exp432p401r.aspx">
+    <description>MSP432P401R LaunchPad</description>
+    <image large="http://www.ti.com/diagrams/med_msp-exp432p401r_msp-exp432p401r_sidered.jpg" public="true" />
+    <book category="overview"  name="http://www.ti.com/tool/msp-exp432p401r" title="MSP432P401R LaunchPad Web page"/>
+    <book category="setup"     name="http://www.ti.com/lit/pdf/slau596" title="MSP432 Quick Start Guide"/>
+    <book category="manual"    name="http://www.ti.com/lit/pdf/slau597" title="LaunchPad Development Kit User's Guide"/>
+    <mountedDevice    deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P401R"/>
+    <compatibleDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dfamily="MSP432P4xx Series" DsubFamily="MSP432P4xx"/>
+    <debugInterface adapter="XDS110-ET" connector="XDS110-ET Onboard Emulator"/>  
+    <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+    <feature type="USB" n="1" name="USB Device,  Micro-B receptacle"/>
+    <feature type="Button" n="3" name="reset and tow user push-buttons"/>
+    <feature type="LED" n="2" name="LEDs for user interaction"/>    
+    <feature type="ConnOther" n="1" name="40 pin BoosterPack Connector and support for 20 pin BoosterPacks"/>
+    <feature type="Other" n="1" name="Back-channel UART via USB to PC"/>
+    <feature type="ODbg" n="1" name="Onboard XDS-110ET emulator featuring EnergyTrace+ Technology"/>
+  </board>
+  <board vendor="TexasInstruments" name="MSP-EXP432P4111" salesContact="http://www.ti.com/general/docs/contact.tsp" orderForm="https://store.ti.com/MSP-EXP432P4111-SimpleLink-MSP432P4111-MCU-LaunchPad-Development-Kit-P53210.aspx">
+    <description>MSP432P401R LaunchPad</description>
+    <image large="http://www.ti.com/diagrams/med_msp-exp432p4111_msp-exp432_p4111.jpg" public="true" />
+    <book category="overview"  name="http://www.ti.com/tool/msp-exp432p4111" title="MSP432P4111 LaunchPad Web page"/>
+    <book category="manual"    name="http://www.ti.com/lit/pdf/slau747" title="LaunchPad Development Kit User's Guide"/>
+    <mountedDevice    deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P4111"/>
+    <debugInterface adapter="XDS110-ET" connector="XDS110-ET Onboard Emulator"/>  
+    <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+    <feature type="LCD" n="1" name="Segment LCD Controller"/>
+    <feature type="USB" n="1" name="USB Device,  Micro-B receptacle"/>
+    <feature type="Button" n="3" name="reset and tow user push-buttons"/>
+    <feature type="LED" n="2" name="LEDs for user interaction"/>    
+    <feature type="ConnOther" n="1" name="40 pin BoosterPack Connector and support for 20 pin BoosterPacks"/>
+    <feature type="Other" n="1" name="Back-channel UART via USB to PC"/>
+    <feature type="ODbg" n="1" name="Onboard XDS-110ET emulator featuring EnergyTrace+ Technology"/>
+  </board>
+  <board vendor="TexasInstruments" name="MSP-TS432PZ100" salesContact="http://www.ti.com/general/docs/contact.tsp" orderForm="https://store.ti.com/msp-ts432pz100.aspx">
+    <description>MSP432 100-Pin Target board</description>
+    <image large="http://www.ti.com/diagrams/med_msp-ts432pz100_msp-ts432pz100-board-photo.jpg" public="true" />
+    <mountedDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P401R"/>
+    <mountedDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P401M"/>
+    <mountedDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P4111"/>
+    <mountedDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P411Y"/>
+    <mountedDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dname="MSP432P411V"/>
+    <book category="manual" name="http://www.ti.com/lit/pdf/slau571" title="MSP432 Hardware Tools User's Guide"/>
+        <compatibleDevice deviceIndex="0" Dvendor="Texas Instruments:16" Dfamily="MSP432P4xx Series" DsubFamily="MSP432P4xx"/> 
+    <debugInterface adapter="JTAG/SW" connector="20-pin ARM Standard JTAG Connector (0.1 inch connector)"/>
+    <feature type="ConnOther" n="1" name="BSL programming connector"/>  
+    <feature type="Button" n="2" name="reset and user"/>
+  </board>
+  </boards>
+
+    <examples>
+    <example name="BlinkLED" folder="Examples/BlinkLED" doc="Abstract.txt" version="3.2.2">
+    <description>This is a basic example demonstrating the development flow and making the LED on the board blink</description>
+    <board name="MSP-EXP432P401R" vendor="TexasInstruments"/>
+    <project>
+      <environment name="uv"  load="ARM/BlinkLED.uvprojx"/>
+          <environment name="iar" load="IAR/BlinkLED/BlinkLED.ewp" />
+          <environment name="atollic" load="Atollic/.project" />
+    </project>
+    <attributes>
+      <component Cclass="CMSIS" Cgroup="CORE"/>
+      <component Cclass="Device" Cgroup="Startup"/>
+      <keyword>Blinky</keyword>
+      <keyword>Getting Started</keyword>
+    </attributes>
+    </example>
+    <example name="EmptyMain" folder="Examples/EmptyMain" doc="Abstract.txt" version="3.2.2">
+    <description>This is a basic example providing an empty main body</description>
+    <board name="MSP-EXP432P401R" vendor="TexasInstruments"/>
+    <project>
+      <environment name="uv"  load="ARM/EmptyMain.uvprojx"/>
+      <environment name="iar" load="IAR/EmptyMain/EmptyMain.ewp" />
+      <environment name="atollic" load="Atollic/.project" />
+    </project>
+    <attributes>
+      <component Cclass="CMSIS" Cgroup="CORE"/>
+      <component Cclass="Device" Cgroup="Startup"/>
+      <keyword>Empty</keyword>
+      <keyword>Main</keyword>
+      <keyword>Getting Started</keyword>
+    </attributes>
+    </example>
+  </examples>
+</package>

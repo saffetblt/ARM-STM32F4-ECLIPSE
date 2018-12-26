@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Sinowealth</vendor>
+  <url>http://www.sinowealth.com/ftp/tool/Arm32/</url>
+  <name>SH32Fxxx_DFP</name>
+  <description>Sinowealth SH32Fxx Series Device Support, Drivers and Examples</description>
+  <releases>
+    <release version="1.0.0" date="2018-02-23">
+       First Release version of SH32F2xx Device Family Pack.
+   </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Sinowealth</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Sinowealth</keyword>
+    <keyword>SH32F2</keyword>
+    <keyword>SH32F</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="SH32Fxxx Series" Dvendor="Sinowealth:149">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <environment name="uv">
+        <CMisc>--C99</CMisc>
+      </environment>      
+       
+      <book name="Documents/dui0552a_cortex_m3_dgug.pdf"  title="Cortex-M3 Generic User Guide"/>
+       <description>
+       Sinowealth high performance 32bits MCUs. Covers the needs of a large variety of applications in the industrial and consumer markets.
+       </description>
+
+      <!-- ************************  Subfamily 'SH32F2xx'  **************************** -->
+      <subFamily DsubFamily="SH32F2xx">      
+      <description>
+       Sinowealth's SH32F2 series are high-performance 32 bit MCUs based on ARM Cortex-M3 Core. The frequency up to 120MHz.
+       Apply to all kinks of brushless DC motor (BLDC) and permanent magnet synchronous motor (PMSM). Can drive 1 to 3 completely independent three-phase DC motors.
+       Focusing on providing high integration and high computing power of the monolithic integrated circuit, providing a cost-effective microcontroller system solution.
+       Provides a mathematic coprocessor unit (MACP), Space Vector Pulse Width Modulation(SVPWM), Motor control module (MCM),General PWM Timer, 12 bit multi channel high speed ADC and some analog modules on chip (AMOC).
+
+      - Cortex-M3
+      - Up to 120MHz
+      - Motor Control Module (MCM)
+      - Quadrature Encoder Interface (QEI)
+      - Mathematic Coprocessor (MACP)
+      - Analog Module On Chip (AMOC)
+      - Space Vector Pluse Width Modulation (SVPWM)
+      - High performance ADC
+      - Code Read Protection (CRP) with different security levels.
+      - Unique device serial number
+      
+      </description>
+      
+      <!-- *************************  Device 'SH32F205'  ***************************** -->
+      <device Dname="SH32F205">
+        <processor Dclock="120000000"/>
+        <compile header="Device/Include/sh32f2xx.h"  define="SH32F2XX"/>  
+        <debug      svd="SVD\sh32f2xx.svd"/>
+        <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+        <memory     id="IRAM2"                      start="0x10000000"  size="0x4000"     init   ="0"   default="0"/>
+        <algorithm  name="Flash/SH32F2xx.FLM"       start="0x00000000"  size="0x40000"    RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+       </device>      
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <boards>
+    <board vendor="Sinowealth" name="SH32F2xxEVB" revision="Ver 1.0" >
+      <description>Sinowealth SH32F2xx Development Board</description>
+      <image small="Images/SH32F205_EVB.jpg" large="Images/SH32F205_EVB.jpg"/>
+      <book category="manual"    name="Documents/SH32F205_EVB.pdf" title="User Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Sinowealth:149" Dname="SH32F205"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Sinowealth:149" DsubFamily="SH32F2xx"/>
+      <feature type="XTAL"            n="120000000"/>
+      <feature type="LED"             n="4"              name="I/O Port LEDs"/>
+      <debugInterface adapter="SW" connector="VDD, SWIO, SWCLK, SWD, GND"/>
+    </board>
+  </boards>
+
+  <conditions>
+    <condition id="Compiler ARM">                                             <!-- conditions selecting ARM Compiler -->
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="SH32Fxxx CMSIS Device">                                   <!-- conditions selecting Devices -->
+      <description>Sinowealth SH32F2xx device series</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Sinowealth:149" Dname="SH32F2*"/>
+      <require Cclass ="Project" Cgroup="Project Files" Csub=""/>      
+    </condition>
+
+    <condition id="SH32F2xx STDPERIPH">
+      <description>Sinowealth SH32F2 Standard Peripherals Drivers</description>
+      <require condition="SH32Fxxx CMSIS Device"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+    </condition>
+    
+    <condition id="SH32F2xx">
+      <description>Sinowealth SH32F200 Series devices</description>
+      <require Dname="SH32F2*"/>
+    </condition>
+    
+    <condition id="SH32F2xx ARMCC">
+      <description>Sinowealth SH32F200 Series devices</description>
+      <require Dname="SH32F2*"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="SH32F2xx STDPERIPH RCC">
+      <description>Sinowealth SH32F2 Standard Peripherals Drivers with RCC</description>
+      <require condition="SH32F2xx STDPERIPH"/>
+      <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC"/>
+    </condition>
+     
+    <condition id="SH32F2xx CMSIS GPIO">
+      <description>Sinowealth SH32F2 Series GPIO Driver with CMSIS</description>
+      <require Cclass ="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Sinowealth:149" Dname="SH32F2*"/>
+      <require Cclass ="Device" Cgroup="StdPeriph Drivers" Csub="GPIO"/>
+     </condition>
+     
+    </conditions>
+ 
+
+  <examples>
+    <!-- SH32F205 Development Board -->
+    <example name="LEDDemo" doc="Readme.txt" folder="Boards/Sinowealth/SH32F2xxEVB/LEDDemo">
+      <description>LEDDemo example</description>
+      <board name="SH32F2xxEVB" vendor="Sinowealth"/>
+      <project>
+        <environment name="uv" load="LEDDemo.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+  </example>
+  </examples>
+  
+  <components>
+      <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Sinowealth SH32F2xx Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define USE_STD_LIBRARY   1   /* Using Standard Library for SH32F2XX */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device/Include/"/>
+
+        <!-- header files -->
+        <file category="header" condition="SH32F2xx" name="Device/Include/sh32f2xx.h"/>
+
+        <!-- startup files -->
+        <file category="source" condition="SH32F2xx ARMCC" name="Device/Source/ARM/startup_sh32f2xx_keil.s"   attr="config" version="1.0.0"/>
+    
+        <!-- system file -->
+        <file category="source" condition="SH32F2xx" name="Device/Source/system_sh32f2xx.c"           attr="config" version="1.0.0"/>
+        <file category="source" condition="SH32F2xx" name="Device/Source/sh32f2xx_retarget.c"         attr="config" version="1.0.0"/>
+  
+        <!-- device configuration for  SH32F2xx -->
+        <!-- file category="header" condition="SH32Fxxx CMSIS Device" name="Device/SH32F2xx_StdPeriph_Driver/templates/sh32f2xx_config.h" attr="config" version="1.0.0"/ -->
+
+      </files>
+    </component>
+       
+    <component Cclass="Project" Cgroup="Project Files" Cversion="1.0.0" condition="SH32F2xx STDPERIPH">
+      <description>Standard Peripherals Drivers Framework</description>
+      <files>
+        <!-- file category="include" name="Device/SH32F2xx_StdPeriph_Driver/templates/"/-->
+        <file category="header"  name="Device/SH32F2xx_StdPeriph_Driver/templates/sh32f2xx_periph_init.h" attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH32F2xx_StdPeriph_Driver/templates/sh32f2xx_periph_init.c" attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/SH32F2xx_StdPeriph_Driver/templates/sh32f2xx_int.h" attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH32F2xx_StdPeriph_Driver/templates/sh32f2xx_int.c" attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH32F2xx_StdPeriph_Driver/templates/main.c" attr="template" select="main program flow"/>        
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cversion="1.0.0" condition="SH32F2xx STDPERIPH">
+      <description>Standard Peripherals Drivers Framework</description>
+      <RTE_Components_h>
+        #define _MODULE_FRAMEWORK
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Device/SH32F2xx_StdPeriph_Driver/SH32F2xx_StdLib_Driver.chm"/>
+        <file category="include" name="Device/SH32F2xx_StdPeriph_Driver/inc/"/>
+        <file category="header"  name="RTE_Driver/Config_SH32F2xx/sh32f2xx_config.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="ADC" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Analog-to-digital converter (ADC) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_adc.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_adc.c"/>
+      </files>
+    </component>
+    
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="AMOC" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Analog-module-on-chip (AMOC) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_AMOC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_amoc.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_amoc.c"/>
+      </files>
+    </component>
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Cortex-M3" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Cortex-M3 special functions driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_CORTEX
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_cortex.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_cortex.c"/>
+      </files>
+    </component>
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CRC" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>Cyclic-redundancy-check (CRC) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_crc.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_crc.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>Direct-memory-access (DMA) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_dma.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_dma.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="EXTI" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>External-Interrupt (EXTI) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_exti.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_exti.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="FLASH" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Flash memory programming driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_flash.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_flash.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>General-purpose-input-and-output (GPIO) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_gpio.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_gpio.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPT" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>General-purpose-timer (GPT) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_GPT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_gpt.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_gpt.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="IWDT" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Independent-watchdog-timer (IWDT) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_IWDT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_iwdt.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_iwdt.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="MACP" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>Mathematic-coprocessor (MACP) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_MACP
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_macp.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_macp.c"/>
+      </files>
+    </component>    
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="MCM" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Motor-control-module (MCM) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_MCM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_mcm.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_mcm.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="MPU" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Memory-protection-unit (MPU) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_mpu.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_mpu.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="NVIC" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Additional Nested-vectored-interrupt-controller (NVIC) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_NVIC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_nvic.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_nvic.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="QEI" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Quadrature-encoder-interface (QEI) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_QEI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_qei.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_qei.c"/>
+      </files>
+    </component>  
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RAMBIST" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>RAM-build-in-self-test (RAMBIST) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_RAMBIST
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_rambist.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_rambist.c"/>
+      </files>
+    </component>  
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC" Cversion="1.0.0" condition="SH32Fxxx CMSIS Device">
+      <description>Reset-and-clock-control (RCC) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_rcc.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_rcc.c"/>
+      </files>
+    </component>  
+    
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO" >
+      <description>Serial Peripheral Interface (SPI) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_spi.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_spi.c"/>
+      </files>
+    </component>  
+   
+    <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SYSCFG" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>System configuration (SYSCFG) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_SYSCFG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_syscfg.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_syscfg.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Timer" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>General Timer driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_tim.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_tim.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="TWI" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Two-wire-serial-interface (TWI) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_TWI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_twi.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_twi.c"/>
+      </files>
+    </component>  
+    
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="UART" Cversion="1.0.0" condition="SH32F2xx CMSIS GPIO">
+      <description>Universal-asynchronous-receiver-transmitter (UART) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_UART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_uart.h"/>
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_uart.c"/>
+      </files>
+    </component>  
+
+     <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="WWDT" Cversion="1.0.0" condition="SH32F2xx STDPERIPH RCC">
+      <description>Window-watchdog-timer (WWDT) driver for SH32F2xx</description>
+      <RTE_Components_h>
+        #define _MODULE_WWDT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH32F2xx_StdPeriph_Driver/inc/sh32f2xx_wwdt.h" />
+        <file category="source" name="Device/SH32F2xx_StdPeriph_Driver/src/sh32f2xx_wwdt.c"/>
+      </files>
+    </component> 
+
+   
+   <!-- END: Sinowealth Standard Peripherals Drivers -->
+   
+     <!-- SH32F2XXEVB Development Board -->
+    <bundle Cbundle="SH32F2xxBundle" Cclass="Board Support" Cversion="1.0.0" >
+      <description>Sinowealth Development Board SH32F2xxEVB</description>
+      <doc>Documents</doc>
+    
+      <component Cgroup="SH32F2xxEVB" Csub="LED Driver" condition="SH32F2xx CMSIS GPIO">
+        <description>LED driver for Keil SH32F2xxEVB Development Board</description>
+        <files>
+          <file category="header" name="Boards/Sinowealth/SH32F2xxEVB/LEDDemo/driver/LED.h" attr="config" version="1.0.0"/>
+          <file category="source" name="Boards/Sinowealth/SH32F2xxEVB/LEDDemo/driver/LED.c" attr="config" version="1.0.0"/>
+        </files>
+      </component>    
+    </bundle>
+
+  </components>
+</package>

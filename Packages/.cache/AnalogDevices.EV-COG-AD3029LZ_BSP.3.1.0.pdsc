@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AnalogDevices</vendor>
+  <name>EV-COG-AD3029LZ_BSP</name>
+  <description>Analog Devices EV-COG-AD3029 Off-Chip Drivers and Examples. (Subject to the Software License Agreement referred to in the Release Notes.)</description>
+  <url>http://download.analog.com/tools/EZBoards/COG_AD3029/Releases</url>
+  <supportContact>http://www.analog.com/en/support/technical-support.html</supportContact>
+  <license>License/license.txt</license>
+
+  <releases>
+    <release version="3.1.0" date="2018-01-22">
+      Support for IAR 8.x added
+    </release>
+    <release version="1.0.0" date="2017-08-11">
+      Initial Release
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package name="ADuCM302x_DFP" vendor="AnalogDevices" version="2.0.0"/>
+      <package name="ADI-SensorSoftware" vendor="AnalogDevices" version="1.1.0"/>
+      <package name="ADI-BleSoftware" vendor="AnalogDevices" version="1.0.0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <keyword>Analog Devices</keyword>
+    <keyword>Examples</keyword>
+    <keyword>Board Support Package</keyword>
+    <keyword>EV-COG-AD3029LZ</keyword>
+    <keyword>ADuCM302x</keyword>
+  </keywords>    
+
+  <boards>
+    <board vendor="AnalogDevices" name="EV-COG-AD3029LZ" revision="Rev B">
+      <description>Analog Devices EV-COG-AD3029LZ Evaluation Board</description>
+      <mountedDevice deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM3029"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Analog Devices:1" Dfamily="ADuCM302x Series"/>
+      <feature type="Batt" n="1" name="CR2032 Coin Cell"/>
+      <feature type="PWR" n="3" m = "6" name="+3V to +6V DC power supply"/>
+      <debugInterface adapter="CMSIS-DAP" connector="Micro-USB"/>
+      <debugInterface adapter="J-Link" connector="10-pin Cortex Debug Connector"/>
+    </board>
+  </boards>     
+
+  <conditions>
+  <condition id="ADuCM3029">
+    <description>ADuCM3029 device</description>
+    <require Dvendor="Analog Devices:1"/>
+    <accept Dname="ADuCM3029"/>
+  </condition>
+  <condition id="BSP GPIO">
+    <description>ADuCM3029 GPIO driver</description>
+    <require condition="ADuCM3029"/>
+    <require Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+  </condition>    
+  </conditions>
+
+  <components>
+  <bundle Cbundle="EV-COG-AD3029LZ" Cclass="Board Support" Cversion="1.0.0">
+    <description>Analog Devices EV-COG-AD3029LZ Evaluation Board</description>
+    <doc></doc>
+    <component Cgroup="ADP5300" Cversion="1.0.0" condition="BSP GPIO">
+      <description>ADP5300 Voltage Regulator Off-Chip Driver</description>
+      <files>
+        <file category="include" name="Include/" />
+        <file category="source" name="Source/drivers/voltage_regulator/adi_adp5300.c"/>
+        <file category="doc" name="Documents/html/group___a_d_p5300___driver.html"/>
+      </files>
+    </component>
+  </bundle>
+  </components>
+
+  <examples>
+<example name="data_exchange_hello_world_noos" folder="Boards/EV-COG-AD3029LZ/Examples/communication/ble/data_exchange/hello_world/noos" doc="EV-COG-AD3029LZ/Readme_hello_world.txt" version="1.0.0">
+<description>Demonstrates how to use the Data Exchange Bluetooth profile on the EM9304</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/hello_world.ewp" />
+		</project>
+		<attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Board Support" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="findme_target_noos" folder="Boards/EV-COG-AD3029LZ/Examples/communication/ble/findme/findme_target/noos" doc="EV-COG-AD3029LZ/Readme_findme_target.txt" version="1.0.0">
+<description>Demonstrates FindmeTarget Bluetooth profile on the EM9304</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/findme_target.ewp" />
+		</project>
+		<attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Board Support" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="proximity_reporter_noos" folder="Boards/EV-COG-AD3029LZ/Examples/communication/ble/proximity/proximity_reporter/noos" doc="EV-COG-AD3029LZ/Readme_proximity_reporter.txt" version="1.1.0">
+<description>Demonstrates how to use the Proximity Reporter Bluetooth profile on the EM9304</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/proximity_reporter.ewp" />
+		</project>
+		<attributes>
+        <category>BLE Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+    <example name="blinky_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/gpio/blinky_example" doc="EV-COG-AD3029LZ/Readme_blinky_example.txt" version="3.1.0">
+    <description>Example demonstrating the GPIO driver blinking LEDs</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+        <environment name="iar" load="EV-COG-AD3029LZ/iar/blinky_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="button_press" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/push_button/button_press" doc="EV-COG-AD3029LZ/Readme_button_press.txt" version="1.0.0">
+    <description>Example demonstrating the blinking led after pressing push button</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/button_press.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="rtc_alarm_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/rtc/rtc_alarm_example" doc="EV-COG-AD3029LZ/Readme_rtc_alarm.txt" version="1.0.0">
+    <description>Example demonstrating the RTC alarm feature</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/rtc_alarm_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+        <keyword>RTC, Alarm</keyword>
+        </attributes>
+    </example>
+    <example name="spi_loopback_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/spi/spi_loopback_example" doc="EV-COG-AD3029LZ/Readme_spi_loopback.txt" version="1.0.0">
+    <description>Basic example demonstrating the SPI driver (Loopback)</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/spi_loopback_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>SPI</keyword>
+        </attributes>
+    </example>
+    <example name="systick" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/systick/systick_example" doc="EV-COG-AD3029LZ/Readme_systick.txt" version="1.0.0">
+    <description>Example to demonstrate systick timer to generate specific number of interrupts</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/systick_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>SysTick</keyword>
+        </attributes>
+    </example>
+    <example name="tmr_example_gp" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/tmr/tmr_example_gp" doc="EV-COG-AD3029LZ/Readme_tmr_example_gp.txt" version="1.0.0">
+    <description>Example demonstrating the GP timer to generate a periodic interrupt and event capture</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/tmr_example_gp.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="uart_autobaud_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/uart/uart_autobaud_example" doc="EV-COG-AD3029LZ/Readme_uart_autobaud.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Autobaud mode</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM302x"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/uart_autobaud_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_callback_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/uart/uart_callback_example" doc="EV-COG-AD3029LZ/Readme_uart_callback.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Callback mode</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/uart_callback_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="uart_loopback_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/uart/uart_loopback_example" doc="EV-COG-AD3029LZ/Readme_uart_loopback.txt" version="1.0.0">
+    <description>Basic example demonstrating the UART driver using Loopback </description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/uart_loopback_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>UART</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_interrupt" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/wdt/wdt_example_interrupt" doc="EV-COG-AD3029LZ/Readme_wdt_example_interrupt.txt" version="1.0.0">
+    <description>Example demonstrating the WDT driver(configured to interrupt on timeout)</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/wdt_example_interrupt.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="wdt_example_reset" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/wdt/wdt_example_reset" doc="EV-COG-AD3029LZ/Readme_wdt_example_reset.txt" version="1.0.0">
+    <description>Example demonstrating the WDT driver(configured to reset on timeout)</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+        <environment name="iar" load="EV-COG-AD3029LZ/iar/wdt_example_reset.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <keyword>WDT</keyword>
+        </attributes>
+    </example>
+    <example name="xint_example" folder="Boards/EV-COG-AD3029LZ/Examples/drivers/xint/xint_example" doc="EV-COG-AD3029LZ/Readme_xint_example.txt" version="1.0.0">
+    <description>Example demonstrating external pin interrupt (XINT)</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/xint_example.ewp" />
+        </project>
+        <attributes>
+        <category>Driver Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Retarget" />
+        <component Cclass="Device" Cgroup="Examples Support" />
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="XINT"/>
+        <keyword>XINT</keyword>
+        </attributes>
+    </example>
+<example name="adxl362_example_noos" folder="Boards/EV-COG-AD3029LZ/Examples/sensor/axl/adxl362/noos" doc="EV-COG-AD3029LZ/Readme_adxl362.txt" version="1.1.0">
+<description>Demonstrates ADXL362 accelerometer function using Bluetooth</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+		<environment name="iar" load="EV-COG-AD3029LZ/iar/adxl362_example_noos.ewp" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="Accelerometer" Csub="adxl362" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+    <example name="sensor_strobe_adxl362" folder="Boards/EV-COG-AD3029LZ/Examples/sensor/sensor_strobe/adxl362/noos" doc="EV-COG-AD3029LZ/Readme_sensor_strobe_adxl362.txt" version="1.0.0">
+    <description>Example demonstrating the Sensor Strobe feature of the ADuCM3029 with the ADXL362</description>
+    <board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="EV-COG-AD3029LZ"/>
+        <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+        </project>
+        <attributes>
+            <category>Sensor Examples</category>
+            <component Cclass="CMSIS"  Cgroup="CORE"/>
+            <component Cclass="Device" Cgroup="Startup"/>
+            <component Cclass="Device" Cgroup="Global Configuration"/>
+            <component Cclass="Device" Cgroup="Examples Support"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="RTC"/>
+            <component Cclass="Device" Cgroup="Drivers" Csub="Interrupt"/>
+            <component Cclass="Sensors" Cgroup="SensorStrobe" Csub="SensorStrobe" />
+            <component Cclass="Sensors" Cgroup="axl" Csub="adxl362" />
+            <keyword>ADXL362, SensorStrobe, RTC, XINT</keyword>
+        </attributes>
+    </example>
+<example name="adt7420_example_noos" folder="Boards/EV-COG-AD3029LZ/Examples/sensor/temp/adt7420/noos" doc="EV-COG-AD3029LZ/Readme_adt7420.txt" version="1.1.0">
+<description>Demonstrates ADT7420 temperature sensor functionality using Bluetooth</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="I2C"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <component Cclass="Sensors" Cgroup="Temperature" Csub="adt7420" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+<example name="template_example_noos" folder="Boards/EV-COG-AD3029LZ/Examples/sensor/template_sensor/template_sensor/noos" doc="EV-COG-AD3029LZ/Readme_template_sensor.txt" version="1.1.0">
+<description>Demonstrates a template sensor using Bluetooth</description>
+<board name="EV-COG-AD3029LZ" vendor="AnalogDevices" Dname="ADuCM3029"/>
+    <project>
+        <environment name="cces" load="EV-COG-AD3029LZ/cces/.project" />
+    </project>
+    <attributes>
+        <category>Sensor Examples</category>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="Global Configuration"/>
+        <component Cclass="Device" Cgroup="Examples Support"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="SPI"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="TMR"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="Power"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="UART"/>
+        <component Cclass="Device" Cgroup="Drivers" Csub="WDT"/>
+        <component Cclass="BLE" Cgroup="Bluetooth low energy" />
+        <keyword>BLE</keyword>
+    </attributes>
+</example>
+
+  </examples>
+</package>

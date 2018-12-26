@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.9" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Kinetis_KLxx_DFP</name>
+  <description>NXP Kinetis KLxx Series Device Support and Examples</description>
+
+  <releases>
+    <release version="1.15.0" date="2017-05-07">
+      Continue device support for devices not included in packs from NXP:
+      - Removed parts and boards that are supported by packs from NXP.
+    </release>
+    <release version="1.14.0" date="2017-11-20">
+      Maintenance of this pack is discontinued. NXP is now continuing the support in these packs:
+      - NXP.MKL02Z4_DFP, NXP.MKL03Z4_DFP.
+      - NXP.MKL13Z644_DFP, NXP.MKL17Z4_DFP, NXP.MKL17Z644_DFP.
+      - NXP.MKL26Z4_DFP, NXP.MKL27Z4_DFP, NXP.MKL27Z644_DFP, NXP.MKL28Z7_DFP.
+      - NXP.MKL33Z4_DFP, NXP.MKL33Z644_DFP, NXP.MKL34Z4_DFP, NXP.MKL36Z4_DFP.
+      - NXP.MKL43Z4_DFP, NXP.MKL46Z4_DFP.
+      - NXP.MKL82Z7_DFP.
+      Device Support:
+      - updated system_MKL17Z4.h.
+    </release>
+    <release version="1.13.0" date="2017-02-21">
+      Reworked KLxx_DFP.
+      - updated files for MKL17Z4, MKL27Z4, MKL33Z4, MKL43Z4
+      - updated documentation.
+      Updated device header files: added ARM Clang 6 directives for handling anonymous unions
+    </release>
+    <release version="1.12.0" date="2016-07-12">
+      Reworked KLxx_DFP.
+      - updated system_MKL*.c files for MKL03Z4, MKL17Z4, MKL27Z4, MKL33Z4, MKL43Z4
+      - changed vendor to NXP.
+      - updated documentation.
+      - updated boards description.
+      - changed device vendor to NXP in projects.
+    </release>
+    <release version="1.11.0" date="2016-04-14">
+      Updated KL28Z device files.
+      Removed device MKL28Z256xxx7 (according new reference manual).
+      Updated Kinetis Flash Algorithm MK_P128_48MHZ.FLM.
+       - corrected BlankCheck() function.
+    </release>
+    <release version="1.10.0" date="2016-02-05">
+      Device Support:
+      - updated MKL28Z flash algorithm
+    </release>
+    <release version="1.9.0" date="2015-12-01">
+      Device Support:
+      - updated MKL82Z7 device support description and files
+      - updated KL25Z4 device support description and files
+      Examples:
+      - added TWR-KL43Z48M Example
+      - updated FRDM-KL25Z Example
+    </release>
+    <release version="1.8.0" date="2015-11-12">
+      Device Support:
+      - added MKL26Z4      
+      - updated MKL82Z7 device support
+      - updated MKL device support files
+      - updated MK_P128.FLM Flash Algorithm (using Cortex-M4).
+      Examples:
+      - added FRDM-KL82Z Example
+      - added TWR-KL82Z72M Example.
+    </release>
+    <release version="1.7.0" date="2015-08-12">
+      Added device support for MKL28Z7.
+    </release>
+    <release version="1.6.0" date="2015-05-04">
+      Removed FRDM-KL33Z board support.
+      Reworked FRDM-KL43Z board support.
+    </release>
+    <release version="1.5.0" date="2015-04-10">
+      Added Device support for MKL13Z32, MKL13Z64, MKL33Z32, MKL33Z64.
+      Added board support for FDRM-KL33Z.
+      Added missing manuals.
+    </release>
+    <release version="1.4.0" date="2014-10-08">
+      Updated CMSIS files for MKL17Z32, MKL17Z64, MKL27Z32, MKL27Z64.
+      Added missing board descriptions.
+      Added user manuals for KL17 and KL27 devices
+    </release>
+    <release version="1.3.0" date="2014-09-24">
+      Added KL17, KL27 and KL33 devices
+      Update to CMSIS-Core V 1.3 for KL17Z4, KL27Z4, KL33Z4 and KL43Z4
+      SRAM range unified into single range
+      Added FRDM-KL43Z board examples
+    </release>
+    <release version="1.2.0" date="2014-07-10">
+      Updated KL03 startup file
+      Updated KL03 flash algorithm
+    </release>
+    <release version="1.1.0">
+      Updated KL03 CMSIS files
+      Added FRDM-KL03Z Blinky example
+    </release>
+    <release version="1.0.1">
+      Updated FRDM-KL25Z/RTX_Blinky example
+    </release>
+    <release version="1.0.0">
+      First Release version of KL Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+  <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>KL</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="KLxx Series" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p0"/>
+      <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+      <book name="Documents/dui0662a_cortex_m0p_r0p0_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+      <description>
+Kinetis L series MCUs, based on the ARM® Cortex®-M0+ core, offer ultra-low power and small size with scalable integration and ease-of-use.
+      </description>
+
+      <!-- ******************************  KL0x  ******************************** -->
+      <subFamily DsubFamily="KL0x">
+        <description>
+The Kinetis KL0 MCU family is the entry point into the Kinetis L series based on the ARM® Cortex®-M0+ core.
+The KL0 ultra-low-power MCUs provide a bridge for 8-bit customers migrating into the Kinetis portfolio and is software and tool compatible with all other Kinetis L series devices.
+        </description>
+
+        <!-- ******************************  MKL04Z8xxx4  ****************************** -->
+        <device Dname="MKL04Z8xxx4">
+          <compile header="Device/Include/MKL04Z4.h" define="MKL04Z8xxx4"/>
+          <debug svd="SVD/MKL04Z4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00002000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFFF00" size="0x00000400" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P8_48MHZ.FLM" start="0x00000000" size="0x00002000" RAMstart="0x1FFFFF00" RAMsize="0x00000400" default="1"/>
+
+          <book name="Documents/KL04P48M48SF1RM.pdf" title="KL04 Sub-Family Reference Manual"/>
+          <book name="Documents/KL04P48M48SF1.pdf"   title="KL04 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL04Z16xxx4  ****************************** -->
+        <device Dname="MKL04Z16xxx4">
+          <compile header="Device/Include/MKL04Z4.h" define="MKL04Z16xxx4"/>
+          <debug svd="SVD/MKL04Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFE00" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P16_48MHZ.FLM" start="0x00000000" size="0x00004000" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+
+          <book name="Documents/KL04P48M48SF1RM.pdf" title="KL04 Sub-Family Reference Manual"/>
+          <book name="Documents/KL04P48M48SF1.pdf"   title="KL04 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL04Z32xxx4  ****************************** -->
+        <device Dname="MKL04Z32xxx4">
+          <compile header="Device/Include/MKL04Z4.h" define="MKL04Z32xxx4"/>
+          <debug svd="SVD/MKL04Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL04P48M48SF1RM.pdf" title="KL04 Sub-Family Reference Manual"/>
+          <book name="Documents/KL04P48M48SF1.pdf"   title="KL04 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL05Z8xxx4  ****************************** -->
+        <device Dname="MKL05Z8xxx4">
+          <compile header="Device/Include/MKL05Z4.h" define="MKL05Z8xxx4"/>
+          <debug svd="SVD/MKL05Z4.svd"/>
+          <memory id="IROM1"                      start="0x00000000" size="0x00002000" startup="1" default="1"/>
+          <memory id="IRAM1"                      start="0x1FFFFF00" size="0x00000400" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P8_48MHZ.FLM" start="0x00000000" size="0x00002000" RAMstart="0x1FFFFF00" RAMsize="0x00000400" default="1"/>
+
+          <book name="Documents/KL05P48M48SF1RM.pdf" title="KL05 Sub-Family Reference Manual"/>
+          <book name="Documents/KL05P48M48SF1.pdf"   title="KL05 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL05Z16xxx4  ****************************** -->
+        <device Dname="MKL05Z16xxx4">
+          <compile header="Device/Include/MKL05Z4.h" define="MKL05Z16xxx4"/>
+          <debug svd="SVD/MKL05Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00004000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFE00" size="0x00000800" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P16_48MHZ.FLM" start="0x00000000" size="0x00004000" RAMstart="0x1FFFFE00" RAMsize="0x00000800" default="1"/>
+
+          <book name="Documents/KL05P48M48SF1RM.pdf" title="KL05 Sub-Family Reference Manual"/>
+          <book name="Documents/KL05P48M48SF1.pdf"   title="KL05 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL05Z32xxx4  ****************************** -->
+        <device Dname="MKL05Z32xxx4">
+          <compile header="Device/Include/MKL05Z4.h" define="MKL05Z32xxx4"/>
+          <debug svd="SVD/MKL05Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL05P48M48SF1RM.pdf" title="KL05 Sub-Family Reference Manual"/>
+          <book name="Documents/KL05P48M48SF1.pdf"   title="KL05 Sub-Family Data Sheet"/>
+        </device>
+      </subFamily>
+
+      <!-- ******************************  KL1x    ****************************** -->
+      <subFamily DsubFamily="KL1x">
+        <description>
+The Kinetis KL1x is a general purpose ultra-low-power MCU family, providing additional memory, communications and analog peripheral options beyond those offered in the Kinetis KL0x MCU family.
+The KL1x MCU family is compatible with Kinetis K10 MCUs (based on ARM® Cortex®-M4) and with all other Kinetis KL1x, KL2x, KL3x and KL4x series MCUs, providing a migration path to higher performance and feature integration.
+        </description>
+
+        <!-- ******************************  MKL14Z32xxx4  ****************************** -->
+        <device Dname="MKL14Z32xxx4">
+          <compile header="Device/Include/MKL14Z4.h" define="MKL14Z32xxx4"/>
+          <debug svd="SVD/MKL14Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL14P80M48SF0RM.pdf" title="KL14 Sub-Family Reference Manual"/>
+          <book name="Documents/KL14P80M48SF0.pdf"   title="KL14 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL14Z64xxx4  ****************************** -->
+        <device Dname="MKL14Z64xxx4">
+          <compile header="Device/Include/MKL14Z4.h" define="MKL14Z64xxx4"/>
+          <debug svd="SVD/MKL14Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL14P80M48SF0RM.pdf" title="KL14 Sub-Family Reference Manual"/>
+          <book name="Documents/KL14P80M48SF0.pdf"   title="KL14 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL15Z32xxx4  ****************************** -->
+        <device Dname="MKL15Z32xxx4">
+          <compile header="Device/Include/MKL15Z4.h" define="MKL15Z32xxx4"/>
+          <debug svd="SVD/MKL15Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL15P80M48SF0RM.pdf" title="KL14 Sub-Family Reference Manual"/>
+          <book name="Documents/KL15P80M48SF0.pdf"   title="KL14 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL15Z64xxx4  ****************************** -->
+        <device Dname="MKL15Z64xxx4">
+          <compile header="Device/Include/MKL15Z4.h" define="MKL15Z64xxx4"/>
+          <debug svd="SVD/MKL15Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL15P80M48SF0RM.pdf" title="KL15 Sub-Family Reference Manual"/>
+          <book name="Documents/KL15P80M48SF0.pdf"   title="KL15 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL15Z128xxx4  ****************************** -->
+        <device Dname="MKL15Z128xxx4">
+          <compile header="Device/Include/MKL15Z4.h" define="MKL15Z128xxx4"/>
+          <debug svd="SVD/MKL15Z4.svd"/>
+          <memory id="IROM1"                        start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                        start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P128_48MHZ.FLM" start="0x00000000" size="0x00020000" RAMstart="0x1FFFF000" RAMsize="0x00004000" default="1"/>
+
+          <book name="Documents/KL15P80M48SF0RM.pdf" title="KL15 Sub-Family Reference Manual"/>
+          <book name="Documents/KL15P80M48SF0.pdf"   title="KL15 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL16Z32xxx4  ****************************** -->
+        <device Dname="MKL16Z32xxx4">
+          <compile header="Device/Include/MKL16Z4.h" define="MKL16Z32xxx4"/>
+          <debug svd="SVD/MKL16Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL16P80M48SF4RM.pdf" title="KL16 Sub-Family Reference Manual"/>
+          <book name="Documents/KL16P64M48SF5.pdf"   title="KL16 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL16Z64xxx4  ****************************** -->
+        <device Dname="MKL16Z64xxx4">
+          <compile header="Device/Include/MKL16Z4.h" define="MKL16Z64xxx4"/>
+          <debug svd="SVD/MKL16Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL16P80M48SF4RM.pdf" title="KL16 Sub-Family Reference Manual"/>
+          <book name="Documents/KL16P64M48SF5.pdf"   title="KL16 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL16Z128xxx4  ****************************** -->
+        <device Dname="MKL16Z128xxx4">
+          <compile header="Device/Include/MKL16Z4.h" define="MKL16Z128xxx4"/>
+          <debug svd="SVD/MKL16Z4.svd"/>
+          <memory id="IROM1"                        start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                        start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P128_48MHZ.FLM" start="0x00000000" size="0x00020000" RAMstart="0x1FFFF000" RAMsize="0x00004000" default="1"/>
+
+          <book name="Documents/KL16P80M48SF4RM.pdf" title="KL16 Sub-Family Reference Manual"/>
+          <book name="Documents/KL16P64M48SF5.pdf"   title="KL16 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL16Z256xxx4  ****************************** -->
+        <device Dname="MKL16Z256xxx4">
+          <compile header="Device/Include/MKL16Z4.h" define="MKL16Z256xxx4"/>
+          <debug svd="SVD/MKL16Z4.svd"/>
+          <memory id="IROM1"                        start="0x00000000" size="0x00040000" startup="1" default="1"/>
+          <memory id="IRAM1"                        start="0x1FFFE000" size="0x00008000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P256_48MHZ.FLM" start="0x00000000" size="0x00040000" RAMstart="0x1FFFE000" RAMsize="0x00008000" default="1"/>
+
+          <book name="Documents/KL16P80M48SF4RM.pdf" title="KL16 Sub-Family Reference Manual"/>
+          <book name="Documents/KL16P64M48SF4.pdf"   title="KL16 Sub-Family Data Sheet"/>
+        </device>
+
+      </subFamily>
+
+      <!-- ******************************  KL2x    ****************************** -->
+      <subFamily DsubFamily="KL2x">
+        <description>
+The Kinetis KL2x is an ultra-low-power MCU family that adds a full-speed USB 2.0 On-the-Go (OTG) controller or a full-speed crystal-less USB 2.0 device controller in addition to the Kinetis KL1x series.
+The Kinetis KL2x MCU family is compatible with Kinetis K20 MCUs (based on ARM® Cortex®-M4), and with all other Kinetis KL1x, KL2x, KL3x, and KL4x series MCUs, providing a migration path to lower and higher performance and feature integration.
+        </description>
+
+        <!-- ******************************  MKL24Z32xxx4  ****************************** -->
+        <device Dname="MKL24Z32xxx4">
+          <compile header="Device/Include/MKL24Z4.h" define="MKL24Z32xxx4"/>
+          <debug svd="SVD/MKL24Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL24P80M48SF0RM.pdf" title="KL24 Sub-Family Reference Manual"/>
+          <book name="Documents/KL24P80M48SF0.pdf"   title="KL24 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL24Z64xxx4  ****************************** -->
+        <device Dname="MKL24Z64xxx4">
+          <compile header="Device/Include/MKL24Z4.h" define="MKL24Z64xxx4"/>
+          <debug svd="SVD/MKL24Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL24P80M48SF0RM.pdf" title="KL24 Sub-Family Reference Manual"/>
+          <book name="Documents/KL24P80M48SF0.pdf"   title="KL24 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL25Z32xxx4  ****************************** -->
+        <device Dname="MKL25Z32xxx4">
+          <compile header="Device/Include/MKL25Z4.h" define="MKL25Z32xxx4"/>
+          <debug svd="SVD/MKL25Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL25P80M48SF0RM.pdf" title="KL25 Sub-Family Reference Manual"/>
+          <book name="Documents/KL25P80M48SF0.pdf"   title="KL25 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL25Z64xxx4  ****************************** -->
+        <device Dname="MKL25Z64xxx4">
+          <compile header="Device/Include/MKL25Z4.h" define="MKL25Z64xxx4"/>
+          <debug svd="SVD/MKL25Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL25P80M48SF0RM.pdf" title="KL25 Sub-Family Reference Manual"/>
+          <book name="Documents/KL25P80M48SF0.pdf"   title="KL25 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL25Z128xxx4  ****************************** -->
+        <device Dname="MKL25Z128xxx4">
+          <compile header="Device/Include/MKL25Z4.h" define="MKL25Z128xxx4"/>
+          <debug svd="SVD/MKL25Z4.svd"/>
+          <memory id="IROM1"                        start="0x00000000" size="0x00020000" startup="1" default="1"/>
+          <memory id="IRAM1"                        start="0x1FFFF000" size="0x00004000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P128_48MHZ.FLM" start="0x00000000" size="0x00020000" RAMstart="0x1FFFF000" RAMsize="0x00004000" default="1"/>
+
+          <book name="Documents/KL25P80M48SF0RM.pdf" title="KL25 Sub-Family Reference Manual"/>
+          <book name="Documents/KL25P80M48SF0.pdf"   title="KL25 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL26Z32xxx4  ****************************** -->
+        <device Dname="MKL26Z32xxx4">
+          <compile header="Device/Include/MKL26Z4.h" define="MKL26Z32xxx4"/>
+          <debug svd="SVD/MKL26Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00008000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFFC00" size="0x00001000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P32_48MHZ.FLM" start="0x00000000" size="0x00008000" RAMstart="0x1FFFFC00" RAMsize="0x00001000" default="1"/>
+
+          <book name="Documents/KL26P121M48SF4RM.pdf" title="KL26 Sub-Family Reference Manual"/>
+          <book name="Documents/KL26P121M48SF4.pdf"   title="KL26 Sub-Family Data Sheet"/>
+        </device>
+
+        <!-- ******************************  MKL26Z64xxx4  ****************************** -->
+        <device Dname="MKL26Z64xxx4">
+          <compile header="Device/Include/MKL26Z4.h" define="MKL26Z64xxx4"/>
+          <debug svd="SVD/MKL26Z4.svd"/>
+          <memory id="IROM1"                       start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                       start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x00002000" default="1"/>
+
+          <book name="Documents/KL26P121M48SF4RM.pdf" title="KL26 Sub-Family Reference Manual"/>
+          <book name="Documents/KL26P121M48SF4.pdf"   title="KL26 Sub-Family Data Sheet"/>
+        </device>
+
+      </subFamily>
+
+      <!-- ******************************  KL4x    ****************************** -->
+      <subFamily DsubFamily="KL4x">
+        <description>
+The Kinetis KL4x MCU family combines ultra-low-power performance with a rich suite of analog, communication, timing and control peripherals (including a segment LCD controller) for applications like electronic scales, flow meters, smart meters, and thermostats.
+ - Includes multiple flexible low-power modes, including new compute mode which reduces dynamic power by placing peripherals in an asynchronous stop mode
+ - Features security circuitry to prevent unauthorized access to RAM and flash contents
+ - Provides a migration path to lower and higher performance and feature integration through compatibility with other Kinetis families
+ - Backed by robust development tools and software
+        </description>
+
+        <!-- ******************************  MKL43Z64xxx4  ****************************** -->
+        <device Dname="MKL43Z64xxx4">
+          <compile header="Device/Include/MKL43Z4.h" define="MKL43Z64xxx4"/>
+          <debug svd="SVD/MKL43Z4.svd"/>
+          <memory id="IROM1"                            start="0x00000000" size="0x00010000" startup="1" default="1"/>
+          <memory id="IRAM1"                            start="0x1FFFF800" size="0x00002000" init   ="0" default="1"/>
+          <algorithm name="Flash/MK_P64_48MHZ_KL43.FLM" start="0x00000000" size="0x00010000" RAMstart="0x1FFFF800" RAMsize="0x800" default="1"/>
+
+          <book name="Documents/KL43P64M48SF6RM.pdf" title="KL43 Sub-Family Reference Manual"/>
+          <book name="Documents/KL43P64M48SF6.pdf"   title="KL43 Sub-Family Data Sheet"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- ******************************  KL0x    ****************************** -->
+    <condition id="MKL04Z4 CMSIS">
+      <description>NXP Kinetis KL04 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL04Z16xxx4"/>
+      <accept Dname="MKL04Z32xxx4"/>
+      <accept Dname="MKL04Z8xxx4"/>
+    </condition>
+    <condition id="MKL05Z4 CMSIS">
+      <description>NXP Kinetis KL05 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL05Z16xxx4"/>
+      <accept Dname="MKL05Z32xxx4"/>
+      <accept Dname="MKL05Z8xxx4"/>
+    </condition>
+
+    <!-- ******************************  KL1x    ****************************** -->
+    <condition id="MKL14Z4 CMSIS">
+      <description>NXP Kinetis KL14 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL14Z32xxx4"/>
+      <accept Dname="MKL14Z64xxx4"/>
+    </condition>
+    <condition id="MKL15Z4 CMSIS">
+      <description>NXP Kinetis KL15 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL15Z128xxx4"/>
+      <accept Dname="MKL15Z32xxx4"/>
+      <accept Dname="MKL15Z64xxx4"/>
+    </condition>
+    <condition id="MKL16Z4 CMSIS">
+      <description>NXP Kinetis KL16 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL16Z128xxx4"/>
+      <accept Dname="MKL16Z32xxx4"/>
+      <accept Dname="MKL16Z64xxx4"/>
+      <accept Dname="MKL16Z256xxx4"/>
+    </condition>
+
+    <!-- ******************************  KL2x    ****************************** -->
+    <condition id="MKL24Z4 CMSIS">
+      <description>NXP Kinetis KL24 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL24Z32xxx4"/>
+      <accept Dname="MKL24Z64xxx4"/>
+    </condition>
+    <condition id="MKL25Z4 CMSIS">
+      <description>NXP Kinetis KL25 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL25Z128xxx4"/>
+      <accept Dname="MKL25Z32xxx4"/>
+      <accept Dname="MKL25Z64xxx4"/>
+    </condition>
+    <condition id="MKL26Z4 CMSIS">
+      <description>NXP Kinetis KL26 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL26Z32xxx4"/>
+      <accept Dname="MKL26Z64xxx4"/>
+      </condition>
+
+    <!-- ******************************  KL4x    ****************************** -->
+    <condition id="MKL43Z4 CMSIS">
+      <description>NXP Kinetis KL43 48MHz devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11"/>
+      <accept Dname="MKL43Z64xxx4"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- ******************************  KL0x    ****************************** -->
+    <!-- Startup MKL04Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL04Z4 CMSIS">
+      <description>System Startup for NXP MKL04Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL04Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL04Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MKL05Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL05Z4 CMSIS">
+      <description>System Startup for NXP MKL05Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL05Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL05Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- ******************************  KL1x    ****************************** -->
+    <!-- Startup MKL14Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL14Z4 CMSIS">
+      <description>System Startup for NXP MKL14Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL14Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL14Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MKL15Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL15Z4 CMSIS">
+      <description>System Startup for NXP MKL15Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL15Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL15Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MKL16Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL16Z4 CMSIS">
+      <description>System Startup for NXP MKL16Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL16Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL16Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- ******************************  KL2x    ****************************** -->
+    <!-- Startup MKL24Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL24Z4 CMSIS">
+      <description>System Startup for NXP MKL24Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL24Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL24Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- Startup MKL25Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.5.0" condition="MKL25Z4 CMSIS">
+      <description>System Startup for NXP MKL25Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL25Z4.s"   attr="config" version="2.5.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL25Z4.c"        attr="config" version="2.5.0"/>
+        <file category="header"  name="Device/Source/system_MKL25Z4.h"        attr="config" version="2.5.0"/>
+      </files>
+    </component>
+    <!-- Startup MKL26Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="MKL26Z4 CMSIS">
+      <description>System Startup for NXP MKL26Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL26Z4.s"   attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL26Z4.c"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- ******************************  KL4x    ****************************** -->
+    <!-- Startup MKL43Z4 -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="MKL43Z4 CMSIS">
+      <description>System Startup for NXP MKL43Z4 Devices</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/ARM/startup_MKL43Z4.s"   attr="config" version="1.1.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/system_MKL43Z4.c"        attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/Source/system_MKL43Z4.h"        attr="config" version="1.1.0"/>
+      </files>
+    </component>
+    <!-- FRDM-KL25Z board support -->
+    <bundle Cbundle="FRDM-KL25Z" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP FRDM-KL25Z board support</description>
+      <doc></doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="MKL25Z4 CMSIS">
+      <description>LED driver for NXP FRDM-KL25Z board</description>
+        <files>
+          <file category="source" name="Boards/NXP/FRDM-KL25Z/Common/LED_FRDM-KL25Z.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board name="FRDM-KL25Z" vendor="NXP" revision="Rev. B" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="MKL25Z128xxx4"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="KLxx Series" DsubFamily="KL2x"/>
+      <description>The FRDM-KL25Z is a Freedom Development Platform for Kinetis KL14, KL15, KL24, KL25 MCUs.</description>
+      <image small="Boards/NXP/FRDM-KL25Z/Documents/FRDM-KL25Z_small.jpg"
+             large="Boards/NXP/FRDM-KL25Z/Documents/FRDM-KL25Z_large.jpg"/>
+      <book category="overview"  name="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-kl14-kl15-kl24-kl25-mcus:FRDM-KL25Z" title="FRDM-KL25Z Web Page"/>
+      <book category="manual"    name="Boards/NXP/FRDM-KL25Z/Documents/FRDM-KL25Z_UM.pdf"   title="User Manual"/>
+      <book category="setup"     name="Boards/NXP/FRDM-KL25Z/Documents/FRDM-KL25Z_QSG.pdf"  title="Quick Start Guide"/>
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="ODbg"      n="1"              name="Integrated open-source JTAG via USB"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="Batt"      n="1"              name="CR2032 Battery"/>
+      <feature type="Button"    n="1"              name="Reset button"/>
+      <feature type="USB"       n="1"              name="Full-Speed USB OTG with USB Standard-B Connector"/>
+      <feature type="DIO"       n="76"             name="Arduino R3 compatible I/O connectors"/>
+      <feature type="LED"       n="1"              name="Tri-color (RGB) LED"/>
+      <feature type="Touch"     n="1"              name="Capacitive Touch Slider"/>
+      <feature type="Accelerometer" n="1"          name="MMA8451Q 3-axis digital Accelerometer"/>
+      <feature type="FreedomFF"/>
+      <debugInterface adapter="OpenSDA"   connector="Mini-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- FRDM-KL25Z Board -->
+    <example name="CMSIS-RTOS Blinky" doc="Abstract.txt" folder="Boards/NXP/FRDM-KL25Z/Blinky">
+      <description>CMSIS-RTOS based Blinky example</description>
+      <board name="FRDM-KL25Z" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>NXP</vendor>
+    <url>http://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+    <name>QN908x_DFP</name>
+    <description>NXP QN908x Series Device Support, Drivers and Examples</description>
+
+    <releases>
+      <release version="1.1.5" date="2018-08-29">
+        Update device selecting condition for QN908xA, QN908xB and QN908xC.
+      </release>
+      <release version="1.1.4" date="2017-07-21">
+        Update SVD file name from QN9080X to QN908XX.
+        Add device QN9083A, QN9083B and QN9083C.
+        Update memory section for device and flash algorithm.
+      </release>
+      <release version="1.1.3" date="2017-07-07">
+        First Release version of QN908x Device Family Pack.
+        Includes QN908xA, QN908xB and QN908xC support.
+      </release>
+    </releases>
+
+    <keywords>
+      <!-- keywords for indexing -->
+      <keyword>NXP</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package NXP</keyword>
+      <keyword>QN908x</keyword>
+    </keywords>
+
+  <devices>
+    <family Dfamily="QN908x" Dvendor="NXP:11">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <description>QN908x is an Ultra-Low Power SoC designed for Bluetooth Low Energy standard.It combines an ARM Cortex-M4 processor, 256 kB ROM, 128 kB SRAM, 512 kB FLASH and a full range of peripherals.
+True single-chip Bluetooth Low-Energy (v4.2) SoC solution.
+      </description>
+      <book name="Documents/QN908x.UM.20170317.pdf" title="QN908X User's Manual"/>
+      <feature type="USART"         n="2"/>
+      <feature type="I2C"           n="2"/>
+      <feature type="SPI"           n="2"/>
+      <feature type="Timer"         n="4"       m="32"/>
+      <feature type="ADC"           n="8"       m="16"/>
+      <feature type="DAC"           n="8"       m="10"/>
+      <feature type="USBD"          n="1" name="Full-Speed USB Device"/>
+      
+      <!-- ************************  Subfamily 'QN908xA'  **************************** -->
+      <subFamily DsubFamily="QN908xA">                        
+        <!-- *************************  Device 'QN9080A'  ***************************** -->
+        <device Dname="QN9080A">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908X.h"/>
+          <debug      svd="SVD/qn908XA.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xA_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+        <device Dname="QN9083A">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908X.h"/>
+          <debug      svd="SVD/qn908XA.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xA_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+      </subFamily>
+      <!-- ************************  Subfamily 'QN908xB'  **************************** -->
+      <subFamily DsubFamily="QN908xB">
+        <!-- *************************  Device 'QN9080B'  ***************************** -->
+        <device Dname="QN9080B">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908XB.h"/>
+          <debug      svd="SVD/qn908XB.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xB_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+        <device Dname="QN9083B">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908XB.h"/>
+          <debug      svd="SVD/qn908XB.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xB_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+      </subFamily>
+          <!-- ************************  Subfamily 'QN908xB'  **************************** -->
+      <subFamily DsubFamily="QN908xC">
+        <!-- *************************  Device 'QN9080B'  ***************************** -->
+        <device Dname="QN9080C">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908XC.h"/>
+          <debug      svd="SVD/qn908XC.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xC_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+        <device Dname="QN9083C">
+          <processor Dclock="32000000"/>
+          <compile header="Device/Include/QN908XC.h"/>
+          <debug      svd="SVD/qn908XC.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x04000000"  size="0x20000"                  default="1"/>
+          <algorithm  name="Flash/QN908xC_512K.FLM" start="0x00000000" size="0x80000"  RAMstart="0x04000400"  RAMsize="0x8000"  default="1"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- conditions are dependency rules that can apply to a component or an individual file -->
+
+    <condition id="QN9080A">
+      <!-- conditions selecting Devices -->
+      <description>NXP QN908xA Series devices</description>
+      <require Dvendor="NXP:11" Dname="QN908?A"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="QN9080B">
+      <!-- conditions selecting Devices -->
+      <description>NXP QN908xB Series devices</description>
+      <require Dvendor="NXP:11" Dname="QN908?B"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="QN9080C">
+      <!-- conditions selecting Devices -->
+      <description>NXP QN908xC Series devices</description>
+      <require Dvendor="NXP:11" Dname="QN908?C"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <!-- Device + CMSIS Conditions -->
+    <condition id="QN9080A CMSIS">
+      <description>NXP QN9080A Devices and CMSIS-CORE</description>
+      <require condition="QN9080A"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="QN9080B CMSIS">
+      <description>NXP QN9080B Devices and CMSIS-CORE</description>
+      <require condition="QN9080B"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="QN9080C CMSIS">
+      <description>NXP QN9080C Devices and CMSIS-CORE</description>
+      <require condition="QN9080C"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="QN9080A CMSIS">
+      <!-- Cversion is necessary -->
+      <description>System Startup for NXP QN9080A </description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <!-- startup files -->
+        <file category="sourceAsm" name="Device/Source/ARM/keil_startup_qn9080A.s" attr="config" version="1.0.0"/>
+        <!-- system file -->
+        <file category="header" name="Device/Include/system_QN908X.h"/>
+        <file category="sourceC" name="Device/Source/system_QN908X.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="QN9080B CMSIS">
+      <!-- Cversion is necessary -->
+      <description>System Startup for NXP QN9080B </description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <!-- startup files -->
+        <file category="sourceAsm" name="Device/Source/ARM/keil_startup_qn9080B.s" attr="config" version="1.0.0"/>
+        <!-- system file -->
+        <file category="header" name="Device/Include/system_QN908XB.h"/>
+        <file category="sourceC" name="Device/Source/system_QN908XB.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="QN9080C CMSIS">
+      <!-- Cversion is necessary -->
+      <description>System Startup for NXP QN9080C </description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <!-- startup files -->
+        <file category="sourceAsm" name="Device/Source/ARM/keil_startup_qn9080C.s" attr="config" version="1.0.0"/>
+        <file category="header" name="Device/Include/system_QN908XC.h"/>
+        <file category="sourceC" name="Device/Source/system_QN908XC.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+  <boards>
+    <board vendor="NXP" name="QN908XDK" revision="Ver 1.2" salesContact="sales@nxp.com" orderForm="">
+      <description>QN908X Development Kit</description>
+      <!--<image small="Documents/mcb54110_small.png" large="Documents/mcb54110_large.png"/>-->
+      <book category="schematic"  name="Documents/QN908X_DK_V1.2.pdf" title="QN908X DK Schematics"/>
+      <!--
+      <book category="manual"    name="Documents/mcb54110.chm" title="User Manual"/>
+      -->
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="QN9080A"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dfamily="QN908x"/>
+      <feature type="PWR"             n="1"              name="USB Powered"/>
+      <feature type="Button"          n="3"              name="Push-Buttons: Reset, Button1, Button2"/>
+      <feature type="LED"             n="8"              name="I/O Port LEDs"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="OpenSDA" connector="Micro-USB"/>
+    </board>
+  </boards>
+</package>
