@@ -48,38 +48,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-LED_Blinky.bin \
+GPIO_OUTPUT.bin \
 
 SECONDARY_SIZE += \
-LED_Blinky.siz \
+GPIO_OUTPUT.siz \
 
 
 # All Target
-all: LED_Blinky.elf secondary-outputs
+all: GPIO_OUTPUT.elf secondary-outputs
 
 # Tool invocations
-LED_Blinky.elf: $(OBJS) $(USER_OBJS)
+GPIO_OUTPUT.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM GNU C++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"LED_Blinky.map" --specs=nano.specs -o "LED_Blinky.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"GPIO_OUTPUT.map" --specs=nano.specs -o "GPIO_OUTPUT.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-LED_Blinky.bin: LED_Blinky.elf
+GPIO_OUTPUT.bin: GPIO_OUTPUT.elf
 	@echo 'Invoking: Cross ARM GNU Create Flash Image'
-	arm-none-eabi-objcopy -O binary "LED_Blinky.elf"  "LED_Blinky.bin"
+	arm-none-eabi-objcopy -O binary "GPIO_OUTPUT.elf"  "GPIO_OUTPUT.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-LED_Blinky.siz: LED_Blinky.elf
+GPIO_OUTPUT.siz: GPIO_OUTPUT.elf
 	@echo 'Invoking: Cross ARM GNU Print Size'
-	arm-none-eabi-size --format=berkeley "LED_Blinky.elf"
+	arm-none-eabi-size --format=berkeley "GPIO_OUTPUT.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) LED_Blinky.elf
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) GPIO_OUTPUT.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)
