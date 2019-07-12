@@ -1,1 +1,1 @@
-# Bu proje STM32F407VG mikrodenetleyicisini linux üzerinde eclipce geliştirme ortamı kullanılarak hazırlanmış bir referanstır
+# Bu proje STM32F407VG mikrodenetleyicisini linux üzerinde eclipse geliştirme ortamı kullanılarak hazırlanmış bir referanstır
